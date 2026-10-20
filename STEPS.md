@@ -2438,3 +2438,15 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `docs/src/pages/GridPage.tsx` (new)
 - `docs/src/App.tsx`, `docs/src/pages/TokensPage.tsx`, `docs/src/docs.css`, `STEPS.md` (updated)
+
+## Step 127 — Git repository connected to GitHub
+**Date:** 2026-10-20
+
+**What was done**
+- Initialized git in the project (branch `main`). Commit identity set for this repository only: "Capucine Desjouis" with the GitHub noreply email.
+- First commit of the whole project (118 files; `node_modules/`, `dist/`, `.DS_Store` and the generated `tokens/tokens.css` stay ignored by `.gitignore`).
+- Connected the existing private repository `CapucineDjs/BuildDesignSystem` as `origin` and pushed `main`.
+
+**Files**
+- `.git/` (new)
+- `STEPS.md` (updated)
