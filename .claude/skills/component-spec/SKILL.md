@@ -12,7 +12,7 @@ Output: **`components/<Name>/spec.md`** and a **live design preview** (`componen
 
 - **Never invent** (`never-invent`): purpose, anatomy, variants, sizes, states and token choices are design decisions. Propose, explain in one line, and wait for an explicit answer.
 - Proposals are shown in the chat (visual preview) and **written into `spec.md` only once approved**.
-- **Only existing tokens.** Every visual value in the spec is a semantic token (`token-naming`, `token-usage`). Never a raw value (no `#795b55`, no `13px`).
+- **Only existing tokens.** Every visual value in the spec is a semantic token (`token-naming`). Never a raw value (no `#795b55`, no `13px`).
   - If a needed token does not exist → stop and ask: a new token goes through the token process first.
 - The component's Atomic Design level must already be approved (`component-structure`).
 - English only.
@@ -99,4 +99,4 @@ Group small sections in one round of questions when possible.
 - Keep unresolved points under **Open questions**.
 
 ### 10. Approval gate
-Hand back to the `component` skill (approval gate): run `accessibility-check` (contrast of every text/icon/border pair used, target sizes, visible focus), show the spec and the design preview, and ask for explicit approval of stage 1.
+Hand back to the `component` skill (approval gate): check the contrast of every text/icon/border pair used, the target sizes and the visible focus, show the spec and the design preview, and ask for explicit approval of stage 1.

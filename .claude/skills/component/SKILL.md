@@ -23,10 +23,7 @@ There is **no prototype stage**: interactive mockups (user journeys) are made se
 Cross-cutting skills, used at every stage (dispatched by `orchestrator`):
 - **`component-structure`** — Atomic Design level of the component (atom, molecule, organism, template, page).
 - **`never-invent`** — never decide for the Design System Lead; ask.
-- **`token-naming`** and **`token-usage`** — which tokens exist and which one to use.
-- **`accessibility-check`** — run before asking for approval of any stage.
-- **`steps-log`** — log every step in `STEPS.md`.
-- **`backlog-management`** — keep `backlog/backlog.json` up to date.
+- **`token-naming`** — which tokens exist and how they are named.
 
 ## 1. Before starting
 
@@ -47,14 +44,13 @@ Read `components/<Name>/meta.json` → `status`: it tells which stage skill appl
 
 ## 3. End of a stage — approval gate
 
-1. Run `accessibility-check` on what was produced.
-2. Show the result to the Design System Lead: in the chat (visual when helpful) and on the component page of the documentation site (`/docs/#/components/<slug>`).
-3. Ask for an **explicit approval**. List any open question.
-4. Once approved:
+1. Show the result to the Design System Lead: in the chat (visual when helpful) and on the component page of the documentation site (`/docs/#/components/<slug>`).
+2. Ask for an **explicit approval**. List any open question.
+3. Once approved:
    - Set `meta.json` `status` to the next stage.
    - Set the backlog item `stage` to the same value.
-   - Log the approval in `STEPS.md` (`steps-log`).
-5. If changes are requested: apply them, then go back to step 1 of this gate.
+   - Log the approval in `STEPS.md`.
+4. If changes are requested: apply them, then go back to step 1 of this gate.
 
 ## 4. After the last stage
 

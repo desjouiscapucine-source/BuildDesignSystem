@@ -2480,3 +2480,17 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `.claude/skills/orchestrator/SKILL.md` (new)
 - `.claude/skills/component/SKILL.md`, `.claude/skills/component-spec/SKILL.md`, `.claude/skills/component-guidelines/SKILL.md`, `.claude/skills/component-code/SKILL.md`, `.claude/skills/component-structure/SKILL.md`, `CLAUDE.md`, `STEPS.md` (updated)
+
+## Step 130 — Mentions of missing skills removed
+**Date:** 2026-10-20
+
+**Decisions (made by the Design System Lead)**
+- Remove, for now, the mentions of skills that do not exist: `token-usage`, `accessibility-check`, `steps-log`, `backlog-management`.
+
+**What was done**
+- `component`: removed them from the cross-cutting skills list and from the approval gate (steps renumbered).
+- `component-spec`, `component-code`: `(token-naming, token-usage)` → `(token-naming)`. In the spec hand-back, the checks listed with `accessibility-check` (contrast pairs, target sizes, visible focus) are kept as plain words.
+- `component-code`, `component-guidelines`: removed the "run `accessibility-check`" lines (the accessibility rules written in these skills stay).
+
+**Files**
+- `.claude/skills/component/SKILL.md`, `.claude/skills/component-spec/SKILL.md`, `.claude/skills/component-code/SKILL.md`, `.claude/skills/component-guidelines/SKILL.md`, `STEPS.md` (updated)

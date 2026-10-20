@@ -50,7 +50,6 @@ Follow the order of `components/_template/guidelines.md`:
 
 ### 4. Accessibility section
 - Write the expected keyboard behavior (keys and result), focus order and visible focus, what a screen reader announces (role, name, state), contrast pairs (already checked in the spec), and the minimum target size (24×24px, WCAG 2.5.8).
-- Run `accessibility-check` on the section.
 
 ### 5. Write `guidelines.md`
 - Start from `components/_template/guidelines.md`; keep its section order.

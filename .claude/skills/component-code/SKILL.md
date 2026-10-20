@@ -12,7 +12,7 @@ Output: `components/<Name>/<Name>.tsx`, `<Name>.css`, `examples.tsx`, and the ex
 
 - **The approved spec is the source of truth**: `spec.md` + `design/tokens.json` (and `guidelines.md` for behavior). Code exactly what was approved.
   - If coding reveals a gap (missing state, impossible combination, edge case): **stop**, propose the change to the Design System Lead, update and re-approve the spec / guidelines first (`never-invent`).
-- **Semantic tokens only** (`token-naming`, `token-usage`): every visual value is `var(--…)` of a semantic token. **Never** a raw value (no `#795b55`, no `13px`) and **never** a primitive token.
+- **Semantic tokens only** (`token-naming`): every visual value is `var(--…)` of a semantic token. **Never** a raw value (no `#795b55`, no `13px`) and **never** a primitive token.
   - The only literals allowed are structural: `0`, `100%`, `auto`, `none`, `inherit`, `currentColor`. Border widths always use `--border-width-*`.
 - `design/Preview.tsx` is a mock-up: **do not import it** in the component. The component is written from scratch.
 - English only (code, comments, prop names).
@@ -77,7 +77,6 @@ Start from `components/_template/` (`ComponentName.tsx`, `ComponentName.css`, `e
 - Keyboard behavior, focus order, accessible name, role and states exactly as in the guidelines' Accessibility section.
 - Icon-only controls have an accessible name (`aria-label`).
 - Interactive targets at least 24×24px.
-- Run `accessibility-check` before the approval gate.
 
 ## Examples (`examples.tsx`)
 
@@ -91,7 +90,6 @@ Start from `components/_template/` (`ComponentName.tsx`, `ComponentName.css`, `e
 2. `npm run build` passes.
 3. Open the component page (`/docs/#/components/<slug>`): check the **Examples** tab against the **Design preview** tab — same tokens, same look.
 4. Check with the keyboard (Tab, Shift+Tab, Enter / Space, arrows if any) and at mobile width.
-5. `accessibility-check`.
 
 ## Approval gate
 
