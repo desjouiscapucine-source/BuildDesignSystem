@@ -2450,3 +2450,15 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `.git/` (new)
 - `STEPS.md` (updated)
+
+## Step 128 — Commit and push after every step
+**Date:** 2026-10-20
+
+**Decisions (made by the Design System Lead)**
+- Every step is committed and pushed to GitHub once it is done.
+
+**What was done**
+- Added a **Git** section to `CLAUDE.md`: the GitHub repository, and the rule to commit and push after every step (message `Step <n>: <short title>`).
+
+**Files**
+- `CLAUDE.md`, `STEPS.md` (updated)

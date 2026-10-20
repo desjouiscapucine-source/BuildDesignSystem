@@ -7,6 +7,10 @@
 - `STEPS.md` documents every step taken in this project.
 - After completing any step, append a new numbered entry to `STEPS.md` with: date, what was done (and why), and the files created or changed.
 
+## Git
+- The project is versioned with git and pushed to the private GitHub repository `CapucineDjs/BuildDesignSystem` (branch `main`).
+- **After every step** (once its `STEPS.md` entry is written): commit all the step's changes and push to `origin main`. Commit message in English: `Step <n>: <short title>`.
+
 ## Backlog
 - The tasks still to do live in **`backlog/backlog.json`**, shown and edited on the **Backlog** page of the documentation site (`/docs/#/backlog`).
 - `origin`: `decided` (from the Design System Lead) or `proposal` (from Claude). `status`: `proposal` → `todo` → `in-progress` → `done` (or `rejected`).
