@@ -448,6 +448,45 @@ code {
 .text-style p { margin: 0 0 var(--space-4); }
 .contrast-sample { display: inline-block; padding: var(--space-4) var(--space-8); border-radius: var(--radius-4); border: var(--border-width-1) solid var(--color-border-subtle); font-weight: var(--font-weight-semibold); }
 
+/* ---------- Skills ---------- */
+.skill-tree a { color: var(--color-text-primary); text-decoration: none; }
+.skill-tree a:hover { text-decoration: underline; }
+.skill-tree-parent {
+  display: inline-block;
+  padding: var(--space-8) var(--space-16);
+  border-radius: var(--radius-8);
+  background: var(--color-background-brand-subtle);
+  font-weight: var(--font-weight-semibold);
+}
+.skill-tree ul {
+  list-style: none;
+  margin: 0 0 0 var(--space-24);
+  padding: var(--space-8) 0 0;
+  border-left: var(--border-width-1) solid var(--color-border-default);
+}
+.skill-tree li { position: relative; padding: var(--space-4) 0 var(--space-4) var(--space-24); }
+.skill-tree li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: var(--space-16);
+  border-top: var(--border-width-1) solid var(--color-border-default);
+}
+.skill-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: var(--space-24);
+  border: var(--border-width-1) solid var(--color-border-default);
+  border-radius: var(--radius-8);
+  background: var(--color-background-page);
+}
+.skill-card h3, .skill-card p { margin: 0; }
+.skill-card p { color: var(--color-text-secondary); }
+.skill-card summary { cursor: pointer; color: var(--color-text-brand); font-weight: var(--font-weight-semibold); }
+.skill-card details[open] summary { margin-bottom: var(--space-16); }
+
 /* ---------- Backlog ---------- */
 .shell-content:has(.backlog-board) { max-width: none; }
 .backlog-filters { display: flex; flex-wrap: wrap; gap: var(--space-8); margin-bottom: var(--space-16); }

@@ -2506,3 +2506,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step 132 — Documentation page: How to use skills
+**Date:** 2026-10-20
+
+**Decisions (made by the Design System Lead)**
+- A documentation page about the skills and how to use them. Title "How to use skills", subtitle "The orchestrator, its child skills and how to call them".
+- In the first navigation group, after Backlog, label "How to use skills", icon `psychology`.
+- Content read from the skill files (always up to date); sections: How to use, Hierarchy, one card per skill.
+
+**What was done**
+- New `docs/src/skills.ts`: discovers `.claude/skills/*/SKILL.md` (frontmatter `name` / `description` + body), separates the parent skill (`orchestrator`) from its children, and extracts its dispatch table.
+- New `docs/src/pages/SkillsPage.tsx` (route `#/skills`): How to use (orchestrator first, calling a skill from the chat or with `/name`, adding a skill), Hierarchy (tree orchestrator → children with anchor links, dispatch table), Skills (one card per skill: name, description, full content in a "Show the full skill" disclosure, headings moved two levels down under the card title).
+- The cards use the documentation site's own styles, not the DS Card component (its guidelines keep it for Timeline steps).
+- Backlog: B075 added as done. `CLAUDE.md`: the page is mentioned in the Skills section.
+- Verification: type check and build pass; in the browser, no console errors, 10 skills shown, anchors and disclosure work, no horizontal scroll at 375px.
+
+**Files**
+- `docs/src/skills.ts`, `docs/src/pages/SkillsPage.tsx` (new)
+- `docs/src/App.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `CLAUDE.md`, `STEPS.md` (updated)

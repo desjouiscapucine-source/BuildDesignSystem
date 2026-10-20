@@ -624,6 +624,14 @@
       "status": "proposal",
       "origin": "proposal",
       "description": "How to keep backlog/backlog.json up to date: statuses, origin, component stage, new proposals."
+    },
+    {
+      "id": "B075",
+      "title": "Documentation page: How to use skills",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "decided",
+      "description": "Page of the documentation site (#/skills) read from .claude/skills/: how to use the skills, hierarchy and dispatch table of the orchestrator, one card per skill with its full content."
     }
   ]
 }

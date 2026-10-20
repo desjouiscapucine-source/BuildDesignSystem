@@ -7,8 +7,9 @@ import { ComponentPage } from "./pages/ComponentPage";
 import { BacklogPage } from "./pages/BacklogPage";
 import { IconsPage } from "./pages/IconsPage";
 import { GridPage } from "./pages/GridPage";
+import { SkillsPage } from "./pages/SkillsPage";
 
-// Hash routes: #/  ·  #/backlog  ·  #/tokens  ·  #/icons  ·  #/grid  ·  #/components/<slug>
+// Hash routes: #/  ·  #/backlog  ·  #/skills  ·  #/tokens  ·  #/icons  ·  #/grid  ·  #/components/<slug>
 function useHashRoute() {
   const read = () => {
     const hash = window.location.hash.replace(/^#/, "");
@@ -34,6 +35,7 @@ const sections: NavSection[] = [
     items: [
       { href: "#/", label: "Overview", icon: "home" },
       { href: "#/backlog", label: "Backlog", icon: "view_kanban" },
+      { href: "#/skills", label: "How to use skills", icon: "psychology" },
     ],
   },
   {
@@ -67,6 +69,7 @@ export function App() {
   let page = <HomePage />;
   if (route === "/tokens") page = <TokensPage />;
   else if (route === "/backlog") page = <BacklogPage />;
+  else if (route === "/skills") page = <SkillsPage />;
   else if (route === "/icons") page = <IconsPage />;
   else if (route === "/grid") page = <GridPage />;
   else if (component) page = <ComponentPage key={component.slug} component={component} />;

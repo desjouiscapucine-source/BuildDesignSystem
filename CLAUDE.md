@@ -59,6 +59,7 @@ Guidelines are updated whenever coding or prototyping reveals a new rule or edge
 ## Skills
 - Every task starts with the **`orchestrator`** skill (`.claude/skills/orchestrator/SKILL.md`), the parent of all the project skills: it only dispatches the task to the child skills to load. Every new skill gets a row in its dispatch table.
 - For a component, it loads the **`component`** skill (lifecycle and approval gate) together with the skill of the current stage.
+- The **How to use skills** page of the documentation site (`/docs/#/skills`) reads the skills from `.claude/skills/` and shows them.
 
 ## Component guidelines
 Every component has a dedicated guidelines document, separate from its design spec. The spec says **what** the component is; the guidelines say **how and when** to use it. Each guidelines document covers:
