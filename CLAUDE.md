@@ -56,8 +56,9 @@ Guidelines are updated whenever coding or prototyping reveals a new rule or edge
 ## Page content
 - A page combining a Timeline and Cards follows the `page-content` skill: one card per step (same order, same title, anchor link), timeline on the right 16px from the cards, timeline fixed while scrolling, selected step following the card at the top of the screen.
 
-## Component skill
-- Every component task starts with the **`component`** skill (`.claude/skills/component/SKILL.md`), which routes to the sub-skill of the current stage and enforces the approval gate.
+## Skills
+- Every task starts with the **`orchestrator`** skill (`.claude/skills/orchestrator/SKILL.md`), the parent of all the project skills: it only dispatches the task to the child skills to load. Every new skill gets a row in its dispatch table.
+- For a component, it loads the **`component`** skill (lifecycle and approval gate) together with the skill of the current stage.
 
 ## Component guidelines
 Every component has a dedicated guidelines document, separate from its design spec. The spec says **what** the component is; the guidelines say **how and when** to use it. Each guidelines document covers:

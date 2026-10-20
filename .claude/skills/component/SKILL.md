@@ -1,11 +1,11 @@
 ---
 name: component
-description: Main skill for design system components — the entry point for creating, continuing or changing any component (Button, Side navigation…). Routes to the right sub-skill for each stage (design spec, guidelines, code). Use whenever a component is mentioned, started, reviewed or moved to its next stage.
+description: Lifecycle of a design system component — the three stages in order, what to do before starting, the approval gate at the end of each stage, and what to do once the component is complete. Use whenever a component (Button, Side navigation…) is created, continued, changed, reviewed or moved to its next stage; dispatched by the `orchestrator` skill together with the skill of the current stage.
 ---
 
-# Components — main skill
+# Components — lifecycle
 
-Every component goes through **three stages, in order**. Each stage has its own sub-skill.
+Every component goes through **three stages, in order**. Each stage has its own skill, loaded by the `orchestrator` skill.
 **A component moves to the next stage only after the Design System Lead explicitly approves the current one.**
 
 **Always start with the design**, built from the information the Design System Lead gives; usage questions come after, in the guidelines stage.
@@ -14,13 +14,13 @@ Every component goes through **three stages, in order**. Each stage has its own 
 
 There is **no prototype stage**: interactive mockups (user journeys) are made separately, with the coded components.
 
-| # | Stage | `meta.json` status | Sub-skill | Output |
+| # | Stage | `meta.json` status | Stage skill | Output |
 | - | ----- | ------------------ | --------- | ------ |
 | 1 | Design | `design` | `component-spec` | `spec.md` |
 | 2 | Guidelines | `guidelines` | `component-guidelines` | `guidelines.md` |
 | 3 | Code | `code` | `component-code` | `<Name>.tsx`, `<Name>.css`, `examples.tsx` |
 
-Cross-cutting sub-skills, used at every stage:
+Cross-cutting skills, used at every stage (dispatched by `orchestrator`):
 - **`component-structure`** — Atomic Design level of the component (atom, molecule, organism, template, page).
 - **`never-invent`** — never decide for the Design System Lead; ask.
 - **`token-naming`** and **`token-usage`** — which tokens exist and which one to use.
@@ -43,7 +43,7 @@ Cross-cutting sub-skills, used at every stage:
 
 ## 2. Find the current stage
 
-Read `components/<Name>/meta.json` → `status`, then **load the sub-skill of that stage** (table above) and follow it.
+Read `components/<Name>/meta.json` → `status`: it tells which stage skill applies (table above). The `orchestrator` skill dispatches to it.
 
 ## 3. End of a stage — approval gate
 

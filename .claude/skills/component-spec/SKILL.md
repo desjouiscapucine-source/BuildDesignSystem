@@ -1,6 +1,6 @@
 ---
 name: component-spec
-description: Stage 1 (Design) of a component — how to build and write its design spec (components/<Name>/spec.md) with the Design System Lead: purpose, anatomy, variants, sizes, states and the design tokens used. Use when a component's meta.json status is "design", when the main `component` skill routes here, or when a spec is created, reviewed or changed.
+description: Stage 1 (Design) of a component — how to build and write its design spec (components/<Name>/spec.md) with the Design System Lead: purpose, anatomy, variants, sizes, states and the design tokens used. Use when a component's meta.json status is "design", when the `orchestrator` skill dispatches here, or when a spec is created, reviewed or changed.
 ---
 
 # Component spec — Stage 1: Design
@@ -99,4 +99,4 @@ Group small sections in one round of questions when possible.
 - Keep unresolved points under **Open questions**.
 
 ### 10. Approval gate
-Hand back to the main `component` skill: run `accessibility-check` (contrast of every text/icon/border pair used, target sizes, visible focus), show the spec and the design preview, and ask for explicit approval of stage 1.
+Hand back to the `component` skill (approval gate): run `accessibility-check` (contrast of every text/icon/border pair used, target sizes, visible focus), show the spec and the design preview, and ask for explicit approval of stage 1.

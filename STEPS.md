@@ -2462,3 +2462,21 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `CLAUDE.md`, `STEPS.md` (updated)
+
+## Step 129 — Orchestrator skill, parent of all skills
+**Date:** 2026-10-20
+
+**Decisions (made by the Design System Lead)**
+- A parent skill named **`orchestrator`**, the entry point of every task, which dispatches to the child skills.
+- Two levels: the orchestrator dispatches directly to every skill; `component` becomes a child like the others and no longer routes to the stage skills.
+- The orchestrator only dispatches (no start or end routine, no rules of its own).
+
+**What was done**
+- New `orchestrator` skill: dispatch table "trigger → child skill" covering all 9 existing skills; several children can be loaded together; a new skill gets a row in the table.
+- `component` skill: now describes the component lifecycle and approval gate only; the stage routing moved to the orchestrator.
+- `component-spec`, `component-guidelines`, `component-code`, `component-structure`: descriptions and hand-back lines updated to the orchestrator.
+- `CLAUDE.md`: the "Component skill" section becomes "Skills".
+
+**Files**
+- `.claude/skills/orchestrator/SKILL.md` (new)
+- `.claude/skills/component/SKILL.md`, `.claude/skills/component-spec/SKILL.md`, `.claude/skills/component-guidelines/SKILL.md`, `.claude/skills/component-code/SKILL.md`, `.claude/skills/component-structure/SKILL.md`, `CLAUDE.md`, `STEPS.md` (updated)

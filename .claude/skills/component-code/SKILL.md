@@ -1,6 +1,6 @@
 ---
 name: component-code
-description: Stage 3 (Code) of a component — how to build the developed version (components/<Name>/<Name>.tsx, <Name>.css, examples.tsx) from the approved spec: React + TypeScript, semantic tokens only, ds- class naming, state layers, accessibility, examples and verification. Use when a component's meta.json status is "code", when the main `component` skill routes here, or when component code is written, reviewed or changed.
+description: Stage 3 (Code) of a component — how to build the developed version (components/<Name>/<Name>.tsx, <Name>.css, examples.tsx) from the approved spec: React + TypeScript, semantic tokens only, ds- class naming, state layers, accessibility, examples and verification. Use when a component's meta.json status is "code", when the `orchestrator` skill dispatches here, or when component code is written, reviewed or changed.
 ---
 
 # Component code — Stage 3: Code
@@ -95,4 +95,4 @@ Start from `components/_template/` (`ComponentName.tsx`, `ComponentName.css`, `e
 
 ## Approval gate
 
-Hand back to the main `component` skill: show the Examples tab (screenshots in the chat), list any difference with the spec, and ask for explicit approval of stage 3.
+Hand back to the `component` skill (approval gate): show the Examples tab (screenshots in the chat), list any difference with the spec, and ask for explicit approval of stage 3.

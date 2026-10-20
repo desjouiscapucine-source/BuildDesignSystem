@@ -1,6 +1,6 @@
 ---
 name: component-guidelines
-description: Stage 2 (Guidelines) of a component — how to write its usage guidelines (components/<Name>/guidelines.md) with the Design System Lead: when to use it, best practices, do's and don'ts, content rules, behavior, accessibility and related components. Use when a component's meta.json status is "guidelines", when the main `component` skill routes here, or when guidelines are created, reviewed or updated (including after coding or prototyping reveals a new rule).
+description: Stage 2 (Guidelines) of a component — how to write its usage guidelines (components/<Name>/guidelines.md) with the Design System Lead: when to use it, best practices, do's and don'ts, content rules, behavior, accessibility and related components. Use when a component's meta.json status is "guidelines", when the `orchestrator` skill dispatches here, or when guidelines are created, reviewed or updated (including after coding or prototyping reveals a new rule).
 ---
 
 # Component guidelines — Stage 2: Guidelines
@@ -57,7 +57,7 @@ Follow the order of `components/_template/guidelines.md`:
 - Write only approved content; keep open points in a final **Open questions** list.
 
 ### 6. Approval gate
-Hand back to the main `component` skill: show the guidelines (chat + Guidelines tab), ask for explicit approval of stage 2.
+Hand back to the `component` skill (approval gate): show the guidelines (chat + Guidelines tab), ask for explicit approval of stage 2.
 
 ## Keeping guidelines up to date
 

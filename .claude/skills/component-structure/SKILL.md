@@ -1,6 +1,6 @@
 ---
 name: component-structure
-description: Atomic Design structure of the design system — the five levels (atom, molecule, organism, template, page), how to classify a component, and how the level is recorded. Use when creating a new component, when classifying or re-classifying one, when a component uses other components, and whenever the main `component` skill starts a new component.
+description: Atomic Design structure of the design system — the five levels (atom, molecule, organism, template, page), how to classify a component, and how the level is recorded. Use when creating a new component, when classifying or re-classifying one, when a component uses other components, and whenever a new component is started.
 ---
 
 # Component structure — Atomic Design
