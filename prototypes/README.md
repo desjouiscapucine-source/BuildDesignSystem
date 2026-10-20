@@ -9,3 +9,4 @@ To start a new prototype, copy `_template/`.
 - Build screens only with components imported from `@ds/components`.
 - Navigation between screens is handled with simple React state (see the template).
 - New folders appear automatically on the prototypes page (`/prototypes/`).
+- Sample data shared by all the prototypes: `_data/sample.json` (content) and `_data/sample.ts` (typed access): `import { sample } from "../_data/sample";`. Its placeholders are replaced with the real content of each journey.

@@ -1,0 +1,8 @@
+{
+  "$description": "Sample data shared by the prototypes. Neutral placeholders: replace them with the real content of each journey.",
+  "items": [
+    { "id": "item-1", "title": "Item 1", "description": "Description of item 1." },
+    { "id": "item-2", "title": "Item 2", "description": "Description of item 2." },
+    { "id": "item-3", "title": "Item 3", "description": "Description of item 3." }
+  ]
+}

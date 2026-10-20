@@ -2525,3 +2525,21 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `docs/src/skills.ts`, `docs/src/pages/SkillsPage.tsx` (new)
 - `docs/src/App.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `CLAUDE.md`, `STEPS.md` (updated)
+
+## Step 133 — Prototypes setup branch and shared sample data
+**Date:** 2026-10-20
+
+**Decisions (made by the Design System Lead)**
+- Work on the prototypes setup happens on a dedicated branch.
+- A sample data file shared by all the prototypes: `prototypes/_data/sample.json`, JSON content with a TypeScript type next to it, neutral placeholder structure (no journey content yet).
+
+**What was done**
+- Created the branch `prototypes-setup` (pushed to GitHub).
+- New `prototypes/_data/sample.json` (3 placeholder items: `id`, `title`, `description`) and `prototypes/_data/sample.ts` (types `SampleItem`, `SampleData`, typed export `sample`). The `_` prefix keeps the folder out of the prototypes list and build pages.
+- `prototypes/_template/main.tsx`: imports `sample` and lists its items on the home screen, as a usage example.
+- `prototypes/README.md`: documents the shared sample data.
+- Verification: type check and build pass; `/prototypes/_template/` shows the 3 items with no console errors.
+
+**Files**
+- `prototypes/_data/sample.json`, `prototypes/_data/sample.ts` (new)
+- `prototypes/_template/main.tsx`, `prototypes/README.md`, `STEPS.md` (updated)

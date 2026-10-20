@@ -5,6 +5,7 @@ import "@ds/tokens/fonts.css";
 import "@ds/tokens/tokens.css";
 import "@ds/tokens/icons.css";
 import "@ds/tokens/grid.css";
+import { sample } from "../_data/sample";
 
 type Screen = "home" | "details";
 
@@ -16,6 +17,11 @@ function Prototype() {
       {screen === "home" && (
         <>
           <h1>Home screen</h1>
+          <ul>
+            {sample.items.map((item) => (
+              <li key={item.id}>{item.title}</li>
+            ))}
+          </ul>
           <button onClick={() => setScreen("details")}>Go to details</button>
         </>
       )}
