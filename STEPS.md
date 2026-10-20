@@ -2494,3 +2494,15 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `.claude/skills/component/SKILL.md`, `.claude/skills/component-spec/SKILL.md`, `.claude/skills/component-code/SKILL.md`, `.claude/skills/component-guidelines/SKILL.md`, `STEPS.md` (updated)
+
+## Step 131 — Missing skills added to the backlog as proposals
+**Date:** 2026-10-20
+
+**Decisions (made by the Design System Lead)**
+- The four skills removed in step 130 go to the backlog as proposals.
+
+**What was done**
+- Added to `backlog/backlog.json` (category Skills, status `proposal`, origin `proposal`): B071 `token-usage`, B072 `accessibility-check`, B073 `steps-log`, B074 `backlog-management`. They wait for the Design System Lead's approval on the Backlog page.
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)

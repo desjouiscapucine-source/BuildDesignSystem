@@ -592,6 +592,38 @@
       "origin": "decided",
       "description": "Update the Timeline (spec, guidelines, code) for screens below desktop: icon-only button (icon timeline) above the cards, panel sliding in from the right with a dimmed background, closes after a step is chosen, close icon button (icon close), Escape or click outside to close. Needs the Icon button. To define: close button position, panel width, shadow, dimmed background color, focus management.",
       "stage": "code"
+    },
+    {
+      "id": "B071",
+      "title": "Skill: token-usage",
+      "category": "Skills",
+      "status": "proposal",
+      "origin": "proposal",
+      "description": "Which semantic token to use for which need, in specs and component code. Referenced by the former component skill, not created yet."
+    },
+    {
+      "id": "B072",
+      "title": "Skill: accessibility-check",
+      "category": "Skills",
+      "status": "proposal",
+      "origin": "proposal",
+      "description": "Accessibility check (WCAG 2.2 AA) to run before asking for the approval of any component stage: contrast pairs, target sizes, visible focus."
+    },
+    {
+      "id": "B073",
+      "title": "Skill: steps-log",
+      "category": "Skills",
+      "status": "proposal",
+      "origin": "proposal",
+      "description": "How to log every step in STEPS.md (date, what was done and why, files)."
+    },
+    {
+      "id": "B074",
+      "title": "Skill: backlog-management",
+      "category": "Skills",
+      "status": "proposal",
+      "origin": "proposal",
+      "description": "How to keep backlog/backlog.json up to date: statuses, origin, component stage, new proposals."
     }
   ]
 }
