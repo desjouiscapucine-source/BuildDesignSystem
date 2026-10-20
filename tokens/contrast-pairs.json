@@ -1,0 +1,230 @@
+{
+  "$description": "Color pairs checked against WCAG 2.2 AA by `npm run tokens`. min: 4.5 for text, 3 for UI elements and large text.",
+  "pairs": [
+    {
+      "foreground": "color.text.primary",
+      "background": "color.background.page",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.secondary",
+      "background": "color.background.page",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.primary",
+      "background": "color.background.surface",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.secondary",
+      "background": "color.background.surface",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.primary",
+      "background": "color.background.subtle",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.secondary",
+      "background": "color.background.subtle",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.link",
+      "background": "color.background.page",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.brand",
+      "background": "color.background.page",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.link",
+      "background": "color.background.surface",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.brand",
+      "background": "color.background.surface",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.link",
+      "background": "color.background.brand-subtle",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.brand",
+      "background": "color.background.brand-subtle",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.inverse",
+      "background": "color.background.inverse",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.inverse",
+      "background": "color.background.brand",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.primary",
+      "background": "color.background.brand-subtle",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.secondary",
+      "background": "color.background.brand-subtle",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.success",
+      "background": "color.background.success-subtle",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.success",
+      "background": "color.background.page",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.icon.success",
+      "background": "color.background.success-subtle",
+      "min": 3
+    },
+    {
+      "foreground": "color.text.inverse",
+      "background": "color.background.success",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.border.success",
+      "background": "color.background.page",
+      "min": 3
+    },
+    {
+      "foreground": "color.text.warning",
+      "background": "color.background.warning-subtle",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.warning",
+      "background": "color.background.page",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.icon.warning",
+      "background": "color.background.warning-subtle",
+      "min": 3
+    },
+    {
+      "foreground": "color.text.inverse",
+      "background": "color.background.warning",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.border.warning",
+      "background": "color.background.page",
+      "min": 3
+    },
+    {
+      "foreground": "color.text.error",
+      "background": "color.background.error-subtle",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.error",
+      "background": "color.background.page",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.icon.error",
+      "background": "color.background.error-subtle",
+      "min": 3
+    },
+    {
+      "foreground": "color.text.inverse",
+      "background": "color.background.error",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.border.error",
+      "background": "color.background.page",
+      "min": 3
+    },
+    {
+      "foreground": "color.text.info",
+      "background": "color.background.info-subtle",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.info",
+      "background": "color.background.page",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.icon.info",
+      "background": "color.background.info-subtle",
+      "min": 3
+    },
+    {
+      "foreground": "color.text.inverse",
+      "background": "color.background.info",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.border.info",
+      "background": "color.background.page",
+      "min": 3
+    },
+    {
+      "foreground": "color.icon.primary",
+      "background": "color.background.page",
+      "min": 3
+    },
+    {
+      "foreground": "color.icon.secondary",
+      "background": "color.background.page",
+      "min": 3
+    },
+    {
+      "foreground": "color.icon.brand",
+      "background": "color.background.page",
+      "min": 3
+    },
+    {
+      "foreground": "color.icon.inverse",
+      "background": "color.background.inverse",
+      "min": 3
+    },
+    {
+      "foreground": "color.border.strong",
+      "background": "color.background.page",
+      "min": 3
+    },
+    {
+      "foreground": "color.border.focus",
+      "background": "color.background.page",
+      "min": 3
+    },
+    {
+      "foreground": "color.border.focus",
+      "background": "color.background.brand-subtle",
+      "min": 3
+    },
+    {
+      "foreground": "color.border.focus-inverse",
+      "background": "color.background.brand",
+      "min": 3
+    },
+    {
+      "foreground": "color.border.focus-inverse",
+      "background": "color.background.inverse",
+      "min": 3
+    }
+  ]
+}

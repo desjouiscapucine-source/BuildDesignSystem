@@ -1,0 +1,86 @@
+/* Button — semantic design tokens only. See spec.md.
+   Classes: .ds-button · modifiers .ds-button--<variant> · parts .ds-button-icon, .ds-button-label */
+.ds-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  max-width: 100%;
+  min-width: 0;
+  padding: var(--space-8) var(--space-16);
+  border: none;
+  border-radius: var(--radius-8);
+  font-family: var(--typography-label-family);
+  font-size: var(--typography-label-size);
+  font-weight: var(--typography-label-weight);
+  line-height: var(--typography-label-line-height);
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+/* State layers: overlay in the content color */
+.ds-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-100) var(--easing-ease-out);
+}
+.ds-button:hover::after { opacity: var(--state-layer-hover); }
+.ds-button:focus-visible::after { opacity: var(--state-layer-focus); }
+.ds-button:active::after { opacity: var(--state-layer-pressed); }
+
+.ds-button:focus-visible {
+  outline: var(--border-width-2) solid var(--color-border-focus);
+  outline-offset: var(--border-width-2);
+}
+
+/* Parts */
+.ds-button-icon {
+  font-size: var(--icon-size-20);
+}
+.ds-button-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+/* Variants */
+.ds-button--primary {
+  background: var(--color-background-brand);
+  color: var(--color-text-inverse);
+}
+.ds-button--primary .ds-button-icon { color: var(--color-icon-inverse); }
+
+.ds-button--secondary {
+  background: var(--color-background-brand-subtle);
+  color: var(--color-text-primary);
+}
+.ds-button--secondary .ds-button-icon { color: var(--color-icon-primary); }
+
+.ds-button--tertiary {
+  background: none;
+  color: var(--color-text-brand);
+}
+.ds-button--tertiary .ds-button-icon { color: var(--color-icon-brand); }
+
+.ds-button--danger {
+  background: var(--color-background-error-subtle);
+  color: var(--color-text-error);
+}
+.ds-button--danger .ds-button-icon { color: var(--color-icon-error); }
+
+/* Disabled (native): no state layer */
+.ds-button:disabled {
+  background: var(--color-background-disabled);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+.ds-button--tertiary:disabled { background: none; }
+.ds-button:disabled .ds-button-icon { color: var(--color-icon-disabled); }
+.ds-button:disabled::after { display: none; }

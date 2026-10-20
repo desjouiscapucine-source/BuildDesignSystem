@@ -1,0 +1,24 @@
+/* SideNavigation — semantic design tokens only. See spec.md.
+   Classes: .ds-side-navigation · parts .ds-side-navigation-list, .ds-side-navigation-entry */
+.ds-side-navigation {
+  box-sizing: border-box;
+  width: var(--size-side-navigation);
+  /* Full height of the screen; scrolls when the items do not fit */
+  height: 100dvh;
+  overflow-y: auto;
+  padding: var(--space-16);
+  background: var(--color-background-brand);
+}
+
+.ds-side-navigation-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ds-side-navigation-entry {
+  display: flex;
+}

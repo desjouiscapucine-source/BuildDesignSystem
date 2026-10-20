@@ -1,0 +1,60 @@
+/* IconButton — semantic design tokens only. See spec.md.
+   Classes: .ds-icon-button · modifiers .ds-icon-button--<variant> · part .ds-icon-button-icon */
+.ds-icon-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: var(--space-8);
+  border: none;
+  border-radius: var(--radius-8);
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+/* State layers: overlay in the content color */
+.ds-icon-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-100) var(--easing-ease-out);
+}
+.ds-icon-button:hover::after { opacity: var(--state-layer-hover); }
+.ds-icon-button:focus-visible::after { opacity: var(--state-layer-focus); }
+.ds-icon-button:active::after { opacity: var(--state-layer-pressed); }
+
+.ds-icon-button:focus-visible {
+  outline: var(--border-width-2) solid var(--color-border-focus);
+  outline-offset: var(--border-width-2);
+}
+
+/* Part */
+.ds-icon-button-icon { font-size: var(--icon-size-20); }
+
+/* Variants */
+.ds-icon-button--primary {
+  background: var(--color-background-brand);
+  color: var(--color-icon-inverse);
+}
+.ds-icon-button--secondary {
+  background: var(--color-background-brand-subtle);
+  color: var(--color-icon-primary);
+}
+.ds-icon-button--tertiary {
+  background: none;
+  color: var(--color-icon-brand);
+}
+
+/* Disabled (native): no state layer */
+.ds-icon-button:disabled {
+  background: var(--color-background-disabled);
+  color: var(--color-icon-disabled);
+  cursor: not-allowed;
+}
+.ds-icon-button--tertiary:disabled { background: none; }
+.ds-icon-button:disabled::after { display: none; }

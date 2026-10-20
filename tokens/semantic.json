@@ -1,0 +1,670 @@
+{
+  "$description": "Semantic tokens: what a value is used for. Components use these tokens only. Values reference primitives with {group.name}.",
+  "color": {
+    "$type": "color",
+    "text": {
+      "primary": {
+        "$value": "{color.neutral.900}"
+      },
+      "secondary": {
+        "$value": "{color.neutral.600}"
+      },
+      "disabled": {
+        "$value": "{color.neutral.400}",
+        "$description": "Disabled text (exempt from WCAG contrast)"
+      },
+      "inverse": {
+        "$value": "{color.neutral.0}"
+      },
+      "link": {
+        "$value": "{color.primary.600}"
+      },
+      "brand": {
+        "$value": "{color.primary.600}"
+      },
+      "success": {
+        "$value": "{color.success.700}"
+      },
+      "warning": {
+        "$value": "{color.warning.700}"
+      },
+      "error": {
+        "$value": "{color.error.700}"
+      },
+      "info": {
+        "$value": "{color.info.700}"
+      }
+    },
+    "icon": {
+      "primary": {
+        "$value": "{color.neutral.900}"
+      },
+      "secondary": {
+        "$value": "{color.neutral.600}"
+      },
+      "disabled": {
+        "$value": "{color.neutral.400}"
+      },
+      "inverse": {
+        "$value": "{color.neutral.0}"
+      },
+      "link": {
+        "$value": "{color.primary.600}"
+      },
+      "brand": {
+        "$value": "{color.primary.600}"
+      },
+      "success": {
+        "$value": "{color.success.600}"
+      },
+      "warning": {
+        "$value": "{color.warning.600}"
+      },
+      "error": {
+        "$value": "{color.error.600}"
+      },
+      "info": {
+        "$value": "{color.info.600}"
+      }
+    },
+    "background": {
+      "page": {
+        "$value": "{color.neutral.0}"
+      },
+      "surface": {
+        "$value": "{color.neutral.50}"
+      },
+      "subtle": {
+        "$value": "{color.neutral.100}"
+      },
+      "inverse": {
+        "$value": "{color.neutral.900}"
+      },
+      "disabled": {
+        "$value": "{color.neutral.100}"
+      },
+      "brand": {
+        "$value": "{color.primary.600}"
+      },
+      "brand-subtle": {
+        "$value": "{color.secondary.600}"
+      },
+      "success-subtle": {
+        "$value": "{color.success.50}"
+      },
+      "warning-subtle": {
+        "$value": "{color.warning.50}"
+      },
+      "error-subtle": {
+        "$value": "{color.error.50}"
+      },
+      "info-subtle": {
+        "$value": "{color.info.50}"
+      },
+      "success": {
+        "$value": "{color.success.600}"
+      },
+      "warning": {
+        "$value": "{color.warning.600}"
+      },
+      "error": {
+        "$value": "{color.error.600}"
+      },
+      "info": {
+        "$value": "{color.info.600}"
+      },
+      "overlay": {
+        "$value": "rgba(20, 20, 20, 0.4)",
+        "$description": "Dimmed background behind a panel: neutral-950 (#141414) at 40%"
+      }
+    },
+    "border": {
+      "subtle": {
+        "$value": "{color.neutral.200}",
+        "$description": "Dividers (decorative)"
+      },
+      "default": {
+        "$value": "{color.neutral.300}",
+        "$description": "Cards (decorative)"
+      },
+      "strong": {
+        "$value": "{color.neutral.500}",
+        "$description": "Form fields (3:1)"
+      },
+      "focus": {
+        "$value": "{color.primary.600}"
+      },
+      "focus-inverse": {
+        "$value": "{color.neutral.0}",
+        "$description": "Focus ring on brand or dark backgrounds"
+      },
+      "success": {
+        "$value": "{color.success.500}"
+      },
+      "warning": {
+        "$value": "{color.warning.500}"
+      },
+      "error": {
+        "$value": "{color.error.500}"
+      },
+      "info": {
+        "$value": "{color.info.500}"
+      }
+    }
+  },
+  "font-family": {
+    "$type": "fontFamily",
+    "heading": {
+      "$value": "\"Poppins\", system-ui, sans-serif",
+      "$description": "Headings — Poppins (Google Fonts), system font as fallback"
+    },
+    "body": {
+      "$value": "\"Open Sans\", system-ui, sans-serif",
+      "$description": "Body text — Open Sans (Google Fonts), system font as fallback"
+    }
+  },
+  "font-weight": {
+    "$type": "fontWeight",
+    "regular": {
+      "$value": "400",
+      "$description": "Poppins and Open Sans"
+    },
+    "semibold": {
+      "$value": "600",
+      "$description": "Poppins and Open Sans"
+    },
+    "bold": {
+      "$value": "700",
+      "$description": "Poppins only (headings) — not loaded for Open Sans"
+    }
+  },
+  "font-size": {
+    "12": {
+      "$value": "0.75rem",
+      "$description": "12px — text"
+    },
+    "14": {
+      "$value": "0.875rem",
+      "$description": "14px — text (base size for body text)"
+    },
+    "16": {
+      "$value": "1rem",
+      "$description": "16px — text"
+    },
+    "18": {
+      "$value": "1.125rem",
+      "$description": "18px — text"
+    },
+    "20": {
+      "$value": "1.25rem",
+      "$description": "20px — text"
+    },
+    "24": {
+      "$value": "1.5rem",
+      "$description": "24px — text"
+    },
+    "28": {
+      "$value": "1.75rem",
+      "$description": "28px — headings"
+    },
+    "32": {
+      "$value": "2rem",
+      "$description": "32px — headings"
+    },
+    "40": {
+      "$value": "2.5rem",
+      "$description": "40px — headings"
+    },
+    "48": {
+      "$value": "3rem",
+      "$description": "48px — headings"
+    },
+    "56": {
+      "$value": "3.5rem",
+      "$description": "56px — headings"
+    },
+    "$type": "dimension"
+  },
+  "line-height": {
+    "$type": "number",
+    "heading": {
+      "$value": "1.2",
+      "$description": "Headings"
+    },
+    "body": {
+      "$value": "1.5",
+      "$description": "Body text (WCAG 1.4.12 reference value)"
+    }
+  },
+  "typography": {
+    "$description": "Text styles. Each style also generates a CSS class: .ds-text-<style>.",
+    "display-lg": {
+      "$description": "Large hero titles",
+      "family": {
+        "$value": "{font-family.heading}"
+      },
+      "size": {
+        "$value": "{font-size.56}"
+      },
+      "weight": {
+        "$value": "{font-weight.bold}"
+      },
+      "line-height": {
+        "$value": "{line-height.heading}"
+      }
+    },
+    "display": {
+      "$description": "Hero titles",
+      "family": {
+        "$value": "{font-family.heading}"
+      },
+      "size": {
+        "$value": "{font-size.48}"
+      },
+      "weight": {
+        "$value": "{font-weight.bold}"
+      },
+      "line-height": {
+        "$value": "{line-height.heading}"
+      }
+    },
+    "heading-1": {
+      "$description": "Page title",
+      "family": {
+        "$value": "{font-family.heading}"
+      },
+      "size": {
+        "$value": "{font-size.40}"
+      },
+      "weight": {
+        "$value": "{font-weight.semibold}"
+      },
+      "line-height": {
+        "$value": "{line-height.heading}"
+      }
+    },
+    "heading-2": {
+      "$description": "Section title",
+      "family": {
+        "$value": "{font-family.heading}"
+      },
+      "size": {
+        "$value": "{font-size.32}"
+      },
+      "weight": {
+        "$value": "{font-weight.semibold}"
+      },
+      "line-height": {
+        "$value": "{line-height.heading}"
+      }
+    },
+    "heading-3": {
+      "$description": "Sub-section title",
+      "family": {
+        "$value": "{font-family.heading}"
+      },
+      "size": {
+        "$value": "{font-size.28}"
+      },
+      "weight": {
+        "$value": "{font-weight.semibold}"
+      },
+      "line-height": {
+        "$value": "{line-height.heading}"
+      }
+    },
+    "heading-4": {
+      "$description": "Card or block title",
+      "family": {
+        "$value": "{font-family.heading}"
+      },
+      "size": {
+        "$value": "{font-size.24}"
+      },
+      "weight": {
+        "$value": "{font-weight.semibold}"
+      },
+      "line-height": {
+        "$value": "{line-height.heading}"
+      }
+    },
+    "heading-5": {
+      "$description": "Small title",
+      "family": {
+        "$value": "{font-family.heading}"
+      },
+      "size": {
+        "$value": "{font-size.20}"
+      },
+      "weight": {
+        "$value": "{font-weight.semibold}"
+      },
+      "line-height": {
+        "$value": "{line-height.heading}"
+      }
+    },
+    "lead": {
+      "$description": "Intro paragraph",
+      "family": {
+        "$value": "{font-family.body}"
+      },
+      "size": {
+        "$value": "{font-size.18}"
+      },
+      "weight": {
+        "$value": "{font-weight.regular}"
+      },
+      "line-height": {
+        "$value": "{line-height.body}"
+      }
+    },
+    "body-lg": {
+      "$description": "Comfortable reading",
+      "family": {
+        "$value": "{font-family.body}"
+      },
+      "size": {
+        "$value": "{font-size.16}"
+      },
+      "weight": {
+        "$value": "{font-weight.regular}"
+      },
+      "line-height": {
+        "$value": "{line-height.body}"
+      }
+    },
+    "body": {
+      "$description": "Default text (base size)",
+      "family": {
+        "$value": "{font-family.body}"
+      },
+      "size": {
+        "$value": "{font-size.14}"
+      },
+      "weight": {
+        "$value": "{font-weight.regular}"
+      },
+      "line-height": {
+        "$value": "{line-height.body}"
+      }
+    },
+    "body-sm": {
+      "$description": "Notes, captions",
+      "family": {
+        "$value": "{font-family.body}"
+      },
+      "size": {
+        "$value": "{font-size.12}"
+      },
+      "weight": {
+        "$value": "{font-weight.regular}"
+      },
+      "line-height": {
+        "$value": "{line-height.body}"
+      }
+    },
+    "label": {
+      "$description": "Form labels, buttons",
+      "family": {
+        "$value": "{font-family.body}"
+      },
+      "size": {
+        "$value": "{font-size.14}"
+      },
+      "weight": {
+        "$value": "{font-weight.semibold}"
+      },
+      "line-height": {
+        "$value": "{line-height.body}"
+      }
+    },
+    "label-sm": {
+      "$description": "Tags, small labels",
+      "family": {
+        "$value": "{font-family.body}"
+      },
+      "size": {
+        "$value": "{font-size.12}"
+      },
+      "weight": {
+        "$value": "{font-weight.semibold}"
+      },
+      "line-height": {
+        "$value": "{line-height.body}"
+      }
+    }
+  },
+  "space": {
+    "0": {
+      "$value": "0"
+    },
+    "4": {
+      "$value": "4px",
+      "$description": "Half-step: exception to the 8px grid, for very small gaps"
+    },
+    "8": {
+      "$value": "8px"
+    },
+    "16": {
+      "$value": "16px"
+    },
+    "24": {
+      "$value": "24px"
+    },
+    "32": {
+      "$value": "32px"
+    },
+    "40": {
+      "$value": "40px"
+    },
+    "48": {
+      "$value": "48px"
+    },
+    "56": {
+      "$value": "56px"
+    },
+    "64": {
+      "$value": "64px"
+    },
+    "$type": "dimension",
+    "$description": "8px grid, from 0 to 64px, plus a 4px half-step."
+  },
+  "radius": {
+    "0": {
+      "$value": "0"
+    },
+    "4": {
+      "$value": "4px"
+    },
+    "8": {
+      "$value": "8px"
+    },
+    "16": {
+      "$value": "16px"
+    },
+    "$type": "dimension",
+    "$description": "Border radius, on the 4/8px grid.",
+    "full": {
+      "$value": "50%",
+      "$description": "Circle on a square element; gives an ellipse (not a pill) on a rectangle"
+    }
+  },
+  "border-width": {
+    "0": {
+      "$value": "0"
+    },
+    "1": {
+      "$value": "1px"
+    },
+    "2": {
+      "$value": "2px"
+    },
+    "4": {
+      "$value": "4px"
+    },
+    "$type": "dimension"
+  },
+  "duration": {
+    "100": {
+      "$value": "100ms"
+    },
+    "200": {
+      "$value": "200ms"
+    },
+    "300": {
+      "$value": "300ms"
+    },
+    "500": {
+      "$value": "500ms"
+    },
+    "$type": "duration",
+    "$description": "Animation durations. Reduced to 0.01ms when the user asks the system to reduce motion (WCAG 2.3.3)."
+  },
+  "easing": {
+    "$type": "cubicBezier",
+    "ease-out": {
+      "$value": "cubic-bezier(0, 0, 0.2, 1)",
+      "$description": "Fast start, soft stop"
+    },
+    "ease-in-out": {
+      "$value": "cubic-bezier(0.4, 0, 0.2, 1)",
+      "$description": "Soft start and stop"
+    }
+  },
+  "state-layer": {
+    "$type": "number",
+    "$description": "Opacity of the state layer: an overlay in the element content color (currentColor) placed on top of the element.",
+    "hover": {
+      "$value": "0.08",
+      "$description": "Mouse hover"
+    },
+    "focus": {
+      "$value": "0.12",
+      "$description": "Keyboard focus (in addition to the focus outline)"
+    },
+    "pressed": {
+      "$value": "0.24",
+      "$description": "While clicking or pressing"
+    }
+  },
+  "icon-size": {
+    "16": {
+      "$value": "16px"
+    },
+    "20": {
+      "$value": "20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$description": "Default size"
+    },
+    "32": {
+      "$value": "32px"
+    },
+    "$type": "dimension",
+    "$description": "Icon sizes (Material Symbols Outlined)."
+  },
+  "opacity": {
+    "$type": "number",
+    "disabled": {
+      "$value": "0.38",
+      "$description": "Disabled elements on a colored background (brand, dark). On light backgrounds, use the disabled color roles instead."
+    }
+  },
+  "size": {
+    "$type": "dimension",
+    "$description": "Component sizes, named by usage.",
+    "side-navigation": {
+      "$value": "240px",
+      "$description": "Width of the side navigation"
+    },
+    "timeline": {
+      "$value": "400px",
+      "$description": "Maximum width of the timeline"
+    },
+    "content": {
+      "$value": "1040px",
+      "$description": "Maximum width of the page content, page margins included (grid columns: 992px)"
+    }
+  },
+  "breakpoint": {
+    "$type": "dimension",
+    "$description": "Screen widths where the layout changes (mobile first: min-width). Mobile = below tablet.",
+    "tablet": {
+      "$value": "768px",
+      "$description": "Tablet and above (min-width)"
+    },
+    "desktop": {
+      "$value": "1024px",
+      "$description": "Desktop and above (min-width)"
+    }
+  },
+  "grid": {
+    "$description": "Layout grid (mobile first). Columns per breakpoint; gutter between columns; margin on each side. Classes .ds-grid and .ds-grid-span-<n> in tokens/grid.css.",
+    "columns": {
+      "$type": "number",
+      "mobile": {
+        "$value": "4",
+        "$description": "Columns below tablet"
+      },
+      "tablet": {
+        "$value": "8",
+        "$description": "Columns from breakpoint.tablet"
+      },
+      "desktop": {
+        "$value": "12",
+        "$description": "Columns from breakpoint.desktop"
+      }
+    },
+    "gutter": {
+      "$type": "dimension",
+      "$value": "{space.16}",
+      "$description": "Space between columns (and between rows)"
+    },
+    "margin": {
+      "$type": "dimension",
+      "$value": "{space.24}",
+      "$description": "Space on each side of the grid (= page margin), on every screen size"
+    }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "$description": "Semantic shadows, named by usage.",
+    "panel": {
+      "$value": "{shadow.3}",
+      "$description": "Panel sliding over the page (e.g. the Timeline panel on small screens)"
+    }
+  },
+  "z-index": {
+    "$type": "number",
+    "$description": "Stacking order of layers, from the content (0) to the tooltips (100). Higher = in front.",
+    "content": {
+      "$value": "0",
+      "$description": "Content of the page"
+    },
+    "sticky": {
+      "$value": "10",
+      "$description": "Elements stuck while scrolling (site header, fixed timeline)"
+    },
+    "navigation": {
+      "$value": "20",
+      "$description": "Navigation opened over the page (mobile menu)"
+    },
+    "overlay": {
+      "$value": "30",
+      "$description": "Dimmed background and panel (Timeline panel)"
+    },
+    "modal": {
+      "$value": "40",
+      "$description": "Dialog windows (Modal)"
+    },
+    "tooltip": {
+      "$value": "100",
+      "$description": "Tooltips"
+    },
+    "skip-link": {
+      "$value": "110",
+      "$description": "\"Skip to content\" link: in front of everything"
+    }
+  }
+}

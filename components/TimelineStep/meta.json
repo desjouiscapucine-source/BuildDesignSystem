@@ -1,0 +1,6 @@
+{
+  "name": "TimelineStep",
+  "description": "One step of a timeline: an event or a stage, with its marker and its content.",
+  "level": "molecule",
+  "status": "complete"
+}

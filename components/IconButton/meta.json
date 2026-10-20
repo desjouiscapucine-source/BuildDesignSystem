@@ -1,0 +1,6 @@
+{
+  "name": "IconButton",
+  "description": "A button with an icon only, for a frequent or obvious action.",
+  "level": "atom",
+  "status": "complete"
+}

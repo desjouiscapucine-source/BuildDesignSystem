@@ -1,0 +1,5 @@
+/* Font files, loaded from Google Fonts. Only the approved settings are loaded:
+   Poppins 400 / 600 / 700 (headings) — Open Sans 400 / 600 (body)
+   Material Symbols Outlined (icons): weight 400, unfilled, optical sizes 20–48. */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0&display=block");

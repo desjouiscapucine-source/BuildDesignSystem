@@ -1,0 +1,6 @@
+{
+  "name": "Button",
+  "description": "Triggers an action or goes to another page.",
+  "level": "atom",
+  "status": "complete"
+}

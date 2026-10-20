@@ -1,0 +1,6 @@
+{
+  "name": "NavigationItem",
+  "description": "A link in a navigation, with an icon and a label.",
+  "level": "molecule",
+  "status": "complete"
+}

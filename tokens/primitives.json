@@ -1,0 +1,316 @@
+{
+  "$description": "Primitive tokens: raw values. Never use them directly in components — use semantic tokens instead.",
+  "color": {
+    "$type": "color",
+    "primary": {
+      "50": {
+        "$value": "#fdf2f0"
+      },
+      "100": {
+        "$value": "#f5e6e3"
+      },
+      "200": {
+        "$value": "#efcbc3"
+      },
+      "300": {
+        "$value": "#d4ada5"
+      },
+      "400": {
+        "$value": "#b68d85"
+      },
+      "500": {
+        "$value": "#9a7067"
+      },
+      "600": {
+        "$value": "#795b55",
+        "$description": "Brand color"
+      },
+      "700": {
+        "$value": "#694c46"
+      },
+      "800": {
+        "$value": "#533832"
+      },
+      "900": {
+        "$value": "#412722"
+      },
+      "950": {
+        "$value": "#2b130e"
+      },
+      "$description": "Primary palette, generated from #412722 (step 900). The brand color is step 600."
+    },
+    "secondary": {
+      "50": {
+        "$value": "#ffffef"
+      },
+      "100": {
+        "$value": "#fdfde7"
+      },
+      "200": {
+        "$value": "#fcfbde"
+      },
+      "300": {
+        "$value": "#faf9d6"
+      },
+      "400": {
+        "$value": "#f8f7cd"
+      },
+      "500": {
+        "$value": "#f7f5c5"
+      },
+      "600": {
+        "$value": "#f5f3bb",
+        "$description": "Secondary brand color"
+      },
+      "700": {
+        "$value": "#e4e2a8"
+      },
+      "800": {
+        "$value": "#cecb8e"
+      },
+      "900": {
+        "$value": "#b5b271"
+      },
+      "950": {
+        "$value": "#999651"
+      },
+      "$description": "Secondary palette, generated from #f5f3bb (step 600). Light palette for backgrounds and surfaces: no step meets AA as text on white."
+    },
+    "neutral": {
+      "0": {
+        "$value": "#ffffff",
+        "$description": "White"
+      },
+      "50": {
+        "$value": "#fafafa"
+      },
+      "100": {
+        "$value": "#f3f3f3"
+      },
+      "200": {
+        "$value": "#e6e6e6"
+      },
+      "300": {
+        "$value": "#d4d4d4"
+      },
+      "400": {
+        "$value": "#aeaeae"
+      },
+      "500": {
+        "$value": "#868686"
+      },
+      "600": {
+        "$value": "#696969"
+      },
+      "700": {
+        "$value": "#525252"
+      },
+      "800": {
+        "$value": "#3a3a3a"
+      },
+      "900": {
+        "$value": "#242424"
+      },
+      "950": {
+        "$value": "#141414"
+      },
+      "$description": "Neutral palette: pure gray, no tint."
+    },
+    "neutral-warm": {
+      "50": {
+        "$value": "#fbfbf4"
+      },
+      "100": {
+        "$value": "#f4f4ed"
+      },
+      "200": {
+        "$value": "#e7e7e0"
+      },
+      "300": {
+        "$value": "#d5d5cb"
+      },
+      "400": {
+        "$value": "#afafa5"
+      },
+      "500": {
+        "$value": "#87877d"
+      },
+      "600": {
+        "$value": "#6a6a60"
+      },
+      "700": {
+        "$value": "#53534a"
+      },
+      "800": {
+        "$value": "#3b3b33"
+      },
+      "900": {
+        "$value": "#25251d"
+      },
+      "950": {
+        "$value": "#14140d"
+      },
+      "$description": "Warm neutral palette (greige): gray tinted with the secondary hue."
+    },
+    "success": {
+      "50": {
+        "$value": "#f1fff1"
+      },
+      "100": {
+        "$value": "#e6fae6"
+      },
+      "200": {
+        "$value": "#d4efd4"
+      },
+      "300": {
+        "$value": "#bbe0bb"
+      },
+      "400": {
+        "$value": "#86bf88"
+      },
+      "500": {
+        "$value": "#4b9b51"
+      },
+      "600": {
+        "$value": "#267d30"
+      },
+      "700": {
+        "$value": "#1d6325"
+      },
+      "800": {
+        "$value": "#134619"
+      },
+      "900": {
+        "$value": "#0b2c0e"
+      },
+      "950": {
+        "$value": "#051907"
+      },
+      "$description": "Success feedback palette (sage green)."
+    },
+    "warning": {
+      "50": {
+        "$value": "#fef9f6"
+      },
+      "100": {
+        "$value": "#fff0e7"
+      },
+      "200": {
+        "$value": "#ffdfcb"
+      },
+      "300": {
+        "$value": "#f6caae"
+      },
+      "400": {
+        "$value": "#df9d72"
+      },
+      "500": {
+        "$value": "#c36d2b"
+      },
+      "600": {
+        "$value": "#a05003"
+      },
+      "700": {
+        "$value": "#7f3e02"
+      },
+      "800": {
+        "$value": "#5c2c02"
+      },
+      "900": {
+        "$value": "#3b1a01"
+      },
+      "950": {
+        "$value": "#230d01"
+      },
+      "$description": "Warning feedback palette (orange)."
+    },
+    "error": {
+      "50": {
+        "$value": "#fff8f7"
+      },
+      "100": {
+        "$value": "#fef0ee"
+      },
+      "200": {
+        "$value": "#ffddd9"
+      },
+      "300": {
+        "$value": "#fbc5be"
+      },
+      "400": {
+        "$value": "#e5968c"
+      },
+      "500": {
+        "$value": "#ca6259"
+      },
+      "600": {
+        "$value": "#aa423a"
+      },
+      "700": {
+        "$value": "#87332d"
+      },
+      "800": {
+        "$value": "#62231f"
+      },
+      "900": {
+        "$value": "#3e1512"
+      },
+      "950": {
+        "$value": "#240b08"
+      },
+      "$description": "Error feedback palette (terracotta red)."
+    },
+    "info": {
+      "50": {
+        "$value": "#f6fbfe"
+      },
+      "100": {
+        "$value": "#e9f6fe"
+      },
+      "200": {
+        "$value": "#ccecff"
+      },
+      "300": {
+        "$value": "#addcf8"
+      },
+      "400": {
+        "$value": "#6cb8e3"
+      },
+      "500": {
+        "$value": "#0a91c8"
+      },
+      "600": {
+        "$value": "#04729e"
+      },
+      "700": {
+        "$value": "#005a7e"
+      },
+      "800": {
+        "$value": "#01405b"
+      },
+      "900": {
+        "$value": "#01283a"
+      },
+      "950": {
+        "$value": "#011622"
+      },
+      "$description": "Info feedback palette (slate blue)."
+    }
+  },
+  "shadow": {
+    "1": {
+      "$value": "0 1px 2px rgba(20, 20, 20, 0.12)",
+      "$description": "Low"
+    },
+    "2": {
+      "$value": "0 4px 8px rgba(20, 20, 20, 0.14)",
+      "$description": "Medium"
+    },
+    "3": {
+      "$value": "0 8px 24px rgba(20, 20, 20, 0.18)",
+      "$description": "High"
+    },
+    "$type": "shadow",
+    "$description": "Neutral shadows, color from neutral-950 (#141414) with transparency."
+  }
+}

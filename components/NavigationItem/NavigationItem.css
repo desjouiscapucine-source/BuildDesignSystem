@@ -1,0 +1,72 @@
+/* NavigationItem — semantic design tokens only. See spec.md.
+   Sits on the brand background. Classes: .ds-navigation-item · parts .ds-navigation-item-icon, .ds-navigation-item-label */
+.ds-navigation-item {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-8);
+  width: 100%;
+  padding: var(--space-8);
+  border-radius: var(--radius-8);
+  color: var(--color-text-inverse);
+  text-decoration: none;
+  font-family: var(--typography-body-family);
+  font-size: var(--typography-body-size);
+  font-weight: var(--typography-body-weight);
+  line-height: var(--typography-body-line-height);
+  cursor: pointer;
+}
+
+/* State layers: overlay in the content color */
+.ds-navigation-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-100) var(--easing-ease-out);
+}
+.ds-navigation-item:hover::after { opacity: var(--state-layer-hover); }
+.ds-navigation-item:focus-visible::after { opacity: var(--state-layer-focus); }
+.ds-navigation-item:active::after { opacity: var(--state-layer-pressed); }
+
+.ds-navigation-item:focus-visible {
+  outline: var(--border-width-2) solid var(--color-border-focus-inverse);
+  outline-offset: var(--border-width-2);
+}
+
+/* Parts */
+.ds-navigation-item-icon {
+  /* Aligned with the first line of the label */
+  display: inline-flex;
+  align-items: center;
+  height: calc(var(--typography-body-size) * var(--typography-body-line-height));
+  font-size: var(--icon-size-20);
+  color: var(--color-icon-inverse);
+}
+.ds-navigation-item-label {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Selected (page displayed) */
+.ds-navigation-item[aria-current="page"] {
+  background: var(--color-background-brand-subtle);
+  color: var(--color-text-brand);
+  font-family: var(--typography-label-family);
+  font-size: var(--typography-label-size);
+  font-weight: var(--typography-label-weight);
+  line-height: var(--typography-label-line-height);
+}
+.ds-navigation-item[aria-current="page"] .ds-navigation-item-icon { color: var(--color-icon-brand); }
+
+/* Disabled: dimmed, no state layer */
+.ds-navigation-item[aria-disabled="true"] {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+}
+.ds-navigation-item[aria-disabled="true"]::after { display: none; }

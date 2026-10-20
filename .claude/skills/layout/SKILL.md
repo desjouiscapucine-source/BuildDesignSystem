@@ -1,0 +1,53 @@
+---
+name: layout
+description: Layout rules of the design system — page margin and vertical spacing between blocks of content. Use whenever a page, a screen or a section is laid out: the documentation site, templates and pages, prototypes, or any new page of the site.
+---
+
+# Layout
+
+Rules approved by the Design System Lead. They apply to **the whole documentation site**.
+
+| Rule | Value | Token |
+| ---- | ----- | ----- |
+| **Page margin** — space around the content of the page | 24px | `--space-24` |
+| **Vertical spacing between items** — space between blocks of content stacked vertically | 16px | `--space-16` |
+
+## Page header placement
+
+The page header (title + subtitle) is placed:
+- **at the top of the content area**, as its **first block**, inside the 24px page margin;
+- **aligned left**, on the full width of the content area;
+- title first, subtitle right under it, separated like any other block (**16px**, `--space-16`); the rest of the page follows 16px below the subtitle.
+
+For the text itself (text styles, colors, one line maximum, maximum lengths), **use the `page-header` skill**.
+
+## General
+
+- Use the `--space-*` tokens directly for spacing. Columns use the layout grid (below).
+- The page margin is the same on every screen size.
+- Inside a component, spacing follows the component's spec, not these rules.
+
+## Layout grid
+
+Approved by the Design System Lead on 2026-10-20. Tokens in the `token-naming` skill (`grid.*`, `size.content`).
+
+| Screen | Columns | Gutter | Side margin |
+| ------ | ------- | ------ | ----------- |
+| Mobile (below 768px) | 4 | 16px | 24px |
+| Tablet (768px and above) | 8 | 16px | 24px |
+| Desktop (1024px and above) | 12 | 16px | 24px |
+
+- **Maximum content width: 1040px, margins included** (992px for the columns). Beyond that, the grid stays centered.
+- Classes (`tokens/grid.css`): `.ds-grid` on the container, `.ds-grid-span-<n>` on each item (1 column by default).
+- A span wider than the current number of columns takes the full width (e.g. `span-6` on mobile) — approved by the Design System Lead on 2026-10-20.
+
+## How it is applied in the documentation site
+
+- `docs/src/docs.css` → `.shell-content`: `padding: var(--space-24)`, `max-width: var(--size-content)`, and its direct children are stacked with `gap: var(--space-16)` (their own top / bottom margins are removed).
+- A new page of the site follows the same structure: its blocks are direct children of the content area.
+
+## Not defined yet — ask before deciding
+
+- Whether these rules also apply to templates, pages and prototypes.
+- Horizontal spacing between items outside the grid, and spacing inside sections.
+- Whether the documentation site pages are laid out on the column grid (for now only the max width uses `size.content`).

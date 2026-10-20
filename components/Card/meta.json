@@ -1,0 +1,6 @@
+{
+  "name": "Card",
+  "description": "A container that groups the content of one subject.",
+  "level": "molecule",
+  "status": "complete"
+}

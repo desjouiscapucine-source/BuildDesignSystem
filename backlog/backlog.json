@@ -1,0 +1,597 @@
+{
+  "$description": "Project backlog — source of truth for the Backlog page of the documentation site. status: proposal | todo | in-progress | done | rejected. origin: decided (Design System Lead) | proposal (Claude).",
+  "items": [
+    {
+      "id": "B001",
+      "title": "Project setup, context file, steps log, workflow",
+      "category": "Foundations",
+      "status": "done",
+      "origin": "decided",
+      "description": "Design → Guidelines → Code → Prototype."
+    },
+    {
+      "id": "B002",
+      "title": "Local documentation site and prototypes area",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "decided",
+      "description": ""
+    },
+    {
+      "id": "B003",
+      "title": "Skills: never-invent, token-naming",
+      "category": "Skills",
+      "status": "done",
+      "origin": "decided",
+      "description": ""
+    },
+    {
+      "id": "B004",
+      "title": "Colors: primitive palettes, semantic roles, contrast check",
+      "category": "Foundations",
+      "status": "done",
+      "origin": "decided",
+      "description": "8 palettes, 43 roles, WCAG 2.2 AA check."
+    },
+    {
+      "id": "B005",
+      "title": "State layers: hover, focus, pressed",
+      "category": "Foundations",
+      "status": "done",
+      "origin": "decided",
+      "description": ""
+    },
+    {
+      "id": "B006",
+      "title": "Typography: families, weights, sizes, line heights, text styles",
+      "category": "Foundations",
+      "status": "done",
+      "origin": "decided",
+      "description": ""
+    },
+    {
+      "id": "B007",
+      "title": "Spacing, radius, border widths, primitive shadows, motion",
+      "category": "Foundations",
+      "status": "done",
+      "origin": "decided",
+      "description": "Motion respects reduced motion."
+    },
+    {
+      "id": "B008",
+      "title": "Semantic shadows by usage",
+      "category": "Foundations",
+      "status": "todo",
+      "origin": "decided",
+      "description": "Usages to define (decided \"later\", step 33)."
+    },
+    {
+      "id": "B009",
+      "title": "Dark mode",
+      "category": "Foundations",
+      "status": "todo",
+      "origin": "decided",
+      "description": "Planned for later (step 8)."
+    },
+    {
+      "id": "B010",
+      "title": "Icons",
+      "category": "Foundations",
+      "status": "done",
+      "origin": "proposal",
+      "description": "Choose an icon set, sizes and naming."
+    },
+    {
+      "id": "B011",
+      "title": "Breakpoints",
+      "category": "Foundations",
+      "status": "done",
+      "origin": "proposal",
+      "description": "Screen widths for responsive layouts. Used on the documentation site: the site switches to the mobile navigation below 860px (site-only value)."
+    },
+    {
+      "id": "B012",
+      "title": "Layout grid",
+      "category": "Foundations",
+      "status": "done",
+      "origin": "proposal",
+      "description": "Columns 4 / 8 / 12 (mobile / tablet / desktop), gutter 16px, margin 24px, max content width 1040px (margins included). Tokens grid.* and size.content; classes .ds-grid and .ds-grid-span-<n>."
+    },
+    {
+      "id": "B013",
+      "title": "Z-index",
+      "category": "Foundations",
+      "status": "done",
+      "origin": "proposal",
+      "description": "Stacking order (dropdown, modal, tooltip…). Used on the documentation site: header, mobile navigation and skip link stacking (site-only values). The Timeline panel uses a raw z-index (100) until z-index tokens exist."
+    },
+    {
+      "id": "B014",
+      "title": "Opacity for disabled elements",
+      "category": "Foundations",
+      "status": "done",
+      "origin": "proposal",
+      "description": "If not covered by the disabled color roles."
+    },
+    {
+      "id": "B015",
+      "title": "Pill radius",
+      "category": "Foundations",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "radius.full (50%) gives an ellipse on rectangles: decide if pill buttons/tags are needed."
+    },
+    {
+      "id": "B016",
+      "title": "Button",
+      "category": "Components",
+      "status": "done",
+      "origin": "proposal",
+      "description": "Uses almost every token category; needed everywhere.",
+      "stage": "code"
+    },
+    {
+      "id": "B017",
+      "title": "Icon button",
+      "category": "Components",
+      "status": "done",
+      "origin": "proposal",
+      "description": "Variant of the button for icon-only actions. Used on the documentation site: header shortcuts and mobile menu button. Needed by the Timeline small-screen panel: open button (icon timeline) and close button (icon close).",
+      "stage": "code"
+    },
+    {
+      "id": "B018",
+      "title": "Link",
+      "category": "Components",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Text action, uses text.link. Used on the documentation site: links in texts and descriptions.",
+      "stage": "design"
+    },
+    {
+      "id": "B019",
+      "title": "Text input",
+      "category": "Components",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Base of every form. Used on the documentation site: Content field of the Design preview tab, icon name field of the Icons page.",
+      "stage": "design"
+    },
+    {
+      "id": "B020",
+      "title": "Textarea",
+      "category": "Components",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Multi-line input.",
+      "stage": "design"
+    },
+    {
+      "id": "B021",
+      "title": "Select",
+      "category": "Components",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Choice in a list. Used on the documentation site: status and stage menus of the Backlog page, token menus of the Design preview tab.",
+      "stage": "design"
+    },
+    {
+      "id": "B022",
+      "title": "Checkbox",
+      "category": "Components",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Multiple choice.",
+      "stage": "design"
+    },
+    {
+      "id": "B023",
+      "title": "Radio",
+      "category": "Components",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Single choice.",
+      "stage": "design"
+    },
+    {
+      "id": "B024",
+      "title": "Switch",
+      "category": "Components",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "On / off setting.",
+      "stage": "design"
+    },
+    {
+      "id": "B025",
+      "title": "Badge",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "Small indicator (number or status). First use: the counter of the Navigation item. A Tag (category, filter) would be a separate component, later.",
+      "stage": "design"
+    },
+    {
+      "id": "B026",
+      "title": "Alert",
+      "category": "Components",
+      "status": "rejected",
+      "origin": "proposal",
+      "description": "Feedback messages (success, warning, error, info).",
+      "stage": "design"
+    },
+    {
+      "id": "B027",
+      "title": "Card",
+      "category": "Components",
+      "status": "done",
+      "origin": "proposal",
+      "description": "Content container, uses shadows. Used on the documentation site: home page links and backlog cards.",
+      "stage": "code"
+    },
+    {
+      "id": "B028",
+      "title": "Tooltip",
+      "category": "Components",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Short contextual help.",
+      "stage": "design"
+    },
+    {
+      "id": "B029",
+      "title": "Modal",
+      "category": "Components",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Dialog, uses the highest shadow.",
+      "stage": "design"
+    },
+    {
+      "id": "B030",
+      "title": "Tabs",
+      "category": "Components",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Navigation within a page. Used on the documentation site: tabs of the component pages (Design preview, Design spec, Guidelines, Examples, Code).",
+      "stage": "design"
+    },
+    {
+      "id": "B031",
+      "title": "First interactive mockup",
+      "category": "Prototypes",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Once a few components are coded (e.g. a form or a product page). Screens and content to define with the Design System Lead."
+    },
+    {
+      "id": "B032",
+      "title": "Version control (git)",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Keep the history of every change and be able to go back."
+    },
+    {
+      "id": "B033",
+      "title": "Split the tokens page by category",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "One documentation page per category (colors, typography, spacing…)."
+    },
+    {
+      "id": "B034",
+      "title": "Show state layers live in the docs",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": ""
+    },
+    {
+      "id": "B035",
+      "title": "Guidelines for tokens",
+      "category": "Foundations",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "When to use each semantic color, text style, spacing."
+    },
+    {
+      "id": "B036",
+      "title": "Skill: component-spec",
+      "category": "Skills",
+      "status": "done",
+      "origin": "proposal",
+      "description": "How to write a component design spec (stage 1): sections, level of detail, which tokens to reference, what to ask the Design System Lead."
+    },
+    {
+      "id": "B037",
+      "title": "Skill: component-guidelines",
+      "category": "Skills",
+      "status": "done",
+      "origin": "proposal",
+      "description": "How to write component guidelines (stage 2): the 7 sections, tone, do/don't examples."
+    },
+    {
+      "id": "B038",
+      "title": "Skill: component-code",
+      "category": "Skills",
+      "status": "done",
+      "origin": "proposal",
+      "description": "Coding rules for components (stage 3): React + TypeScript structure, semantic tokens only, ds- classes, state layers, props naming, examples file."
+    },
+    {
+      "id": "B039",
+      "title": "Skill: accessibility-check",
+      "category": "Skills",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "WCAG 2.2 AA review of a component or prototype: contrast, keyboard, focus, screen reader, touch targets, reduced motion."
+    },
+    {
+      "id": "B040",
+      "title": "Skill: prototype-building",
+      "category": "Skills",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "How to build an interactive mockup (stage 4): only coded components, screens and navigation, content to ask for."
+    },
+    {
+      "id": "B041",
+      "title": "Skill: token-usage",
+      "category": "Skills",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Which semantic token to pick for each need (text, background, border, spacing, text style…), with examples."
+    },
+    {
+      "id": "B042",
+      "title": "Skill: steps-log",
+      "category": "Skills",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "How to write a STEPS.md entry: format, decisions vs actions, files changed."
+    },
+    {
+      "id": "B043",
+      "title": "Skill: backlog-management",
+      "category": "Skills",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "How to keep backlog/backlog.json up to date: statuses, stages, adding proposals, never starting a proposal."
+    },
+    {
+      "id": "B044",
+      "title": "Side navigation",
+      "category": "Components",
+      "status": "done",
+      "origin": "decided",
+      "description": "Define the side navigation as a design system component (4 stages). Starting point: the documentation site navigation (brand background, icons, sections, current page in cream).",
+      "stage": "code"
+    },
+    {
+      "id": "B045",
+      "title": "Skill: component (main)",
+      "category": "Skills",
+      "status": "done",
+      "origin": "decided",
+      "description": "Entry point for every component: routes to the stage sub-skills and enforces the approval gate."
+    },
+    {
+      "id": "B046",
+      "title": "Skill: component-structure",
+      "category": "Skills",
+      "status": "done",
+      "origin": "decided",
+      "description": "Atomic Design: 5 levels, classification, level recorded in meta.json."
+    },
+    {
+      "id": "B047",
+      "title": "Classify the backlog components by Atomic Design level",
+      "category": "Components",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Propose a level (atom, molecule, organism…) for each component in the backlog, for approval."
+    },
+    {
+      "id": "B048",
+      "title": "Templates and pages vs prototypes",
+      "category": "Prototypes",
+      "status": "done",
+      "origin": "decided",
+      "description": "Decided: prototypes = user journeys built with components; templates and pages are independent layout references, with stages Design → Code → Prototype (no guidelines)."
+    },
+    {
+      "id": "B049",
+      "title": "Show do's and don'ts visually in the Guidelines tab",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Render the do / don't examples of guidelines.md in the documentation site, using the component design preview."
+    },
+    {
+      "id": "B050",
+      "title": "Navigation item",
+      "category": "Components",
+      "status": "done",
+      "origin": "decided",
+      "description": "A link in a navigation, with an icon and a label (molecule). Used by the Side navigation; done first.",
+      "stage": "code"
+    },
+    {
+      "id": "B051",
+      "title": "Skill: layout",
+      "category": "Skills",
+      "status": "done",
+      "origin": "decided",
+      "description": "Page margin 24px, vertical spacing between blocks 16px, on the whole documentation site."
+    },
+    {
+      "id": "B052",
+      "title": "Skill: page-header",
+      "category": "Skills",
+      "status": "done",
+      "origin": "decided",
+      "description": "Page title heading-1 (30 characters) and subtitle lead (80 characters), one line each, ellipsis as a safety net."
+    },
+    {
+      "id": "B053",
+      "title": "Timeline step",
+      "category": "Components",
+      "status": "done",
+      "origin": "decided",
+      "description": "Building block of the Timeline (molecule): one step with its marker and its content. Done first.",
+      "stage": "code"
+    },
+    {
+      "id": "B054",
+      "title": "Timeline",
+      "category": "Components",
+      "status": "done",
+      "origin": "decided",
+      "description": "A vertical sequence of steps or events, in chronological order (organism). Built after the Timeline step.",
+      "stage": "code"
+    },
+    {
+      "id": "B055",
+      "title": "Header",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "On the documentation site, not defined in the design system yet. Top bar of the site: brand name and logo, search field, work-time clock, shortcuts.",
+      "stage": "design"
+    },
+    {
+      "id": "B056",
+      "title": "Search field",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "On the documentation site, not defined in the design system yet. Search of the site header: input with a search icon, keyboard hint \"/\", list of results.",
+      "stage": "design"
+    },
+    {
+      "id": "B057",
+      "title": "Dropdown list (listbox)",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "On the documentation site, not defined in the design system yet. List of results under the site search, with the active option highlighted.",
+      "stage": "design"
+    },
+    {
+      "id": "B058",
+      "title": "Filter chips",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "On the documentation site, not defined in the design system yet. Toggle buttons to filter the backlog by category, and to choose the variant in the Design preview tab.",
+      "stage": "design"
+    },
+    {
+      "id": "B059",
+      "title": "Tag",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "On the documentation site, not defined in the design system yet. Small labels: Atomic Design level, backlog category and \"Decided\" tags. Different from the Badge (counter).",
+      "stage": "design"
+    },
+    {
+      "id": "B060",
+      "title": "Stage indicator",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "On the documentation site, not defined in the design system yet. Progress of a component through its stages (Design, Guidelines, Code) and the Complete badge.",
+      "stage": "design"
+    },
+    {
+      "id": "B061",
+      "title": "Data table",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "On the documentation site, not defined in the design system yet. Token tables, contrast tables and the tables of specs and guidelines.",
+      "stage": "design"
+    },
+    {
+      "id": "B062",
+      "title": "Code block",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "On the documentation site, not defined in the design system yet. Code of the Code tab and of the Icons page, with a Copy button.",
+      "stage": "design"
+    },
+    {
+      "id": "B063",
+      "title": "Message banner",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "On the documentation site, not defined in the design system yet. Information note of the Design preview tab and save error of the Backlog page. (The \"Alert\" proposal was rejected earlier: to decide again.)",
+      "stage": "design"
+    },
+    {
+      "id": "B064",
+      "title": "Kanban board",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "On the documentation site, not defined in the design system yet. Backlog columns (Proposals, To do, In progress, Done) with cards.",
+      "stage": "design"
+    },
+    {
+      "id": "B065",
+      "title": "Empty state",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "On the documentation site, not defined in the design system yet. Short messages when there is nothing to show (\"No components yet\", \"Not coded yet\").",
+      "stage": "design"
+    },
+    {
+      "id": "B066",
+      "title": "Skip link",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "On the documentation site, not defined in the design system yet. \"Skip to content\" link, visible on keyboard focus.",
+      "stage": "design"
+    },
+    {
+      "id": "B067",
+      "title": "Code font (monospace)",
+      "category": "Foundations",
+      "status": "todo",
+      "origin": "decided",
+      "description": "On the documentation site, not defined in the design system yet. Font of token names and code: no design token yet (site-only variable --doc-mono)."
+    },
+    {
+      "id": "B068",
+      "title": "Skill: page-content",
+      "category": "Skills",
+      "status": "done",
+      "origin": "decided",
+      "description": "Rules of a page combining a Timeline and Cards: link, order, placement, scrolling and selection."
+    },
+    {
+      "id": "B069",
+      "title": "Page content: open questions",
+      "category": "Foundations",
+      "status": "done",
+      "origin": "decided",
+      "description": "Decided: the visible card is the card at the top of the screen; on small screens the timeline is in a burger panel."
+    },
+    {
+      "id": "B070",
+      "title": "Timeline: small-screen panel",
+      "category": "Components",
+      "status": "done",
+      "origin": "decided",
+      "description": "Update the Timeline (spec, guidelines, code) for screens below desktop: icon-only button (icon timeline) above the cards, panel sliding in from the right with a dimmed background, closes after a step is chosen, close icon button (icon close), Escape or click outside to close. Needs the Icon button. To define: close button position, panel width, shadow, dimmed background color, focus management.",
+      "stage": "code"
+    }
+  ]
+}

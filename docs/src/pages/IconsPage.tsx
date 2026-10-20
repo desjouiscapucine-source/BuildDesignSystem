@@ -1,0 +1,89 @@
+import { useState } from "react";
+import { tokens } from "../../../tokens/lib";
+
+const sizes = tokens.filter((token) => token.path[0] === "icon-size");
+const samples = [
+  "home", "search", "menu", "close", "arrow_back", "arrow_forward", "expand_more", "chevron_right",
+  "add", "remove", "edit", "delete", "check", "check_circle", "info", "warning",
+  "error", "help", "person", "settings", "notifications", "favorite", "shopping_cart", "calendar_today",
+  "mail", "lock", "visibility", "download", "upload", "share", "filter_list", "more_vert",
+];
+
+export function IconsPage() {
+  const [name, setName] = useState("favorite");
+
+  return (
+    <>
+      <h1>Icons</h1>
+      <p className="lead">Material Symbols Outlined, weight 400, always unfilled.</p>
+      <p>
+        Loaded from Google Fonts. Browse every icon name on{" "}
+        <a href="https://fonts.google.com/icons?icon.style=Outlined" target="_blank" rel="noreferrer">
+          fonts.google.com/icons
+        </a>
+        .
+      </p>
+
+      <h2>Usage</h2>
+      <pre className="code">{`<span class="ds-icon" aria-hidden="true">home</span>`}</pre>
+      <p>
+        The icon takes the text color. Default size: <code>--icon-size-24</code>. Decorative icons get{" "}
+        <code>aria-hidden="true"</code>; an icon used alone as a button needs an accessible label.
+      </p>
+
+      <h2>Sizes</h2>
+      <table className="tokens">
+        <thead>
+          <tr>
+            <th>Preview</th>
+            <th>Token</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sizes.map((token) => (
+            <tr key={token.id}>
+              <td>
+                <span className="ds-icon" style={{ fontSize: `var(${token.cssVar})` }} aria-hidden="true">
+                  favorite
+                </span>
+              </td>
+              <td>
+                <code>{token.cssVar}</code>
+              </td>
+              <td>
+                <code>{token.value}</code>
+                {token.description && <div className="resolved">{token.description}</div>}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <h2>Try an icon</h2>
+      <label className="icon-try">
+        Icon name
+        <input value={name} onChange={(event) => setName(event.target.value.trim().toLowerCase().replace(/\s+/g, "_"))} />
+      </label>
+      <div className="icon-try-preview">
+        {sizes.map((token) => (
+          <span key={token.id} className="ds-icon" style={{ fontSize: `var(${token.cssVar})` }} aria-hidden="true">
+            {name || "help"}
+          </span>
+        ))}
+      </div>
+
+      <h2>Examples</h2>
+      <ul className="icon-grid">
+        {samples.map((sample) => (
+          <li key={sample}>
+            <span className="ds-icon" aria-hidden="true">
+              {sample}
+            </span>
+            <code>{sample}</code>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+}

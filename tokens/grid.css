@@ -1,0 +1,58 @@
+/* Layout grid — mobile first: 4 columns, 8 from tablet, 12 from desktop.
+   Gutter --grid-gutter (16px), side margin --grid-margin (24px), max width --size-content (1040px, margins included).
+   Usage: <div class="ds-grid"><div class="ds-grid-span-6">…</div></div>
+   A span wider than the current number of columns takes the full width. */
+.ds-grid {
+  --ds-grid-columns: var(--grid-columns-mobile);
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(var(--ds-grid-columns), minmax(0, 1fr));
+  gap: var(--grid-gutter);
+  width: 100%;
+  max-width: var(--size-content);
+  margin-inline: auto;
+  padding-inline: var(--grid-margin);
+}
+
+/* --breakpoint-tablet (768px) */
+@media (min-width: 768px) {
+  .ds-grid { --ds-grid-columns: var(--grid-columns-tablet); }
+}
+
+/* --breakpoint-desktop (1024px) */
+@media (min-width: 1024px) {
+  .ds-grid { --ds-grid-columns: var(--grid-columns-desktop); }
+}
+
+.ds-grid-span-1 { grid-column: span 1; }
+.ds-grid-span-2 { grid-column: span 2; }
+.ds-grid-span-3 { grid-column: span 3; }
+.ds-grid-span-4 { grid-column: span 4; }
+.ds-grid-span-5 { grid-column: span 5; }
+.ds-grid-span-6 { grid-column: span 6; }
+.ds-grid-span-7 { grid-column: span 7; }
+.ds-grid-span-8 { grid-column: span 8; }
+.ds-grid-span-9 { grid-column: span 9; }
+.ds-grid-span-10 { grid-column: span 10; }
+.ds-grid-span-11 { grid-column: span 11; }
+.ds-grid-span-12 { grid-column: span 12; }
+
+/* Mobile (4 columns): spans of 5 and more take the full width */
+.ds-grid-span-5, .ds-grid-span-6, .ds-grid-span-7, .ds-grid-span-8,
+.ds-grid-span-9, .ds-grid-span-10, .ds-grid-span-11, .ds-grid-span-12 { grid-column: 1 / -1; }
+
+/* --breakpoint-tablet (768px) — 8 columns: spans of 9 and more take the full width */
+@media (min-width: 768px) {
+  .ds-grid-span-5 { grid-column: span 5; }
+  .ds-grid-span-6 { grid-column: span 6; }
+  .ds-grid-span-7 { grid-column: span 7; }
+  .ds-grid-span-8 { grid-column: span 8; }
+}
+
+/* --breakpoint-desktop (1024px) — 12 columns */
+@media (min-width: 1024px) {
+  .ds-grid-span-9 { grid-column: span 9; }
+  .ds-grid-span-10 { grid-column: span 10; }
+  .ds-grid-span-11 { grid-column: span 11; }
+  .ds-grid-span-12 { grid-column: span 12; }
+}
