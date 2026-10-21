@@ -8,8 +8,9 @@ import { BacklogPage } from "./pages/BacklogPage";
 import { IconsPage } from "./pages/IconsPage";
 import { GridPage } from "./pages/GridPage";
 import { SkillsPage } from "./pages/SkillsPage";
+import { TicketPage } from "./pages/TicketPage";
 
-// Hash routes: #/  ·  #/backlog  ·  #/skills  ·  #/tokens  ·  #/icons  ·  #/grid  ·  #/components/<slug>
+// Hash routes: #/  ·  #/backlog  ·  #/backlog/<id>  ·  #/skills  ·  #/tokens  ·  #/icons  ·  #/grid  ·  #/components/<slug>
 function useHashRoute() {
   const read = () => {
     const hash = window.location.hash.replace(/^#/, "");
@@ -69,6 +70,7 @@ export function App() {
   let page = <HomePage />;
   if (route === "/tokens") page = <TokensPage />;
   else if (route === "/backlog") page = <BacklogPage />;
+  else if (route.startsWith("/backlog/")) page = <TicketPage key={route} id={route.slice("/backlog/".length)} />;
   else if (route === "/skills") page = <SkillsPage />;
   else if (route === "/icons") page = <IconsPage />;
   else if (route === "/grid") page = <GridPage />;
@@ -79,7 +81,7 @@ export function App() {
   }, [route]);
 
   return (
-    <AppShell sections={sections} current={`#${route}`}>
+    <AppShell sections={sections} current={route.startsWith("/backlog/") ? "#/backlog" : `#${route}`}>
       {page}
     </AppShell>
   );

@@ -1,18 +1,6 @@
-import { useEffect, useState } from "react";
-import initial from "../../../backlog/backlog.json";
+import { useState } from "react";
 import type { Stage } from "../types";
-
-type Status = "proposal" | "todo" | "in-progress" | "done" | "rejected";
-
-interface Item {
-  id: string;
-  title: string;
-  category: string;
-  status: Status;
-  origin: "decided" | "proposal";
-  description?: string;
-  stage?: Stage;
-}
+import { statusLabels, useBacklog, type BacklogItem as Item, type BacklogStatus as Status } from "../backlog";
 
 const columns: { status: Status; title: string; hint: string }[] = [
   { status: "proposal", title: "Proposals", hint: "Suggested by Claude — awaiting your approval" },
@@ -21,33 +9,16 @@ const columns: { status: Status; title: string; hint: string }[] = [
   { status: "done", title: "Done", hint: "" },
 ];
 
-const statusLabels: Record<Status, string> = {
-  proposal: "Proposal",
-  todo: "To do",
-  "in-progress": "In progress",
-  done: "Done",
-  rejected: "Rejected",
-};
-
 const stages: Stage[] = ["design", "guidelines", "code"];
 
 export function BacklogPage() {
-  const [items, setItems] = useState<Item[]>(initial.items as Item[]);
+  const { items, setItems, error, setError } = useBacklog();
   const [category, setCategory] = useState("All");
-  const [error, setError] = useState<string | null>(null);
   const [showRejected, setShowRejected] = useState(false);
 
   const categories = ["All", ...new Set(items.map((item) => item.category))];
   const visible = items.filter((item) => category === "All" || item.category === category);
   const rejected = visible.filter((item) => item.status === "rejected");
-
-  // Always start from the file on disk, not from the version bundled with the page.
-  useEffect(() => {
-    fetch("/api/backlog")
-      .then((response) => (response.ok ? response.json() : Promise.reject()))
-      .then((data) => setItems(data.items))
-      .catch(() => setError("Read-only: changes are saved only when the site runs with `npm run dev`."));
-  }, []);
 
   async function update(id: string, change: Partial<Item>) {
     try {
@@ -74,6 +45,11 @@ export function BacklogPage() {
       </div>
       <strong>{item.title}</strong>
       {item.description && <p>{item.description}</p>}
+      {item.prototype && (
+        <a className="backlog-ticket-link" href={`#/backlog/${item.id}`}>
+          Spec and iterations ({item.iterations?.length ?? 0})
+        </a>
+      )}
 
       {item.status === "proposal" ? (
         <div className="backlog-actions">

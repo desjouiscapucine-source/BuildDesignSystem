@@ -554,6 +554,22 @@ code {
 .backlog-rejected-list { margin-top: var(--space-16); max-width: 420px; }
 /* Below desktop: --breakpoint-desktop (1024px) */
 @media not all and (min-width: 1024px) { .backlog-board { grid-template-columns: 1fr; } }
+.backlog-ticket-link { font-size: var(--font-size-12); font-weight: var(--font-weight-semibold); }
+
+/* ---------- Ticket ---------- */
+.backlog-tag.validated { background: var(--color-background-success-subtle); color: var(--color-text-success); }
+.backlog-tag.changes-requested { background: var(--color-background-warning-subtle); color: var(--color-text-warning); }
+.ticket-iterations { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--space-8); }
+.ticket-iterations li {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-16);
+  border: var(--border-width-1) solid var(--color-border-default);
+  border-radius: var(--radius-8);
+}
+.ticket-iterations p { margin: 0; }
+.ticket-iteration-head { display: flex; gap: var(--space-8); align-items: center; }
 
 /* ---------- Icons page ---------- */
 pre.code { background: var(--color-background-surface); padding: var(--space-16); border-radius: var(--radius-8); font-family: var(--doc-mono); font-size: var(--font-size-14); overflow-x: auto; }

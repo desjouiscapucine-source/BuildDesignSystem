@@ -2648,3 +2648,23 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `STEPS.md` (updated)
+
+## Step 142 — Prototype tickets: specification and iteration history
+**Date:** 2026-10-21 (on `main`; steps 140–141 of the `prototype-0.0` branch are numbered in parallel, so this step is 142)
+
+**Decisions (made by the Design System Lead)**
+- One backlog ticket per prototype, holding its specification and the history of its iterations up to the final validation.
+- The specification lives in `prototypes/<name>/spec.md`, with two sections: **Components & content** and **Acceptance criteria**.
+- Each iteration records the Design System Lead's **feedback** and the **decision** (changes requested, or validated = final validation).
+
+**What was done**
+- Backlog ticket fields: `prototype` (folder name) and `iterations` (`feedback`, `decision`: `changes-requested` | `validated`). B031 (WorkDescription) gets `prototype: "work-description"` and an empty history.
+- New `prototypes/_template/spec.md` (the two sections, to write with the Design System Lead).
+- Documentation site: new ticket page `#/backlog/<id>` (`docs/src/pages/TicketPage.tsx`): ticket header, link to the prototype, its `spec.md` rendered, and the iterations (Iteration n, decision tag, feedback). Prototype cards on the Backlog page link to it ("Spec and iterations (n)"). Backlog data and types moved to `docs/src/backlog.ts`, shared by both pages. Decision tags use existing AA-checked pairs (success / warning).
+- `prototype-setup` skill (spec.md title, ticket fields, an iteration per review), `prototypes/README.md` (Backlog ticket section) and `CLAUDE.md` (Backlog section) updated.
+- Verification: type check, prototypes check, tokens contrast check and build pass. Not checked in the browser: the dev server on port 5173 runs from the other folder (`prototype-0.0`), and the preview tool could not start a second one for this folder.
+- Note: `prototypes/work-description/spec.md` belongs on the `prototype-0.0` branch; until it exists, the ticket page shows "No specification yet on this branch".
+
+**Files**
+- `docs/src/backlog.ts`, `docs/src/pages/TicketPage.tsx`, `prototypes/_template/spec.md` (new)
+- `docs/src/App.tsx`, `docs/src/pages/BacklogPage.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `.claude/skills/prototype-setup/SKILL.md`, `prototypes/README.md`, `CLAUDE.md`, `STEPS.md` (updated)

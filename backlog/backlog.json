@@ -262,7 +262,9 @@
       "category": "Prototypes",
       "status": "todo",
       "origin": "proposal",
-      "description": "Once a few components are coded (e.g. a form or a product page). Screens and content to define with the Design System Lead."
+      "description": "Once a few components are coded (e.g. a form or a product page). Screens and content to define with the Design System Lead.",
+      "prototype": "work-description",
+      "iterations": []
     },
     {
       "id": "B032",
