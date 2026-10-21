@@ -2686,3 +2686,15 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `docs/src/prototypes.ts`, `docs/src/pages/PrototypePage.tsx` (new)
 - `docs/src/App.tsx`, `docs/src/docs.css`, `STEPS.md` (updated)
+
+## Step 144 — Branch prototype-0.0 renamed prototype/work-description
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- The WorkDescription prototype branch is named `prototype/work-description`.
+
+**What was done**
+- Renamed `prototype-0.0` → `prototype/work-description` locally (the `BuildDesignSystem` folder follows it, its uncommitted changes untouched), pushed the new name to GitHub with tracking, and deleted `prototype-0.0` on GitHub. Same commits (head: step 141).
+
+**Files**
+- `STEPS.md` (updated)
