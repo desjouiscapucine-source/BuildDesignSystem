@@ -2784,3 +2784,17 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `vite.config.ts`, `STEPS.md` (updated)
+
+## Step 150 — Timeline and TimelineStep code approved: change complete
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- Approved: the Timeline and TimelineStep code of step 148.
+
+**What was done**
+- The change is complete: the Timeline fills its column (4 columns next to the cards, `page-content` skill) and the TimelineStep puts its date range under a title narrower than 200px. Both components stay `complete`.
+- Backlog B076 → `done`.
+- Next: apply the 8 / 4 column layout to the WorkDescription prototype, on its branch `prototype/work-description`.
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)

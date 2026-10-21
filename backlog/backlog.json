@@ -639,9 +639,9 @@
       "id": "B076",
       "title": "Timeline: fill its 4 columns on desktop",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
-      "description": "Page-content rule: cards 8 columns, timeline 4 columns, 12-column grid on the full screen width. The Timeline fills its container (no 400px maximum on desktop); --size-timeline stays for the small-screen panel. Spec and guidelines approved 2026-10-21. TimelineStep: the date range goes under the title when the title would be narrower than --size-timeline-step-title (200px).",
+      "description": "Page-content rule: cards 8 columns, timeline 4 columns, 12-column grid on the full screen width. The Timeline fills its container (no 400px maximum on desktop); --size-timeline stays for the small-screen panel. Spec, guidelines and code approved 2026-10-21. TimelineStep: the date range goes under the title when the title would be narrower than --size-timeline-step-title (200px).",
       "stage": "code"
     }
   ]
