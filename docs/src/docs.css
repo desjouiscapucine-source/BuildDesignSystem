@@ -673,3 +673,33 @@ pre.code { background: var(--color-background-surface); padding: var(--space-16)
   font-weight: var(--typography-label-weight);
   color: var(--color-text-brand);
 }
+
+/* ---------- Prototype preview ---------- */
+.shell-content:has(.prototype-preview) { max-width: none; }
+.prototype-preview-actions { display: flex; flex-wrap: wrap; gap: var(--space-24); align-items: center; }
+.prototype-preview-actions label { display: inline-flex; gap: var(--space-8); align-items: center; cursor: pointer; }
+.prototype-preview { display: flex; gap: var(--space-16); align-items: flex-start; }
+.prototype-preview.stacked { flex-direction: column; }
+.prototype-frame { margin: 0; display: flex; flex-direction: column; gap: var(--space-8); }
+.prototype-frame figcaption { font-size: var(--font-size-12); color: var(--color-text-secondary); }
+.prototype-frame-box {
+  overflow: hidden;
+  border: var(--border-width-1) solid var(--color-border-default);
+  border-radius: var(--radius-8);
+  box-shadow: var(--shadow-1);
+  background: var(--color-background-page);
+}
+.prototype-frame-screen { position: relative; transform-origin: top left; }
+.prototype-frame-screen iframe { display: block; border: 0; }
+/* Grid overlay: same rules as .ds-grid (tokens/grid.css), with the column count of the frame width. */
+.prototype-grid-overlay { position: absolute; inset: 0; pointer-events: none; }
+.prototype-grid-overlay > div {
+  display: grid;
+  gap: var(--grid-gutter);
+  height: 100%;
+  max-width: var(--size-content);
+  margin-inline: auto;
+  padding-inline: var(--grid-margin);
+}
+.prototype-grid-overlay span { background: var(--color-background-brand-subtle); mix-blend-mode: multiply; }
+

@@ -2668,3 +2668,21 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `docs/src/backlog.ts`, `docs/src/pages/TicketPage.tsx`, `prototypes/_template/spec.md` (new)
 - `docs/src/App.tsx`, `docs/src/pages/BacklogPage.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `.claude/skills/prototype-setup/SKILL.md`, `prototypes/README.md`, `CLAUDE.md`, `STEPS.md` (updated)
+
+## Step 143 — Prototype preview pages (mobile, tablet, desktop, grid overlay)
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- Each prototype gets its own page in the Prototypes section of the documentation site, with a live preview at 3 sizes side by side: **375 / 768 / 1280px**.
+- A **Show grid** toggle (off by default) draws the layout grid columns over the frames.
+
+**What was done**
+- New `docs/src/prototypes.ts` (discovers prototype folders with an `index.html`, `_` folders ignored) and `docs/src/pages/PrototypePage.tsx` (route `#/prototypes/<name>`): title = folder name, subtitle "Live preview on mobile, tablet and desktop", Show grid toggle, Open in a new tab link, and 3 frames (Mobile 375×812, Tablet 768×1024, Desktop 1280×800) loading the real prototype in an iframe at its real width, scaled down to fit side by side (stacked below desktop). Each caption gives the width and the grid columns at that width.
+- Grid overlay: same rules as `.ds-grid` (gutter `--grid-gutter`, margin `--grid-margin`, max width `--size-content`, centered), with the column count of the frame width from the tokens (4 / 8 / 12, using `breakpoint.*`).
+- Navigation: one item per prototype (icon `preview`) above "All prototypes".
+- Frame heights (812 / 1024 / 800), the subtitle, the icon and the Open in a new tab link were not specified: chosen by Claude, to confirm.
+- Verification: type check, prototypes check and build pass. **Not checked in the browser**: `main` has no prototype yet (`work-description` is on `prototype-0.0`), and no dev server runs from this folder.
+
+**Files**
+- `docs/src/prototypes.ts`, `docs/src/pages/PrototypePage.tsx` (new)
+- `docs/src/App.tsx`, `docs/src/docs.css`, `STEPS.md` (updated)
