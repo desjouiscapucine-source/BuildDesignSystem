@@ -2610,3 +2610,15 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `STEPS.md` (updated)
+
+## Step 138 — Branch prototypes-setup deleted
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- Delete the `prototypes-setup` branch, now merged into `main`.
+
+**What was done**
+- Deleted the branch locally and on GitHub (it was fully merged into `main`). Only `main` remains.
+
+**Files**
+- `STEPS.md` (updated)
