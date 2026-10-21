@@ -580,7 +580,7 @@
     },
     "timeline": {
       "$value": "400px",
-      "$description": "Maximum width of the timeline"
+      "$description": "Maximum width of the timeline panel (below desktop)"
     },
     "content": {
       "$value": "1040px",

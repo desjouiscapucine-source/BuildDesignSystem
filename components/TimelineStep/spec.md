@@ -52,7 +52,7 @@ None: every step has the same look (no status). Its differences are **states** (
 - Format: **full date on both sides** — "12 Oct 2026 – 16 Oct 2026" (day, abbreviated month, year), separated by an en dash.
 
 ## Sizes
-One size only. The step takes the **full width of the timeline**, which is at most `--size-timeline` (400px).
+One size only. The step takes the **full width of the timeline**.
 
 | Part | Size |
 | ---- | ---- |

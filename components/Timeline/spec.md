@@ -43,7 +43,7 @@ One size only.
 
 | Part | Size |
 | ---- | ---- |
-| Container | Maximum width `--size-timeline` (400px), **frame included** |
+| Container | **Full width of its container**, frame included; no maximum width. On a Timeline + Cards page, the container is the 4 timeline columns (`page-content` skill) |
 | Container | Padding `--space-16` |
 | Steps | Full width of the container; space between steps handled by the TimelineStep (`--space-24`) |
 
@@ -79,7 +79,6 @@ Opening and closing use the motion tokens (`--duration-*`, `--easing-*`), so the
 | Container | Border width | all | `--border-width-1` |
 | Container | Radius | all | `--radius-8` |
 | Container | Padding | all | `--space-16` |
-| Container | Max width | all | `--size-timeline` |
 | Panel (below desktop) | Background · padding · shadow | all | `--color-background-page` · `--space-16` · `--shadow-panel` |
 | Panel (below desktop) | Max width | all | `--size-timeline` |
 | Dimmed background | Color | all | `--color-background-overlay` |

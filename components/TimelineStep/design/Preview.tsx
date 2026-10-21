@@ -66,7 +66,7 @@ function Step({ text, date, description, last, state }: { text: string; date: st
 
 export function Preview({ text, state }: PreviewProps) {
   return (
-    // The timeline is at most --size-timeline wide; the step takes its full width.
+    // The step takes the full width of its timeline; shown here at the panel width (--size-timeline).
     <div style={{ width: "100%", maxWidth: "var(--size-timeline)" }}>
       {/* The other steps keep the default marker, so the selected one stands out */}
       <div style={{ "--preview-marker": "var(--color-background-brand-subtle)" } as CSSProperties}>

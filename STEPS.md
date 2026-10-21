@@ -2714,3 +2714,20 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `.claude/skills/page-content/SKILL.md`, `STEPS.md` (updated)
+
+## Step 146 — Timeline spec: fills its container (stage 1 of the change, approved)
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- Spec change approved: the Timeline takes the full width of its container on desktop (no maximum width); the 400px `--size-timeline` stays for the small-screen panel only.
+
+**What was done**
+- `components/Timeline/spec.md`: Sizes → container "Full width of its container, frame included; no maximum width" (on a Timeline + Cards page: the 4 timeline columns); Design tokens → "Container · Max width" row removed. Panel unchanged.
+- `components/TimelineStep/spec.md`: the step takes the full width of the timeline (the 400px mention removed).
+- Token `size.timeline` description → "Maximum width of the timeline panel (below desktop)" (`tokens/semantic.json`, `token-naming` skill, `CLAUDE.md`). Value unchanged.
+- Design previews: Timeline desktop preview now shows cards (8 columns) and the timeline filling its 4 columns; TimelineStep preview comment updated.
+- Backlog: B076 "Timeline: fill its 4 columns on desktop" added (decided, in progress, stage `guidelines`). `meta.json` stays `complete` while the change goes through the stages.
+- Verification: tokens build (45/45 contrast pairs) and type check pass.
+
+**Files**
+- `components/Timeline/spec.md`, `components/Timeline/design/Preview.tsx`, `components/TimelineStep/spec.md`, `components/TimelineStep/design/Preview.tsx`, `tokens/semantic.json`, `.claude/skills/token-naming/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
