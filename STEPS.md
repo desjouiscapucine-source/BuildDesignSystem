@@ -2788,3 +2788,19 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `docs/src/prototypes.ts`, `docs/src/pages/PrototypePage.tsx`, `docs/src/App.tsx`, `prototypes/list.tsx`, `STEPS.md` (updated)
+
+## Step 149 — WorkDescription aligned on the layout grid
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- Desktop split on the 12-column grid: **cards on columns 1–8, timeline on columns 9–12** — a `page-content` rule for every page combining a Timeline and Cards.
+- Prototype screens are **centered** beyond `size.content` (1040px), like the layout grid, so their content sits on the grid columns.
+
+**What was done**
+- `prototypes/_shared/base.css`: `.prototype-screen` centered (`margin-inline: auto`); its 24px margin equals `--grid-margin`, so the content area is the 992px of the grid columns.
+- `prototypes/work-description/main.css`: from `--breakpoint-desktop`, the content is a 12-column grid (`--grid-columns-desktop`, gutter `--grid-gutter`): cards `1 / span 8`, timeline `9 / span 4` (sticky).
+- `page-content` skill (Placement table and checklist), `layout` skill (prototype screens centered) and `CLAUDE.md` (Page content) updated.
+- Verification: prototypes check and breakpoint check pass. Measured at 1280px: screen 120 → 1160 (1040px, centered), title 144 → 1136, cards 144 → 800 (656px), timeline 816 → 1136 (320px) — exactly on the grid columns; the Show grid overlay of the preview page matches. Mobile and tablet unchanged (cards full width). No console errors. Previewed and validated by the Design System Lead before commit.
+
+**Files**
+- `prototypes/_shared/base.css`, `prototypes/work-description/main.css`, `.claude/skills/page-content/SKILL.md`, `.claude/skills/layout/SKILL.md`, `CLAUDE.md`, `STEPS.md` (updated)
