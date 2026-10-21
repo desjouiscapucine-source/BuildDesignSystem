@@ -2804,3 +2804,15 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `prototypes/_shared/base.css`, `prototypes/work-description/main.css`, `.claude/skills/page-content/SKILL.md`, `.claude/skills/layout/SKILL.md`, `CLAUDE.md`, `STEPS.md` (updated)
+
+## Step 150 — Prototype preview page choices confirmed
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- The choices left "to confirm" in Step 143 are approved: frame heights **812 / 1024 / 800px** (Mobile / Tablet / Desktop), subtitle **"Live preview on mobile, tablet and desktop"**, navigation icon **`preview`**, and the **Open in a new tab** link.
+
+**What was done**
+- Recorded the decision; no code change (`docs/src/pages/PrototypePage.tsx` already uses these values).
+
+**Files**
+- `STEPS.md` (updated)
