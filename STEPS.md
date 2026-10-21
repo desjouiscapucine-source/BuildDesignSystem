@@ -2636,6 +2636,19 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `.claude/skills/prototype-setup/SKILL.md`, `CLAUDE.md`, `STEPS.md` (updated)
 
+## Step 140 — A second working folder on main (git worktree)
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- Two chats work at the same time: one on the prototype branch `prototype-0.0`, the other stays on `main`.
+
+**What was done**
+- Created a git worktree `../BuildDesignSystem-main` on `main` (dependencies installed), so the `main` chat no longer shares its branch with the prototype chat. Same repository, same history, same GitHub remote.
+- The original folder `BuildDesignSystem` stays on `prototype-0.0`.
+
+**Files**
+- `STEPS.md` (updated)
+
 ## Step 140 — Prototype WorkDescription set up
 **Date:** 2026-10-21
 
@@ -2670,6 +2683,56 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `prototypes/work-description/main.tsx` (updated), `prototypes/work-description/main.css` (created), `STEPS.md` (updated)
 
+## Step 142 — Prototype tickets: specification and iteration history
+**Date:** 2026-10-21 (on `main`; steps 140–141 of the `prototype-0.0` branch are numbered in parallel, so this step is 142)
+
+**Decisions (made by the Design System Lead)**
+- One backlog ticket per prototype, holding its specification and the history of its iterations up to the final validation.
+- The specification lives in `prototypes/<name>/spec.md`, with two sections: **Components & content** and **Acceptance criteria**.
+- Each iteration records the Design System Lead's **feedback** and the **decision** (changes requested, or validated = final validation).
+
+**What was done**
+- Backlog ticket fields: `prototype` (folder name) and `iterations` (`feedback`, `decision`: `changes-requested` | `validated`). B031 (WorkDescription) gets `prototype: "work-description"` and an empty history.
+- New `prototypes/_template/spec.md` (the two sections, to write with the Design System Lead).
+- Documentation site: new ticket page `#/backlog/<id>` (`docs/src/pages/TicketPage.tsx`): ticket header, link to the prototype, its `spec.md` rendered, and the iterations (Iteration n, decision tag, feedback). Prototype cards on the Backlog page link to it ("Spec and iterations (n)"). Backlog data and types moved to `docs/src/backlog.ts`, shared by both pages. Decision tags use existing AA-checked pairs (success / warning).
+- `prototype-setup` skill (spec.md title, ticket fields, an iteration per review), `prototypes/README.md` (Backlog ticket section) and `CLAUDE.md` (Backlog section) updated.
+- Verification: type check, prototypes check, tokens contrast check and build pass. Not checked in the browser: the dev server on port 5173 runs from the other folder (`prototype-0.0`), and the preview tool could not start a second one for this folder.
+- Note: `prototypes/work-description/spec.md` belongs on the `prototype-0.0` branch; until it exists, the ticket page shows "No specification yet on this branch".
+
+**Files**
+- `docs/src/backlog.ts`, `docs/src/pages/TicketPage.tsx`, `prototypes/_template/spec.md` (new)
+- `docs/src/App.tsx`, `docs/src/pages/BacklogPage.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `.claude/skills/prototype-setup/SKILL.md`, `prototypes/README.md`, `CLAUDE.md`, `STEPS.md` (updated)
+
+## Step 143 — Prototype preview pages (mobile, tablet, desktop, grid overlay)
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- Each prototype gets its own page in the Prototypes section of the documentation site, with a live preview at 3 sizes side by side: **375 / 768 / 1280px**.
+- A **Show grid** toggle (off by default) draws the layout grid columns over the frames.
+
+**What was done**
+- New `docs/src/prototypes.ts` (discovers prototype folders with an `index.html`, `_` folders ignored) and `docs/src/pages/PrototypePage.tsx` (route `#/prototypes/<name>`): title = folder name, subtitle "Live preview on mobile, tablet and desktop", Show grid toggle, Open in a new tab link, and 3 frames (Mobile 375×812, Tablet 768×1024, Desktop 1280×800) loading the real prototype in an iframe at its real width, scaled down to fit side by side (stacked below desktop). Each caption gives the width and the grid columns at that width.
+- Grid overlay: same rules as `.ds-grid` (gutter `--grid-gutter`, margin `--grid-margin`, max width `--size-content`, centered), with the column count of the frame width from the tokens (4 / 8 / 12, using `breakpoint.*`).
+- Navigation: one item per prototype (icon `preview`) above "All prototypes".
+- Frame heights (812 / 1024 / 800), the subtitle, the icon and the Open in a new tab link were not specified: chosen by Claude, to confirm.
+- Verification: type check, prototypes check and build pass. **Not checked in the browser**: `main` has no prototype yet (`work-description` is on `prototype-0.0`), and no dev server runs from this folder.
+
+**Files**
+- `docs/src/prototypes.ts`, `docs/src/pages/PrototypePage.tsx` (new)
+- `docs/src/App.tsx`, `docs/src/docs.css`, `STEPS.md` (updated)
+
+## Step 144 — Branch prototype-0.0 renamed prototype/work-description
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- The WorkDescription prototype branch is named `prototype/work-description`.
+
+**What was done**
+- Renamed `prototype-0.0` → `prototype/work-description` locally (the `BuildDesignSystem` folder follows it, its uncommitted changes untouched), pushed the new name to GitHub with tracking, and deleted `prototype-0.0` on GitHub. Same commits (head: step 141).
+
+**Files**
+- `STEPS.md` (updated)
+
 ## Step 145 — Every card can reach the top of the screen
 **Date:** 2026-10-21
 
@@ -2685,3 +2748,16 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `.claude/skills/page-content/SKILL.md`, `CLAUDE.md`, `prototypes/work-description/main.tsx`, `STEPS.md` (updated)
+
+## Step 146 — main merged into prototype/work-description
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- See the WorkDescription prototype in dedicated preview frames (mobile, tablet, desktop), like Figma previews: bring Steps 140–144 of `main` (preview pages, prototype tickets) onto the prototype branch.
+
+**What was done**
+- Merged `origin/main` into `prototype/work-description`. One conflict, in `STEPS.md` (both branches had appended steps): resolved by keeping every entry, in step order (the two Step 140 entries are both kept).
+- Verification: `npm run typecheck` and `npm run build` pass (prototypes check included). In the browser, `/docs/#/prototypes/work-description` shows the prototype in the 3 frames (Mobile 375px, Tablet 768px, Desktop 1280px), with the timeline icon button on mobile and tablet and the timeline on the right on desktop; Show grid draws 4 / 8 / 12 columns; no console errors. This is the first check of the Step 143 preview page in the browser.
+
+**Files**
+- Merge of `main` (see Steps 140, 142–144); `STEPS.md` (updated)

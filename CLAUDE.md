@@ -17,6 +17,7 @@
 - `origin`: `decided` (from the Design System Lead) or `proposal` (from Claude). `status`: `proposal` → `todo` → `in-progress` → `done` (or `rejected`).
 - Only the Design System Lead approves or rejects a proposal (on the Backlog page, or in the chat). **Never start a task whose status is `proposal`.**
 - Read `backlog/backlog.json` at the start of a session; update an item's status (and `stage` for components) as work progresses, and add new ideas as `proposal`.
+- **Prototype tickets**: one ticket per prototype, with `prototype` (folder name; spec in `prototypes/<name>/spec.md`) and `iterations` (each review: `feedback` + `decision` `changes-requested` / `validated`). The ticket page `/docs/#/backlog/<id>` shows the spec and the iteration history. See `prototypes/README.md`.
 
 ## Owner
 - The project is led by the Design System Lead, who owns design decisions.

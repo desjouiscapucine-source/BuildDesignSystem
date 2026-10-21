@@ -15,13 +15,14 @@ This skill only **sets up** a new prototype so it runs. The screens are then bui
    - Not in the backlog → ask whether to add it.
 2. Ask the Design System Lead for the **prototype name** and its **folder name** (`never-invent`).
 3. **Ask the Design System Lead to create a branch** for the prototype, and for its name. Once agreed: from an up-to-date `main`, create the branch and push it to GitHub, **before creating any file**. Every step of the prototype is committed and pushed on this branch; it is merged into `main` only when the Design System Lead asks.
-4. On the branch, set the backlog item status to `in-progress`.
+4. On the branch, set the backlog item status to `in-progress`, its `prototype` field to the folder name and `iterations` to `[]` (see `prototypes/README.md`, Backlog ticket).
 
 ## 2. Create the prototype
 
 1. Copy `prototypes/_template/` to `prototypes/<prototype-name>/` (kebab-case, e.g. `checkout-flow/`).
 2. In `index.html`, set `<title>` to `<Prototype name> — BuildDesignSystem`.
-3. Keep the imports of `main.tsx`:
+3. In `spec.md`, set the prototype name in the title. Its sections (Components & content, Acceptance criteria) are written with the Design System Lead (`never-invent`).
+4. Keep the imports of `main.tsx`:
    - first import: `import "../_shared/setup";` (fonts, tokens, icons, grid, base styles);
    - components: `import { … } from "@ds/components";` only;
    - layout of each screen: `import { Screen } from "../_shared/Screen";`;
@@ -39,6 +40,7 @@ The prototype appears automatically on `/prototypes/` and in the build.
 
 The setup is done. The screens are built with the other skills, which the `orchestrator` dispatches as the work goes:
 - **Content** (journey, screens, copy): asked to the Design System Lead (`never-invent`).
+- **Each review** by the Design System Lead: add an iteration to the ticket (`feedback`, `decision`); once `validated`, the ticket goes to `done`.
 - **Layout and page header** of each screen: `layout` and `page-header` (built into `Screen`).
 - **A screen with a Timeline and Cards**: `page-content`.
 - **A component that is missing or used outside its guidelines**: `component`.
