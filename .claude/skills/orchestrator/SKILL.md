@@ -1,6 +1,6 @@
 ---
 name: orchestrator
-description: Parent of all the project skills — the entry point of every task in this design system. Reads the task and dispatches it to the child skills to load (component lifecycle and stages, Atomic Design structure, token naming, never-invent, layout, page header, page content). Use at the start of every task, before any other project skill, and again whenever the task changes.
+description: Parent of all the project skills — the entry point of every task in this design system. Reads the task and dispatches it to the child skills to load (component lifecycle and stages, Atomic Design structure, token naming, never-invent, layout, page header, page content, prototype building). Use at the start of every task, before any other project skill, and again whenever the task changes.
 ---
 
 # Orchestrator — parent of all skills
@@ -29,6 +29,7 @@ Every task starts here. This skill **only dispatches**: it says which child skil
 | A page, screen or section is laid out (docs site, templates, pages, prototypes) | `layout` |
 | A page title or subtitle, or a component description in `meta.json` | `page-header` |
 | A page, template, screen or example combining a Timeline and Cards | `page-content` |
+| A prototype (user journey) is started, built, changed or reviewed in `prototypes/` | `prototype-building` |
 
 No trigger matches → follow `CLAUDE.md` only.
 

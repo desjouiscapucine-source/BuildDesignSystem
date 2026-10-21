@@ -2564,3 +2564,19 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `prototypes/_shared/setup.ts`, `prototypes/_shared/base.css`, `prototypes/_shared/Screen.tsx`, `scripts/check-prototypes.ts` (new)
 - `prototypes/_template/main.tsx`, `prototypes/README.md`, `package.json`, `.claude/skills/layout/SKILL.md`, `CLAUDE.md`, `STEPS.md` (updated)
+
+## Step 135 — Skill: prototype-building
+**Date:** 2026-10-21 (branch `prototypes-setup`)
+
+**Decisions (made by the Design System Lead)**
+- The creation steps of a prototype go into a skill, so they are followed from the start of every new prototype (backlog B040, approved).
+
+**What was done**
+- New `prototype-building` skill: before starting (backlog item, content asked to the Design System Lead, components coded and used within their guidelines), creation from `_template/` (folder, `<title>`, `setup` / `@ds/components` / `Screen` / `sample` imports), screen rules (Screen header, layout, components only, tokens only, React state navigation, page-content), check (`check:prototypes`, typecheck, journey in the browser) and approval. Only rules already decided are written in it.
+- `orchestrator`: new dispatch row "A prototype is started, built, changed or reviewed → `prototype-building`".
+- `prototypes/README.md` points to the skill. Backlog B040 → `done`.
+- Verification: the How to use skills page shows the new card and the new dispatch row.
+
+**Files**
+- `.claude/skills/prototype-building/SKILL.md` (new)
+- `.claude/skills/orchestrator/SKILL.md`, `prototypes/README.md`, `backlog/backlog.json`, `STEPS.md` (updated)

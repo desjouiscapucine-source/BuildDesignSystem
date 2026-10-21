@@ -4,7 +4,7 @@ Prototypes are **user journeys** (parcours): interactive mockups built with the 
 Their screens are built directly from the components (organisms, molecules, atoms), not from the templates and pages.
 
 One folder per interactive mockup, named in kebab-case (e.g. `checkout-flow/`).
-To start a new prototype, copy `_template/`. New folders appear automatically on the prototypes page (`/prototypes/`).
+To start a new prototype, follow the `prototype-building` skill (`.claude/skills/prototype-building/SKILL.md`): it starts by copying `_template/`. New folders appear automatically on the prototypes page (`/prototypes/`).
 
 ## Setup
 

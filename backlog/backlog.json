@@ -332,9 +332,9 @@
       "id": "B040",
       "title": "Skill: prototype-building",
       "category": "Skills",
-      "status": "todo",
+      "status": "done",
       "origin": "proposal",
-      "description": "How to build an interactive mockup (stage 4): only coded components, screens and navigation, content to ask for."
+      "description": "How to build an interactive mockup with the real React components: content asked first, creation steps from the template, Screen + @ds/components, tokens only, check and approval."
     },
     {
       "id": "B041",
