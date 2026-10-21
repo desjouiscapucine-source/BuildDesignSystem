@@ -2761,3 +2761,15 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/Timeline/Timeline.css`, `components/Timeline/examples.tsx`, `components/TimelineStep/spec.md`, `components/TimelineStep/guidelines.md`, `components/TimelineStep/TimelineStep.css`, `tokens/semantic.json`, `.claude/skills/token-naming/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step 149 — TimelineStep spec and guidelines change approved
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- Approved: the TimelineStep spec and guidelines change of step 148 (date range under the title when the title would be narrower than `--size-timeline-step-title`, 200px; `--space-4` between them).
+
+**What was done**
+- Approval logged. Next: approval of the Timeline and TimelineStep code (Examples tab, http://localhost:5174/docs/#/components/timeline).
+
+**Files**
+- `STEPS.md` (updated)
