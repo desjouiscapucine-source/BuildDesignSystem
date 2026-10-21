@@ -2635,3 +2635,16 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `.claude/skills/prototype-setup/SKILL.md`, `CLAUDE.md`, `STEPS.md` (updated)
+
+## Step 140 — A second working folder on main (git worktree)
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- Two chats work at the same time: one on the prototype branch `prototype-0.0`, the other stays on `main`.
+
+**What was done**
+- Created a git worktree `../BuildDesignSystem-main` on `main` (dependencies installed), so the `main` chat no longer shares its branch with the prototype chat. Same repository, same history, same GitHub remote.
+- The original folder `BuildDesignSystem` stays on `prototype-0.0`.
+
+**Files**
+- `STEPS.md` (updated)
