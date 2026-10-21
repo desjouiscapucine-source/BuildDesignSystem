@@ -2773,3 +2773,14 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `STEPS.md` (updated)
+
+## Step 150 — Work-time clock counts every checkout
+**Date:** 2026-10-21
+
+**What was done (and why)**
+- The Design System Lead noticed that the work-time clock showed the wrong total. Cause: `/api/work-time` read only the Claude Code log folder of the checkout running the dev server, but the project now has two checkouts (git worktrees `BuildDesignSystem` and `BuildDesignSystem-main`), each with its own log folder (5h43 + 1h46).
+- `/api/work-time` now reads the log folders of every checkout listed by `git worktree list` (falls back to the current folder if git fails). Events from all folders are merged and sorted before summing, so overlapping sessions are not counted twice.
+- Verification: the API on localhost:5174 returns 27,142 s (7:32:22), the combined total.
+
+**Files**
+- `vite.config.ts`, `STEPS.md` (updated)
