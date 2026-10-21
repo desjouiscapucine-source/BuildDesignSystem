@@ -3,8 +3,7 @@ import { createRoot } from "react-dom/client";
 import "../tokens/fonts.css";
 import "../tokens/tokens.css";
 import "../docs/src/docs.css";
-
-const pages = Object.keys(import.meta.glob(["./*/index.html", "!./_*/**"])).map((path) => path.split("/")[1]);
+import { prototypeName, prototypes as pages } from "../docs/src/prototypes";
 
 function PrototypeList() {
   return (
@@ -22,7 +21,7 @@ function PrototypeList() {
         <nav className="home-links">
           {pages.map((name) => (
             <a key={name} href={`/prototypes/${name}/`}>
-              <strong>{name}</strong>
+              <strong>{prototypeName(name)}</strong>
             </a>
           ))}
         </nav>

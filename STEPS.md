@@ -2774,3 +2774,17 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `CLAUDE.md`, `.claude/skills/prototype-setup/SKILL.md`, `STEPS.md` (updated)
+
+## Step 148 — Prototype name shown on the site
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- The documentation site shows the **prototype name** (e.g. "WorkDescription"), not its folder name, everywhere: preview page title, navigation and the All prototypes list.
+
+**What was done**
+- `docs/src/prototypes.ts`: reads each prototype's `index.html` and takes its name from the `<title>` ("<Prototype name> — BuildDesignSystem", set by the `prototype-setup` skill); new `prototypeName(folder)`, falling back to the folder name.
+- `docs/src/pages/PrototypePage.tsx`: page title and frame titles use the name. `docs/src/App.tsx`: navigation item label. `prototypes/list.tsx`: reuses `docs/src/prototypes.ts` and shows the name.
+- Verification: `npm run typecheck` and `npm run build` pass; in the browser, the preview page title, the navigation item and `/prototypes/` show "WorkDescription"; no console errors. Previewed and validated by the Design System Lead before commit.
+
+**Files**
+- `docs/src/prototypes.ts`, `docs/src/pages/PrototypePage.tsx`, `docs/src/App.tsx`, `prototypes/list.tsx`, `STEPS.md` (updated)

@@ -10,7 +10,7 @@ import { GridPage } from "./pages/GridPage";
 import { SkillsPage } from "./pages/SkillsPage";
 import { TicketPage } from "./pages/TicketPage";
 import { PrototypePage } from "./pages/PrototypePage";
-import { prototypes } from "./prototypes";
+import { prototypeName, prototypes } from "./prototypes";
 
 // Hash routes: #/  ·  #/backlog  ·  #/backlog/<id>  ·  #/skills  ·  #/prototypes/<name>  ·  #/tokens  ·  #/icons  ·  #/grid  ·  #/components/<slug>
 function useHashRoute() {
@@ -62,7 +62,7 @@ const sections: NavSection[] = [
   {
     title: "Prototypes",
     items: [
-      ...prototypes.map((name) => ({ href: `#/prototypes/${name}`, label: name, icon: "preview" })),
+      ...prototypes.map((name) => ({ href: `#/prototypes/${name}`, label: prototypeName(name), icon: "preview" })),
       { href: "/prototypes/", label: "All prototypes", icon: "devices" },
     ],
   },
