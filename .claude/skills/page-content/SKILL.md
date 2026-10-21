@@ -41,6 +41,7 @@ The look of each component is in its own spec (`components/Card`, `components/Ti
 - **The selected step follows the reading**: when the reader scrolls, the step of the card currently visible becomes selected automatically. Clicking a step also selects it.
 - **"Visible" card = the card at the top of the screen**: the card that reaches the top of the reading area. When several cards are on screen, the one at the top wins.
 - **Exactly one selected step** at any time.
+- **Every card can reach the top of the screen**: space is added after the last card, just enough for the last card to scroll up to the top of the screen (at every screen size). Without it, the last cards of a short page never reach the top and their steps could only be selected by clicking. The space is measured (screen height minus the height of the last card and the page margin), not a design token.
 
 ## Small screens
 
@@ -74,5 +75,6 @@ The look of each component is in its own spec (`components/Card`, `components/Ti
 - [ ] Each step `href` matches an existing card `id`.
 - [ ] Timeline on the right, 16px from the cards; 16px between cards.
 - [ ] Timeline fixed while scrolling; the selected step follows the card at the top of the screen.
+- [ ] Space after the last card, so every card (the last one included) can reach the top of the screen.
 - [ ] One timeline per page.
 - [ ] Below 1024px, the timeline is reached through the open icon button; from 1024px, no icon button is shown.

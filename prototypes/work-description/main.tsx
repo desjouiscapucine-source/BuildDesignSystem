@@ -33,7 +33,7 @@ function cardAtTop(): string {
 
 function Prototype() {
   const [selected, setSelected] = useState(steps[0].id);
-  // A clicked step stays selected until the reader scrolls again (the last cards may not reach the top).
+  // A clicked step stays selected until the reader scrolls again (even if the jump leaves its card just below the top).
   const clicked = useRef<{ id: string; scrollY: number | null } | null>(null);
 
   useEffect(() => {
@@ -46,6 +46,29 @@ function Prototype() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Space after the last card, just enough for it to reach the top of the screen:
+  // screen height minus the height of the last card and the page margin below it (measured, not a design value).
+  const cards = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const column = cards.current;
+    const lastCard = column?.lastElementChild as HTMLElement | null;
+    const screen = column?.closest<HTMLElement>(".prototype-screen");
+    if (!column || !lastCard || !screen) return;
+    const update = () => {
+      const pageMargin = parseFloat(getComputedStyle(screen).paddingBottom);
+      const space = Math.max(0, window.innerHeight - lastCard.offsetHeight - pageMargin);
+      column.style.paddingBottom = `${space}px`;
+    };
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(lastCard);
+    window.addEventListener("resize", update);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", update);
+    };
   }, []);
 
   const onStepClick = (id: string) => {
@@ -77,7 +100,7 @@ function Prototype() {
             ))}
           </Timeline>
         </div>
-        <div className="work-description-cards">
+        <div className="work-description-cards" ref={cards}>
           {steps.map((step) => (
             <Card key={step.id} id={step.id} title={step.title}>
               <p>{placeholderText}</p>

@@ -2669,3 +2669,19 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `prototypes/work-description/main.tsx` (updated), `prototypes/work-description/main.css` (created), `STEPS.md` (updated)
+
+## Step 145 — Every card can reach the top of the screen
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- Option 3 for the edge case of Step 141: space is added after the last card, so every card (the last one included) can scroll up to the top of the screen and select its step.
+
+**What was done**
+- `page-content` skill, "Scrolling and selection": new rule — space after the last card, just enough for it to reach the top of the screen, at every screen size; measured (screen height minus the last card height and the page margin), not a design token. Checklist updated.
+- `CLAUDE.md`, Page content: the rule is mentioned.
+- `prototypes/work-description/main.tsx`: the cards column gets that space as bottom padding, measured on load and updated when the last card or the window is resized.
+- Verification: `npm run check:prototypes` and `npm run typecheck` pass. Desktop (1280px) and mobile (375px): each card reaches the top and selects its step; at the bottom of the page the last card is at the top and Step 4 is selected; no horizontal scroll.
+- Note: numbered 145 because Steps 142–144 were logged on `main` meanwhile; Step 140 exists twice (one on `main`, one on this branch).
+
+**Files**
+- `.claude/skills/page-content/SKILL.md`, `CLAUDE.md`, `prototypes/work-description/main.tsx`, `STEPS.md` (updated)
