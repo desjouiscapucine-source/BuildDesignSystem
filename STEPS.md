@@ -2543,3 +2543,24 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `prototypes/_data/sample.json`, `prototypes/_data/sample.ts` (new)
 - `prototypes/_template/main.tsx`, `prototypes/README.md`, `STEPS.md` (updated)
+
+## Step 134 — Prototypes run with the real React components
+**Date:** 2026-10-21 (branch `prototypes-setup`)
+
+**Decisions (made by the Design System Lead)**
+- Goal: prototypes use the real React components of the design system.
+- Prototype screens follow the same layout rules as the documentation site: 24px page margin, 16px between blocks, page header `heading-1` + `lead`.
+- The design system is loaded with a single import per prototype.
+- Navigation between screens stays React state.
+- A check at build time: components imported only from `@ds/components`, no raw values in styles.
+
+**What was done**
+- New `prototypes/_shared/setup.ts` (fonts, tokens, icons, grid, base styles), `prototypes/_shared/base.css` (page base with the same tokens as the docs site, `.prototype-screen` layout, one-line title / subtitle with ellipsis) and `prototypes/_shared/Screen.tsx` (page header + content blocks).
+- `prototypes/_template/main.tsx` rewritten: `import "../_shared/setup"`, screens built with `Screen` and the real `Button` (`@ds/components`), sample data from `_data/sample`; no raw HTML buttons nor inline raw styles anymore.
+- New `scripts/check-prototypes.ts` and `npm run check:prototypes`, run by `npm run build`: fails on a component imported other than from `@ds/components`, and on raw colors (hex, rgb, hsl), lengths with a unit, or bare numbers in inline styles and CSS files of the prototype folders.
+- `prototypes/README.md` (setup and rules), `layout` skill (prototypes decision), `CLAUDE.md` (conventions) updated.
+- Verification: the check passes on the prototypes and catches 6/6 problems in a throwaway bad folder (removed); type check and build pass; in the browser, the template shows the real Button (primary, then secondary), 24px margin, 16px gap, Poppins title, navigation between the two screens, no console errors.
+
+**Files**
+- `prototypes/_shared/setup.ts`, `prototypes/_shared/base.css`, `prototypes/_shared/Screen.tsx`, `scripts/check-prototypes.ts` (new)
+- `prototypes/_template/main.tsx`, `prototypes/README.md`, `package.json`, `.claude/skills/layout/SKILL.md`, `CLAUDE.md`, `STEPS.md` (updated)

@@ -46,8 +46,12 @@ Approved by the Design System Lead on 2026-10-20. Tokens in the `token-naming` s
 - `docs/src/docs.css` → `.shell-content`: `padding: var(--space-24)`, `max-width: var(--size-content)`, and its direct children are stacked with `gap: var(--space-16)` (their own top / bottom margins are removed).
 - A new page of the site follows the same structure: its blocks are direct children of the content area.
 
+## Prototypes
+
+Approved by the Design System Lead on 2026-10-21: **prototype screens follow the same rules as the documentation site** — 24px page margin, 16px between blocks, page header (title `heading-1` + subtitle `lead`, `page-header` skill), content at most `size.content` wide. Built in `prototypes/_shared/Screen.tsx` and `prototypes/_shared/base.css`.
+
 ## Not defined yet — ask before deciding
 
-- Whether these rules also apply to templates, pages and prototypes.
+- Whether these rules also apply to templates and pages.
 - Horizontal spacing between items outside the grid, and spacing inside sections.
 - Whether the documentation site pages are laid out on the column grid (for now only the max width uses `size.content`).

@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "tokens": "node scripts/build-tokens.ts",
+    "check:prototypes": "node scripts/check-prototypes.ts",
     "dev": "npm run tokens && vite",
-    "build": "npm run tokens && tsc --noEmit && vite build",
+    "build": "npm run tokens && npm run check:prototypes && tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit"
   },

@@ -1,37 +1,41 @@
-// An interactive mockup. Build screens only with components from "@ds/components".
+// An interactive mockup (user journey). Build the screens only with components from "@ds/components",
+// inside the shared Screen layout; never with raw HTML controls or raw style values.
 import { StrictMode, useState } from "react";
 import { createRoot } from "react-dom/client";
-import "@ds/tokens/fonts.css";
-import "@ds/tokens/tokens.css";
-import "@ds/tokens/icons.css";
-import "@ds/tokens/grid.css";
+import "../_shared/setup";
+import { Button } from "@ds/components";
+import { Screen } from "../_shared/Screen";
 import { sample } from "../_data/sample";
 
-type Screen = "home" | "details";
+type ScreenName = "home" | "details";
 
 function Prototype() {
-  const [screen, setScreen] = useState<Screen>("home");
+  const [screen, setScreen] = useState<ScreenName>("home");
+
+  if (screen === "details") {
+    return (
+      <Screen title="Details screen" subtitle="Second screen of the journey">
+        <p>{sample.items[0].description}</p>
+        <div>
+          <Button variant="secondary" onClick={() => setScreen("home")}>
+            Go back
+          </Button>
+        </div>
+      </Screen>
+    );
+  }
 
   return (
-    <main style={{ padding: 24, fontFamily: "system-ui" }}>
-      {screen === "home" && (
-        <>
-          <h1>Home screen</h1>
-          <ul>
-            {sample.items.map((item) => (
-              <li key={item.id}>{item.title}</li>
-            ))}
-          </ul>
-          <button onClick={() => setScreen("details")}>Go to details</button>
-        </>
-      )}
-      {screen === "details" && (
-        <>
-          <h1>Details screen</h1>
-          <button onClick={() => setScreen("home")}>Back</button>
-        </>
-      )}
-    </main>
+    <Screen title="Home screen" subtitle="First screen of the journey">
+      <ul>
+        {sample.items.map((item) => (
+          <li key={item.id}>{item.title}</li>
+        ))}
+      </ul>
+      <div>
+        <Button onClick={() => setScreen("details")}>Go to details</Button>
+      </div>
+    </Screen>
   );
 }
 
