@@ -330,11 +330,11 @@
     },
     {
       "id": "B040",
-      "title": "Skill: prototype-building",
+      "title": "Skill: prototype-setup",
       "category": "Skills",
       "status": "done",
       "origin": "proposal",
-      "description": "How to build an interactive mockup with the real React components: content asked first, creation steps from the template, Screen + @ds/components, tokens only, check and approval."
+      "description": "Sets up a new prototype so it runs with the real React components (backlog item, folder from the template, title, imports, check). The screens are then built with the other skills."
     },
     {
       "id": "B041",

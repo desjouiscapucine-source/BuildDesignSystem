@@ -2580,3 +2580,19 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `.claude/skills/prototype-building/SKILL.md` (new)
 - `.claude/skills/orchestrator/SKILL.md`, `prototypes/README.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step 136 — prototype-building becomes prototype-setup
+**Date:** 2026-10-21 (branch `prototypes-setup`)
+
+**Decisions (made by the Design System Lead)**
+- The skill only sets up a new prototype; the screens are then built with the other skills.
+- Renamed `prototype-setup`.
+
+**What was done**
+- `.claude/skills/prototype-building/` → `.claude/skills/prototype-setup/`, rewritten: before starting (backlog item, prototype and folder name asked), creation from `_template/` (title, imports), check that it runs (`check:prototypes`, typecheck, the prototype opens and is listed), then the hand-off to the other skills (`never-invent` for content, `layout`, `page-header`, `page-content`, `component`). The screen-building and approval sections were removed.
+- `orchestrator`: the row becomes "A new prototype is started → `prototype-setup`".
+- `prototypes/README.md` and backlog B040 (title and description) updated.
+
+**Files**
+- `.claude/skills/prototype-setup/SKILL.md` (renamed from `prototype-building`, rewritten)
+- `.claude/skills/orchestrator/SKILL.md`, `prototypes/README.md`, `backlog/backlog.json`, `STEPS.md` (updated)
