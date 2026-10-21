@@ -2635,3 +2635,20 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `.claude/skills/prototype-setup/SKILL.md`, `CLAUDE.md`, `STEPS.md` (updated)
+
+## Step 140 — Prototype WorkDescription set up
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- First prototype (backlog B031): name **WorkDescription**, folder `work-description`.
+- Built on a dedicated branch `prototype-0.0`, created from an up-to-date `main` and pushed to GitHub before any file was created.
+
+**What was done**
+- Step 139 (committed on the new branch) was brought onto `main` and both branches were pushed.
+- Copied `prototypes/_template/` to `prototypes/work-description/`; `<title>` set to `WorkDescription — BuildDesignSystem`; imports of `main.tsx` kept (setup, `@ds/components`, `Screen`, sample data). The template screens stay until the journey content is given.
+- Backlog B031 set to `in-progress`.
+- Verification: `npm run check:prototypes` and `npm run typecheck` pass; `/prototypes/` lists `work-description`; `/prototypes/work-description/` opens the Home screen and navigates to the Details screen with no console errors.
+
+**Files**
+- `prototypes/work-description/index.html`, `prototypes/work-description/main.tsx` (created)
+- `backlog/backlog.json`, `STEPS.md` (updated)
