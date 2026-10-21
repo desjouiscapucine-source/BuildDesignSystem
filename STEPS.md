@@ -2761,3 +2761,16 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - Merge of `main` (see Steps 140, 142–144); `STEPS.md` (updated)
+
+## Step 147 — Preview before commit
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- For the whole project: every change is previewed on the local site and validated by the Design System Lead **before** it is committed and pushed (no more automatic commit and push after every step).
+
+**What was done**
+- `CLAUDE.md`, Git section: the "after every step, commit and push" rule is replaced by "preview before commit" (Claude checks the change, gives the local preview link, iterates on requested changes) and "only once the Design System Lead validates" (then `STEPS.md` entry, commit, push to the current branch).
+- `prototype-setup` skill: each step of a prototype is previewed on `/docs/#/prototypes/<prototype-name>`, then committed and pushed on its branch once validated.
+
+**Files**
+- `CLAUDE.md`, `.claude/skills/prototype-setup/SKILL.md`, `STEPS.md` (updated)

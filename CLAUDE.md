@@ -9,7 +9,8 @@
 
 ## Git
 - The project is versioned with git and pushed to the private GitHub repository `CapucineDjs/BuildDesignSystem` (branch `main`).
-- **After every step** (once its `STEPS.md` entry is written): commit all the step's changes and push to `origin main`. Commit message in English: `Step <n>: <short title>`.
+- **Preview before commit** (whole project): after a change, Claude checks it, then gives the Design System Lead the local preview link (`npm run dev`, http://localhost:5173 — it shows the files on disk, uncommitted changes included). The Lead reviews it; changes requested → iterate and preview again.
+- **Only once the Design System Lead validates**: write the `STEPS.md` entry, commit all the step's changes and push to the current branch (`origin main`, or the prototype branch). Never commit or push before that validation. Commit message in English: `Step <n>: <short title>`.
 - **New prototype**: ask the Design System Lead to create a dedicated branch first (see the `prototype-setup` skill); it is merged into `main` only on request.
 
 ## Backlog
