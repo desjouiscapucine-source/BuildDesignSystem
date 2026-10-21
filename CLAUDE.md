@@ -10,6 +10,7 @@
 ## Git
 - The project is versioned with git and pushed to the private GitHub repository `CapucineDjs/BuildDesignSystem` (branch `main`).
 - **After every step** (once its `STEPS.md` entry is written): commit all the step's changes and push to `origin main`. Commit message in English: `Step <n>: <short title>`.
+- **New prototype**: ask the Design System Lead to create a dedicated branch first (see the `prototype-setup` skill); it is merged into `main` only on request.
 
 ## Backlog
 - The tasks still to do live in **`backlog/backlog.json`**, shown and edited on the **Backlog** page of the documentation site (`/docs/#/backlog`).

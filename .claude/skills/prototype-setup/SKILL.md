@@ -1,6 +1,6 @@
 ---
 name: prototype-setup
-description: Sets up a new interactive mockup (prototype = user journey) so it runs with the real React components of the design system — backlog item, folder from the template, title, design system loading, check that it runs. Building the screens afterwards uses the other skills. Use whenever a new prototype is started in prototypes/.
+description: Sets up a new interactive mockup (prototype = user journey) so it runs with the real React components of the design system — backlog item, dedicated git branch, folder from the template, title, design system loading, check that it runs. Building the screens afterwards uses the other skills. Use whenever a new prototype is started in prototypes/.
 ---
 
 # Prototype setup
@@ -13,8 +13,9 @@ This skill only **sets up** a new prototype so it runs. The screens are then bui
 1. Find the prototype in `backlog/backlog.json`.
    - Status **`proposal`** → stop: it is not approved. Ask the Design System Lead.
    - Not in the backlog → ask whether to add it.
-   - Otherwise set its status to `in-progress`.
 2. Ask the Design System Lead for the **prototype name** and its **folder name** (`never-invent`).
+3. **Ask the Design System Lead to create a branch** for the prototype, and for its name. Once agreed: from an up-to-date `main`, create the branch and push it to GitHub, **before creating any file**. Every step of the prototype is committed and pushed on this branch; it is merged into `main` only when the Design System Lead asks.
+4. On the branch, set the backlog item status to `in-progress`.
 
 ## 2. Create the prototype
 

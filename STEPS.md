@@ -2622,3 +2622,16 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `STEPS.md` (updated)
+
+## Step 139 — A dedicated branch for every new prototype
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- Whenever a new prototype is created, Claude asks to create a branch for it.
+
+**What was done**
+- `prototype-setup` skill, "Before starting": new step — ask the Design System Lead to create a branch and for its name; once agreed, create it from an up-to-date `main` and push it before creating any file; every step of the prototype is committed on it; merged into `main` only on request. The backlog status `in-progress` is now set on that branch (after it is created). Description updated.
+- `CLAUDE.md`, Git section: the rule is mentioned.
+
+**Files**
+- `.claude/skills/prototype-setup/SKILL.md`, `CLAUDE.md`, `STEPS.md` (updated)
