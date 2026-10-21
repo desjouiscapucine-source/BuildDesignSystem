@@ -1,0 +1,30 @@
+/* WorkDescription — layout of the screen (`page-content` skill). Design tokens only.
+   Mobile and tablet: the timeline open button above the cards (aligned right by the Timeline), cards stacked. */
+.work-description-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.work-description-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+/* Desktop and above: --breakpoint-desktop (1024px) — cards on the left, timeline on the right,
+   16px apart; the timeline stays visible while the cards scroll (page margin above it). */
+@media (min-width: 1024px) {
+  .work-description-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--size-timeline);
+    align-items: start;
+  }
+  .work-description-cards { grid-column: 1; grid-row: 1; }
+  .work-description-timeline {
+    grid-column: 2;
+    grid-row: 1;
+    position: sticky;
+    top: var(--space-24);
+  }
+}

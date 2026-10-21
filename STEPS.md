@@ -2652,3 +2652,20 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `prototypes/work-description/index.html`, `prototypes/work-description/main.tsx` (created)
 - `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step 141 — WorkDescription: four steps, each with its card
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- The WorkDescription screen has a Timeline of **4 steps**, each leading to its own Card (`page-content` skill).
+- Neutral placeholder content and date ranges for now, to replace with the real content later.
+
+**What was done**
+- `prototypes/work-description/main.tsx`: the template screens replaced by one screen (title "WorkDescription", placeholder subtitle) with a `Timeline` of 4 `TimelineStep`s ("Step 1" → "Step 4", one month each from Jan to Apr 2026, placeholder description) and 4 `Card`s with the same titles, in the same order, linked by anchors (`#step-1` → `#step-4`), with placeholder text.
+- The selected step follows the reading: the card at the top of the window selects its step; a clicked step stays selected until the reader scrolls again. Exactly one step is selected.
+- `prototypes/work-description/main.css` (new): mobile and tablet — timeline open button above the cards, cards 16px apart; from `--breakpoint-desktop` (1024px) — cards on the left, timeline on the right (`--size-timeline` wide), 16px apart, sticky while scrolling.
+- Verification: `npm run check:prototypes`, `npm run typecheck` and the breakpoint check pass. Desktop (1280px): timeline on the right, fixed while scrolling, selection follows the card at the top and the clicked step; open button hidden. Mobile (375px): open button above the cards aligned right, panel opens, choosing a step closes it and jumps to the card; no horizontal scroll.
+- Known edge case (to decide): when the page cannot scroll far enough for the last cards to reach the top of the screen, their steps are selected only by clicking.
+
+**Files**
+- `prototypes/work-description/main.tsx` (updated), `prototypes/work-description/main.css` (created), `STEPS.md` (updated)
