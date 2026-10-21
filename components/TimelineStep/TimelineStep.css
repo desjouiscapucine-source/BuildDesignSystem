@@ -74,15 +74,18 @@
   outline-offset: var(--border-width-2);
 }
 
-/* Title + date range (aligned right, 16px minimum between them) */
+/* Title + date range (aligned right, 16px minimum between them).
+   The title keeps at least --size-timeline-step-title on its line; when it cannot, the date range wraps under it (4px below). */
 .ds-timeline-step-header {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
-  gap: var(--space-16);
+  column-gap: var(--space-16);
+  row-gap: var(--space-4);
 }
 .ds-timeline-step-title {
-  flex: 1;
+  flex: 1 1 var(--size-timeline-step-title);
   min-width: 0;
   overflow-wrap: anywhere;
   font-family: var(--typography-label-family);

@@ -2744,3 +2744,20 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/Timeline/guidelines.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step 148 — Timeline fills its column; TimelineStep dates go under a narrow title
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- Testing the Timeline in its 4 columns showed a problem: in a narrow timeline (≈ 300px at a 1024px screen), the date range (never wraps, 170px) left ≈ 30px to the title, which broke letter by letter.
+- Decided: **the date range goes under the title when the title would be narrower than 200px**; otherwise it stays on its right. New token **`size.timeline-step-title` = 200px**. Space between the title and the date range under it: **`--space-4`**.
+
+**What was done**
+- Timeline code (stage 3 of the change): `.ds-timeline` has no maximum width any more (fills its container); the panel keeps `--size-timeline`. New example "Next to the cards" (12-column grid on the full width, cards 8 columns, timeline 4 columns).
+- New token `size.timeline-step-title` (`tokens/semantic.json`, `token-naming` skill, `CLAUDE.md`).
+- TimelineStep: spec (anatomy, content overflow, sizes, tokens), guidelines (Behavior: narrow timeline) and code (header wraps: title `flex-basis: var(--size-timeline-step-title)`, row gap `--space-4`).
+- Verification: tokens (45/45 contrast pairs), type check and build pass. In the browser (localhost:5174, Timeline Examples tab, no console errors): the "Next to the cards" grid has 12 columns, cards 612px / timeline 298px, 16px gap; a timeline cloned at several widths keeps the dates on the right from 470px (title 202px) and puts them under the title, 4px below and left-aligned, at 466px and narrower. So the timeline panel (at most 400px) always shows the dates under the title. Screenshots not possible (the Browser pane was hidden).
+- Awaiting the Design System Lead's approval: TimelineStep spec and guidelines change, then the Timeline and TimelineStep code.
+
+**Files**
+- `components/Timeline/Timeline.css`, `components/Timeline/examples.tsx`, `components/TimelineStep/spec.md`, `components/TimelineStep/guidelines.md`, `components/TimelineStep/TimelineStep.css`, `tokens/semantic.json`, `.claude/skills/token-naming/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
