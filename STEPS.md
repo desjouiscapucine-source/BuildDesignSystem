@@ -2698,3 +2698,19 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `STEPS.md` (updated)
+
+## Step 145 — page-content: cards 8 columns, timeline 4 columns, full width
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- On desktop, a page combining Cards and a Timeline uses the 12-column grid: **cards 8 columns, timeline 4 columns** (closest to the 70 / 30 asked).
+- It is the general rule of the `page-content` skill, not only for WorkDescription.
+- The grid takes the **full width of the screen** (no `--size-content` maximum).
+- The timeline **fills its 4 columns**: its 400px maximum width is removed on desktop (Timeline component change, to go through spec → guidelines → code).
+
+**What was done**
+- `page-content` skill, Placement: 12-column grid on the full screen width from `--breakpoint-desktop`, cards 8 columns, timeline 4 columns with no maximum width, 16px grid gutter between them; checklist updated. Small screens (panel) unchanged.
+- Next: the Timeline spec change, shown to the Design System Lead for approval; then guidelines and code; then the WorkDescription prototype (branch `prototype/work-description`).
+
+**Files**
+- `.claude/skills/page-content/SKILL.md`, `STEPS.md` (updated)

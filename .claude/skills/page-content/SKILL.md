@@ -27,11 +27,14 @@ The look of each component is in its own spec (`components/Card`, `components/Ti
 | Rule | Value |
 | ---- | ----- |
 | Timeline position | **On the right** of the cards |
-| Space between the cards column and the timeline | **16px** (`--space-16`) |
+| Columns (desktop, from `--breakpoint-desktop`) | The **12-column layout grid** (`layout` skill) on the **full width of the screen** — no maximum width (`--size-content` does not apply) |
+| Cards width | **8 columns** |
+| Timeline width | **4 columns** — the timeline fills them (no maximum width) |
+| Space between the cards column and the timeline | **16px** — the grid gutter (`--grid-gutter`) |
 | Space between two stacked cards | **16px** (`--space-16`) |
-| Timeline width | At most `--size-timeline` (400px, frame included) |
-| Cards width | The rest of the width (full width of their column) |
 | Page margin and page header | See the `layout` and `page-header` skills |
+
+Approved by the Design System Lead on 2026-10-21 (cards 8 / timeline 4, full screen width).
 
 - **One timeline per page.**
 
@@ -72,7 +75,7 @@ The look of each component is in its own spec (`components/Card`, `components/Ti
 
 - [ ] One card per step, same order, same title.
 - [ ] Each step `href` matches an existing card `id`.
-- [ ] Timeline on the right, 16px from the cards; 16px between cards.
+- [ ] From 1024px: 12-column grid on the full screen width, cards 8 columns, timeline 4 columns on the right (16px gutter); 16px between cards.
 - [ ] Timeline fixed while scrolling; the selected step follows the card at the top of the screen.
 - [ ] One timeline per page.
 - [ ] Below 1024px, the timeline is reached through the open icon button; from 1024px, no icon button is shown.
