@@ -2731,3 +2731,16 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/Timeline/spec.md`, `components/Timeline/design/Preview.tsx`, `components/TimelineStep/spec.md`, `components/TimelineStep/design/Preview.tsx`, `tokens/semantic.json`, `.claude/skills/token-naming/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step 147 — Timeline guidelines: fills its column (stage 2 of the change, approved)
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- Guidelines change approved.
+
+**What was done**
+- `components/Timeline/guidelines.md`, Behavior: "At most 400px wide" → "Fills the width of its column, frame included: on a Timeline + Cards page, the 4 timeline columns (`page-content`)". Placement and small-screen behavior unchanged.
+- Backlog B076 → stage `code`.
+
+**Files**
+- `components/Timeline/guidelines.md`, `backlog/backlog.json`, `STEPS.md` (updated)

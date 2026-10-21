@@ -29,7 +29,7 @@
 - Accessible name: "Timeline" by default; give a more precise name with `label` when it helps (e.g. "Order history").
 
 ## Behavior
-- At most 400px wide (`--size-timeline`), frame included.
+- Fills the width of its column, frame included: on a Timeline + Cards page, the 4 timeline columns (`page-content`).
 - Grows in height with its steps.
 
 ### Below desktop (mobile and tablet)
