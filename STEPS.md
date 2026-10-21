@@ -2596,3 +2596,17 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `.claude/skills/prototype-setup/SKILL.md` (renamed from `prototype-building`, rewritten)
 - `.claude/skills/orchestrator/SKILL.md`, `prototypes/README.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step 137 — Branch prototypes-setup merged into main
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- Merge the `prototypes-setup` branch into `main`.
+
+**What was done**
+- Fast-forward merge of `prototypes-setup` (steps 133 to 136: shared sample data, prototypes running with the real React components, build check, `prototype-setup` skill) into `main`, then pushed.
+- Verification: `npm run build` passes on `main` (prototypes check included).
+- The `prototypes-setup` branch is kept (local and on GitHub).
+
+**Files**
+- `STEPS.md` (updated)
