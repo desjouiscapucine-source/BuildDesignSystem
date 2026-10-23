@@ -3035,3 +3035,17 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/ImageViewer/spec.md`, `STEPS.md` (updated)
+
+## Step 156 — ImageViewer: brand-subtle band, previous / next only
+**Date:** 2026-10-23
+
+**Decisions (made by the Design System Lead)**
+- The band under the image uses **`background.brand-subtle`** and holds **only the previous and next buttons**: no counter, no caption.
+
+**What was done**
+- Design preview (`design/Preview.tsx`, `design/tokens.json`): band in `brand-subtle` with the two buttons; slots `band-text`, `counter`, `caption` removed.
+- `spec.md`: anatomy (6 parts), `images` items are `{ src, alt }`, one image → no band, no text in the viewer, band tokens, contrast. In the band the focus ring becomes the usual `border.focus` (5.35:1 ✓); the white ring (1.14:1 on the band) is dropped.
+- Open question: the close button sits on the dimmed background, where neither the brown (2.36:1) nor the white (2.58:1) focus ring reaches 3:1 on a white page.
+
+**Files**
+- `components/ImageViewer/design/Preview.tsx`, `components/ImageViewer/design/tokens.json`, `components/ImageViewer/spec.md`, `STEPS.md` (updated)

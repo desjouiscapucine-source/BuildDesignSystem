@@ -1,13 +1,13 @@
 // ImageViewer design preview (stage 1) — NOT the final component code.
 // A page seen through the dimmed background, the image in the middle, the close button at the top right,
-// and the solid band under the image (previous · counter · next, then the caption).
+// and the solid band under the image (previous and next buttons).
 // Every visual value of the viewer comes from a --preview-<slot> variable (design/tokens.json).
 import type { PreviewProps } from "../../../docs/src/types";
 import { IconButton } from "../../IconButton/IconButton";
 
 const pageCard = { background: "var(--color-background-page)", border: "var(--border-width-1) solid var(--color-border-subtle)", borderRadius: "var(--radius-8)", height: "64px" };
 
-export function Preview({ text }: PreviewProps) {
+export function Preview(_props: PreviewProps) {
   return (
     <div style={{ position: "relative", width: "640px", maxWidth: "100%", height: "440px", overflow: "hidden", border: "var(--border-width-1) solid var(--color-border-default)", borderRadius: "var(--radius-16)", background: "var(--color-background-page)" }}>
       {/* The page behind the viewer */}
@@ -59,48 +59,19 @@ export function Preview({ text }: PreviewProps) {
           </span>
         </div>
 
-        {/* Solid band: previous · counter · next, then the caption */}
+        {/* Solid band: previous and next buttons only */}
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
             alignItems: "center",
             gap: "var(--preview-band-gap)",
             padding: "var(--preview-band-padding)",
             background: "var(--preview-band-background)",
-            color: "var(--preview-band-text)",
             borderRadius: "var(--radius-8)",
-            maxWidth: "100%",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: "var(--preview-band-gap)" }}>
-            <IconButton icon="arrow_back" label="Previous image" variant="primary" />
-            <span
-              style={{
-                fontFamily: "var(--preview-counter-family)",
-                fontSize: "var(--preview-counter-size)",
-                fontWeight: "var(--preview-counter-weight)",
-                lineHeight: "var(--preview-counter-line-height)",
-              }}
-            >
-              2 / 5
-            </span>
-            <IconButton icon="arrow_forward" label="Next image" variant="primary" />
-          </div>
-          {text && (
-            <p
-              style={{
-                margin: 0,
-                textAlign: "center",
-                fontFamily: "var(--preview-caption-family)",
-                fontSize: "var(--preview-caption-size)",
-                fontWeight: "var(--preview-caption-weight)",
-                lineHeight: "var(--preview-caption-line-height)",
-              }}
-            >
-              {text}
-            </p>
-          )}
+          <IconButton icon="arrow_back" label="Previous image" variant="primary" />
+          <IconButton icon="arrow_forward" label="Next image" variant="primary" />
         </div>
       </div>
     </div>
