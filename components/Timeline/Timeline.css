@@ -3,8 +3,7 @@
    The steps are TimelineStep components; the buttons are IconButtons. */
 .ds-timeline {
   box-sizing: border-box;
-  width: 100%;
-  max-width: var(--size-timeline);
+  width: 100%; /* fills its container (on a Timeline + Cards page: its 4 columns) */
   margin: 0;
   padding: var(--space-16);
   list-style: none;

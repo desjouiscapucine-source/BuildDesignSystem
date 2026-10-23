@@ -57,7 +57,7 @@ Guidelines are updated whenever coding or prototyping reveals a new rule or edge
 - Page title `heading-1` (30 characters max) and subtitle `lead` (80 characters max), **one line each**, cut with an ellipsis as a safety net — see the `page-header` skill. Component descriptions in `meta.json` follow the subtitle rule.
 
 ## Page content
-- A page combining a Timeline and Cards follows the `page-content` skill: one card per step (same order, same title, anchor link), cards on grid columns 1–8 and timeline on columns 9–12 on desktop (16px gutter), timeline fixed while scrolling, selected step following the card at the top of the screen, space after the last card so every card can reach the top.
+- A page combining a Timeline and Cards follows the `page-content` skill: one card per step (same order, same title, anchor link), on desktop a 12-column grid on the full screen width with cards on 8 columns and the timeline filling 4 columns (16px gutter), timeline fixed while scrolling, selected step following the card at the top of the screen, space after the last card so every card can reach the top.
 
 ## Skills
 - Every task starts with the **`orchestrator`** skill (`.claude/skills/orchestrator/SKILL.md`), the parent of all the project skills: it only dispatches the task to the child skills to load. Every new skill gets a row in its dispatch table.
@@ -153,7 +153,7 @@ Approved by the Design System Lead on 2026-10-16.
   - **Opacity**: `opacity.disabled` = 0.38, for disabled elements on a colored background only; on light backgrounds, the disabled color roles.
   - **Breakpoints** (mobile first): `breakpoint.tablet` = 768px, `breakpoint.desktop` = 1024px. Media queries write these values (CSS cannot use variables there), with a comment naming the token; `npm run tokens` fails on any other width. The site navigation and the timeline switch to a burger menu below desktop.
   - **Z-index** (stacking order, by usage): `content` 0, `sticky` 10, `navigation` 20, `overlay` 30, `modal` 40, `tooltip` 100, `skip-link` 110.
-  - **Size**: `size.side-navigation` = 240px, `size.timeline` = 400px max, `size.content` = 1040px max (margins included) (sizes named by usage).
+  - **Size**: `size.side-navigation` = 240px, `size.timeline` = 400px max (timeline panel below desktop), `size.timeline-step-title` = 200px (minimum title width next to the dates), `size.content` = 1040px max (margins included) (sizes named by usage).
   - **Layout grid** (`tokens/semantic.json` + `tokens/grid.css`): 4 / 8 / 12 columns (mobile / tablet / desktop), `grid.gutter` 16px, `grid.margin` 24px; classes `.ds-grid` and `.ds-grid-span-<n>` — see the `layout` skill.
   - **Icons**: Material Symbols **Outlined**, weight 400, always unfilled, loaded from Google Fonts. Sizes `icon-size.16` / `20` / `24` (default) / `32`. Base class `.ds-icon` in `tokens/icons.css`; the icon takes the text color.
 - Dark mode is planned for later; the semantic tier will make it possible without changing components.

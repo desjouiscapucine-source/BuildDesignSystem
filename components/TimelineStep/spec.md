@@ -20,7 +20,7 @@ Every step is **clickable**: it is a link to a section of the same page (`<a hre
 2. Line (required, except on the last step) — from the marker down to the next step
 3. Clickable area (required) — wraps title, date range and description
 4. Title (required)
-5. Date range (required) — to the right of the title, aligned right
+5. Date range (required) — to the right of the title, aligned right; **under the title** when the title would be narrower than `--size-timeline-step-title` (200px)
 6. Description (required) — under the title
 
 ## Variants
@@ -44,7 +44,7 @@ None: every step has the same look (no status). Its differences are **states** (
 ## Content
 | Text | Required | Example | Max length | Overflow |
 | ---- | -------- | ------- | ---------- | -------- |
-| Title | Yes | "Order shipped" | 60 characters | Wraps to a new line; the date range stays on the right |
+| Title | Yes | "Order shipped" | 60 characters | Wraps to a new line. The date range stays on its right while the title keeps at least `--size-timeline-step-title` (200px); otherwise the date range goes under the title |
 | Date range | Yes | "12 Oct 2026 – 16 Oct 2026" | — | Never wraps |
 | Description | Yes | "The parcel left the warehouse." | 150 characters | Wraps |
 
@@ -52,7 +52,7 @@ None: every step has the same look (no status). Its differences are **states** (
 - Format: **full date on both sides** — "12 Oct 2026 – 16 Oct 2026" (day, abbreviated month, year), separated by an en dash.
 
 ## Sizes
-One size only. The step takes the **full width of the timeline**, which is at most `--size-timeline` (400px).
+One size only. The step takes the **full width of the timeline**.
 
 | Part | Size |
 | ---- | ---- |
@@ -61,6 +61,8 @@ One size only. The step takes the **full width of the timeline**, which is at mo
 | Line | `--border-width-2` wide |
 | Space between marker column and content | `--space-16` |
 | Space between title and date range (minimum) | `--space-16` |
+| Title minimum width next to the date range | `--size-timeline-step-title` (200px) |
+| Space between title and date range, date range under the title | `--space-4` |
 | Space between title line and description | `--space-4` |
 | Space below a step (before the next one) | `--space-24` |
 
@@ -84,6 +86,8 @@ Focus outline: `--border-width-2` solid `--color-border-focus`, around the click
 | Line | Width | all | `--border-width-2` |
 | Layout | Gap marker / content | all | `--space-16` |
 | Layout | Gap title / date range | all | `--space-16` |
+| Layout | Title minimum width next to the date range | all | `--size-timeline-step-title` |
+| Layout | Gap title / date range under it | all | `--space-4` |
 | Layout | Gap title / description | all | `--space-4` |
 | Layout | Space below the step | all (except last) | `--space-24` |
 | Clickable area | Padding · radius | all | `--space-8` · `--radius-8` |

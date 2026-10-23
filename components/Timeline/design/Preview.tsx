@@ -1,5 +1,5 @@
 // Timeline design preview (stage 1) — NOT the final component code.
-// Left: desktop (the timeline next to the content). Right: below desktop, the panel open over the page.
+// Left: desktop (cards 8 columns, the timeline filling its 4 columns). Right: below desktop, the panel open over the page.
 import type { PreviewProps } from "../../../docs/src/types";
 import { IconButton } from "../../IconButton/IconButton";
 import { TimelineStep } from "../../TimelineStep/TimelineStep";
@@ -10,7 +10,6 @@ function Steps({ text }: { text: string }) {
       style={{
         boxSizing: "border-box",
         width: "100%",
-        maxWidth: "var(--size-timeline)",
         background: "var(--preview-background, transparent)",
         border: "var(--preview-border-width) solid var(--preview-border)",
         borderRadius: "var(--preview-radius)",
@@ -36,8 +35,16 @@ const card = { background: "var(--color-background-page)", border: "var(--border
 export function Preview({ text }: PreviewProps) {
   return (
     <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--space-24)", alignItems: "flex-start", justifyContent: "center" }}>
-      <figure style={{ margin: 0, flex: "1 1 400px", maxWidth: "400px" }}>
-        <Steps text={text} />
+      <figure style={{ margin: 0, flex: "1 1 640px" }}>
+        {/* 12-column grid: cards 8 columns, timeline 4 columns (page-content skill) */}
+        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: "var(--grid-gutter)", alignItems: "start" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-16)" }}>
+            <div style={card} />
+            <div style={card} />
+            <div style={card} />
+          </div>
+          <Steps text={text} />
+        </div>
         <figcaption style={{ marginTop: "var(--space-8)", fontSize: "var(--font-size-12)", color: "var(--color-text-secondary)" }}>Desktop</figcaption>
       </figure>
       <figure style={{ margin: 0 }}>

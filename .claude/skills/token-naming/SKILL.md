@@ -205,7 +205,8 @@ Semantic tier: **`size.<usage>`** → `--size-<usage>`, named by usage. Values i
 | Token | Value | Usage |
 | ----- | ----- | ----- |
 | `size.side-navigation` | 240px | Width of the side navigation |
-| `size.timeline` | 400px | Maximum width of the timeline |
+| `size.timeline` | 400px | Maximum width of the timeline panel (below desktop) |
+| `size.timeline-step-title` | 200px | Minimum width of a timeline step title next to its date range; below it, the date range goes under the title |
 | `size.content` | 1040px | Maximum width of the page content, page margins included |
 
 ## Breakpoint tokens

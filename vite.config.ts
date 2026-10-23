@@ -4,6 +4,7 @@ import { readdirSync, existsSync, readFileSync, writeFileSync } from "node:fs";
 import type { Plugin } from "vite";
 import { resolve } from "node:path";
 import { homedir } from "node:os";
+import { execSync } from "node:child_process";
 
 const root = import.meta.dirname;
 
@@ -94,14 +95,29 @@ function designTokensApi(): Plugin {
 // Time spent building the site, from the Claude Code session logs of this project (local dev only).
 // Active time = sum of the gaps between logged events, ignoring pauses longer than WORK_PAUSE_MS.
 const WORK_PAUSE_MS = 15 * 60 * 1000;
+
+// Every checkout of the repository (git worktrees): Claude Code keeps one log folder per checkout.
+function checkouts(): string[] {
+  try {
+    return execSync("git worktree list --porcelain", { cwd: root, encoding: "utf8" })
+      .split("\n")
+      .filter((line) => line.startsWith("worktree "))
+      .map((line) => line.slice("worktree ".length));
+  } catch {
+    return [root];
+  }
+}
+
 function workTimeApi(): Plugin {
-  const folder = resolve(homedir(), ".claude/projects", root.replace(/[^A-Za-z0-9]/g, "-"));
   return {
     name: "work-time-api",
     configureServer(server) {
       server.middlewares.use("/api/work-time", (_req, res) => {
         const times: number[] = [];
-        if (existsSync(folder)) {
+        const folders = [...new Set([root, ...checkouts()])].map((path) =>
+          resolve(homedir(), ".claude/projects", path.replace(/[^A-Za-z0-9]/g, "-")),
+        );
+        for (const folder of folders.filter((path) => existsSync(path))) {
           for (const name of readdirSync(folder).filter((file) => file.endsWith(".jsonl"))) {
             for (const line of readFileSync(resolve(folder, name), "utf8").split("\n")) {
               if (!line) continue;

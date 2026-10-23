@@ -12,10 +12,11 @@
   gap: var(--space-16);
 }
 
-/* Desktop and above: --breakpoint-desktop (1024px) — on the 12-column layout grid:
-   cards on columns 1–8, timeline on columns 9–12 (gutter 16px between them);
-   the timeline stays visible while the cards scroll (page margin above it). */
+/* Desktop and above: --breakpoint-desktop (1024px) — the 12-column layout grid on the full screen width
+   (no --size-content maximum, `page-content` skill): cards on columns 1–8, the timeline filling columns 9–12
+   (gutter 16px between them); the timeline stays visible while the cards scroll (page margin above it). */
 @media (min-width: 1024px) {
+  .prototype-screen { max-width: none; }
   .work-description-content {
     display: grid;
     grid-template-columns: repeat(var(--grid-columns-desktop), minmax(0, 1fr));

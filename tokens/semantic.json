@@ -580,7 +580,11 @@
     },
     "timeline": {
       "$value": "400px",
-      "$description": "Maximum width of the timeline"
+      "$description": "Maximum width of the timeline panel (below desktop)"
+    },
+    "timeline-step-title": {
+      "$value": "200px",
+      "$description": "Minimum width of a timeline step title next to its date range; below it, the date range goes under the title"
     },
     "content": {
       "$value": "1040px",

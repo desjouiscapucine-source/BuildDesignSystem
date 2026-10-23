@@ -2733,8 +2733,135 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `STEPS.md` (updated)
 
-## Step 145 — Every card can reach the top of the screen
+## Step 145 — page-content: cards 8 columns, timeline 4 columns, full width
 **Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- On desktop, a page combining Cards and a Timeline uses the 12-column grid: **cards 8 columns, timeline 4 columns** (closest to the 70 / 30 asked).
+- It is the general rule of the `page-content` skill, not only for WorkDescription.
+- The grid takes the **full width of the screen** (no `--size-content` maximum).
+- The timeline **fills its 4 columns**: its 400px maximum width is removed on desktop (Timeline component change, to go through spec → guidelines → code).
+
+**What was done**
+- `page-content` skill, Placement: 12-column grid on the full screen width from `--breakpoint-desktop`, cards 8 columns, timeline 4 columns with no maximum width, 16px grid gutter between them; checklist updated. Small screens (panel) unchanged.
+- Next: the Timeline spec change, shown to the Design System Lead for approval; then guidelines and code; then the WorkDescription prototype (branch `prototype/work-description`).
+
+**Files**
+- `.claude/skills/page-content/SKILL.md`, `STEPS.md` (updated)
+
+## Step 146 — Timeline spec: fills its container (stage 1 of the change, approved)
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- Spec change approved: the Timeline takes the full width of its container on desktop (no maximum width); the 400px `--size-timeline` stays for the small-screen panel only.
+
+**What was done**
+- `components/Timeline/spec.md`: Sizes → container "Full width of its container, frame included; no maximum width" (on a Timeline + Cards page: the 4 timeline columns); Design tokens → "Container · Max width" row removed. Panel unchanged.
+- `components/TimelineStep/spec.md`: the step takes the full width of the timeline (the 400px mention removed).
+- Token `size.timeline` description → "Maximum width of the timeline panel (below desktop)" (`tokens/semantic.json`, `token-naming` skill, `CLAUDE.md`). Value unchanged.
+- Design previews: Timeline desktop preview now shows cards (8 columns) and the timeline filling its 4 columns; TimelineStep preview comment updated.
+- Backlog: B076 "Timeline: fill its 4 columns on desktop" added (decided, in progress, stage `guidelines`). `meta.json` stays `complete` while the change goes through the stages.
+- Verification: tokens build (45/45 contrast pairs) and type check pass.
+
+**Files**
+- `components/Timeline/spec.md`, `components/Timeline/design/Preview.tsx`, `components/TimelineStep/spec.md`, `components/TimelineStep/design/Preview.tsx`, `tokens/semantic.json`, `.claude/skills/token-naming/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step 147 — Timeline guidelines: fills its column (stage 2 of the change, approved)
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- Guidelines change approved.
+
+**What was done**
+- `components/Timeline/guidelines.md`, Behavior: "At most 400px wide" → "Fills the width of its column, frame included: on a Timeline + Cards page, the 4 timeline columns (`page-content`)". Placement and small-screen behavior unchanged.
+- Backlog B076 → stage `code`.
+
+**Files**
+- `components/Timeline/guidelines.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step 148 — Timeline fills its column; TimelineStep dates go under a narrow title
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- Testing the Timeline in its 4 columns showed a problem: in a narrow timeline (≈ 300px at a 1024px screen), the date range (never wraps, 170px) left ≈ 30px to the title, which broke letter by letter.
+- Decided: **the date range goes under the title when the title would be narrower than 200px**; otherwise it stays on its right. New token **`size.timeline-step-title` = 200px**. Space between the title and the date range under it: **`--space-4`**.
+
+**What was done**
+- Timeline code (stage 3 of the change): `.ds-timeline` has no maximum width any more (fills its container); the panel keeps `--size-timeline`. New example "Next to the cards" (12-column grid on the full width, cards 8 columns, timeline 4 columns).
+- New token `size.timeline-step-title` (`tokens/semantic.json`, `token-naming` skill, `CLAUDE.md`).
+- TimelineStep: spec (anatomy, content overflow, sizes, tokens), guidelines (Behavior: narrow timeline) and code (header wraps: title `flex-basis: var(--size-timeline-step-title)`, row gap `--space-4`).
+- Verification: tokens (45/45 contrast pairs), type check and build pass. In the browser (localhost:5174, Timeline Examples tab, no console errors): the "Next to the cards" grid has 12 columns, cards 612px / timeline 298px, 16px gap; a timeline cloned at several widths keeps the dates on the right from 470px (title 202px) and puts them under the title, 4px below and left-aligned, at 466px and narrower. So the timeline panel (at most 400px) always shows the dates under the title. Screenshots not possible (the Browser pane was hidden).
+- Awaiting the Design System Lead's approval: TimelineStep spec and guidelines change, then the Timeline and TimelineStep code.
+
+**Files**
+- `components/Timeline/Timeline.css`, `components/Timeline/examples.tsx`, `components/TimelineStep/spec.md`, `components/TimelineStep/guidelines.md`, `components/TimelineStep/TimelineStep.css`, `tokens/semantic.json`, `.claude/skills/token-naming/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step 149 — TimelineStep spec and guidelines change approved
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- Approved: the TimelineStep spec and guidelines change of step 148 (date range under the title when the title would be narrower than `--size-timeline-step-title`, 200px; `--space-4` between them).
+
+**What was done**
+- Approval logged. Next: approval of the Timeline and TimelineStep code (Examples tab, http://localhost:5174/docs/#/components/timeline).
+
+**Files**
+- `STEPS.md` (updated)
+
+## Step 150 — Work-time clock counts every checkout
+**Date:** 2026-10-21
+
+**What was done (and why)**
+- The Design System Lead noticed that the work-time clock showed the wrong total. Cause: `/api/work-time` read only the Claude Code log folder of the checkout running the dev server, but the project now has two checkouts (git worktrees `BuildDesignSystem` and `BuildDesignSystem-main`), each with its own log folder (5h43 + 1h46).
+- `/api/work-time` now reads the log folders of every checkout listed by `git worktree list` (falls back to the current folder if git fails). Events from all folders are merged and sorted before summing, so overlapping sessions are not counted twice.
+- Verification: the API on localhost:5174 returns 27,142 s (7:32:22), the combined total.
+
+**Files**
+- `vite.config.ts`, `STEPS.md` (updated)
+
+## Step 150 — Timeline and TimelineStep code approved: change complete
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- Approved: the Timeline and TimelineStep code of step 148.
+
+**What was done**
+- The change is complete: the Timeline fills its column (4 columns next to the cards, `page-content` skill) and the TimelineStep puts its date range under a title narrower than 200px. Both components stay `complete`.
+- Backlog B076 → `done`.
+- Next: apply the 8 / 4 column layout to the WorkDescription prototype, on its branch `prototype/work-description`.
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step 151 — Ticket B031 renamed "Prototype: WorkDescription"
+**Date:** 2026-10-23
+
+**Decisions (made by the Design System Lead)**
+- Ticket B031 title: **"Prototype: WorkDescription"**.
+- The prototype specification (`prototypes/work-description/spec.md`) is written in the other chat, on the branch `prototype/work-description`.
+
+**What was done**
+- `backlog/backlog.json`: B031 title renamed (description, status and history unchanged).
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step 152 — page-content: one rule for main and the prototype branch
+**Date:** 2026-10-23
+
+**Decisions (made by the Design System Lead)**
+- The two chats had written two versions of the 8 / 4 column rule. Kept: **the `main` version** — 12-column grid on the full screen width, the timeline filling its 4 columns with no maximum width (components already changed and approved, steps 145–150 on `main`). The branch version (1040px maximum, timeline at most 400px) is dropped.
+- The two additions of the branch are approved for the general rule: on mobile and tablet the cards take the full width of the grid; space after the last card so every card can reach the top of the screen.
+
+**What was done**
+- `page-content` skill on `main`: "Mobile and tablet" placement row, "Every card can reach the top of the screen" rule and its checklist item added (wording from the branch).
+- When `main` is merged into `prototype/work-description`, the `page-content` conflict is resolved with the `main` version; the prototype then follows it (full width, timeline in its 4 columns with no maximum).
+
+**Files**
+- `.claude/skills/page-content/SKILL.md`, `STEPS.md` (updated)
+
+## Step 153 — Every card can reach the top of the screen
+**Date:** 2026-10-21 (on `prototype/work-description`, committed as "Step 145"; renumbered when `main` was merged, since `main` uses 145–152)
 
 **Decisions (made by the Design System Lead)**
 - Option 3 for the edge case of Step 141: space is added after the last card, so every card (the last one included) can scroll up to the top of the screen and select its step.
@@ -2749,8 +2876,8 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `.claude/skills/page-content/SKILL.md`, `CLAUDE.md`, `prototypes/work-description/main.tsx`, `STEPS.md` (updated)
 
-## Step 146 — main merged into prototype/work-description
-**Date:** 2026-10-21
+## Step 154 — main merged into prototype/work-description
+**Date:** 2026-10-21 (on `prototype/work-description`, committed as "Step 146"; renumbered when `main` was merged, since `main` uses 145–152)
 
 **Decisions (made by the Design System Lead)**
 - See the WorkDescription prototype in dedicated preview frames (mobile, tablet, desktop), like Figma previews: bring Steps 140–144 of `main` (preview pages, prototype tickets) onto the prototype branch.
@@ -2762,8 +2889,8 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - Merge of `main` (see Steps 140, 142–144); `STEPS.md` (updated)
 
-## Step 147 — Preview before commit
-**Date:** 2026-10-21
+## Step 155 — Preview before commit
+**Date:** 2026-10-21 (on `prototype/work-description`, committed as "Step 147"; renumbered when `main` was merged, since `main` uses 145–152)
 
 **Decisions (made by the Design System Lead)**
 - For the whole project: every change is previewed on the local site and validated by the Design System Lead **before** it is committed and pushed (no more automatic commit and push after every step).
@@ -2775,8 +2902,8 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `CLAUDE.md`, `.claude/skills/prototype-setup/SKILL.md`, `STEPS.md` (updated)
 
-## Step 148 — Prototype name shown on the site
-**Date:** 2026-10-21
+## Step 156 — Prototype name shown on the site
+**Date:** 2026-10-21 (on `prototype/work-description`, committed as "Step 148"; renumbered when `main` was merged, since `main` uses 145–152)
 
 **Decisions (made by the Design System Lead)**
 - The documentation site shows the **prototype name** (e.g. "WorkDescription"), not its folder name, everywhere: preview page title, navigation and the All prototypes list.
@@ -2789,8 +2916,8 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `docs/src/prototypes.ts`, `docs/src/pages/PrototypePage.tsx`, `docs/src/App.tsx`, `prototypes/list.tsx`, `STEPS.md` (updated)
 
-## Step 149 — WorkDescription aligned on the layout grid
-**Date:** 2026-10-21
+## Step 157 — WorkDescription aligned on the layout grid
+**Date:** 2026-10-21 (on `prototype/work-description`, committed as "Step 149"; renumbered when `main` was merged, since `main` uses 145–152)
 
 **Decisions (made by the Design System Lead)**
 - Desktop split on the 12-column grid: **cards on columns 1–8, timeline on columns 9–12** — a `page-content` rule for every page combining a Timeline and Cards.
@@ -2805,8 +2932,8 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `prototypes/_shared/base.css`, `prototypes/work-description/main.css`, `.claude/skills/page-content/SKILL.md`, `.claude/skills/layout/SKILL.md`, `CLAUDE.md`, `STEPS.md` (updated)
 
-## Step 150 — Prototype preview page choices confirmed
-**Date:** 2026-10-21
+## Step 158 — Prototype preview page choices confirmed
+**Date:** 2026-10-21 (on `prototype/work-description`, committed as "Step 150"; renumbered when `main` was merged, since `main` uses 145–152)
 
 **Decisions (made by the Design System Lead)**
 - The choices left "to confirm" in Step 143 are approved: frame heights **812 / 1024 / 800px** (Mobile / Tablet / Desktop), subtitle **"Live preview on mobile, tablet and desktop"**, navigation icon **`preview`**, and the **Open in a new tab** link.
@@ -2816,3 +2943,20 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `STEPS.md` (updated)
+
+## Step 159 — main merged again into prototype/work-description; prototype on the full-width rule
+**Date:** 2026-10-23
+
+**Decisions (made by the Design System Lead)**
+- Merge `main` into `prototype/work-description`. `page-content` conflict: keep the `main` version (12-column grid on the full screen width, timeline filling its 4 columns, no maximum width); the branch version (1040px / 400px, Step 157) is dropped.
+- `STEPS.md`: keep both histories; the branch's steps 145–150 are renumbered 153–158, after `main`'s 145–152.
+- The WorkDescription prototype follows the `main` rule.
+
+**What was done**
+- Merged `origin/main` (Steps 145–152 of `main`: Timeline fills its column, TimelineStep dates under a narrow title, `size.timeline-step-title`, ticket B031 renamed, one `page-content` rule). Conflicts: `.claude/skills/page-content/SKILL.md` (main version), `STEPS.md` (both histories, branch entries renumbered with a note giving their commit number).
+- `prototypes/work-description/main.css`: from `--breakpoint-desktop`, the screen has no maximum width; cards on columns 1–8, timeline on columns 9–12.
+- `layout` skill: prototype screens stay centered at `size.content`, except a Timeline + Cards screen (full width, `page-content`). `CLAUDE.md`, Page content: full-width rule.
+- Verification: build, prototypes check and breakpoint check pass. At 1280px: screen 1280px wide, cards 24 → 840 (816px, 8 columns), timeline 856 → 1256 (400px, 4 columns) — exactly on the grid; step dates under the title. No console errors. Previewed and validated by the Design System Lead before commit.
+
+**Files**
+- Merge of `main` (Steps 145–152 of `main`); `prototypes/work-description/main.css`, `.claude/skills/layout/SKILL.md`, `.claude/skills/page-content/SKILL.md`, `CLAUDE.md`, `STEPS.md` (updated)

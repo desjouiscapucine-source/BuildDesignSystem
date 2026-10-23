@@ -258,7 +258,7 @@
     },
     {
       "id": "B031",
-      "title": "First interactive mockup",
+      "title": "Prototype: WorkDescription",
       "category": "Prototypes",
       "status": "in-progress",
       "origin": "proposal",
@@ -634,6 +634,15 @@
       "status": "done",
       "origin": "decided",
       "description": "Page of the documentation site (#/skills) read from .claude/skills/: how to use the skills, hierarchy and dispatch table of the orchestrator, one card per skill with its full content."
+    },
+    {
+      "id": "B076",
+      "title": "Timeline: fill its 4 columns on desktop",
+      "category": "Components",
+      "status": "done",
+      "origin": "decided",
+      "description": "Page-content rule: cards 8 columns, timeline 4 columns, 12-column grid on the full screen width. The Timeline fills its container (no 400px maximum on desktop); --size-timeline stays for the small-screen panel. Spec, guidelines and code approved 2026-10-21. TimelineStep: the date range goes under the title when the title would be narrower than --size-timeline-step-title (200px).",
+      "stage": "code"
     }
   ]
 }

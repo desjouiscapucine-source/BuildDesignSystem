@@ -31,6 +31,7 @@
 - The whole step is a link to a section of the same page.
 - **On click: direct jump** to the section (no smooth scrolling); the step becomes selected.
 - **Long title**: wraps to a new line; the date range stays on the right.
+- **Narrow timeline**: when the title would be narrower than 200px (`--size-timeline-step-title`), the date range goes under the title (4px below it), above the description.
 
 ## Accessibility
 - **Keyboard:** reachable with Tab; activated with Enter.
