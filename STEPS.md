@@ -3104,3 +3104,18 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/ImageViewer/design/Preview.tsx`, `STEPS.md` (updated)
+
+## Step 161 — ImageViewer: optional caption
+**Date:** 2026-10-23
+
+**Decisions (made by the Design System Lead)**
+- The text under the image is kept as an **optional caption** per image: 150 characters max, wraps; between the image and the band; `body`, `text.primary` on `background.subtle` (13.99:1); padding `space.8` / `space.16`; corners `radius.8`; as wide as the image; no caption → nothing shown.
+- Screen reader: the caption is **read after the alt**, linked to the image.
+
+**What was done**
+- `design/tokens.json`: caption slots (background, text, padding x / y, radius, text style) and contrast pair; default preview text set to a caption. `design/Preview.tsx` uses these slots.
+- `spec.md`: anatomy (caption = part 4), `images` items `{ src, alt, caption?, thumbnailSrc? }`, content, sizes, screen reader, tokens, contrast.
+- `guidelines.md`: caption in Content, Behavior, Accessibility. Wording rule proposed by Claude, to approve: "one or two sentences, sentence case; adds to the alt text, does not repeat it".
+
+**Files**
+- `components/ImageViewer/design/tokens.json`, `components/ImageViewer/design/Preview.tsx`, `components/ImageViewer/spec.md`, `components/ImageViewer/guidelines.md`, `STEPS.md` (updated)

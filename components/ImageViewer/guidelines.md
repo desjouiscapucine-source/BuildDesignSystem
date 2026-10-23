@@ -21,13 +21,15 @@
 
 ## Content guidelines
 - **Alternative text (`alt`)**: required for every image. Describe what the image shows ("North facade of the building"), sentence case, not starting with "Image of…".
-- No visible text in the viewer: no counter, no caption.
+- **Caption** (optional): a short text about the image, one or two sentences, sentence case, 150 characters maximum. It adds to the `alt` text, it does not repeat it.
+- No counter.
 - **Number of images**: no maximum.
 
 ## Behavior
 - **Close**: close button, or the Escape key.
 - **Previous / next**: buttons in the band, or the ← / → keys. Disabled at the first and the last image (no loop).
 - **One image**: no band, no previous / next.
+- **Caption**: shown under the image when it has one; it wraps when long; no caption → no caption area.
 - **Loading**: the thumbnail (`thumbnailSrc`) is shown in place of the image until the image is loaded.
 - **Error**: no specific behavior (the browser default).
 - **Size**: the whole image is visible, scaled down to fit the screen; it is never enlarged beyond its own size.
@@ -35,8 +37,8 @@
 ## Accessibility
 - **Keyboard:** Escape closes; ← / → change image; Tab moves between the buttons and stays inside the viewer.
 - **Focus:** on opening, focus goes to the close button; on closing, it returns to the thumbnail that opened the viewer. Previous / next: the usual focus ring (`border.focus`, 5.50:1 on the band). Close button: double ring, white inside, brown outside — below 3:1 on light pages under the dimmed background (exception accepted by the Design System Lead, see `spec.md`).
-- **Screen reader:** a modal dialog named "Image viewer" (or `label`); the image is announced with its `alt`; buttons "Close the image viewer", "Previous image", "Next image".
-- **Contrast:** button icons 6.10:1; buttons on the band 5.50:1.
+- **Screen reader:** a modal dialog named "Image viewer" (or `label`); the image is announced with its `alt`, then its caption; buttons "Close the image viewer", "Previous image", "Next image".
+- **Contrast:** caption 13.99:1; button icons 6.10:1; buttons on the band 5.50:1.
 - **Touch target:** the IconButtons are at least 24×24px.
 
 ## Related components

@@ -17,9 +17,10 @@ Opens an image larger, over the page, one at a time. When several images belong 
 1. Dimmed background (required) — over the whole screen, the page shows through
 2. Close button (required) — IconButton `primary`, icon `close`, at the top right
 3. Image (required) — in the middle, the whole image visible
-4. Band (several images only) — solid, under the image
-5. Previous button (several images) — IconButton `primary`, icon `arrow_back`, in the band
-6. Next button (several images) — IconButton `primary`, icon `arrow_forward`, in the band
+4. Caption (optional, per image) — under the image, on a light background
+5. Band (several images only) — solid, under the image (and the caption)
+6. Previous button (several images) — IconButton `primary`, icon `arrow_back`, in the band
+7. Next button (several images) — IconButton `primary`, icon `arrow_forward`, in the band
 
 ## Variants
 
@@ -28,7 +29,7 @@ None: the viewer has a single look.
 
 | Property | Values | Default | Description |
 | -------- | ------ | ------- | ----------- |
-| `images` | List of `{ src, alt, thumbnailSrc? }` | — (required) | The images, in order. `alt` is required. `thumbnailSrc` (optional): the thumbnail, shown in place of the image until `src` is loaded. |
+| `images` | List of `{ src, alt, caption?, thumbnailSrc? }` | — (required) | The images, in order. `alt` is required. `caption` (optional): the text shown under the image. `thumbnailSrc` (optional): the thumbnail, shown in place of the image until `src` is loaded. |
 | `index` | Number | 0 | The image shown (position in `images`). |
 | `open` | Boolean | — (required) | Whether the viewer is open. |
 | `onClose` | Function | — (required) | Called by the close button, the Escape key. |
@@ -38,11 +39,12 @@ None: the viewer has a single look.
 ### Combinations
 - **One image**: no band (no previous / next buttons).
 - **Several images**: the band with the previous / next buttons. "Previous" is **disabled on the first image**, "Next" **on the last one** (no loop).
-- No text in the viewer: no counter, no caption.
+- No counter. The only text is the optional **caption** of the image shown; an image without caption shows no caption area.
 
 ## Content
 | Text | Required | Example | Max length | Overflow |
 | ---- | -------- | ------- | ---------- | -------- |
+| Caption | No | "View from the north side of the building." | 150 characters | Wraps |
 | Image alternative text (`alt`) | Yes | "North facade of the building" | — | Not displayed |
 | Accessible name | Yes (default provided) | "Image viewer" | — | Not displayed |
 | Button names | Yes (fixed) | "Close the image viewer", "Previous image", "Next image" | — | Not displayed |
@@ -57,7 +59,8 @@ One size: the viewer takes the **whole screen**.
 | Image corners | `--radius-8` |
 | Band | Padding `--space-16`, corners `--radius-8`; as wide as its content, at most the screen width minus the edges |
 | Space between the previous and next buttons | `--space-8` |
-| Space between the image and the band | `--space-16` |
+| Space between the image, the caption and the band | `--space-16` |
+| Caption | As wide as the image; padding `--space-8` (vertical) · `--space-16` (horizontal); corners `--radius-8` |
 | Buttons | IconButton size (target at least 24×24px) |
 
 ## States
@@ -76,7 +79,7 @@ One size: the viewer takes the **whole screen**.
 | ← / → | Previous / next image (nothing at the ends) |
 | Viewer closes | Focus returns to the element that opened it (the thumbnail) |
 
-Screen reader: the viewer is a modal dialog named by `label`; the image is announced with its `alt`.
+Screen reader: the viewer is a modal dialog named by `label`; the image is announced with its `alt`, then its caption (linked to the image).
 
 ## Design tokens
 | Part | Property | Variant / state | Token |
@@ -84,7 +87,10 @@ Screen reader: the viewer is a modal dialog named by `label`; the image is annou
 | Dimmed background | Color | all | `--color-background-overlay` |
 | Viewer | Space to the screen edges | all | `--space-24` |
 | Image | Radius | all | `--radius-8` |
-| Image / band | Gap | all | `--space-16` |
+| Image / caption / band | Gap | all | `--space-16` |
+| Caption | Background | all | `--color-background-subtle` |
+| Caption | Text style · color | all | `body` · `--color-text-primary` |
+| Caption | Padding · radius | all | `--space-8` `--space-16` · `--radius-8` |
 | Band | Background | all | `--color-background-subtle` |
 | Band | Padding · radius | all | `--space-16` · `--radius-8` |
 | Band | Gap previous / next | all | `--space-8` |
@@ -96,6 +102,7 @@ Screen reader: the viewer is a modal dialog named by `label`; the image is annou
 ### Contrast (WCAG 2.2 AA)
 | Pair | Ratio |
 | ---- | ----- |
+| Caption (`text.primary` on `background.subtle`) | 13.99:1 ✓ |
 | Button icon (`icon.inverse` on `background.brand`) | 6.10:1 ✓ |
 | Button on the band (`background.brand` on `background.subtle`) | 5.50:1 ✓ |
 | Focus ring in the band (`border.focus` on `background.subtle`) | 5.50:1 ✓ |

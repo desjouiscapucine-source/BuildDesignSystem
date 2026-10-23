@@ -1,6 +1,6 @@
 // ImageViewer design preview (stage 1) — NOT the final component code.
 // A page seen through the dimmed background, the image in the middle, the close button at the top right,
-// and the solid band under the image (previous and next buttons).
+// the optional caption, and the solid band under it (previous and next buttons).
 // Every visual value of the viewer comes from a --preview-<slot> variable (design/tokens.json).
 import type { PreviewProps } from "../../../docs/src/types";
 import { IconButton } from "../../IconButton/IconButton";
@@ -59,23 +59,22 @@ export function Preview({ text }: PreviewProps) {
           </span>
         </div>
 
-        {/* COMPARISON ONLY (not in the spec): a text under the image, shown when the content field is filled.
-            text.primary on background.subtle: 13.99:1. */}
+        {/* Optional caption, between the image and the band (the Content field of the Design preview tab) */}
         {text && (
           <p
             style={{
               margin: 0,
               width: "60%",
               boxSizing: "border-box",
-              padding: "var(--space-8) var(--space-16)",
-              borderRadius: "var(--radius-8)",
-              background: "var(--color-background-subtle)",
-              color: "var(--color-text-primary)",
+              padding: "var(--preview-caption-padding-y) var(--preview-caption-padding-x)",
+              borderRadius: "var(--preview-caption-radius)",
+              background: "var(--preview-caption-background)",
+              color: "var(--preview-caption-text)",
               textAlign: "center",
-              fontFamily: "var(--typography-body-family)",
-              fontSize: "var(--typography-body-size)",
-              fontWeight: "var(--typography-body-weight)",
-              lineHeight: "var(--typography-body-line-height)",
+              fontFamily: "var(--preview-caption-family)",
+              fontSize: "var(--preview-caption-size)",
+              fontWeight: "var(--preview-caption-weight)",
+              lineHeight: "var(--preview-caption-line-height)",
             }}
           >
             {text}
