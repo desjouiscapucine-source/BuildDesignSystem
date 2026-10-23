@@ -65,7 +65,7 @@ One size: the viewer takes the **whole screen**.
 - **Previous / next disabled** at the ends (IconButton disabled state).
 - **Loading**: while `src` loads, the thumbnail (`thumbnailSrc`) is shown in its place, at the same size. Without `thumbnailSrc`, nothing is shown until the image is loaded.
 - **Error**: no specific state (the browser default).
-- The buttons keep the IconButton states (hover, focus, pressed, disabled). In the band, the focus ring is the usual one (`--color-border-focus`, 5.35:1 on the band).
+- The buttons keep the IconButton states (hover, focus, pressed, disabled). In the band, the focus ring is the usual one (`--color-border-focus`, 5.50:1 on the band).
 - The close button, on the dimmed background, has a **double focus ring**: white inside, brown outside.
 
 ### Keyboard and focus
@@ -85,7 +85,7 @@ Screen reader: the viewer is a modal dialog named by `label`; the image is annou
 | Viewer | Space to the screen edges | all | `--space-24` |
 | Image | Radius | all | `--radius-8` |
 | Image / band | Gap | all | `--space-16` |
-| Band | Background | all | `--color-background-brand-subtle` |
+| Band | Background | all | `--color-background-subtle` |
 | Band | Padding · radius | all | `--space-16` · `--radius-8` |
 | Band | Gap previous / next | all | `--space-8` |
 | Close, previous, next | IconButton | all | `primary` (icons `close`, `arrow_back`, `arrow_forward`) |
@@ -97,8 +97,8 @@ Screen reader: the viewer is a modal dialog named by `label`; the image is annou
 | Pair | Ratio |
 | ---- | ----- |
 | Button icon (`icon.inverse` on `background.brand`) | 6.10:1 ✓ |
-| Button on the band (`background.brand` on `background.brand-subtle`) | 5.35:1 ✓ |
-| Focus ring in the band (`border.focus` on `background.brand-subtle`) | 5.35:1 ✓ |
+| Button on the band (`background.brand` on `background.subtle`) | 5.50:1 ✓ |
+| Focus ring in the band (`border.focus` on `background.subtle`) | 5.50:1 ✓ |
 | Close button double focus ring on the dimmed background | white and brown rings 6.10:1 between them; against the dimmed background on a white page: brown 2.36:1, white 2.58:1 — **below 3:1, accepted by the Design System Lead** (2026-10-23) |
 
 ## Open questions

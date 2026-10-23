@@ -34,9 +34,9 @@
 
 ## Accessibility
 - **Keyboard:** Escape closes; ← / → change image; Tab moves between the buttons and stays inside the viewer.
-- **Focus:** on opening, focus goes to the close button; on closing, it returns to the thumbnail that opened the viewer. Previous / next: the usual focus ring (`border.focus`, 5.35:1 on the band). Close button: double ring, white inside, brown outside — below 3:1 on light pages under the dimmed background (exception accepted by the Design System Lead, see `spec.md`).
+- **Focus:** on opening, focus goes to the close button; on closing, it returns to the thumbnail that opened the viewer. Previous / next: the usual focus ring (`border.focus`, 5.50:1 on the band). Close button: double ring, white inside, brown outside — below 3:1 on light pages under the dimmed background (exception accepted by the Design System Lead, see `spec.md`).
 - **Screen reader:** a modal dialog named "Image viewer" (or `label`); the image is announced with its `alt`; buttons "Close the image viewer", "Previous image", "Next image".
-- **Contrast:** button icons 6.10:1; buttons on the band 5.35:1.
+- **Contrast:** button icons 6.10:1; buttons on the band 5.50:1.
 - **Touch target:** the IconButtons are at least 24×24px.
 
 ## Related components

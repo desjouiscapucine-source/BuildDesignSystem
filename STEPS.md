@@ -3079,3 +3079,15 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/ImageViewer/spec.md`, `components/ImageViewer/guidelines.md`, `STEPS.md` (updated)
+
+## Step 159 — ImageViewer band: background.subtle
+**Date:** 2026-10-23
+
+**Decisions (made by the Design System Lead)**
+- The band under the image uses **`background.subtle`** (neutral-100) instead of `background.brand-subtle`.
+
+**What was done**
+- `design/tokens.json` (band-background), `spec.md` (token and contrast) and `guidelines.md` (contrast) updated. Contrast on the band: buttons (`background.brand` on `background.subtle`) 5.50:1 ✓, focus ring (`border.focus`) 5.50:1 ✓.
+
+**Files**
+- `components/ImageViewer/design/tokens.json`, `components/ImageViewer/spec.md`, `components/ImageViewer/guidelines.md`, `STEPS.md` (updated)
