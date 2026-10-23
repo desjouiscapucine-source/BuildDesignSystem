@@ -2798,3 +2798,16 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step 151 — Ticket B031 renamed "Prototype: WorkDescription"
+**Date:** 2026-10-23
+
+**Decisions (made by the Design System Lead)**
+- Ticket B031 title: **"Prototype: WorkDescription"**.
+- The prototype specification (`prototypes/work-description/spec.md`) is written in the other chat, on the branch `prototype/work-description`.
+
+**What was done**
+- `backlog/backlog.json`: B031 title renamed (description, status and history unchanged).
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)
