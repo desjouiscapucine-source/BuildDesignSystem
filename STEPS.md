@@ -2960,3 +2960,18 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - Merge of `main` (Steps 145–152 of `main`); `prototypes/work-description/main.css`, `.claude/skills/layout/SKILL.md`, `.claude/skills/page-content/SKILL.md`, `CLAUDE.md`, `STEPS.md` (updated)
+
+## Step 160 — WorkDescription specification
+**Date:** 2026-10-23
+
+**Decisions (made by the Design System Lead)**
+- The specification of ticket B031 is written from the decisions already made, and validated. The ticket description stays as it is.
+
+**What was done**
+- New `prototypes/work-description/spec.md` (from `prototypes/_template/spec.md`), shown on the ticket page `/docs/#/backlog/B031`:
+  - **Components & content**: one screen (`Screen` + `page-content` rules); table of the parts — page header, `Timeline` (label "Steps") with its icon buttons, 4 `TimelineStep`s, 4 `Card`s — and their content; the content is neutral placeholders for now, with the list of what the real content must give.
+  - **Acceptance criteria** (checkboxes): timeline and cards (one card per step, anchors, one selected step, space after the last card), layout (desktop full-width 12-column grid with cards 8 / timeline 4, mobile and tablet panel, page margin and header), quality (components and tokens only, no console errors, preview at 375 / 768 / 1280px with the grid).
+- Verification: the ticket page shows the spec, no console errors. Previewed and validated by the Design System Lead before commit.
+
+**Files**
+- `prototypes/work-description/spec.md` (created), `STEPS.md` (updated)
