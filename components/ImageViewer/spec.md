@@ -64,6 +64,7 @@ One size: the viewer takes the **whole screen**.
 - **Open / closed.** Opening and closing use the motion tokens (`--duration-*`, `--easing-*`), so they are instant with reduced motion.
 - **Previous / next disabled** at the ends (IconButton disabled state).
 - The buttons keep the IconButton states (hover, focus, pressed, disabled). In the band, the focus ring is the usual one (`--color-border-focus`, 5.35:1 on the band).
+- The close button, on the dimmed background, has a **double focus ring**: white inside, brown outside.
 
 ### Keyboard and focus
 | Event | Result |
@@ -87,7 +88,7 @@ Screen reader: the viewer is a modal dialog named by `label`; the image is annou
 | Band | Gap previous / next | all | `--space-8` |
 | Close, previous, next | IconButton | all | `primary` (icons `close`, `arrow_back`, `arrow_forward`) |
 | Previous, next | Focus ring | focus | `--border-width-2` · `--color-border-focus` |
-| Close | Focus ring | focus | see Open questions |
+| Close | Focus ring (double) | focus | inside `--border-width-2` · `--color-border-focus-inverse` (white), outside `--border-width-2` · `--color-border-focus` (brown) |
 | Opening / closing | Motion | all | `--duration-300` · `--easing-ease-out` |
 
 ### Contrast (WCAG 2.2 AA)
@@ -96,7 +97,7 @@ Screen reader: the viewer is a modal dialog named by `label`; the image is annou
 | Button icon (`icon.inverse` on `background.brand`) | 6.10:1 ✓ |
 | Button on the band (`background.brand` on `background.brand-subtle`) | 5.35:1 ✓ |
 | Focus ring in the band (`border.focus` on `background.brand-subtle`) | 5.35:1 ✓ |
-| Close button focus ring on the dimmed background | brown 2.36:1, white 2.58:1 on a white page — see Open questions |
+| Close button double focus ring on the dimmed background | white and brown rings 6.10:1 between them; against the dimmed background on a white page: brown 2.36:1, white 2.58:1 — **below 3:1, accepted by the Design System Lead** (2026-10-23) |
 
 ## Open questions
-- Focus ring of the close button, which sits on the dimmed background: neither the brown nor the white ring reaches 3:1 on every page.
+- None.

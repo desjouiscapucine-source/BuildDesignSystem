@@ -646,12 +646,12 @@
     },
     {
       "id": "B077",
-      "title": "Component: image viewer",
+      "title": "Component: ImageViewer",
       "category": "Components",
       "status": "in-progress",
       "origin": "decided",
-      "description": "Opens an image larger, over the page. Needed by the Card clickable-image variant (B078). Name, level and anatomy to define.",
-      "stage": "design"
+      "description": "Opens an image larger, over the page, one at a time. Needed by the Card clickable-image variant (B078). Spec approved 2026-10-23.",
+      "stage": "guidelines"
     },
     {
       "id": "B078",

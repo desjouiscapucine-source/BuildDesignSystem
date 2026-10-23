@@ -3049,3 +3049,17 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/ImageViewer/design/Preview.tsx`, `components/ImageViewer/design/tokens.json`, `components/ImageViewer/spec.md`, `STEPS.md` (updated)
+
+## Step 157 — ImageViewer spec approved (stage 1 complete)
+**Date:** 2026-10-23
+
+**Decisions (made by the Design System Lead)**
+- Spec approved, including the points proposed by Claude (prop names, button names, image–band gap `space.16`, band corners `radius.8`, image never enlarged, motion `duration.300` + `easing.ease-out`).
+- Close button focus: a **double ring**, **white inside** (`border.focus-inverse`), **brown outside** (`border.focus`), `border-width.2` each. Claude reported that the two colors are only 6.10:1 apart (the two-color technique asks for 9:1) and that on a light page under the dimmed background both rings stay below 3:1 (brown 2.36:1, white 2.58:1); a dark ring with a new token was offered. The Design System Lead **accepted this exception** to the AA target.
+
+**What was done**
+- `components/ImageViewer/spec.md`: close button double focus ring, contrast table (exception recorded), no open question left.
+- `meta.json` status → `guidelines`; backlog B077 renamed "Component: ImageViewer", stage `guidelines`.
+
+**Files**
+- `components/ImageViewer/spec.md`, `components/ImageViewer/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
