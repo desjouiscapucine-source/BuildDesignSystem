@@ -14,7 +14,7 @@ This skill only **sets up** a new prototype so it runs. The screens are then bui
    - Status **`proposal`** → stop: it is not approved. Ask the Design System Lead.
    - Not in the backlog → ask whether to add it.
 2. Ask the Design System Lead for the **prototype name** and its **folder name** (`never-invent`).
-3. **Ask the Design System Lead to create a branch** for the prototype, and for its name. Once agreed: from an up-to-date `main`, create the branch and push it to GitHub, **before creating any file**. Every step of the prototype is committed and pushed on this branch; it is merged into `main` only when the Design System Lead asks.
+3. **Ask the Design System Lead to create a branch** for the prototype, and for its name. Once agreed: from an up-to-date `main`, create the branch and push it to GitHub, **before creating any file**. Every step of the prototype is previewed on the local site (`/docs/#/prototypes/<prototype-name>`), then committed and pushed on this branch only once the Design System Lead validates it (`CLAUDE.md`, Git); the branch is merged into `main` only when the Design System Lead asks.
 4. On the branch, set the backlog item status to `in-progress`, its `prototype` field to the folder name and `iterations` to `[]` (see `prototypes/README.md`, Backlog ticket).
 
 ## 2. Create the prototype

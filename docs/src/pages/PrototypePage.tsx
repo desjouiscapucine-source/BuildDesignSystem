@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { tokenById } from "../../../tokens/lib";
+import { prototypeName } from "../prototypes";
 
 const breakpoint = (id: string) => parseFloat(tokenById.get(id)!.resolved);
 
@@ -42,10 +43,11 @@ export function PrototypePage({ name }: { name: string }) {
   const [showGrid, setShowGrid] = useState(false);
   const { ref, scale, stacked } = useScale();
   const url = `/prototypes/${name}/`;
+  const title = prototypeName(name);
 
   return (
     <>
-      <h1 title={name}>{name}</h1>
+      <h1 title={title}>{title}</h1>
       <p className="lead">Live preview on mobile, tablet and desktop</p>
       <div className="prototype-preview-actions">
         <label>
@@ -67,7 +69,7 @@ export function PrototypePage({ name }: { name: string }) {
                 className="prototype-frame-screen"
                 style={{ width: frame.width, height: frame.height, transform: `scale(${scale})` }}
               >
-                <iframe src={url} title={`${name} — ${frame.name}`} width={frame.width} height={frame.height} />
+                <iframe src={url} title={`${title} — ${frame.name}`} width={frame.width} height={frame.height} />
                 {showGrid && (
                   <div className="prototype-grid-overlay" aria-hidden="true">
                     <div style={{ gridTemplateColumns: `repeat(${frame.columns}, minmax(0, 1fr))` }}>

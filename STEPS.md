@@ -2649,6 +2649,40 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `STEPS.md` (updated)
 
+## Step 140 — Prototype WorkDescription set up
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- First prototype (backlog B031): name **WorkDescription**, folder `work-description`.
+- Built on a dedicated branch `prototype-0.0`, created from an up-to-date `main` and pushed to GitHub before any file was created.
+
+**What was done**
+- Step 139 (committed on the new branch) was brought onto `main` and both branches were pushed.
+- Copied `prototypes/_template/` to `prototypes/work-description/`; `<title>` set to `WorkDescription — BuildDesignSystem`; imports of `main.tsx` kept (setup, `@ds/components`, `Screen`, sample data). The template screens stay until the journey content is given.
+- Backlog B031 set to `in-progress`.
+- Verification: `npm run check:prototypes` and `npm run typecheck` pass; `/prototypes/` lists `work-description`; `/prototypes/work-description/` opens the Home screen and navigates to the Details screen with no console errors.
+
+**Files**
+- `prototypes/work-description/index.html`, `prototypes/work-description/main.tsx` (created)
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step 141 — WorkDescription: four steps, each with its card
+**Date:** 2026-10-21
+
+**Decisions (made by the Design System Lead)**
+- The WorkDescription screen has a Timeline of **4 steps**, each leading to its own Card (`page-content` skill).
+- Neutral placeholder content and date ranges for now, to replace with the real content later.
+
+**What was done**
+- `prototypes/work-description/main.tsx`: the template screens replaced by one screen (title "WorkDescription", placeholder subtitle) with a `Timeline` of 4 `TimelineStep`s ("Step 1" → "Step 4", one month each from Jan to Apr 2026, placeholder description) and 4 `Card`s with the same titles, in the same order, linked by anchors (`#step-1` → `#step-4`), with placeholder text.
+- The selected step follows the reading: the card at the top of the window selects its step; a clicked step stays selected until the reader scrolls again. Exactly one step is selected.
+- `prototypes/work-description/main.css` (new): mobile and tablet — timeline open button above the cards, cards 16px apart; from `--breakpoint-desktop` (1024px) — cards on the left, timeline on the right (`--size-timeline` wide), 16px apart, sticky while scrolling.
+- Verification: `npm run check:prototypes`, `npm run typecheck` and the breakpoint check pass. Desktop (1280px): timeline on the right, fixed while scrolling, selection follows the card at the top and the clicked step; open button hidden. Mobile (375px): open button above the cards aligned right, panel opens, choosing a step closes it and jumps to the card; no horizontal scroll.
+- Known edge case (to decide): when the page cannot scroll far enough for the last cards to reach the top of the screen, their steps are selected only by clicking.
+
+**Files**
+- `prototypes/work-description/main.tsx` (updated), `prototypes/work-description/main.css` (created), `STEPS.md` (updated)
+
 ## Step 142 — Prototype tickets: specification and iteration history
 **Date:** 2026-10-21 (on `main`; steps 140–141 of the `prototype-0.0` branch are numbered in parallel, so this step is 142)
 
@@ -2825,3 +2859,133 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `.claude/skills/page-content/SKILL.md`, `STEPS.md` (updated)
+
+## Step 153 — Every card can reach the top of the screen
+**Date:** 2026-10-21 (on `prototype/work-description`, committed as "Step 145"; renumbered when `main` was merged, since `main` uses 145–152)
+
+**Decisions (made by the Design System Lead)**
+- Option 3 for the edge case of Step 141: space is added after the last card, so every card (the last one included) can scroll up to the top of the screen and select its step.
+
+**What was done**
+- `page-content` skill, "Scrolling and selection": new rule — space after the last card, just enough for it to reach the top of the screen, at every screen size; measured (screen height minus the last card height and the page margin), not a design token. Checklist updated.
+- `CLAUDE.md`, Page content: the rule is mentioned.
+- `prototypes/work-description/main.tsx`: the cards column gets that space as bottom padding, measured on load and updated when the last card or the window is resized.
+- Verification: `npm run check:prototypes` and `npm run typecheck` pass. Desktop (1280px) and mobile (375px): each card reaches the top and selects its step; at the bottom of the page the last card is at the top and Step 4 is selected; no horizontal scroll.
+- Note: numbered 145 because Steps 142–144 were logged on `main` meanwhile; Step 140 exists twice (one on `main`, one on this branch).
+
+**Files**
+- `.claude/skills/page-content/SKILL.md`, `CLAUDE.md`, `prototypes/work-description/main.tsx`, `STEPS.md` (updated)
+
+## Step 154 — main merged into prototype/work-description
+**Date:** 2026-10-21 (on `prototype/work-description`, committed as "Step 146"; renumbered when `main` was merged, since `main` uses 145–152)
+
+**Decisions (made by the Design System Lead)**
+- See the WorkDescription prototype in dedicated preview frames (mobile, tablet, desktop), like Figma previews: bring Steps 140–144 of `main` (preview pages, prototype tickets) onto the prototype branch.
+
+**What was done**
+- Merged `origin/main` into `prototype/work-description`. One conflict, in `STEPS.md` (both branches had appended steps): resolved by keeping every entry, in step order (the two Step 140 entries are both kept).
+- Verification: `npm run typecheck` and `npm run build` pass (prototypes check included). In the browser, `/docs/#/prototypes/work-description` shows the prototype in the 3 frames (Mobile 375px, Tablet 768px, Desktop 1280px), with the timeline icon button on mobile and tablet and the timeline on the right on desktop; Show grid draws 4 / 8 / 12 columns; no console errors. This is the first check of the Step 143 preview page in the browser.
+
+**Files**
+- Merge of `main` (see Steps 140, 142–144); `STEPS.md` (updated)
+
+## Step 155 — Preview before commit
+**Date:** 2026-10-21 (on `prototype/work-description`, committed as "Step 147"; renumbered when `main` was merged, since `main` uses 145–152)
+
+**Decisions (made by the Design System Lead)**
+- For the whole project: every change is previewed on the local site and validated by the Design System Lead **before** it is committed and pushed (no more automatic commit and push after every step).
+
+**What was done**
+- `CLAUDE.md`, Git section: the "after every step, commit and push" rule is replaced by "preview before commit" (Claude checks the change, gives the local preview link, iterates on requested changes) and "only once the Design System Lead validates" (then `STEPS.md` entry, commit, push to the current branch).
+- `prototype-setup` skill: each step of a prototype is previewed on `/docs/#/prototypes/<prototype-name>`, then committed and pushed on its branch once validated.
+
+**Files**
+- `CLAUDE.md`, `.claude/skills/prototype-setup/SKILL.md`, `STEPS.md` (updated)
+
+## Step 156 — Prototype name shown on the site
+**Date:** 2026-10-21 (on `prototype/work-description`, committed as "Step 148"; renumbered when `main` was merged, since `main` uses 145–152)
+
+**Decisions (made by the Design System Lead)**
+- The documentation site shows the **prototype name** (e.g. "WorkDescription"), not its folder name, everywhere: preview page title, navigation and the All prototypes list.
+
+**What was done**
+- `docs/src/prototypes.ts`: reads each prototype's `index.html` and takes its name from the `<title>` ("<Prototype name> — BuildDesignSystem", set by the `prototype-setup` skill); new `prototypeName(folder)`, falling back to the folder name.
+- `docs/src/pages/PrototypePage.tsx`: page title and frame titles use the name. `docs/src/App.tsx`: navigation item label. `prototypes/list.tsx`: reuses `docs/src/prototypes.ts` and shows the name.
+- Verification: `npm run typecheck` and `npm run build` pass; in the browser, the preview page title, the navigation item and `/prototypes/` show "WorkDescription"; no console errors. Previewed and validated by the Design System Lead before commit.
+
+**Files**
+- `docs/src/prototypes.ts`, `docs/src/pages/PrototypePage.tsx`, `docs/src/App.tsx`, `prototypes/list.tsx`, `STEPS.md` (updated)
+
+## Step 157 — WorkDescription aligned on the layout grid
+**Date:** 2026-10-21 (on `prototype/work-description`, committed as "Step 149"; renumbered when `main` was merged, since `main` uses 145–152)
+
+**Decisions (made by the Design System Lead)**
+- Desktop split on the 12-column grid: **cards on columns 1–8, timeline on columns 9–12** — a `page-content` rule for every page combining a Timeline and Cards.
+- Prototype screens are **centered** beyond `size.content` (1040px), like the layout grid, so their content sits on the grid columns.
+
+**What was done**
+- `prototypes/_shared/base.css`: `.prototype-screen` centered (`margin-inline: auto`); its 24px margin equals `--grid-margin`, so the content area is the 992px of the grid columns.
+- `prototypes/work-description/main.css`: from `--breakpoint-desktop`, the content is a 12-column grid (`--grid-columns-desktop`, gutter `--grid-gutter`): cards `1 / span 8`, timeline `9 / span 4` (sticky).
+- `page-content` skill (Placement table and checklist), `layout` skill (prototype screens centered) and `CLAUDE.md` (Page content) updated.
+- Verification: prototypes check and breakpoint check pass. Measured at 1280px: screen 120 → 1160 (1040px, centered), title 144 → 1136, cards 144 → 800 (656px), timeline 816 → 1136 (320px) — exactly on the grid columns; the Show grid overlay of the preview page matches. Mobile and tablet unchanged (cards full width). No console errors. Previewed and validated by the Design System Lead before commit.
+
+**Files**
+- `prototypes/_shared/base.css`, `prototypes/work-description/main.css`, `.claude/skills/page-content/SKILL.md`, `.claude/skills/layout/SKILL.md`, `CLAUDE.md`, `STEPS.md` (updated)
+
+## Step 158 — Prototype preview page choices confirmed
+**Date:** 2026-10-21 (on `prototype/work-description`, committed as "Step 150"; renumbered when `main` was merged, since `main` uses 145–152)
+
+**Decisions (made by the Design System Lead)**
+- The choices left "to confirm" in Step 143 are approved: frame heights **812 / 1024 / 800px** (Mobile / Tablet / Desktop), subtitle **"Live preview on mobile, tablet and desktop"**, navigation icon **`preview`**, and the **Open in a new tab** link.
+
+**What was done**
+- Recorded the decision; no code change (`docs/src/pages/PrototypePage.tsx` already uses these values).
+
+**Files**
+- `STEPS.md` (updated)
+
+## Step 159 — main merged again into prototype/work-description; prototype on the full-width rule
+**Date:** 2026-10-23
+
+**Decisions (made by the Design System Lead)**
+- Merge `main` into `prototype/work-description`. `page-content` conflict: keep the `main` version (12-column grid on the full screen width, timeline filling its 4 columns, no maximum width); the branch version (1040px / 400px, Step 157) is dropped.
+- `STEPS.md`: keep both histories; the branch's steps 145–150 are renumbered 153–158, after `main`'s 145–152.
+- The WorkDescription prototype follows the `main` rule.
+
+**What was done**
+- Merged `origin/main` (Steps 145–152 of `main`: Timeline fills its column, TimelineStep dates under a narrow title, `size.timeline-step-title`, ticket B031 renamed, one `page-content` rule). Conflicts: `.claude/skills/page-content/SKILL.md` (main version), `STEPS.md` (both histories, branch entries renumbered with a note giving their commit number).
+- `prototypes/work-description/main.css`: from `--breakpoint-desktop`, the screen has no maximum width; cards on columns 1–8, timeline on columns 9–12.
+- `layout` skill: prototype screens stay centered at `size.content`, except a Timeline + Cards screen (full width, `page-content`). `CLAUDE.md`, Page content: full-width rule.
+- Verification: build, prototypes check and breakpoint check pass. At 1280px: screen 1280px wide, cards 24 → 840 (816px, 8 columns), timeline 856 → 1256 (400px, 4 columns) — exactly on the grid; step dates under the title. No console errors. Previewed and validated by the Design System Lead before commit.
+
+**Files**
+- Merge of `main` (Steps 145–152 of `main`); `prototypes/work-description/main.css`, `.claude/skills/layout/SKILL.md`, `.claude/skills/page-content/SKILL.md`, `CLAUDE.md`, `STEPS.md` (updated)
+
+## Step 160 — WorkDescription specification
+**Date:** 2026-10-23
+
+**Decisions (made by the Design System Lead)**
+- The specification of ticket B031 is written from the decisions already made, and validated. The ticket description stays as it is.
+
+**What was done**
+- New `prototypes/work-description/spec.md` (from `prototypes/_template/spec.md`), shown on the ticket page `/docs/#/backlog/B031`:
+  - **Components & content**: one screen (`Screen` + `page-content` rules); table of the parts — page header, `Timeline` (label "Steps") with its icon buttons, 4 `TimelineStep`s, 4 `Card`s — and their content; the content is neutral placeholders for now, with the list of what the real content must give.
+  - **Acceptance criteria** (checkboxes): timeline and cards (one card per step, anchors, one selected step, space after the last card), layout (desktop full-width 12-column grid with cards 8 / timeline 4, mobile and tablet panel, page margin and header), quality (components and tokens only, no console errors, preview at 375 / 768 / 1280px with the grid).
+- Verification: the ticket page shows the spec, no console errors. Previewed and validated by the Design System Lead before commit.
+
+**Files**
+- `prototypes/work-description/spec.md` (created), `STEPS.md` (updated)
+
+## Step 161 — Branch prototype/work-description merged into main
+**Date:** 2026-10-23
+
+**Decisions (made by the Design System Lead)**
+- Merge `prototype/work-description` into `main` (prototype set up, specified and validated so far).
+
+**What was done**
+- Merged `prototype/work-description` into `main` (no conflict: `main` had been merged into the branch at Step 159). `main` now has the WorkDescription prototype with placeholder content, its spec (ticket B031), the "preview before commit" rule, prototype names on the site, and Steps 153–160.
+- The branch is kept (local and on GitHub) for the next iterations of the prototype.
+- Verification: build passes on `main`.
+
+**Files**
+- Merge of `prototype/work-description` (Steps 140–141 and 153–160 of the branch); `STEPS.md` (updated)

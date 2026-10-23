@@ -9,7 +9,8 @@
 
 ## Git
 - The project is versioned with git and pushed to the private GitHub repository `CapucineDjs/BuildDesignSystem` (branch `main`).
-- **After every step** (once its `STEPS.md` entry is written): commit all the step's changes and push to `origin main`. Commit message in English: `Step <n>: <short title>`.
+- **Preview before commit** (whole project): after a change, Claude checks it, then gives the Design System Lead the local preview link (`npm run dev`, http://localhost:5173 — it shows the files on disk, uncommitted changes included). The Lead reviews it; changes requested → iterate and preview again.
+- **Only once the Design System Lead validates**: write the `STEPS.md` entry, commit all the step's changes and push to the current branch (`origin main`, or the prototype branch). Never commit or push before that validation. Commit message in English: `Step <n>: <short title>`.
 - **New prototype**: ask the Design System Lead to create a dedicated branch first (see the `prototype-setup` skill); it is merged into `main` only on request.
 
 ## Backlog
@@ -56,7 +57,7 @@ Guidelines are updated whenever coding or prototyping reveals a new rule or edge
 - Page title `heading-1` (30 characters max) and subtitle `lead` (80 characters max), **one line each**, cut with an ellipsis as a safety net — see the `page-header` skill. Component descriptions in `meta.json` follow the subtitle rule.
 
 ## Page content
-- A page combining a Timeline and Cards follows the `page-content` skill: one card per step (same order, same title, anchor link), timeline on the right 16px from the cards, timeline fixed while scrolling, selected step following the card at the top of the screen.
+- A page combining a Timeline and Cards follows the `page-content` skill: one card per step (same order, same title, anchor link), on desktop a 12-column grid on the full screen width with cards on 8 columns and the timeline filling 4 columns (16px gutter), timeline fixed while scrolling, selected step following the card at the top of the screen, space after the last card so every card can reach the top.
 
 ## Skills
 - Every task starts with the **`orchestrator`** skill (`.claude/skills/orchestrator/SKILL.md`), the parent of all the project skills: it only dispatches the task to the child skills to load. Every new skill gets a row in its dispatch table.

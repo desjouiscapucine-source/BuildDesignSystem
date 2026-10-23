@@ -48,7 +48,7 @@ Approved by the Design System Lead on 2026-10-20. Tokens in the `token-naming` s
 
 ## Prototypes
 
-Approved by the Design System Lead on 2026-10-21: **prototype screens follow the same rules as the documentation site** — 24px page margin, 16px between blocks, page header (title `heading-1` + subtitle `lead`, `page-header` skill), content at most `size.content` wide. Built in `prototypes/_shared/Screen.tsx` and `prototypes/_shared/base.css`.
+Approved by the Design System Lead on 2026-10-21: **prototype screens follow the same rules as the documentation site** — 24px page margin, 16px between blocks, page header (title `heading-1` + subtitle `lead`, `page-header` skill), content at most `size.content` wide and **centered** beyond it, like the layout grid (approved 2026-10-21), so the content sits on the grid columns. Exception: a screen combining a Timeline and Cards uses the full screen width on desktop (`page-content` skill). Built in `prototypes/_shared/Screen.tsx` and `prototypes/_shared/base.css`.
 
 ## Not defined yet — ask before deciding
 
