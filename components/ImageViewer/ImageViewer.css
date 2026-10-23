@@ -1,25 +1,96 @@
-/* Semantic design tokens only (var(--…)) — never raw values or primitive tokens.
-   Classes: .ds-<component> · modifier .ds-<component>--<value> · part .ds-<component>-<part> */
+/* ImageViewer — semantic design tokens only. See spec.md.
+   Classes: .ds-image-viewer (modifiers --open, --closing) · parts -close, -figure, -frame, -image, -thumbnail, -caption, -band.
+   The buttons are IconButtons. */
 .ds-image-viewer {
-  position: relative;
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-index-modal);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-16);
+  padding: var(--space-24);
+  background: var(--color-background-overlay);
+  animation: ds-image-viewer-fade var(--duration-300) var(--easing-ease-out) both;
+}
+.ds-image-viewer--closing { animation-name: ds-image-viewer-fade-out; }
+
+@keyframes ds-image-viewer-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ds-image-viewer-fade-out { from { opacity: 1; } to { opacity: 0; } }
+
+/* Close button: top right, on its own row (the image takes the space left below it);
+   double focus ring (white inside, brown outside) */
+.ds-image-viewer-close {
+  flex: none;
+  align-self: flex-end;
+}
+.ds-image-viewer .ds-image-viewer-close:focus-visible {
+  outline: var(--border-width-2) solid var(--color-border-focus-inverse);
+  outline-offset: 0;
+  box-shadow: 0 0 0 calc(var(--border-width-2) * 2) var(--color-border-focus);
 }
 
-/* State layers: overlay in the content color */
-.ds-image-viewer::after {
-  content: "";
+/* Image and caption: take the space left by the band, the whole image visible, never enlarged */
+.ds-image-viewer-figure {
+  flex: 1 1 0;
+  min-height: 0;
+  max-width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-16);
+}
+.ds-image-viewer-frame {
+  position: relative;
+  flex: 0 1 auto;
+  min-height: 0;
+  max-width: 100%;
+  display: flex;
+}
+.ds-image-viewer-image {
+  display: block;
+  min-height: 0;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-8);
+}
+/* While loading: the image is laid out but hidden; its thumbnail is shown in its place */
+.ds-image-viewer-image--loading { visibility: hidden; }
+.ds-image-viewer-thumbnail {
   position: absolute;
   inset: 0;
-  border-radius: inherit;
-  background: currentColor;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--duration-100) var(--easing-ease-out);
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-8);
 }
 
-/* Variant: default */
-.ds-image-viewer--default {
+.ds-image-viewer-caption {
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--space-8) var(--space-16);
+  border-radius: var(--radius-8);
+  background: var(--color-background-subtle);
+  color: var(--color-text-primary);
+  text-align: center;
+  overflow-wrap: anywhere;
+  font-family: var(--typography-body-family);
+  font-size: var(--typography-body-size);
+  font-weight: var(--typography-body-weight);
+  line-height: var(--typography-body-line-height);
 }
 
-/* Parts */
-.ds-image-viewer-label {
+/* Band: previous and next buttons */
+.ds-image-viewer-band {
+  flex: none;
+  display: flex;
+  gap: var(--space-8);
+  padding: var(--space-16);
+  border-radius: var(--radius-8);
+  background: var(--color-background-subtle);
 }

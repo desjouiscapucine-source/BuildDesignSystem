@@ -14,3 +14,5 @@ export { Card } from "./Card/Card";
 export type { CardProps } from "./Card/Card";
 export { IconButton } from "./IconButton/IconButton";
 export type { IconButtonProps, IconButtonVariant } from "./IconButton/IconButton";
+export { ImageViewer } from "./ImageViewer/ImageViewer";
+export type { ImageViewerProps, ImageViewerImage } from "./ImageViewer/ImageViewer";

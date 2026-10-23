@@ -3131,3 +3131,18 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/ImageViewer/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step 163 — ImageViewer code (stage 3, awaiting approval)
+**Date:** 2026-10-23
+
+**What was done**
+- `components/ImageViewer/ImageViewer.tsx`: controlled component (`images` `{ src, alt, caption?, thumbnailSrc? }`, `index`, `open`, `onClose`, `onIndexChange`, `label`); modal dialog; close IconButton at the top right; image in a `<figure>` with its optional `<figcaption>` (read after the alt); band with previous / next IconButtons only when there are several images, disabled at the ends; thumbnail shown until the image is loaded; keyboard (Escape, ← / →, Tab kept inside), focus on the close button at opening and back to the opener at closing; when an arrow becomes disabled while focused, the focus moves to the other arrow.
+- `ImageViewer.css`: semantic tokens only — dimmed background, `z-index.modal`, padding `space.24`, gaps `space.16`, image `radius.8`, never enlarged and never cropped (`object-fit: contain`), caption (`body`, `text.primary` on `background.subtle`, `space.8` / `space.16`, `radius.8`) as wide as the image, band (`background.subtle`, `space.16`, gap `space.8`, `radius.8`), close button double focus ring (white `border-width.2` inside, brown outside), fade with `duration.300` / `easing.ease-out`.
+- The caption width is set from the measured image width (a layout measurement, not a design value).
+- Found while testing: the close button overlapped the top of a wide image; it now sits on its own row above the image (the image takes the space left below it, as in the spec).
+- `examples.tsx` (4 examples: 3 images with captions, 1 image without caption, small image, long caption) with 3 SVG example images in `components/ImageViewer/examples/`; export added to `components/index.ts`.
+- Verification: type check and build pass. In the browser (localhost:5174, Examples tab, no console errors): dialog role / modal / name, focus on the close button, ← / → and buttons change the image, previous disabled on the first and next on the last, no loop, focus kept inside; one image → no band, no caption; Escape → closing → closed and focus back to the opening button; small image shown at 320×180 (not enlarged); caption width = image width (944px landscape, 398px portrait); long caption wraps on 2 lines; at mobile width no horizontal scroll. Not checkable here: the animations and the visible focus ring (the Browser pane was hidden, which freezes animations and prevents screenshots; the closing was completed by sending the end-of-animation event).
+
+**Files**
+- `components/ImageViewer/ImageViewer.tsx`, `components/ImageViewer/ImageViewer.css`, `components/ImageViewer/examples.tsx`, `components/ImageViewer/examples/*.svg` (new or rewritten)
+- `components/index.ts`, `STEPS.md` (updated)
