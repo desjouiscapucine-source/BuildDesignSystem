@@ -3063,3 +3063,19 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/ImageViewer/spec.md`, `components/ImageViewer/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step 158 — ImageViewer guidelines written; spec: thumbnail while loading
+**Date:** 2026-10-23
+
+**Decisions (made by the Design System Lead)**
+- When to use: from a Card `clickable-image`. When not to use: decorative images, images already big enough, content other than images (a dialog, not in the design system yet), navigation to a page (link or Button).
+- Best practice: open the clicked image. Alt text: describe what the image shows. No maximum number of images.
+- Loading: show the thumbnail until the large image is loaded → **spec change**: images get an optional **`thumbnailSrc`**. Error: nothing specific.
+- Do / don't: images vs other content (shown visually in the chat).
+
+**What was done**
+- `spec.md`: `images` items `{ src, alt, thumbnailSrc? }`; Loading and Error states (the thumbnail is shown at the image size — added by Claude, to approve).
+- `guidelines.md` written: when (not) to use, best practices, do / don't, content, behavior, accessibility, related components.
+
+**Files**
+- `components/ImageViewer/spec.md`, `components/ImageViewer/guidelines.md`, `STEPS.md` (updated)

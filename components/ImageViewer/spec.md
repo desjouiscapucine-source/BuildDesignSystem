@@ -28,7 +28,7 @@ None: the viewer has a single look.
 
 | Property | Values | Default | Description |
 | -------- | ------ | ------- | ----------- |
-| `images` | List of `{ src, alt }` | — (required) | The images, in order. `alt` is required. |
+| `images` | List of `{ src, alt, thumbnailSrc? }` | — (required) | The images, in order. `alt` is required. `thumbnailSrc` (optional): the thumbnail, shown in place of the image until `src` is loaded. |
 | `index` | Number | 0 | The image shown (position in `images`). |
 | `open` | Boolean | — (required) | Whether the viewer is open. |
 | `onClose` | Function | — (required) | Called by the close button, the Escape key. |
@@ -63,6 +63,8 @@ One size: the viewer takes the **whole screen**.
 ## States
 - **Open / closed.** Opening and closing use the motion tokens (`--duration-*`, `--easing-*`), so they are instant with reduced motion.
 - **Previous / next disabled** at the ends (IconButton disabled state).
+- **Loading**: while `src` loads, the thumbnail (`thumbnailSrc`) is shown in its place, at the same size. Without `thumbnailSrc`, nothing is shown until the image is loaded.
+- **Error**: no specific state (the browser default).
 - The buttons keep the IconButton states (hover, focus, pressed, disabled). In the band, the focus ring is the usual one (`--color-border-focus`, 5.35:1 on the band).
 - The close button, on the dimmed background, has a **double focus ring**: white inside, brown outside.
 
