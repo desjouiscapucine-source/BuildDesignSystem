@@ -3146,3 +3146,16 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/ImageViewer/ImageViewer.tsx`, `components/ImageViewer/ImageViewer.css`, `components/ImageViewer/examples.tsx`, `components/ImageViewer/examples/*.svg` (new or rewritten)
 - `components/index.ts`, `STEPS.md` (updated)
+
+## Step 164 — ImageViewer complete
+**Date:** 2026-10-23
+
+**Decisions (made by the Design System Lead)**
+- ImageViewer code approved: the component is **complete**.
+
+**What was done**
+- `meta.json` status → `complete`; backlog B077 → `done`. Exported from `@ds/components` since step 163.
+- Next: the Card `clickable-image` variant (B078 → in progress).
+
+**Files**
+- `components/ImageViewer/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)

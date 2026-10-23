@@ -2,5 +2,5 @@
   "name": "ImageViewer",
   "description": "Opens an image larger, over the page, one at a time.",
   "level": "organism",
-  "status": "code"
+  "status": "complete"
 }

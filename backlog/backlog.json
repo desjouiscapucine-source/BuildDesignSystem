@@ -648,16 +648,16 @@
       "id": "B077",
       "title": "Component: ImageViewer",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
-      "description": "Opens an image larger, over the page, one at a time. Needed by the Card clickable-image variant (B078). Spec and guidelines approved 2026-10-23.",
+      "description": "Opens an image larger, over the page, one at a time. Needed by the Card clickable-image variant (B078). Spec, guidelines and code approved 2026-10-23.",
       "stage": "code"
     },
     {
       "id": "B078",
       "title": "Card: clickable-image variant",
       "category": "Components",
-      "status": "todo",
+      "status": "in-progress",
       "origin": "decided",
       "description": "Decided so far: property variant = default | clickable-image; several images, as thumbnails under the text; fixed 16:9 ratio, corners --radius-8; only the images are clickable; a click opens the image larger in the image viewer (B077, to build first). To define: thumbnail size, layout and spacing of the thumbnails, maximum count, alt text.",
       "stage": "design"
