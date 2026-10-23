@@ -3003,3 +3003,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step 154 — ImageViewer: component created, design preview (stage 1 in progress)
+**Date:** 2026-10-23
+
+**Decisions (made by the Design System Lead)**
+- Name **ImageViewer** (folder `ImageViewer/`, class `.ds-image-viewer`), level **organism**, description "Opens an image larger, over the page, one at a time."
+- **Full screen** over the page, on the **dimmed background** (`background.overlay`); **whole image visible** (scaled down to fit, never cropped).
+- **Previous / next** between the images of the card (IconButtons `primary`), **under the image**, with the **counter** ("2 / 5"); **close button** (IconButton `primary`) at the **top right**; **caption** optional, 150 characters max, wraps, under the counter.
+- Contrast: on the dimmed background no text color reaches AA on every page (white text 2.58:1 on a white page, dark text 1.57:1 on a brand page). Decided: the arrows, counter and caption sit on a **solid band** under the image (`background.inverse`, text `text.inverse`: 15.52:1).
+
+**What was done**
+- `components/ImageViewer/` created from the template (`meta.json`: status `design`; template files renamed, class `.ds-image-viewer`).
+- Design preview (`design/Preview.tsx`, `design/tokens.json`): a page seen through the dimmed background, close button top right, placeholder image, the band (previous · counter · next, then the caption). Proposed slot tokens, to approve: edge `space.24`, image corners `radius.8`, band padding `space.16`, gap `space.8`, counter `label`, caption `body`.
+- Verification: type check passes; the Design preview tab of `/docs/#/components/imageviewer` renders with no console errors, band contrast 15.52:1 ✓.
+- `spec.md` not written yet (only approved content goes in it).
+
+**Files**
+- `components/ImageViewer/` (new: `meta.json`, `design/Preview.tsx`, `design/tokens.json`, template files)
+- `STEPS.md` (updated)

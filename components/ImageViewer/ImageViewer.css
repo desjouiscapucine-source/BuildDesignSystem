@@ -1,0 +1,25 @@
+/* Semantic design tokens only (var(--…)) — never raw values or primitive tokens.
+   Classes: .ds-<component> · modifier .ds-<component>--<value> · part .ds-<component>-<part> */
+.ds-image-viewer {
+  position: relative;
+}
+
+/* State layers: overlay in the content color */
+.ds-image-viewer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-100) var(--easing-ease-out);
+}
+
+/* Variant: default */
+.ds-image-viewer--default {
+}
+
+/* Parts */
+.ds-image-viewer-label {
+}
