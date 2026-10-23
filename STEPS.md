@@ -3022,3 +3022,16 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/ImageViewer/` (new: `meta.json`, `design/Preview.tsx`, `design/tokens.json`, template files)
 - `STEPS.md` (updated)
+
+## Step 155 — ImageViewer spec written (awaiting approval)
+**Date:** 2026-10-23
+
+**Decisions (made by the Design System Lead)**
+- Approved: the proposed slot tokens (edge `space.24`, image `radius.8`, band padding `space.16`, gap `space.8`, counter `label`, caption `body`); previous / next **disabled at the ends** (no loop); with **one image**, no arrows and no counter (band only for a caption); keyboard and focus (focus on the close button and kept in the viewer, Escape closes, ← / → change image, focus back to the thumbnail, white focus ring, motion tokens).
+
+**What was done**
+- `components/ImageViewer/spec.md` written: purpose, anatomy (8 parts), props, combinations, content, sizes, states with keyboard and focus, design tokens, contrast.
+- Added by Claude, to approve with the spec: prop names (`images` with `src` / `alt` / `caption`, `index`, `open`, `onClose`, `onIndexChange`, `label`), image–band gap `space.16`, band corners `radius.8`, image never enlarged beyond its own size, motion `duration.300` + `easing.ease-out`, button names.
+
+**Files**
+- `components/ImageViewer/spec.md`, `STEPS.md` (updated)
