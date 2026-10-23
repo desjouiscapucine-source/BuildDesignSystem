@@ -3119,3 +3119,15 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/ImageViewer/design/tokens.json`, `components/ImageViewer/design/Preview.tsx`, `components/ImageViewer/spec.md`, `components/ImageViewer/guidelines.md`, `STEPS.md` (updated)
+
+## Step 162 — ImageViewer guidelines approved (stage 2 complete)
+**Date:** 2026-10-23
+
+**Decisions (made by the Design System Lead)**
+- Guidelines approved, including the caption wording rule and the thumbnail shown at the image size while loading.
+
+**What was done**
+- `meta.json` status → `code`; backlog B077 stage → `code`.
+
+**Files**
+- `components/ImageViewer/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)

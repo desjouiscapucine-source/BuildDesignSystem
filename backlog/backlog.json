@@ -650,8 +650,8 @@
       "category": "Components",
       "status": "in-progress",
       "origin": "decided",
-      "description": "Opens an image larger, over the page, one at a time. Needed by the Card clickable-image variant (B078). Spec approved 2026-10-23.",
-      "stage": "guidelines"
+      "description": "Opens an image larger, over the page, one at a time. Needed by the Card clickable-image variant (B078). Spec and guidelines approved 2026-10-23.",
+      "stage": "code"
     },
     {
       "id": "B078",
