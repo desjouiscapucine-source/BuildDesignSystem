@@ -3091,3 +3091,16 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/ImageViewer/design/tokens.json`, `components/ImageViewer/spec.md`, `components/ImageViewer/guidelines.md`, `STEPS.md` (updated)
+
+## Step 160 — ImageViewer preview: text under the image, for comparison
+**Date:** 2026-10-23
+
+**Decisions (made by the Design System Lead)**
+- Show an example with a text under the image, **for comparison only** (nothing changes in the spec): between the image and the band, on `background.subtle`.
+
+**What was done**
+- `design/Preview.tsx`: when the **Content** field of the Design preview tab is filled, a text appears between the image and the band (`body`, `text.primary` on `background.subtle`: 13.99:1, padding `space.8` / `space.16`, corners `radius.8`, as wide as the image — chosen by Claude for the comparison). Empty field → no text (the approved design).
+- Verification: type check passes; in the browser, filling the field shows close · image · text · band in this order with the expected colors, and clearing it removes the text.
+
+**Files**
+- `components/ImageViewer/design/Preview.tsx`, `STEPS.md` (updated)

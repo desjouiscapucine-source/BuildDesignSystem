@@ -7,7 +7,7 @@ import { IconButton } from "../../IconButton/IconButton";
 
 const pageCard = { background: "var(--color-background-page)", border: "var(--border-width-1) solid var(--color-border-subtle)", borderRadius: "var(--radius-8)", height: "64px" };
 
-export function Preview(_props: PreviewProps) {
+export function Preview({ text }: PreviewProps) {
   return (
     <div style={{ position: "relative", width: "640px", maxWidth: "100%", height: "440px", overflow: "hidden", border: "var(--border-width-1) solid var(--color-border-default)", borderRadius: "var(--radius-16)", background: "var(--color-background-page)" }}>
       {/* The page behind the viewer */}
@@ -58,6 +58,29 @@ export function Preview(_props: PreviewProps) {
             image
           </span>
         </div>
+
+        {/* COMPARISON ONLY (not in the spec): a text under the image, shown when the content field is filled.
+            text.primary on background.subtle: 13.99:1. */}
+        {text && (
+          <p
+            style={{
+              margin: 0,
+              width: "60%",
+              boxSizing: "border-box",
+              padding: "var(--space-8) var(--space-16)",
+              borderRadius: "var(--radius-8)",
+              background: "var(--color-background-subtle)",
+              color: "var(--color-text-primary)",
+              textAlign: "center",
+              fontFamily: "var(--typography-body-family)",
+              fontSize: "var(--typography-body-size)",
+              fontWeight: "var(--typography-body-weight)",
+              lineHeight: "var(--typography-body-line-height)",
+            }}
+          >
+            {text}
+          </p>
+        )}
 
         {/* Solid band: previous and next buttons only */}
         <div
