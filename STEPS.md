@@ -2989,3 +2989,17 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - Merge of `prototype/work-description` (Steps 140–141 and 153–160 of the branch); `STEPS.md` (updated)
+
+## Step 153 — Card clickable-image variant started; image viewer first
+**Date:** 2026-10-23
+
+**Decisions (made by the Design System Lead)**
+- New Card variant: property **`variant`** = `default` | **`clickable-image`**.
+- Several images, shown as **thumbnails under the text**, fixed **16:9** ratio, corners `--radius-8`. **Only the images are clickable**; a click **opens the image larger**.
+- The viewer that opens the image is a **new component, built first** (its own stages).
+
+**What was done**
+- Backlog: B077 "Component: image viewer" (decided, in progress, stage design) and B078 "Card: clickable-image variant" (decided, to do, stage design, with the decisions above and what is left to define). Nothing written in `components/Card/` yet: the Card spec is updated once the variant is fully defined and approved.
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)

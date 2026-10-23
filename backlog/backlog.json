@@ -643,6 +643,24 @@
       "origin": "decided",
       "description": "Page-content rule: cards 8 columns, timeline 4 columns, 12-column grid on the full screen width. The Timeline fills its container (no 400px maximum on desktop); --size-timeline stays for the small-screen panel. Spec, guidelines and code approved 2026-10-21. TimelineStep: the date range goes under the title when the title would be narrower than --size-timeline-step-title (200px).",
       "stage": "code"
+    },
+    {
+      "id": "B077",
+      "title": "Component: image viewer",
+      "category": "Components",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "Opens an image larger, over the page. Needed by the Card clickable-image variant (B078). Name, level and anatomy to define.",
+      "stage": "design"
+    },
+    {
+      "id": "B078",
+      "title": "Card: clickable-image variant",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "Decided so far: property variant = default | clickable-image; several images, as thumbnails under the text; fixed 16:9 ratio, corners --radius-8; only the images are clickable; a click opens the image larger in the image viewer (B077, to build first). To define: thumbnail size, layout and spacing of the thumbnails, maximum count, alt text.",
+      "stage": "design"
     }
   ]
 }
