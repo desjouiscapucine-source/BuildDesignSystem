@@ -2811,3 +2811,17 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step 152 — page-content: one rule for main and the prototype branch
+**Date:** 2026-10-23
+
+**Decisions (made by the Design System Lead)**
+- The two chats had written two versions of the 8 / 4 column rule. Kept: **the `main` version** — 12-column grid on the full screen width, the timeline filling its 4 columns with no maximum width (components already changed and approved, steps 145–150 on `main`). The branch version (1040px maximum, timeline at most 400px) is dropped.
+- The two additions of the branch are approved for the general rule: on mobile and tablet the cards take the full width of the grid; space after the last card so every card can reach the top of the screen.
+
+**What was done**
+- `page-content` skill on `main`: "Mobile and tablet" placement row, "Every card can reach the top of the screen" rule and its checklist item added (wording from the branch).
+- When `main` is merged into `prototype/work-description`, the `page-content` conflict is resolved with the `main` version; the prototype then follows it (full width, timeline in its 4 columns with no maximum).
+
+**Files**
+- `.claude/skills/page-content/SKILL.md`, `STEPS.md` (updated)
