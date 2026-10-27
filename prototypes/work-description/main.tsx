@@ -1,12 +1,16 @@
 // An interactive mockup (user journey). Build the screens only with components from "@ds/components",
 // inside the shared Screen layout; never with raw HTML controls or raw style values.
-// Screen content follows the `page-content` skill: one card per timeline step, timeline on the right.
+// Screen content follows the `page-content` skill (one card per timeline step, timeline on the right)
+// and the `card` skill (cards stacked, 16px apart, no nested cards).
 import { StrictMode, useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "../_shared/setup";
-import { Card, Timeline, TimelineStep } from "@ds/components";
+import { Card, Timeline, TimelineStep, type ImageViewerImage } from "@ds/components";
 import { Screen } from "../_shared/Screen";
 import "./main.css";
+import landscape from "./images/landscape.svg";
+import portrait from "./images/portrait.svg";
+import small from "./images/small.svg";
 
 // Neutral placeholders: replace them with the real content of the journey.
 const placeholderText =
@@ -19,6 +23,11 @@ const steps = [1, 2, 3, 4].map((n) => ({
   startDate: new Date(2026, n - 1, 1),
   endDate: new Date(2026, n, 0),
   description: `Short description of step ${n}.`,
+  // Three neutral placeholder images per card (one row of thumbnails): landscape, portrait, small.
+  images: [landscape, portrait, small].map((src, index) => ({
+    src,
+    alt: `Placeholder image ${index + 1} of step ${n}`,
+  })) as [ImageViewerImage, ...ImageViewerImage[]],
 }));
 
 // The step of the card at the top of the screen: the last card whose top has reached the top of the window.
@@ -102,7 +111,7 @@ function Prototype() {
         </div>
         <div className="work-description-cards" ref={cards}>
           {steps.map((step) => (
-            <Card key={step.id} id={step.id} title={step.title}>
+            <Card key={step.id} id={step.id} title={step.title} variant="clickable-image" images={step.images}>
               <p>{placeholderText}</p>
               <p>{placeholderText}</p>
               <p>{placeholderText}</p>

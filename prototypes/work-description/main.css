@@ -1,4 +1,4 @@
-/* WorkDescription — layout of the screen (`page-content` skill). Design tokens only.
+/* WorkDescription — layout of the screen (`page-content` and `card` skills). Design tokens only.
    Mobile and tablet: the timeline open button above the cards (aligned right by the Timeline), cards stacked. */
 .work-description-content {
   display: flex;
@@ -6,6 +6,7 @@
   gap: var(--space-16);
 }
 
+/* Cards stacked, full width of their column, 16px apart (`card` skill). */
 .work-description-cards {
   display: flex;
   flex-direction: column;

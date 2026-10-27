@@ -264,7 +264,12 @@
       "origin": "proposal",
       "description": "Once a few components are coded (e.g. a form or a product page). Screens and content to define with the Design System Lead.",
       "prototype": "work-description",
-      "iterations": []
+      "iterations": [
+        {
+          "feedback": "Cards in the clickable-image version: all 4 cards, 3 images each (one row), neutral placeholder images. The prototype follows the new card skill. New screens to define next.",
+          "decision": "changes-requested"
+        }
+      ]
     },
     {
       "id": "B032",

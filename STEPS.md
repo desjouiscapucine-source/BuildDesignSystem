@@ -3283,3 +3283,24 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `.claude/skills/card/SKILL.md` (created)
 - `.claude/skills/page-content/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B031-1 — WorkDescription: cards with images, card skill
+**Date:** 2026-10-27
+
+**Decisions (made by the Design System Lead)**
+- The prototype follows the new `card` skill (Step B081-1) together with `page-content`.
+- All 4 cards use the **`clickable-image`** variant, with **3 images each** (one row of thumbnails).
+- Images: **neutral placeholders** (landscape, portrait, small), alternative text "Placeholder image n of step n", no caption — to replace with the real images later.
+- New screens come next, to define with the Design System Lead.
+
+**What was done**
+- `main` merged into `prototype/work-description` (fast-forward, Steps up to B081-1).
+- New `prototypes/work-description/images/` (`landscape.svg`, `portrait.svg`, `small.svg`, neutral gray).
+- `prototypes/work-description/main.tsx`: each card is `clickable-image` with its 3 images (`ImageViewerImage` from `@ds/components`); comments cite the `card` skill. `main.css`: comments cite the `card` skill.
+- `prototypes/work-description/spec.md`: `card` rules, cards `clickable-image`, new Images row (ImageViewer), images in the real content to provide, new acceptance criteria "Cards" (`card` skill).
+- Backlog: ticket B031, first iteration (changes requested: cards with images).
+- Verification: typecheck, build and prototypes check pass. 12 thumbnails, 3 per row; a click opens the ImageViewer on the right image; Escape closes it and brings the focus back to the thumbnail. Cards full width of their column, 16px apart (1024px and 375px), no horizontal scroll, no console errors on load. Previewed and validated by the Design System Lead before commit.
+
+**Files**
+- `prototypes/work-description/images/landscape.svg`, `portrait.svg`, `small.svg` (created)
+- `prototypes/work-description/main.tsx`, `main.css`, `spec.md`, `backlog/backlog.json`, `STEPS.md` (updated)
