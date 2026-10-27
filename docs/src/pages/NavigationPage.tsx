@@ -96,13 +96,6 @@ const principles = [
   },
 ];
 
-const toDefine = [
-  "Order of the Level 1 spaces.",
-  "Content of Prototypes and Portfolio.",
-  "Templates and Pages while they have no component: shown or hidden.",
-  "Pages that get the timeline on the right; the timeline on component pages (with their tabs).",
-  "When the site follows this structure (landing page, Governance, one page per Foundations category, breadcrumb, modals).",
-];
 
 function Node({ node }: { node: NavNode }) {
   return (
@@ -173,17 +166,6 @@ export function NavigationPage() {
           ))}
         </tbody>
       </table>
-      <p>
-        The breadcrumb (B083) and the modal (B029) are not design system components yet: they go through the component
-        stages first.
-      </p>
-
-      <h2>To define</h2>
-      <ul>
-        {toDefine.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
     </>
   );
 }

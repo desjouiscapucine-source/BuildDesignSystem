@@ -3323,3 +3323,16 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `docs/src/pages/NavigationPage.tsx` (new)
 - `docs/src/App.tsx`, `docs/src/docs.css`, `vite.config.ts`, `.claude/launch.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B082-2 — Navigation structure: open questions removed from the page
+**Date:** 2026-10-27
+
+**Decisions (made by the Design System Lead)**
+- Remove from the Navigation structure page the note on the breadcrumb and the modal, and the "To define" section.
+
+**What was done**
+- `docs/src/pages/NavigationPage.tsx`: note and "To define" list removed; the page ends with the navigation principles. The open questions stay logged in Step B082-1.
+- Verification: type check passes; the page shows with no console errors.
+
+**Files**
+- `docs/src/pages/NavigationPage.tsx`, `STEPS.md` (updated)
