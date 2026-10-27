@@ -5,13 +5,15 @@
 
 ## Steps log
 - `STEPS.md` documents every step taken in this project.
-- After completing any step, append a new numbered entry to `STEPS.md` with: date, what was done (and why), and the files created or changed.
+- After completing any step, append a new entry to `STEPS.md` with: date, what was done (and why), and the files created or changed.
+- Steps are numbered **per backlog ticket**: `Step <ticket>-<n>` (e.g. `Step B031-2`). Steps written before this rule keep their number (1 → 169). See the `git-workflow` skill.
 
 ## Git
 - The project is versioned with git and pushed to the private GitHub repository `CapucineDjs/BuildDesignSystem` (branch `main`).
 - **Preview before commit** (whole project): after a change, Claude checks it, then gives the Design System Lead the local preview link (`npm run dev`, http://localhost:5173 — it shows the files on disk, uncommitted changes included). The Lead reviews it; changes requested → iterate and preview again.
-- **Only once the Design System Lead validates**: write the `STEPS.md` entry, commit all the step's changes and push to the current branch (`origin main`, or the prototype branch). Never commit or push before that validation. Commit message in English: `Step <n>: <short title>`.
-- **New prototype**: ask the Design System Lead to create a dedicated branch first (see the `prototype-setup` skill); it is merged into `main` only on request.
+- **One piece of work = one branch = one folder = one Claude session**: `component/<Name>`, `prototype/<folder-name>` or `governance/<topic>`, each tied to a backlog ticket. `main` holds approved work only: never work directly on it. **All automatic**: Claude picks the branch, sets up the folder, commits, updates from `main` and merges; the Design System Lead never runs git, creates a folder or names a skill. Full rule: the `git-workflow` skill.
+- **Only once the Design System Lead validates**: write the `STEPS.md` entry, commit all the step's changes and push to the branch of the piece of work. Never commit or push before that validation. Commit message in English: `Step <ticket>-<n>: <short title>`.
+- **Merge into `main`**: a component after each approved stage, governance as soon as approved, a prototype when validated or on request. After every merge into `main`, the long branches (prototypes) are updated from `main`.
 
 ## Backlog
 - The tasks still to do live in **`backlog/backlog.json`**, shown and edited on the **Backlog** page of the documentation site (`/docs/#/backlog`).

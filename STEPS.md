@@ -3217,3 +3217,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/Card/Card.tsx`, `components/Card/Card.css`, `components/Card/examples.tsx`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B079-1 — Git workflow: one branch per piece of work
+**Date:** 2026-10-27
+
+**Decisions (made by the Design System Lead)**
+- One piece of work = one branch = one folder = one Claude session. Branches `component/<Name>` (merged into `main` after each approved stage), `prototype/<folder-name>` (merged when the prototype is validated, or on request), `governance/<topic>` (merged as soon as approved). `main` holds approved work only.
+- Steps are numbered per backlog ticket (`Step B079-1`); steps 1 → 169 keep their number.
+- Everything is automatic: Claude picks the branch from the ticket, sets up the folder, commits, updates from `main`, merges, and dispatches the skills. The Design System Lead never runs git, creates a folder or a branch, or names a skill.
+- Also approved: a task with no ticket gets a `decided` ticket first; governance branches are merged first; the WorkDescription prototype numbers its next steps `B031-<n>`.
+
+**What was done**
+- New skill `.claude/skills/git-workflow/SKILL.md`: branches, one folder and one session per branch, start of a piece of work, steps numbered per ticket, update from `main` (start of session and before every commit), merge into `main` (fast-forward push, then the `main` folder updated), shared files and conflicts (`STEPS.md`, `backlog.json`, design system files).
+- `orchestrator`: row for `git-workflow`; dispatch is automatic. `component`: work on `component/<Name>`, merged after each approved stage, branch deleted once complete. `prototype-setup`: branch `prototype/<folder-name>`, no name asked.
+- `CLAUDE.md`: Steps log and Git sections.
+- Backlog: ticket B079 added, done.
+
+**Files**
+- `.claude/skills/git-workflow/SKILL.md` (new)
+- `.claude/skills/orchestrator/SKILL.md`, `.claude/skills/component/SKILL.md`, `.claude/skills/prototype-setup/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)

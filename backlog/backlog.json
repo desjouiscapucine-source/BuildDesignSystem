@@ -661,6 +661,14 @@
       "origin": "decided",
       "description": "Decided so far: property variant = default | clickable-image; several images, as thumbnails under the text; fixed 16:9 ratio, corners --radius-8; only the images are clickable; a click opens the image larger in the image viewer (B077, to build first). To define: thumbnail size, layout and spacing of the thumbnails, maximum count, alt text.",
       "stage": "code"
+    },
+    {
+      "id": "B079",
+      "title": "Git workflow: one branch per piece of work",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "decided",
+      "description": "Skill git-workflow: branches component/<Name>, prototype/<folder-name>, governance/<topic>; one folder and one Claude session per branch; steps numbered per ticket (Step B079-1); when and how a branch is merged into main; folders, branches and skill dispatch fully automatic (no manual action from the Design System Lead). Decided 2026-10-27."
     }
   ]
 }

@@ -1,11 +1,13 @@
 ---
 name: orchestrator
-description: Parent of all the project skills — the entry point of every task in this design system. Reads the task and dispatches it to the child skills to load (component lifecycle and stages, Atomic Design structure, token naming, never-invent, layout, page header, page content, prototype setup). Use at the start of every task, before any other project skill, and again whenever the task changes.
+description: Parent of all the project skills — the entry point of every task in this design system. Reads the task and dispatches it to the child skills to load (component lifecycle and stages, Atomic Design structure, token naming, never-invent, layout, page header, page content, prototype setup, git workflow). Use at the start of every task, before any other project skill, and again whenever the task changes.
 ---
 
 # Orchestrator — parent of all skills
 
 Every task starts here. This skill **only dispatches**: it says which child skills to load. The rules themselves live in the children.
+
+**Dispatch is automatic**: the Design System Lead only describes the task in the chat, never names a skill. Claude dispatches on its own, at the start of every task and whenever the task changes.
 
 ## How to dispatch
 
@@ -30,6 +32,7 @@ Every task starts here. This skill **only dispatches**: it says which child skil
 | A page title or subtitle, or a component description in `meta.json` | `page-header` |
 | A page, template, screen or example combining a Timeline and Cards | `page-content` |
 | A new prototype (user journey) is started in `prototypes/` | `prototype-setup` |
+| Every task: which branch to work on (start), commit, update from `main`, merge into `main` | `git-workflow` |
 
 No trigger matches → follow `CLAUDE.md` only.
 
