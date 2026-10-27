@@ -3388,3 +3388,16 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `.claude/skills/navigation/SKILL.md` (new)
 - `.claude/skills/orchestrator/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B079-3 — Git workflow: reserve a new ticket at once
+**Date:** 2026-10-27
+
+**Decisions (made by the Design System Lead)**
+- A new ticket is committed and pushed on its branch right away, before any other work, so other conversations see its ID (after a collision on B084 in Step B086-1). This is the only commit made before validation; it has no `STEPS.md` entry.
+
+**What was done**
+- `git-workflow` skill: section 3, new step 5 "Reserve the ticket at once" (commit message `Ticket <id> reserved: <title>`); section 7, check again after the push that no other branch uses the ID, otherwise take the next one.
+- `CLAUDE.md`: the reservation is the only exception to "never commit or push before validation".
+
+**Files**
+- `.claude/skills/git-workflow/SKILL.md`, `CLAUDE.md`, `STEPS.md` (updated)

@@ -49,6 +49,7 @@ Folders and sessions:
 2. Find the ticket (status `proposal` → stop, see `CLAUDE.md`).
 3. Create the branch from `origin/main` (`git checkout -b <branch> origin/main`, or `git branch -m <branch>` + `git reset --hard origin/main` on a fresh, clean `claude/…` branch) and push it: `git push -u origin <branch>`.
 4. On the branch, set the ticket status to `in-progress`.
+5. **Reserve the ticket at once**: commit `backlog/backlog.json` alone and push it on the branch, before any other work (commit message `Ticket <id> reserved: <title>`). Other conversations then see the ID (section 7). This is the only commit made before the Design System Lead validates, and it has no `STEPS.md` entry.
 
 An existing branch (e.g. a prototype in progress) → continue on it, after updating it from `main` (section 5).
 
@@ -82,5 +83,5 @@ Only at the moments of the table (section 1), once the Design System Lead has ap
 ## 7. Shared files and conflicts
 
 - **`STEPS.md`**: several branches append at the end → keep **all** the entries, from both sides, oldest date first. Numbers never collide (section 4).
-- **`backlog/backlog.json`**: on a branch, change **only the ticket of the branch**. New tickets may be added (as `proposal`, or `decided` when asked): before choosing an ID, take the highest ID across `origin/main` and every remote branch (`git fetch`, then `git grep -h -o '"id": "B[0-9]*"' $(git branch -r | grep -v HEAD) -- backlog/backlog.json | sort -u | tail -1`), plus one. Conflict → keep both changes.
+- **`backlog/backlog.json`**: on a branch, change **only the ticket of the branch**. New tickets may be added (as `proposal`, or `decided` when asked): before choosing an ID, take the highest ID across `origin/main` and every remote branch (`git fetch`, then `git grep -h -o '"id": "B[0-9]*"' $(git branch -r | grep -v HEAD) -- backlog/backlog.json | sort -u | tail -1`), plus one. A new ticket is **reserved at once** (section 3, step 5): commit and push it on the branch right away, then `git fetch` and check again that no other branch uses the same ID. Used meanwhile → take the next free ID and push again. Conflict → keep both changes.
 - Any other conflict on a design system file (token, spec, guidelines, code) → never choose alone: show both versions to the Design System Lead (`never-invent`).
