@@ -3188,3 +3188,16 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step 167 — Card guidelines: clickable-image (awaiting approval)
+**Date:** 2026-10-27
+
+**Decisions (made by the Design System Lead)**
+- When to use `clickable-image`: images that support the text. When not to use: decorative images (default card), a single hero image (not in the design system yet).
+- Do's and don'ts: thumbnails under the text; meaningful alt; related images in one card (shown visually in the chat). No rule on the order of the images.
+
+**What was done**
+- `components/Card/guidelines.md`: When (not) to use, best practices, three do / don't pairs, content (alt text, captions, no maximum), behavior (thumbnails, opening the ImageViewer, focus back), accessibility (thumbnail buttons, name, focus, target size), related components (ImageViewer).
+
+**Files**
+- `components/Card/guidelines.md`, `STEPS.md` (updated)
