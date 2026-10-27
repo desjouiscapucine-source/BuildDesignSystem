@@ -3176,3 +3176,15 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `docs/src/types.ts`, `docs/src/DesignPreview.tsx`, `components/Card/design/Preview.tsx`, `components/Card/design/tokens.json`, `components/Card/spec.md`, `STEPS.md` (updated)
+
+## Step 166 — Card clickable-image spec approved
+**Date:** 2026-10-27
+
+**Decisions (made by the Design System Lead)**
+- Card spec with the `clickable-image` variant approved, including the 16:9 crop of the thumbnails and the forbidden combinations.
+
+**What was done**
+- Backlog B078 → stage `guidelines`. Card `meta.json` stays `complete` while the change goes through the stages.
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)

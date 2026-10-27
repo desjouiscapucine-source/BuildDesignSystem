@@ -660,7 +660,7 @@
       "status": "in-progress",
       "origin": "decided",
       "description": "Decided so far: property variant = default | clickable-image; several images, as thumbnails under the text; fixed 16:9 ratio, corners --radius-8; only the images are clickable; a click opens the image larger in the image viewer (B077, to build first). To define: thumbnail size, layout and spacing of the thumbnails, maximum count, alt text.",
-      "stage": "design"
+      "stage": "guidelines"
     }
   ]
 }
