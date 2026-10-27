@@ -3336,3 +3336,15 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `docs/src/pages/NavigationPage.tsx`, `STEPS.md` (updated)
+
+## Step B079-2 — Git workflow: show main after every merge
+**Date:** 2026-10-27
+
+**Decisions (made by the Design System Lead)**
+- After every merge into `main`, Claude opens the documentation site in the browser pane, served from the latest `main`, on the page that changed. Each conversation serves the site of its own branch, so this is the reliable view of `main`; the Design System Lead runs nothing.
+
+**What was done**
+- `git-workflow` skill, section 6 (merge into `main`): new step 4 "Show `main`"; the next steps renumbered.
+
+**Files**
+- `.claude/skills/git-workflow/SKILL.md`, `STEPS.md` (updated)

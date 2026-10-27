@@ -75,8 +75,9 @@ Only at the moments of the table (section 1), once the Design System Lead has ap
 1. Update the branch from `main` (section 5), so the merge into `main` is a fast-forward.
 2. `git push origin HEAD:main` — refused if `main` moved meanwhile → go back to step 1.
 3. Update the folder where `main` is checked out (found with `git worktree list`), so the local site shows it: `git -C <folder> merge --ff-only origin/main`. Only if that folder has uncommitted changes (`git -C <folder> status --short`) → leave it and tell the Design System Lead.
-4. The other branches get the merge on their own, at their next session or commit (section 5).
-5. Work finished (component complete, prototype validated, governance approved): the ticket goes to `done` (in the last step, before the merge), then delete the branch: `git push origin --delete <branch>` and `git branch -d <branch>`.
+4. **Show `main`**: open the documentation site in the browser pane, served from the latest `main` (the folder of the session, now at `origin/main`), on the page that changed. Each conversation serves the site of its own branch, so this is the reliable view of `main`; the Design System Lead runs nothing.
+5. The other branches get the merge on their own, at their next session or commit (section 5).
+6. Work finished (component complete, prototype validated, governance approved): the ticket goes to `done` (in the last step, before the merge), then delete the branch: `git push origin --delete <branch>` and `git branch -d <branch>`.
 
 ## 7. Shared files and conflicts
 
