@@ -3360,3 +3360,16 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B085-1 — Rules for agents
+**Date:** 2026-10-27
+
+**Decisions (made by the Design System Lead)**
+- Agents (sub-agents launched by Claude) read and propose only: they never change `tokens/`, `components/` or `prototypes/`.
+- Claude checks every agent result before showing it; the `never-invent` rule applies to agents too.
+
+**What was done**
+- New `Agents` section in `CLAUDE.md`. Ticket B085 approved and done.
+
+**Files**
+- `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)

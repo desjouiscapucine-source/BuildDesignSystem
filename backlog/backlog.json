@@ -720,9 +720,9 @@
       "id": "B085",
       "title": "Rules for agents in CLAUDE.md",
       "category": "Tooling",
-      "status": "proposal",
+      "status": "done",
       "origin": "proposal",
-      "description": "An explicit limit for agents in CLAUDE.md, e.g. agents read and propose only, never change tokens/ or components/; Claude checks their results before showing them."
+      "description": "Agents section in CLAUDE.md: agents read and propose only, never change tokens/, components/ or prototypes/; Claude checks their results before showing them; never-invent applies to agents. Decided 2026-10-27."
     }
   ]
 }
