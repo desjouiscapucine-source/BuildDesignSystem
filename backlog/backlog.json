@@ -731,6 +731,14 @@
       "status": "done",
       "origin": "decided",
       "description": "Navigation levels (Level 0 to Level 4), structure of the site and navigation principles (logo, breadcrumb, depth and modals, anchors and timeline), approved with the Navigation structure page (B082)."
+    },
+    {
+      "id": "B087",
+      "title": "Site follows the navigation structure",
+      "category": "Tooling",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "The documentation site follows the navigation skill: landing page (one card per space), spaces in the header, side navigation scoped to the current space, Overview / Governance / Foundations (one page per category) / Components (one page per Atomic Design level), Portfolio placeholder, logo to Level 0. Breadcrumb (B083) and modal (B029) come later, once they are components. Decided 2026-10-27."
     }
   ]
 }
