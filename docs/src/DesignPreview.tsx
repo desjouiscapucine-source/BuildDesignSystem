@@ -113,7 +113,7 @@ export function DesignPreview({ component }: { component: ComponentDoc }) {
         {shownStates.map((state) => (
           <figure key={state} style={design.previewMinWidth ? { minWidth: design.previewMinWidth } : undefined}>
             <div className="design-preview-canvas" style={cssVars(design, valuesFor(state))}>
-              <Preview state={state} text={text} />
+              <Preview state={state} text={text} variant={variant} />
             </div>
             <figcaption>{state}</figcaption>
           </figure>

@@ -3159,3 +3159,20 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/ImageViewer/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step 165 — Card clickable-image: design preview and spec (awaiting approval)
+**Date:** 2026-10-27
+
+**Decisions (made by the Design System Lead)**
+- Thumbnails: **3 per row**, sharing the card width; one row that **wraps**; **`--space-16`** between the text and the thumbnails, **`--space-8`** between thumbnails; **no maximum** number.
+- Thumbnail states: **state layers + focus ring**. Screen reader name: **"Open image: <alt>"**.
+- Prop **`images`**, same shape as the ImageViewer (`{ src, alt, caption?, thumbnailSrc? }`).
+
+**What was done**
+- Documentation site: the Design preview tab now passes the selected variant to the component preview (`variant` in `PreviewProps`), so a preview can show variant-specific parts.
+- Card design preview: variant `clickable-image` with 4 thumbnails (3 per row, 16:9, the first one showing the state), new slots `thumbnails-gap-top`, `thumbnails-gap`, `thumbnail-radius`; states default / hover / focus / pressed.
+- `components/Card/spec.md`: purpose, anatomy (thumbnails), `variant` and `images` props, combinations (forbidden: `clickable-image` without images, `default` with images), content (alt), sizes, states (thumbnails, opening the ImageViewer, focus back), tokens, contrast (focus outline 6.10:1). Added by Claude, to approve: the image is cropped to fill the 16:9 thumbnail; the forbidden combinations.
+- Verification: type check passes; in the browser the clickable-image preview shows 3 columns, thumbnails 92×52 (16:9), 8px gaps, 16px under the text, the 4th thumbnail on a second row, brown focus outline, no console errors.
+
+**Files**
+- `docs/src/types.ts`, `docs/src/DesignPreview.tsx`, `components/Card/design/Preview.tsx`, `components/Card/design/tokens.json`, `components/Card/spec.md`, `STEPS.md` (updated)

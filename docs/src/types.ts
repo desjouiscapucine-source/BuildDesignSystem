@@ -18,6 +18,8 @@ export type PreviewState = "default" | "hover" | "focus" | "pressed" | "disabled
 export interface PreviewProps {
   state: PreviewState;
   text: string;
+  /** The variant selected in the Design preview tab (name from design/tokens.json). */
+  variant?: string;
 }
 
 export type SlotType = "color" | "space" | "radius" | "border-width" | "icon-size" | "shadow" | "text-style";
