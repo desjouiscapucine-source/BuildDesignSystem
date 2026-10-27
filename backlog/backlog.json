@@ -707,6 +707,14 @@
       "origin": "proposal",
       "description": "Shows where the page sits in the navigation structure and goes back to any level above it (Navigation structure page, B082).",
       "stage": "design"
+    },
+    {
+      "id": "B086",
+      "title": "Skill: navigation",
+      "category": "Skills",
+      "status": "done",
+      "origin": "decided",
+      "description": "Navigation levels (Level 0 to Level 4), structure of the site and navigation principles (logo, breadcrumb, depth and modals, anchors and timeline), approved with the Navigation structure page (B082)."
     }
   ]
 }

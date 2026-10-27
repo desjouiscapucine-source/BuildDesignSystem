@@ -58,6 +58,9 @@ Guidelines are updated whenever coding or prototyping reveals a new rule or edge
 ## Page header
 - Page title `heading-1` (30 characters max) and subtitle `lead` (80 characters max), **one line each**, cut with an ellipsis as a safety net — see the `page-header` skill. Component descriptions in `meta.json` follow the subtitle rule.
 
+## Navigation
+- Navigation levels **Level 0** (landing page) → **Level 4** (component pages only); Level 3 is the deepest level otherwise, deeper detail opens in a modal; logo back to Level 0, breadcrumb to go back, anchors and timeline inside a page — see the `navigation` skill and the Navigation structure page (`/docs/#/navigation`).
+
 ## Page content
 - A page combining a Timeline and Cards follows the `page-content` skill: one card per step (same order, same title, anchor link), on desktop a 12-column grid on the full screen width with cards on 8 columns and the timeline filling 4 columns (16px gutter), timeline fixed while scrolling, selected step following the card at the top of the screen, space after the last card so every card can reach the top.
 - Cards in any page follow the `card` skill: stacked, full width of their column, 16px apart, no nested cards; `page-content` refers to it.

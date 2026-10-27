@@ -3348,3 +3348,18 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `.claude/skills/git-workflow/SKILL.md`, `STEPS.md` (updated)
+
+## Step B086-1 — Skill: navigation
+**Date:** 2026-10-27
+
+**Decisions (made by the Design System Lead)**
+- Create a `navigation` skill from the approved navigation structure (Step B082-1).
+
+**What was done**
+- New skill `.claude/skills/navigation/SKILL.md`: levels (Level 0 → Level 4), structure of the site, navigation principles (logo, breadcrumb, depth and modals, anchors and timeline, component tabs), what to do when the structure changes (place every page in a level, modal below Level 3, change the skill and the Navigation structure page together), and what is not defined yet. Target structure: the site does not follow it yet.
+- `orchestrator`: dispatch row for `navigation`. `CLAUDE.md`: Navigation section.
+- Backlog: B086 added, done.
+
+**Files**
+- `.claude/skills/navigation/SKILL.md` (new)
+- `.claude/skills/orchestrator/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
