@@ -3217,3 +3217,15 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/Card/Card.tsx`, `components/Card/Card.css`, `components/Card/examples.tsx`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step 169 — Card clickable-image complete
+**Date:** 2026-10-27
+
+**Decisions (made by the Design System Lead)**
+- Card `clickable-image` code approved: the variant is complete.
+
+**What was done**
+- Backlog B078 → `done` (description updated with the final decisions). Card `meta.json` stays `complete`.
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)

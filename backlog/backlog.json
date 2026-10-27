@@ -657,9 +657,9 @@
       "id": "B078",
       "title": "Card: clickable-image variant",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
-      "description": "Decided so far: property variant = default | clickable-image; several images, as thumbnails under the text; fixed 16:9 ratio, corners --radius-8; only the images are clickable; a click opens the image larger in the image viewer (B077, to build first). To define: thumbnail size, layout and spacing of the thumbnails, maximum count, alt text.",
+      "description": "Property variant = default | clickable-image; images { src, alt, caption?, thumbnailSrc? } as thumbnails under the text (3 per row, 16:9 cropped, radius-8, space-8 gap, space-16 under the text, no maximum); only the thumbnails are clickable and open the ImageViewer. Spec, guidelines and code approved 2026-10-27.",
       "stage": "code"
     }
   ]
