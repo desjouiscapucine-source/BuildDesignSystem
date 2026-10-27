@@ -70,6 +70,10 @@ Guidelines are updated whenever coding or prototyping reveals a new rule or edge
 - For a component, it loads the **`component`** skill (lifecycle and approval gate) together with the skill of the current stage.
 - The **How to use skills** page of the documentation site (`/docs/#/skills`) reads the skills from `.claude/skills/` and shows them.
 
+## Agents
+- Agents (sub-agents launched by Claude) **read and propose only**: they never change `tokens/`, `components/` or `prototypes/`.
+- Claude checks every agent result before showing it to the Design System Lead; the `never-invent` rule applies to agents too.
+
 ## Component guidelines
 Every component has a dedicated guidelines document, separate from its design spec. The spec says **what** the component is; the guidelines say **how and when** to use it. Each guidelines document covers:
 - **When to use / when not to use** — and which component to use instead.
