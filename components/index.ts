@@ -11,7 +11,7 @@ export type { TimelineStepProps } from "./TimelineStep/TimelineStep";
 export { Timeline } from "./Timeline/Timeline";
 export type { TimelineProps } from "./Timeline/Timeline";
 export { Card } from "./Card/Card";
-export type { CardProps } from "./Card/Card";
+export type { CardProps, CardVariant, CardDefaultProps, CardClickableImageProps } from "./Card/Card";
 export { IconButton } from "./IconButton/IconButton";
 export type { IconButtonProps, IconButtonVariant } from "./IconButton/IconButton";
 export { ImageViewer } from "./ImageViewer/ImageViewer";

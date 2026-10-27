@@ -2,6 +2,9 @@
 import type { Example } from "../../docs/src/types";
 import { Timeline } from "../Timeline/Timeline";
 import { TimelineStep } from "../TimelineStep/TimelineStep";
+import landscape from "../ImageViewer/examples/landscape.svg";
+import portrait from "../ImageViewer/examples/portrait.svg";
+import small from "../ImageViewer/examples/small.svg";
 import { Card } from "./Card";
 
 export const examples: Example[] = [
@@ -52,6 +55,56 @@ export const examples: Example[] = [
           The parcel left our warehouse in Lyon on Tuesday morning. It was handed over to the carrier, who will deliver it
           to the address given in the order. You will receive an email with the tracking number as soon as the carrier
           scans the parcel. Deliveries take place from Monday to Saturday, between 8 am and 6 pm.
+        </Card>
+      </div>
+    ),
+  },
+  {
+    title: "Clickable images",
+    description: "Variant clickable-image: thumbnails under the text, 3 per row; a click opens the ImageViewer on that image.",
+    render: () => (
+      <div style={{ width: "100%", maxWidth: "480px" }}>
+        <Card
+          variant="clickable-image"
+          title="Facade renovated"
+          images={[
+            { src: landscape, alt: "House with a brown door, seen from the garden", caption: "View from the garden." },
+            { src: portrait, alt: "Narrow building with six windows and a brown door", caption: "North facade of the building." },
+            { src: small, alt: "Small drawing of a house on a yellow background" },
+          ]}
+        >
+          The north facade was cleaned and repainted.
+        </Card>
+      </div>
+    ),
+  },
+  {
+    title: "Clickable images — more than 3",
+    description: "From the 4th image, the thumbnails go to the next row.",
+    render: () => (
+      <div style={{ width: "100%", maxWidth: "480px" }}>
+        <Card
+          variant="clickable-image"
+          title="Garden works"
+          images={[
+            { src: landscape, alt: "House seen from the garden, before the works" },
+            { src: small, alt: "Small drawing of the new garden layout" },
+            { src: portrait, alt: "Side of the building next to the new path" },
+            { src: landscape, alt: "House seen from the garden, after the works" },
+          ]}
+        >
+          The path was rebuilt and the lawn sown again.
+        </Card>
+      </div>
+    ),
+  },
+  {
+    title: "Clickable images — one image",
+    description: "A single thumbnail; the ImageViewer opens without the previous / next band.",
+    render: () => (
+      <div style={{ width: "100%", maxWidth: "480px" }}>
+        <Card variant="clickable-image" title="Door replaced" images={[{ src: portrait, alt: "Narrow building with a new brown door" }]}>
+          The front door was replaced by a wooden one.
         </Card>
       </div>
     ),

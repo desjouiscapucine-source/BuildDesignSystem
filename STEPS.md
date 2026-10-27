@@ -3201,3 +3201,19 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/Card/guidelines.md`, `STEPS.md` (updated)
+
+## Step 168 — Card clickable-image code (stage 3, awaiting approval)
+**Date:** 2026-10-27
+
+**Decisions (made by the Design System Lead)**
+- Card guidelines for `clickable-image` approved (step 167).
+
+**What was done**
+- `components/Card/Card.tsx`: props `variant` (`default` | `clickable-image`) and `images`; the types forbid `clickable-image` without images and `default` with images. Thumbnails are buttons (`aria-label` "Open image: <alt>", `aria-haspopup="dialog"`) showing `thumbnailSrc` or `src`; a click opens the `ImageViewer` on that image; the viewer gives the focus back to the thumbnail. Modifier class `ds-card--<variant>` always added.
+- `components/Card/Card.css`: thumbnails grid 3 columns, `space.8` gap, `space.16` under the text, 16:9 cropped (`object-fit: cover`), `radius.8`, state layers and `border.focus` outline. The 16:9 ratio is written as `aspect-ratio: 16 / 9` (no token exists for ratios).
+- `components/Card/examples.tsx`: 3 new examples (3 images, 4 images wrapping, 1 image). `components/index.ts`: Card types exported.
+- Backlog B078 → stage `code`.
+- Verification: type check and build pass. In the browser (Examples tab, no console errors): thumbnails 143×81 (16:9), 3 per row with the 4th on a second row, 8px gaps, 16px under the text, names "Open image: …"; a click on the 3rd thumbnail opens the viewer on that image with the band and the focus on the close button; Escape closes and the focus returns to that thumbnail; with one image, no band; the default card has no thumbnails.
+
+**Files**
+- `components/Card/Card.tsx`, `components/Card/Card.css`, `components/Card/examples.tsx`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
