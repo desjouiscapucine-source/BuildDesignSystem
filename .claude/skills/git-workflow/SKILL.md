@@ -1,6 +1,6 @@
 ---
 name: git-workflow
-description: How work is organized with git branches — one branch per piece of work (component, prototype, governance), one folder and one Claude session per branch, steps numbered per backlog ticket, and when and how a branch is merged into main. Use at the start of every task (which branch?), before every commit, and whenever a branch is created, updated from main or merged.
+description: How work is organized with git branches — one branch per piece of work (component, prototype, governance), one folder and one Claude session per branch, the conversations and their usage (Gouvernance, Composant <Name>, Prototype <Name>), steps numbered per backlog ticket, and when and how a branch is merged into main. Use at the start of every task (which branch?), before every commit, and whenever a branch is created, updated from main or merged.
 ---
 
 # Git workflow
@@ -23,8 +23,22 @@ Every branch is tied to a **backlog ticket** (`backlog/backlog.json`).
 - Governance is merged first: skills and `CLAUDE.md` guide every other session, so the new rules reach them sooner.
 - A task with no ticket (e.g. a quick request in the chat) → add a ticket first (`origin: decided`, since the Design System Lead asked for it), then create its branch.
 
-## 2. One folder and one session per branch
+## 2. Conversations, folders and sessions
 
+All conversations are opened in the same Claude project, `BuildDesignSystem`. Each one is for one kind of work:
+
+| Conversation | Usage | Branch | End |
+| ------------ | ----- | ------ | --- |
+| **Gouvernance** (one, permanent) | Backlog, process, skills, `CLAUDE.md`, documentation site, tooling | `governance/<topic>`, one topic at a time | Never archived; each topic is merged into `main` as soon as approved |
+| **Composant `<Name>`** (one per component) | Design, guidelines and code of one component | `component/<Name>` | Archived once the component is `complete` |
+| **Prototype `<Name>`** (one per prototype) | Screens and iterations of one prototype | `prototype/<folder-name>` | Archived once the prototype is validated and merged |
+
+- No conversation works on `main`.
+- At the start of a new conversation, Claude names it after the table (e.g. `Composant Modal`).
+- A task outside the usage of the conversation → Claude says which conversation to open, and does not start it there.
+- **End of a component or a prototype**: once merged and its branch deleted, Claude offers to archive the conversation, and archives it once the Design System Lead agrees (archived, not deleted: the history stays readable and can be restored). A later change to that component → a new `Composant <Name>` conversation, with a new branch from `main`; the decisions are in `spec.md`, `guidelines.md` and `STEPS.md`.
+
+Folders and sessions:
 - Each Claude session works in its own folder (git worktree), created automatically by the Claude app, on a branch named `claude/…`. At the start of the task, Claude switches that folder to the branch of the piece of work on its own (section 3), with no question about the name: it follows the table (section 1).
 - **Never work on a branch another session is working on.** Before using a branch, check where it is checked out: `git worktree list`. Already checked out in another folder → ask the Design System Lead.
 - Never switch branches in a folder another session uses.

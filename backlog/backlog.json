@@ -669,6 +669,14 @@
       "status": "done",
       "origin": "decided",
       "description": "Skill git-workflow: branches component/<Name>, prototype/<folder-name>, governance/<topic>; one folder and one Claude session per branch; steps numbered per ticket (Step B079-1); when and how a branch is merged into main; folders, branches and skill dispatch fully automatic (no manual action from the Design System Lead). Decided 2026-10-27."
+    },
+    {
+      "id": "B080",
+      "title": "Conversations and their usage",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "decided",
+      "description": "In the git-workflow skill: the conversations of the Claude project and their usage. Gouvernance (one, permanent, governance/<topic>), Composant <Name> and Prototype <Name> (one each, archived when finished). Decided 2026-10-27."
     }
   ]
 }

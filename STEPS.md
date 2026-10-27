@@ -3248,3 +3248,20 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `.claude/skills/git-workflow/SKILL.md` (new)
 - `.claude/skills/orchestrator/SKILL.md`, `.claude/skills/component/SKILL.md`, `.claude/skills/prototype-setup/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B080-1 — Conversations and their usage
+**Date:** 2026-10-27
+
+**Decisions (made by the Design System Lead)**
+- All conversations are opened in the same Claude project, `BuildDesignSystem`: **Gouvernance** (one, permanent, branches `governance/<topic>`), **Composant `<Name>`** (one per component, `component/<Name>`) and **Prototype `<Name>`** (one per prototype, `prototype/<folder-name>`). No conversation works on `main`.
+- When a component or a prototype is finished, its conversation is archived (not deleted); a later change opens a new conversation with a new branch.
+- Claude names a new conversation after the table, and redirects a task outside the usage of the conversation to the right one.
+- The conversations « main » (deleted), « Composants » and « Prototypes » (archived) are no longer used.
+
+**What was done**
+- `git-workflow` skill, section 2 "Conversations, folders and sessions": table of the conversations, naming, redirection, end of a component or a prototype.
+- `component` skill: offer to archive the conversation once the component is complete. `CLAUDE.md`: conversations summarized in the Git section.
+- Backlog: ticket B080 added, done.
+
+**Files**
+- `.claude/skills/git-workflow/SKILL.md`, `.claude/skills/component/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)

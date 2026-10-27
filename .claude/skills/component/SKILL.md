@@ -58,7 +58,7 @@ When the code stage is approved, the component is **complete**:
 - Set `meta.json` `status` to **`complete`** (the site shows every stage checked and a Complete badge).
 - Set the backlog item status to `done`.
 - Export the component from `components/index.ts` (if not already done at the code stage).
-- Log it in `STEPS.md`, commit, merge `component/<Name>` into `main`, then delete the branch (`git-workflow`).
+- Log it in `STEPS.md`, commit, merge `component/<Name>` into `main`, then delete the branch and offer to archive the conversation (`git-workflow`).
 
 ## Changing an existing component
 
