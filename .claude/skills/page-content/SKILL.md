@@ -7,6 +7,7 @@ description: Rules for page content built with a Timeline and Cards — how card
 
 Rules approved by the Design System Lead for a page whose content is a list of **Cards** with a **Timeline** that leads to them.
 The look of each component is in its own spec (`components/Card`, `components/Timeline`, `components/TimelineStep`); this skill covers **how they work together**.
+The rules for composing the cards themselves (stacking, width, spacing, grouping) are in the **`card` skill**: load it together with this one.
 
 ## Link between a step and a card
 
@@ -81,4 +82,5 @@ Approved by the Design System Lead on 2026-10-21 (cards 8 / timeline 4, full scr
 - [ ] Timeline fixed while scrolling; the selected step follows the card at the top of the screen.
 - [ ] Space after the last card, so every card (the last one included) can reach the top of the screen.
 - [ ] One timeline per page.
+- [ ] The `card` checklist.
 - [ ] Below 1024px, the timeline is reached through the open icon button; from 1024px, no icon button is shown.

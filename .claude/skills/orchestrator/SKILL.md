@@ -1,6 +1,6 @@
 ---
 name: orchestrator
-description: Parent of all the project skills — the entry point of every task in this design system. Reads the task and dispatches it to the child skills to load (component lifecycle and stages, Atomic Design structure, token naming, never-invent, layout, page header, page content, prototype setup, git workflow). Use at the start of every task, before any other project skill, and again whenever the task changes.
+description: Parent of all the project skills — the entry point of every task in this design system. Reads the task and dispatches it to the child skills to load (component lifecycle and stages, Atomic Design structure, token naming, never-invent, layout, page header, page content, card, prototype setup, git workflow). Use at the start of every task, before any other project skill, and again whenever the task changes.
 ---
 
 # Orchestrator — parent of all skills
@@ -30,7 +30,8 @@ Every task starts here. This skill **only dispatches**: it says which child skil
 | Any design decision: value, name, palette, anatomy, variant, state, guideline, behavior, content | `never-invent` |
 | A page, screen or section is laid out (docs site, templates, pages, prototypes) | `layout` |
 | A page title or subtitle, or a component description in `meta.json` | `page-header` |
-| A page, template, screen or example combining a Timeline and Cards | `page-content` |
+| A page, template, screen or example containing Cards | `card` |
+| A page, template, screen or example combining a Timeline and Cards | `page-content` + `card` |
 | A new prototype (user journey) is started in `prototypes/` | `prototype-setup` |
 | Every task: which branch to work on (start), commit, update from `main`, merge into `main` | `git-workflow` |
 

@@ -60,6 +60,7 @@ Guidelines are updated whenever coding or prototyping reveals a new rule or edge
 
 ## Page content
 - A page combining a Timeline and Cards follows the `page-content` skill: one card per step (same order, same title, anchor link), on desktop a 12-column grid on the full screen width with cards on 8 columns and the timeline filling 4 columns (16px gutter), timeline fixed while scrolling, selected step following the card at the top of the screen, space after the last card so every card can reach the top.
+- Cards in any page follow the `card` skill: stacked, full width of their column, 16px apart, no nested cards; `page-content` refers to it.
 
 ## Skills
 - Every task starts with the **`orchestrator`** skill (`.claude/skills/orchestrator/SKILL.md`), the parent of all the project skills: it only dispatches the task to the child skills to load. Every new skill gets a row in its dispatch table.

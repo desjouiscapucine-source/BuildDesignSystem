@@ -677,6 +677,14 @@
       "status": "done",
       "origin": "decided",
       "description": "In the git-workflow skill: the conversations of the Claude project and their usage. Gouvernance (one, permanent, governance/<topic>), Composant <Name> and Prototype <Name> (one each, archived when finished). Decided 2026-10-27."
+    },
+    {
+      "id": "B081",
+      "title": "Skill: card",
+      "category": "Skills",
+      "status": "done",
+      "origin": "decided",
+      "description": "A card skill for composing cards in any page (with or without a Timeline): placement, spacing, grouping. The page-content skill refers to it. Decided 2026-10-27."
     }
   ]
 }

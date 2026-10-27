@@ -3265,3 +3265,21 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `.claude/skills/git-workflow/SKILL.md`, `.claude/skills/component/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B081-1 — Skill: card
+**Date:** 2026-10-27
+
+**Decisions (made by the Design System Lead)**
+- A new `card` skill covers **composing cards in a page** (placement, spacing, grouping), loaded for **any page with Cards**, with or without a Timeline.
+- `page-content` keeps its Timeline + Cards rules and refers to the `card` skill.
+- The skill contains only rules already approved (Card guidelines, `layout` skill). Open questions, not decided: order of cards without a timeline, cards side by side, number of cards per page, content between cards.
+
+**What was done**
+- New `.claude/skills/card/SKILL.md`: placement (stacked, full width of the column, 16px `--space-16` between cards, on the layout grid), grouping (no nested cards, `clickable-image` images of the same subject in one card), checklist.
+- `page-content` skill: refers to `card` (intro and checklist). `orchestrator` skill: new row "page containing Cards → `card`", and Timeline + Cards loads `page-content` + `card`. `CLAUDE.md`: one line under Page content.
+- Backlog: ticket B081 added, done.
+- Verification: build passes; the skill shows on the How to use skills page, no console errors. Previewed and validated by the Design System Lead before commit.
+
+**Files**
+- `.claude/skills/card/SKILL.md` (created)
+- `.claude/skills/page-content/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
