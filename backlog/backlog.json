@@ -739,6 +739,14 @@
       "status": "done",
       "origin": "decided",
       "description": "The documentation site follows the navigation skill: landing page (one card per space: Documentation, Portfolio), spaces in the header, side navigation scoped to the current space, Overview / Governance / Foundations (one page per category) / Components (one page per Atomic Design level) / Prototypes / Navigation as sections of Documentation, Portfolio placeholder, logo to Level 0. Breadcrumb (B083) and modal (B029) come later, once they are components. Decided 2026-10-27."
+    },
+    {
+      "id": "B088",
+      "title": "Landing page illustrations",
+      "category": "Tooling",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "Illustrations of the landing page (Level 0): background motifs and a retouched avatar, kawaii style like the avatar, primary and secondary palettes only. Built in 3 steps. Decided 2026-10-27."
     }
   ]
 }
