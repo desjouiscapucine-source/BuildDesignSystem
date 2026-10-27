@@ -3427,3 +3427,23 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `docs/src/structure.ts`, `docs/src/foundations.ts`, `docs/src/pages/SectionPages.tsx` (new)
 - `docs/src/pages/FoundationPage.tsx` (renamed from `TokensPage.tsx`), `docs/src/pages/HomePage.tsx` (removed)
 - `docs/src/App.tsx`, `docs/src/AppShell.tsx`, `docs/src/docs.css`, `docs/src/pages/GridPage.tsx`, `docs/src/pages/NavigationPage.tsx`, `index.html`, `.claude/skills/navigation/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B088-1 — Landing page: cloud background
+**Date:** 2026-10-27
+
+**Decisions (made by the Design System Lead)**
+- Ticket B088 (landing page illustrations) is built in 3 steps; step 1 is the page background.
+- Background: a sea of clouds seen from above, drawn as an engraving (proposal B3): each bump filled with concentric lines, thicker toward the shadow, hatching at the base, light from the top right.
+- Colors: primary palette, with cream highlights (secondary-600) on the nearest lit tops; footbridge secondary-800 (planks secondary-900); walker primary-950.
+- Composition given by the Design System Lead (portrait 9:16): hazy far sea at the top (horizon around 12 %), a great dark column on the left, a darker dome in front of it, cumulus getting smaller toward the top right, light cumulus on the right, a winding footbridge with a small walker in the valley. The walker sits on the bridge (the given point was off the bridge path).
+- Option C: landscape screens get the same zones recomposed in a landscape layout.
+- Readability: a dark panel (primary-900, radius 16, padding 24) behind the avatar, the clock, the title and the subtitle; the link cards stay light.
+
+**What was done**
+- `home-clouds.ts` (new): draws the illustration in SVG for the window size (portrait or landscape layout), with token colors only; drawn again on resize. About 3,000 shapes.
+- `index.html`: the panel around the hero, the title and the subtitle. `docs.css`: fixed background, panel, the one-line title rule now targets the panel.
+- `home.ts` loads the drawing; `tsconfig.json` checks the new file.
+
+**Files**
+- `home-clouds.ts` (new)
+- `home.ts`, `index.html`, `docs/src/docs.css`, `tsconfig.json`, `STEPS.md` (updated)

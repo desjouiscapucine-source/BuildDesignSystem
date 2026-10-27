@@ -347,7 +347,18 @@ code {
 .home-page :focus-visible { outline-color: var(--color-border-focus-inverse); }
 .home-page .lead { color: var(--color-text-inverse); }
 .home-page .home-links a { color: var(--color-text-primary); }
-.home { max-width: 720px; margin: 0 auto; padding: var(--space-64) var(--space-16); }
+.home { max-width: 720px; position: relative; margin: 0 auto; padding: var(--space-64) var(--space-16); }
+/* Landing background (home-clouds.ts): a sea of clouds drawn as an engraving, fixed behind the
+   content (drawn first, so the positioned .home stays on top); colors set in the script (tokens). */
+.home-clouds { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+/* Dark panel behind the avatar, the title and the subtitle, so the white text stays readable on the
+   clouds (WCAG AA). */
+.home-panel {
+  padding: var(--space-24);
+  border-radius: var(--radius-16);
+  background: var(--color-primary-900);
+}
+.home-panel > :last-child { margin-bottom: 0; }
 /* Landing hero: the avatar types on its laptop once on load, next to the work-time clock. */
 .home-hero { display: flex; align-items: center; gap: var(--space-24); margin-bottom: var(--space-24); }
 .home-avatar { width: calc(var(--space-64) * 2); height: calc(var(--space-64) * 2); flex: none; }
@@ -704,7 +715,7 @@ pre.code { background: var(--color-background-surface); padding: var(--space-16)
 .code-copy .ds-icon { font-size: var(--icon-size-16); }
 
 /* Page header (page-header skill): title heading-1 + subtitle lead, one line each, ellipsis as a safety net */
-.shell-content > h1, .shell-content > .lead, .home > h1, .home > .lead {
+.shell-content > h1, .shell-content > .lead, .home-panel > h1, .home-panel > .lead {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

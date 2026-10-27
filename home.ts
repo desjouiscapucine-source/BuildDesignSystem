@@ -1,3 +1,5 @@
+import "./home-clouds";
+
 // Landing page animation: the avatar types on its laptop (CSS, docs.css) while the
 // work-time clock counts up to the time spent building the site, once, on load.
 interface WorkTimeData {

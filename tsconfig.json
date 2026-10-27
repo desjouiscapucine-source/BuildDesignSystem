@@ -17,5 +17,5 @@
       "@ds/tokens/*": ["./tokens/*"]
     }
   },
-  "include": ["components", "docs", "prototypes", "tokens", "scripts", "home.ts", "vite.config.ts"]
+  "include": ["components", "docs", "prototypes", "tokens", "scripts", "home.ts", "home-clouds.ts", "vite.config.ts"]
 }
