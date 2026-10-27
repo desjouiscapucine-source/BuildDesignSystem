@@ -145,6 +145,8 @@ function workTimeApi(): Plugin {
 
 export default defineConfig({
   plugins: [react(), backlogApi(), designTokensApi(), workTimeApi()],
+  // Each Claude conversation gets its own port (PORT, set by the preview); 5173 otherwise.
+  server: { port: Number(process.env.PORT) || 5173 },
   resolve: {
     alias: {
       "@ds/components": resolve(root, "components/index.ts"),

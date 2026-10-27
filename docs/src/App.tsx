@@ -10,9 +10,10 @@ import { GridPage } from "./pages/GridPage";
 import { SkillsPage } from "./pages/SkillsPage";
 import { TicketPage } from "./pages/TicketPage";
 import { PrototypePage } from "./pages/PrototypePage";
+import { NavigationPage } from "./pages/NavigationPage";
 import { prototypeName, prototypes } from "./prototypes";
 
-// Hash routes: #/  ·  #/backlog  ·  #/backlog/<id>  ·  #/skills  ·  #/prototypes/<name>  ·  #/tokens  ·  #/icons  ·  #/grid  ·  #/components/<slug>
+// Hash routes: #/  ·  #/backlog  ·  #/backlog/<id>  ·  #/skills  ·  #/prototypes/<name>  ·  #/navigation  ·  #/tokens  ·  #/icons  ·  #/grid  ·  #/components/<slug>
 function useHashRoute() {
   const read = () => {
     const hash = window.location.hash.replace(/^#/, "");
@@ -66,6 +67,10 @@ const sections: NavSection[] = [
       { href: "/prototypes/", label: "All prototypes", icon: "devices" },
     ],
   },
+  {
+    title: "Navigation",
+    items: [{ href: "#/navigation", label: "Navigation structure", icon: "account_tree" }],
+  },
 ];
 
 export function App() {
@@ -79,6 +84,7 @@ export function App() {
   else if (route === "/skills") page = <SkillsPage />;
   else if (route === "/icons") page = <IconsPage />;
   else if (route === "/grid") page = <GridPage />;
+  else if (route === "/navigation") page = <NavigationPage />;
   else if (route.startsWith("/prototypes/") && prototypes.includes(route.slice("/prototypes/".length)))
     page = <PrototypePage key={route} name={route.slice("/prototypes/".length)} />;
   else if (component) page = <ComponentPage key={component.slug} component={component} />;

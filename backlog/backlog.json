@@ -244,7 +244,7 @@
       "category": "Components",
       "status": "todo",
       "origin": "proposal",
-      "description": "Dialog, uses the highest shadow.",
+      "description": "Dialog, uses the highest shadow. Opens the detail of a Level 3 page (e.g. a ticket from the Backlog) instead of a new page (Navigation structure page, B082).",
       "stage": "design"
     },
     {
@@ -690,6 +690,23 @@
       "status": "done",
       "origin": "decided",
       "description": "A card skill for composing cards in any page (with or without a Timeline): placement, spacing, grouping. The page-content skill refers to it. Decided 2026-10-27."
+    },
+    {
+      "id": "B082",
+      "title": "Documentation page: Navigation structure",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "decided",
+      "description": "Page of the documentation site (#/navigation), under Prototypes: navigation levels (Level 0 landing page to Level 4 component pages), flow, navigation principles (logo, breadcrumb, depth and modals, anchors and timeline) and what is still to define. Target structure: the site does not follow it yet."
+    },
+    {
+      "id": "B083",
+      "title": "Breadcrumb",
+      "category": "Components",
+      "status": "proposal",
+      "origin": "proposal",
+      "description": "Shows where the page sits in the navigation structure and goes back to any level above it (Navigation structure page, B082).",
+      "stage": "design"
     }
   ]
 }

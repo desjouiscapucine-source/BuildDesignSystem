@@ -473,6 +473,32 @@ code {
   width: var(--space-16);
   border-top: var(--border-width-1) solid var(--color-border-default);
 }
+.nav-tree,
+.nav-tree ul { list-style: none; margin: 0; padding: 0; }
+.nav-tree ul {
+  margin-left: var(--space-16);
+  padding-top: var(--space-4);
+  border-left: var(--border-width-1) solid var(--color-border-default);
+}
+.nav-tree ul > li { padding: var(--space-4) 0 var(--space-4) var(--space-24); }
+.nav-tree-row { position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-8); }
+.nav-tree ul > li > .nav-tree-row::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--space-24));
+  top: 50%;
+  width: var(--space-16);
+  border-top: var(--border-width-1) solid var(--color-border-default);
+}
+.nav-tree-level {
+  padding: 0 var(--space-8);
+  border-radius: var(--radius-4);
+  background: var(--color-background-brand-subtle);
+  font-size: var(--typography-label-sm-size);
+  font-weight: var(--font-weight-semibold);
+}
+.nav-tree-label { font-weight: var(--font-weight-semibold); }
+.nav-tree-note { color: var(--color-text-secondary); font-size: var(--typography-body-sm-size); }
 .skill-card {
   display: flex;
   flex-direction: column;

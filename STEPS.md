@@ -3304,3 +3304,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `prototypes/work-description/images/landscape.svg`, `portrait.svg`, `small.svg` (created)
 - `prototypes/work-description/main.tsx`, `main.css`, `spec.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B082-1 — Documentation page: Navigation structure
+**Date:** 2026-10-27
+
+**Decisions (made by the Design System Lead)**
+- Navigation levels: **Level 0** landing page; **Level 1** Documentation (opens on Overview), Prototypes, Navigation, Portfolio; **Level 2** Overview (content: Description + Summary), Governance, Foundations, Components; **Level 3** Backlog and How to use skills (Governance), one page per Foundations category (Color, Typography, Spacing, Radius, Border width, Shadows, Motion, Opacity, Size, Breakpoints, Layout grid, Z-index, Icons), one category per Atomic Design level (Components); **Level 4** component pages only.
+- Navigation principles: the logo goes back to Level 0 from every level; a breadcrumb goes back to any level above; Level 3 is the deepest level except component pages, and the detail of a Level 3 page (e.g. a ticket) opens in a modal (to build later); inside a page, anchors and a timeline on the right; component pages keep their current tabs.
+- To define later: order of Level 1, content of Prototypes and Portfolio, empty Templates and Pages, which pages get the timeline, when the site follows this structure.
+- Also approved: the "Navigation" section of the side navigation (icon `account_tree`), and one dev server port per conversation.
+
+**What was done**
+- New page `docs/src/pages/NavigationPage.tsx` (`#/navigation`), in a new "Navigation" section under Prototypes: levels table, flow (tree with level badges; components listed from their `meta.json`), principles, to define. Styles `.nav-tree*` in `docs/src/docs.css` (tokens only).
+- Backlog: B082 added, done; B083 Breadcrumb added as `proposal`; B029 Modal description completed (detail of a Level 3 page).
+- Tooling: the dev server takes the port given by the preview (`PORT`, 5173 otherwise), so several conversations can preview at the same time (`vite.config.ts`, `.claude/launch.json` with `autoPort`).
+- Verification: type check and build pass; the page shows with no console errors.
+
+**Files**
+- `docs/src/pages/NavigationPage.tsx` (new)
+- `docs/src/App.tsx`, `docs/src/docs.css`, `vite.config.ts`, `.claude/launch.json`, `backlog/backlog.json`, `STEPS.md` (updated)
