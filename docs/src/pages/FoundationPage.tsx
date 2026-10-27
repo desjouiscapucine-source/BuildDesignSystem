@@ -1,4 +1,5 @@
 import { tokens, textStyles, contrastResults, type Tier, type Token } from "../../../tokens/lib";
+import type { Foundation } from "../foundations";
 
 function Preview({ token }: { token: Token }) {
   const group = token.path[0];
@@ -8,10 +9,6 @@ function Preview({ token }: { token: Token }) {
   if (group === "shadow") return <span className="shape" style={{ boxShadow: `var(${token.cssVar})` }} />;
   return null;
 }
-
-const zLayers = tokens
-  .filter((token) => token.path[0] === "z-index")
-  .sort((a, b) => Number(a.resolved) - Number(b.resolved));
 
 function TokenTable({ list }: { list: Token[] }) {
   return (
@@ -45,63 +42,59 @@ function TokenTable({ list }: { list: Token[] }) {
   );
 }
 
-function TierSection({ tier, title, intro }: { tier: Tier; title: string; intro: string }) {
-  const list = tokens.filter((token) => token.tier === tier && token.path[0] !== "typography");
-  const groups = [...new Set(list.map((token) => token.path[0]))];
+const tierTitles: Record<Tier, string> = { primitive: "Primitive tokens", semantic: "Semantic tokens" };
+
+// Tokens of one category, primitive then semantic (a tier with no token of this category is not shown).
+export function FoundationTokens({ foundation }: { foundation: Foundation }) {
+  const list = tokens.filter((token) => foundation.groups.includes(token.path[0]));
+  if (list.length === 0) return <p className="empty">No tokens defined yet.</p>;
+  return (
+    <>
+      {(["primitive", "semantic"] as Tier[]).map((tier) => {
+        const inTier = list.filter((token) => token.tier === tier);
+        if (inTier.length === 0) return null;
+        return (
+          <section key={tier}>
+            <h2>{tierTitles[tier]}</h2>
+            {foundation.groups
+              .filter((group) => inTier.some((token) => token.path[0] === group))
+              .map((group) => (
+                <div key={group}>
+                  {foundation.groups.length > 1 && <h3>{group}</h3>}
+                  <TokenTable list={inTier.filter((token) => token.path[0] === group)} />
+                </div>
+              ))}
+          </section>
+        );
+      })}
+    </>
+  );
+}
+
+function TextStyles() {
   return (
     <section>
-      <h2>{title}</h2>
-      <p className="lead">{intro}</p>
-      {groups.length === 0 && <p className="empty">No tokens defined yet.</p>}
-      {groups.map((group) => (
-        <div key={group}>
-          <h3>{group}</h3>
-          <TokenTable list={list.filter((token) => token.path[0] === group)} />
+      <h2>Text styles</h2>
+      <p>
+        Each style is available as a CSS class (<code>.ds-text-…</code>).
+      </p>
+      {textStyles.length === 0 && <p className="empty">No text styles defined yet.</p>}
+      {textStyles.map((style) => (
+        <div key={style.name} className="text-style">
+          <p className={style.className}>The quick brown fox jumps over the lazy dog</p>
+          <code>
+            .{style.className} · {style.size.resolved} / {style.lineHeight.resolved} / {style.weight.resolved}
+          </code>
         </div>
       ))}
     </section>
   );
 }
 
-export function TokensPage() {
+function Contrast() {
   return (
-    <>
-      <h1>Design tokens</h1>
-      <p className="lead">Primitive and semantic tokens, compiled to CSS custom properties.</p>
-      <p>
-        Sources of truth: <code>tokens/primitives.json</code> and <code>tokens/semantic.json</code>, compiled to{" "}
-        <code>tokens/tokens.css</code>.
-      </p>
-
-      <TierSection
-        tier="primitive"
-        title="Primitive tokens"
-        intro="Raw values. Never used directly by components."
-      />
-      <TierSection
-        tier="semantic"
-        title="Semantic tokens"
-        intro="What a value is used for. Components use these tokens only."
-      />
-
-      <section>
-        <h2>Text styles</h2>
-        <p className="lead">
-          Each style is available as a CSS class (<code>.ds-text-…</code>).
-        </p>
-        {textStyles.length === 0 && <p className="empty">No text styles defined yet.</p>}
-        {textStyles.map((style) => (
-          <div key={style.name} className="text-style">
-            <p className={style.className}>The quick brown fox jumps over the lazy dog</p>
-            <code>
-              .{style.className} · {style.size.resolved} / {style.lineHeight.resolved} / {style.weight.resolved}
-            </code>
-          </div>
-        ))}
-      </section>
-
-      <section>
-        <h2>Contrast (WCAG 2.2 AA)</h2>
+    <section>
+      <h2>Contrast (WCAG 2.2 AA)</h2>
         {contrastResults.length === 0 ? (
           <p className="empty">
             No color pairs to check yet. Pairs are listed in <code>tokens/contrast-pairs.json</code>.
@@ -143,7 +136,25 @@ export function TokensPage() {
             </tbody>
           </table>
         )}
-      </section>
+    </section>
+  );
+}
+
+// Level 3 page of Foundations: one category (navigation skill).
+export function FoundationPage({ foundation }: { foundation: Foundation }) {
+  return (
+    <>
+      <h1>{foundation.label}</h1>
+      <p className="lead" title={foundation.lead}>
+        {foundation.lead}
+      </p>
+      <p>
+        Sources of truth: <code>tokens/primitives.json</code> and <code>tokens/semantic.json</code>, compiled to{" "}
+        <code>tokens/tokens.css</code>.
+      </p>
+      <FoundationTokens foundation={foundation} />
+      {foundation.slug === "typography" && <TextStyles />}
+      {foundation.slug === "color" && <Contrast />}
     </>
   );
 }

@@ -3401,3 +3401,29 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `.claude/skills/git-workflow/SKILL.md`, `CLAUDE.md`, `STEPS.md` (updated)
+
+## Step B087-1 — Site follows the navigation structure
+**Date:** 2026-10-27
+
+**Decisions (made by the Design System Lead)**
+- Level 1 spaces: **Documentation** and **Portfolio** only. **Prototypes** and **Navigation** are Level 2 sections of Documentation (correction after the first preview).
+- Level 0 (root page `/`): one card per space. Spaces as links in the header; the side navigation shows only the current space.
+- Overview: Description, then Summary with one card per section. Level 2 sections with Level 3 pages get a page of their own with one card per page.
+- Foundations: one page per category; Text styles on Typography; contrast table and state layers on Color.
+- Components: the five Atomic Design categories are always listed, an empty one says "No component yet".
+- Prototypes: one card / navigation item per prototype plus "All prototypes". Portfolio: placeholder "Nothing yet.".
+- Breadcrumb (B083) and modal (B029) come later, once they are components; tickets keep their page meanwhile.
+- Below tablet, the header keeps the logo (only the site name is hidden), so Level 0 is reachable from a phone.
+
+**What was done**
+- `docs/src/structure.ts` (new): the navigation tree, which drives the header spaces, the side navigation (current space, current section unfolded) and the search (every page).
+- `docs/src/foundations.ts` (new): the 13 Foundations categories and their token groups. `TokensPage.tsx` → `FoundationPage.tsx` (one category per page); Grid page renamed Layout grid.
+- `docs/src/pages/SectionPages.tsx` (new): Overview, section pages, component categories, Prototypes, Portfolio. `HomePage.tsx` removed.
+- `App.tsx`: routes by level; old routes `#/tokens`, `#/icons`, `#/grid` redirect. `AppShell.tsx` + `docs.css`: logo → `/`, spaces in the header (in the menu below desktop), nested side navigation, cards stacked full width (card skill).
+- Root `index.html`: one card per space.
+- `navigation` skill and Navigation structure page: the new levels and "How the site applies it".
+
+**Files**
+- `docs/src/structure.ts`, `docs/src/foundations.ts`, `docs/src/pages/SectionPages.tsx` (new)
+- `docs/src/pages/FoundationPage.tsx` (renamed from `TokensPage.tsx`), `docs/src/pages/HomePage.tsx` (removed)
+- `docs/src/App.tsx`, `docs/src/AppShell.tsx`, `docs/src/docs.css`, `docs/src/pages/GridPage.tsx`, `docs/src/pages/NavigationPage.tsx`, `index.html`, `.claude/skills/navigation/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)

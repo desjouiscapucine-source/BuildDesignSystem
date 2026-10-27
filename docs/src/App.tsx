@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { components, levels } from "./registry";
-import { AppShell, type NavSection } from "./AppShell";
-import { HomePage } from "./pages/HomePage";
-import { TokensPage } from "./pages/TokensPage";
+import { AppShell } from "./AppShell";
+import { FoundationPage } from "./pages/FoundationPage";
 import { ComponentPage } from "./pages/ComponentPage";
 import { BacklogPage } from "./pages/BacklogPage";
 import { IconsPage } from "./pages/IconsPage";
@@ -11,9 +10,23 @@ import { SkillsPage } from "./pages/SkillsPage";
 import { TicketPage } from "./pages/TicketPage";
 import { PrototypePage } from "./pages/PrototypePage";
 import { NavigationPage } from "./pages/NavigationPage";
-import { prototypeName, prototypes } from "./prototypes";
+import {
+  CategoryPage,
+  ComponentsPage,
+  OverviewPage,
+  PortfolioPage,
+  PrototypesPage,
+  SectionPage,
+} from "./pages/SectionPages";
+import { foundations } from "./foundations";
+import { prototypes } from "./prototypes";
+import { categorySlug } from "./structure";
 
-// Hash routes: #/  ·  #/backlog  ·  #/backlog/<id>  ·  #/skills  ·  #/prototypes/<name>  ·  #/navigation  ·  #/tokens  ·  #/icons  ·  #/grid  ·  #/components/<slug>
+// Hash routes, by navigation level (navigation skill):
+// Level 1  #/ (Documentation, opens on Overview)  ·  #/portfolio
+// Level 2  #/governance  ·  #/foundations  ·  #/components  ·  #/prototypes  ·  #/navigation
+// Level 3  #/backlog  ·  #/backlog/<id>  ·  #/skills  ·  #/foundations/<slug>  ·  #/components/<category>  ·  #/prototypes/<name>
+// Level 4  #/components/<slug>
 function useHashRoute() {
   const read = () => {
     const hash = window.location.hash.replace(/^#/, "");
@@ -34,68 +47,45 @@ function useHashRoute() {
   return route;
 }
 
-const sections: NavSection[] = [
-  {
-    items: [
-      { href: "#/", label: "Overview", icon: "home" },
-      { href: "#/backlog", label: "Backlog", icon: "view_kanban" },
-      { href: "#/skills", label: "How to use skills", icon: "psychology" },
-    ],
-  },
-  {
-    title: "Foundations",
-    items: [
-      { href: "#/tokens", label: "Design tokens", icon: "token" },
-      { href: "#/icons", label: "Icons", icon: "interests" },
-      { href: "#/grid", label: "Grid", icon: "grid_view" },
-    ],
-  },
-  // Components, grouped by Atomic Design level (empty levels are hidden).
-  ...levels
-    .map(({ level, title }) => ({
-      title,
-      items: components
-        .filter((c) => c.level === level)
-        .map((c) => ({ href: `#/components/${c.slug}`, label: c.name, icon: "widgets" })),
-    }))
-    .filter((section) => section.items.length > 0),
-  ...(components.length === 0 ? [{ title: "Components", empty: "None yet", items: [] }] : []),
-  {
-    title: "Prototypes",
-    items: [
-      ...prototypes.map((name) => ({ href: `#/prototypes/${name}`, label: prototypeName(name), icon: "preview" })),
-      { href: "/prototypes/", label: "All prototypes", icon: "devices" },
-    ],
-  },
-  {
-    title: "Navigation",
-    items: [{ href: "#/navigation", label: "Navigation structure", icon: "account_tree" }],
-  },
-];
+// Routes of the previous structure, kept so old links still work.
+const moved: Record<string, string> = {
+  "/tokens": "/foundations",
+  "/icons": "/foundations/icons",
+  "/grid": "/foundations/layout-grid",
+};
 
 export function App() {
   const route = useHashRoute();
-  const component = components.find((c) => route === `/components/${c.slug}`);
 
-  let page = <HomePage />;
-  if (route === "/tokens") page = <TokensPage />;
+  useEffect(() => {
+    if (moved[route]) window.location.replace(`#${moved[route]}`);
+  }, [route]);
+
+  const component = components.find((c) => route === `/components/${c.slug}`);
+  const category = levels.find(({ title }) => route === `/components/${categorySlug(title)}`);
+  const foundation = foundations.find((f) => route === `/foundations/${f.slug}`);
+  const prototype = route.startsWith("/prototypes/") ? route.slice("/prototypes/".length) : null;
+
+  let page = <OverviewPage />;
+  if (route === "/governance" || route === "/foundations") page = <SectionPage key={route} href={`#${route}`} />;
   else if (route === "/backlog") page = <BacklogPage />;
   else if (route.startsWith("/backlog/")) page = <TicketPage key={route} id={route.slice("/backlog/".length)} />;
   else if (route === "/skills") page = <SkillsPage />;
-  else if (route === "/icons") page = <IconsPage />;
-  else if (route === "/grid") page = <GridPage />;
-  else if (route === "/navigation") page = <NavigationPage />;
-  else if (route.startsWith("/prototypes/") && prototypes.includes(route.slice("/prototypes/".length)))
-    page = <PrototypePage key={route} name={route.slice("/prototypes/".length)} />;
+  else if (foundation?.slug === "icons") page = <IconsPage />;
+  else if (foundation?.slug === "layout-grid") page = <GridPage />;
+  else if (foundation) page = <FoundationPage key={foundation.slug} foundation={foundation} />;
+  else if (route === "/components") page = <ComponentsPage />;
+  else if (category) page = <CategoryPage key={route} href={`#${route}`} />;
   else if (component) page = <ComponentPage key={component.slug} component={component} />;
+  else if (route === "/prototypes") page = <PrototypesPage />;
+  else if (prototype && prototypes.includes(prototype)) page = <PrototypePage key={route} name={prototype} />;
+  else if (route === "/navigation") page = <NavigationPage />;
+  else if (route === "/portfolio") page = <PortfolioPage />;
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [route]);
 
-  return (
-    <AppShell sections={sections} current={route.startsWith("/backlog/") ? "#/backlog" : `#${route}`}>
-      {page}
-    </AppShell>
-  );
+  // A ticket is not in the navigation yet (it will open in a modal): the Backlog stays selected.
+  return <AppShell current={route.startsWith("/backlog/") ? "#/backlog" : `#${route}`}>{page}</AppShell>;
 }

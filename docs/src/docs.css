@@ -108,6 +108,25 @@ code {
   white-space: nowrap;
 }
 .shell-brand-logo { width: var(--space-32); height: var(--space-32); }
+/* Level 1 spaces in the header (navigation skill); the current space is underlined like a selected tab. */
+.shell-spaces-list { display: flex; gap: var(--space-4); list-style: none; margin: 0; padding: 0; }
+.shell-spaces-list a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: var(--doc-header-height);
+  padding: 0 var(--space-8);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: var(--border-width-2) solid transparent;
+}
+.shell-spaces-list a:hover { color: var(--color-text-primary); }
+.shell-spaces-list a[aria-current="true"] {
+  color: var(--color-text-brand);
+  font-weight: var(--font-weight-semibold);
+  border-bottom-color: var(--color-border-focus);
+}
 /* Work-time clock: label + digital screen (primary-950 screen, secondary-600 digits; site only, chosen by the Design System Lead). */
 .shell-work-time {
   display: flex;
@@ -236,7 +255,6 @@ code {
 /* On the brown navigation, the focus outline (border.focus = brand) would be invisible: use the inverse color. */
 .shell-nav :focus-visible { outline-color: var(--color-text-inverse); }
 .shell-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-4); }
-.shell-nav-section + .shell-nav-section { margin-top: var(--space-16); }
 .shell-nav-title {
   margin: 0 0 var(--space-4);
   padding: 0 var(--space-8);
@@ -276,6 +294,20 @@ code {
   font-weight: var(--font-weight-semibold);
 }
 .shell-nav-link[aria-current="page"] .ds-icon { color: var(--color-icon-brand); }
+/* Pages below a section: indented under it. */
+.shell-nav ul ul { margin-top: var(--space-4); padding-left: var(--space-16); }
+.shell-nav li > .shell-nav-empty { padding-left: calc(var(--space-16) + var(--space-8)); }
+/* Spaces at the top of the menu: below desktop only (the header shows them on desktop). */
+.shell-nav-spaces { display: none; margin-bottom: var(--space-16); }
+.shell-nav-spaces-list { list-style: none; margin: 0; padding: 0; }
+.shell-nav-spaces-list a {
+  display: block;
+  padding: var(--space-8);
+  border-radius: var(--radius-8);
+  color: var(--color-text-inverse);
+  text-decoration: none;
+}
+.shell-nav-spaces-list a[aria-current="true"] { font-weight: var(--font-weight-semibold); text-decoration: underline; }
 
 .shell-content { flex: 1; min-width: 0; padding: var(--space-24); max-width: var(--size-content); outline: 0; }
 /* Layout skill: blocks of content stacked vertically with --space-16 */
@@ -290,6 +322,8 @@ code {
   .shell-search-key { display: none; }
   .shell-brand { font-size: var(--font-size-16); }
   .shell-work-time { display: none; }
+  .shell-spaces { display: none; }
+  .shell-nav-spaces { display: block; }
   .shell-nav {
     position: fixed;
     left: 0;
@@ -303,7 +337,8 @@ code {
 }
 /* Below tablet: --breakpoint-tablet (768px) */
 @media not all and (min-width: 768px) {
-  .shell-brand { display: none; }
+  /* The logo stays, so Level 0 is reachable from a phone too (navigation skill); only the name is hidden. */
+  .shell-brand-name { display: none; }
 }
 
 /* ---------- Home page (root index.html, prototypes list) ---------- */
@@ -344,11 +379,12 @@ code {
   line-height: var(--line-height-heading);
   font-variant-numeric: tabular-nums;
 }
+/* Card skill: cards stacked, full width of their column, 16px apart. */
 .home-links, .cards {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: var(--space-16);
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  margin-top: var(--space-24);
+  margin: var(--space-24) 0 0;
   list-style: none;
   padding: 0;
 }

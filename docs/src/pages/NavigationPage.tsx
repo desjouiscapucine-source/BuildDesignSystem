@@ -1,7 +1,7 @@
 import { components, levels } from "../registry";
 
 // Navigation structure of the site, approved by the Design System Lead on 2026-10-27.
-// This is the target structure: the site does not follow it yet.
+// The site follows it, except the breadcrumb and the modal (not components yet).
 
 interface NavNode {
   label: string;
@@ -64,19 +64,19 @@ const structure: NavNode = {
             };
           }),
         },
+        { label: "Prototypes", level: 2, note: "one page per prototype (Level 3)" },
+        { label: "Navigation", level: 2, note: "this page" },
       ],
     },
-    { label: "Prototypes", level: 1, note: "to define" },
-    { label: "Navigation", level: 1, note: "this page" },
-    { label: "Portfolio", level: 1, note: "to define" },
+    { label: "Portfolio", level: 1, note: "nothing yet" },
   ],
 };
 
 const levelRows = [
   { level: 0, content: "Landing page" },
-  { level: 1, content: "Spaces: Documentation, Prototypes, Navigation, Portfolio" },
-  { level: 2, content: "Sections of a space: Overview, Governance, Foundations, Components" },
-  { level: 3, content: "Pages of a section, or categories of components" },
+  { level: 1, content: "Spaces: Documentation, Portfolio" },
+  { level: 2, content: "Sections of a space: Overview, Governance, Foundations, Components, Prototypes, Navigation" },
+  { level: 3, content: "Pages of a section (e.g. one prototype), or categories of components" },
   { level: 4, content: "Component pages only" },
 ];
 
@@ -122,7 +122,7 @@ export function NavigationPage() {
       <h1>Navigation structure</h1>
       <p className="lead">Navigation levels of the site and how to move between them</p>
       <p>
-        Target structure of the site, approved by the Design System Lead. The site does not follow it yet. Talk about the
+        Structure of the site, approved by the Design System Lead. The site follows it, except the breadcrumb and the modal, which are not components yet. Talk about the
         navigation in levels: Level 0 is the landing page.
       </p>
 

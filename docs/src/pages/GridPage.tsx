@@ -10,7 +10,7 @@ const screens = [
 export function GridPage() {
   return (
     <>
-      <h1>Grid</h1>
+      <h1>Layout grid</h1>
       <p className="lead">Columns, gutters and margins for every screen size</p>
       <p>
         Mobile first: 4 columns, 8 from tablet, 12 from desktop. Defined in <code>tokens/semantic.json</code>; classes in{" "}

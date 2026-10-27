@@ -736,9 +736,9 @@
       "id": "B087",
       "title": "Site follows the navigation structure",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
-      "description": "The documentation site follows the navigation skill: landing page (one card per space), spaces in the header, side navigation scoped to the current space, Overview / Governance / Foundations (one page per category) / Components (one page per Atomic Design level), Portfolio placeholder, logo to Level 0. Breadcrumb (B083) and modal (B029) come later, once they are components. Decided 2026-10-27."
+      "description": "The documentation site follows the navigation skill: landing page (one card per space: Documentation, Portfolio), spaces in the header, side navigation scoped to the current space, Overview / Governance / Foundations (one page per category) / Components (one page per Atomic Design level) / Prototypes / Navigation as sections of Documentation, Portfolio placeholder, logo to Level 0. Breadcrumb (B083) and modal (B029) come later, once they are components. Decided 2026-10-27."
     }
   ]
 }
