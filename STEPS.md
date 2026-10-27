@@ -3348,3 +3348,15 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `.claude/skills/git-workflow/SKILL.md`, `STEPS.md` (updated)
+
+## Step B084-1 — Backlog: proposals for agents
+**Date:** 2026-10-27
+
+**What was done**
+- Two new backlog proposals about agents (sub-agents of Claude Code), added at the request of the Design System Lead after a question on what agents are for:
+  - B084 — Dedicated agents for recurring checks (`.claude/agents/<name>.md`), e.g. a token auditor.
+  - B085 — Rules for agents in `CLAUDE.md`, e.g. agents read and propose only.
+- Both stay `proposal`: only the Design System Lead approves them.
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)

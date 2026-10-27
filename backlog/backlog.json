@@ -707,6 +707,22 @@
       "origin": "proposal",
       "description": "Shows where the page sits in the navigation structure and goes back to any level above it (Navigation structure page, B082).",
       "stage": "design"
+    },
+    {
+      "id": "B084",
+      "title": "Dedicated agents for recurring checks",
+      "category": "Tooling",
+      "status": "proposal",
+      "origin": "proposal",
+      "description": "Reusable agents in .claude/agents/<name>.md (role, allowed tools, what to report) for checks that come back often, e.g. a token auditor that finds raw values in components. Only once a check is recurring."
+    },
+    {
+      "id": "B085",
+      "title": "Rules for agents in CLAUDE.md",
+      "category": "Tooling",
+      "status": "proposal",
+      "origin": "proposal",
+      "description": "An explicit limit for agents in CLAUDE.md, e.g. agents read and propose only, never change tokens/ or components/; Claude checks their results before showing them."
     }
   ]
 }
