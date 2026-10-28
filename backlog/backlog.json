@@ -159,7 +159,8 @@
       "status": "todo",
       "origin": "proposal",
       "description": "Base of every form. Used on the documentation site: Content field of the Design preview tab, icon name field of the Icons page.",
-      "stage": "design"
+      "stage": "design",
+      "priority": "low"
     },
     {
       "id": "B020",
