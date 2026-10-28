@@ -217,7 +217,8 @@
       "status": "todo",
       "origin": "decided",
       "description": "Small indicator (number or status). First uses: the counter of the Navigation item, and the version badge next to the title of the component pages (B096). A Tag (category, filter) would be a separate component, later. Note: change the color of the version badge (to define with the Design System Lead).",
-      "stage": "design"
+      "stage": "design",
+      "priority": "high"
     },
     {
       "id": "B026",
