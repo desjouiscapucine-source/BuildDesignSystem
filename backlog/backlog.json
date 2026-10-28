@@ -827,7 +827,7 @@
       "id": "B098",
       "title": "Navigation item: expandable parent",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "A parent Navigation item with children inside it, and an arrow on the right to open and close it.",
       "stage": "code"

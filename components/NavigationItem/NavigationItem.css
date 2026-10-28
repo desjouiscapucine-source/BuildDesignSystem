@@ -1,5 +1,6 @@
 /* NavigationItem — semantic design tokens only. See spec.md.
-   Sits on the brand background. Classes: .ds-navigation-item · parts .ds-navigation-item-icon, .ds-navigation-item-label */
+   Sits on the brand background. Classes: .ds-navigation-item, modifiers --link / --parent / --child-selected
+   · parts .ds-navigation-item-icon, -label, -arrow, -group, -children, -child */
 .ds-navigation-item {
   position: relative;
   box-sizing: border-box;
@@ -16,6 +17,14 @@
   font-weight: var(--typography-body-weight);
   line-height: var(--typography-body-line-height);
   cursor: pointer;
+}
+
+/* Parent: a button that looks like the link */
+.ds-navigation-item--parent {
+  margin: 0;
+  border: 0;
+  background: none;
+  text-align: start;
 }
 
 /* State layers: overlay in the content color */
@@ -53,8 +62,33 @@
   overflow-wrap: anywhere;
 }
 
-/* Selected (page displayed) */
-.ds-navigation-item[aria-current="page"] {
+/* Arrow (parent): on the right, aligned with the first line, turned when open */
+.ds-navigation-item-arrow {
+  display: inline-flex;
+  align-items: center;
+  height: calc(var(--typography-body-size) * var(--typography-body-line-height));
+  font-size: var(--icon-size-20);
+  color: var(--color-icon-inverse);
+  transition: transform var(--duration-200) var(--easing-ease-in-out);
+}
+.ds-navigation-item--parent[aria-expanded="true"] .ds-navigation-item-arrow { transform: rotate(180deg); }
+
+/* Children: below the parent, indented by --space-16 per level (nesting adds up) */
+.ds-navigation-item-children {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  margin: 0;
+  margin-top: var(--space-8);
+  padding: 0;
+  padding-left: var(--space-16);
+  list-style: none;
+}
+.ds-navigation-item-children[hidden] { display: none; }
+
+/* Selected (page displayed), or closed parent with a selected child */
+.ds-navigation-item[aria-current="page"],
+.ds-navigation-item--child-selected {
   background: var(--color-background-brand-subtle);
   color: var(--color-text-brand);
   font-family: var(--typography-label-family);
@@ -62,7 +96,9 @@
   font-weight: var(--typography-label-weight);
   line-height: var(--typography-label-line-height);
 }
-.ds-navigation-item[aria-current="page"] .ds-navigation-item-icon { color: var(--color-icon-brand); }
+.ds-navigation-item[aria-current="page"] .ds-navigation-item-icon,
+.ds-navigation-item--child-selected .ds-navigation-item-icon,
+.ds-navigation-item--child-selected .ds-navigation-item-arrow { color: var(--color-icon-brand); }
 
 /* Disabled: dimmed, no state layer */
 .ds-navigation-item[aria-disabled="true"] {

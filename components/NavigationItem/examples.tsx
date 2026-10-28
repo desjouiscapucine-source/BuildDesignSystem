@@ -76,6 +76,55 @@ export const examples: Example[] = [
     ),
   },
   {
+    title: "Parent",
+    description: "Opens and closes its children (arrow on the right). Closed by default. Children have no leading icon.",
+    render: () => (
+      <OnBrand>
+        <NavigationItem icon="folder" label="Projects">
+          <NavigationItem href="#/components/navigationitem">Project A</NavigationItem>
+          <NavigationItem href="#/components/navigationitem">Project B</NavigationItem>
+        </NavigationItem>
+      </OnBrand>
+    ),
+  },
+  {
+    title: "Parent with a selected child",
+    description: "Open when the page displayed is one of its children. Close it: the parent takes the selected look.",
+    render: () => (
+      <OnBrand>
+        <NavigationItem icon="folder" label="Projects">
+          <NavigationItem href="#/components/navigationitem" selected>
+            Project A
+          </NavigationItem>
+          <NavigationItem href="#/components/navigationitem">Project B</NavigationItem>
+        </NavigationItem>
+      </OnBrand>
+    ),
+  },
+  {
+    title: "Nested parents",
+    description: "A child can itself be a parent: --space-16 more indent per level. 3 levels maximum recommended.",
+    render: () => (
+      <OnBrand>
+        <NavigationItem icon="dashboard" href="#/components/navigationitem">
+          Dashboard
+        </NavigationItem>
+        <NavigationItem icon="folder" label="Projects">
+          <NavigationItem label="Project A">
+            <NavigationItem href="#/components/navigationitem" selected>
+              Tasks
+            </NavigationItem>
+            <NavigationItem href="#/components/navigationitem">Documents</NavigationItem>
+          </NavigationItem>
+          <NavigationItem href="#/components/navigationitem">Project B</NavigationItem>
+        </NavigationItem>
+        <NavigationItem icon="settings" href="#/components/navigationitem">
+          Settings
+        </NavigationItem>
+      </OnBrand>
+    ),
+  },
+  {
     title: "Content",
     description: "A 20-character label, and a longer label that wraps (icon aligned with the first line).",
     render: () => (

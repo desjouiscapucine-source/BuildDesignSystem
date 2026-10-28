@@ -3779,3 +3779,20 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/NavigationItem/guidelines.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B098-3 — Navigation item: expandable parent, code approved (version 1.1)
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- Code approved, including: the arrow turned with `rotate(180deg)` (structural angle, no token); `icon` optional in the types (ignored for a child, required at the top level by the documentation); `--space-8` above the first child, as between two items.
+- Version **1.1** (an addition, no breaking change).
+
+**What was done**
+- `NavigationItem.tsx`: two types in one component — a link (`href`, unchanged) and a parent (`label` + NavigationItem children): a `<button>` with `aria-expanded` / `aria-controls`, closed by default, open when a child (at any level) is selected, selected look when closed with a selected child (`--child-selected`). Nesting level through a React context: children have no leading icon.
+- `NavigationItem.css`: modifiers `--link`, `--parent`, `--child-selected`; parts `-arrow` (turns in `--duration-200` `--easing-ease-in-out`), `-group`, `-children` (`--space-16` indent per level, `--space-8` gap), `-child`.
+- `examples.tsx`: Parent, Parent with a selected child, Nested parents.
+- `meta.json`: version 1.1 and its changelog entry. Backlog: B098 done.
+- Verification: type check and build pass; Examples tab checked (indent per level, no leading icon on children, selected look on a closed parent); keyboard: Space / Enter open and close, visible focus, hidden children not reachable; no console error.
+
+**Files**
+- `components/NavigationItem/NavigationItem.tsx`, `NavigationItem.css`, `examples.tsx`, `meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
