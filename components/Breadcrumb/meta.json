@@ -2,5 +2,5 @@
   "name": "Breadcrumb",
   "description": "Shows where the page sits and goes back to any level above it.",
   "level": "molecule",
-  "status": "code"
+  "status": "complete"
 }

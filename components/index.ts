@@ -18,3 +18,5 @@ export { ImageViewer } from "./ImageViewer/ImageViewer";
 export type { ImageViewerProps, ImageViewerImage } from "./ImageViewer/ImageViewer";
 export { BreadcrumbItem } from "./BreadcrumbItem/BreadcrumbItem";
 export type { BreadcrumbItemProps } from "./BreadcrumbItem/BreadcrumbItem";
+export { Breadcrumb } from "./Breadcrumb/Breadcrumb";
+export type { BreadcrumbProps, BreadcrumbLevel } from "./Breadcrumb/Breadcrumb";

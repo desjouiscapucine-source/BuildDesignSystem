@@ -3555,3 +3555,20 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/Breadcrumb/guidelines.md`, `meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B083-3 — Breadcrumb: code approved, component complete
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- Code approved: Breadcrumb is **complete**, with the props `items` (`{ label, href, disabled }`).
+
+**What was done**
+- `Breadcrumb.tsx`: `<nav aria-label="Breadcrumb">` with an ordered list of BreadcrumbItem, one per level; `last` set on the final item, `disabled` passed from the level.
+- `Breadcrumb.css`: semantic tokens only; `--space-8` between items, one line, the last item never shrinks (the others get an ellipsis).
+- `examples.tsx`: Level 4 page, Level 2 page, level with no page, not enough space. Exported from `components/index.ts`.
+- Verification: typecheck and build pass; landmark and list checked; ellipsis with the last item kept whole checked in the browser.
+- `meta.json` status `complete`; backlog B083 `done`; proposal B091 added (breadcrumb on the documentation site).
+
+**Files**
+- `components/Breadcrumb/Breadcrumb.tsx`, `Breadcrumb.css`, `examples.tsx` (new)
+- `components/Breadcrumb/meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)

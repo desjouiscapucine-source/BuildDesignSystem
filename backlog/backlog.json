@@ -703,7 +703,7 @@
       "id": "B083",
       "title": "Breadcrumb",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "proposal",
       "description": "Shows where the page sits in the navigation structure and goes back to any level above it (Navigation structure page, B082).",
       "stage": "code"
@@ -764,6 +764,14 @@
       "origin": "decided",
       "description": "Building block of the Breadcrumb (B083): one link to a level above the page. Done first. Decided 2026-10-28.",
       "stage": "code"
+    },
+    {
+      "id": "B091",
+      "title": "Site: breadcrumb on Level 2 to Level 4 pages",
+      "category": "Tooling",
+      "status": "proposal",
+      "origin": "proposal",
+      "description": "Use the Breadcrumb component (B083) on the documentation site, as its guidelines say: every page from Level 2 to Level 4, first block above the title; update the navigation skill and the Navigation structure page (the breadcrumb is now a component)."
     }
   ]
 }
