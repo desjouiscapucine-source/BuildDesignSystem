@@ -3624,3 +3624,20 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/Chip/` (new), `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B030-2 — Chip: guidelines approved
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- When to use: switch the view, filter the content; only inside a ChipGroup. Not for an action (Button), sections of a page (Tabs, B093) or another page (NavigationItem / link). No rule yet for choosing an option in a form.
+- One chip selected at a time, always one ("All" first); clicking the selected chip keeps it selected.
+- Labels: 1 to 3 words, sentence case, text only, no final period.
+- Screen reader: toggle button (`button` + `aria-pressed`); Tab between chips, Enter / Space selects.
+- Do's and don'ts: one chip always selected / none selected; short sentence-case labels / sentences, uppercase, punctuation; at least two chips / a single chip; switch or filter / trigger an action.
+
+**What was done**
+- `components/Chip/guidelines.md` written. Stage set to `code`.
+- Backlog: B030 stage `code`.
+
+**Files**
+- `components/Chip/guidelines.md`, `components/Chip/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)

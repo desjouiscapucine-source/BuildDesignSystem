@@ -2,5 +2,5 @@
   "name": "Chip",
   "description": "One choice of a chip group, to switch the view or filter the content.",
   "level": "atom",
-  "status": "guidelines"
+  "status": "code"
 }
