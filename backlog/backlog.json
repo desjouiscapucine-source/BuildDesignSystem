@@ -169,7 +169,8 @@
       "status": "todo",
       "origin": "proposal",
       "description": "Multi-line input.",
-      "stage": "design"
+      "stage": "design",
+      "priority": "low"
     },
     {
       "id": "B021",
