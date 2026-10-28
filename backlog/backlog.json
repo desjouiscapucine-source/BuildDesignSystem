@@ -204,7 +204,8 @@
       "status": "todo",
       "origin": "proposal",
       "description": "On / off setting.",
-      "stage": "design"
+      "stage": "design",
+      "priority": "low"
     },
     {
       "id": "B025",
