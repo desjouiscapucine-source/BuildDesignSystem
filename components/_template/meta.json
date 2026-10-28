@@ -2,5 +2,7 @@
   "name": "ComponentName",
   "description": "One sentence describing what the component is for.",
   "level": "atom",
-  "status": "design"
+  "status": "design",
+  "version": "0.0",
+  "changelog": []
 }

@@ -2,5 +2,13 @@
   "name": "ImageViewer",
   "description": "Opens an image larger, over the page, one at a time.",
   "level": "organism",
-  "status": "complete"
+  "status": "complete",
+  "version": "1.0",
+  "changelog": [
+    {
+      "version": "1.0",
+      "date": "2026-10-23",
+      "changes": "First complete version."
+    }
+  ]
 }

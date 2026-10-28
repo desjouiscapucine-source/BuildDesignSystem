@@ -2,5 +2,13 @@
   "name": "Chip",
   "description": "One choice of a chip group, to switch the view or filter the content.",
   "level": "atom",
-  "status": "complete"
+  "status": "complete",
+  "version": "1.0",
+  "changelog": [
+    {
+      "version": "1.0",
+      "date": "2026-10-28",
+      "changes": "First complete version."
+    }
+  ]
 }

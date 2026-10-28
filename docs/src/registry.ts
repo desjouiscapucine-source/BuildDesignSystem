@@ -1,8 +1,15 @@
 // Discovers every component folder in components/ (folders starting with "_" are ignored).
 import type { ComponentType } from "react";
-import type { ComponentDoc, DesignTokens, Example, Level, PreviewProps, Status } from "./types";
+import type { ChangelogEntry, ComponentDoc, DesignTokens, Example, Level, PreviewProps, Status } from "./types";
 
-type Meta = { name: string; description: string; level: Level; status: Status };
+type Meta = {
+  name: string;
+  description: string;
+  level: Level;
+  status: Status;
+  version?: string;
+  changelog?: ChangelogEntry[];
+};
 
 const metas = import.meta.glob<Meta>(["../../components/*/meta.json", "!../../components/_*/**"], {
   eager: true,
@@ -59,6 +66,8 @@ export const components: ComponentDoc[] = Object.entries(metas)
       description: meta.description,
       level: meta.level,
       status: meta.status,
+      version: meta.version ?? "0.0",
+      changelog: meta.changelog ?? [],
       spec: specByFolder[folder],
       guidelines: guidelinesByFolder[folder],
       examples: examplesByFolder[folder] ?? [],

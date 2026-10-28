@@ -660,6 +660,29 @@ pre.code { background: var(--color-background-surface); padding: var(--space-16)
 .icon-grid li { display: flex; flex-direction: column; align-items: center; gap: var(--space-8); padding: var(--space-16) var(--space-8); border: var(--border-width-1) solid var(--color-border-subtle); border-radius: var(--radius-8); }
 .icon-grid code { font-size: var(--font-size-12); background: none; color: var(--color-text-secondary); overflow-wrap: anywhere; text-align: center; }
 
+.component-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  min-width: 0;
+}
+.component-title h1 {
+  min-width: 0;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.version-badge {
+  flex-shrink: 0;
+  padding: 0 var(--space-8);
+  border-radius: var(--radius-4);
+  background: var(--color-background-brand-subtle);
+  color: var(--color-text-primary);
+  font-family: var(--typography-label-family);
+  font-size: var(--typography-label-size);
+  font-weight: var(--font-weight-semibold);
+}
 .level-tag {
   display: inline-block;
   align-self: flex-start;

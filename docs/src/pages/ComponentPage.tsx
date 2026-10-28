@@ -5,7 +5,7 @@ import { StageBadge } from "../StageBadge";
 import { DesignPreview } from "../DesignPreview";
 
 
-type Tab = "preview" | "spec" | "guidelines" | "examples" | "code";
+type Tab = "preview" | "spec" | "guidelines" | "examples" | "code" | "changelog";
 
 const tabs: { id: Tab; label: string }[] = [
   { id: "preview", label: "Design preview" },
@@ -13,6 +13,7 @@ const tabs: { id: Tab; label: string }[] = [
   { id: "guidelines", label: "Guidelines" },
   { id: "examples", label: "Examples" },
   { id: "code", label: "Code" },
+  { id: "changelog", label: "Changelog" },
 ];
 
 export function ComponentPage({ component }: { component: ComponentDoc }) {
@@ -21,7 +22,12 @@ export function ComponentPage({ component }: { component: ComponentDoc }) {
 
   return (
     <>
-      <h1 title={component.name}>{component.name}</h1>
+      <div className="component-title">
+        <h1 title={component.name}>{component.name}</h1>
+        <span className="version-badge" aria-label={`Version ${component.version}`}>
+          {component.version}
+        </span>
+      </div>
       <p className="lead" title={component.description}>
         {component.description}
       </p>
@@ -47,6 +53,29 @@ export function ComponentPage({ component }: { component: ComponentDoc }) {
             <p className="empty">No guidelines yet.</p>
           ))}
         {tab === "code" && <CodeTab component={component} />}
+        {tab === "changelog" &&
+          (component.changelog.length === 0 ? (
+            <p className="empty">No version yet.</p>
+          ) : (
+            <table className="tokens">
+              <thead>
+                <tr>
+                  <th>Version</th>
+                  <th>Date</th>
+                  <th>Changes</th>
+                </tr>
+              </thead>
+              <tbody>
+                {component.changelog.map((entry) => (
+                  <tr key={entry.version}>
+                    <td>{entry.version}</td>
+                    <td>{entry.date}</td>
+                    <td>{entry.changes}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ))}
         {tab === "examples" &&
           (component.examples.length === 0 ? (
             <p className="empty">No coded examples yet.</p>

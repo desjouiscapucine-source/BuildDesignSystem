@@ -37,6 +37,13 @@ export interface DesignTokens {
   contrast?: { foreground: string; background: string; min: number }[];
 }
 
+/** One entry of a component changelog (meta.json), newest first. */
+export interface ChangelogEntry {
+  version: string;
+  date: string;
+  changes: string;
+}
+
 export interface ComponentDoc {
   slug: string;
   folder: string;
@@ -44,6 +51,9 @@ export interface ComponentDoc {
   description: string;
   level: Level;
   status: Status;
+  /** Version X.Y: 0.0 while in progress, 1.0 once complete. */
+  version: string;
+  changelog: ChangelogEntry[];
   spec?: string;
   guidelines?: string;
   examples: Example[];

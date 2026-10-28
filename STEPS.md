@@ -3695,3 +3695,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `docs/src/pages/BacklogPage.tsx`, `docs/src/backlog.ts`, `vite.config.ts`, `backlog/backlog.json`, `CLAUDE.md`, `.claude/skills/git-workflow/SKILL.md`, `.claude/skills/component/SKILL.md`, `.claude/skills/prototype-setup/SKILL.md`, `STEPS.md` (updated)
+
+## Step B096-1 — Component versioning and changelog
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- Every component has a version `X.Y`, shown as a badge next to its title, with a dated changelog.
+- Complete components start at **1.0**; a component in progress is `0.0`.
+- `Y` goes up for an addition or a fix (`1.0` → `1.1`); `X` for a breaking change (`1.1` → `2.0`).
+
+**What was done**
+- `meta.json` of the 11 components: `version` `1.0` and a changelog entry "First complete version." dated when the component became complete (from `STEPS.md`). `components/_template/meta.json`: `0.0`, empty changelog.
+- `docs/src/types.ts`, `docs/src/registry.ts`: `version` and `changelog` read from `meta.json`.
+- `docs/src/pages/ComponentPage.tsx`, `docs/src/docs.css`: version badge next to the title (the title keeps its one-line ellipsis), new Changelog tab (Version, Date, Changes).
+- `component` skill (section "Version and changelog", end of the last stage) and `CLAUDE.md` (Conventions): the rule.
+- Backlog: B096 added (reserved first), done.
+- Verification: type check and build pass; NavigationItem shows the 1.0 badge and its changelog, no console errors.
+
+**Files**
+- `components/*/meta.json`, `components/_template/meta.json`, `docs/src/types.ts`, `docs/src/registry.ts`, `docs/src/pages/ComponentPage.tsx`, `docs/src/docs.css`, `.claude/skills/component/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)

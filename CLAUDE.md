@@ -141,6 +141,7 @@ Approved by the Design System Lead on 2026-10-16.
 - Component styles use design tokens only (`var(--…)`), never raw values.
 - Components are organized with **Atomic Design** (5 levels: atom, molecule, organism, template, page) — see the `component-structure` skill. Folders stay flat; the level is the `level` field of `meta.json`.
 - `meta.json` `status` is one of: `design`, `guidelines`, `code`, then **`complete`** once the code is approved (shown with a Complete badge on the site). Update it when a stage is approved.
+- `meta.json` `version` (`X.Y`: `0.0` in progress, `1.0` once complete) and `changelog` (version, date, changes; newest first), shown on the component page (version badge, Changelog tab); `Y` goes up for an addition or a fix, `X` for a breaking change — see the `component` skill.
 - Prototypes import components only from `@ds/components`, load the design system with `prototypes/_shared/setup.ts` and lay out each screen with `prototypes/_shared/Screen.tsx`; styles use tokens only. `npm run build` fails otherwise (`scripts/check-prototypes.ts`).
 
 ## Design tokens

@@ -2,5 +2,13 @@
   "name": "NavigationItem",
   "description": "A link in a navigation, with an icon and a label.",
   "level": "molecule",
-  "status": "complete"
+  "status": "complete",
+  "version": "1.0",
+  "changelog": [
+    {
+      "version": "1.0",
+      "date": "2026-10-20",
+      "changes": "First complete version."
+    }
+  ]
 }

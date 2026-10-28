@@ -811,7 +811,7 @@
       "id": "B096",
       "title": "Component versioning and changelog",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "Version of each component in the format X.Y, shown as a badge next to the title of the component page, with a dated changelog. Complete components start at 1.0."
     }
