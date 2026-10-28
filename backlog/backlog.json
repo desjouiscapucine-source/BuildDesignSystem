@@ -206,7 +206,7 @@
       "origin": "proposal",
       "description": "On / off setting.",
       "stage": "design",
-      "priority": "low"
+      "priority": "medium"
     },
     {
       "id": "B025",
