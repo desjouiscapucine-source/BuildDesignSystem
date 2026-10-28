@@ -3518,3 +3518,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/BreadcrumbItem/BreadcrumbItem.tsx`, `BreadcrumbItem.css`, `examples.tsx` (new)
 - `components/BreadcrumbItem/meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B083-1 — Breadcrumb: design approved
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- **Breadcrumb**: molecule, class `.ds-breadcrumb`, description "Shows where the page sits and goes back to any level above it.", one style, one size, text links. Built from its building block **BreadcrumbItem** (B090, complete).
+- Anatomy: a navigation landmark named "Breadcrumb" with BreadcrumbItems, one per level from Level 0 down to the parent of the current page; the current page is not an item.
+- The Breadcrumb sets `last` on its final item and `disabled` on a level with no page.
+- `--space-8` between a slash and the next item.
+- Overflow: one line; labels cut with an ellipsis when the breadcrumb is wider than its container; the last item kept whole.
+- No state of its own (those of BreadcrumbItem). Design approved; next stage: guidelines.
+
+**What was done**
+- `components/Breadcrumb/` created from the template: `meta.json` (status `guidelines`), `spec.md`, design preview (`design/Preview.tsx` with the BreadcrumbItem component, wide and narrow; `design/tokens.json`).
+- Backlog: B083 stage `guidelines`.
+
+**Files**
+- `components/Breadcrumb/meta.json`, `spec.md`, `guidelines.md` (template), `design/Preview.tsx`, `design/tokens.json` (new)
+- `backlog/backlog.json`, `STEPS.md` (updated)
