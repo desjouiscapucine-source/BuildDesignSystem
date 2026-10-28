@@ -3763,3 +3763,19 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/NavigationItem/spec.md`, `components/NavigationItem/design/Preview.tsx`, `components/NavigationItem/design/tokens.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B098-2 — Navigation item: expandable parent, guidelines approved
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- A parent groups related pages: **2 children minimum** (a single child → a direct link).
+- **3 levels maximum** recommended (unlimited in the spec).
+- Parents are **independent**: opening one does not close the others.
+- Accessibility of a parent: a button (Tab, Enter or Space), `aria-expanded`, decorative arrow, children of a closed parent not reachable.
+
+**What was done**
+- `components/NavigationItem/guidelines.md`: when to use / not to use a parent, best practices (children, levels, icons), two do / don't pairs, content of a parent label, behavior (open / closed, child selected, independent parents), accessibility of a parent.
+- Backlog: B098 stage `code`.
+
+**Files**
+- `components/NavigationItem/guidelines.md`, `backlog/backlog.json`, `STEPS.md` (updated)
