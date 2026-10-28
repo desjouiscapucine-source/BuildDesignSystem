@@ -251,7 +251,7 @@
       "id": "B030",
       "title": "Tabs",
       "category": "Components",
-      "status": "todo",
+      "status": "in-progress",
       "origin": "proposal",
       "description": "Navigation within a page. Used on the documentation site: tabs of the component pages (Design preview, Design spec, Guidelines, Examples, Code).",
       "stage": "design"
