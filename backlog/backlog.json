@@ -798,6 +798,14 @@
       "status": "done",
       "origin": "decided",
       "description": "A change made by the Design System Lead on the Backlog page (approve, reject, status, stage) is saved where the page is served and also committed and pushed to main from the root folder, so it never stays on a work branch only."
+    },
+    {
+      "id": "B095",
+      "title": "Backlog: no proposals column, priorities",
+      "category": "Tooling",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "Proposals column and status removed: Claude asks in the chat first, then creates the ticket in To do. Priority High / Medium / Low on every ticket (none by default), columns sorted by priority. Reject button removed. The 5 pending proposals kept, in To do."
     }
   ]
 }
