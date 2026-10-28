@@ -63,7 +63,8 @@
       "category": "Foundations",
       "status": "todo",
       "origin": "decided",
-      "description": "Usages to define (decided \"later\", step 33)."
+      "description": "Usages to define (decided \"later\", step 33).",
+      "priority": "high"
     },
     {
       "id": "B009",
