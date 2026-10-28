@@ -249,12 +249,12 @@
     },
     {
       "id": "B030",
-      "title": "Tabs",
+      "title": "Chip",
       "category": "Components",
-      "status": "todo",
+      "status": "done",
       "origin": "proposal",
-      "description": "Navigation within a page. Used on the documentation site: tabs of the component pages (Design preview, Design spec, Guidelines, Examples, Code).",
-      "stage": "design"
+      "description": "Chip (atom), building block of ChipGroup (B094): the chips used on the documentation site to switch the view or filter the content (Backlog category filter, Design preview variant switch). Started as Tabs; renamed by the Design System Lead, Tabs moved to B093.",
+      "stage": "code"
     },
     {
       "id": "B031",
@@ -772,6 +772,24 @@
       "status": "done",
       "origin": "proposal",
       "description": "Use the Breadcrumb component (B083) on the documentation site, as its guidelines say: every page from Level 2 to Level 4, first block above the title; update the navigation skill and the Navigation structure page (the breadcrumb is now a component)."
+    },
+    {
+      "id": "B093",
+      "title": "Tabs",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "Navigation within a page. Used on the documentation site: tabs of the component pages (Design preview, Design spec, Guidelines, Examples, Code).",
+      "stage": "design"
+    },
+    {
+      "id": "B094",
+      "title": "ChipGroup",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "ChipGroup (molecule): arranges the Chips (B030) and handles the selection — one chip selected at a time, always one. Horizontal scroll when the chips do not fit (chosen while it was Tabs, to confirm). Replaces the chips of the documentation site (Backlog filter, Design preview variant switch).",
+      "stage": "design"
     },
     {
       "id": "B092",

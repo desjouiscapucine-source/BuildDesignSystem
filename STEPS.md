@@ -3606,6 +3606,59 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `.claude/skills/git-workflow/SKILL.md`, `STEPS.md` (updated)
 
+## Step B030-1 — Chip: design approved
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- Ticket B030 started as **Tabs**, then renamed: the component is the **chip** already used on the documentation site to switch the view or filter the content (Backlog category filter, Design preview variant switch). A separate **Tabs** component goes to a new ticket, **B093** (todo, decided).
+- Split into building blocks: **Chip** (atom, `.ds-chip`, built first) and **ChipGroup** (molecule, arranges the chips, later). Description: "One choice of a chip group, to switch the view or filter the content."
+- Look: the existing site chips — `body` text style, padding `space.4` / `space.16`, `radius.8`, `border-width.1`. Not selected: `background.page`, `border.strong`, `text.primary`. Selected: `background.brand` (background and border), `text.inverse`.
+- Content: text only (no icon, no counter); long label cut with an ellipsis on one line.
+- One variant property, `selected` (`true` / `false`, default `false`). No disabled state. Hover / focus / pressed: state layers, focus ring `border.focus`.
+- For ChipGroup (to confirm then): horizontal scroll when the chips do not fit, chosen while it was still Tabs.
+
+**What was done**
+- `components/Chip/` created from the template: `meta.json`, design preview (`design/Preview.tsx`, `design/tokens.json`), `spec.md`. Stage set to `guidelines`.
+- Contrast: `text.primary` / `background.page`, `text.inverse` / `background.brand` (4.5:1) and `border.strong` / `background.page` (3:1) already checked in `tokens/contrast-pairs.json`.
+- Backlog: B030 renamed Chip, stage `guidelines`; B093 Tabs added.
+
+**Files**
+- `components/Chip/` (new), `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B030-2 — Chip: guidelines approved
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- When to use: switch the view, filter the content; only inside a ChipGroup. Not for an action (Button), sections of a page (Tabs, B093) or another page (NavigationItem / link). No rule yet for choosing an option in a form.
+- One chip selected at a time, always one ("All" first); clicking the selected chip keeps it selected.
+- Labels: 1 to 3 words, sentence case, text only, no final period.
+- Screen reader: toggle button (`button` + `aria-pressed`); Tab between chips, Enter / Space selects.
+- Do's and don'ts: one chip always selected / none selected; short sentence-case labels / sentences, uppercase, punctuation; at least two chips / a single chip; switch or filter / trigger an action.
+
+**What was done**
+- `components/Chip/guidelines.md` written. Stage set to `code`.
+- Backlog: B030 stage `code`.
+
+**Files**
+- `components/Chip/guidelines.md`, `components/Chip/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B030-3 — Chip: code approved, component complete
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- Code of Chip approved: the component is complete.
+
+**What was done**
+- `components/Chip/Chip.tsx`: a `<button type="button">` with `aria-pressed` (toggle button); prop `selected` (default `false`), no disabled state; native attributes passed through.
+- `components/Chip/Chip.css`: spec tokens only; selected styled on `[aria-pressed="true"]`; state layers for hover / focus / pressed; focus ring `--color-border-focus`; label on one line with an ellipsis.
+- `components/Chip/examples.tsx`: not selected, selected, an interactive group (one chip selected at a time, always one), long label.
+- `components/index.ts`: `Chip` and `ChipProps` exported. `meta.json` status `complete`.
+- Verification: typecheck and build pass; selection and ellipsis checked in the Examples tab; height 31px (above 24px).
+- Backlog: B030 done; **B094 ChipGroup** added (todo, decided) — the parent of Chip, approved split.
+
+**Files**
+- `components/Chip/Chip.tsx`, `components/Chip/Chip.css`, `components/Chip/examples.tsx`, `components/Chip/meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B092-1 — Backlog page: changes saved to main
 **Date:** 2026-10-28
 

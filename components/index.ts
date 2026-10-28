@@ -20,3 +20,5 @@ export { BreadcrumbItem } from "./BreadcrumbItem/BreadcrumbItem";
 export type { BreadcrumbItemProps } from "./BreadcrumbItem/BreadcrumbItem";
 export { Breadcrumb } from "./Breadcrumb/Breadcrumb";
 export type { BreadcrumbProps, BreadcrumbLevel } from "./Breadcrumb/Breadcrumb";
+export { Chip } from "./Chip/Chip";
+export type { ChipProps } from "./Chip/Chip";

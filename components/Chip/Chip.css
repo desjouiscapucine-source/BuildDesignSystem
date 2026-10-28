@@ -1,0 +1,50 @@
+/* Chip — semantic design tokens only. See spec.md.
+   Classes: .ds-chip · part .ds-chip-label · selected = [aria-pressed="true"] */
+.ds-chip {
+  position: relative;
+  display: inline-flex;
+  max-width: 100%;
+  margin: 0;
+  padding: var(--space-4) var(--space-16);
+  border: var(--border-width-1) solid var(--color-border-strong);
+  border-radius: var(--radius-8);
+  background: var(--color-background-page);
+  color: var(--color-text-primary);
+  font-family: var(--typography-body-family);
+  font-size: var(--typography-body-size);
+  font-weight: var(--typography-body-weight);
+  line-height: var(--typography-body-line-height);
+  cursor: pointer;
+}
+.ds-chip[aria-pressed="true"] {
+  border-color: var(--color-background-brand);
+  background: var(--color-background-brand);
+  color: var(--color-text-inverse);
+}
+
+/* Label: one line, ellipsis when the chip is wider than its container */
+.ds-chip-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* State layers, in the content color */
+.ds-chip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-100) var(--easing-ease-out);
+}
+.ds-chip:hover::after { opacity: var(--state-layer-hover); }
+.ds-chip:focus-visible::after { opacity: var(--state-layer-focus); }
+.ds-chip:active::after { opacity: var(--state-layer-pressed); }
+.ds-chip:focus-visible {
+  outline: var(--border-width-2) solid var(--color-border-focus);
+  outline-offset: var(--border-width-2);
+}
