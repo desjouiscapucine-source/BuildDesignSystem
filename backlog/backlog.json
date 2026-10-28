@@ -194,7 +194,8 @@
       "status": "todo",
       "origin": "proposal",
       "description": "Single choice.",
-      "stage": "design"
+      "stage": "design",
+      "priority": "low"
     },
     {
       "id": "B024",
