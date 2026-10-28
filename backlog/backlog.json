@@ -822,6 +822,15 @@
       "status": "done",
       "origin": "decided",
       "description": "A changelog skill (versions X.Y, changelog entries, when to add them) and a Changelog page in Governance, under How to use skills."
+    },
+    {
+      "id": "B098",
+      "title": "Navigation item: expandable parent",
+      "category": "Components",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "A parent Navigation item with children inside it, and an arrow on the right to open and close it.",
+      "stage": "design"
     }
   ]
 }
