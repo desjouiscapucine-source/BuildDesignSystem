@@ -760,7 +760,7 @@
       "id": "B090",
       "title": "Breadcrumb item",
       "category": "Components",
-      "status": "todo",
+      "status": "in-progress",
       "origin": "decided",
       "description": "Building block of the Breadcrumb (B083): one link to a level above the page. Done first. Decided 2026-10-28.",
       "stage": "design"
