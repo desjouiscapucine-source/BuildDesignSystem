@@ -806,6 +806,14 @@
       "status": "done",
       "origin": "decided",
       "description": "Proposals column and status removed: Claude asks in the chat first, then creates the ticket in To do. Priority High / Medium / Low on every ticket (none by default), columns sorted by priority. Reject button removed. The 5 pending proposals kept, in To do."
+    },
+    {
+      "id": "B096",
+      "title": "Component versioning and changelog",
+      "category": "Tooling",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "Version of each component in the format X.Y, shown as a badge next to the title of the component page, with a dated changelog. Complete components start at 1.0."
     }
   ]
 }
