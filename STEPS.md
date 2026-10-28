@@ -3744,3 +3744,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `.claude/skills/changelog/SKILL.md`, `docs/src/pages/ChangelogPage.tsx` (new)
 - `docs/src/structure.ts`, `docs/src/App.tsx`, `docs/src/pages/NavigationPage.tsx`, `.claude/skills/component/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `.claude/skills/navigation/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B098-1 — Navigation item: expandable parent, design approved
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- Two types: **Link** (leads to a page) and **Parent** (a button that only opens and closes its children, never a page).
+- Arrow on the right of a parent: `expand_more`, turned by 180° when open (`--duration-200` `--easing-ease-in-out`), `--icon-size-20`, same color as the icon. The children appear at once, no animation.
+- Children: no leading icon, indented by `--space-16` per level. Levels: unlimited; a child parent behaves like a top-level parent.
+- Default: closed, open when the page displayed is one of its children. Closed with a selected child → the parent takes the selected look.
+- A parent is never disabled.
+- Code (to come): a parent takes a `label` prop and its children inside; a link keeps its label as `children` (no breaking change → version 1.1, written once the change is approved).
+
+**What was done**
+- `components/NavigationItem/spec.md`: purpose, types, anatomy (arrow, children, levels), variants (`label`, forbidden combinations), sizes, states (closed / open, child selected), design tokens.
+- Design preview: variants `parent`, `parent-open` (nested example), `parent-child-selected`, `child`, `child-selected`; slots `arrow-size` and `indent`.
+- Backlog: B098 added (reserved first), stage `guidelines`. `meta.json` stays `complete` 1.0: the coded component is unchanged until the code of B098 is approved.
+
+**Files**
+- `components/NavigationItem/spec.md`, `components/NavigationItem/design/Preview.tsx`, `components/NavigationItem/design/tokens.json`, `backlog/backlog.json`, `STEPS.md` (updated)
