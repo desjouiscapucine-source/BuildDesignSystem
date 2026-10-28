@@ -3714,3 +3714,15 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/*/meta.json`, `components/_template/meta.json`, `docs/src/types.ts`, `docs/src/registry.ts`, `docs/src/pages/ComponentPage.tsx`, `docs/src/docs.css`, `.claude/skills/component/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B025-1 — Badge ticket: version badge and its color
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- The Badge component (B025, already in To do) also covers the version badge of the component pages; note to change its color (to define).
+
+**What was done**
+- `backlog/backlog.json`: B025 description completed (version badge as a first use, note on its color). No new ticket: B025 already existed.
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)
