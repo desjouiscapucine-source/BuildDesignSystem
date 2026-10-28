@@ -29,7 +29,8 @@ Level 1   ├── Documentation               → opens on Overview
 Level 2   │   ├── Overview                (content: Description + Summary)
 Level 2   │   ├── Governance
 Level 3   │   │   ├── Backlog             (a ticket opens in a modal)
-Level 3   │   │   └── How to use skills
+Level 3   │   │   ├── How to use skills
+Level 3   │   │   └── Changelog           (every version of every component)
 Level 2   │   ├── Foundations             (one page per category)
 Level 3   │   │   └── Color · Typography · Spacing · Radius · Border width · Shadows · Motion
           │   │       Opacity · Size · Breakpoints · Layout grid · Z-index · Icons

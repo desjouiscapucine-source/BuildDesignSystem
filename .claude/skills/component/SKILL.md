@@ -54,23 +54,14 @@ Read `components/<Name>/meta.json` → `status`: it tells which stage skill appl
 ## 4. After the last stage
 
 When the code stage is approved, the component is **complete**:
-- Set `meta.json` `status` to **`complete`** (the site shows every stage checked and a Complete badge), `version` to **`1.0`**, and add the changelog entry `1.0` (date, "First complete version.").
+- Set `meta.json` `status` to **`complete`** (the site shows every stage checked and a Complete badge), `version` to **`1.0`**, and add the changelog entry `1.0` (`changelog` skill).
 - Set the backlog item status to `done`.
 - Export the component from `components/index.ts` (if not already done at the code stage).
 - Log it in `STEPS.md`, commit, merge `component/<Name>` into `main`, then delete the branch and offer to archive the conversation (`git-workflow`).
 
 ## Version and changelog
 
-Decided by the Design System Lead on 2026-10-28 (B096).
-
-- Every component has a **version** `X.Y` in `meta.json` (`version`), shown as a badge next to its title on the component page.
-- **`0.0`** while the component goes through its stages; **`1.0`** when it becomes `complete`.
-- Every version has an entry in the **changelog** of `meta.json` (`changelog`, newest first): `version`, `date` (`YYYY-MM-DD`) and `changes` (one sentence). The Changelog tab of the component page shows it.
-- **When a complete component changes** (e.g. a new variant of NavigationItem): once the change is approved, give it a new version, add its changelog entry and log it in `STEPS.md`, in the same step.
-- Which number goes up:
-  - **`Y`** for an addition or a fix that keeps the existing usage working (e.g. a new variant, a corrected state): `1.0` → `1.1`.
-  - **`X`** for a breaking change, which breaks the existing usage (e.g. a prop renamed or removed, a changed anatomy): `1.1` → `2.0`; `Y` goes back to 0.
-  - Not sure whether a change is breaking → ask the Design System Lead.
+Every component has a version `X.Y` (`0.0` in progress, `1.0` once complete) and a changelog in `meta.json`. When a complete component changes, the approved change gets a new version and a changelog entry, in the same step. All the rules: the **`changelog`** skill.
 
 ## Changing an existing component
 

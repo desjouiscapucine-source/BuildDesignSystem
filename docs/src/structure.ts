@@ -52,7 +52,7 @@ const documentation: NavNode = {
       href: "#/governance",
       label: "Governance",
       icon: "gavel",
-      description: "Backlog and how to work with the project skills",
+      description: "Backlog, project skills and changelog",
       children: [
         { href: "#/backlog", label: "Backlog", icon: "view_kanban", description: "Tasks still to do" },
         {
@@ -60,6 +60,12 @@ const documentation: NavNode = {
           label: "How to use skills",
           icon: "psychology",
           description: "The orchestrator, its child skills and how to call them",
+        },
+        {
+          href: "#/changelog",
+          label: "Changelog",
+          icon: "history",
+          description: "Every version of every component, newest first",
         },
       ],
     },

@@ -7,6 +7,7 @@ import { BacklogPage } from "./pages/BacklogPage";
 import { IconsPage } from "./pages/IconsPage";
 import { GridPage } from "./pages/GridPage";
 import { SkillsPage } from "./pages/SkillsPage";
+import { ChangelogPage } from "./pages/ChangelogPage";
 import { TicketPage } from "./pages/TicketPage";
 import { PrototypePage } from "./pages/PrototypePage";
 import { NavigationPage } from "./pages/NavigationPage";
@@ -25,7 +26,7 @@ import { categorySlug } from "./structure";
 // Hash routes, by navigation level (navigation skill):
 // Level 1  #/ (Documentation, opens on Overview)  ·  #/portfolio
 // Level 2  #/governance  ·  #/foundations  ·  #/components  ·  #/prototypes  ·  #/navigation
-// Level 3  #/backlog  ·  #/backlog/<id>  ·  #/skills  ·  #/foundations/<slug>  ·  #/components/<category>  ·  #/prototypes/<name>
+// Level 3  #/backlog  ·  #/backlog/<id>  ·  #/skills  ·  #/changelog  ·  #/foundations/<slug>  ·  #/components/<category>  ·  #/prototypes/<name>
 // Level 4  #/components/<slug>
 function useHashRoute() {
   const read = () => {
@@ -71,6 +72,7 @@ export function App() {
   else if (route === "/backlog") page = <BacklogPage />;
   else if (route.startsWith("/backlog/")) page = <TicketPage key={route} id={route.slice("/backlog/".length)} />;
   else if (route === "/skills") page = <SkillsPage />;
+  else if (route === "/changelog") page = <ChangelogPage />;
   else if (foundation?.slug === "icons") page = <IconsPage />;
   else if (foundation?.slug === "layout-grid") page = <GridPage />;
   else if (foundation) page = <FoundationPage key={foundation.slug} foundation={foundation} />;

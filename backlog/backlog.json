@@ -819,7 +819,7 @@
       "id": "B097",
       "title": "Skill: changelog, and Changelog page",
       "category": "Skills",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "A changelog skill (versions X.Y, changelog entries, when to add them) and a Changelog page in Governance, under How to use skills."
     }

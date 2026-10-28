@@ -3726,3 +3726,21 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B097-1 — Skill: changelog, and Changelog page
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- A `changelog` skill for the versions and changelogs of the components.
+- A Changelog page in Governance, under How to use skills.
+
+**What was done**
+- New skill `.claude/skills/changelog/SKILL.md`: version `X.Y` (0.0 → 1.0 when complete; `Y` for an addition or a fix, `X` for a breaking change), changelog entry in `meta.json` (version, date of the approval, one sentence; written with the `STEPS.md` entry; never rewritten), where it is shown, what is not defined yet (changelogs for anything else than components).
+- New page `docs/src/pages/ChangelogPage.tsx` (`#/changelog`): every version of every component, newest first, read from `meta.json`. Added to Governance in `docs/src/structure.ts` (icon `history`) and routed in `docs/src/App.tsx`.
+- `component` skill: refers to the `changelog` skill. `orchestrator`: dispatch row. `navigation` skill and Navigation structure page: Changelog under How to use skills. `CLAUDE.md`: reference to the skill and the page.
+- Backlog: B097 added (reserved first), done.
+- Verification: type check and build pass; the page lists the 11 versions 1.0 with links to the components; the skill card shows on How to use skills.
+
+**Files**
+- `.claude/skills/changelog/SKILL.md`, `docs/src/pages/ChangelogPage.tsx` (new)
+- `docs/src/structure.ts`, `docs/src/App.tsx`, `docs/src/pages/NavigationPage.tsx`, `.claude/skills/component/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `.claude/skills/navigation/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
