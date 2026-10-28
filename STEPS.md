@@ -3463,6 +3463,135 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `vite.config.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
 
+## Step B090-1 — BreadcrumbItem: design approved
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- B083 Breadcrumb approved from the chat (was a proposal): **Breadcrumb**, molecule, class `.ds-breadcrumb`, one style, one size, text links. Split into a building block, **BreadcrumbItem**, built first (ticket B090), in this same conversation.
+- **BreadcrumbItem**: atom, class `.ds-breadcrumb-item`, description "One link of a breadcrumb, to a level above the page.", one type, one size.
+- Link: `body-sm`, `--color-text-link`. Separator: a text slash "/" after the link, part of the item, `--color-text-secondary`, `--space-8` from the link.
+- Variant `last` (boolean, default `false`): no slash on the last item.
+- Long label: one line, ellipsis only when the breadcrumb runs out of space (no fixed width).
+- States: hover and pressed underline the link (no state layer); focus = ring `--color-border-focus` + focus state layer behind the label (so it differs from hover), `--radius-4`; disabled = link and slash in `--color-text-disabled`, not a link, not focusable.
+- Design approved; next stage: guidelines.
+
+**What was done**
+- `components/BreadcrumbItem/` created from the template: `meta.json` (status `guidelines`), `spec.md`, design preview (`design/Preview.tsx`, `design/tokens.json`, variants `default` and `last`, disabled state).
+- Contrast: `text.link` and `text.secondary` already checked (AA); link on the focus layer 5.2:1; disabled exempt.
+- Backlog: B083 in progress; B090 added (reserved first), stage `guidelines`.
+
+**Files**
+- `components/BreadcrumbItem/meta.json`, `spec.md`, `guidelines.md` (template), `design/Preview.tsx`, `design/tokens.json` (new)
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B090-2 — BreadcrumbItem: guidelines approved
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- When to use: only inside a Breadcrumb; one item per level above the page. When not to use: NavigationItem for pages of the same level, TimelineStep for steps or events.
+- The Breadcrumb sets `last` (final item) and `disabled` (a level with no page of its own); never set by hand.
+- Content: label = the page title word for word, sentence case, text only (no icon, no punctuation).
+- Four do / don't pairs: label = page title; sentence case, text only; no slash after the last item; disabled only for a level with no page.
+- Accessibility: Tab + Enter, disabled items skipped; slash `aria-hidden`; disabled item as plain text, label still read; link color differs from body text, so the underline is not the only cue.
+- Related component: Breadcrumb.
+- Guidelines approved; next stage: code.
+
+**What was done**
+- `components/BreadcrumbItem/guidelines.md` written; `meta.json` status `code`; backlog B090 stage `code`.
+
+**Files**
+- `components/BreadcrumbItem/guidelines.md`, `meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B090-3 — BreadcrumbItem: code approved, component complete
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- Code approved: BreadcrumbItem is **complete**.
+
+**What was done**
+- `BreadcrumbItem.tsx`: props `href`, `children` (label), `last` and `disabled` (both `false` by default). Renders an `<li>` (the Breadcrumb will be the list); the link is an `<a>`, a disabled item a plain `<span>` (not focusable, label still read); the slash is `aria-hidden` and left out when `last`.
+- `BreadcrumbItem.css`: semantic tokens only; `body-sm`, `--color-text-link`, underline on hover and pressed, focus ring `--color-border-focus` + focus state layer, slash `--color-text-secondary` at `--space-8`, disabled `--color-text-disabled`, ellipsis on one line.
+- `examples.tsx`: Default, Last, Disabled, Several items, Long label. Exported from `components/index.ts`.
+- Verification: typecheck and build pass; Tab skips the disabled item; focus ring + layer, hover underline and ellipsis checked in the browser.
+- `meta.json` status `complete`; backlog B090 `done`.
+
+**Files**
+- `components/BreadcrumbItem/BreadcrumbItem.tsx`, `BreadcrumbItem.css`, `examples.tsx` (new)
+- `components/BreadcrumbItem/meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B083-1 — Breadcrumb: design approved
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- **Breadcrumb**: molecule, class `.ds-breadcrumb`, description "Shows where the page sits and goes back to any level above it.", one style, one size, text links. Built from its building block **BreadcrumbItem** (B090, complete).
+- Anatomy: a navigation landmark named "Breadcrumb" with BreadcrumbItems, one per level from Level 0 down to the parent of the current page; the current page is not an item.
+- The Breadcrumb sets `last` on its final item and `disabled` on a level with no page.
+- `--space-8` between a slash and the next item.
+- Overflow: one line; labels cut with an ellipsis when the breadcrumb is wider than its container; the last item kept whole.
+- No state of its own (those of BreadcrumbItem). Design approved; next stage: guidelines.
+
+**What was done**
+- `components/Breadcrumb/` created from the template: `meta.json` (status `guidelines`), `spec.md`, design preview (`design/Preview.tsx` with the BreadcrumbItem component, wide and narrow; `design/tokens.json`).
+- Backlog: B083 stage `guidelines`.
+
+**Files**
+- `components/Breadcrumb/meta.json`, `spec.md`, `guidelines.md` (template), `design/Preview.tsx`, `design/tokens.json` (new)
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B083-2 — Breadcrumb: guidelines approved
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- When to use: every page from Level 2 to Level 4; not on Level 0 nor Level 1. When not to use: inside a page or for a sequence of steps (Timeline), as the main navigation (it complements the SideNavigation).
+- Placement: first block of the page content, `--space-16` above the title; one breadcrumb per page; ends with the parent of the current page.
+- Three do / don't pairs: above the page title; end with the parent; one per page.
+- Small screens: same breadcrumb, ellipsis, last item kept whole.
+- Accessibility: nav landmark "Breadcrumb" + ordered list; Tab in reading order, disabled items skipped; a cut label keeps its full text for screen readers.
+- Related components: BreadcrumbItem, SideNavigation, Timeline.
+- Guidelines approved; next stage: code.
+
+**What was done**
+- `components/Breadcrumb/guidelines.md` written; `meta.json` status `code`; backlog B083 stage `code`.
+
+**Files**
+- `components/Breadcrumb/guidelines.md`, `meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B083-3 — Breadcrumb: code approved, component complete
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- Code approved: Breadcrumb is **complete**, with the props `items` (`{ label, href, disabled }`).
+
+**What was done**
+- `Breadcrumb.tsx`: `<nav aria-label="Breadcrumb">` with an ordered list of BreadcrumbItem, one per level; `last` set on the final item, `disabled` passed from the level.
+- `Breadcrumb.css`: semantic tokens only; `--space-8` between items, one line, the last item never shrinks (the others get an ellipsis).
+- `examples.tsx`: Level 4 page, Level 2 page, level with no page, not enough space. Exported from `components/index.ts`.
+- Verification: typecheck and build pass; landmark and list checked; ellipsis with the last item kept whole checked in the browser.
+- `meta.json` status `complete`; backlog B083 `done`; proposal B091 added (breadcrumb on the documentation site).
+
+**Files**
+- `components/Breadcrumb/Breadcrumb.tsx`, `Breadcrumb.css`, `examples.tsx` (new)
+- `components/Breadcrumb/meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B091-1 — Site: breadcrumb on Level 2 to Level 4 pages
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- B091 approved from the chat (was a proposal), done in the Breadcrumb conversation as an exception.
+- Level 0 item labelled **BuildDesignSystem** (link to the landing page `/`).
+- Overview (where Documentation opens): "BuildDesignSystem / Documentation", like the other Level 2 pages.
+- Ticket pages: breadcrumb up to the Backlog ("… / Governance / Backlog") until the Modal exists.
+
+**What was done**
+- `docs/src/AppShell.tsx`: the Breadcrumb component, first block of the content area (16px above the title), built from `structure.ts`: Level 0, then the levels down to the parent of the page; none on Level 1 (Portfolio). New optional prop `route` for a page outside the navigation (a ticket).
+- `docs/src/App.tsx`: passes the route; `TicketPage.tsx`: the "← Backlog" link removed (the breadcrumb ends with the Backlog).
+- `navigation` skill and Navigation structure page: the site now follows the breadcrumb principle; only the modal is missing.
+- Verification: typecheck and build pass; breadcrumb checked on every kind of page (Level 2, 3, 4, ticket, none on Portfolio); fits on one line at mobile width.
+- Backlog: B091 done.
+
+**Files**
+- `docs/src/AppShell.tsx`, `docs/src/App.tsx`, `docs/src/pages/TicketPage.tsx`, `docs/src/pages/NavigationPage.tsx`, `.claude/skills/navigation/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B079-4 — Git workflow: the root folder holds main
 **Date:** 2026-10-28
 

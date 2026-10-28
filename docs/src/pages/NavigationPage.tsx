@@ -1,7 +1,7 @@
 import { components, levels } from "../registry";
 
 // Navigation structure of the site, approved by the Design System Lead on 2026-10-27.
-// The site follows it, except the breadcrumb and the modal (not components yet).
+// The site follows it, except the modal (not a component yet).
 
 interface NavNode {
   label: string;
@@ -84,7 +84,7 @@ const principles = [
   { name: "Back to Level 0", rule: "The site logo goes back to the landing page, from every level." },
   {
     name: "Go back",
-    rule: "A breadcrumb shows where the page sits in the structure and goes back to any level above it.",
+    rule: "A breadcrumb shows where the page sits in the structure and goes back to any level above it. On every page from Level 2 to Level 4, above the title, from Level 0 (BuildDesignSystem) down to the parent of the page.",
   },
   {
     name: "Depth",
@@ -122,7 +122,7 @@ export function NavigationPage() {
       <h1>Navigation structure</h1>
       <p className="lead">Navigation levels of the site and how to move between them</p>
       <p>
-        Structure of the site, approved by the Design System Lead. The site follows it, except the breadcrumb and the modal, which are not components yet. Talk about the
+        Structure of the site, approved by the Design System Lead. The site follows it, except the modal, which is not a component yet. Talk about the
         navigation in levels: Level 0 is the landing page.
       </p>
 
