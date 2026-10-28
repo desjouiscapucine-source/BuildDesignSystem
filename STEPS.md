@@ -3641,3 +3641,20 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/Chip/guidelines.md`, `components/Chip/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B030-3 — Chip: code approved, component complete
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- Code of Chip approved: the component is complete.
+
+**What was done**
+- `components/Chip/Chip.tsx`: a `<button type="button">` with `aria-pressed` (toggle button); prop `selected` (default `false`), no disabled state; native attributes passed through.
+- `components/Chip/Chip.css`: spec tokens only; selected styled on `[aria-pressed="true"]`; state layers for hover / focus / pressed; focus ring `--color-border-focus`; label on one line with an ellipsis.
+- `components/Chip/examples.tsx`: not selected, selected, an interactive group (one chip selected at a time, always one), long label.
+- `components/index.ts`: `Chip` and `ChipProps` exported. `meta.json` status `complete`.
+- Verification: typecheck and build pass; selection and ellipsis checked in the Examples tab; height 31px (above 24px).
+- Backlog: B030 done; **B094 ChipGroup** added (todo, decided) — the parent of Chip, approved split.
+
+**Files**
+- `components/Chip/Chip.tsx`, `components/Chip/Chip.css`, `components/Chip/examples.tsx`, `components/Chip/meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
