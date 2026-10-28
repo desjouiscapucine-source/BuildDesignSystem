@@ -254,7 +254,7 @@
       "status": "in-progress",
       "origin": "proposal",
       "description": "Chip (atom) and ChipGroup (molecule): the chips used on the documentation site to switch the view or filter the content (Backlog category filter, Design preview variant switch). Started as Tabs; renamed by the Design System Lead, Tabs moved to B093.",
-      "stage": "design"
+      "stage": "guidelines"
     },
     {
       "id": "B031",

@@ -3605,3 +3605,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `.claude/skills/git-workflow/SKILL.md`, `STEPS.md` (updated)
+
+## Step B030-1 — Chip: design approved
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- Ticket B030 started as **Tabs**, then renamed: the component is the **chip** already used on the documentation site to switch the view or filter the content (Backlog category filter, Design preview variant switch). A separate **Tabs** component goes to a new ticket, **B093** (todo, decided).
+- Split into building blocks: **Chip** (atom, `.ds-chip`, built first) and **ChipGroup** (molecule, arranges the chips, later). Description: "One choice of a chip group, to switch the view or filter the content."
+- Look: the existing site chips — `body` text style, padding `space.4` / `space.16`, `radius.8`, `border-width.1`. Not selected: `background.page`, `border.strong`, `text.primary`. Selected: `background.brand` (background and border), `text.inverse`.
+- Content: text only (no icon, no counter); long label cut with an ellipsis on one line.
+- One variant property, `selected` (`true` / `false`, default `false`). No disabled state. Hover / focus / pressed: state layers, focus ring `border.focus`.
+- For ChipGroup (to confirm then): horizontal scroll when the chips do not fit, chosen while it was still Tabs.
+
+**What was done**
+- `components/Chip/` created from the template: `meta.json`, design preview (`design/Preview.tsx`, `design/tokens.json`), `spec.md`. Stage set to `guidelines`.
+- Contrast: `text.primary` / `background.page`, `text.inverse` / `background.brand` (4.5:1) and `border.strong` / `background.page` (3:1) already checked in `tokens/contrast-pairs.json`.
+- Backlog: B030 renamed Chip, stage `guidelines`; B093 Tabs added.
+
+**Files**
+- `components/Chip/` (new), `backlog/backlog.json`, `STEPS.md` (updated)
