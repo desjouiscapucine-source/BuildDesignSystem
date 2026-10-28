@@ -777,7 +777,7 @@
       "id": "B092",
       "title": "Backlog page: changes saved to main",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "A change made by the Design System Lead on the Backlog page (approve, reject, status, stage) is saved where the page is served and also committed and pushed to main from the root folder, so it never stays on a work branch only."
     }

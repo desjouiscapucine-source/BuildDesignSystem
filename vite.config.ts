@@ -19,6 +19,51 @@ const prototypePages = Object.fromEntries(
 // Lets the documentation site read and update the backlog (local dev server only).
 // Updates are applied to the file on disk one item at a time, so the page never
 // overwrites items added to the file by someone else in the meantime.
+type BacklogChange = Record<string, unknown>;
+const BACKLOG_FIELDS = ["status", "stage"];
+
+// Applies a change to one item of a backlog file. Returns the new data, or null if the item is not in it.
+function applyBacklogChange(file: string, id: string, change: BacklogChange) {
+  const data = JSON.parse(readFileSync(file, "utf8"));
+  const item = data.items.find((entry: { id: string }) => entry.id === id);
+  if (!item) return null;
+  for (const key of Object.keys(change)) if (BACKLOG_FIELDS.includes(key)) item[key] = change[key];
+  writeFileSync(file, JSON.stringify(data, null, 2) + "\n");
+  return data;
+}
+
+// A change made by the Design System Lead on the Backlog page is also saved to main (B092): committed in the
+// root folder of the project, which always holds main, and pushed. Returns an error message, or null.
+function saveBacklogChangeToMain(id: string, change: BacklogChange): string | null {
+  const main = checkouts()[0] ?? root;
+  const git = (args: string) => execSync(`git ${args}`, { cwd: main, encoding: "utf8", stdio: "pipe" });
+  try {
+    if (git("rev-parse --abbrev-ref HEAD").trim() !== "main") return "the root folder is not on main";
+    if (git("status --porcelain").trim()) return "the root folder has uncommitted changes";
+    const summary = Object.entries(change)
+      .filter(([key]) => BACKLOG_FIELDS.includes(key))
+      .map(([key, value]) => `${key} ${value}`)
+      .join(", ");
+    for (let attempt = 0; attempt < 2; attempt++) {
+      git("fetch -q origin");
+      git("merge -q --ff-only origin/main");
+      if (!applyBacklogChange(resolve(main, "backlog/backlog.json"), id, change)) return `${id} is not in main yet`;
+      if (!git("status --porcelain").trim()) return null; // Already saved in main.
+      git("add backlog/backlog.json");
+      git(`commit -q -m "Backlog: ${id} ${summary} (Design System Lead, Backlog page)"`);
+      try {
+        git("push -q origin main");
+        return null;
+      } catch {
+        git("reset -q --hard origin/main"); // main moved meanwhile: start again from it.
+      }
+    }
+    return "main kept moving; try again";
+  } catch (error) {
+    return String(error).split("\n")[0];
+  }
+}
+
 function backlogApi(): Plugin {
   const file = resolve(root, "backlog/backlog.json");
   const read = () => JSON.parse(readFileSync(file, "utf8"));
@@ -38,13 +83,14 @@ function backlogApi(): Plugin {
         req.on("end", () => {
           try {
             const { id, change } = JSON.parse(body);
-            const data = read();
-            const item = data.items.find((entry: { id: string }) => entry.id === id);
-            if (!item) return send(404, { error: `Unknown item ${id}` });
-            const allowed = ["status", "stage"];
-            for (const key of Object.keys(change)) if (allowed.includes(key)) item[key] = change[key];
-            writeFileSync(file, JSON.stringify(data, null, 2) + "\n");
-            send(200, data);
+            if (!read().items.some((entry: { id: string }) => entry.id === id))
+              return send(404, { error: `Unknown item ${id}` });
+            const servedFromMain = resolve(checkouts()[0] ?? root) === resolve(root);
+            const mainError = saveBacklogChangeToMain(id, change);
+            // Served from a work branch (or main could not be saved): the change is saved here too, so the page
+            // shows it; the same change in main merges without conflict.
+            if (!servedFromMain || mainError) applyBacklogChange(file, id, change);
+            send(200, { ...read(), mainError });
           } catch (error) {
             send(400, { error: String(error) });
           }

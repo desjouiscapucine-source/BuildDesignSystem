@@ -3605,3 +3605,19 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `.claude/skills/git-workflow/SKILL.md`, `STEPS.md` (updated)
+
+## Step B092-1 — Backlog page: changes saved to main
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- A change made on the Backlog page is saved directly in `main` and pushed, whichever conversation serves the site. An approval of B083 made on a work branch's server had stayed on that branch only.
+
+**What was done**
+- `vite.config.ts` (`/api/backlog`): a PATCH updates `main` from the root folder (fetch, fast-forward, apply, commit `Backlog: <id> <change> (Design System Lead, Backlog page)`, push; one retry if `main` moved), and the folder that serves the page. If `main` cannot be saved (root folder not clean or not on `main`, ticket not in `main` yet), the response says why.
+- `docs/src/pages/BacklogPage.tsx`: shows "Saved in this folder only, not in main: …" in that case.
+- `git-workflow` skill (section 7) and `CLAUDE.md` (Backlog, Git): the rule, second exception to "commit only after validation", no `STEPS.md` entry.
+- Backlog: B092 added (reserved first), done.
+- Verification: type check and build pass. Tested: a change already in `main` (no commit, root folder clean); a ticket not in `main` yet (saved in the serving folder, reason shown). A real push to `main` will be checked with the next approval on the Backlog page.
+
+**Files**
+- `vite.config.ts`, `docs/src/pages/BacklogPage.tsx`, `.claude/skills/git-workflow/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
