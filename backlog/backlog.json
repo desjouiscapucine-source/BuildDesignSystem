@@ -814,6 +814,14 @@
       "status": "done",
       "origin": "decided",
       "description": "Version of each component in the format X.Y, shown as a badge next to the title of the component page, with a dated changelog. Complete components start at 1.0."
+    },
+    {
+      "id": "B097",
+      "title": "Skill: changelog, and Changelog page",
+      "category": "Skills",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "A changelog skill (versions X.Y, changelog entries, when to add them) and a Changelog page in Governance, under How to use skills."
     }
   ]
 }
