@@ -28,7 +28,6 @@ Cross-cutting skills, used at every stage (dispatched by `orchestrator`):
 ## 1. Before starting
 
 1. Find the component in `backlog/backlog.json`.
-   - Status **`proposal`** → stop: it is not approved. Ask the Design System Lead.
    - Not in the backlog → ask whether to add it.
    - Otherwise work on the branch `component/<Name>` (create it, or update it from `main`: `git-workflow`) and set its status to `in-progress`.
 2. Read `CLAUDE.md` and the `token-naming` skill.

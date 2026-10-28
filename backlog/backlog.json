@@ -1,5 +1,5 @@
 {
-  "$description": "Project backlog — source of truth for the Backlog page of the documentation site. status: proposal | todo | in-progress | done | rejected. origin: decided (Design System Lead) | proposal (Claude).",
+  "$description": "Project backlog — source of truth for the Backlog page of the documentation site. status: todo | in-progress | done | rejected. priority (optional): high | medium | low. origin: decided (Design System Lead) | proposal (suggested by Claude, approved in the chat).",
   "items": [
     {
       "id": "B001",
@@ -604,7 +604,7 @@
       "id": "B071",
       "title": "Skill: token-usage",
       "category": "Skills",
-      "status": "proposal",
+      "status": "todo",
       "origin": "proposal",
       "description": "Which semantic token to use for which need, in specs and component code. Referenced by the former component skill, not created yet."
     },
@@ -612,7 +612,7 @@
       "id": "B072",
       "title": "Skill: accessibility-check",
       "category": "Skills",
-      "status": "proposal",
+      "status": "todo",
       "origin": "proposal",
       "description": "Accessibility check (WCAG 2.2 AA) to run before asking for the approval of any component stage: contrast pairs, target sizes, visible focus."
     },
@@ -620,7 +620,7 @@
       "id": "B073",
       "title": "Skill: steps-log",
       "category": "Skills",
-      "status": "proposal",
+      "status": "todo",
       "origin": "proposal",
       "description": "How to log every step in STEPS.md (date, what was done and why, files)."
     },
@@ -628,7 +628,7 @@
       "id": "B074",
       "title": "Skill: backlog-management",
       "category": "Skills",
-      "status": "proposal",
+      "status": "todo",
       "origin": "proposal",
       "description": "How to keep backlog/backlog.json up to date: statuses, origin, component stage, new proposals."
     },
@@ -712,7 +712,7 @@
       "id": "B084",
       "title": "Dedicated agents for recurring checks",
       "category": "Tooling",
-      "status": "proposal",
+      "status": "todo",
       "origin": "proposal",
       "description": "Reusable agents in .claude/agents/<name>.md (role, allowed tools, what to report) for checks that come back often, e.g. a token auditor that finds raw values in components. Only once a check is recurring."
     },
@@ -803,7 +803,7 @@
       "id": "B095",
       "title": "Backlog: no proposals column, priorities",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "Proposals column and status removed: Claude asks in the chat first, then creates the ticket in To do. Priority High / Medium / Low on every ticket (none by default), columns sorted by priority. Reject button removed. The 5 pending proposals kept, in To do."
     }

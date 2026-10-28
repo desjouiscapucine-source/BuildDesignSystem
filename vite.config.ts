@@ -20,14 +20,18 @@ const prototypePages = Object.fromEntries(
 // Updates are applied to the file on disk one item at a time, so the page never
 // overwrites items added to the file by someone else in the meantime.
 type BacklogChange = Record<string, unknown>;
-const BACKLOG_FIELDS = ["status", "stage"];
+const BACKLOG_FIELDS = ["status", "stage", "priority"];
 
 // Applies a change to one item of a backlog file. Returns the new data, or null if the item is not in it.
 function applyBacklogChange(file: string, id: string, change: BacklogChange) {
   const data = JSON.parse(readFileSync(file, "utf8"));
   const item = data.items.find((entry: { id: string }) => entry.id === id);
   if (!item) return null;
-  for (const key of Object.keys(change)) if (BACKLOG_FIELDS.includes(key)) item[key] = change[key];
+  for (const [key, value] of Object.entries(change)) {
+    if (!BACKLOG_FIELDS.includes(key)) continue;
+    if (value === null || value === "") delete item[key]; // e.g. priority back to none
+    else item[key] = value;
+  }
   writeFileSync(file, JSON.stringify(data, null, 2) + "\n");
   return data;
 }
@@ -42,7 +46,7 @@ function saveBacklogChangeToMain(id: string, change: BacklogChange): string | nu
     if (git("status --porcelain").trim()) return "the root folder has uncommitted changes";
     const summary = Object.entries(change)
       .filter(([key]) => BACKLOG_FIELDS.includes(key))
-      .map(([key, value]) => `${key} ${value}`)
+      .map(([key, value]) => `${key} ${value ?? "none"}`)
       .join(", ");
     for (let attempt = 0; attempt < 2; attempt++) {
       git("fetch -q origin");

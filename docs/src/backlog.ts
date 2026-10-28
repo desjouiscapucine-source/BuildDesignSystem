@@ -3,7 +3,10 @@ import { useEffect, useState } from "react";
 import initial from "../../backlog/backlog.json";
 import type { Stage } from "./types";
 
-export type BacklogStatus = "proposal" | "todo" | "in-progress" | "done" | "rejected";
+export type BacklogStatus = "todo" | "in-progress" | "done" | "rejected";
+
+/** Priority chosen by the Design System Lead; none by default. */
+export type BacklogPriority = "high" | "medium" | "low";
 
 /** Decision taken by the Design System Lead at the end of a prototype iteration. */
 export type IterationDecision = "changes-requested" | "validated";
@@ -22,6 +25,7 @@ export interface BacklogItem {
   origin: "decided" | "proposal";
   description?: string;
   stage?: Stage;
+  priority?: BacklogPriority;
   /** Prototype tickets: folder name in prototypes/ (its spec is prototypes/<folder>/spec.md). */
   prototype?: string;
   /** Prototype tickets: history of the iterations, oldest first. */
@@ -29,12 +33,21 @@ export interface BacklogItem {
 }
 
 export const statusLabels: Record<BacklogStatus, string> = {
-  proposal: "Proposal",
   todo: "To do",
   "in-progress": "In progress",
   done: "Done",
   rejected: "Rejected",
 };
+
+export const priorityLabels: Record<BacklogPriority, string> = {
+  high: "High",
+  medium: "Medium",
+  low: "Low",
+};
+
+/** Sort order in the columns: High, Medium, Low, then the tickets with no priority. */
+export const priorityRank = (item: BacklogItem) =>
+  item.priority ? (["high", "medium", "low"] as BacklogPriority[]).indexOf(item.priority) : 3;
 
 export const decisionLabels: Record<IterationDecision, string> = {
   "changes-requested": "Changes requested",

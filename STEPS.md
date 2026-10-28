@@ -3674,3 +3674,24 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `vite.config.ts`, `docs/src/pages/BacklogPage.tsx`, `.claude/skills/git-workflow/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B095-1 — Backlog: no proposals column, priorities
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- No more Proposals column or `proposal` status: Claude asks every suggestion in the chat first; the ticket is created in To do only once the Design System Lead agrees.
+- Priority on every ticket: **High / Medium / Low**, none by default; the columns are sorted by priority.
+- The Reject button is removed (the Status list still has Rejected).
+- The 5 pending proposals are kept, in To do (B071, B072, B073, B074, B084).
+
+**What was done**
+- `docs/src/pages/BacklogPage.tsx`: columns To do, In progress, Done; Approve and Reject buttons removed; Priority list (None, High, Medium, Low) on every ticket; each column sorted High, Medium, Low, then no priority.
+- `docs/src/backlog.ts`: `proposal` status removed; `priority` field, labels and sort order.
+- `vite.config.ts` (`/api/backlog`): `priority` can be changed; an empty value removes it.
+- `backlog/backlog.json`: the 5 proposals moved to `todo`; description of the fields updated.
+- `CLAUDE.md` (Backlog), `git-workflow`, `component`, `prototype-setup` skills: no `proposal` status; suggestions asked in the chat first.
+- Backlog: B095 added (reserved first), done.
+- Verification: type check and build pass; the page shows three columns and the Priority list, no console errors.
+
+**Files**
+- `docs/src/pages/BacklogPage.tsx`, `docs/src/backlog.ts`, `vite.config.ts`, `backlog/backlog.json`, `CLAUDE.md`, `.claude/skills/git-workflow/SKILL.md`, `.claude/skills/component/SKILL.md`, `.claude/skills/prototype-setup/SKILL.md`, `STEPS.md` (updated)

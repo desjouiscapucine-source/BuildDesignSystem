@@ -1,9 +1,16 @@
 import { useState } from "react";
 import type { Stage } from "../types";
-import { statusLabels, useBacklog, type BacklogItem as Item, type BacklogStatus as Status } from "../backlog";
+import {
+  priorityLabels,
+  priorityRank,
+  statusLabels,
+  useBacklog,
+  type BacklogItem as Item,
+  type BacklogPriority as Priority,
+  type BacklogStatus as Status,
+} from "../backlog";
 
 const columns: { status: Status; title: string; hint: string }[] = [
-  { status: "proposal", title: "Proposals", hint: "Suggested by Claude — awaiting your approval" },
   { status: "todo", title: "To do", hint: "Approved, not started" },
   { status: "in-progress", title: "In progress", hint: "" },
   { status: "done", title: "Done", hint: "" },
@@ -51,42 +58,44 @@ export function BacklogPage() {
         </a>
       )}
 
-      {item.status === "proposal" ? (
-        <div className="backlog-actions">
-          <button className="approve" onClick={() => update(item.id, { status: "todo" })}>
-            Approve
-          </button>
-          <button onClick={() => update(item.id, { status: "rejected" })}>Reject</button>
-        </div>
-      ) : (
-        <div className="backlog-actions">
+      <div className="backlog-actions">
+        <label>
+          Status
+          <select value={item.status} onChange={(event) => update(item.id, { status: event.target.value as Status })}>
+            {(["todo", "in-progress", "done", "rejected"] as Status[]).map((status) => (
+              <option key={status} value={status}>
+                {statusLabels[status]}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Priority
+          <select
+            value={item.priority ?? ""}
+            onChange={(event) => update(item.id, { priority: (event.target.value || null) as Priority })}
+          >
+            <option value="">None</option>
+            {(Object.keys(priorityLabels) as Priority[]).map((priority) => (
+              <option key={priority} value={priority}>
+                {priorityLabels[priority]}
+              </option>
+            ))}
+          </select>
+        </label>
+        {item.stage && (
           <label>
-            Status
-            <select
-              value={item.status}
-              onChange={(event) => update(item.id, { status: event.target.value as Status })}
-            >
-              {(["todo", "in-progress", "done", "rejected"] as Status[]).map((status) => (
-                <option key={status} value={status}>
-                  {statusLabels[status]}
+            Stage
+            <select value={item.stage} onChange={(event) => update(item.id, { stage: event.target.value as Stage })}>
+              {stages.map((stage) => (
+                <option key={stage} value={stage}>
+                  {stage}
                 </option>
               ))}
             </select>
           </label>
-          {item.stage && (
-            <label>
-              Stage
-              <select value={item.stage} onChange={(event) => update(item.id, { stage: event.target.value as Stage })}>
-                {stages.map((stage) => (
-                  <option key={stage} value={stage}>
-                    {stage}
-                  </option>
-                ))}
-              </select>
-            </label>
-          )}
-        </div>
-      )}
+        )}
+      </div>
     </li>
   );
 
@@ -114,7 +123,9 @@ export function BacklogPage() {
 
       <div className="backlog-board">
         {columns.map((column) => {
-          const list = visible.filter((item) => item.status === column.status);
+          const list = visible
+            .filter((item) => item.status === column.status)
+            .sort((a, b) => priorityRank(a) - priorityRank(b));
           return (
             <section key={column.status} className="backlog-column" aria-label={column.title}>
               <h2>
