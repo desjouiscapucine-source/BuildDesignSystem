@@ -71,7 +71,8 @@
       "category": "Foundations",
       "status": "todo",
       "origin": "decided",
-      "description": "Planned for later (step 8)."
+      "description": "Planned for later (step 8).",
+      "priority": "low"
     },
     {
       "id": "B010",
