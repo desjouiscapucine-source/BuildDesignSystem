@@ -120,7 +120,8 @@
       "category": "Foundations",
       "status": "todo",
       "origin": "proposal",
-      "description": "radius.full (50%) gives an ellipse on rectangles: decide if pill buttons/tags are needed."
+      "description": "radius.full (50%) gives an ellipse on rectangles: decide if pill buttons/tags are needed.",
+      "priority": "medium"
     },
     {
       "id": "B016",
