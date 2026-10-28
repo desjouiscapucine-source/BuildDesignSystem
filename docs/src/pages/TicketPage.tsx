@@ -11,9 +11,6 @@ export function TicketPage({ id }: { id: string }) {
       <>
         <h1>Ticket not found</h1>
         <p className="lead">No ticket {id} in the backlog</p>
-        <p>
-          <a href="#/backlog">← Backlog</a>
-        </p>
       </>
     );
   }
@@ -23,9 +20,6 @@ export function TicketPage({ id }: { id: string }) {
 
   return (
     <>
-      <p>
-        <a href="#/backlog">← Backlog</a>
-      </p>
       <h1 title={item.title}>{item.title}</h1>
       <p className="lead">
         {item.id} · {item.category} · {statusLabels[item.status]}

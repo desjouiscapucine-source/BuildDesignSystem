@@ -86,6 +86,10 @@ export function App() {
     window.scrollTo(0, 0);
   }, [route]);
 
-  // A ticket is not in the navigation yet (it will open in a modal): the Backlog stays selected.
-  return <AppShell current={route.startsWith("/backlog/") ? "#/backlog" : `#${route}`}>{page}</AppShell>;
+  // A ticket is not in the navigation yet (it will open in a modal): the Backlog stays selected and ends its breadcrumb.
+  return (
+    <AppShell current={route.startsWith("/backlog/") ? "#/backlog" : `#${route}`} route={`#${route}`}>
+      {page}
+    </AppShell>
+  );
 }

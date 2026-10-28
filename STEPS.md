@@ -3572,3 +3572,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/Breadcrumb/Breadcrumb.tsx`, `Breadcrumb.css`, `examples.tsx` (new)
 - `components/Breadcrumb/meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B091-1 — Site: breadcrumb on Level 2 to Level 4 pages
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- B091 approved from the chat (was a proposal), done in the Breadcrumb conversation as an exception.
+- Level 0 item labelled **BuildDesignSystem** (link to the landing page `/`).
+- Overview (where Documentation opens): "BuildDesignSystem / Documentation", like the other Level 2 pages.
+- Ticket pages: breadcrumb up to the Backlog ("… / Governance / Backlog") until the Modal exists.
+
+**What was done**
+- `docs/src/AppShell.tsx`: the Breadcrumb component, first block of the content area (16px above the title), built from `structure.ts`: Level 0, then the levels down to the parent of the page; none on Level 1 (Portfolio). New optional prop `route` for a page outside the navigation (a ticket).
+- `docs/src/App.tsx`: passes the route; `TicketPage.tsx`: the "← Backlog" link removed (the breadcrumb ends with the Backlog).
+- `navigation` skill and Navigation structure page: the site now follows the breadcrumb principle; only the modal is missing.
+- Verification: typecheck and build pass; breadcrumb checked on every kind of page (Level 2, 3, 4, ticket, none on Portfolio); fits on one line at mobile width.
+- Backlog: B091 done.
+
+**Files**
+- `docs/src/AppShell.tsx`, `docs/src/App.tsx`, `docs/src/pages/TicketPage.tsx`, `docs/src/pages/NavigationPage.tsx`, `.claude/skills/navigation/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)

@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { Breadcrumb, type BreadcrumbLevel } from "@ds/components";
 import logo from "../../assets/logo/avatar-logo.svg";
 import { allPages, pathTo, spaces, type NavNode } from "./structure";
 
 interface AppShellProps {
-  current: string; // current hash route, e.g. "#/backlog"
+  current: string; // current page in the navigation, e.g. "#/backlog"
+  route?: string; // displayed route when it is not in the navigation (a ticket, "#/backlog/B083"): its parent is `current`
   children: ReactNode;
 }
 
@@ -75,7 +77,15 @@ function NavList({ nodes, path, current }: { nodes: NavNode[]; path: NavNode[]; 
 }
 
 // Layout of the documentation site: header (logo → landing page, spaces, search, clock) + side navigation of the current space + content.
-export function AppShell({ current, children }: AppShellProps) {
+// Breadcrumb (Breadcrumb guidelines): pages from Level 2 to Level 4, from Level 0 (the landing page) down to the parent.
+// Level 1 pages have none: Portfolio is its own only page (same label as its space).
+function breadcrumbLevels(path: NavNode[], inNavigation: boolean): BreadcrumbLevel[] {
+  if (path.length < 2 || path[1].label === path[0].label) return [];
+  const above = inNavigation ? path.slice(0, -1) : path;
+  return [{ label: "BuildDesignSystem", href: "/" }, ...above.map((node) => ({ label: node.label, href: node.href }))];
+}
+
+export function AppShell({ current, route = current, children }: AppShellProps) {
   const [navOpen, setNavOpen] = useState(false);
   useEffect(() => {
     setNavOpen(false);
@@ -83,6 +93,7 @@ export function AppShell({ current, children }: AppShellProps) {
 
   const path = pathTo(current);
   const space = path[0] ?? spaces[0];
+  const levels = breadcrumbLevels(path, route === current);
 
   const spaceLinks = (className: string) => (
     <ul className={className}>
@@ -136,6 +147,7 @@ export function AppShell({ current, children }: AppShellProps) {
           <NavList nodes={space.children ?? []} path={path} current={current} />
         </nav>
         <main id="main" className="shell-content" tabIndex={-1}>
+          {levels.length > 0 && <Breadcrumb items={levels} />}
           {children}
         </main>
       </div>
