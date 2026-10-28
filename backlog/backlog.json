@@ -249,11 +249,11 @@
     },
     {
       "id": "B030",
-      "title": "Tabs",
+      "title": "Chip",
       "category": "Components",
       "status": "in-progress",
       "origin": "proposal",
-      "description": "Navigation within a page. Used on the documentation site: tabs of the component pages (Design preview, Design spec, Guidelines, Examples, Code).",
+      "description": "Chip (atom) and ChipGroup (molecule): the chips used on the documentation site to switch the view or filter the content (Backlog category filter, Design preview variant switch). Started as Tabs; renamed by the Design System Lead, Tabs moved to B093.",
       "stage": "design"
     },
     {
@@ -772,6 +772,15 @@
       "status": "done",
       "origin": "proposal",
       "description": "Use the Breadcrumb component (B083) on the documentation site, as its guidelines say: every page from Level 2 to Level 4, first block above the title; update the navigation skill and the Navigation structure page (the breadcrumb is now a component)."
+    },
+    {
+      "id": "B093",
+      "title": "Tabs",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "Navigation within a page. Used on the documentation site: tabs of the component pages (Design preview, Design spec, Guidelines, Examples, Code).",
+      "stage": "design"
     }
   ]
 }
