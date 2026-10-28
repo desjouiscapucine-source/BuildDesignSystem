@@ -3537,3 +3537,21 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/Breadcrumb/meta.json`, `spec.md`, `guidelines.md` (template), `design/Preview.tsx`, `design/tokens.json` (new)
 - `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B083-2 — Breadcrumb: guidelines approved
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- When to use: every page from Level 2 to Level 4; not on Level 0 nor Level 1. When not to use: inside a page or for a sequence of steps (Timeline), as the main navigation (it complements the SideNavigation).
+- Placement: first block of the page content, `--space-16` above the title; one breadcrumb per page; ends with the parent of the current page.
+- Three do / don't pairs: above the page title; end with the parent; one per page.
+- Small screens: same breadcrumb, ellipsis, last item kept whole.
+- Accessibility: nav landmark "Breadcrumb" + ordered list; Tab in reading order, disabled items skipped; a cut label keeps its full text for screen readers.
+- Related components: BreadcrumbItem, SideNavigation, Timeline.
+- Guidelines approved; next stage: code.
+
+**What was done**
+- `components/Breadcrumb/guidelines.md` written; `meta.json` status `code`; backlog B083 stage `code`.
+
+**Files**
+- `components/Breadcrumb/guidelines.md`, `meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
