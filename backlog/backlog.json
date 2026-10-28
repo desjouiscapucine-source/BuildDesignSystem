@@ -752,7 +752,7 @@
       "id": "B089",
       "title": "Work-time clock: keep the time of deleted conversations",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "The clock lost the hours of deleted conversations (their transcripts are removed). Baseline 08:50:14 on 2026-10-27 at 09:31 UTC, decided by the Design System Lead; active periods are kept in a ledger shared by all the conversations, so deleting one no longer removes time."
     }

@@ -3447,3 +3447,18 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `home-clouds.ts` (new)
 - `home.ts`, `index.html`, `docs/src/docs.css`, `tsconfig.json`, `STEPS.md` (updated)
+
+## Step B089-1 — Work-time clock: keep the time of deleted conversations
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- Baseline: **08:50:14**, the value the clock showed on 2026-10-27 at 09:30:59 UTC (10:31 in Paris), just before conversations were deleted. Their logs, and their hours, were gone from the clock (it showed about 3 hours).
+- Keep the time already counted, so deleting a conversation no longer removes time.
+
+**What was done**
+- `vite.config.ts` (`/api/work-time`): total = baseline + active time after it. Reads the logs of every checkout folder, including removed worktrees. The active periods are saved in a ledger shared by all the checkouts (`~/.claude/projects/<main checkout>/work-time.json`) and merged with the new ones (same 15-minute pause rule).
+- Backlog: B089 added (reserved first), done.
+- Verification: build passes; the clock shows 11:31:56 and keeps ticking; the ledger is written.
+
+**Files**
+- `vite.config.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
