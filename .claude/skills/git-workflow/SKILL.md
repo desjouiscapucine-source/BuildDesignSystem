@@ -42,6 +42,7 @@ Folders and sessions:
 - Each Claude session works in its own folder (git worktree), created automatically by the Claude app, on a branch named `claude/…`. At the start of the task, Claude switches that folder to the branch of the piece of work on its own (section 3), with no question about the name: it follows the table (section 1).
 - **Never work on a branch another session is working on.** Before using a branch, check where it is checked out: `git worktree list`. Already checked out in another folder → ask the Design System Lead.
 - Never switch branches in a folder another session uses.
+- The root folder of the project (`BuildDesignSystem/`) stays on `main` and is never used to work: only updated after each merge (section 6).
 
 ## 3. Start a piece of work
 
@@ -75,7 +76,7 @@ Only at the moments of the table (section 1), once the Design System Lead has ap
 
 1. Update the branch from `main` (section 5), so the merge into `main` is a fast-forward.
 2. `git push origin HEAD:main` — refused if `main` moved meanwhile → go back to step 1.
-3. Update the folder where `main` is checked out (found with `git worktree list`), so the local site shows it: `git -C <folder> merge --ff-only origin/main`. Only if that folder has uncommitted changes (`git -C <folder> status --short`) → leave it and tell the Design System Lead.
+3. Update the **root folder** of the project (`BuildDesignSystem/`, the first line of `git worktree list`), which always stays on `main`: `git -C <root> merge --ff-only origin/main`. The Claude app reads the project skills (the `/` commands) from this folder, so it must have the latest `main`. Only if it has uncommitted changes (`git -C <root> status --short`) → leave it and tell the Design System Lead. No other folder holds `main`.
 4. **Show `main`**: open the documentation site in the browser pane, served from the latest `main` (the folder of the session, now at `origin/main`), on the page that changed. Each conversation serves the site of its own branch, so this is the reliable view of `main`; the Design System Lead runs nothing.
 5. The other branches get the merge on their own, at their next session or commit (section 5).
 6. Work finished (component complete, prototype validated, governance approved): the ticket goes to `done` (in the last step, before the merge), then delete the branch: `git push origin --delete <branch>` and `git branch -d <branch>`.

@@ -703,7 +703,7 @@
       "id": "B083",
       "title": "Breadcrumb",
       "category": "Components",
-      "status": "proposal",
+      "status": "todo",
       "origin": "proposal",
       "description": "Shows where the page sits in the navigation structure and goes back to any level above it (Navigation structure page, B082).",
       "stage": "design"

@@ -3462,3 +3462,17 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `vite.config.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B079-4 — Git workflow: the root folder holds main
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- The root folder of the project (`BuildDesignSystem/`) stays on `main` and is updated after every merge: the Claude app reads the project skills (the `/` commands) from it. The `navigation` skill was missing from the commands because the root folder was on an old commit.
+- The separate folder `BuildDesignSystem-main` is removed: the root folder is the only folder holding `main`.
+
+**What was done**
+- `BuildDesignSystem-main` removed (`git worktree remove`; it held only generated files). The root folder checked out on `main`.
+- `git-workflow` skill: section 2, the root folder stays on `main` and is never used to work; section 6, step 3 updates the root folder after each merge.
+
+**Files**
+- `.claude/skills/git-workflow/SKILL.md`, `STEPS.md` (updated)
