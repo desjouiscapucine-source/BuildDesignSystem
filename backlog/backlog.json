@@ -148,7 +148,8 @@
       "status": "todo",
       "origin": "proposal",
       "description": "Text action, uses text.link. Used on the documentation site: links in texts and descriptions.",
-      "stage": "design"
+      "stage": "design",
+      "priority": "high"
     },
     {
       "id": "B019",
