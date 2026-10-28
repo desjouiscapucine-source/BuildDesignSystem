@@ -3462,3 +3462,24 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `vite.config.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B090-1 — BreadcrumbItem: design approved
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- B083 Breadcrumb approved from the chat (was a proposal): **Breadcrumb**, molecule, class `.ds-breadcrumb`, one style, one size, text links. Split into a building block, **BreadcrumbItem**, built first (ticket B090), in this same conversation.
+- **BreadcrumbItem**: atom, class `.ds-breadcrumb-item`, description "One link of a breadcrumb, to a level above the page.", one type, one size.
+- Link: `body-sm`, `--color-text-link`. Separator: a text slash "/" after the link, part of the item, `--color-text-secondary`, `--space-8` from the link.
+- Variant `last` (boolean, default `false`): no slash on the last item.
+- Long label: one line, ellipsis only when the breadcrumb runs out of space (no fixed width).
+- States: hover and pressed underline the link (no state layer); focus = ring `--color-border-focus` + focus state layer behind the label (so it differs from hover), `--radius-4`; disabled = link and slash in `--color-text-disabled`, not a link, not focusable.
+- Design approved; next stage: guidelines.
+
+**What was done**
+- `components/BreadcrumbItem/` created from the template: `meta.json` (status `guidelines`), `spec.md`, design preview (`design/Preview.tsx`, `design/tokens.json`, variants `default` and `last`, disabled state).
+- Contrast: `text.link` and `text.secondary` already checked (AA); link on the focus layer 5.2:1; disabled exempt.
+- Backlog: B083 in progress; B090 added (reserved first), stage `guidelines`.
+
+**Files**
+- `components/BreadcrumbItem/meta.json`, `spec.md`, `guidelines.md` (template), `design/Preview.tsx`, `design/tokens.json` (new)
+- `backlog/backlog.json`, `STEPS.md` (updated)
