@@ -847,7 +847,7 @@
       "id": "B099",
       "title": "Skill backlog: ticket rules, priority asked at creation",
       "category": "Skills",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "One skill gathering the backlog rules; the priority is asked before a ticket is created.",
       "priority": "high"

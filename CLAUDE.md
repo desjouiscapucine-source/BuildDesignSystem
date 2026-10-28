@@ -17,10 +17,11 @@
 
 ## Backlog
 - The tasks still to do live in **`backlog/backlog.json`**, shown and edited on the **Backlog** page of the documentation site (`/docs/#/backlog`).
-- `origin`: `decided` (from the Design System Lead) or `proposal` (suggested by Claude). `status`: `todo` → `in-progress` → `done` (or `rejected`). `priority` (optional, none by default): `high` / `medium` / `low`, chosen by the Design System Lead on the Backlog page; the columns are sorted by priority.
+- `origin`: `decided` (from the Design System Lead) or `proposal` (suggested by Claude). `status`: `todo` → `in-progress` → `done` (or `rejected`). `priority` (optional, none by default): `high` / `medium` / `low`, chosen by the Design System Lead: **asked in the chat before every new ticket**, changed on the Backlog page; the columns are sorted by priority.
 - **No proposals in the backlog**: Claude asks every suggestion in the chat first; only once the Design System Lead agrees is the ticket created, in `todo`. A change made on the Backlog page is saved directly in `main` and pushed, whichever conversation serves the site (`git-workflow`).
 - Read `backlog/backlog.json` at the start of a session; update an item's status (and `stage` for components) as work progresses. New ideas are asked in the chat, never added to the backlog without approval.
 - **Prototype tickets**: one ticket per prototype, with `prototype` (folder name; spec in `prototypes/<name>/spec.md`) and `iterations` (each review: `feedback` + `decision` `changes-requested` / `validated`). The ticket page `/docs/#/backlog/<id>` shows the spec and the iteration history. See `prototypes/README.md`.
+- Full rule: the `backlog` skill.
 
 ## Owner
 - The project is led by the Design System Lead, who owns design decisions.

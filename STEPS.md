@@ -3796,3 +3796,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/NavigationItem/NavigationItem.tsx`, `NavigationItem.css`, `examples.tsx`, `meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B099-1 — Skill backlog, priority asked at creation
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- A dedicated `backlog` skill gathers the backlog rules that were spread across `CLAUDE.md`, `git-workflow`, `component`, `prototype-setup` and `prototypes/README.md`.
+- New rule: before a ticket is created, Claude asks the Design System Lead its priority (`high`, `medium`, `low` or none) and never chooses it alone.
+- B099 priority: high.
+
+**What was done**
+- `.claude/skills/backlog/SKILL.md`: fields of a ticket, how a ticket is created (approval in the chat, priority asked, reservation), how it is updated (status, stage, iterations, Backlog page), checklist.
+- `orchestrator`: new dispatch row for `backlog`.
+- `git-workflow` (sections 3 and 7) and `CLAUDE.md` (Backlog): priority asked before every new ticket, link to the `backlog` skill.
+- Verification: the skill shows on the How to use skills page, no console error.
+- Backlog: B099 done.
+
+**Files**
+- `.claude/skills/backlog/SKILL.md` (created)
+- `.claude/skills/orchestrator/SKILL.md`, `.claude/skills/git-workflow/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
