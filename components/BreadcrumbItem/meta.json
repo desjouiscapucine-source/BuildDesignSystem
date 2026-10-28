@@ -2,5 +2,5 @@
   "name": "BreadcrumbItem",
   "description": "One link of a breadcrumb, to a level above the page.",
   "level": "atom",
-  "status": "code"
+  "status": "complete"
 }

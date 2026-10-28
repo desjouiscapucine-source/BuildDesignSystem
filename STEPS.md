@@ -3501,3 +3501,20 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/BreadcrumbItem/guidelines.md`, `meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B090-3 — BreadcrumbItem: code approved, component complete
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- Code approved: BreadcrumbItem is **complete**.
+
+**What was done**
+- `BreadcrumbItem.tsx`: props `href`, `children` (label), `last` and `disabled` (both `false` by default). Renders an `<li>` (the Breadcrumb will be the list); the link is an `<a>`, a disabled item a plain `<span>` (not focusable, label still read); the slash is `aria-hidden` and left out when `last`.
+- `BreadcrumbItem.css`: semantic tokens only; `body-sm`, `--color-text-link`, underline on hover and pressed, focus ring `--color-border-focus` + focus state layer, slash `--color-text-secondary` at `--space-8`, disabled `--color-text-disabled`, ellipsis on one line.
+- `examples.tsx`: Default, Last, Disabled, Several items, Long label. Exported from `components/index.ts`.
+- Verification: typecheck and build pass; Tab skips the disabled item; focus ring + layer, hover underline and ellipsis checked in the browser.
+- `meta.json` status `complete`; backlog B090 `done`.
+
+**Files**
+- `components/BreadcrumbItem/BreadcrumbItem.tsx`, `BreadcrumbItem.css`, `examples.tsx` (new)
+- `components/BreadcrumbItem/meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)

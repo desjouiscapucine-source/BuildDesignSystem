@@ -16,3 +16,5 @@ export { IconButton } from "./IconButton/IconButton";
 export type { IconButtonProps, IconButtonVariant } from "./IconButton/IconButton";
 export { ImageViewer } from "./ImageViewer/ImageViewer";
 export type { ImageViewerProps, ImageViewerImage } from "./ImageViewer/ImageViewer";
+export { BreadcrumbItem } from "./BreadcrumbItem/BreadcrumbItem";
+export type { BreadcrumbItemProps } from "./BreadcrumbItem/BreadcrumbItem";

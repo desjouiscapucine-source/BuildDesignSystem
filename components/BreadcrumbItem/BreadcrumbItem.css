@@ -1,0 +1,52 @@
+/* BreadcrumbItem — semantic design tokens only. See spec.md.
+   Classes: .ds-breadcrumb-item · modifiers --last, --disabled · parts .ds-breadcrumb-item-link, .ds-breadcrumb-item-separator */
+.ds-breadcrumb-item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-8);
+  min-width: 0;
+  font-family: var(--typography-body-sm-family);
+  font-size: var(--typography-body-sm-size);
+  font-weight: var(--typography-body-sm-weight);
+  line-height: var(--typography-body-sm-line-height);
+}
+
+/* Link: one line, ellipsis only when the breadcrumb runs out of space */
+.ds-breadcrumb-item-link {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-radius: var(--radius-4);
+  color: var(--color-text-link);
+  text-decoration: none;
+}
+a.ds-breadcrumb-item-link:hover,
+a.ds-breadcrumb-item-link:active { text-decoration: underline; }
+
+/* Focus: ring + focus state layer (hover and pressed have no state layer) */
+.ds-breadcrumb-item-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-100) var(--easing-ease-out);
+}
+a.ds-breadcrumb-item-link:focus-visible::after { opacity: var(--state-layer-focus); }
+a.ds-breadcrumb-item-link:focus-visible {
+  outline: var(--border-width-2) solid var(--color-border-focus);
+  outline-offset: var(--border-width-2);
+}
+
+.ds-breadcrumb-item-separator {
+  flex-shrink: 0;
+  color: var(--color-text-secondary);
+}
+
+/* Disabled: a level with no page */
+.ds-breadcrumb-item--disabled .ds-breadcrumb-item-link,
+.ds-breadcrumb-item--disabled .ds-breadcrumb-item-separator { color: var(--color-text-disabled); }
