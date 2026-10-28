@@ -3483,3 +3483,21 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/BreadcrumbItem/meta.json`, `spec.md`, `guidelines.md` (template), `design/Preview.tsx`, `design/tokens.json` (new)
 - `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B090-2 — BreadcrumbItem: guidelines approved
+**Date:** 2026-10-28
+
+**Decisions (made by the Design System Lead)**
+- When to use: only inside a Breadcrumb; one item per level above the page. When not to use: NavigationItem for pages of the same level, TimelineStep for steps or events.
+- The Breadcrumb sets `last` (final item) and `disabled` (a level with no page of its own); never set by hand.
+- Content: label = the page title word for word, sentence case, text only (no icon, no punctuation).
+- Four do / don't pairs: label = page title; sentence case, text only; no slash after the last item; disabled only for a level with no page.
+- Accessibility: Tab + Enter, disabled items skipped; slash `aria-hidden`; disabled item as plain text, label still read; link color differs from body text, so the underline is not the only cue.
+- Related component: Breadcrumb.
+- Guidelines approved; next stage: code.
+
+**What was done**
+- `components/BreadcrumbItem/guidelines.md` written; `meta.json` status `code`; backlog B090 stage `code`.
+
+**Files**
+- `components/BreadcrumbItem/guidelines.md`, `meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
