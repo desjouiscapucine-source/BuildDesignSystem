@@ -4380,3 +4380,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `.claude/agents/ds-compliance-fix.md`, `audits/2026-10-29-B128-1.md` (created)
 - `.claude/agents/ds-compliance-audit.md`, `.claude/skills/git-workflow/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B124-1 — Documentation site: use the Card component
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- **Card 1.1**: a card may also group the content of one subject in a page (a release, a skill, an iteration); its text may hold rich content (lists, tables, a disclosure), never another card.
+- The title is the name of the subject only ("R1", the skill name, "Iteration 1"); details (date, progress, decision) go in the first line of the text.
+- Kept as implemented: " · " between the date and the progress of a release, 16px between the blocks inside a card, the divider above the release note.
+
+**What was done**
+- `components/Card/spec.md`, `guidelines.md`, `meta.json` (version 1.1 and changelog entry): the new usage and rich content (by Claude).
+- First run of the `ds-compliance-fix` agent (B128), `docs/` only: release cards, skill cards and ticket iterations are Cards; the hand-built card CSS is removed; `.card-content` stacks the blocks inside a card.
+- Verification: no file outside `docs/` changed by the agent; type check and build pass; Release planning, How to use skills and a ticket modal (B031) render without console errors.
+- Compliance audit: `audits/2026-10-29-B124-1.md`.
+- Ticket B124 `done`.
+
+**Files**
+- `audits/2026-10-29-B124-1.md` (created)
+- `components/Card/spec.md`, `components/Card/guidelines.md`, `components/Card/meta.json`, `docs/src/pages/ReleasePlanningPage.tsx`, `docs/src/pages/SkillsPage.tsx`, `docs/src/pages/TicketDialog.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)

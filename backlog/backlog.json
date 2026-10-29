@@ -1150,7 +1150,7 @@
       "id": "B124",
       "title": "Documentation site: use the Card component",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "proposal",
       "description": "Replace the hand-built release, skill and iteration cards with Card.",
       "why": "Found by the design system compliance audit (audits/2026-10-29-B119-1.md): the documentation site is the showcase of the design system and must be built with it.",

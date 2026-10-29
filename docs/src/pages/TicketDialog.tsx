@@ -1,5 +1,5 @@
 import { useRef, type ReactNode } from "react";
-import { Dialog } from "@ds/components";
+import { Card, Dialog } from "@ds/components";
 import { Markdown } from "../Markdown";
 import { decisionLabels, prototypeSpecs, statusLabels, type BacklogItem } from "../backlog";
 
@@ -113,11 +113,14 @@ export function TicketDialog({
                 <ol className="ticket-iterations">
                   {iterations.map((iteration, index) => (
                     <li key={index}>
-                      <div className="ticket-iteration-head">
-                        <strong>Iteration {index + 1}</strong>
-                        <span className={`backlog-tag ${iteration.decision}`}>{decisionLabels[iteration.decision]}</span>
-                      </div>
-                      <p>{iteration.feedback}</p>
+                      <Card title={`Iteration ${index + 1}`} headingLevel={4}>
+                        <div className="card-content">
+                          <p>
+                            <span className={`backlog-tag ${iteration.decision}`}>{decisionLabels[iteration.decision]}</span>
+                          </p>
+                          <p>{iteration.feedback}</p>
+                        </div>
+                      </Card>
                     </li>
                   ))}
                 </ol>

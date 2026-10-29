@@ -3,8 +3,13 @@
   "description": "A container that groups the content of one subject.",
   "level": "molecule",
   "status": "complete",
-  "version": "1.0",
+  "version": "1.1",
   "changelog": [
+    {
+      "version": "1.1",
+      "date": "2026-10-29",
+      "changes": "New usage: group the content of one subject in a page (release, skill, iteration), with rich content in the text."
+    },
     {
       "version": "1.0",
       "date": "2026-10-20",

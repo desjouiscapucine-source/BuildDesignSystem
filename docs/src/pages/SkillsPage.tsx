@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Card } from "@ds/components";
 import { Markdown } from "../Markdown";
 import { cardBody, childSkills, dispatchTable, parentSkill, PARENT_SKILL, type Skill } from "../skills";
 
@@ -6,16 +7,15 @@ const anchor = (name: string) => `skill-${name}`;
 
 function SkillCard({ skill, open }: { skill: Skill; open?: boolean }) {
   return (
-    <section className="skill-card" id={anchor(skill.name)}>
-      <h3>
-        <code>{skill.name}</code>
-      </h3>
-      <p>{skill.description}</p>
-      <details open={open}>
-        <summary>Show the full skill</summary>
-        <Markdown source={cardBody(skill.body)} />
-      </details>
-    </section>
+    <Card className="skill-card" id={anchor(skill.name)} title={skill.name} headingLevel={3}>
+      <div className="card-content">
+        <p>{skill.description}</p>
+        <details open={open}>
+          <summary>Show the full skill</summary>
+          <Markdown source={cardBody(skill.body)} />
+        </details>
+      </div>
+    </Card>
   );
 }
 

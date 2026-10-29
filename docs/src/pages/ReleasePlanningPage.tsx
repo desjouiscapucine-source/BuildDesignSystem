@@ -1,3 +1,4 @@
+import { Card } from "@ds/components";
 import {
   formatReleaseDate,
   priorityLabels,
@@ -29,55 +30,58 @@ function ReleaseCard({ release, tickets }: { release: Release; tickets: Planned[
   const done = planned.filter((item) => item.status === "done").length;
   const plan = releasePlans[release.id] ?? [];
   return (
-    <li className="release-card">
-      <div className="release-card-header">
-        <h2>
-          {release.id} <span className="release-date">{formatReleaseDate(release.date)}</span>
-        </h2>
-        {planned.length > 0 && (
-          <span className="release-progress">
-            {done}/{planned.length} done
-          </span>
-        )}
-      </div>
-      {plan.length > 0 && (
-        <ul className="release-plan">
-          {plan.map((entry) => (
-            <li key={entry}>{entry}</li>
-          ))}
-        </ul>
-      )}
-      {planned.length === 0 ? (
-        plan.length === 0 && <p className="empty">Nothing planned yet.</p>
-      ) : (
-        <table className="tokens">
-          <thead>
-            <tr>
-              <th>Ticket</th>
-              <th>Status</th>
-              <th>Priority</th>
-            </tr>
-          </thead>
-          <tbody>
-            {planned.map((item) => (
-              <tr key={item.id}>
-                <td>
-                  <span className="backlog-id">{item.id}</span> {item.title}
-                  {item.carriedFrom && <span className="release-carried"> (carried over from {item.carriedFrom})</span>}
-                </td>
-                <td>{statusLabels[item.status]}</td>
-                <td>{item.priority ? priorityLabels[item.priority] : "—"}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-      {notes[release.id] && (
-        <details className="release-note" open>
-          <summary>Release note</summary>
-          <Markdown source={notes[release.id]} />
-        </details>
-      )}
+    <li>
+      <Card title={release.id}>
+        <div className="card-content">
+          <p>
+            <span className="release-date">{formatReleaseDate(release.date)}</span>
+            {planned.length > 0 && (
+              <span className="release-progress">
+                {" · "}
+                {done}/{planned.length} done
+              </span>
+            )}
+          </p>
+          {plan.length > 0 && (
+            <ul className="release-plan">
+              {plan.map((entry) => (
+                <li key={entry}>{entry}</li>
+              ))}
+            </ul>
+          )}
+          {planned.length === 0 ? (
+            plan.length === 0 && <p className="empty">Nothing planned yet.</p>
+          ) : (
+            <table className="tokens">
+              <thead>
+                <tr>
+                  <th>Ticket</th>
+                  <th>Status</th>
+                  <th>Priority</th>
+                </tr>
+              </thead>
+              <tbody>
+                {planned.map((item) => (
+                  <tr key={item.id}>
+                    <td>
+                      <span className="backlog-id">{item.id}</span> {item.title}
+                      {item.carriedFrom && <span className="release-carried"> (carried over from {item.carriedFrom})</span>}
+                    </td>
+                    <td>{statusLabels[item.status]}</td>
+                    <td>{item.priority ? priorityLabels[item.priority] : "—"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+          {notes[release.id] && (
+            <details className="release-note" open>
+              <summary>Release note</summary>
+              <Markdown source={notes[release.id]} />
+            </details>
+          )}
+        </div>
+      </Card>
     </li>
   );
 }
