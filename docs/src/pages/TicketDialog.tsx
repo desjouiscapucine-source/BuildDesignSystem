@@ -4,8 +4,8 @@ import { Markdown } from "../Markdown";
 import { decisionLabels, prototypeSpecs, statusLabels, type BacklogItem } from "../backlog";
 
 // One backlog ticket, opened in a modal over the Backlog page (#/backlog/<id>, navigation skill: the detail of a
-// Level 3 page opens in a modal). Its description follows the ticket template (B114): Goal, Why, Scope, Done when;
-// for a prototype, its specification and the history of its iterations.
+// Level 3 page opens in a modal). Its content follows the ticket skill: Goal, Why, Scope, Done when (B114);
+// for a prototype, also Users, User journey and Components used (B116), its specification and its iterations.
 export function TicketDialog({
   id,
   items,
@@ -40,6 +40,12 @@ export function TicketDialog({
     .filter(Boolean)
     .join(" · ");
   const notWritten = <p className="empty">Not written yet.</p>;
+  const list = (entries: string[] | undefined, ordered = false) => {
+    if (!entries?.length) return notWritten;
+    const items = entries.map((entry) => <li key={entry}>{entry}</li>);
+    return ordered ? <ol>{items}</ol> : <ul>{items}</ul>;
+  };
+  const isPrototype = item.category === "Prototypes" || Boolean(item.prototype);
 
   return (
     <Dialog size="large" open={Boolean(id)} onClose={onClose} title={item.title} description={meta}>
@@ -58,21 +64,35 @@ export function TicketDialog({
           <h3>Why</h3>
           {item.why ? <p>{item.why}</p> : notWritten}
         </section>
+        {isPrototype && (
+          <>
+            <section>
+              <h3>Users</h3>
+              {item.users ? <p>{item.users}</p> : notWritten}
+            </section>
+            <section>
+              <h3>User journey</h3>
+              {list(item.journey, true)}
+            </section>
+            <section>
+              <h3>Components used</h3>
+              {list(item.components)}
+              {item.missingComponents?.length ? (
+                <>
+                  <h4>Missing components</h4>
+                  {list(item.missingComponents)}
+                </>
+              ) : null}
+            </section>
+          </>
+        )}
         <section>
           <h3>Scope</h3>
           {item.scope ? <p>{item.scope}</p> : notWritten}
         </section>
         <section>
           <h3>Done when</h3>
-          {item.doneWhen?.length ? (
-            <ul>
-              {item.doneWhen.map((criterion) => (
-                <li key={criterion}>{criterion}</li>
-              ))}
-            </ul>
-          ) : (
-            notWritten
-          )}
+          {list(item.doneWhen)}
         </section>
 
         {item.prototype && (

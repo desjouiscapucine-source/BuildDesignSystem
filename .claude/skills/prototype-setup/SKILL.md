@@ -12,6 +12,7 @@ This skill only **sets up** a new prototype so it runs. The screens are then bui
 
 1. Find the prototype in `backlog/backlog.json`.
    - Not in the backlog → ask whether to add it.
+   - Its ticket has Users, User journey and Components used (`ticket` skill) — ask the Design System Lead for what is missing.
 2. Ask the Design System Lead for the **prototype name** and its **folder name** (`never-invent`).
 3. Create the branch `component/<folder-name>` (prototypes use `component/` branches, `git-workflow`) from an up-to-date `develop`, in a `Composant <Name>` conversation (e.g. `Composant WorkDescription`), and push it to GitHub, **before creating any file** (`git-workflow`). Every step of the prototype is previewed on the local site (`/docs/#/prototypes/<prototype-name>`), then committed and pushed on this branch only once the Design System Lead validates it (`CLAUDE.md`, Git); the branch is merged into `develop` when the Design System Lead validates the prototype, or asks for it, and updated from `develop` before every commit (`git-workflow`).
 4. On the branch, set the backlog item status to `in-progress`, its `prototype` field to the folder name and `iterations` to `[]` (see `prototypes/README.md`, Backlog ticket).

@@ -687,7 +687,8 @@ code {
 .backlog-card-title:hover { text-decoration: underline; }
 .ticket { display: flex; flex-direction: column; gap: var(--space-16); }
 .ticket h3 { margin: 0 0 var(--space-4); }
-.ticket p, .ticket ul { margin: 0; }
+.ticket p, .ticket ul, .ticket ol { margin: 0; }
+.ticket h4 { margin: var(--space-8) 0 var(--space-4); font-size: var(--font-size-14); }
 
 /* ---------- Ticket ---------- */
 .backlog-tag.validated { background: var(--color-background-success-subtle); color: var(--color-text-success); }

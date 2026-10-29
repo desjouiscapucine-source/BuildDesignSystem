@@ -4075,3 +4075,20 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `docs/src/pages/TicketDialog.tsx` (created), `docs/src/pages/TicketPage.tsx` (removed)
 - `docs/src/pages/BacklogPage.tsx`, `docs/src/App.tsx`, `docs/src/backlog.ts`, `docs/src/docs.css`, `docs/src/pages/NavigationPage.tsx`, `.claude/skills/backlog/SKILL.md`, `.claude/skills/navigation/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B116-1 — Skill: ticket
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- A dedicated **`ticket`** skill says what is written in a ticket: the template (Goal, Why, Scope, Done when) and the parts of each type. The `backlog` skill keeps the fields, the creation and the statuses. Ticket B116: Skills, priority medium, release R1.
+- A **prototype** ticket also has **Users** (who the journey is for, and their goal), **User journey** (the steps, in order) and **Components used** (and the missing ones).
+
+**What was done**
+- `.claude/skills/ticket/SKILL.md` (new): template, parts by type (Prototypes only; ask before adding parts for another type), writing rules, where a ticket is shown, checklist. Orchestrator: dispatch row.
+- Fields `users`, `journey`, `components`, `missingComponents` (`docs/src/backlog.ts`); the ticket's modal shows them for a prototype, between Why and Scope ("Not written yet." when empty).
+- `backlog` skill: refers to `ticket` for the content of a ticket (template section moved), fields table and checklist; a ticket opens in a modal (no ticket page any more). `prototype-setup` skill, `prototypes/README.md`, `CLAUDE.md`.
+- Verification: type check and build pass; the How to use skills page shows the `ticket` skill; B031 shows the prototype parts in its modal.
+
+**Files**
+- `.claude/skills/ticket/SKILL.md` (created)
+- `.claude/skills/backlog/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `.claude/skills/prototype-setup/SKILL.md`, `docs/src/backlog.ts`, `docs/src/pages/TicketDialog.tsx`, `docs/src/docs.css`, `prototypes/README.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)

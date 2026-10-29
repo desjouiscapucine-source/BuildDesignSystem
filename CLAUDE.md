@@ -18,11 +18,11 @@
 
 ## Backlog
 - The tasks still to do live in **`backlog/backlog.json`**, shown and edited on the **Backlog** page of the documentation site (`/docs/#/backlog`).
-- **Ticket template** (B114): Goal (`description`), Why (`why`), Scope (`scope`), Done when (`doneWhen`); a click on a ticket of the Backlog page opens it in a modal (Dialog).
+- **Ticket content** (B114, B116): template Goal (`description`), Why (`why`), Scope (`scope`), Done when (`doneWhen`), plus the parts of its type (Prototypes: Users, User journey, Components used) — see the `ticket` skill; a click on a ticket of the Backlog page opens it in a modal (Dialog).
 - `origin`: `decided` (from the Design System Lead) or `proposal` (suggested by Claude). `status`: `todo` → `in-progress` → `done` (or `rejected`). `priority` (optional, none by default): `high` / `medium` / `low`, chosen by the Design System Lead: **asked in the chat before every new ticket**, changed on the Backlog page; the columns are sorted by priority. `release` (optional): `R1`, `R2`…, one release every two weeks on Friday from 2026-11-06, **asked with the priority when a ticket is created**, changed on the Backlog page, shown on the Release planning page (`/docs/#/releases`) — see the `release-planning` skill.
 - **No proposals in the backlog**: Claude asks every suggestion in the chat first; only once the Design System Lead agrees is the ticket created, in `todo`. A change made on the Backlog page is saved directly in `develop` and pushed, whichever conversation serves the site (`git-workflow`).
 - Read `backlog/backlog.json` at the start of a session; update an item's status (and `stage` for components) as work progresses. New ideas are asked in the chat, never added to the backlog without approval.
-- **Prototype tickets**: one ticket per prototype, with `prototype` (folder name; spec in `prototypes/<name>/spec.md`) and `iterations` (each review: `feedback` + `decision` `changes-requested` / `validated`). The ticket page `/docs/#/backlog/<id>` shows the spec and the iteration history. See `prototypes/README.md`.
+- **Prototype tickets**: one ticket per prototype, with `prototype` (folder name; spec in `prototypes/<name>/spec.md`) and `iterations` (each review: `feedback` + `decision` `changes-requested` / `validated`), plus Users, User journey and Components used (`ticket` skill). The ticket's modal (`/docs/#/backlog/<id>`) shows them, the spec and the iteration history. See `prototypes/README.md`.
 - Full rule: the `backlog` skill.
 
 ## Owner

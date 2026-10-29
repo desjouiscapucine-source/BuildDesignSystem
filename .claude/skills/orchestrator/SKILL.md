@@ -36,6 +36,7 @@ Every task starts here. This skill **only dispatches**: it says which child skil
 | A page or a space is added, moved or removed; the side navigation, the landing page, the logo, a breadcrumb, a modal or in-page navigation changes | `navigation` |
 | A component becomes complete or a complete component changes; a version or a changelog entry is written | `changelog` |
 | A backlog ticket is created, updated or closed; an idea to add to the backlog | `backlog` |
+| A ticket is written or completed (template, parts of its type, e.g. a prototype ticket) | `ticket` |
 | A backlog ticket is created, or planned / moved in a release; a release is discussed | `release-planning` |
 | Every task: which branch to work on (start), commit, update from `develop`, merge into `develop`; release day | `git-workflow` |
 

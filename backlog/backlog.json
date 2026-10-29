@@ -1024,10 +1024,27 @@
       "release": "R1"
     },
     {
+      "id": "B116",
+      "title": "Skill: ticket",
+      "category": "Skills",
+      "status": "done",
+      "origin": "decided",
+      "description": "A ticket skill: how to write a backlog ticket with the template, and what a prototype ticket must also contain.",
+      "why": "The ticket template lives inside the backlog skill, and a prototype ticket needs more than the four parts to describe a user journey.",
+      "scope": "The ticket skill (template, parts by type), the prototype parts (Users, User journey, Components used) in the ticket fields and in the ticket's modal, and the links from the backlog and orchestrator skills. Not included: filling these parts for the existing prototype tickets.",
+      "doneWhen": [
+        "The ticket skill exists, is dispatched by the orchestrator and shown on the How to use skills page.",
+        "A prototype ticket shows Users, User journey and Components used in its modal.",
+        "The backlog skill refers to the ticket skill for the content of a ticket."
+      ],
+      "priority": "medium",
+      "release": "R1"
+    },
+    {
       "id": "B115",
       "title": "TicketCard",
       "category": "Components",
-      "status": "todo",
+      "status": "in-progress",
       "origin": "decided",
       "description": "A design system component for the card of a backlog ticket.",
       "why": "The ticket card is coded for the documentation site only: as a component, it can be reused (Backlog, Release planning, prototypes) with the tokens and the rules of the design system.",

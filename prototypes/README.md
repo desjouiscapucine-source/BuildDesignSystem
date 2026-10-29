@@ -26,6 +26,7 @@ To start a new prototype, follow the `prototype-setup` skill (`.claude/skills/pr
 ## Backlog ticket
 
 Each prototype has **one backlog ticket** (category Prototypes) with:
-- `prototype`: its folder name — the ticket page (`/docs/#/backlog/<id>`) shows its `spec.md`;
+- `users`, `journey`, `components` / `missingComponents`: who the journey is for, its steps, and the components it uses (and those missing) — see the `ticket` skill;
+- `prototype`: its folder name — the ticket's modal (`/docs/#/backlog/<id>`) shows its `spec.md`;
 - `iterations`: the history of the reviews, oldest first. Each review by the Design System Lead adds one entry: `feedback` (what they asked) and `decision` (`changes-requested` or `validated`). The last `validated` iteration is the final validation, and the ticket goes to `done`.
 
