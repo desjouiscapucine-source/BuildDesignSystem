@@ -421,8 +421,8 @@ code {
 .home-links span, .cards span { color: var(--color-text-secondary); }
 
 /* Rich content in the text of a Card (release, skill, iteration): blocks stacked with --space-16 (layout skill) */
-.card-content { display: flex; flex-direction: column; gap: var(--space-16); }
-.card-content > *, .card-content > table.tokens { margin: 0; }
+.ds-card-text > table.tokens { margin: 0; }
+.ds-card-text > * + table.tokens { margin-top: var(--space-16); }
 
 /* ---------- Git workflow ---------- */
 .git-flow { display: flex; align-items: center; gap: var(--space-16); }
@@ -458,7 +458,7 @@ code {
 .release-date, .release-progress { color: var(--color-text-secondary); }
 .release-plan { margin: 0; padding-left: var(--space-24); }
 .release-carried { color: var(--color-text-secondary); }
-.release-note { border-top: var(--border-width-1) solid var(--color-border-default); padding-top: var(--space-16); }
+.release-note { border-top: var(--border-width-1) solid var(--color-border-subtle); padding-top: var(--space-16); }
 .release-note summary { cursor: pointer; font-weight: var(--font-weight-semibold); }
 .release-past summary { cursor: pointer; color: var(--color-text-secondary); }
 .release-past .release-list { margin-top: var(--space-16); }
@@ -641,6 +641,7 @@ code {
 .ticket { display: flex; flex-direction: column; gap: var(--space-16); }
 .ticket h3 { margin: 0 0 var(--space-4); }
 .ticket p, .ticket ul, .ticket ol { margin: 0; }
+.ticket .ds-card-text > * + * { margin-top: var(--space-16); }
 .ticket h4:not(.ds-card-title) { margin: var(--space-8) 0 var(--space-4); font-size: var(--font-size-14); }
 
 /* ---------- Ticket ---------- */

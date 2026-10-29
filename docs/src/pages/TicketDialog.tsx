@@ -114,12 +114,10 @@ export function TicketDialog({
                   {iterations.map((iteration, index) => (
                     <li key={index}>
                       <Card title={`Iteration ${index + 1}`} headingLevel={4}>
-                        <div className="card-content">
-                          <p>
-                            <span className={`backlog-tag ${iteration.decision}`}>{decisionLabels[iteration.decision]}</span>
-                          </p>
-                          <p>{iteration.feedback}</p>
-                        </div>
+                        <p>
+                          <span className={`backlog-tag ${iteration.decision}`}>{decisionLabels[iteration.decision]}</span>
+                        </p>
+                        <p>{iteration.feedback}</p>
                       </Card>
                     </li>
                   ))}

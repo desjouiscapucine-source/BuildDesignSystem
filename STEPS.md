@@ -4399,3 +4399,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-10-29-B124-1.md` (created)
 - `components/Card/spec.md`, `components/Card/guidelines.md`, `components/Card/meta.json`, `docs/src/pages/ReleasePlanningPage.tsx`, `docs/src/pages/SkillsPage.tsx`, `docs/src/pages/TicketDialog.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B124-2 — Card 1.2: blocks of the text 16px apart
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- The 16px between the blocks inside a card's text goes into the **Card spec** (Card 1.2).
+- Skill card titles stay the raw skill name (e.g. `git-workflow`): exception to sentence case for names written as in code.
+- The separator above a release note uses the card border (`border.subtle`).
+- The next site compliance tickets are done on **one shared branch**, `governance/docs-compliance` (one step per ticket), merged into `develop` together at the end — exception to "one ticket = one branch". This branch is merged with them.
+
+**What was done**
+- `components/Card/Card.css`: blocks of `.ds-card-text` 16px apart; `spec.md` (anatomy, sizes, tokens), `guidelines.md` (title exception), `meta.json` (1.2, changelog).
+- `docs/`: `.card-content` wrapper removed from the release, skill and iteration cards; site rules keeping the 16px inside cards (`table.tokens`, ticket modal); `.release-note` border `border.subtle`.
+- Verification: 16px between blocks measured on Release planning, How to use skills and a ticket modal (B031); type check and build pass; no console error.
+- Compliance audit: `audits/2026-10-29-B124-2.md` (no new finding).
+
+**Files**
+- `audits/2026-10-29-B124-2.md` (created)
+- `components/Card/Card.css`, `spec.md`, `guidelines.md`, `meta.json`, `docs/src/docs.css`, `docs/src/pages/ReleasePlanningPage.tsx`, `SkillsPage.tsx`, `TicketDialog.tsx`, `STEPS.md` (updated)

@@ -8,13 +8,11 @@ const anchor = (name: string) => `skill-${name}`;
 function SkillCard({ skill, open }: { skill: Skill; open?: boolean }) {
   return (
     <Card className="skill-card" id={anchor(skill.name)} title={skill.name} headingLevel={3}>
-      <div className="card-content">
-        <p>{skill.description}</p>
-        <details open={open}>
-          <summary>Show the full skill</summary>
-          <Markdown source={cardBody(skill.body)} />
-        </details>
-      </div>
+      <p>{skill.description}</p>
+      <details open={open}>
+        <summary>Show the full skill</summary>
+        <Markdown source={cardBody(skill.body)} />
+      </details>
     </Card>
   );
 }

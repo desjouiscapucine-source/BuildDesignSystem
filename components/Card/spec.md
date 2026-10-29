@@ -53,6 +53,7 @@ One size only. The card takes the **full width available** (the column that cont
 | ---- | ---- |
 | Container | Padding `--space-16` |
 | Title / text | Gap `--space-8` |
+| Blocks inside the text (paragraphs, lists, tables, a disclosure) | Gap `--space-16` |
 | Text / thumbnails (`clickable-image`) | Gap `--space-16` |
 | Thumbnails (`clickable-image`) | **3 per row**, each one third of the content width (minus the gaps); ratio **16:9** (the image is cropped to fill it); corners `--radius-8`; gap `--space-8`; more than 3 → next row |
 
@@ -70,6 +71,7 @@ One size only. The card takes the **full width available** (the column that cont
 | Container | Radius | all | `--radius-8` |
 | Container | Padding | all | `--space-16` |
 | Container | Gap title / text | all | `--space-8` |
+| Text | Gap between its blocks | all | `--space-16` |
 | Title | Text style · color | all | `heading-5` · `--color-text-primary` |
 | Text | Text style · color | all | `body` · `--color-text-primary` |
 | Thumbnails | Gap with the text | `clickable-image` | `--space-16` |

@@ -31,7 +31,7 @@
 | Group images of the same subject. | Mix unrelated images in one card. |
 
 ## Content guidelines
-- **Title**: the same as the title of its step; outside a timeline, the name of the subject only (e.g. "R1", "Iteration 1"). Sentence case. 60 characters maximum. Details such as a date, a progress or a status go in the first line of the text, not in the title.
+- **Title**: the same as the title of its step; outside a timeline, the name of the subject only (e.g. "R1", "Iteration 1"). Sentence case, except a name written as in code, kept as is (e.g. a skill name: "git-workflow"). 60 characters maximum. Details such as a date, a progress or a status go in the first line of the text, not in the title.
 - **Text**: complete sentences, ending with a period. Sentence case. No length limit. Rich content (lists, tables, a disclosure) is allowed; never another card.
 - **Images** (`clickable-image`): every image has an **alternative text** that describes what it shows (sentence case, not "Image of…"); it also names the thumbnail ("Open image: …"). Captions follow the ImageViewer guidelines. No maximum number of images.
 

@@ -3,8 +3,13 @@
   "description": "A container that groups the content of one subject.",
   "level": "molecule",
   "status": "complete",
-  "version": "1.1",
+  "version": "1.2",
   "changelog": [
+    {
+      "version": "1.2",
+      "date": "2026-10-29",
+      "changes": "Blocks inside the text (paragraphs, lists, tables, a disclosure) are 16px apart."
+    },
     {
       "version": "1.1",
       "date": "2026-10-29",
