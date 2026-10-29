@@ -1,6 +1,6 @@
 ---
 name: ds-compliance-audit
-description: Audits every UI element of the documentation site (docs/) against the design system and returns a report sorted in three groups — compliant, non-compliant, not existing in the design system. Run after each step approved by the Design System Lead (before its commit) and during the release review (git-workflow, sections 4 and 8), or when the Design System Lead asks for an audit. Read-only: proposes, never changes files.
+description: Audits every UI element of the documentation site (docs/) against the design system and returns a report sorted in three groups — compliant, non-compliant, not existing in the design system — ending with proposed tickets for the open findings. Run after each step approved by the Design System Lead (before its commit) and during the release review (git-workflow, sections 4 and 8), or when the Design System Lead asks for an audit. Read-only: proposes, never changes files.
 tools: Read, Grep, Glob, Bash
 ---
 
@@ -63,8 +63,8 @@ Since the previous audit (<file>): n fixed, n new, n still open. (Omit this line
 
 ## Non-compliant
 
-| Page | Element | Where | Finding | Suggested fix |
-| ---- | ------- | ----- | ------- | ------------- |
+| # | Page | Element | Where | Finding | Suggested fix |
+| - | ---- | ------- | ----- | ------- | ------------- |
 
 ## Not in the design system
 
@@ -79,6 +79,21 @@ Since the previous audit (<file>): n fixed, n new, n still open. (Omit this line
 ## Unused components
 
 <complete components that could replace a hand-built element, or "None">
+
+## Proposed tickets
+
+| Ticket | Title | Findings | Scope | Decisions to ask first | Existing ticket |
+| ------ | ----- | -------- | ----- | ---------------------- | --------------- |
+| A | Documentation site: <short title> | 1, 2 | <what changes> | <questions for the Design System Lead, or "None"> | <new, or "extend B<nnn>"> |
 ```
+
+## Proposed tickets
+
+Group the **open** non-compliant findings into tickets (letters A, B, C…; IDs are given by Claude once a ticket is approved):
+- One ticket per coherent piece of work on the site: one component to adopt, accessibility, tokens, site rules. A ticket covers several findings (by their `#`); every open finding is in exactly one ticket, or linked to an existing ticket.
+- **Check `backlog/backlog.json` first, on every branch** (`git grep -h '"title"' $(git branch -r | grep -v HEAD) -- backlog/backlog.json`): a finding already covered by an open ticket → "extend B<nnn>" or name it, never a duplicate. A finding fixed by a ticket `in-progress` → say so.
+- "Decisions to ask first" lists every design choice the fix needs (variant, exception, new token…). Never answer them.
+- Titles in English, starting with `Documentation site:`. No priority, no release: Claude asks them to the Design System Lead.
+- "Not in the design system" elements do not get tickets here: candidate components are questions for the Design System Lead.
 
 Sort the Non-compliant table by impact: hand-built elements that have a component first, then accessibility, then tokens, then site rules. Keep findings factual; no new rules, no new token names.

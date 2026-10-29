@@ -4361,3 +4361,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `.claude/agents/ds-compliance-audit.md`, `audits/2026-10-29-B119-1.md` (created)
 - `.claude/skills/git-workflow/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B128-1 — Agents: audit proposes tickets, fix agent implements them
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- `ds-compliance-audit` ends its report with **proposed tickets** (findings grouped, existing tickets extended rather than duplicated); they are shown in the chat and created only once the Design System Lead agrees, with a priority and a release.
+- **Two agents**: the audit stays read-only; a second agent, **`ds-compliance-fix`**, implements a validated ticket. The next audit checks its work.
+- `ds-compliance-fix` changes **`docs/` only**: `tokens/`, `components/` and `prototypes/` stay forbidden to agents (a needed token is made by Claude after approval). It never runs git and starts only once every decision of the ticket is answered.
+
+**What was done**
+- `.claude/agents/ds-compliance-audit.md`: numbered non-compliant findings, "Proposed tickets" section and its rules.
+- `.claude/agents/ds-compliance-fix.md` (created): limits, how to fix, report (done, blockers and questions, noticed, checks).
+- `git-workflow` (section 4): proposed tickets after an audit, and the 5 steps to implement a compliance ticket; `orchestrator`: new row; `CLAUDE.md` (Agents): the `docs/` exception for `ds-compliance-fix`.
+- Audit before the commit: `audits/2026-10-29-B128-1.md`.
+- Ticket B128 `done`.
+
+**Files**
+- `.claude/agents/ds-compliance-fix.md`, `audits/2026-10-29-B128-1.md` (created)
+- `.claude/agents/ds-compliance-audit.md`, `.claude/skills/git-workflow/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)

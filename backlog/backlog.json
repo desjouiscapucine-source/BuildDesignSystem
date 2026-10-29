@@ -1218,7 +1218,7 @@
       "id": "B128",
       "title": "Agents: audit proposes tickets, fix agent implements them",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "ds-compliance-audit proposes the tickets from its findings; a second agent, ds-compliance-fix, implements a validated ticket on the documentation site.",
       "why": "The audit findings become tickets without manual sorting, and the approved fixes are carried out by a dedicated agent; the next audit checks its work.",
