@@ -4111,6 +4111,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `components/SelectOption/` (created)
 - `backlog/backlog.json`, `STEPS.md` (updated)
 
+## Step B117-2 — SelectOption: guidelines approved
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- Used inside the **Select** list only; not for an action (Button) nor for choices always visible (Chip).
+- Icons on every option of a list, or none. Prefer hiding an unavailable option to disabling it. Logical order, otherwise alphabetical. One selected option at most.
+- Labels: sentence case, no punctuation, parallel, distinct, 25 characters maximum.
+- A click or Enter chooses the option and closes the list; the focus goes back to the Select field.
+- Accessibility: WAI-ARIA listbox pattern — `role="option"`, `aria-selected`, `aria-disabled`; icon and check mark decorative; keyboard handled by the Select; a disabled option is reached with the arrows but cannot be chosen.
+
+**What was done**
+- `components/SelectOption/guidelines.md` written; do's and don'ts shown visually in the chat. `meta.json` status and backlog stage set to `code`.
+
+**Files**
+- `components/SelectOption/guidelines.md`, `components/SelectOption/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B059-1 — Tag: design approved
 **Date:** 2026-10-29
 
@@ -4129,6 +4145,23 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/Tag/meta.json`, `components/Tag/spec.md`, `components/Tag/design/Preview.tsx`, `components/Tag/design/tokens.json` (created)
 - `tokens/contrast-pairs.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B117-4 — SelectOption: code approved, component complete
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- Code of SelectOption approved: the component is **complete**, version **1.0**.
+
+**What was done**
+- `SelectOption.tsx`: `<div role="option" tabIndex={-1}>` (WAI-ARIA listbox; the Select moves the focus between the options), props `selected`, `disabled`, `icon`, `children`; `selected` + `disabled` forbidden by the types; a click on a disabled option does nothing; leading icon and check mark `aria-hidden`.
+- `SelectOption.css`: semantic tokens only, state layers, focus outline `--border-width-2` `--color-border-focus`, selected look (`background-brand-subtle`, `text-brand`, `label`), disabled roles, single-line label with an ellipsis.
+- `examples.tsx` (default, selected, disabled, with an icon, in a list, long label), `playground.tsx`, export in `components/index.ts`.
+- `meta.json`: status `complete`, version `1.0`, changelog "First complete version."; ticket B117 `done`.
+- Verification: type check, build and tokens pass; Examples and Playground checked in the browser (37px high, selected and disabled looks, ellipsis, focus outline).
+
+**Files**
+- `components/SelectOption/SelectOption.tsx`, `SelectOption.css`, `examples.tsx`, `playground.tsx`, `meta.json`
+- `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
 
 ## Step B059-2 — Tag: guidelines approved
 **Date:** 2026-10-29

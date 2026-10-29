@@ -1,7 +1,22 @@
-/* Semantic design tokens only (var(--…)) — never raw values or primitive tokens.
-   Classes: .ds-<component> · modifier .ds-<component>--<value> · part .ds-<component>-<part> */
+/* SelectOption — semantic design tokens only. See spec.md.
+   Sits on the Select list (--color-background-surface). Classes: .ds-select-option
+   · parts .ds-select-option-icon, -label, -check · states [aria-selected], [aria-disabled] */
 .ds-select-option {
   position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  width: 100%;
+  padding: var(--space-8);
+  border-radius: var(--radius-8);
+  background: none;
+  color: var(--color-text-primary);
+  font-family: var(--typography-body-family);
+  font-size: var(--typography-body-size);
+  font-weight: var(--typography-body-weight);
+  line-height: var(--typography-body-line-height);
+  cursor: pointer;
 }
 
 /* State layers: overlay in the content color */
@@ -15,11 +30,46 @@
   pointer-events: none;
   transition: opacity var(--duration-100) var(--easing-ease-out);
 }
+.ds-select-option:hover::after { opacity: var(--state-layer-hover); }
+.ds-select-option:focus-visible::after { opacity: var(--state-layer-focus); }
+.ds-select-option:active::after { opacity: var(--state-layer-pressed); }
 
-/* Variant: default */
-.ds-select-option--default {
+.ds-select-option:focus-visible {
+  outline: var(--border-width-2) solid var(--color-border-focus);
 }
 
 /* Parts */
-.ds-select-option-label {
+.ds-select-option-icon,
+.ds-select-option-check {
+  font-size: var(--icon-size-20);
 }
+.ds-select-option-icon { color: var(--color-icon-secondary); }
+.ds-select-option-check { color: var(--color-icon-brand); }
+
+/* Label: single line, cut with an ellipsis */
+.ds-select-option-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Selected: cream background, brown label in the label text style */
+.ds-select-option[aria-selected="true"] {
+  background: var(--color-background-brand-subtle);
+  color: var(--color-text-brand);
+  font-family: var(--typography-label-family);
+  font-size: var(--typography-label-size);
+  font-weight: var(--typography-label-weight);
+  line-height: var(--typography-label-line-height);
+}
+.ds-select-option[aria-selected="true"] .ds-select-option-icon { color: var(--color-icon-brand); }
+
+/* Disabled: disabled roles, no state layer (still reached with the arrows: focus outline kept) */
+.ds-select-option[aria-disabled="true"] {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+.ds-select-option[aria-disabled="true"] .ds-select-option-icon { color: var(--color-icon-disabled); }
+.ds-select-option[aria-disabled="true"]::after { display: none; }
