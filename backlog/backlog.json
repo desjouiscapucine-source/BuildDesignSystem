@@ -882,7 +882,7 @@
     {
       "id": "B104",
       "title": "Navigation architecture",
-      "category": "Tooling",
+      "category": "Foundations",
       "status": "todo",
       "origin": "decided",
       "description": "New work on the navigation architecture, planned for R1. Content to define with the Design System Lead.",

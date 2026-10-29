@@ -3837,3 +3837,15 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `.claude/skills/release-planning/SKILL.md`, `docs/src/pages/ReleasePlanningPage.tsx` (new)
 - `backlog/backlog.json`, `docs/src/backlog.ts`, `docs/src/pages/BacklogPage.tsx`, `docs/src/pages/NavigationPage.tsx`, `docs/src/structure.ts`, `docs/src/App.tsx`, `docs/src/docs.css`, `vite.config.ts`, `.claude/skills/backlog/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `.claude/skills/navigation/SKILL.md`, `CLAUDE.md`, `STEPS.md` (updated)
+
+## Step B104-1 — Navigation architecture: category Foundations
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- B104 Navigation architecture is in the **Foundations** category (it was created in Tooling by default).
+
+**What was done**
+- `backlog/backlog.json`: B104 category set to Foundations (the category is not editable on the Backlog page).
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)
