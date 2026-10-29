@@ -615,7 +615,7 @@ code {
 /* ---------- Backlog ---------- */
 .shell-content:has(.backlog-board) { max-width: none; }
 .backlog-filters { display: flex; flex-wrap: wrap; gap: var(--space-8); margin-bottom: var(--space-16); }
-.backlog-filters button, .backlog-actions button, .backlog-rejected > button {
+.backlog-filters button, .backlog-rejected > button {
   position: relative;
   font: inherit;
   font-size: var(--font-size-14);
@@ -627,24 +627,14 @@ code {
   cursor: pointer;
 }
 .backlog-filters button[aria-pressed="true"] { background: var(--color-background-brand); border-color: var(--color-background-brand); color: var(--color-text-inverse); }
-.backlog-board { display: grid; grid-template-columns: repeat(4, minmax(220px, 1fr)); gap: var(--space-16); align-items: start; overflow-x: auto; }
+.backlog-board { display: grid; grid-template-columns: repeat(3, minmax(220px, 1fr)); gap: var(--space-16); align-items: start; overflow-x: auto; }
 .backlog-column { background: var(--color-background-surface); border-radius: var(--radius-8); padding: var(--space-16); }
 .backlog-column h2 { margin: 0 0 var(--space-4); font-size: var(--font-size-16); }
 .backlog-count { color: var(--color-text-secondary); font-weight: var(--font-weight-regular); }
 .backlog-hint { margin: 0 0 var(--space-8); font-size: var(--font-size-12); color: var(--color-text-secondary); }
-.backlog-column ul, .backlog-rejected-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-8); }
-.backlog-card {
-  background: var(--color-background-page);
-  border: var(--border-width-1) solid var(--color-border-default);
-  border-radius: var(--radius-8);
-  padding: var(--space-16);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
-  box-shadow: var(--shadow-1);
-}
-.backlog-card p { margin: 0; font-size: var(--font-size-12); color: var(--color-text-secondary); }
-.backlog-meta { display: flex; gap: var(--space-4); align-items: center; flex-wrap: wrap; }
+.backlog-column ul, .backlog-rejected-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-16); }
+/* Menus of a ticket in its modal: one Select each, side by side */
+.ticket-menus { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--space-8); }
 .backlog-tag {
   font-family: var(--typography-label-sm-family);
   font-size: var(--typography-label-sm-size);
@@ -654,20 +644,7 @@ code {
   background: var(--color-background-subtle);
   color: var(--color-text-secondary);
 }
-.backlog-tag.decided { background: var(--color-background-success-subtle); color: var(--color-text-success); }
 .backlog-id { margin-left: auto; font-family: var(--doc-mono); font-size: var(--font-size-12); color: var(--color-text-secondary); }
-.backlog-actions { display: flex; flex-wrap: wrap; gap: var(--space-8); align-items: flex-end; }
-.backlog-actions .approve { background: var(--color-background-brand); border-color: var(--color-background-brand); color: var(--color-text-inverse); }
-.backlog-actions label { display: flex; flex-direction: column; font-size: var(--font-size-12); color: var(--color-text-secondary); gap: var(--space-4); }
-.backlog-actions select {
-  font: inherit;
-  font-size: var(--font-size-14);
-  padding: var(--space-4);
-  border: var(--border-width-1) solid var(--color-border-strong);
-  border-radius: var(--radius-4);
-  background: var(--color-background-page);
-  color: var(--color-text-primary);
-}
 .backlog-error {
   background: var(--color-background-error-subtle);
   border: var(--border-width-1) solid var(--color-border-error);
@@ -680,11 +657,6 @@ code {
 /* Below desktop: --breakpoint-desktop (1024px) */
 @media not all and (min-width: 1024px) { .backlog-board { grid-template-columns: 1fr; } }
 /* A click on a ticket opens it in a modal (B114) */
-.backlog-card { cursor: pointer; }
-.backlog-card:hover { border-color: var(--color-border-strong); }
-.backlog-card select { cursor: auto; }
-.backlog-card-title { color: var(--color-text-primary); text-decoration: none; }
-.backlog-card-title:hover { text-decoration: underline; }
 .ticket { display: flex; flex-direction: column; gap: var(--space-16); }
 .ticket h3 { margin: 0 0 var(--space-4); }
 .ticket p, .ticket ul, .ticket ol { margin: 0; }

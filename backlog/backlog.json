@@ -1055,7 +1055,7 @@
       "id": "B115",
       "title": "TicketCard",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "A design system component for the card of a backlog ticket.",
       "why": "The ticket card is coded for the documentation site only: as a component, it can be reused (Backlog, Release planning, prototypes) with the tokens and the rules of the design system.",

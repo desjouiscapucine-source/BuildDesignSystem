@@ -1,7 +1,7 @@
-import { useState, type MouseEvent } from "react";
+import { useState } from "react";
+import { Select, TicketCard } from "@ds/components";
 import type { Stage } from "../types";
 import {
-  formatReleaseDate,
   priorityLabels,
   priorityRank,
   releases,
@@ -20,6 +20,7 @@ const columns: { status: Status; title: string; hint: string }[] = [
 ];
 
 const stages: Stage[] = ["design", "guidelines", "code"];
+const stageLabels: Record<Stage, string> = { design: "Design", guidelines: "Guidelines", code: "Code" };
 
 /** `open`: the ticket shown in the modal (#/backlog/<id>). */
 export function BacklogPage({ open }: { open?: string }) {
@@ -48,80 +49,57 @@ export function BacklogPage({ open }: { open?: string }) {
     }
   }
 
-  // The menus of a ticket (status, priority, release, stage): on its card and in its modal.
+  // The menus of a ticket (status, priority, release, stage): one Select each, on its card and in its modal.
+  // Stage only for component tickets. A change is saved at once (TicketCard guidelines).
   const ticketActions = (item: Item) => (
-    <div className="backlog-actions">
-      <label>
-        Status
-        <select value={item.status} onChange={(event) => update(item.id, { status: event.target.value as Status })}>
-          {(["todo", "in-progress", "done", "rejected"] as Status[]).map((status) => (
-            <option key={status} value={status}>
-              {statusLabels[status]}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Priority
-        <select
-          value={item.priority ?? ""}
-          onChange={(event) => update(item.id, { priority: (event.target.value || null) as Priority })}
-        >
-          <option value="">None</option>
-          {(Object.keys(priorityLabels) as Priority[]).map((priority) => (
-            <option key={priority} value={priority}>
-              {priorityLabels[priority]}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Release
-        <select value={item.release ?? ""} onChange={(event) => update(item.id, { release: event.target.value || null } as Partial<Item>)}>
-          <option value="">None</option>
-          {releaseList.map((release) => (
-            <option key={release.id} value={release.id}>
-              {release.id} · {formatReleaseDate(release.date)}
-            </option>
-          ))}
-        </select>
-      </label>
+    <>
+      <Select
+        label="Status"
+        options={(["todo", "in-progress", "done", "rejected"] as Status[]).map((status) => ({ value: status, label: statusLabels[status] }))}
+        value={item.status}
+        onChange={(value) => update(item.id, { status: value as Status })}
+      />
+      <Select
+        label="Priority"
+        options={[
+          { value: "", label: "None" },
+          ...(Object.keys(priorityLabels) as Exclude<Priority, undefined>[]).map((priority) => ({ value: priority, label: priorityLabels[priority] })),
+        ]}
+        value={item.priority ?? ""}
+        onChange={(value) => update(item.id, { priority: (value || null) as Priority })}
+      />
+      <Select
+        label="Release"
+        options={[
+          { value: "", label: "None" },
+          ...releaseList.map((release) => ({ value: release.id, label: release.id })),
+        ]}
+        value={item.release ?? ""}
+        onChange={(value) => update(item.id, { release: value || null } as Partial<Item>)}
+      />
       {item.stage && (
-        <label>
-          Stage
-          <select value={item.stage} onChange={(event) => update(item.id, { stage: event.target.value as Stage })}>
-            {stages.map((stage) => (
-              <option key={stage} value={stage}>
-                {stage}
-              </option>
-            ))}
-          </select>
-        </label>
+        <Select
+          label="Stage"
+          options={stages.map((stage) => ({ value: stage, label: stageLabels[stage] }))}
+          value={item.stage}
+          onChange={(value) => update(item.id, { stage: value as Stage })}
+        />
       )}
-    </div>
+    </>
   );
 
-  // A click on a ticket opens it in a modal — except on its menus (status, priority, release, stage).
-  const openTicket = (id: string) => (event: MouseEvent) => {
-    if ((event.target as HTMLElement).closest("select, label, a, button")) return;
-    location.hash = `#/backlog/${id}`;
-  };
-
+  // One TicketCard per ticket: a click (except on the menus) or Enter opens it in a modal.
   const card = (item: Item) => (
-    <li key={item.id} className="backlog-card" onClick={openTicket(item.id)}>
-      <div className="backlog-meta">
-        <span className="backlog-tag">{item.category}</span>
-        {item.origin === "decided" && <span className="backlog-tag decided">Decided</span>}
-        <span className="backlog-id">{item.id}</span>
-      </div>
-      <strong>
-        <a className="backlog-card-title" href={`#/backlog/${item.id}`}>
-          {item.title}
-        </a>
-      </strong>
-      {item.description && <p>{item.description}</p>}
-
-      {ticketActions(item)}
+    <li key={item.id}>
+      <TicketCard
+        ticketId={item.id}
+        title={item.title}
+        description={item.description}
+        category={item.category}
+        decided={item.origin === "decided"}
+        menus={ticketActions(item)}
+        onOpen={() => (location.hash = `#/backlog/${item.id}`)}
+      />
     </li>
   );
 

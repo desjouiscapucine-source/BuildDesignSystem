@@ -50,7 +50,7 @@ export function TicketDialog({
   return (
     <Dialog size="large" open={Boolean(id)} onClose={onClose} title={item.title} description={meta}>
       <div className="ticket">
-        {actions(item)}
+        <div className="ticket-menus">{actions(item)}</div>
         {error && (
           <p className="backlog-error" role="alert">
             {error}

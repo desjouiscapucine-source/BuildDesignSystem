@@ -4325,3 +4325,21 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `components/TicketCard/TicketCard.css`, `examples.tsx`, `playground.tsx`, `spec.md`, `guidelines.md`, `meta.json` (updated)
 - `components/TicketCard/examples/TicketMenus.tsx` (created), `components/TicketCard/examples/PlaceholderMenus.tsx` (removed)
 - `STEPS.md` (updated)
+
+## Step B115-7 — Backlog page with TicketCard
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- The Backlog page shows its tickets with **TicketCard**; the menus are **Select** (B021), on the card and in the ticket's modal.
+- The board has **3 columns** (To do, In progress, Done) instead of a grid of 4: the cards are wider and the menu values are no longer cut.
+- Options of the Release menu: the release only ("R1"); the date is on the Release planning page.
+
+**What was done**
+- `docs/src/pages/BacklogPage.tsx`: one TicketCard per ticket (click or Enter opens its modal), the menus as Selects (Stage only for component tickets, change saved at once).
+- `docs/src/pages/TicketDialog.tsx`: the Selects side by side (`.ticket-menus`).
+- `docs/src/docs.css`: hand-drawn card, tags and native menus removed; cards 16px apart; board in 3 columns.
+- Verification: type check and build pass; at 1440px no menu value is cut; a click on a card opens its modal; the Release list opens over the modal content.
+- Ticket B115 `done`: TicketCard complete and used by the Backlog page.
+
+**Files**
+- `docs/src/pages/BacklogPage.tsx`, `docs/src/pages/TicketDialog.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
