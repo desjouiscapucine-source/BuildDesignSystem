@@ -4254,6 +4254,24 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `components/Tag/Tag.tsx`, `components/Tag/Tag.css`, `components/Tag/examples.tsx`, `components/Tag/playground.tsx` (created)
 - `components/Tag/meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
 
+## Step B021-5 — Select: code approved, component complete
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- Code of the Select approved: the component is **complete**, version **1.0**.
+- Technical API approved: `options` (`{ value, label, icon?, disabled? }`), `onChange(value)`, `onOpenChange(open)`, `id`, `className`; `error` + `disabled` forbidden by the types. The arrow turns with `--duration-200` `--easing-ease-in-out` (as NavigationItem); the list opens without animation.
+
+**What was done**
+- `Select.tsx`: label, field (`<button>` with `aria-haspopup="listbox"`, `aria-expanded`, `aria-labelledby` label + value, `aria-invalid` + `aria-describedby` for the error), list (`role="listbox"` of SelectOption). Keyboard: Enter / Space / Arrow down open; focus on the chosen option, otherwise the first; arrows, Home / End, typing a letter; Enter chooses and gives the focus back to the field; Escape, Tab and a click outside close without changing.
+- `Select.css`: semantic tokens only; open (`border-focus`, arrow turned), error, disabled (label included); list under the field at `--z-index-dropdown`.
+- `examples.tsx` (placeholder, option chosen, options with icons, error, error when the list closes without a choice, disabled, long texts), `playground.tsx`, export in `components/index.ts`.
+- `meta.json`: status `complete`, version `1.0`, changelog "First complete version."; ticket B021 `done`.
+- Verification: type check, build and tokens pass; keyboard and mouse behavior tested in the browser (a stale value in the error example was found and fixed).
+
+**Files**
+- `components/Select/Select.tsx`, `Select.css`, `examples.tsx`, `playground.tsx`, `meta.json`
+- `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B115-3 — TicketCard: guidelines approved
 **Date:** 2026-10-29
 

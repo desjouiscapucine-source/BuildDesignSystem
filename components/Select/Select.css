@@ -1,11 +1,53 @@
-/* Semantic design tokens only (var(--…)) — never raw values or primitive tokens.
-   Classes: .ds-<component> · modifier .ds-<component>--<value> · part .ds-<component>-<part> */
+/* Select — semantic design tokens only. See spec.md.
+   Classes: .ds-select · parts .ds-select-label, -control, -field, -value, -placeholder, -arrow, -error, -error-icon, -list
+   · states :disabled, [aria-expanded="true"] (open), [aria-invalid="true"] (error). Options: SelectOption. */
 .ds-select {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  min-width: 0;
+}
+
+/* Field + list: the list is placed under the field */
+.ds-select-control { position: relative; }
+
+/* Label: single line, cut with an ellipsis */
+.ds-select-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-text-primary);
+  font-family: var(--typography-label-family);
+  font-size: var(--typography-label-size);
+  font-weight: var(--typography-label-weight);
+  line-height: var(--typography-label-line-height);
+}
+
+/* Field */
+.ds-select-field {
   position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  width: 100%;
+  margin: 0;
+  padding: var(--space-8) var(--space-16);
+  border: var(--border-width-1) solid var(--color-border-strong);
+  border-radius: var(--radius-8);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font-family: var(--typography-body-family);
+  font-size: var(--typography-body-size);
+  font-weight: var(--typography-body-weight);
+  line-height: var(--typography-body-line-height);
+  text-align: start;
+  cursor: pointer;
 }
 
 /* State layers: overlay in the content color */
-.ds-select::after {
+.ds-select-field::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -15,11 +57,84 @@
   pointer-events: none;
   transition: opacity var(--duration-100) var(--easing-ease-out);
 }
+.ds-select-field:hover::after { opacity: var(--state-layer-hover); }
+.ds-select-field:focus-visible::after { opacity: var(--state-layer-focus); }
+.ds-select-field:active::after { opacity: var(--state-layer-pressed); }
 
-/* Variant: default */
-.ds-select--default {
+.ds-select-field:focus-visible {
+  outline: var(--border-width-2) solid var(--color-border-focus);
+  outline-offset: var(--border-width-2);
 }
 
-/* Parts */
-.ds-select-label {
+/* Value and placeholder: single line, cut with an ellipsis */
+.ds-select-value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
+.ds-select-placeholder { color: var(--color-text-secondary); }
+
+/* Arrow: turned upside down when the list is open */
+.ds-select-arrow {
+  font-size: var(--icon-size-20);
+  color: var(--color-icon-secondary);
+  transition: transform var(--duration-200) var(--easing-ease-in-out);
+}
+
+/* Open */
+.ds-select-field[aria-expanded="true"] { border-color: var(--color-border-focus); }
+.ds-select-field[aria-expanded="true"] .ds-select-arrow { transform: rotate(180deg); }
+
+/* Error: border, icon and message (not color alone) */
+.ds-select-field[aria-invalid="true"] { border-color: var(--color-border-error); }
+.ds-select-error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  color: var(--color-text-error);
+  font-family: var(--typography-body-sm-family);
+  font-size: var(--typography-body-sm-size);
+  font-weight: var(--typography-body-sm-weight);
+  line-height: var(--typography-body-sm-line-height);
+}
+.ds-select-error-icon {
+  /* Aligned with the first line of the message */
+  display: inline-flex;
+  align-items: center;
+  height: calc(var(--typography-body-sm-size) * var(--typography-body-sm-line-height));
+  font-size: var(--icon-size-16);
+  color: var(--color-icon-error);
+}
+
+/* Disabled: disabled roles, label included; no state layer */
+.ds-select-field:disabled {
+  border-color: var(--color-border-subtle);
+  background: var(--color-background-disabled);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+.ds-select-field:disabled::after { display: none; }
+.ds-select-field:disabled .ds-select-placeholder { color: var(--color-text-disabled); }
+.ds-select-field:disabled .ds-select-arrow { color: var(--color-icon-disabled); }
+.ds-select:has(.ds-select-field:disabled) .ds-select-label { color: var(--color-text-disabled); }
+
+/* List: under the field, over the page and over dialogs, width of the field */
+.ds-select-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: var(--z-index-dropdown);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+  padding: var(--space-4);
+  border: var(--border-width-1) solid var(--color-border-default);
+  border-radius: var(--radius-8);
+  background: var(--color-background-surface);
+}
+.ds-select-list[hidden] { display: none; }
