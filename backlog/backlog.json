@@ -917,6 +917,16 @@
       "description": "Work branches start from and merge into a permanent develop branch; at each release, a review of what was pushed and committed, then develop is merged into main with a tag R<n> and a release note shown under the release on the Release planning page.",
       "priority": "high",
       "release": "R1"
+    },
+    {
+      "id": "B108",
+      "title": "Documentation page: Git workflow",
+      "category": "Tooling",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "Page in Governance, under How to use skills: organization diagram of the git workflow (work branches, develop, main on release day) and a link that opens the git-workflow skill.",
+      "priority": "medium",
+      "release": "R1"
     }
   ]
 }
