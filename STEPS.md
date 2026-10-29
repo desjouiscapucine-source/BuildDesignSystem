@@ -3909,3 +3909,16 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `docs/src/pages/BranchesPage.tsx` (new)
 - `vite.config.ts`, `docs/src/structure.ts`, `docs/src/App.tsx`, `docs/src/docs.css`, `docs/src/pages/NavigationPage.tsx`, `.claude/skills/navigation/SKILL.md`, `.claude/skills/git-workflow/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B109-2 — Branches with only a reserved ticket deleted, tickets kept
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- Delete the three branches that held only a reserved ticket: `governance/claude-organization` (B100), `governance/backlog-filters` (B101), `prototype/work-description-panel-bug` (B102).
+
+**What was done**
+- Their tickets existed only on those branches: they are kept in the backlog of `develop`, unchanged (To do, priority medium), so the decided work is not lost. B100 takes release R1 and B102 release R2, as planned; the two planned lines that pointed to them are removed. B101 stays not planned.
+- The three branches are deleted on GitHub (no work on them besides the ticket, no folder using them).
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)

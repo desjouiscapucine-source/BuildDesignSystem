@@ -3,14 +3,7 @@
   "releases": {
     "first": "2026-11-06",
     "everyDays": 14,
-    "planned": {
-      "R1": [
-        "Git workflow: organization rules in Claude (B100, in progress on its branch)"
-      ],
-      "R2": [
-        "Bug: panel not visible on tablet and mobile, WorkDescription prototype (B102, in progress on its branch)"
-      ]
-    }
+    "planned": {}
   },
   "items": [
     {
@@ -870,6 +863,35 @@
       "origin": "decided",
       "description": "One skill gathering the backlog rules; the priority is asked before a ticket is created.",
       "priority": "high"
+    },
+    {
+      "id": "B100",
+      "title": "Git workflow: organization rules in Claude",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "decided",
+      "description": "Write the rules for organizing the work in Claude.",
+      "priority": "medium",
+      "release": "R1"
+    },
+    {
+      "id": "B101",
+      "title": "Backlog page: filter by priority",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "decided",
+      "description": "Add filters to the Backlog page, starting with a filter by priority.",
+      "priority": "medium"
+    },
+    {
+      "id": "B102",
+      "title": "Bug: panel not visible on tablet and mobile",
+      "category": "Prototypes",
+      "status": "todo",
+      "origin": "decided",
+      "description": "Prototype work-description: the panel does not show below desktop (tablet and mobile).",
+      "priority": "medium",
+      "release": "R2"
     },
     {
       "id": "B103",
