@@ -186,7 +186,8 @@
       "origin": "proposal",
       "description": "Choice in a list. Used on the documentation site: status and stage menus of the Backlog page, token menus of the Design preview tab.",
       "stage": "design",
-      "release": "R1"
+      "release": "R1",
+      "priority": "high"
     },
     {
       "id": "B022",
