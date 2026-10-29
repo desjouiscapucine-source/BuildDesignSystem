@@ -1,0 +1,8 @@
+{
+  "name": "Dialog",
+  "description": "Dialog that opens over the page to show a detail or ask for an action.",
+  "level": "organism",
+  "status": "guidelines",
+  "version": "0.0",
+  "changelog": []
+}

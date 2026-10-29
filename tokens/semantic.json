@@ -589,6 +589,18 @@
     "content": {
       "$value": "1040px",
       "$description": "Maximum width of the page content, page margins included (grid columns: 992px)"
+    },
+    "dialog-small": {
+      "$value": "400px",
+      "$description": "Maximum width of a small Dialog"
+    },
+    "dialog-medium": {
+      "$value": "560px",
+      "$description": "Maximum width of a medium Dialog (default)"
+    },
+    "dialog-large": {
+      "$value": "800px",
+      "$description": "Maximum width of a large Dialog"
     }
   },
   "breakpoint": {
@@ -637,6 +649,10 @@
     "panel": {
       "$value": "{shadow.3}",
       "$description": "Panel sliding over the page (e.g. the Timeline panel on small screens)"
+    },
+    "dialog": {
+      "$value": "{shadow.3}",
+      "$description": "Dialog over the page"
     }
   },
   "z-index": {

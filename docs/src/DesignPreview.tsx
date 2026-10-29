@@ -6,7 +6,7 @@ import type { ComponentDoc, DesignTokens, PreviewState, SlotType } from "./types
 
 const states: PreviewState[] = ["default", "hover", "focus", "pressed", "disabled"];
 
-// Tokens offered for each slot type (semantic tier only, except shadows: no semantic shadow yet).
+// Tokens offered for each slot type (semantic tier only, except shadows: primitives and semantic shadows).
 function optionsFor(type: SlotType): { id: string; label: string }[] {
   if (type === "text-style") return textStyles.map((style) => ({ id: style.name, label: style.name }));
   const group = type === "shadow" ? "shadow" : type;

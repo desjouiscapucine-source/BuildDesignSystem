@@ -168,7 +168,7 @@ Semantic tier: **`border-width.<px>`** → `--border-width-<px>`, named by the v
 
 Two tiers:
 - **Primitive:** **`shadow.<level>`** → `--shadow-1`, `--shadow-2`, `--shadow-3` (low → high). Neutral color: neutral-950 (#141414) with transparency.
-- **Semantic:** named **by usage** (`shadow.<usage>`). Approved: **`shadow.panel`** → `shadow.3` (a panel sliding over the page). Ask before creating another usage.
+- **Semantic:** named **by usage** (`shadow.<usage>`). Approved: **`shadow.panel`** → `shadow.3` (a panel sliding over the page), **`shadow.dialog`** → `shadow.3` (a Dialog over the page). Ask before creating another usage.
 
 | Primitive | Value |
 | --------- | ----- |
@@ -208,6 +208,9 @@ Semantic tier: **`size.<usage>`** → `--size-<usage>`, named by usage. Values i
 | `size.timeline` | 400px | Maximum width of the timeline panel (below desktop) |
 | `size.timeline-step-title` | 200px | Minimum width of a timeline step title next to its date range; below it, the date range goes under the title |
 | `size.content` | 1040px | Maximum width of the page content, page margins included |
+| `size.dialog-small` | 400px | Maximum width of a small Dialog |
+| `size.dialog-medium` | 560px | Maximum width of a medium Dialog (default) |
+| `size.dialog-large` | 800px | Maximum width of a large Dialog |
 
 ## Breakpoint tokens
 

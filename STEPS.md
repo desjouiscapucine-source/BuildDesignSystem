@@ -3940,3 +3940,26 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `.claude/skills/git-workflow/SKILL.md`, `.claude/skills/prototype-setup/SKILL.md`, `CLAUDE.md`, `docs/src/pages/GitWorkflowPage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B029-1 — Dialog: design spec approved
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- The component is named **Dialog** (not Modal): folder `components/Dialog/`, class `.ds-dialog`, level **organism** (built from IconButton and Button), description "Dialog that opens over the page to show a detail or ask for an action." Ticket B029 renamed "Dialog"; branch `component/Dialog`.
+- One type. Variant property `size`: `small` / `medium` (default) / `large`.
+- New tokens: `size.dialog-small` 400px, `size.dialog-medium` 560px, `size.dialog-large` 800px, and the semantic shadow `shadow.dialog` → `shadow.3`.
+- Anatomy: overlay, container, title, description and close button (IconButton `tertiary`) required; body and footer (Buttons, aligned right, main action last) optional.
+- Tokens: overlay `color.background.overlay`, background `color.background.page`, radius `radius.8`, shadow `shadow.dialog`, padding and space between parts `space.24`, title `heading-4` primary, description `body` secondary (`space.4` under the title), body `body` primary, footer buttons `space.8` apart.
+- Behavior: title and description wrap (no maximum length); only the body scrolls; below the dialog width, full width with `space.16` margins, same footer layout; closes with the close button, Escape, a click on the overlay or a footer button; fade in / out `duration.200` `easing.ease-out`.
+- Props: `size`, `open`, `onClose`, `title`, `description`, `children` (body), `footer`.
+- Stage 1 (Design) approved: the Dialog moves to Guidelines.
+
+**What was done**
+- `components/Dialog/` created from the template (`meta.json`, `spec.md`, design preview `design/Preview.tsx` + `design/tokens.json`).
+- Tokens added to `tokens/semantic.json`, the `token-naming` skill and `CLAUDE.md`; `npm run tokens` passes (45/45 contrast pairs AA).
+- Design preview tab: semantic shadows now listed with the primitives (comment updated).
+- Backlog: B029 in progress, stage `guidelines`.
+- Verification: type check and build pass; the Design preview and Design spec tabs show the Dialog.
+
+**Files**
+- `components/Dialog/` (created), `tokens/semantic.json`, `.claude/skills/token-naming/SKILL.md`, `CLAUDE.md`, `docs/src/DesignPreview.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
