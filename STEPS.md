@@ -4162,3 +4162,24 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/SelectOption/SelectOption.tsx`, `SelectOption.css`, `examples.tsx`, `playground.tsx`, `meta.json`
 - `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B021-1 — Select: design approved
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- **Select** (`components/Select/`, class `.ds-select`), level **molecule**: "Choice of one option in a list." Options are the **SelectOption** building block (B117, complete).
+- One size, full width of its container. Label above (required, `label`, 25 characters max, `--space-4` to the field).
+- Field outlined: `background-surface`, `--border-width-1` `border-strong`, `--radius-8`, padding `--space-16` × `--space-8`, value in `body`, placeholder in `text-secondary`, arrow `expand_more` `icon-secondary` `--icon-size-20`. Height ≈ 39px (2px more than the Button because of the border): kept.
+- List: border only (`border-default`, no shadow), `--space-4` under the field, padding and gap `--space-4`, no maximum height, over the page and over dialogs.
+- New token **`z-index.dropdown` = 50** (above `modal` 40, below `tooltip` 100).
+- States: placeholder, open (`border-focus` border, arrow turned), error (`border-error` border, message `body-sm` `text-error` with an `error` icon `--icon-size-16`, `--space-4` from the field and between icon and text), disabled (disabled roles, label included). `error` + `disabled` forbidden.
+- Purpose, property names (`label`, `placeholder`, `value`, `error`, `disabled`) and preview content approved with the spec.
+
+**What was done**
+- `components/Select/` created from the template; design preview (`design/Preview.tsx`, `design/tokens.json`: variants placeholder, filled, open with SelectOption, error); every contrast pair passes AA (lowest 5.26:1).
+- `spec.md` written. `meta.json` status and backlog stage set to `guidelines`.
+- `z-index.dropdown` added to `tokens/semantic.json`, the `token-naming` skill and `CLAUDE.md`.
+
+**Files**
+- `components/Select/` (created)
+- `tokens/semantic.json`, `.claude/skills/token-naming/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
