@@ -7,6 +7,7 @@ import { BacklogPage } from "./pages/BacklogPage";
 import { IconsPage } from "./pages/IconsPage";
 import { GridPage } from "./pages/GridPage";
 import { SkillsPage } from "./pages/SkillsPage";
+import { GitWorkflowPage } from "./pages/GitWorkflowPage";
 import { ChangelogPage } from "./pages/ChangelogPage";
 import { ReleasePlanningPage } from "./pages/ReleasePlanningPage";
 import { TicketPage } from "./pages/TicketPage";
@@ -27,7 +28,7 @@ import { categorySlug } from "./structure";
 // Hash routes, by navigation level (navigation skill):
 // Level 1  #/ (Documentation, opens on Overview)  ·  #/portfolio
 // Level 2  #/governance  ·  #/foundations  ·  #/components  ·  #/prototypes  ·  #/navigation
-// Level 3  #/backlog  ·  #/backlog/<id>  ·  #/skills  ·  #/changelog  ·  #/releases  ·  #/foundations/<slug>  ·  #/components/<category>  ·  #/prototypes/<name>
+// Level 3  #/backlog  ·  #/backlog/<id>  ·  #/skills  ·  #/skills/<name>  ·  #/git-workflow  ·  #/changelog  ·  #/releases  ·  #/foundations/<slug>  ·  #/components/<category>  ·  #/prototypes/<name>
 // Level 4  #/components/<slug>
 function useHashRoute() {
   const read = () => {
@@ -73,6 +74,8 @@ export function App() {
   else if (route === "/backlog") page = <BacklogPage />;
   else if (route.startsWith("/backlog/")) page = <TicketPage key={route} id={route.slice("/backlog/".length)} />;
   else if (route === "/skills") page = <SkillsPage />;
+  else if (route.startsWith("/skills/")) page = <SkillsPage key={route} open={route.slice("/skills/".length)} />;
+  else if (route === "/git-workflow") page = <GitWorkflowPage />;
   else if (route === "/changelog") page = <ChangelogPage />;
   else if (route === "/releases") page = <ReleasePlanningPage />;
   else if (foundation?.slug === "icons") page = <IconsPage />;
@@ -92,7 +95,7 @@ export function App() {
 
   // A ticket is not in the navigation yet (it will open in a modal): the Backlog stays selected and ends its breadcrumb.
   return (
-    <AppShell current={route.startsWith("/backlog/") ? "#/backlog" : `#${route}`} route={`#${route}`}>
+    <AppShell current={route.startsWith("/backlog/") ? "#/backlog" : route.startsWith("/skills/") ? "#/skills" : `#${route}`} route={`#${route}`}>
       {page}
     </AppShell>
   );

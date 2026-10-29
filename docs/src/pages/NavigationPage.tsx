@@ -42,6 +42,7 @@ const structure: NavNode = {
           children: [
             { label: "Backlog", level: 3, note: "a ticket opens in a modal" },
             { label: "How to use skills", level: 3 },
+            { label: "Git workflow", level: 3 },
             { label: "Changelog", level: 3 },
             { label: "Release planning", level: 3 },
           ],

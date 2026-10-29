@@ -922,7 +922,7 @@
       "id": "B108",
       "title": "Documentation page: Git workflow",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "Page in Governance, under How to use skills: organization diagram of the git workflow (work branches, develop, main on release day) and a link that opens the git-workflow skill.",
       "priority": "medium",

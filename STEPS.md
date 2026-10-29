@@ -3872,3 +3872,21 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `releases/_template.md` (new)
 - `.claude/skills/git-workflow/SKILL.md`, `.claude/skills/backlog/SKILL.md`, `.claude/skills/component/SKILL.md`, `.claude/skills/prototype-setup/SKILL.md`, `.claude/skills/release-planning/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `CLAUDE.md`, `docs/src/pages/ReleasePlanningPage.tsx`, `docs/src/pages/BacklogPage.tsx`, `docs/src/docs.css`, `vite.config.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B108-1 — Documentation page: Git workflow
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- A Git workflow page in Governance, under How to use skills, with the organization diagram and a link to the git-workflow documentation. Priority medium, release R1.
+
+**What was done**
+- New page `docs/src/pages/GitWorkflowPage.tsx` (`#/git-workflow`): diagram (component/, prototype/, governance/ → develop → main + tag R<n> + release note; stacked below the tablet breakpoint), "In short" list, link "Read the git-workflow skill".
+- `docs/src/pages/SkillsPage.tsx`, `docs/src/App.tsx`: route `#/skills/<name>` opens How to use skills on that skill, unfolded and scrolled to (below the sticky header); the side navigation keeps How to use skills selected.
+- `docs/src/structure.ts` (Governance, icon `account_tree`), `docs/src/docs.css` (diagram, scroll offset of the skill cards), `docs/src/pages/NavigationPage.tsx` and `navigation` skill (Git workflow under How to use skills).
+- Backlog: B108 added (reserved first), done.
+- Verification: type check and build pass; the link opens the git-workflow card unfolded, no console errors.
+- First piece of work merged into `develop` (B107).
+
+**Files**
+- `docs/src/pages/GitWorkflowPage.tsx` (new)
+- `docs/src/pages/SkillsPage.tsx`, `docs/src/App.tsx`, `docs/src/structure.ts`, `docs/src/docs.css`, `docs/src/pages/NavigationPage.tsx`, `.claude/skills/navigation/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)

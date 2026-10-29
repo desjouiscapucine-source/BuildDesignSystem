@@ -1,16 +1,17 @@
+import { useEffect } from "react";
 import { Markdown } from "../Markdown";
 import { cardBody, childSkills, dispatchTable, parentSkill, PARENT_SKILL, type Skill } from "../skills";
 
 const anchor = (name: string) => `skill-${name}`;
 
-function SkillCard({ skill }: { skill: Skill }) {
+function SkillCard({ skill, open }: { skill: Skill; open?: boolean }) {
   return (
     <section className="skill-card" id={anchor(skill.name)}>
       <h3>
         <code>{skill.name}</code>
       </h3>
       <p>{skill.description}</p>
-      <details>
+      <details open={open}>
         <summary>Show the full skill</summary>
         <Markdown source={cardBody(skill.body)} />
       </details>
@@ -18,7 +19,15 @@ function SkillCard({ skill }: { skill: Skill }) {
   );
 }
 
-export function SkillsPage() {
+/** `open`: a skill opened and scrolled to on load (route #/skills/<name>, e.g. from the Git workflow page). */
+export function SkillsPage({ open }: { open?: string } = {}) {
+  useEffect(() => {
+    if (!open) return;
+    // After the scroll to the top done on every route change.
+    const timer = setTimeout(() => document.getElementById(anchor(open))?.scrollIntoView(), 0);
+    return () => clearTimeout(timer);
+  }, [open]);
+
   return (
     <>
       <h1>How to use skills</h1>
@@ -70,9 +79,9 @@ export function SkillsPage() {
       {dispatchTable ? <Markdown source={dispatchTable} /> : <p className="empty">No dispatch table found.</p>}
 
       <h2>Skills</h2>
-      {parentSkill && <SkillCard skill={parentSkill} />}
+      {parentSkill && <SkillCard skill={parentSkill} open={open === parentSkill.name} />}
       {childSkills.map((skill) => (
-        <SkillCard key={skill.name} skill={skill} />
+        <SkillCard key={skill.name} skill={skill} open={open === skill.name} />
       ))}
     </>
   );

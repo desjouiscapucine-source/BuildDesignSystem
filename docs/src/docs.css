@@ -420,6 +420,33 @@ code {
 }
 .home-links span, .cards span { color: var(--color-text-secondary); }
 
+/* ---------- Git workflow ---------- */
+.git-flow { display: flex; align-items: center; gap: var(--space-16); }
+.git-flow-branches { display: flex; flex-direction: column; gap: var(--space-8); margin: 0; padding: 0; list-style: none; flex: 3 1 0; min-width: 0; }
+.git-flow > .git-flow-box { flex: 2 1 0; min-width: 0; }
+.git-flow-arrow { flex: 0 0 auto; max-width: calc(var(--space-64) * 2); }
+.git-flow-box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-16);
+  border: var(--border-width-1) solid var(--color-border-default);
+  border-radius: var(--radius-8);
+  background: var(--color-background-page);
+}
+.git-flow-box code { font-weight: var(--font-weight-semibold); }
+.git-flow-box span { color: var(--color-text-secondary); font-size: var(--typography-body-sm-size); }
+.git-flow-box--develop { background: var(--color-background-brand-subtle); }
+.git-flow-box--main { background: var(--color-background-surface); border-width: var(--border-width-2); }
+.git-flow-arrow { display: flex; flex-direction: column; align-items: center; gap: var(--space-4); color: var(--color-text-secondary); text-align: center; }
+.git-flow-arrow-label { font-size: var(--typography-label-sm-size); }
+.git-flow-link { display: inline-flex; align-items: center; gap: var(--space-4); font-weight: var(--font-weight-semibold); }
+/* Below breakpoint.tablet: stacked */
+@media not all and (min-width: 768px) {
+  .git-flow { flex-direction: column; align-items: stretch; }
+  .git-flow-arrow .ds-icon { transform: rotate(90deg); }
+}
+
 /* ---------- Release planning ---------- */
 .release-list { display: flex; flex-direction: column; gap: var(--space-16); margin: 0; padding: 0; list-style: none; }
 .release-card {
@@ -569,6 +596,7 @@ code {
 .nav-tree-label { font-weight: var(--font-weight-semibold); }
 .nav-tree-note { color: var(--color-text-secondary); font-size: var(--typography-body-sm-size); }
 .skill-card {
+  scroll-margin-top: calc(var(--space-64) + var(--space-16)); /* below the sticky header */
   display: flex;
   flex-direction: column;
   gap: var(--space-8);
