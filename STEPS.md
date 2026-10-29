@@ -4180,6 +4180,27 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `components/Tag/guidelines.md` (created)
 - `components/Tag/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
 
+## Step B115-2 — TicketCard: design approved
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- **TicketCard**: organism, folder `components/TicketCard/`, class `.ds-ticket-card`, description "The card of a backlog ticket, with its main information." One type, no variant, one size (full width of its column).
+- Content: category tag, origin tag "Decided" (only for `decided` tickets), ID, title, description, menus Status / Priority / Release / Stage (Stage only for component tickets). Title and description in full, no maximum length.
+- Building blocks: the tags are the **Tag** atom (B059) and the menus the **Select** atom (B021), completed before TicketCard.
+- Look of the **Card** molecule (same tokens) in its own container, because Card is not clickable: the **whole card is clickable** (except the menus), focusable (Tab, Enter opens the ticket), with hover / focus / pressed state layers.
+- ID `body-sm` in `--color-text-secondary`; gaps `--space-4` in the tags row, `--space-8` between the menus and between the rows.
+
+**What was done**
+- Branch `component/TicketCard` taken over in this session and updated from `develop`; ticket B115 `in-progress`.
+- `components/TicketCard/` created from the template: `meta.json` (status `guidelines`), design preview (`design/Preview.tsx`, `design/tokens.json`, tags and menus as dashed placeholders), `spec.md`.
+- Contrast: title and description 15.52:1, ID 5.49:1, focus outline 6.10:1; border subtle 1.25:1 decorative, as Card.
+- Open question kept in the spec: the final look of the tags and menus once Tag and Select are coded.
+- Backlog: B115 stage `guidelines`.
+
+**Files**
+- `components/TicketCard/` (created)
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B059-3 — Tag: code approved, component complete
 **Date:** 2026-10-29
 
