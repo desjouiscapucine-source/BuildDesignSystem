@@ -76,6 +76,7 @@ Guidelines are updated whenever coding or prototyping reveals a new rule or edge
 ## Agents
 - Agents (sub-agents launched by Claude) **read and propose only**: they never change `tokens/`, `components/` or `prototypes/`.
 - Claude checks every agent result before showing it to the Design System Lead; the `never-invent` rule applies to agents too.
+- Agents live in `.claude/agents/`. **`ds-compliance-audit`** audits every UI element of the documentation site against the design system (compliant / non-compliant / not in the design system); it runs after each approved step and during the release review, and its checked report is written to `audits/` and its non-compliant elements are shown in the chat (`git-workflow`).
 
 ## Component guidelines
 Every component has a dedicated guidelines document, separate from its design spec. The spec says **what** the component is; the guidelines say **how and when** to use it. Each guidelines document covers:

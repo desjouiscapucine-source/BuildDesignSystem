@@ -71,6 +71,7 @@ An existing branch (e.g. a prototype in progress) → continue on it, after upda
 - Entry title in `STEPS.md`: `## Step B031-2 — <short title>`. Commit message: `Step B031-2: <short title>`.
 - Steps written before this rule keep their number (`Step 1` → `Step 169`).
 - **Preview before commit** (`CLAUDE.md`): commit and push only once the Design System Lead validates; always on the branch of the piece of work, **never on `develop` or `main`**.
+- **Compliance audit after each approved step** (B119): once the Design System Lead validates a step, before its commit, Claude runs the `ds-compliance-audit` agent (`.claude/agents/ds-compliance-audit.md`) with the previous report, checks its result, writes it to `audits/<YYYY-MM-DD>-<ticket>-<n>.md` (e.g. `audits/2026-10-29-B119-1.md`) and **shows in the chat** the summary (counts, fixed / new since the previous audit) and **every non-compliant element** (page, element, where, finding, suggested fix). The report is committed with the step. Findings are not fixed in that step: each fix or candidate component is asked in the chat and gets its own ticket once approved (`backlog`).
 
 ## 5. Update a branch from `develop`
 
@@ -103,9 +104,9 @@ Only at the moments of the table (section 1), once the Design System Lead has ap
 
 On the date of a release (`release-planning`), in the **Gouvernance** conversation. `main` changes only here.
 
-1. **Prepare**: `git fetch origin`; list what `develop` adds to `main` since the previous release: `git log --oneline origin/main..origin/develop` (commits), `git diff --stat origin/main origin/develop` (files), the tickets of the release and their status, the new component versions (`changelog`).
+1. **Prepare**: `git fetch origin`; list what `develop` adds to `main` since the previous release: `git log --oneline origin/main..origin/develop` (commits), `git diff --stat origin/main origin/develop` (files), the tickets of the release and their status, the new component versions (`changelog`); run the `ds-compliance-audit` agent on `origin/develop` and write its checked report to `audits/<YYYY-MM-DD>-R<n>.md` on the release-note branch, and show its non-compliant elements in the chat.
 2. **Release note**: draft `releases/R<n>.md` on a `governance/release-R<n>` branch (template `releases/_template.md`): date, tickets delivered by category, component versions, tickets carried over to the next release. In English.
-3. **Review**: show the Design System Lead the commits, the files changed, the tickets and the release note (preview on the Release planning page). Changes requested → fix them on their own branches first, merged into `develop` as usual.
+3. **Review**: show the Design System Lead the commits, the files changed, the tickets, the compliance audit and the release note (preview on the Release planning page). Changes requested → fix them on their own branches first, merged into `develop` as usual.
 4. Once the Design System Lead **validates the release**: merge the release-note branch into `develop` (section 6), then:
    - `git push origin origin/develop:main` — a fast-forward: `main` only ever receives `develop`.
    - `git tag R<n> origin/main` and `git push origin R<n>`.

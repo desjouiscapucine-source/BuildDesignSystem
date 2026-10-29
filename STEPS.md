@@ -4343,3 +4343,21 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `docs/src/pages/BacklogPage.tsx`, `docs/src/pages/TicketDialog.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B119-1 — Agent: design system compliance audit
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- A new agent, **`ds-compliance-audit`**, audits every UI element of the documentation site against the design system and sorts them in three groups: compliant, non-compliant, not in the design system.
+- It runs **after each approved step** (before its commit) and **during the release review**, and on request.
+- Its report is written in the repository, in `audits/` (`<date>-<ticket>-<n>.md` after a step, `<date>-R<n>.md` for a release), and its **non-compliant elements are shown in the chat**.
+
+**What was done**
+- `.claude/agents/ds-compliance-audit.md`: the agent (read-only; sources of truth, what to audit, classification, report shape, comparison with the previous audit).
+- `git-workflow` (sections 4 and 8), `orchestrator` (new row) and `CLAUDE.md` (Agents): when the agent runs and what Claude does with its report.
+- First audit: `audits/2026-10-29-B119-1.md` — 15 compliant, 24 non-compliant, 21 not in the design system; findings spot-checked by Claude.
+- Ticket B119 `done`.
+
+**Files**
+- `.claude/agents/ds-compliance-audit.md`, `audits/2026-10-29-B119-1.md` (created)
+- `.claude/skills/git-workflow/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)

@@ -39,6 +39,7 @@ Every task starts here. This skill **only dispatches**: it says which child skil
 | A ticket is written or completed (template, parts of its type, e.g. a prototype ticket) | `ticket` |
 | A backlog ticket is created, or planned / moved in a release; a release is discussed | `release-planning` |
 | Every task: which branch to work on (start), commit, update from `develop`, merge into `develop`; release day | `git-workflow` |
+| A step is approved (before its commit), release day, or an audit of the site is asked | `git-workflow` (runs the `ds-compliance-audit` agent) |
 
 No trigger matches → follow `CLAUDE.md` only.
 

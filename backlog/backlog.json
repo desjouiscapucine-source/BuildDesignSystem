@@ -1072,13 +1072,13 @@
       "id": "B119",
       "title": "Agent: design system compliance audit",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "An agent (ds-compliance-audit) that audits every UI element of the documentation site against the design system: compliant, non-compliant, or not existing in the design system.",
       "why": "The site is the showcase of the design system: UI elements built outside the components, or with raw values, must be found before each release.",
       "scope": "The agent definition (.claude/agents/ds-compliance-audit.md), its report written in the repository, and the rules saying when it runs (after each approved step and before each release).",
       "doneWhen": [
-        "The agent audits the site and writes a report listing compliant, non-compliant and missing UI elements.",
+        "The agent audits the site and writes a report listing compliant, non-compliant and missing UI elements; the non-compliant elements are shown in the chat.",
         "The skills run it after each approved step and during the release review."
       ],
       "priority": "high",
