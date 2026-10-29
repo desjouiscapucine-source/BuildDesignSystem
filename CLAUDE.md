@@ -122,6 +122,7 @@ components/
     guidelines.md      Stage 2 — Usage guidelines
     <Name>.tsx + .css  Stage 3 — Code
     examples.tsx       Stage 3 — Live examples for the docs
+    playground.tsx     Stage 3 — Controls of the Playground tab (component live, like Storybook; replaces Design preview once complete)
   index.ts             Public exports of all coded components
 docs/                  Local documentation site (auto-discovers components), styled with the design system tokens; layout in docs/src/AppShell.tsx (site only, not a DS component)
 backlog/

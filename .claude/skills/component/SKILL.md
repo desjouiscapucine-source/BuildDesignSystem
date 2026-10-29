@@ -18,7 +18,7 @@ There is **no prototype stage**: interactive mockups (user journeys) are made se
 | - | ----- | ------------------ | --------- | ------ |
 | 1 | Design | `design` | `component-spec` | `spec.md` |
 | 2 | Guidelines | `guidelines` | `component-guidelines` | `guidelines.md` |
-| 3 | Code | `code` | `component-code` | `<Name>.tsx`, `<Name>.css`, `examples.tsx` |
+| 3 | Code | `code` | `component-code` | `<Name>.tsx`, `<Name>.css`, `examples.tsx`, `playground.tsx` |
 
 Cross-cutting skills, used at every stage (dispatched by `orchestrator`):
 - **`component-structure`** — Atomic Design level of the component (atom, molecule, organism, template, page).

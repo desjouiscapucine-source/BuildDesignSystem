@@ -1,12 +1,12 @@
 ---
 name: component-code
-description: Stage 3 (Code) of a component — how to build the developed version (components/<Name>/<Name>.tsx, <Name>.css, examples.tsx) from the approved spec: React + TypeScript, semantic tokens only, ds- class naming, state layers, accessibility, examples and verification. Use when a component's meta.json status is "code", when the `orchestrator` skill dispatches here, or when component code is written, reviewed or changed.
+description: Stage 3 (Code) of a component — how to build the developed version (components/<Name>/<Name>.tsx, <Name>.css, examples.tsx, playground.tsx) from the approved spec: React + TypeScript, semantic tokens only, ds- class naming, state layers, accessibility, examples and verification. Use when a component's meta.json status is "code", when the `orchestrator` skill dispatches here, or when component code is written, reviewed or changed.
 ---
 
 # Component code — Stage 3: Code
 
 Build the **developed version** of the component from the **approved** spec and guidelines.
-Output: `components/<Name>/<Name>.tsx`, `<Name>.css`, `examples.tsx`, and the export in `components/index.ts`.
+Output: `components/<Name>/<Name>.tsx`, `<Name>.css`, `examples.tsx`, `playground.tsx`, and the export in `components/index.ts`.
 
 ## Rules
 
@@ -24,9 +24,10 @@ Output: `components/<Name>/<Name>.tsx`, `<Name>.css`, `examples.tsx`, and the ex
 | `<Name>.tsx` | The React component and its props type. |
 | `<Name>.css` | All styles of the component. |
 | `examples.tsx` | Live examples shown in the **Examples** tab of the documentation site. |
+| `playground.tsx` | The component live with a control per prop, shown in the **Playground** tab (B111). |
 | `components/index.ts` | `export { <Name> } from "./<Name>/<Name>";` (+ the props type). |
 
-Start from `components/_template/` (`ComponentName.tsx`, `ComponentName.css`, `examples.tsx`).
+Start from `components/_template/` (`ComponentName.tsx`, `ComponentName.css`, `examples.tsx`, `playground.tsx`).
 
 ## CSS class naming (approved)
 
@@ -84,11 +85,25 @@ Start from `components/_template/` (`ComponentName.tsx`, `ComponentName.css`, `e
 - Content examples: short, long and very long text (overflow behavior).
 - Each example has a title (and a one-line description when useful).
 
+## Playground (`playground.tsx`)
+
+Once a component is coded (`meta.json` status `code` or `complete`), the **Playground** tab shows it live, like Storybook (B111). During the Code stage, the Design preview tab stays next to it (to check the code against the design); once the component is `complete`, the Playground replaces it:
+- A **canvas**: the component live, in an iframe (`docs/playground.html`) at the chosen screen width — Mobile 375px, Tablet 768px, Desktop 1024px — so media queries are the real ones. Wider than the page: shown scaled down.
+- The **controls** under the canvas: one row per prop (name, description, control), and a **Reset** button.
+- The **Tokens** section: every token used in the component's CSS (text styles grouped), each with a menu to try another token of its family in the canvas. To try only: nothing is saved; a change of the component is asked in the chat (`never-invent`). Built automatically from `<Name>.css`.
+- The **JSX code** of the component with the values of the controls, with a Copy button.
+
+`playground.tsx` exports `playground = definePlayground({ controls, render, code })` (`docs/src/playground.ts`):
+- `controls`: one entry per prop, keyed by the prop name, in the order of the table. Types: `text`, `boolean`, `select` (`options`), `number` (`min`, `max`), `date` (ISO string). Each has a `default` and a `description` (the prop's description from the props type).
+- `render(args)`: the component with the values. Content comes from the approved examples (`never-invent`). A component that needs a context (a list, the brand background) is wrapped as in its examples.
+- `code(args)`: the JSX with `jsx(name, props, children)` — empty and `false` props are left out; `code("images")` writes a prop as code (`images={images}`).
+- `minHeight` (px): for a component that opens over the page (viewer, panel).
+
 ## Verification
 
 1. `npx tsc --noEmit` passes.
 2. `npm run build` passes.
-3. Open the component page (`/docs/#/components/<slug>`): check the **Examples** tab against the **Design preview** tab — same tokens, same look.
+3. Open the component page (`/docs/#/components/<slug>`): check the **Examples** tab against the approved spec and design preview — same tokens, same look. Check the **Playground** tab: every control changes the canvas and the code, at the three screen sizes.
 4. Check with the keyboard (Tab, Shift+Tab, Enter / Space, arrows if any) and at mobile width.
 
 ## Approval gate

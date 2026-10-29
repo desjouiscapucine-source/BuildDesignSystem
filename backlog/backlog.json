@@ -969,6 +969,16 @@
       "description": "Two branch types only: governance/<topic> and component/<Name>. A prototype is worked on a component/<prototype-folder> branch, in a Composant <Name> conversation. Two conversation kinds: Gouvernance and Composant <Name>.",
       "priority": "medium",
       "release": "R1"
+    },
+    {
+      "id": "B111",
+      "title": "Live component playground (Storybook-like)",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "decided",
+      "description": "On each component page, show the coded React component live, like Storybook: a canvas with controls to change its props.",
+      "priority": "high",
+      "release": "R1"
     }
   ]
 }

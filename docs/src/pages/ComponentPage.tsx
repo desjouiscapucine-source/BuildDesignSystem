@@ -3,11 +3,13 @@ import type { ComponentDoc } from "../types";
 import { Markdown } from "../Markdown";
 import { StageBadge } from "../StageBadge";
 import { DesignPreview } from "../DesignPreview";
+import { PlaygroundTab } from "../PlaygroundTab";
+import { playgrounds } from "../playgrounds";
 
-
-type Tab = "preview" | "spec" | "guidelines" | "examples" | "code" | "changelog";
+type Tab = "playground" | "preview" | "spec" | "guidelines" | "examples" | "code" | "changelog";
 
 const tabs: { id: Tab; label: string }[] = [
+  { id: "playground", label: "Playground" },
   { id: "preview", label: "Design preview" },
   { id: "spec", label: "Design spec" },
   { id: "guidelines", label: "Guidelines" },
@@ -17,8 +19,14 @@ const tabs: { id: Tab; label: string }[] = [
 ];
 
 export function ComponentPage({ component }: { component: ComponentDoc }) {
-  const [tab, setTab] = useState<Tab>(component.design ? "preview" : "spec");
+  // Once coded, the Playground (the React component live) is shown; it replaces the Design preview once the
+  // component is complete. During the Code stage, both are shown, to check the code against the design (B111).
+  const coded = component.status === "code" || component.status === "complete";
+  const hasPreview = component.status !== "complete" && Boolean(component.design);
+  const [tab, setTab] = useState<Tab>(coded ? "playground" : hasPreview ? "preview" : "spec");
   const hasGuidelines = component.level !== "template" && component.level !== "page";
+  const shown = (id: Tab) =>
+    (hasGuidelines || id !== "guidelines") && (hasPreview || id !== "preview") && (coded || id !== "playground");
 
   return (
     <>
@@ -35,7 +43,7 @@ export function ComponentPage({ component }: { component: ComponentDoc }) {
       <StageBadge status={component.status} level={component.level} />
 
       <div className="tabs" role="tablist">
-        {tabs.filter(({ id }) => (hasGuidelines || id !== "guidelines") && (component.design || id !== "preview")).map(({ id, label }) => (
+        {tabs.filter(({ id }) => shown(id)).map(({ id, label }) => (
           <button key={id} role="tab" aria-selected={tab === id} onClick={() => setTab(id)}>
             {label}
           </button>
@@ -43,6 +51,7 @@ export function ComponentPage({ component }: { component: ComponentDoc }) {
       </div>
 
       <div role="tabpanel">
+        {tab === "playground" && <PlaygroundTab component={component} playground={playgrounds[component.slug]} />}
         {tab === "preview" && component.design && <DesignPreview component={component} />}
         {tab === "spec" &&
           (component.spec ? <Markdown source={component.spec} /> : <p className="empty">No design spec yet.</p>)}
