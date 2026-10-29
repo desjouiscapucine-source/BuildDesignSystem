@@ -525,10 +525,10 @@
       "id": "B059",
       "title": "Tag",
       "category": "Components",
-      "status": "todo",
+      "status": "in-progress",
       "origin": "decided",
       "description": "On the documentation site, not defined in the design system yet. Small labels: Atomic Design level, backlog category and \"Decided\" tags. Different from the Badge (counter).",
-      "stage": "design"
+      "stage": "guidelines"
     },
     {
       "id": "B060",
@@ -1037,6 +1037,17 @@
         "A prototype ticket shows Users, User journey and Components used in its modal.",
         "The backlog skill refers to the ticket skill for the content of a ticket."
       ],
+      "priority": "medium",
+      "release": "R1"
+    },
+    {
+      "id": "B117",
+      "title": "SelectOption",
+      "category": "Components",
+      "status": "done",
+      "origin": "decided",
+      "description": "One option of the Select list. Building block of the Select (B021), built first.",
+      "stage": "code",
       "priority": "medium",
       "release": "R1"
     }
