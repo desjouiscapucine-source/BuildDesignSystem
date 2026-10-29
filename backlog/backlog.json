@@ -818,7 +818,10 @@
       "status": "todo",
       "origin": "decided",
       "description": "ChipGroup (molecule): arranges the Chips (B030) and handles the selection — one chip selected at a time, always one. Horizontal scroll when the chips do not fit (chosen while it was Tabs, to confirm). Replaces the chips of the documentation site (Backlog filter, Design preview variant switch).",
-      "stage": "design"
+      "stage": "design",
+      "doneWhen": [
+        "The documentation site uses ChipGroup (Backlog category filter, Design preview variant switch, Playground screen sizes)."
+      ]
     },
     {
       "id": "B092",
@@ -1108,6 +1111,108 @@
       "description": "A page of the documentation site to assemble the coded components freely and try an idea of screen or interaction.",
       "why": "Trying a UX idea today means starting a prototype (ticket, branch, spec); a sandbox lets an idea be tested quickly with the real components.",
       "scope": "A page where the coded components are put together freely, without creating a prototype. Its content and how it works are defined with the Design System Lead."
+    },
+    {
+      "id": "B122",
+      "title": "Documentation site: use SideNavigation and IconButton",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Replace the hand-built side navigation with SideNavigation and NavigationItem, and the burger button with IconButton.",
+      "why": "Found by the design system compliance audit (audits/2026-10-29-B119-1.md): the documentation site is the showcase of the design system and must be built with it.",
+      "scope": "Audit findings 1, 2 and 20. Decisions asked to the Design System Lead first: mobile behavior (the SideNavigation spec says it is never hidden, the site hides it behind a burger), IconButton variant. Focus ring on the brand navigation uses border.focus-inverse.",
+      "doneWhen": [
+        "The site navigation is built with SideNavigation and NavigationItem.",
+        "The burger button is an IconButton.",
+        "The next compliance audit no longer lists these findings."
+      ],
+      "priority": "medium",
+      "release": "R1"
+    },
+    {
+      "id": "B123",
+      "title": "Documentation site: use Button and Select",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Replace the hand-built buttons (Copy, Show / Hide rejected) with Button, and the native selects and IconSelect with Select.",
+      "why": "Found by the design system compliance audit (audits/2026-10-29-B119-1.md): the documentation site is the showcase of the design system and must be built with it.",
+      "scope": "Audit findings 3, 4, 6 and 7. Decisions asked first: button variants, Select without a visible label in a table cell, Select with about 3,000 icon options.",
+      "doneWhen": [
+        "The Copy and Show / Hide rejected buttons are Buttons.",
+        "The selects of the Design preview and the Playground, and the icon list, are Selects (or an approved exception).",
+        "The next compliance audit no longer lists these findings."
+      ],
+      "priority": "medium",
+      "release": "R1"
+    },
+    {
+      "id": "B124",
+      "title": "Documentation site: use the Card component",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Replace the hand-built release, skill and iteration cards with Card.",
+      "why": "Found by the design system compliance audit (audits/2026-10-29-B119-1.md): the documentation site is the showcase of the design system and must be built with it.",
+      "scope": "Audit finding 8: .release-card, .skill-card, the iteration items of the ticket modal.",
+      "doneWhen": [
+        "These containers are Cards.",
+        "The next compliance audit no longer lists this finding."
+      ],
+      "priority": "medium",
+      "release": "R1"
+    },
+    {
+      "id": "B125",
+      "title": "Documentation site: accessibility fixes",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Fix the accessibility issues of the site found by the audit.",
+      "why": "Found by the design system compliance audit (audits/2026-10-29-B119-1.md): the documentation site is the showcase of the design system and must be built with it.",
+      "scope": "Audit findings 11 to 14: ARIA tabs pattern of the component pages (until Tabs, B093), contrast of the active option (icon list, search), \"No page found\" item in the listbox, the 8 color pairs missing from tokens/contrast-pairs.json. Decisions asked first: how an active option is shown.",
+      "doneWhen": [
+        "The tabs follow the WAI-ARIA pattern.",
+        "The active option meets 3:1.",
+        "The used color pairs are in contrast-pairs.json and npm run tokens passes.",
+        "The next compliance audit no longer lists these findings."
+      ],
+      "priority": "medium",
+      "release": "R1"
+    },
+    {
+      "id": "B126",
+      "title": "Documentation site: tokens only",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Replace the primitive tokens and raw values of the site styles with semantic tokens.",
+      "why": "Found by the design system compliance audit (audits/2026-10-29-B119-1.md): the documentation site is the showcase of the design system and must be built with it.",
+      "scope": "Audit findings 15 to 19: primitive shadows, primitive colors of the clock and the landing page, raw px / em values and fonts, widths hard-coded in TSX (read the breakpoint tokens), spacing tokens used as sizes. Decisions asked first: exception for the primitive colors, size.* tokens.",
+      "doneWhen": [
+        "The site styles use semantic tokens only, or approved and documented exceptions.",
+        "The next compliance audit no longer lists these findings."
+      ],
+      "priority": "medium",
+      "release": "R1"
+    },
+    {
+      "id": "B127",
+      "title": "Documentation site: layout, page header and text styles",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Apply the layout, page-header and text style rules on every page of the site.",
+      "why": "Found by the design system compliance audit (audits/2026-10-29-B119-1.md): the documentation site is the showcase of the design system and must be built with it.",
+      "scope": "Audit findings 21 to 24: margins added to the 16px gap, full-width Backlog and Prototype pages, title attribute on page titles and subtitles, .ds-text-* classes. Decisions asked first: full-width pages, text styles of section titles and captions.",
+      "doneWhen": [
+        "Blocks are 16px apart on every page.",
+        "Every page title and subtitle has its title attribute.",
+        "Text uses the .ds-text-* classes.",
+        "The next compliance audit no longer lists these findings."
+      ],
+      "priority": "medium",
+      "release": "R1"
     }
   ]
 }
