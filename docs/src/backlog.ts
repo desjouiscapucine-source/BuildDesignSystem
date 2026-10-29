@@ -23,7 +23,14 @@ export interface BacklogItem {
   category: string;
   status: BacklogStatus;
   origin: "decided" | "proposal";
+  /** Template of a ticket description (B114) — Goal: what the ticket delivers, in one sentence (shown on the card). */
   description?: string;
+  /** Why: the need or the problem behind the ticket. */
+  why?: string;
+  /** Scope: what is included — and what is not. */
+  scope?: string;
+  /** Done when: the acceptance criteria, one per entry. */
+  doneWhen?: string[];
   stage?: Stage;
   priority?: BacklogPriority;
   /** Release that delivers the ticket (R1, R2…); absent = not planned. */

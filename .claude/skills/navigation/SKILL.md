@@ -7,7 +7,7 @@ description: Navigation structure of the site — the navigation levels (Level 0
 
 Approved by the Design System Lead on 2026-10-27. Shown on the **Navigation structure** page of the documentation site (`/docs/#/navigation`, `docs/src/pages/NavigationPage.tsx`).
 
-The site follows this structure since B087 (2026-10-27), and has the breadcrumb since B091 (2026-10-28); only the modal is missing (not a component yet). Built from `docs/src/structure.ts`, which drives the header, the side navigation and the search.
+The site follows this structure since B087 (2026-10-27), has the breadcrumb since B091 (2026-10-28), and opens the Backlog tickets in a modal since B114 (2026-10-29). Built from `docs/src/structure.ts`, which drives the header, the side navigation and the search.
 
 ## 1. Levels
 
@@ -58,7 +58,7 @@ Level 1   └── Portfolio
 | **Depth** | Level 3 is the deepest level, except component pages (Level 4). The detail of a Level 3 page (e.g. a ticket from the Backlog) opens in a modal, not in a new page. |
 | **Inside a page** | Anchors on the sections and a timeline on the right (`page-content` skill). Component pages keep their current tabs. |
 
-The breadcrumb is the **Breadcrumb** component (B083, complete). The modal (B029) is not a design system component yet: it goes through the component stages first (`component`).
+The breadcrumb is the **Breadcrumb** component (B083, complete). The modal is the **Dialog** component (B029, complete).
 
 ## 4. When the structure changes
 
@@ -84,10 +84,9 @@ Decided by the Design System Lead on 2026-10-27 (B087). Prototypes and Navigatio
 | **Navigation** | Level 2 section of Documentation, a page of its own (Navigation structure), with no Level 3 page. |
 | **Portfolio** | Title, subtitle and "Nothing yet." until its content is defined. |
 | **Breadcrumb** | Decided by the Design System Lead on 2026-10-28 (B091). The Breadcrumb component, first block of every page from Level 2 to Level 4, above the title. Starts at Level 0, labelled **BuildDesignSystem** (link to `/`), and ends with the parent of the page. Overview (where Documentation opens): "BuildDesignSystem / Documentation". No breadcrumb on Level 1 (Portfolio). Built once in `docs/src/AppShell.tsx` from `structure.ts`. |
-| **Backlog tickets** | Keep their page until the Modal component exists (B029); then they open in a modal. Their breadcrumb ends with the Backlog (it replaces the former back link). |
+| **Backlog tickets** | Decided on 2026-10-29 (B114). A click on a ticket of the Backlog page opens it in a **Dialog** (`large`) over the page, at `#/backlog/<id>` (a link to a ticket opens the Backlog with its modal). The Backlog stays the page shown: side navigation, breadcrumb and scroll do not change. The menus of a ticket (status, priority, release, stage) do not open it; they are also at the top of the modal. |
 
 ## Not defined yet — ask before deciding
 
 - Content of Portfolio.
 - Pages that get the timeline on the right; the timeline on component pages (with their tabs).
-- The modal (B029): component stages first.

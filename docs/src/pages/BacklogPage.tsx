@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 import type { Stage } from "../types";
 import {
   formatReleaseDate,
@@ -11,6 +11,7 @@ import {
   type BacklogPriority as Priority,
   type BacklogStatus as Status,
 } from "../backlog";
+import { TicketDialog } from "./TicketDialog";
 
 const columns: { status: Status; title: string; hint: string }[] = [
   { status: "todo", title: "To do", hint: "Approved, not started" },
@@ -20,7 +21,8 @@ const columns: { status: Status; title: string; hint: string }[] = [
 
 const stages: Stage[] = ["design", "guidelines", "code"];
 
-export function BacklogPage() {
+/** `open`: the ticket shown in the modal (#/backlog/<id>). */
+export function BacklogPage({ open }: { open?: string }) {
   const { items, setItems, error, setError } = useBacklog();
   const [category, setCategory] = useState("All");
   const [showRejected, setShowRejected] = useState(false);
@@ -46,70 +48,80 @@ export function BacklogPage() {
     }
   }
 
+  // The menus of a ticket (status, priority, release, stage): on its card and in its modal.
+  const ticketActions = (item: Item) => (
+    <div className="backlog-actions">
+      <label>
+        Status
+        <select value={item.status} onChange={(event) => update(item.id, { status: event.target.value as Status })}>
+          {(["todo", "in-progress", "done", "rejected"] as Status[]).map((status) => (
+            <option key={status} value={status}>
+              {statusLabels[status]}
+            </option>
+          ))}
+        </select>
+      </label>
+      <label>
+        Priority
+        <select
+          value={item.priority ?? ""}
+          onChange={(event) => update(item.id, { priority: (event.target.value || null) as Priority })}
+        >
+          <option value="">None</option>
+          {(Object.keys(priorityLabels) as Priority[]).map((priority) => (
+            <option key={priority} value={priority}>
+              {priorityLabels[priority]}
+            </option>
+          ))}
+        </select>
+      </label>
+      <label>
+        Release
+        <select value={item.release ?? ""} onChange={(event) => update(item.id, { release: event.target.value || null } as Partial<Item>)}>
+          <option value="">None</option>
+          {releaseList.map((release) => (
+            <option key={release.id} value={release.id}>
+              {release.id} · {formatReleaseDate(release.date)}
+            </option>
+          ))}
+        </select>
+      </label>
+      {item.stage && (
+        <label>
+          Stage
+          <select value={item.stage} onChange={(event) => update(item.id, { stage: event.target.value as Stage })}>
+            {stages.map((stage) => (
+              <option key={stage} value={stage}>
+                {stage}
+              </option>
+            ))}
+          </select>
+        </label>
+      )}
+    </div>
+  );
+
+  // A click on a ticket opens it in a modal — except on its menus (status, priority, release, stage).
+  const openTicket = (id: string) => (event: MouseEvent) => {
+    if ((event.target as HTMLElement).closest("select, label, a, button")) return;
+    location.hash = `#/backlog/${id}`;
+  };
+
   const card = (item: Item) => (
-    <li key={item.id} className="backlog-card">
+    <li key={item.id} className="backlog-card" onClick={openTicket(item.id)}>
       <div className="backlog-meta">
         <span className="backlog-tag">{item.category}</span>
         {item.origin === "decided" && <span className="backlog-tag decided">Decided</span>}
         <span className="backlog-id">{item.id}</span>
       </div>
-      <strong>{item.title}</strong>
-      {item.description && <p>{item.description}</p>}
-      {item.prototype && (
-        <a className="backlog-ticket-link" href={`#/backlog/${item.id}`}>
-          Spec and iterations ({item.iterations?.length ?? 0})
+      <strong>
+        <a className="backlog-card-title" href={`#/backlog/${item.id}`}>
+          {item.title}
         </a>
-      )}
+      </strong>
+      {item.description && <p>{item.description}</p>}
 
-      <div className="backlog-actions">
-        <label>
-          Status
-          <select value={item.status} onChange={(event) => update(item.id, { status: event.target.value as Status })}>
-            {(["todo", "in-progress", "done", "rejected"] as Status[]).map((status) => (
-              <option key={status} value={status}>
-                {statusLabels[status]}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Priority
-          <select
-            value={item.priority ?? ""}
-            onChange={(event) => update(item.id, { priority: (event.target.value || null) as Priority })}
-          >
-            <option value="">None</option>
-            {(Object.keys(priorityLabels) as Priority[]).map((priority) => (
-              <option key={priority} value={priority}>
-                {priorityLabels[priority]}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Release
-          <select value={item.release ?? ""} onChange={(event) => update(item.id, { release: event.target.value || null } as Partial<Item>)}>
-            <option value="">None</option>
-            {releaseList.map((release) => (
-              <option key={release.id} value={release.id}>
-                {release.id} · {formatReleaseDate(release.date)}
-              </option>
-            ))}
-          </select>
-        </label>
-        {item.stage && (
-          <label>
-            Stage
-            <select value={item.stage} onChange={(event) => update(item.id, { stage: event.target.value as Stage })}>
-              {stages.map((stage) => (
-                <option key={stage} value={stage}>
-                  {stage}
-                </option>
-              ))}
-            </select>
-          </label>
-        )}
-      </div>
+      {ticketActions(item)}
     </li>
   );
 
@@ -160,6 +172,14 @@ export function BacklogPage() {
           {showRejected && <ul className="backlog-rejected-list">{rejected.map(card)}</ul>}
         </section>
       )}
+
+      <TicketDialog
+        id={open}
+        items={items}
+        actions={ticketActions}
+        error={error}
+        onClose={() => (location.hash = "#/backlog")}
+      />
     </>
   );
 }

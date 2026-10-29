@@ -4056,3 +4056,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `docs/src/IconSelect.tsx`, `docs/src/material-symbols.json` (created)
 - `docs/src/playground.ts`, `docs/src/PlaygroundTab.tsx`, `docs/src/docs.css`, `components/Button/playground.tsx`, `components/IconButton/playground.tsx`, `components/NavigationItem/playground.tsx`, `.claude/skills/component-code/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B114-1 — Ticket description template
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- Every ticket is described with a template: **Goal** (what it delivers, one sentence), **Why** (the need), **Scope** (what is included — and what is not), **Done when** (acceptance criteria). Ticket B114: Tooling, priority high, release R1.
+- A click on a ticket of the Backlog page opens it in a **modal** (the Dialog component, `large`), with the same menus as its card (status, priority, release, stage).
+- The existing tickets keep their description as their Goal; the other parts are added when each ticket is worked on.
+
+**What was done**
+- `backlog/backlog.json` fields: `description` (Goal), `why`, `scope`, `doneWhen` (array); B114 written with the template.
+- `docs/src/pages/TicketDialog.tsx` replaces the ticket page (`TicketPage.tsx`, removed): title, `ID · category · status · priority · release`, the menus, Goal, Why, Scope, Done when ("Not written yet." when empty), and for a prototype its spec and iterations.
+- `BacklogPage.tsx`: a click on a card opens its modal (`#/backlog/<id>`), except on its menus; the menus are shared by the card and the modal. `App.tsx`: `#/backlog/<id>` shows the Backlog with the modal, without scrolling to the top; the navigation and the breadcrumb stay on Backlog.
+- Skills `backlog` (Ticket template section, creation steps, checklist) and `navigation` (tickets open in a Dialog; the modal is no longer "not defined"); `CLAUDE.md`; Navigation structure page.
+- Verification: type check and build pass; B114 and B031 (prototype: spec and iteration) open in the modal; Escape closes it; the menus of a card do not open it; the scroll is kept.
+
+**Files**
+- `docs/src/pages/TicketDialog.tsx` (created), `docs/src/pages/TicketPage.tsx` (removed)
+- `docs/src/pages/BacklogPage.tsx`, `docs/src/App.tsx`, `docs/src/backlog.ts`, `docs/src/docs.css`, `docs/src/pages/NavigationPage.tsx`, `.claude/skills/backlog/SKILL.md`, `.claude/skills/navigation/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)

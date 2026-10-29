@@ -1010,9 +1010,16 @@
       "id": "B114",
       "title": "Ticket description template",
       "category": "Tooling",
-      "status": "todo",
+      "status": "done",
       "origin": "decided",
-      "description": "A fixed format for the description of a backlog ticket (what to write, in which order), applied when each ticket is created.",
+      "description": "A fixed format for the description of every backlog ticket, shown in the ticket's modal on the Backlog page.",
+      "why": "Ticket descriptions are free text of uneven length: the need, the content and when a ticket is finished are not always written.",
+      "scope": "The template (Goal, Why, Scope, Done when), written by Claude when a ticket is created, and shown in a modal (Dialog) opened by a click on a ticket of the Backlog page. Not included: rewriting the descriptions of the existing tickets.",
+      "doneWhen": [
+        "A click on a ticket of the Backlog page opens it in a modal, with Goal, Why, Scope and Done when.",
+        "The menus of a ticket (status, priority, release, stage) still work on its card without opening the modal, and are also in the modal.",
+        "The backlog skill asks for the template when a ticket is created."
+      ],
       "priority": "high",
       "release": "R1"
     }

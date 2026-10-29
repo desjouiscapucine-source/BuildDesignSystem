@@ -11,7 +11,6 @@ import { GitWorkflowPage } from "./pages/GitWorkflowPage";
 import { BranchesPage } from "./pages/BranchesPage";
 import { ChangelogPage } from "./pages/ChangelogPage";
 import { ReleasePlanningPage } from "./pages/ReleasePlanningPage";
-import { TicketPage } from "./pages/TicketPage";
 import { PrototypePage } from "./pages/PrototypePage";
 import { NavigationPage } from "./pages/NavigationPage";
 import {
@@ -29,7 +28,7 @@ import { categorySlug } from "./structure";
 // Hash routes, by navigation level (navigation skill):
 // Level 1  #/ (Documentation, opens on Overview)  ·  #/portfolio
 // Level 2  #/governance  ·  #/foundations  ·  #/components  ·  #/prototypes  ·  #/navigation
-// Level 3  #/backlog  ·  #/backlog/<id>  ·  #/skills  ·  #/skills/<name>  ·  #/git-workflow  ·  #/branches  ·  #/changelog  ·  #/releases  ·  #/foundations/<slug>  ·  #/components/<category>  ·  #/prototypes/<name>
+// Level 3  #/backlog  ·  #/backlog/<id> (ticket in a modal over the Backlog)  ·  #/skills  ·  #/skills/<name>  ·  #/git-workflow  ·  #/branches  ·  #/changelog  ·  #/releases  ·  #/foundations/<slug>  ·  #/components/<category>  ·  #/prototypes/<name>
 // Level 4  #/components/<slug>
 function useHashRoute() {
   const read = () => {
@@ -72,8 +71,9 @@ export function App() {
 
   let page = <OverviewPage />;
   if (route === "/governance" || route === "/foundations") page = <SectionPage key={route} href={`#${route}`} />;
-  else if (route === "/backlog") page = <BacklogPage />;
-  else if (route.startsWith("/backlog/")) page = <TicketPage key={route} id={route.slice("/backlog/".length)} />;
+  // A ticket opens in a modal over the Backlog page (same page: no remount, no scroll to the top).
+  else if (route === "/backlog" || route.startsWith("/backlog/"))
+    page = <BacklogPage key="backlog" open={route.startsWith("/backlog/") ? route.slice("/backlog/".length) : undefined} />;
   else if (route === "/skills") page = <SkillsPage />;
   else if (route.startsWith("/skills/")) page = <SkillsPage key={route} open={route.slice("/skills/".length)} />;
   else if (route === "/git-workflow") page = <GitWorkflowPage />;
@@ -91,13 +91,15 @@ export function App() {
   else if (route === "/navigation") page = <NavigationPage />;
   else if (route === "/portfolio") page = <PortfolioPage />;
 
+  // Back to the top on a new page; opening or closing a ticket (a modal over the Backlog) keeps the scroll.
+  const pageRoute = route.startsWith("/backlog/") ? "/backlog" : route;
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [route]);
+  }, [pageRoute]);
 
-  // A ticket is not in the navigation yet (it will open in a modal): the Backlog stays selected and ends its breadcrumb.
+  // A ticket opens in a modal over the Backlog page: the Backlog stays the page shown (navigation, breadcrumb).
   return (
-    <AppShell current={route.startsWith("/backlog/") ? "#/backlog" : route.startsWith("/skills/") ? "#/skills" : `#${route}`} route={`#${route}`}>
+    <AppShell current={pageRoute.startsWith("/skills/") ? "#/skills" : `#${pageRoute}`} route={`#${pageRoute}`}>
       {page}
     </AppShell>
   );

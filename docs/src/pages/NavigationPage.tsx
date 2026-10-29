@@ -1,7 +1,7 @@
 import { components, levels } from "../registry";
 
 // Navigation structure of the site, approved by the Design System Lead on 2026-10-27.
-// The site follows it, except the modal (not a component yet).
+// The site follows it; the modal is the Dialog component.
 
 interface NavNode {
   label: string;
@@ -126,7 +126,7 @@ export function NavigationPage() {
       <h1>Navigation structure</h1>
       <p className="lead">Navigation levels of the site and how to move between them</p>
       <p>
-        Structure of the site, approved by the Design System Lead. The site follows it, except the modal, which is not a component yet. Talk about the
+        Structure of the site, approved by the Design System Lead. The site follows it; the modal is the Dialog component. Talk about the
         navigation in levels: Level 0 is the landing page.
       </p>
 
