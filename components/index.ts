@@ -24,3 +24,5 @@ export { Chip } from "./Chip/Chip";
 export type { ChipProps } from "./Chip/Chip";
 export { Dialog } from "./Dialog/Dialog";
 export type { DialogProps, DialogSize } from "./Dialog/Dialog";
+export { SelectOption } from "./SelectOption/SelectOption";
+export type { SelectOptionProps } from "./SelectOption/SelectOption";

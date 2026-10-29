@@ -4092,3 +4092,90 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `.claude/skills/ticket/SKILL.md` (created)
 - `.claude/skills/backlog/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `.claude/skills/prototype-setup/SKILL.md`, `docs/src/backlog.ts`, `docs/src/pages/TicketDialog.tsx`, `docs/src/docs.css`, `prototypes/README.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B117-1 — SelectOption: design approved
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- The **Select** (B021) is a **molecule**, one size, with a label above; its options are a building block, **SelectOption** (atom), built first. Ticket B117: Components, priority medium, release R1, worked in the same conversation as the Select.
+- SelectOption content: label, optional leading icon, check mark on the right when selected. Selected look as NavigationItem: `background-brand-subtle`, `text-brand`, text style `label`. States: selected, disabled; `selected` + `disabled` is forbidden (the chosen option always stays available).
+- Label: 25 characters max, single line with an ellipsis. One size: `--space-8` padding and gap, `--radius-8`, `--icon-size-20`, text style `body`. Leading icon `icon-secondary` (not selected).
+- Purpose and property names (`selected`, `disabled`, `icon`) approved with the spec.
+
+**What was done**
+- `components/SelectOption/` created from the template (`meta.json`: atom, status `guidelines` once the design was approved).
+- Design preview (`design/Preview.tsx`, `design/tokens.json`): variants default and selected, each without and with a leading icon, on the list surface; every contrast pair passes AA (lowest 5.35:1).
+- `spec.md` written from the approved decisions.
+
+**Files**
+- `components/SelectOption/` (created)
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B117-2 — SelectOption: guidelines approved
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- Used inside the **Select** list only; not for an action (Button) nor for choices always visible (Chip).
+- Icons on every option of a list, or none. Prefer hiding an unavailable option to disabling it. Logical order, otherwise alphabetical. One selected option at most.
+- Labels: sentence case, no punctuation, parallel, distinct, 25 characters maximum.
+- A click or Enter chooses the option and closes the list; the focus goes back to the Select field.
+- Accessibility: WAI-ARIA listbox pattern — `role="option"`, `aria-selected`, `aria-disabled`; icon and check mark decorative; keyboard handled by the Select; a disabled option is reached with the arrows but cannot be chosen.
+
+**What was done**
+- `components/SelectOption/guidelines.md` written; do's and don'ts shown visually in the chat. `meta.json` status and backlog stage set to `code`.
+
+**Files**
+- `components/SelectOption/guidelines.md`, `components/SelectOption/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B059-1 — Tag: design approved
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- New component **Tag** (`components/Tag/`, class `.ds-tag`), level **atom**: "A small label that names a category or a status." Replaces the tags drawn by hand on the documentation site (level, backlog category, "Decided").
+- Property **`tone`**: `neutral` (default), `success`, `warning`, `error`, `info`. Subtle background (`background.subtle` / `background.<tone>-subtle`), text and icon in the tone color (`text.secondary` + `icon.secondary` for neutral), no border.
+- One size: `label-sm` text, padding `space.0` / `space.8`, `radius.4`. Optional icon before the label (property `icon`), `icon-size.16`, gap `space.4`.
+- Not interactive: no hover / focus / pressed, no disabled state. Label on one line, cut with an ellipsis, shown as written.
+- Design stage approved; next stage: Guidelines.
+
+**What was done**
+- Component folder from the template: `meta.json`, design preview (`design/Preview.tsx`, `design/tokens.json`, default state only), `spec.md`.
+- New contrast pair `icon.secondary` on `background.subtle` (3:1): 46/46 pairs pass.
+- Ticket B059: `in-progress`, stage `guidelines`.
+
+**Files**
+- `components/Tag/meta.json`, `components/Tag/spec.md`, `components/Tag/design/Preview.tsx`, `components/Tag/design/tokens.json` (created)
+- `tokens/contrast-pairs.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B117-4 — SelectOption: code approved, component complete
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- Code of SelectOption approved: the component is **complete**, version **1.0**.
+
+**What was done**
+- `SelectOption.tsx`: `<div role="option" tabIndex={-1}>` (WAI-ARIA listbox; the Select moves the focus between the options), props `selected`, `disabled`, `icon`, `children`; `selected` + `disabled` forbidden by the types; a click on a disabled option does nothing; leading icon and check mark `aria-hidden`.
+- `SelectOption.css`: semantic tokens only, state layers, focus outline `--border-width-2` `--color-border-focus`, selected look (`background-brand-subtle`, `text-brand`, `label`), disabled roles, single-line label with an ellipsis.
+- `examples.tsx` (default, selected, disabled, with an icon, in a list, long label), `playground.tsx`, export in `components/index.ts`.
+- `meta.json`: status `complete`, version `1.0`, changelog "First complete version."; ticket B117 `done`.
+- Verification: type check, build and tokens pass; Examples and Playground checked in the browser (37px high, selected and disabled looks, ellipsis, focus outline).
+
+**Files**
+- `components/SelectOption/SelectOption.tsx`, `SelectOption.css`, `examples.tsx`, `playground.tsx`, `meta.json`
+- `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B059-2 — Tag: guidelines approved
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- When to use: name a category, show a status, next to a title or in the metadata of a card. When not to use: a number → Badge (B025), filter or switch → Chip, action → Button, message → inline alert (not in the design system yet).
+- `neutral` for categories; a feedback tone only when it matches the meaning; never color alone; at most 3 tags side by side, `space.4` apart; tags wrap to the next line when the space runs out.
+- Content: 1 or 2 words, sentence case, no final period; same wording everywhere; icon only to reinforce the label.
+- Accessibility: label read as plain text, icon decorative (`aria-hidden`), not focusable.
+- Four do / don't pairs (tone and meaning, short label, at most 3 tags, Chip to filter). Guidelines stage approved; next stage: Code.
+
+**What was done**
+- `components/Tag/guidelines.md` written; `meta.json` status and ticket B059 stage set to `code`.
+
+**Files**
+- `components/Tag/guidelines.md` (created)
+- `components/Tag/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
