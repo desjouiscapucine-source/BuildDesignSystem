@@ -1064,7 +1064,7 @@
         "TicketCard is complete: design, guidelines and code approved.",
         "The Backlog page shows its tickets with TicketCard."
       ],
-      "stage": "guidelines",
+      "stage": "code",
       "priority": "medium",
       "release": "R1"
     }

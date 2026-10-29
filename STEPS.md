@@ -4271,3 +4271,20 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/Select/Select.tsx`, `Select.css`, `examples.tsx`, `playground.tsx`, `meta.json`
 - `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B115-3 — TicketCard: guidelines approved
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- When to use: each ticket in a status column of the **Backlog board**. Not for the content of a step (Card), not inside a Card, not for a read-only list (not in the design system yet).
+- Cards stacked full width of their column, `--space-16` apart, ordered by priority (high → medium → low → none).
+- Title: short noun phrase, sentence case, no period (the component name for a component ticket). Description: one sentence ending with a period.
+- A menu change is saved at once and the card moves; a save error is shown above the board (`role="alert"`), the card keeps its old value.
+- Keyboard: Tab to the card, **Enter** opens the ticket, then Tab to the menus. A screen reader announces the **ID and title**.
+- Do's and don'ts: title, description, stacking, no nested card (visual examples shown in the chat).
+
+**What was done**
+- `components/TicketCard/guidelines.md` written; `meta.json` status `code`; backlog B115 stage `code`.
+
+**Files**
+- `components/TicketCard/guidelines.md`, `components/TicketCard/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
