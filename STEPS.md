@@ -4126,3 +4126,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/SelectOption/guidelines.md`, `components/SelectOption/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B059-1 — Tag: design approved
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- New component **Tag** (`components/Tag/`, class `.ds-tag`), level **atom**: "A small label that names a category or a status." Replaces the tags drawn by hand on the documentation site (level, backlog category, "Decided").
+- Property **`tone`**: `neutral` (default), `success`, `warning`, `error`, `info`. Subtle background (`background.subtle` / `background.<tone>-subtle`), text and icon in the tone color (`text.secondary` + `icon.secondary` for neutral), no border.
+- One size: `label-sm` text, padding `space.0` / `space.8`, `radius.4`. Optional icon before the label (property `icon`), `icon-size.16`, gap `space.4`.
+- Not interactive: no hover / focus / pressed, no disabled state. Label on one line, cut with an ellipsis, shown as written.
+- Design stage approved; next stage: Guidelines.
+
+**What was done**
+- Component folder from the template: `meta.json`, design preview (`design/Preview.tsx`, `design/tokens.json`, default state only), `spec.md`.
+- New contrast pair `icon.secondary` on `background.subtle` (3:1): 46/46 pairs pass.
+- Ticket B059: `in-progress`, stage `guidelines`.
+
+**Files**
+- `components/Tag/meta.json`, `components/Tag/spec.md`, `components/Tag/design/Preview.tsx`, `components/Tag/design/tokens.json` (created)
+- `tokens/contrast-pairs.json`, `backlog/backlog.json`, `STEPS.md` (updated)
