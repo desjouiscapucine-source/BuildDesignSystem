@@ -1,5 +1,17 @@
 {
-  "$description": "Project backlog — source of truth for the Backlog page of the documentation site. status: todo | in-progress | done | rejected. priority (optional): high | medium | low. origin: decided (Design System Lead) | proposal (suggested by Claude, approved in the chat).",
+  "$description": "Project backlog — source of truth for the Backlog page of the documentation site. status: todo | in-progress | done | rejected. priority (optional): high | medium | low. release (optional): R1, R2… (dates from releases: first release, then every everyDays days). origin: decided (Design System Lead) | proposal (suggested by Claude, approved in the chat).",
+  "releases": {
+    "first": "2026-11-06",
+    "everyDays": 14,
+    "planned": {
+      "R1": [
+        "Git workflow: organization rules in Claude (B100, in progress on its branch)"
+      ],
+      "R2": [
+        "Bug: panel not visible on tablet and mobile, WorkDescription prototype (B102, in progress on its branch)"
+      ]
+    }
+  },
   "items": [
     {
       "id": "B001",
@@ -150,7 +162,8 @@
       "origin": "proposal",
       "description": "Text action, uses text.link. Used on the documentation site: links in texts and descriptions.",
       "stage": "design",
-      "priority": "high"
+      "priority": "high",
+      "release": "R1"
     },
     {
       "id": "B019",
@@ -254,7 +267,9 @@
       "status": "todo",
       "origin": "proposal",
       "description": "Dialog, uses the highest shadow. Opens the detail of a Level 3 page (e.g. a ticket from the Backlog) instead of a new page (Navigation structure page, B082).",
-      "stage": "design"
+      "stage": "design",
+      "release": "R1",
+      "priority": "high"
     },
     {
       "id": "B030",
@@ -279,7 +294,8 @@
           "decision": "changes-requested"
         }
       ],
-      "priority": "high"
+      "priority": "high",
+      "release": "R4"
     },
     {
       "id": "B032",
@@ -485,7 +501,8 @@
       "status": "todo",
       "origin": "decided",
       "description": "On the documentation site, not defined in the design system yet. Search of the site header: input with a search icon, keyboard hint \"/\", list of results.",
-      "stage": "design"
+      "stage": "design",
+      "release": "R2"
     },
     {
       "id": "B057",
@@ -724,7 +741,8 @@
       "category": "Tooling",
       "status": "todo",
       "origin": "proposal",
-      "description": "Reusable agents in .claude/agents/<name>.md (role, allowed tools, what to report) for checks that come back often, e.g. a token auditor that finds raw values in components. Only once a check is recurring."
+      "description": "Reusable agents in .claude/agents/<name>.md (role, allowed tools, what to report) for checks that come back often, e.g. a token auditor that finds raw values in components. Only once a check is recurring.",
+      "release": "R2"
     },
     {
       "id": "B085",
@@ -757,7 +775,8 @@
       "status": "in-progress",
       "origin": "decided",
       "description": "Illustrations of the landing page (Level 0): background motifs and a retouched avatar, kawaii style like the avatar, primary and secondary palettes only. Built in 3 steps. Decided 2026-10-27.",
-      "priority": "medium"
+      "priority": "medium",
+      "release": "R4"
     },
     {
       "id": "B089",
@@ -859,6 +878,35 @@
       "status": "in-progress",
       "origin": "decided",
       "description": "Releases R1, R2… every two weeks on Friday, starting on 2026-11-06: each one is a batch of backlog tickets (field release). Release planning page in Governance, and a Release list on the Backlog page."
+    },
+    {
+      "id": "B104",
+      "title": "Navigation architecture",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "decided",
+      "description": "New work on the navigation architecture, planned for R1. Content to define with the Design System Lead.",
+      "release": "R1"
+    },
+    {
+      "id": "B105",
+      "title": "Chatbot",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "Component, planned for R3. Content to define with the Design System Lead.",
+      "stage": "design",
+      "release": "R3"
+    },
+    {
+      "id": "B106",
+      "title": "Task",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "Component, planned for R3. Content to define with the Design System Lead.",
+      "stage": "design",
+      "release": "R3"
     }
   ]
 }
