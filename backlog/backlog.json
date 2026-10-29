@@ -729,7 +729,8 @@
       "category": "Tooling",
       "status": "todo",
       "origin": "proposal",
-      "description": "Reusable agents in .claude/agents/<name>.md (role, allowed tools, what to report) for checks that come back often, e.g. a token auditor that finds raw values in components. Only once a check is recurring."
+      "description": "Reusable agents in .claude/agents/<name>.md (role, allowed tools, what to report) for checks that come back often, e.g. a token auditor that finds raw values in components. Only once a check is recurring.",
+      "release": "R2"
     },
     {
       "id": "B085",
