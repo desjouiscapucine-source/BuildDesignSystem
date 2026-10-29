@@ -1083,6 +1083,31 @@
       ],
       "priority": "high",
       "release": "R1"
+    },
+    {
+      "id": "B117",
+      "title": "Agent: backlog cleanup",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "decided",
+      "description": "An agent that reviews the backlog and proposes what to clean up.",
+      "why": "The backlog collects duplicates, tickets already covered by other work, wrong statuses and incomplete tickets (B112 cleaned them up by hand).",
+      "scope": "An agent in .claude/agents/ that finds duplicate tickets, tickets already covered (by another ticket, a skill or a commit), wrong statuses (e.g. todo while the work is committed, in-progress without a branch, late on its release) and incomplete tickets (no Why, Scope or Done when, no priority or release). It reads and proposes only: the Design System Lead chooses in the chat, Claude applies on a branch. Not included: changing the backlog by itself. Related to B084 (dedicated agents).",
+      "doneWhen": [
+        "The agent lists the duplicates, the tickets already covered, the wrong statuses and the incomplete tickets, each with its reason.",
+        "It never changes backlog/backlog.json.",
+        "Claude checks its result before showing it to the Design System Lead."
+      ]
+    },
+    {
+      "id": "B118",
+      "title": "Composition sandbox page",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "decided",
+      "description": "A page of the documentation site to assemble the coded components freely and try an idea of screen or interaction.",
+      "why": "Trying a UX idea today means starting a prototype (ticket, branch, spec); a sandbox lets an idea be tested quickly with the real components.",
+      "scope": "A page where the coded components are put together freely, without creating a prototype. Its content and how it works are defined with the Design System Lead."
     }
   ]
 }
