@@ -1027,7 +1027,7 @@
       "id": "B116",
       "title": "Skill: ticket",
       "category": "Skills",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "A ticket skill: how to write a backlog ticket with the template, and what a prototype ticket must also contain.",
       "why": "The ticket template lives inside the backlog skill, and a prototype ticket needs more than the four parts to describe a user journey.",

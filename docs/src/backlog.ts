@@ -31,6 +31,14 @@ export interface BacklogItem {
   scope?: string;
   /** Done when: the acceptance criteria, one per entry. */
   doneWhen?: string[];
+  /** Prototype tickets (ticket skill) — Users: who the journey is for, and their goal. */
+  users?: string;
+  /** Prototype tickets — User journey: the steps, in order. */
+  journey?: string[];
+  /** Prototype tickets — Components used: design system components the screens use. */
+  components?: string[];
+  /** Prototype tickets — the components missing, to create before or during the prototype. */
+  missingComponents?: string[];
   stage?: Stage;
   priority?: BacklogPriority;
   /** Release that delivers the ticket (R1, R2…); absent = not planned. */
