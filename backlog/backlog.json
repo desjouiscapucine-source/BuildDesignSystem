@@ -959,6 +959,16 @@
       "description": "Claude gives the branch at the start of every task and in every validation message. A Branches page in Governance lists every branch with its conversation, folder, ticket and position against develop, and what develop adds to main.",
       "priority": "medium",
       "release": "R1"
+    },
+    {
+      "id": "B110",
+      "title": "Git workflow: governance and component branches only",
+      "category": "Tooling",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "Two branch types only: governance/<topic> and component/<Name>. A prototype is worked on a component/<prototype-folder> branch, in a Composant <Name> conversation. Two conversation kinds: Gouvernance and Composant <Name>.",
+      "priority": "medium",
+      "release": "R1"
     }
   ]
 }
