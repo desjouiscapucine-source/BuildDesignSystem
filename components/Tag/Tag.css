@@ -1,0 +1,39 @@
+/* Tag — semantic design tokens only. See spec.md.
+   Classes: .ds-tag · modifiers .ds-tag--<tone> · parts .ds-tag-icon, .ds-tag-label */
+.ds-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  max-width: 100%;
+  padding: var(--space-0) var(--space-8);
+  border-radius: var(--radius-4);
+  font-family: var(--typography-label-sm-family);
+  font-size: var(--typography-label-sm-size);
+  font-weight: var(--typography-label-sm-weight);
+  line-height: var(--typography-label-sm-line-height);
+}
+
+.ds-tag-icon {
+  flex-shrink: 0;
+  font-size: var(--icon-size-16);
+}
+
+/* Label: one line, ellipsis when the tag is wider than its container */
+.ds-tag-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Tones */
+.ds-tag--neutral { background: var(--color-background-subtle); color: var(--color-text-secondary); }
+.ds-tag--neutral .ds-tag-icon { color: var(--color-icon-secondary); }
+.ds-tag--success { background: var(--color-background-success-subtle); color: var(--color-text-success); }
+.ds-tag--success .ds-tag-icon { color: var(--color-icon-success); }
+.ds-tag--warning { background: var(--color-background-warning-subtle); color: var(--color-text-warning); }
+.ds-tag--warning .ds-tag-icon { color: var(--color-icon-warning); }
+.ds-tag--error { background: var(--color-background-error-subtle); color: var(--color-text-error); }
+.ds-tag--error .ds-tag-icon { color: var(--color-icon-error); }
+.ds-tag--info { background: var(--color-background-info-subtle); color: var(--color-text-info); }
+.ds-tag--info .ds-tag-icon { color: var(--color-icon-info); }

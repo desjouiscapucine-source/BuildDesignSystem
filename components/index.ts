@@ -26,3 +26,5 @@ export { Dialog } from "./Dialog/Dialog";
 export type { DialogProps, DialogSize } from "./Dialog/Dialog";
 export { SelectOption } from "./SelectOption/SelectOption";
 export type { SelectOptionProps } from "./SelectOption/SelectOption";
+export { Tag } from "./Tag/Tag";
+export type { TagProps, TagTone } from "./Tag/Tag";

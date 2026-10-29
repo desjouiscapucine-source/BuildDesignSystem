@@ -4237,3 +4237,19 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/Select/guidelines.md`, `components/Select/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B059-3 — Tag: code approved, component complete
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- Code stage approved: Tag is **complete**, version **1.0** ("First complete version.").
+
+**What was done**
+- `Tag.tsx`: a non-interactive `<span>`, props `tone` (`neutral` default, `success`, `warning`, `error`, `info`) and `icon` (optional, decorative, `aria-hidden`); `Tag.css`: semantic tokens only, classes `.ds-tag`, `.ds-tag--<tone>`, `.ds-tag-icon`, `.ds-tag-label`, label on one line with an ellipsis.
+- `examples.tsx` (tones, with an icon, side by side, long label), `playground.tsx` (tone, icon, label), export in `components/index.ts`.
+- Verification: type check and build pass; computed colors match the spec tokens for the 5 tones; long label cut with an ellipsis; Playground renders and writes the code; no console error.
+- Ticket B059 `done`.
+
+**Files**
+- `components/Tag/Tag.tsx`, `components/Tag/Tag.css`, `components/Tag/examples.tsx`, `components/Tag/playground.tsx` (created)
+- `components/Tag/meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)

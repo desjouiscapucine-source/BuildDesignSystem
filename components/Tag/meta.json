@@ -2,7 +2,13 @@
   "name": "Tag",
   "description": "A small label that names a category or a status.",
   "level": "atom",
-  "status": "code",
-  "version": "0.0",
-  "changelog": []
+  "status": "complete",
+  "version": "1.0",
+  "changelog": [
+    {
+      "version": "1.0",
+      "date": "2026-10-29",
+      "changes": "First complete version."
+    }
+  ]
 }
