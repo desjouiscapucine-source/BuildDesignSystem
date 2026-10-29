@@ -258,6 +258,7 @@ Semantic tier: **`z-index.<usage>`** → `--z-index-<usage>`, named by usage. Sc
 | `z-index.navigation` | 20 | Navigation opened over the page (mobile menu) |
 | `z-index.overlay` | 30 | Dimmed background and panel (Timeline panel) |
 | `z-index.modal` | 40 | Dialog windows |
+| `z-index.dropdown` | 50 | List opened over the page and over dialogs (Select list) |
 | `z-index.tooltip` | 100 | Tooltips |
 | `z-index.skip-link` | 110 | "Skip to content" link, in front of everything |
 
