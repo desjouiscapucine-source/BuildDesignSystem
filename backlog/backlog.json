@@ -294,9 +294,9 @@
       "id": "B032",
       "title": "Version control (git)",
       "category": "Tooling",
-      "status": "todo",
+      "status": "done",
       "origin": "proposal",
-      "description": "Keep the history of every change and be able to go back."
+      "description": "Keep the history of every change and be able to go back. Covered by the git workflow (B107, B109, B110)."
     },
     {
       "id": "B033",
@@ -374,17 +374,17 @@
       "id": "B042",
       "title": "Skill: steps-log",
       "category": "Skills",
-      "status": "todo",
+      "status": "rejected",
       "origin": "proposal",
-      "description": "How to write a STEPS.md entry: format, decisions vs actions, files changed."
+      "description": "How to write a STEPS.md entry: format, decisions vs actions, files changed. No dedicated skill: the rules are in CLAUDE.md and the git-workflow skill."
     },
     {
       "id": "B043",
       "title": "Skill: backlog-management",
       "category": "Skills",
-      "status": "todo",
+      "status": "done",
       "origin": "proposal",
-      "description": "How to keep backlog/backlog.json up to date: statuses, stages, adding proposals, never starting a proposal."
+      "description": "How to keep backlog/backlog.json up to date: statuses, stages, adding proposals, never starting a proposal. Covered by the backlog skill."
     },
     {
       "id": "B044",
@@ -624,33 +624,33 @@
       "id": "B071",
       "title": "Skill: token-usage",
       "category": "Skills",
-      "status": "todo",
+      "status": "rejected",
       "origin": "proposal",
-      "description": "Which semantic token to use for which need, in specs and component code. Referenced by the former component skill, not created yet."
+      "description": "Which semantic token to use for which need, in specs and component code. Referenced by the former component skill, not created yet. Duplicate of B041."
     },
     {
       "id": "B072",
       "title": "Skill: accessibility-check",
       "category": "Skills",
-      "status": "todo",
+      "status": "rejected",
       "origin": "proposal",
-      "description": "Accessibility check (WCAG 2.2 AA) to run before asking for the approval of any component stage: contrast pairs, target sizes, visible focus."
+      "description": "Accessibility check (WCAG 2.2 AA) to run before asking for the approval of any component stage: contrast pairs, target sizes, visible focus. Duplicate of B039."
     },
     {
       "id": "B073",
       "title": "Skill: steps-log",
       "category": "Skills",
-      "status": "todo",
+      "status": "rejected",
       "origin": "proposal",
-      "description": "How to log every step in STEPS.md (date, what was done and why, files)."
+      "description": "How to log every step in STEPS.md (date, what was done and why, files). Duplicate of B042."
     },
     {
       "id": "B074",
       "title": "Skill: backlog-management",
       "category": "Skills",
-      "status": "todo",
+      "status": "rejected",
       "origin": "proposal",
-      "description": "How to keep backlog/backlog.json up to date: statuses, origin, component stage, new proposals."
+      "description": "How to keep backlog/backlog.json up to date: statuses, origin, component stage, new proposals. Duplicate of B043."
     },
     {
       "id": "B075",
@@ -868,9 +868,9 @@
       "id": "B100",
       "title": "Git workflow: organization rules in Claude",
       "category": "Tooling",
-      "status": "todo",
+      "status": "done",
       "origin": "decided",
-      "description": "Write the rules for organizing the work in Claude.",
+      "description": "Write the rules for organizing the work in Claude. Covered by the git-workflow skill (conversations, folders, sessions).",
       "priority": "medium",
       "release": "R1"
     },
@@ -977,6 +977,16 @@
       "status": "done",
       "origin": "decided",
       "description": "On each component page, show the coded React component live, like Storybook: a canvas with controls to change its props.",
+      "priority": "high",
+      "release": "R1"
+    },
+    {
+      "id": "B112",
+      "title": "Backlog cleanup",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "decided",
+      "description": "Close the duplicate tickets (B071 to B074) and the tickets already covered by other work (B032, B042, B043, B100).",
       "priority": "high",
       "release": "R1"
     }
