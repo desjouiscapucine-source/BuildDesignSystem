@@ -1022,6 +1022,23 @@
       ],
       "priority": "high",
       "release": "R1"
+    },
+    {
+      "id": "B115",
+      "title": "TicketCard",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "A design system component for the card of a backlog ticket.",
+      "why": "The ticket card is coded for the documentation site only: as a component, it can be reused (Backlog, Release planning, prototypes) with the tokens and the rules of the design system.",
+      "scope": "The three stages of the component (design, guidelines, code), then the Backlog page uses it in place of its own card.",
+      "doneWhen": [
+        "TicketCard is complete: design, guidelines and code approved.",
+        "The Backlog page shows its tickets with TicketCard."
+      ],
+      "stage": "design",
+      "priority": "medium",
+      "release": "R1"
     }
   ]
 }
