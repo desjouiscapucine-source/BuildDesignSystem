@@ -1005,6 +1005,16 @@
       "description": "In the Playground, the icon controls (Button, IconButton, NavigationItem) offer the list of every Material Symbols icon in a dropdown, instead of a text field.",
       "priority": "medium",
       "release": "R1"
+    },
+    {
+      "id": "B114",
+      "title": "Ticket description template",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "decided",
+      "description": "A fixed format for the description of a backlog ticket (what to write, in which order), applied when each ticket is created.",
+      "priority": "high",
+      "release": "R1"
     }
   ]
 }
