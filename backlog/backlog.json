@@ -150,7 +150,8 @@
       "origin": "proposal",
       "description": "Text action, uses text.link. Used on the documentation site: links in texts and descriptions.",
       "stage": "design",
-      "priority": "high"
+      "priority": "high",
+      "release": "R1"
     },
     {
       "id": "B019",
