@@ -488,7 +488,8 @@
       "status": "todo",
       "origin": "decided",
       "description": "On the documentation site, not defined in the design system yet. Search of the site header: input with a search icon, keyboard hint \"/\", list of results.",
-      "stage": "design"
+      "stage": "design",
+      "release": "R2"
     },
     {
       "id": "B057",
