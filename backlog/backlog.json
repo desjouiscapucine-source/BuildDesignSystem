@@ -927,6 +927,16 @@
       "description": "Page in Governance, under How to use skills: organization diagram of the git workflow (work branches, develop, main on release day) and a link that opens the git-workflow skill.",
       "priority": "medium",
       "release": "R1"
+    },
+    {
+      "id": "B109",
+      "title": "See the branches: announce rule and Branches page",
+      "category": "Tooling",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "Claude gives the branch at the start of every task and in every validation message. A Branches page in Governance lists every branch with its conversation, folder, ticket and position against develop, and what develop adds to main.",
+      "priority": "medium",
+      "release": "R1"
     }
   ]
 }
