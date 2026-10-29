@@ -4183,3 +4183,41 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/Select/` (created)
 - `tokens/semantic.json`, `.claude/skills/token-naming/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B059-2 — Tag: guidelines approved
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- When to use: name a category, show a status, next to a title or in the metadata of a card. When not to use: a number → Badge (B025), filter or switch → Chip, action → Button, message → inline alert (not in the design system yet).
+- `neutral` for categories; a feedback tone only when it matches the meaning; never color alone; at most 3 tags side by side, `space.4` apart; tags wrap to the next line when the space runs out.
+- Content: 1 or 2 words, sentence case, no final period; same wording everywhere; icon only to reinforce the label.
+- Accessibility: label read as plain text, icon decorative (`aria-hidden`), not focusable.
+- Four do / don't pairs (tone and meaning, short label, at most 3 tags, Chip to filter). Guidelines stage approved; next stage: Code.
+
+**What was done**
+- `components/Tag/guidelines.md` written; `meta.json` status and ticket B059 stage set to `code`.
+
+**Files**
+- `components/Tag/guidelines.md` (created)
+- `components/Tag/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B115-2 — TicketCard: design approved
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- **TicketCard**: organism, folder `components/TicketCard/`, class `.ds-ticket-card`, description "The card of a backlog ticket, with its main information." One type, no variant, one size (full width of its column).
+- Content: category tag, origin tag "Decided" (only for `decided` tickets), ID, title, description, menus Status / Priority / Release / Stage (Stage only for component tickets). Title and description in full, no maximum length.
+- Building blocks: the tags are the **Tag** atom (B059) and the menus the **Select** atom (B021), completed before TicketCard.
+- Look of the **Card** molecule (same tokens) in its own container, because Card is not clickable: the **whole card is clickable** (except the menus), focusable (Tab, Enter opens the ticket), with hover / focus / pressed state layers.
+- ID `body-sm` in `--color-text-secondary`; gaps `--space-4` in the tags row, `--space-8` between the menus and between the rows.
+
+**What was done**
+- Branch `component/TicketCard` taken over in this session and updated from `develop`; ticket B115 `in-progress`.
+- `components/TicketCard/` created from the template: `meta.json` (status `guidelines`), design preview (`design/Preview.tsx`, `design/tokens.json`, tags and menus as dashed placeholders), `spec.md`.
+- Contrast: title and description 15.52:1, ID 5.49:1, focus outline 6.10:1; border subtle 1.25:1 decorative, as Card.
+- Open question kept in the spec: the final look of the tags and menus once Tag and Select are coded.
+- Backlog: B115 stage `guidelines`.
+
+**Files**
+- `components/TicketCard/` (created)
+- `backlog/backlog.json`, `STEPS.md` (updated)

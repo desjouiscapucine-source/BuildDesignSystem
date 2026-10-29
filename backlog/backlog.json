@@ -528,7 +528,7 @@
       "status": "in-progress",
       "origin": "decided",
       "description": "On the documentation site, not defined in the design system yet. Small labels: Atomic Design level, backlog category and \"Decided\" tags. Different from the Badge (counter).",
-      "stage": "guidelines"
+      "stage": "code"
     },
     {
       "id": "B060",
@@ -1048,6 +1048,23 @@
       "origin": "decided",
       "description": "One option of the Select list. Building block of the Select (B021), built first.",
       "stage": "code",
+      "priority": "medium",
+      "release": "R1"
+    },
+    {
+      "id": "B115",
+      "title": "TicketCard",
+      "category": "Components",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "A design system component for the card of a backlog ticket.",
+      "why": "The ticket card is coded for the documentation site only: as a component, it can be reused (Backlog, Release planning, prototypes) with the tokens and the rules of the design system.",
+      "scope": "The three stages of the component (design, guidelines, code), then the Backlog page uses it in place of its own card.",
+      "doneWhen": [
+        "TicketCard is complete: design, guidelines and code approved.",
+        "The Backlog page shows its tickets with TicketCard."
+      ],
+      "stage": "guidelines",
       "priority": "medium",
       "release": "R1"
     }
