@@ -1,25 +1,94 @@
-/* Semantic design tokens only (var(--…)) — never raw values or primitive tokens.
-   Classes: .ds-<component> · modifier .ds-<component>--<value> · part .ds-<component>-<part> */
-.ds-component-name {
-  position: relative;
-}
-
-/* State layers: overlay in the content color */
-.ds-component-name::after {
-  content: "";
-  position: absolute;
+/* Dialog — semantic design tokens only. See spec.md.
+   Classes: .ds-dialog (overlay; modifiers --small, --medium, --large, --open, --closing)
+   · parts -container, -header, -heading, -title, -description, -close, -body, -footer.
+   The close button is an IconButton, the footer actions are Buttons. */
+.ds-dialog {
+  position: fixed;
   inset: 0;
-  border-radius: inherit;
-  background: currentColor;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--duration-100) var(--easing-ease-out);
+  z-index: var(--z-index-modal);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-16);
+  background: var(--color-background-overlay);
+  animation: ds-dialog-fade var(--duration-200) var(--easing-ease-out) both;
+}
+.ds-dialog--closing { animation-name: ds-dialog-fade-out; }
+
+@keyframes ds-dialog-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ds-dialog-fade-out { from { opacity: 1; } to { opacity: 0; } }
+
+/* Container: full width on small screens, up to the width of its size; never taller than the screen */
+.ds-dialog-container {
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+  padding: var(--space-24);
+  background: var(--color-background-page);
+  border-radius: var(--radius-8);
+  box-shadow: var(--shadow-dialog);
+}
+.ds-dialog--small .ds-dialog-container { max-width: var(--size-dialog-small); }
+.ds-dialog--medium .ds-dialog-container { max-width: var(--size-dialog-medium); }
+.ds-dialog--large .ds-dialog-container { max-width: var(--size-dialog-large); }
+
+/* Header: title and description, close button at the top right */
+.ds-dialog-header {
+  flex: none;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-16);
+}
+.ds-dialog-heading {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.ds-dialog-title {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-family: var(--typography-heading-4-family);
+  font-size: var(--typography-heading-4-size);
+  font-weight: var(--typography-heading-4-weight);
+  line-height: var(--typography-heading-4-line-height);
+  color: var(--color-text-primary);
+}
+.ds-dialog-description {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-family: var(--typography-body-family);
+  font-size: var(--typography-body-size);
+  font-weight: var(--typography-body-weight);
+  line-height: var(--typography-body-line-height);
+  color: var(--color-text-secondary);
+}
+.ds-dialog-close { flex: none; }
+
+/* Body: the only part that scrolls */
+.ds-dialog-body {
+  min-height: 0;
+  overflow-y: auto;
+  font-family: var(--typography-body-family);
+  font-size: var(--typography-body-size);
+  font-weight: var(--typography-body-weight);
+  line-height: var(--typography-body-line-height);
+  color: var(--color-text-primary);
 }
 
-/* Variant: default */
-.ds-component-name--default {
+/* Footer: buttons side by side, aligned right, main action last */
+.ds-dialog-footer {
+  flex: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-8);
 }
-
-/* Parts */
-.ds-component-name-label {
-}
+/* Free content: no extra space at the edges of the body */
+.ds-dialog-body > :first-child { margin-top: 0; }
+.ds-dialog-body > :last-child { margin-bottom: 0; }
