@@ -21,9 +21,10 @@ export const playground = definePlayground({
       default: "Dashboard",
       description: "The NavigationItem of the page displayed (selected prop of the item).",
     },
+    open: { type: "boolean", default: false, description: "Below desktop only: the navigation is shown over the page (choose a tablet or mobile screen size)." },
   },
-  render: ({ label, selected }) => (
-    <SideNavigation label={label} style={{ height: "360px" }}>
+  render: ({ label, selected, open }) => (
+    <SideNavigation label={label} open={open} style={{ height: "360px" }}>
       {items.map((item) => (
         <NavigationItem key={item.label} icon={item.icon} href="#" selected={item.label === selected}>
           {item.label}
@@ -31,10 +32,10 @@ export const playground = definePlayground({
       ))}
     </SideNavigation>
   ),
-  code: ({ label, selected }) =>
+  code: ({ label, selected, open }) =>
     jsx(
       "SideNavigation",
-      { label: label === "Main navigation" ? undefined : label },
+      { label: label === "Main navigation" ? undefined : label, open: open || undefined },
       items.map((item) =>
         jsx("NavigationItem", { icon: item.icon, href: "/" + item.label.toLowerCase(), selected: item.label === selected }, item.label),
       ),

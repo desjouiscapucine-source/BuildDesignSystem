@@ -5,7 +5,6 @@
 :root {
   --doc-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --doc-header-height: var(--space-64);
-  --doc-nav-width: var(--size-side-navigation);
   color-scheme: light;
 }
 
@@ -152,32 +151,8 @@ code {
   line-height: var(--line-height-heading);
   white-space: nowrap;
 }
-.shell-icon-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--space-40);
-  height: var(--space-40);
-  border: 0;
-  border-radius: var(--radius-full);
-  background: transparent;
-  color: var(--color-icon-primary);
-  cursor: pointer;
-  position: relative;
-}
-.shell-icon-button::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: currentColor;
-  opacity: 0;
-  transition: opacity var(--duration-100) var(--easing-ease-out);
-}
-.shell-icon-button:hover::after { opacity: var(--state-layer-hover); }
-.shell-icon-button:focus-visible::after { opacity: var(--state-layer-focus); }
-.shell-icon-button:active::after { opacity: var(--state-layer-pressed); }
-.shell-menu-button { display: none; }
+/* Burger IconButton: below desktop only. */
+.ds-icon-button.shell-menu-button { display: none; }
 
 .shell-search {
   position: relative;
@@ -239,75 +214,14 @@ code {
 .shell-search-section { margin-left: auto; color: var(--color-text-secondary); font-size: var(--font-size-12); }
 .shell-search-empty { color: var(--color-text-secondary); cursor: default; }
 
-.shell-body { display: flex; min-height: calc(100vh - var(--doc-header-height)); }
-.shell-nav {
-  position: sticky;
+.shell-body { display: flex; min-height: calc(100dvh - var(--doc-header-height)); }
+/* SideNavigation of the site: under the sticky header, full remaining height. */
+.ds-side-navigation.shell-nav {
   top: var(--doc-header-height);
-  align-self: flex-start;
-  width: var(--doc-nav-width);
+  height: calc(100dvh - var(--doc-header-height));
   flex-shrink: 0;
-  height: calc(100vh - var(--doc-header-height));
-  overflow-y: auto;
-  padding: var(--space-16);
-  background: var(--color-background-brand);
-  color: var(--color-text-inverse);
+  align-self: flex-start;
 }
-/* On the brown navigation, the focus outline (border.focus = brand) would be invisible: use the inverse color. */
-.shell-nav :focus-visible { outline-color: var(--color-text-inverse); }
-.shell-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-4); }
-.shell-nav-title {
-  margin: 0 0 var(--space-4);
-  padding: 0 var(--space-8);
-  font-family: var(--typography-label-sm-family);
-  font-size: var(--typography-label-sm-size);
-  line-height: var(--typography-label-sm-line-height);
-  font-weight: var(--typography-label-sm-weight);
-  color: var(--color-text-inverse);
-}
-.shell-nav-empty { margin: 0; padding: var(--space-4) var(--space-8); color: var(--color-text-inverse); font-size: var(--font-size-12); }
-.shell-nav-link {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: var(--space-8);
-  padding: var(--space-8);
-  border-radius: var(--radius-8);
-  color: var(--color-text-inverse);
-  text-decoration: none;
-}
-.shell-nav-link .ds-icon { font-size: var(--icon-size-20); color: var(--color-icon-inverse); }
-.shell-nav-link::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: currentColor;
-  opacity: 0;
-  transition: opacity var(--duration-100) var(--easing-ease-out);
-}
-.shell-nav-link:hover::after { opacity: var(--state-layer-hover); }
-.shell-nav-link:focus-visible::after { opacity: var(--state-layer-focus); }
-.shell-nav-link:active::after { opacity: var(--state-layer-pressed); }
-.shell-nav-link[aria-current="page"] {
-  background: var(--color-background-brand-subtle);
-  color: var(--color-text-brand);
-  font-weight: var(--font-weight-semibold);
-}
-.shell-nav-link[aria-current="page"] .ds-icon { color: var(--color-icon-brand); }
-/* Pages below a section: indented under it. */
-.shell-nav ul ul { margin-top: var(--space-4); padding-left: var(--space-16); }
-.shell-nav li > .shell-nav-empty { padding-left: calc(var(--space-16) + var(--space-8)); }
-/* Spaces at the top of the menu: below desktop only (the header shows them on desktop). */
-.shell-nav-spaces { display: none; margin-bottom: var(--space-16); }
-.shell-nav-spaces-list { list-style: none; margin: 0; padding: 0; }
-.shell-nav-spaces-list a {
-  display: block;
-  padding: var(--space-8);
-  border-radius: var(--radius-8);
-  color: var(--color-text-inverse);
-  text-decoration: none;
-}
-.shell-nav-spaces-list a[aria-current="true"] { font-weight: var(--font-weight-semibold); text-decoration: underline; }
 
 .shell-content { flex: 1; min-width: 0; padding: var(--space-24); max-width: var(--size-content); outline: 0; }
 /* Layout skill: blocks of content stacked vertically with --space-16 */
@@ -317,23 +231,19 @@ code {
 /* Below desktop: --breakpoint-desktop (1024px) */
 @media not all and (min-width: 1024px) {
   .shell-header { padding: 0 var(--space-16); gap: var(--space-8); }
-  .shell-menu-button { display: inline-flex; }
+  .ds-icon-button.shell-menu-button { display: inline-flex; }
   .shell-search { margin-left: 0; flex: 1; }
   .shell-search-key { display: none; }
   .shell-brand { font-size: var(--font-size-16); }
   .shell-work-time { display: none; }
   .shell-spaces { display: none; }
-  .shell-nav-spaces { display: block; }
-  .shell-nav {
-    position: fixed;
-    left: 0;
-    top: var(--doc-header-height);
-    z-index: var(--z-index-navigation);
-    transform: translateX(-100%);
-    transition: transform var(--duration-200) var(--easing-ease-out);
-    box-shadow: var(--shadow-3);
-  }
-  .shell-nav.open { transform: none; }
+}
+/* Desktop: --breakpoint-desktop (1024px) */
+@media (min-width: 1024px) {
+  /* The navigation stays in view while the page scrolls (below desktop the component places it over the page). */
+  .ds-side-navigation.shell-nav { position: sticky; }
+  /* The "Spaces" parent is for below desktop only: the header shows the spaces on desktop. */
+  .ds-side-navigation-entry:has(> .ds-navigation-item-group > .shell-nav-spaces) { display: none; }
 }
 /* Below tablet: --breakpoint-tablet (768px) */
 @media not all and (min-width: 768px) {

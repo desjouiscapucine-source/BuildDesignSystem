@@ -1,5 +1,5 @@
 /* SideNavigation — semantic design tokens only. See spec.md.
-   Classes: .ds-side-navigation · parts .ds-side-navigation-list, .ds-side-navigation-entry */
+   Classes: .ds-side-navigation (modifier --open, below desktop) · parts .ds-side-navigation-list, .ds-side-navigation-entry */
 .ds-side-navigation {
   box-sizing: border-box;
   width: var(--size-side-navigation);
@@ -21,4 +21,22 @@
 
 .ds-side-navigation-entry {
   display: flex;
+}
+
+/* Below desktop: --breakpoint-desktop (1024px). Hidden; slides in over the page when open. */
+@media not all and (min-width: 1024px) {
+  .ds-side-navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: var(--z-index-navigation);
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition: transform var(--duration-200) var(--easing-ease-out), visibility var(--duration-200);
+  }
+  .ds-side-navigation--open {
+    transform: none;
+    visibility: visible;
+    box-shadow: var(--shadow-panel);
+  }
 }

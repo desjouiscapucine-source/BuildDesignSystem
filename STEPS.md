@@ -4418,3 +4418,24 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-10-29-B124-2.md` (created)
 - `components/Card/Card.css`, `spec.md`, `guidelines.md`, `meta.json`, `docs/src/docs.css`, `docs/src/pages/ReleasePlanningPage.tsx`, `SkillsPage.tsx`, `TicketDialog.tsx`, `STEPS.md` (updated)
+
+## Step B122-1 — Documentation site: use SideNavigation and IconButton
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- **SideNavigation 1.1**: below desktop it is hidden and opens over the page with a burger **IconButton `primary`** (as the site did); closed with the burger or when a page opens (no Escape, no click outside). New `open` prop.
+- Sections with pages below them are **parent items without a page**; their page is reached from the Overview cards and the breadcrumb (`navigation` skill updated).
+- Follow the SideNavigation spec: no space title, no empty note, no icons on sub-pages. Below desktop, a **"Spaces"** parent item (icon `workspaces`) at the top lists the spaces; only the page displayed is selected.
+- The site may place the navigation under its header; heights use `100dvh`.
+
+**What was done**
+- `components/SideNavigation`: `open` prop and below-desktop CSS (hidden, not focusable when closed, slides in with `--shadow-panel`), spec, guidelines, playground (`open` control), `meta.json` 1.1 (by Claude).
+- `ds-compliance-fix`, `docs/` only: `AppShell.tsx` builds the navigation with SideNavigation + NavigationItem and the burger with IconButton; hand-built navigation CSS removed; `structure.ts` empty note removed. Then Claude: "Spaces" icon, no selected space, `100dvh`.
+- `.claude/skills/navigation/SKILL.md`: side navigation and Level 2 sections rules.
+- Verification: type check and build pass; 1440px: sticky navigation 240px, no burger, no "Spaces"; 375px and 800px: the burger opens the navigation over the page, one selected item; no console error.
+- Compliance audit: `audits/2026-10-29-B122-1.md` (#1, #2, #20 fixed; #25–#28 resolved).
+- Ticket B122 `done`. Committed on `governance/docs-compliance`, not merged into `develop` yet (Design System Lead's choice, Step B124-2).
+
+**Files**
+- `audits/2026-10-29-B122-1.md` (created)
+- `components/SideNavigation/SideNavigation.tsx`, `SideNavigation.css`, `spec.md`, `guidelines.md`, `meta.json`, `playground.tsx`, `docs/src/AppShell.tsx`, `docs/src/docs.css`, `docs/src/structure.ts`, `.claude/skills/navigation/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
