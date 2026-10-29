@@ -3985,3 +3985,24 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/Dialog/` (created), `tokens/semantic.json`, `.claude/skills/token-naming/SKILL.md`, `CLAUDE.md`, `docs/src/DesignPreview.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B029-2 — Dialog: guidelines approved
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- When to use: the detail of a Level 3 item (e.g. a Backlog ticket), confirming an action, a short task or short form, important information to read before going on.
+- When not to use: images (ImageViewer), long content or a main task (a page), a non-blocking message (inline message, not in the design system yet), from another dialog (never).
+- Footer: 2 buttons at most, `Cancel` (secondary) + one main action (primary, or danger), main action last. Size by usage: `small` confirmation, `medium` default, `large` detail.
+- Do's and don'ts: action verbs (not Yes / No / OK), at most 2 buttons, `small` for a confirmation, one dialog at a time.
+- Content: title in sentence case, short; buttons with the verb of the action, "Cancel" for the secondary.
+- Loading and errors shown in the body (the dialog stays open on an error).
+- Accessibility: Escape closes, Tab stays inside, focus on the close button at opening and back to the opener at closing, modal dialog named by the title and described by the description, page behind not scrollable.
+- Related components: Button, IconButton.
+- Stage 2 (Guidelines) approved: the Dialog moves to Code.
+
+**What was done**
+- `components/Dialog/guidelines.md` written; `meta.json` status `code`; backlog B029 stage `code`.
+- Verification: build passes; the Guidelines tab shows the Dialog guidelines.
+
+**Files**
+- `components/Dialog/guidelines.md`, `components/Dialog/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
