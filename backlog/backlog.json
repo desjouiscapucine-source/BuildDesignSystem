@@ -907,6 +907,16 @@
       "description": "Component, planned for R3. Content to define with the Design System Lead.",
       "stage": "design",
       "release": "R3"
+    },
+    {
+      "id": "B107",
+      "title": "Git workflow: develop branch, release review and release notes",
+      "category": "Tooling",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "Work branches start from and merge into a permanent develop branch; at each release, a review of what was pushed and committed, then develop is merged into main with a tag R<n> and a release note shown under the release on the Release planning page.",
+      "priority": "high",
+      "release": "R1"
     }
   ]
 }
