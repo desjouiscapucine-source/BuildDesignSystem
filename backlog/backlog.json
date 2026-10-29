@@ -509,7 +509,8 @@
       "origin": "decided",
       "description": "On the documentation site, not defined in the design system yet. List of results under the site search, with the active option highlighted.",
       "stage": "design",
-      "release": "R1"
+      "release": "R1",
+      "priority": "high"
     },
     {
       "id": "B058",
