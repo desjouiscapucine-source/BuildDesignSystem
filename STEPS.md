@@ -3985,3 +3985,20 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/Dialog/` (created), `tokens/semantic.json`, `.claude/skills/token-naming/SKILL.md`, `CLAUDE.md`, `docs/src/DesignPreview.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B112-1 — Backlog cleanup
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- Duplicates: keep the older tickets (B039, B041, B042, B043); B071, B072, B073, B074 are rejected.
+- Tickets already covered are closed: B043 Skill backlog-management (done, covered by the `backlog` skill), B032 Version control (done, covered by B107, B109, B110), B100 Git workflow organization rules (done, covered by the `git-workflow` skill). B042 Skill steps-log is rejected: no dedicated skill, the rules are in `CLAUDE.md` and `git-workflow`.
+- B104 Navigation architecture stays in To do (Step B104-1 only moved it to Foundations).
+- Ticket B112: Tooling, priority high, release R1.
+
+**What was done**
+- `backlog/backlog.json`: the 8 statuses changed; the reason added at the end of each description (no field for it). To do: 48 → 40 tickets.
+- Backlog: B112 added (reserved first), done.
+- Verification: the Backlog page shows the new columns.
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)
