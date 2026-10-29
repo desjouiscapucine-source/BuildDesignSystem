@@ -1116,7 +1116,7 @@
       "id": "B122",
       "title": "Documentation site: use SideNavigation and IconButton",
       "category": "Tooling",
-      "status": "todo",
+      "status": "in-progress",
       "origin": "proposal",
       "description": "Replace the hand-built side navigation with SideNavigation and NavigationItem, and the burger button with IconButton.",
       "why": "Found by the design system compliance audit (audits/2026-10-29-B119-1.md): the documentation site is the showcase of the design system and must be built with it.",
