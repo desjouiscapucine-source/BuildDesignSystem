@@ -3922,3 +3922,21 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B110-1 — Git workflow: governance and component branches only
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- Two branch types only: `governance/<topic>` and `component/…`. A prototype is worked on `component/<prototype-folder>` (e.g. `component/work-description`), merged into `develop` when the prototype is validated.
+- Two conversation kinds: **Gouvernance** (one, permanent) and **Composant `<Name>`** (one per component or prototype, e.g. `Composant WorkDescription`), archived when finished.
+- Priority medium, release R1.
+
+**What was done**
+- `git-workflow` skill: description, diagram, branch table and conversation table.
+- `prototype-setup` skill: branch `component/<folder-name>`, in a `Composant <Name>` conversation.
+- `CLAUDE.md` (Git) and the Git workflow page (diagram and "In short").
+- Backlog: B110 added (reserved first), done.
+- Verification: type check and build pass; the Git workflow page shows the new diagram.
+
+**Files**
+- `.claude/skills/git-workflow/SKILL.md`, `.claude/skills/prototype-setup/SKILL.md`, `CLAUDE.md`, `docs/src/pages/GitWorkflowPage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)

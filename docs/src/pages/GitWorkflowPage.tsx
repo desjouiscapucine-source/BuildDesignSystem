@@ -2,8 +2,8 @@
 // The full rules are the git-workflow skill, linked at the bottom.
 
 const workBranches = [
-  { name: "component/<Name>", detail: "merged after each approved stage" },
-  { name: "prototype/<folder-name>", detail: "merged when the prototype is validated" },
+  { name: "component/<Name>", detail: "a component: merged after each approved stage" },
+  { name: "component/<prototype-folder>", detail: "a prototype: merged when it is validated" },
   { name: "governance/<topic>", detail: "merged as soon as approved" },
 ];
 
@@ -70,8 +70,8 @@ export function GitWorkflowPage() {
           <a href="#/releases">Release planning</a>).
         </li>
         <li>
-          <strong>Conversations</strong>: Gouvernance (one, permanent), Composant &lt;Name&gt; and Prototype &lt;Name&gt;
-          (one each, archived when finished).
+          <strong>Conversations</strong>: Gouvernance (one, permanent), Composant &lt;Name&gt; (one per
+          component or prototype, archived when finished).
         </li>
       </ul>
 

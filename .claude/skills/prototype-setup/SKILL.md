@@ -1,6 +1,6 @@
 ---
 name: prototype-setup
-description: Sets up a new interactive mockup (prototype = user journey) so it runs with the real React components of the design system — backlog item, dedicated git branch (prototype/<folder-name>), folder from the template, title, design system loading, check that it runs. Building the screens afterwards uses the other skills. Use whenever a new prototype is started in prototypes/.
+description: Sets up a new interactive mockup (prototype = user journey) so it runs with the real React components of the design system — backlog item, dedicated git branch (component/<folder-name>), folder from the template, title, design system loading, check that it runs. Building the screens afterwards uses the other skills. Use whenever a new prototype is started in prototypes/.
 ---
 
 # Prototype setup
@@ -13,7 +13,7 @@ This skill only **sets up** a new prototype so it runs. The screens are then bui
 1. Find the prototype in `backlog/backlog.json`.
    - Not in the backlog → ask whether to add it.
 2. Ask the Design System Lead for the **prototype name** and its **folder name** (`never-invent`).
-3. Create the branch `prototype/<folder-name>` from an up-to-date `develop` and push it to GitHub, **before creating any file** (`git-workflow`). Every step of the prototype is previewed on the local site (`/docs/#/prototypes/<prototype-name>`), then committed and pushed on this branch only once the Design System Lead validates it (`CLAUDE.md`, Git); the branch is merged into `develop` when the Design System Lead validates the prototype, or asks for it, and updated from `develop` before every commit (`git-workflow`).
+3. Create the branch `component/<folder-name>` (prototypes use `component/` branches, `git-workflow`) from an up-to-date `develop`, in a `Composant <Name>` conversation (e.g. `Composant WorkDescription`), and push it to GitHub, **before creating any file** (`git-workflow`). Every step of the prototype is previewed on the local site (`/docs/#/prototypes/<prototype-name>`), then committed and pushed on this branch only once the Design System Lead validates it (`CLAUDE.md`, Git); the branch is merged into `develop` when the Design System Lead validates the prototype, or asks for it, and updated from `develop` before every commit (`git-workflow`).
 4. On the branch, set the backlog item status to `in-progress`, its `prototype` field to the folder name and `iterations` to `[]` (see `prototypes/README.md`, Backlog ticket).
 
 ## 2. Create the prototype

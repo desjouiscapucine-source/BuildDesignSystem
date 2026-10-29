@@ -964,7 +964,7 @@
       "id": "B110",
       "title": "Git workflow: governance and component branches only",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "Two branch types only: governance/<topic> and component/<Name>. A prototype is worked on a component/<prototype-folder> branch, in a Composant <Name> conversation. Two conversation kinds: Gouvernance and Composant <Name>.",
       "priority": "medium",

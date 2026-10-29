@@ -1,6 +1,6 @@
 ---
 name: git-workflow
-description: How work is organized with git branches — one branch per piece of work (component, prototype, governance), one folder and one Claude session per branch, the conversations and their usage (Gouvernance, Composant <Name>, Prototype <Name>), steps numbered per backlog ticket, when and how a branch is merged into develop, and the release (review, develop merged into main, tag, release note). Use at the start of every task (which branch?), before every commit, whenever a branch is created, updated from develop or merged, and on release day.
+description: How work is organized with git branches — two branch types (governance, component — prototypes included), one folder and one Claude session per branch, the conversations and their usage (Gouvernance, Composant <Name>), steps numbered per backlog ticket, when and how a branch is merged into develop, and the release (review, develop merged into main, tag, release note). Use at the start of every task (which branch?), before every commit, whenever a branch is created, updated from develop or merged, and on release day.
 ---
 
 # Git workflow
@@ -9,9 +9,9 @@ description: How work is organized with git branches — one branch per piece of
 Decided by the Design System Lead on 2026-10-29 (B107):
 
 ```
-component/… ─┐
-prototype/… ─┼──▶ develop ──(release R<n>, after review)──▶ main  + tag R<n> + release note
-governance/… ┘   (approved work, waiting for its release)
+component/…  ─┐
+              ├──▶ develop ──(release R<n>, after review)──▶ main  + tag R<n> + release note
+governance/… ─┘   (approved work, waiting for its release)
 ```
 
 - **`develop`** (permanent) receives the approved work of every piece of work, during the two weeks of a release.
@@ -22,12 +22,12 @@ governance/… ┘   (approved work, waiting for its release)
 
 ## 1. Branches
 
-Every branch is tied to a **backlog ticket** (`backlog/backlog.json`).
+Every branch is tied to a **backlog ticket** (`backlog/backlog.json`). **Two branch types only** (B110): `governance/…` and `component/…` — a prototype is worked on a `component/` branch.
 
 | Piece of work | Branch | Lifetime | Merged into `develop` |
 | ------------- | ------ | -------- | ------------------ |
 | Component (new or changed) | `component/<Name>` (PascalCase, e.g. `component/Modal`) | Short | After **each approved stage** (design, guidelines, code) |
-| Prototype | `prototype/<folder-name>` (kebab-case, e.g. `prototype/work-description`) | Long | When the Design System Lead **validates** the prototype, or asks for it |
+| Prototype (screens, iterations, fixes) | `component/<prototype-folder>` (the folder name, kebab-case, e.g. `component/work-description`) | Long | When the Design System Lead **validates** the prototype, or asks for it |
 | Governance: backlog, process, skills, `CLAUDE.md`, documentation site, tooling | `governance/<topic>` (kebab-case, e.g. `governance/backlog-process`) | Very short | As soon as the Design System Lead **approves** it |
 
 - Governance is merged first: skills and `CLAUDE.md` guide every other session, so the new rules reach them sooner.
@@ -40,8 +40,7 @@ All conversations are opened in the same Claude project, `BuildDesignSystem`. Ea
 | Conversation | Usage | Branch | End |
 | ------------ | ----- | ------ | --- |
 | **Gouvernance** (one, permanent) | Backlog, process, skills, `CLAUDE.md`, documentation site, tooling | `governance/<topic>`, one topic at a time | Never archived; each topic is merged into `develop` as soon as approved |
-| **Composant `<Name>`** (one per component) | Design, guidelines and code of one component | `component/<Name>` | Archived once the component is `complete` |
-| **Prototype `<Name>`** (one per prototype) | Screens and iterations of one prototype | `prototype/<folder-name>` | Archived once the prototype is validated and merged |
+| **Composant `<Name>`** (one per component, or per prototype) | Design, guidelines and code of one component — or the screens and iterations of one prototype (e.g. `Composant WorkDescription`) | `component/<Name>`, or `component/<prototype-folder>` | Archived once the component is `complete`, or the prototype validated and merged |
 
 - No conversation works on `develop` or `main` directly. Release day (section 8) is run from the **Gouvernance** conversation.
 - At the start of a new conversation, Claude names it after the table (e.g. `Composant Modal`).
