@@ -4221,3 +4221,19 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/TicketCard/` (created)
 - `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B021-3 — Select: guidelines approved
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- Not for switching the view or filtering (Chips) nor for actions (Button). Always a placeholder: no option chosen in advance.
+- Content: label = a noun, no punctuation; placeholder "Choose a …"; error message = one sentence saying how to fix it.
+- Behavior: opens with a click, Enter, Space or Arrow down; focus on the chosen option, otherwise the first; Escape, Tab or a click outside close without changing; the error shows when the list closes without a choice and disappears once an option is chosen.
+- Keyboard: arrows, Home / End, typing a letter goes to the next option starting with it, Enter chooses.
+- Screen reader (`aria-haspopup="listbox"`, `aria-expanded`, `listbox` named by the label, `aria-describedby` + `aria-invalid` for the error), width set by the layout grid column, related components: approved with the guidelines.
+
+**What was done**
+- `components/Select/guidelines.md` written; do's and don'ts shown visually in the chat. `meta.json` status and backlog stage set to `code`.
+
+**Files**
+- `components/Select/guidelines.md`, `components/Select/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)

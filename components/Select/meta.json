@@ -2,7 +2,7 @@
   "name": "Select",
   "description": "Choice of one option in a list.",
   "level": "molecule",
-  "status": "guidelines",
+  "status": "code",
   "version": "0.0",
   "changelog": []
 }
