@@ -1,0 +1,8 @@
+{
+  "name": "SelectOption",
+  "description": "One option of the Select list.",
+  "level": "atom",
+  "status": "guidelines",
+  "version": "0.0",
+  "changelog": []
+}

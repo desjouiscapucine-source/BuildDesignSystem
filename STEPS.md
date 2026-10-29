@@ -4093,6 +4093,24 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `.claude/skills/ticket/SKILL.md` (created)
 - `.claude/skills/backlog/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `.claude/skills/prototype-setup/SKILL.md`, `docs/src/backlog.ts`, `docs/src/pages/TicketDialog.tsx`, `docs/src/docs.css`, `prototypes/README.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
 
+## Step B117-1 — SelectOption: design approved
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- The **Select** (B021) is a **molecule**, one size, with a label above; its options are a building block, **SelectOption** (atom), built first. Ticket B117: Components, priority medium, release R1, worked in the same conversation as the Select.
+- SelectOption content: label, optional leading icon, check mark on the right when selected. Selected look as NavigationItem: `background-brand-subtle`, `text-brand`, text style `label`. States: selected, disabled; `selected` + `disabled` is forbidden (the chosen option always stays available).
+- Label: 25 characters max, single line with an ellipsis. One size: `--space-8` padding and gap, `--radius-8`, `--icon-size-20`, text style `body`. Leading icon `icon-secondary` (not selected).
+- Purpose and property names (`selected`, `disabled`, `icon`) approved with the spec.
+
+**What was done**
+- `components/SelectOption/` created from the template (`meta.json`: atom, status `guidelines` once the design was approved).
+- Design preview (`design/Preview.tsx`, `design/tokens.json`): variants default and selected, each without and with a leading icon, on the list surface; every contrast pair passes AA (lowest 5.35:1).
+- `spec.md` written from the approved decisions.
+
+**Files**
+- `components/SelectOption/` (created)
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B059-1 — Tag: design approved
 **Date:** 2026-10-29
 
