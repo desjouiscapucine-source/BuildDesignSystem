@@ -3849,3 +3849,26 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B107-1 — Git workflow: develop branch, release review and release notes
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- A permanent **`develop`** branch receives the approved work; work branches start from it and are merged into it.
+- On release day, a **review** of what was pushed and committed on `develop`, then `develop` is merged into `main`, tagged `R<n>`.
+- Every release has a **release note**, drafted by Claude and validated during the review, shown under its release on the Release planning page.
+- The root folder of the project stays on `develop`; changes made on the Backlog page are saved in `develop`; a ticket not done on release day is carried over.
+- Ticket priority high, release R1.
+
+**What was done**
+- `git-workflow` skill rewritten around `develop` (sections 1 to 7) and new section 8 "Release day" (prepare, release note, review, merge into `main`, tag, `Step R<n>-1`).
+- `releases/_template.md` (new): template of a release note. `docs/src/pages/ReleasePlanningPage.tsx`, `docs/src/docs.css`: `releases/R<n>.md` shown under its release.
+- `vite.config.ts`, `docs/src/pages/BacklogPage.tsx`: Backlog page changes saved in `develop` from the root folder.
+- `CLAUDE.md` (Git, Backlog) and the `backlog`, `component`, `prototype-setup`, `release-planning`, `orchestrator` skills: `develop` instead of `main`; release day and release notes.
+- Backlog: B107 added (reserved first), done.
+- Verification: type check and build pass; a test release note showed under R1 (then removed).
+- After this step: last merge into `main` with the former rule, `develop` created from `main`, root folder switched to `develop`.
+
+**Files**
+- `releases/_template.md` (new)
+- `.claude/skills/git-workflow/SKILL.md`, `.claude/skills/backlog/SKILL.md`, `.claude/skills/component/SKILL.md`, `.claude/skills/prototype-setup/SKILL.md`, `.claude/skills/release-planning/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `CLAUDE.md`, `docs/src/pages/ReleasePlanningPage.tsx`, `docs/src/pages/BacklogPage.tsx`, `docs/src/docs.css`, `vite.config.ts`, `backlog/backlog.json`, `STEPS.md` (updated)

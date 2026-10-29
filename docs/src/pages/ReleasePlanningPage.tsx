@@ -9,6 +9,14 @@ import {
   type BacklogItem,
   type Release,
 } from "../backlog";
+import { Markdown } from "../Markdown";
+
+// Release notes: releases/R<n>.md (git-workflow section 8), shown under their release.
+const notes: Record<string, string> = Object.fromEntries(
+  Object.entries(
+    import.meta.glob<string>("../../../releases/R*.md", { eager: true, query: "?raw", import: "default" }),
+  ).map(([path, source]) => [path.split("/").at(-1)!.replace(/\.md$/, ""), source]),
+);
 
 // Release planning (B103): one release every two weeks on Friday, R1 on 2026-11-06. A release is the batch of
 // backlog tickets whose `release` field names it (Release list of the Backlog page). Before it has tickets, a release can
@@ -63,6 +71,12 @@ function ReleaseCard({ release, tickets }: { release: Release; tickets: Planned[
             ))}
           </tbody>
         </table>
+      )}
+      {notes[release.id] && (
+        <details className="release-note" open>
+          <summary>Release note</summary>
+          <Markdown source={notes[release.id]} />
+        </details>
       )}
     </li>
   );

@@ -37,7 +37,7 @@ Every task starts here. This skill **only dispatches**: it says which child skil
 | A component becomes complete or a complete component changes; a version or a changelog entry is written | `changelog` |
 | A backlog ticket is created, updated or closed; an idea to add to the backlog | `backlog` |
 | A backlog ticket is created, or planned / moved in a release; a release is discussed | `release-planning` |
-| Every task: which branch to work on (start), commit, update from `main`, merge into `main` | `git-workflow` |
+| Every task: which branch to work on (start), commit, update from `develop`, merge into `develop`; release day | `git-workflow` |
 
 No trigger matches → follow `CLAUDE.md` only.
 

@@ -40,7 +40,7 @@ export function BacklogPage() {
       if (!response.ok) throw new Error(await response.text());
       const data = await response.json();
       setItems(data.items);
-      setError(data.mainError ? `Saved in this folder only, not in main: ${data.mainError}.` : null);
+      setError(data.mainError ? `Saved in this folder only, not in develop: ${data.mainError}.` : null);
     } catch {
       setError("Could not save. Changes are saved only when the site runs with `npm run dev`.");
     }

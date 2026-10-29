@@ -37,7 +37,7 @@ Branches, ticket IDs, reservation and commits are in the `git-workflow` skill: t
 - Status: `in-progress` when work starts, `done` when the work is finished (component complete, prototype validated, governance approved), `rejected` when the Design System Lead drops it.
 - Component: `stage` follows the `meta.json` `status` at each approved stage.
 - Prototype: one entry in `iterations` per review by the Design System Lead; the last `validated` iteration closes the ticket.
-- Changes made by the Design System Lead **on the Backlog page** (approve, reject, status, stage, priority) are saved by the dev server directly in `main` (`git-workflow`, section 7).
+- Changes made by the Design System Lead **on the Backlog page** (approve, reject, status, stage, priority) are saved by the dev server directly in `develop` (`git-workflow`, section 7).
 
 ## Releases
 

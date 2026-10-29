@@ -36,13 +36,13 @@ function applyBacklogChange(file: string, id: string, change: BacklogChange) {
   return data;
 }
 
-// A change made by the Design System Lead on the Backlog page is also saved to main (B092): committed in the
-// root folder of the project, which always holds main, and pushed. Returns an error message, or null.
-function saveBacklogChangeToMain(id: string, change: BacklogChange): string | null {
+// A change made by the Design System Lead on the Backlog page is also saved to develop (B092, B107): committed in
+// the root folder of the project, which always holds develop, and pushed. Returns an error message, or null.
+function saveBacklogChangeToDevelop(id: string, change: BacklogChange): string | null {
   const main = checkouts()[0] ?? root;
   const git = (args: string) => execSync(`git ${args}`, { cwd: main, encoding: "utf8", stdio: "pipe" });
   try {
-    if (git("rev-parse --abbrev-ref HEAD").trim() !== "main") return "the root folder is not on main";
+    if (git("rev-parse --abbrev-ref HEAD").trim() !== "develop") return "the root folder is not on develop";
     if (git("status --porcelain").trim()) return "the root folder has uncommitted changes";
     const summary = Object.entries(change)
       .filter(([key]) => BACKLOG_FIELDS.includes(key))
@@ -50,19 +50,19 @@ function saveBacklogChangeToMain(id: string, change: BacklogChange): string | nu
       .join(", ");
     for (let attempt = 0; attempt < 2; attempt++) {
       git("fetch -q origin");
-      git("merge -q --ff-only origin/main");
-      if (!applyBacklogChange(resolve(main, "backlog/backlog.json"), id, change)) return `${id} is not in main yet`;
-      if (!git("status --porcelain").trim()) return null; // Already saved in main.
+      git("merge -q --ff-only origin/develop");
+      if (!applyBacklogChange(resolve(main, "backlog/backlog.json"), id, change)) return `${id} is not in develop yet`;
+      if (!git("status --porcelain").trim()) return null; // Already saved in develop.
       git("add backlog/backlog.json");
       git(`commit -q -m "Backlog: ${id} ${summary} (Design System Lead, Backlog page)"`);
       try {
-        git("push -q origin main");
+        git("push -q origin develop");
         return null;
       } catch {
-        git("reset -q --hard origin/main"); // main moved meanwhile: start again from it.
+        git("reset -q --hard origin/develop"); // develop moved meanwhile: start again from it.
       }
     }
-    return "main kept moving; try again";
+    return "develop kept moving; try again";
   } catch (error) {
     return String(error).split("\n")[0];
   }
@@ -89,11 +89,11 @@ function backlogApi(): Plugin {
             const { id, change } = JSON.parse(body);
             if (!read().items.some((entry: { id: string }) => entry.id === id))
               return send(404, { error: `Unknown item ${id}` });
-            const servedFromMain = resolve(checkouts()[0] ?? root) === resolve(root);
-            const mainError = saveBacklogChangeToMain(id, change);
-            // Served from a work branch (or main could not be saved): the change is saved here too, so the page
-            // shows it; the same change in main merges without conflict.
-            if (!servedFromMain || mainError) applyBacklogChange(file, id, change);
+            const servedFromRoot = resolve(checkouts()[0] ?? root) === resolve(root);
+            const mainError = saveBacklogChangeToDevelop(id, change);
+            // Served from a work branch (or develop could not be saved): the change is saved here too, so the page
+            // shows it; the same change in develop merges without conflict.
+            if (!servedFromRoot || mainError) applyBacklogChange(file, id, change);
             send(200, { ...read(), mainError });
           } catch (error) {
             send(400, { error: String(error) });

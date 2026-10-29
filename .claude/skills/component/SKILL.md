@@ -29,7 +29,7 @@ Cross-cutting skills, used at every stage (dispatched by `orchestrator`):
 
 1. Find the component in `backlog/backlog.json`.
    - Not in the backlog → ask whether to add it.
-   - Otherwise work on the branch `component/<Name>` (create it, or update it from `main`: `git-workflow`) and set its status to `in-progress`.
+   - Otherwise work on the branch `component/<Name>` (create it, or update it from `develop`: `git-workflow`) and set its status to `in-progress`.
 2. Read `CLAUDE.md` and the `token-naming` skill.
 3. If the component folder does not exist yet:
    - Copy `components/_template/` to `components/<Name>/` (PascalCase, e.g. `SideNavigation/`).
@@ -48,7 +48,7 @@ Read `components/<Name>/meta.json` → `status`: it tells which stage skill appl
 3. Once approved:
    - Set `meta.json` `status` to the next stage.
    - Set the backlog item `stage` to the same value.
-   - Log the approval in `STEPS.md`, commit and push on `component/<Name>`, then merge it into `main` (`git-workflow`).
+   - Log the approval in `STEPS.md`, commit and push on `component/<Name>`, then merge it into `develop` (`git-workflow`).
 4. If changes are requested: apply them, then go back to step 1 of this gate.
 
 ## 4. After the last stage
@@ -57,7 +57,7 @@ When the code stage is approved, the component is **complete**:
 - Set `meta.json` `status` to **`complete`** (the site shows every stage checked and a Complete badge), `version` to **`1.0`**, and add the changelog entry `1.0` (`changelog` skill).
 - Set the backlog item status to `done`.
 - Export the component from `components/index.ts` (if not already done at the code stage).
-- Log it in `STEPS.md`, commit, merge `component/<Name>` into `main`, then delete the branch and offer to archive the conversation (`git-workflow`).
+- Log it in `STEPS.md`, commit, merge `component/<Name>` into `develop`, then delete the branch and offer to archive the conversation (`git-workflow`).
 
 ## Version and changelog
 
