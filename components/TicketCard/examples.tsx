@@ -1,8 +1,8 @@
 // Live examples shown on the component's documentation page.
-// The menus are native selects (placeholder) until the Select component (B021) is coded.
+// The menus are Selects (B021), given by the page: examples/TicketMenus.tsx.
 import { useState } from "react";
 import type { Example } from "../../docs/src/types";
-import { PlaceholderMenus } from "./examples/PlaceholderMenus";
+import { TicketMenus } from "./examples/TicketMenus";
 import { TicketCard } from "./TicketCard";
 
 function OpenDemo() {
@@ -15,7 +15,7 @@ function OpenDemo() {
         description="A design system component for the card of a backlog ticket."
         category="Components"
         decided
-        menus={<PlaceholderMenus />}
+        menus={<TicketMenus />}
         onOpen={() => setOpened("B115")}
       />
       <p style={{ margin: 0 }} aria-live="polite">
@@ -37,7 +37,7 @@ export const examples: Example[] = [
           description="A design system component for the card of a backlog ticket."
           category="Components"
           decided
-          menus={<PlaceholderMenus />}
+          menus={<TicketMenus />}
         />
       </div>
     ),
@@ -52,7 +52,7 @@ export const examples: Example[] = [
           title="Ticket description template"
           description="A template for the description of every backlog ticket."
           category="Governance"
-          menus={<PlaceholderMenus stage={false} />}
+          menus={<TicketMenus stage={false} />}
         />
       </div>
     ),
@@ -62,7 +62,7 @@ export const examples: Example[] = [
     description: "The description row is not shown.",
     render: () => (
       <div style={{ maxWidth: "360px" }}>
-        <TicketCard ticketId="B059" title="Tag" category="Components" decided menus={<PlaceholderMenus />} />
+        <TicketCard ticketId="B059" title="Tag" category="Components" decided menus={<TicketMenus />} />
       </div>
     ),
   },
@@ -77,7 +77,7 @@ export const examples: Example[] = [
           description="A develop branch that receives the approved work of every piece of work, a review of what develop adds to main on release day, then a release note and a tag for each release."
           category="Governance"
           decided
-          menus={<PlaceholderMenus stage={false} />}
+          menus={<TicketMenus stage={false} />}
         />
       </div>
     ),
@@ -93,13 +93,13 @@ export const examples: Example[] = [
     render: () => (
       <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: "var(--space-16)", maxWidth: "360px" }}>
         <li>
-          <TicketCard ticketId="B021" title="Select" description="Choice in a list." category="Components" decided menus={<PlaceholderMenus />} />
+          <TicketCard ticketId="B021" title="Select" description="Choice in a list." category="Components" decided menus={<TicketMenus />} />
         </li>
         <li>
-          <TicketCard ticketId="B115" title="TicketCard" description="A design system component for the card of a backlog ticket." category="Components" decided menus={<PlaceholderMenus />} />
+          <TicketCard ticketId="B115" title="TicketCard" description="A design system component for the card of a backlog ticket." category="Components" decided menus={<TicketMenus />} />
         </li>
         <li>
-          <TicketCard ticketId="B059" title="Tag" category="Components" decided menus={<PlaceholderMenus />} />
+          <TicketCard ticketId="B059" title="Tag" category="Components" decided menus={<TicketMenus />} />
         </li>
       </ul>
     ),

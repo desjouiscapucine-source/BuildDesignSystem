@@ -1,6 +1,6 @@
 /* TicketCard — semantic design tokens only. See spec.md.
    Look of Card in its own clickable container.
-   Classes: .ds-ticket-card · parts .ds-ticket-card-tags, -id, -title, -description, -menus */
+   Classes: .ds-ticket-card · parts .ds-ticket-card-tags, -id, -title, -description, -menus (grid of 2 columns) */
 .ds-ticket-card {
   position: relative;
   box-sizing: border-box;
@@ -16,8 +16,9 @@
   cursor: pointer;
 }
 
-/* State layer in the content color */
-.ds-ticket-card::after {
+/* State layer in the content color: drawn under the content (::before), so the menus stay on top.
+   No card state layer while the pointer is on a menu: the hover belongs to the Select. */
+.ds-ticket-card::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -27,9 +28,9 @@
   pointer-events: none;
   transition: opacity var(--duration-100) var(--easing-ease-out);
 }
-.ds-ticket-card:hover::after { opacity: var(--state-layer-hover); }
-.ds-ticket-card:focus-visible::after { opacity: var(--state-layer-focus); }
-.ds-ticket-card:active::after { opacity: var(--state-layer-pressed); }
+.ds-ticket-card:hover:not(:has(.ds-ticket-card-menus:hover))::before { opacity: var(--state-layer-hover); }
+.ds-ticket-card:focus-visible::before { opacity: var(--state-layer-focus); }
+.ds-ticket-card:active:not(:has(.ds-ticket-card-menus:active))::before { opacity: var(--state-layer-pressed); }
 .ds-ticket-card:focus-visible {
   outline: var(--border-width-2) solid var(--color-border-focus);
   outline-offset: var(--border-width-2);
@@ -71,10 +72,11 @@
   line-height: var(--typography-body-line-height);
 }
 
-/* Menus row: wraps when too long; the menus keep their own cursor */
+/* Menus: grid of 2 columns of equal width; the menus keep their own cursor */
 .ds-ticket-card-menus {
-  display: flex;
-  flex-wrap: wrap;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-8);
   cursor: auto;
 }

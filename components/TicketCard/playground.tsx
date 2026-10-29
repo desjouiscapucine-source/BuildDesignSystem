@@ -1,10 +1,12 @@
 // Playground tab of the documentation site: the component live, with a control per prop.
-// The menus are native selects (placeholder) until the Select component (B021) is coded.
+// The menus are Selects (B021), given by the page: examples/TicketMenus.tsx.
 import { code, definePlayground, jsx } from "../../docs/src/playground";
-import { PlaceholderMenus } from "./examples/PlaceholderMenus";
+import { TicketMenus } from "./examples/TicketMenus";
 import { TicketCard } from "./TicketCard";
 
 export const playground = definePlayground({
+  // Room for the list of a menu opened at the bottom of the card.
+  minHeight: 520,
   controls: {
     ticketId: { type: "text", default: "B115", description: "ID of the ticket (e.g. B115), on the right of the tags row." },
     title: { type: "text", default: "TicketCard", description: "Title of the ticket: a short noun phrase, sentence case, no period. Shown in full." },
@@ -31,7 +33,7 @@ export const playground = definePlayground({
         category={category}
         decided={decided}
         headingLevel={Number(headingLevel) as 3}
-        menus={<PlaceholderMenus stage={category === "Components"} />}
+        menus={<TicketMenus stage={category === "Components"} />}
       />
     </div>
   ),

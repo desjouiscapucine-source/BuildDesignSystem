@@ -4305,3 +4305,23 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/TicketCard/TicketCard.tsx`, `TicketCard.css`, `examples.tsx`, `playground.tsx`, `examples/PlaceholderMenus.tsx` (created / updated)
 - `components/index.ts`, `STEPS.md` (updated)
+
+## Step B115-6 — TicketCard: code approved, component complete
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- The menus are the real **Select** (B021, complete), in a **grid of 2 columns** (Status, Priority / Release, Stage), `--space-8` apart (spec and guidelines updated).
+- **No card state layer while the pointer is on a menu** (the hover and pressed states belong to the Select); the card state layer is drawn under the menus (spec, States).
+- Playground canvas taller (`minHeight` 520px) so the list of a menu opened at the bottom of the card is not cut off.
+- Code approved: TicketCard is **complete**, version **1.0**.
+
+**What was done**
+- `TicketCard.css`: menus grid of 2 columns; state layer on `::before`, none while a menu is hovered or pressed. `examples/TicketMenus.tsx` (four Selects) replaces the placeholder menus in the examples and the playground.
+- `meta.json`: status `complete`, version `1.0`, changelog entry `1.0`. Spec: no open question left.
+- Verification: type check and build pass; a choice in a menu does not open the card; hovering a menu does not tint the card; the opened Stage list fits in the Playground canvas.
+- Ticket B115 stays `in-progress`: the Backlog page still has to show its tickets with TicketCard.
+
+**Files**
+- `components/TicketCard/TicketCard.css`, `examples.tsx`, `playground.tsx`, `spec.md`, `guidelines.md`, `meta.json` (updated)
+- `components/TicketCard/examples/TicketMenus.tsx` (created), `components/TicketCard/examples/PlaceholderMenus.tsx` (removed)
+- `STEPS.md` (updated)

@@ -33,7 +33,7 @@
 - **Click**: a click anywhere on the card opens the ticket in its modal, except on the menus.
 - **Menu change**: saved at once; the card moves to its new column (status) or its new place in the column (priority).
 - **Error**: when a change cannot be saved, an error message is shown above the board (`role="alert"`) and the card keeps its old value.
-- **Long text**: the title and the description wrap, in full; the tags row and the menus row wrap to the next line when they do not fit.
+- **Long text**: the title and the description wrap, in full; the tags row wraps to the next line when it does not fit; the menus stay in 2 columns.
 - **No description**: the description row is not shown.
 - **Responsive**: the card takes the full width of its column, at every breakpoint.
 
