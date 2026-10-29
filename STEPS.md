@@ -4129,3 +4129,20 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/Tag/meta.json`, `components/Tag/spec.md`, `components/Tag/design/Preview.tsx`, `components/Tag/design/tokens.json` (created)
 - `tokens/contrast-pairs.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B059-2 — Tag: guidelines approved
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- When to use: name a category, show a status, next to a title or in the metadata of a card. When not to use: a number → Badge (B025), filter or switch → Chip, action → Button, message → inline alert (not in the design system yet).
+- `neutral` for categories; a feedback tone only when it matches the meaning; never color alone; at most 3 tags side by side, `space.4` apart; tags wrap to the next line when the space runs out.
+- Content: 1 or 2 words, sentence case, no final period; same wording everywhere; icon only to reinforce the label.
+- Accessibility: label read as plain text, icon decorative (`aria-hidden`), not focusable.
+- Four do / don't pairs (tone and meaning, short label, at most 3 tags, Chip to filter). Guidelines stage approved; next stage: Code.
+
+**What was done**
+- `components/Tag/guidelines.md` written; `meta.json` status and ticket B059 stage set to `code`.
+
+**Files**
+- `components/Tag/guidelines.md` (created)
+- `components/Tag/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
