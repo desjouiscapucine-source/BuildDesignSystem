@@ -979,6 +979,16 @@
       "description": "On each component page, show the coded React component live, like Storybook: a canvas with controls to change its props.",
       "priority": "high",
       "release": "R1"
+    },
+    {
+      "id": "B112",
+      "title": "Backlog cleanup",
+      "category": "Tooling",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "Close the duplicate tickets (B071 to B074) and the tickets already covered by other work (B032, B042, B043, B100).",
+      "priority": "high",
+      "release": "R1"
     }
   ]
 }
