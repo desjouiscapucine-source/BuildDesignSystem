@@ -1213,6 +1213,22 @@
       ],
       "priority": "medium",
       "release": "R1"
+    },
+    {
+      "id": "B128",
+      "title": "Agents: audit proposes tickets, fix agent implements them",
+      "category": "Tooling",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "ds-compliance-audit proposes the tickets from its findings; a second agent, ds-compliance-fix, implements a validated ticket on the documentation site.",
+      "why": "The audit findings become tickets without manual sorting, and the approved fixes are carried out by a dedicated agent; the next audit checks its work.",
+      "scope": "Proposed tickets section in the audit report; new agent .claude/agents/ds-compliance-fix.md allowed to change docs/ only (tokens/, components/ and prototypes/ stay forbidden to agents); rules in CLAUDE.md, git-workflow and orchestrator.",
+      "doneWhen": [
+        "The audit report ends with proposed tickets, shown in the chat and created only once the Design System Lead agrees.",
+        "ds-compliance-fix implements a validated ticket in docs/ only, after the Design System Lead answered its decisions; Claude checks it and gives the preview before any commit."
+      ],
+      "priority": "medium",
+      "release": "R1"
     }
   ]
 }
