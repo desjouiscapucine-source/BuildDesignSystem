@@ -3815,3 +3815,25 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `.claude/skills/backlog/SKILL.md` (created)
 - `.claude/skills/orchestrator/SKILL.md`, `.claude/skills/git-workflow/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B103-1 — Release planning
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- A release is a batch of backlog tickets delivered on a given date, **every two weeks on Friday**, named **R1, R2…**; R1 on 2026-11-06.
+- A Release planning page in Governance; a ticket is linked to a release with a Release list on the Backlog page; what is planned without a ticket is written as plain text.
+- A ticket not done on the date of its release moves automatically to the next release.
+- When a ticket is created, its release is asked together with its priority: a `release-planning` skill.
+- Plan: R1 — B018 Link, B029 Modal (priority high), B104 Navigation architecture (new), git workflow organization (B100, on its branch). R2 — B056 Search field, B084 Dedicated agents, panel bug of WorkDescription (B102, on its branch). R3 — B105 Chatbot, B106 Task (new components). R4 — B031 WorkDescription, B088 Landing page illustrations.
+
+**What was done**
+- `backlog/backlog.json`: `releases` (`first`, `everyDays`, `planned`); tickets B104, B105, B106 created (reserved first); the releases of B018, B029, B056, B084, B031, B088 and the priority of B029 were saved directly in `main` from the Backlog page API.
+- `docs/src/backlog.ts`: `release` field, release dates, list of releases, date format. `docs/src/pages/BacklogPage.tsx`: Release list on every ticket. `vite.config.ts`: `release` can be changed from the page.
+- New page `docs/src/pages/ReleasePlanningPage.tsx` (`#/releases`): one card per release (date, planned lines, tickets sorted by priority, status, progress), late tickets shown in the next release, past releases folded. In Governance after Changelog (`docs/src/structure.ts`, icon `event`), routed in `docs/src/App.tsx`, styles in `docs/src/docs.css`.
+- New skill `.claude/skills/release-planning/SKILL.md`. `backlog` skill: release asked with the priority at creation; release rules moved to the new skill. `orchestrator`: dispatch row. `navigation` skill and Navigation structure page: Release planning under Changelog. `CLAUDE.md`: Backlog section.
+- Backlog: B103 done.
+- Verification: type check and build pass; the page shows R1 to R4 with their tickets and planned lines, no console errors.
+
+**Files**
+- `.claude/skills/release-planning/SKILL.md`, `docs/src/pages/ReleasePlanningPage.tsx` (new)
+- `backlog/backlog.json`, `docs/src/backlog.ts`, `docs/src/pages/BacklogPage.tsx`, `docs/src/pages/NavigationPage.tsx`, `docs/src/structure.ts`, `docs/src/App.tsx`, `docs/src/docs.css`, `vite.config.ts`, `.claude/skills/backlog/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `.claude/skills/navigation/SKILL.md`, `CLAUDE.md`, `STEPS.md` (updated)

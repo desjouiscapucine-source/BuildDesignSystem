@@ -26,6 +26,8 @@ export interface BacklogItem {
   description?: string;
   stage?: Stage;
   priority?: BacklogPriority;
+  /** Release that delivers the ticket (R1, R2…); absent = not planned. */
+  release?: string;
   /** Prototype tickets: folder name in prototypes/ (its spec is prototypes/<folder>/spec.md). */
   prototype?: string;
   /** Prototype tickets: history of the iterations, oldest first. */
@@ -80,3 +82,49 @@ export function useBacklog() {
 
   return { items, setItems, error, setError };
 }
+
+/** Release calendar (backlog.json `releases`): R1 on `first`, then one every `everyDays` days. */
+const calendar = (initial as { releases?: { first: string; everyDays: number; planned?: Record<string, string[]> } })
+  .releases ?? { first: "2026-11-06", everyDays: 14 };
+
+/** What is planned for a release before it has tickets (backlog.json `releases.planned`), by release id. */
+export const releasePlans: Record<string, string[]> = calendar.planned ?? {};
+
+export interface Release {
+  id: string;
+  /** YYYY-MM-DD */
+  date: string;
+}
+
+/** Date of release R<n>. */
+export function releaseDate(n: number): string {
+  const date = new Date(`${calendar.first}T00:00:00Z`);
+  date.setUTCDate(date.getUTCDate() + (n - 1) * calendar.everyDays);
+  return date.toISOString().slice(0, 10);
+}
+
+const releaseNumber = (id: string) => Number(id.replace(/^R/, "")) || 0;
+
+/** Releases from R1 to the last one used by a ticket, plus the next upcoming ones (at least `ahead`). */
+export function releases(items: BacklogItem[], ahead = 3): Release[] {
+  const today = new Date().toISOString().slice(0, 10);
+  let next = 1;
+  while (releaseDate(next) < today) next++;
+  const used = Math.max(
+    0,
+    ...items.map((item) => (item.release ? releaseNumber(item.release) : 0)),
+    ...Object.keys(releasePlans).map(releaseNumber),
+  );
+  const last = Math.max(used, next + ahead - 1);
+  return Array.from({ length: last }, (_, index) => ({ id: `R${index + 1}`, date: releaseDate(index + 1) }));
+}
+
+/** "Fri 6 Nov 2026" */
+export const formatReleaseDate = (date: string) =>
+  new Date(`${date}T00:00:00Z`).toLocaleDateString("en-GB", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  });

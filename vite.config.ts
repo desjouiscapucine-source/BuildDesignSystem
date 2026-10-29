@@ -20,7 +20,7 @@ const prototypePages = Object.fromEntries(
 // Updates are applied to the file on disk one item at a time, so the page never
 // overwrites items added to the file by someone else in the meantime.
 type BacklogChange = Record<string, unknown>;
-const BACKLOG_FIELDS = ["status", "stage", "priority"];
+const BACKLOG_FIELDS = ["status", "stage", "priority", "release"];
 
 // Applies a change to one item of a backlog file. Returns the new data, or null if the item is not in it.
 function applyBacklogChange(file: string, id: string, change: BacklogChange) {

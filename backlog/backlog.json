@@ -875,7 +875,7 @@
       "id": "B103",
       "title": "Release planning",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "Releases R1, R2… every two weeks on Friday, starting on 2026-11-06: each one is a batch of backlog tickets (field release). Release planning page in Governance, and a Release list on the Backlog page."
     },

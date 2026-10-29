@@ -1,8 +1,10 @@
 import { useState } from "react";
 import type { Stage } from "../types";
 import {
+  formatReleaseDate,
   priorityLabels,
   priorityRank,
+  releases,
   statusLabels,
   useBacklog,
   type BacklogItem as Item,
@@ -26,6 +28,7 @@ export function BacklogPage() {
   const categories = ["All", ...new Set(items.map((item) => item.category))];
   const visible = items.filter((item) => category === "All" || item.category === category);
   const rejected = visible.filter((item) => item.status === "rejected");
+  const releaseList = releases(items);
 
   async function update(id: string, change: Partial<Item>) {
     try {
@@ -79,6 +82,17 @@ export function BacklogPage() {
             {(Object.keys(priorityLabels) as Priority[]).map((priority) => (
               <option key={priority} value={priority}>
                 {priorityLabels[priority]}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Release
+          <select value={item.release ?? ""} onChange={(event) => update(item.id, { release: event.target.value || null } as Partial<Item>)}>
+            <option value="">None</option>
+            {releaseList.map((release) => (
+              <option key={release.id} value={release.id}>
+                {release.id} · {formatReleaseDate(release.date)}
               </option>
             ))}
           </select>
