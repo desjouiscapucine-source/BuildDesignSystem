@@ -282,7 +282,8 @@
           "decision": "changes-requested"
         }
       ],
-      "priority": "high"
+      "priority": "high",
+      "release": "R4"
     },
     {
       "id": "B032",
