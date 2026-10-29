@@ -4,6 +4,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Button, Chip } from "@ds/components";
 import { tokens, textStyles, type Token } from "../../tokens/lib";
+import { IconSelect } from "./IconSelect";
 import type { ComponentDoc } from "./types";
 import {
   defaultArgs,
@@ -291,6 +292,8 @@ function ControlInput({
           ))}
         </select>
       );
+    case "icon":
+      return <IconSelect label={label} value={value as string} optional={control.optional} onChange={onChange} />;
     case "number":
       return (
         <input

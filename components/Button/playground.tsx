@@ -11,7 +11,7 @@ export const playground = definePlayground({
       description: "Level of importance of the action. Default: primary.",
     },
     children: { type: "text", default: "Save changes", description: "The label: starts with a verb, sentence case, 25 characters maximum." },
-    icon: { type: "text", default: "", description: "Leading icon: a Material Symbols name (e.g. add). Decorative." },
+    icon: { type: "icon", default: "", optional: true, description: "Leading icon: a Material Symbols name (e.g. add). Decorative." },
     disabled: { type: "boolean", default: false, description: "The action is not available. Ignored with href." },
     href: { type: "text", default: "", description: "With a link: rendered as <a href>, same look. A link is never disabled." },
   },

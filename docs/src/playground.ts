@@ -15,6 +15,8 @@ export type PlaygroundControl = ControlBase &
     | { type: "number"; min: number; max: number; default: number }
     /** A date, as an ISO string (YYYY-MM-DD). */
     | { type: "date"; default: string }
+    /** A Material Symbols icon name, picked in the list of every icon; `optional`: "None" ("") is offered. */
+    | { type: "icon"; default: string; optional?: boolean }
   );
 
 type Controls = Record<string, PlaygroundControl>;

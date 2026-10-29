@@ -10,7 +10,7 @@ export const playground = definePlayground({
       default: "primary",
       description: "Level of importance of the action. Default: primary.",
     },
-    icon: { type: "text", default: "close", description: "The icon: a Material Symbols name (e.g. close, timeline)." },
+    icon: { type: "icon", default: "close", description: "The icon: a Material Symbols name (e.g. close, timeline)." },
     label: {
       type: "text",
       default: "Close the timeline",

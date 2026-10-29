@@ -94,7 +94,7 @@ Once a component is coded (`meta.json` status `code` or `complete`), the **Playg
 - The **JSX code** of the component with the values of the controls, with a Copy button.
 
 `playground.tsx` exports `playground = definePlayground({ controls, render, code })` (`docs/src/playground.ts`):
-- `controls`: one entry per prop, keyed by the prop name, in the order of the table. Types: `text`, `boolean`, `select` (`options`), `number` (`min`, `max`), `date` (ISO string). Each has a `default` and a `description` (the prop's description from the props type).
+- `controls`: one entry per prop, keyed by the prop name, in the order of the table. Types: `text`, `boolean`, `select` (`options`), `number` (`min`, `max`), `date` (ISO string), `icon` (every Material Symbols icon in a dropdown list showing each icon, `docs/src/IconSelect.tsx` + `docs/src/material-symbols.json`; `optional: true` offers "None"). Each has a `default` and a `description` (the prop's description from the props type).
 - `render(args)`: the component with the values. Content comes from the approved examples (`never-invent`). A component that needs a context (a list, the brand background) is wrapped as in its examples.
 - `code(args)`: the JSX with `jsx(name, props, children)` — empty and `false` props are left out; `code("images")` writes a prop as code (`images={images}`).
 - `minHeight` (px): for a component that opens over the page (viewer, panel).

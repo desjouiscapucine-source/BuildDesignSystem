@@ -6,7 +6,7 @@ import { NavigationItem } from "./NavigationItem";
 export const playground = definePlayground({
   controls: {
     children: { type: "text", default: "Reports", description: "The label: a noun, same as the page title, 20 characters maximum." },
-    icon: { type: "text", default: "bar_chart", description: "Icon before the label: a Material Symbols name. Required at the top level." },
+    icon: { type: "icon", default: "bar_chart", description: "Icon before the label: a Material Symbols name. Required at the top level." },
     href: { type: "text", default: "#", description: "The page the item leads to." },
     selected: { type: "boolean", default: false, description: "The item of the page currently displayed. Ignored when disabled." },
     disabled: { type: "boolean", default: false, description: "The page is not available (to avoid: prefer hiding the item)." },

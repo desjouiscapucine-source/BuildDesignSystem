@@ -4023,3 +4023,20 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/Dialog/guidelines.md`, `components/Dialog/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B113-1 — Playground: list of icons
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- In the Playground, the icon controls (Button, IconButton, NavigationItem) offer the list of **every Material Symbols icon**, in a **dropdown list**, and **each option shows its icon**. Ticket B113: Tooling, priority medium, release R1.
+
+**What was done**
+- `docs/src/material-symbols.json`: the 4,304 icon names, from Google's codepoints file (`google/material-design-icons`, variable font Outlined), kept in the repository (everything stays local). The whole font is already loaded, so every icon shows.
+- New control type `icon` (`optional: true` offers "None"): Button (optional), IconButton and NavigationItem (required).
+- `docs/src/IconSelect.tsx`: a dropdown list built for the site (a native `<select>` cannot show the icon font in its options): the button shows the chosen icon; each option shows its icon and name; keyboard like a select (↑ / ↓, Home / End, Page Up / Down, Enter or Space, Escape, typing jumps to a name); placed over the page under the button (above when there is no room), so the table of the controls does not cut it.
+- `component-code` skill: the `icon` control type.
+- Verification: type check and build pass; choosing an icon (click or keyboard) changes the canvas and the code, and focus goes back to the button.
+
+**Files**
+- `docs/src/IconSelect.tsx`, `docs/src/material-symbols.json` (created)
+- `docs/src/playground.ts`, `docs/src/PlaygroundTab.tsx`, `docs/src/docs.css`, `components/Button/playground.tsx`, `components/IconButton/playground.tsx`, `components/NavigationItem/playground.tsx`, `.claude/skills/component-code/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
