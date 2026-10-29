@@ -989,6 +989,16 @@
       "description": "Close the duplicate tickets (B071 to B074) and the tickets already covered by other work (B032, B042, B043, B100).",
       "priority": "high",
       "release": "R1"
+    },
+    {
+      "id": "B113",
+      "title": "Playground: list of icons",
+      "category": "Tooling",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "In the Playground, the icon controls (Button, IconButton, NavigationItem) offer the list of every Material Symbols icon in a dropdown, instead of a text field.",
+      "priority": "medium",
+      "release": "R1"
     }
   ]
 }
