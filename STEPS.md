@@ -3940,3 +3940,25 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `.claude/skills/git-workflow/SKILL.md`, `.claude/skills/prototype-setup/SKILL.md`, `CLAUDE.md`, `docs/src/pages/GitWorkflowPage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B111-1 — Live component playground (Storybook-like)
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- On each coded component page, a **Playground** tab shows the React component live, like Storybook. Ticket B111: Tooling, priority high, release R1.
+- The Playground is shown from the Code stage. During the Code stage, the Design preview tab stays next to it (to check the code against the design); once the component is complete, the Playground replaces it.
+- Layout: the canvas, then the controls under it (one row per prop), then the JSX code updated live (Copy button). Screen sizes Mobile 375px / Tablet 768px / Desktop 1024px, and a Reset button.
+- Controls declared per component in `components/<Name>/playground.tsx`.
+- A **Tokens** section keeps the possibility to change the tokens: every token used in the component's CSS can be replaced by another of its family in the canvas, to try only (nothing saved).
+
+**What was done**
+- `docs/src/playground.ts`: `definePlayground()` (typed controls: text, boolean, select, number, date), `jsx()` (JSX code from the values), messages between the page and the canvas.
+- Canvas in an iframe (`docs/playground.html`, `docs/src/playground-frame.tsx`) at the real screen width, so media queries and window sizes are the real ones; shown scaled down when wider than the page; height follows the content (`minHeight` for the ImageViewer and the Timeline panel).
+- `docs/src/PlaygroundTab.tsx`: toolbar (screen sizes with Chips, Reset), canvas, Controls, Tokens (read from the component's CSS; text styles grouped), Code. `docs/src/playgrounds.ts` discovers the playgrounds; `playground.tsx` is left out of the Code tab.
+- A `playground.tsx` for the 11 components, with the content of their approved examples; template `components/_template/playground.tsx`.
+- Skills `component-code` (Playground section, files, verification), `component`, `component-spec`; `components/README.md`; `CLAUDE.md` (project structure).
+- Verification: type check and build pass; every control and token menu changes the canvas and the code, at the three screen sizes (Timeline open button below desktop, ImageViewer opening with focus on Close).
+
+**Files**
+- `docs/playground.html`, `docs/src/playground.ts`, `docs/src/playgrounds.ts`, `docs/src/playground-frame.tsx`, `docs/src/PlaygroundTab.tsx`, `components/*/playground.tsx`, `components/_template/playground.tsx` (created)
+- `docs/src/pages/ComponentPage.tsx`, `docs/src/registry.ts`, `docs/src/docs.css`, `vite.config.ts`, `.claude/skills/component-code/SKILL.md`, `.claude/skills/component/SKILL.md`, `.claude/skills/component-spec/SKILL.md`, `components/README.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)

@@ -42,7 +42,7 @@ const previews = import.meta.glob<ComponentType<PreviewProps>>(
 // Component folder name: the segment right after "components/".
 // Source files of the coded component (not the examples, not the design preview).
 const sources = import.meta.glob<string>(
-  ["../../components/*/*.tsx", "../../components/*/*.css", "!../../components/*/examples.tsx", "!../../components/_*/**"],
+  ["../../components/*/*.tsx", "../../components/*/*.css", "!../../components/*/examples.tsx", "!../../components/*/playground.tsx", "!../../components/_*/**"],
   { eager: true, query: "?raw", import: "default" },
 );
 

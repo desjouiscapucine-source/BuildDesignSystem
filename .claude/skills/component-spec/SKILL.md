@@ -38,7 +38,7 @@ As soon as the component folder exists, create its **design preview**, and keep 
 - Copy `components/_template/design/` to `components/<Name>/design/`:
   - `Preview.tsx` — a visual mock-up of the component, **not the final code**. Every visual value is a `--preview-<slot>` variable.
   - `tokens.json` — the **slots** (visual properties: background, text, border, padding, radius, text style…), the **token chosen for each slot, per variant**, state overrides (e.g. disabled), the default content and the contrast pairs to check.
-- The preview appears in the **Design preview** tab of the component page (`/docs/#/components/<slug>`): every state side by side (default, hover, focus, pressed, disabled), a field to change the content, a token menu per slot and a live contrast check.
+- The preview appears in the **Design preview** tab of the component page (`/docs/#/components/<slug>`): every state side by side (default, hover, focus, pressed, disabled), a field to change the content, a token menu per slot and a live contrast check. From the Code stage, the **Playground** tab (the React component live) is shown next to it, and replaces it once the component is complete (B111).
 - Slot names, token choices and preview content are **proposals** until approved.
 
 ### 3. Define the types

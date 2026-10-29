@@ -340,6 +340,7 @@ export default defineConfig({
       input: {
         home: resolve(root, "index.html"),
         docs: resolve(root, "docs/index.html"),
+        "docs-playground": resolve(root, "docs/playground.html"),
         prototypes: resolve(root, "prototypes/index.html"),
         ...prototypePages,
       },
