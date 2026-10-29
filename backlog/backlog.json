@@ -488,7 +488,8 @@
       "origin": "decided",
       "description": "On the documentation site, not defined in the design system yet. Top bar of the site: brand name and logo, search field, work-time clock, shortcuts.",
       "stage": "design",
-      "release": "R1"
+      "release": "R1",
+      "priority": "high"
     },
     {
       "id": "B056",
