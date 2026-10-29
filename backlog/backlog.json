@@ -1039,6 +1039,17 @@
       ],
       "priority": "medium",
       "release": "R1"
+    },
+    {
+      "id": "B117",
+      "title": "SelectOption",
+      "category": "Components",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "One option of the Select list. Building block of the Select (B021), built first.",
+      "stage": "design",
+      "priority": "medium",
+      "release": "R1"
     }
   ]
 }
