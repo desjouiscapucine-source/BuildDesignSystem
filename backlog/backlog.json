@@ -932,7 +932,7 @@
       "id": "B109",
       "title": "See the branches: announce rule and Branches page",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "Claude gives the branch at the start of every task and in every validation message. A Branches page in Governance lists every branch with its conversation, folder, ticket and position against develop, and what develop adds to main.",
       "priority": "medium",

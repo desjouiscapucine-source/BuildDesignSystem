@@ -447,6 +447,8 @@ code {
   .git-flow-arrow .ds-icon { transform: rotate(90deg); }
 }
 
+.branch-note { color: var(--color-text-secondary); font-size: var(--typography-body-sm-size); }
+
 /* ---------- Release planning ---------- */
 .release-list { display: flex; flex-direction: column; gap: var(--space-16); margin: 0; padding: 0; list-style: none; }
 .release-card {

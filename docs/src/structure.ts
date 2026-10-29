@@ -52,7 +52,7 @@ const documentation: NavNode = {
       href: "#/governance",
       label: "Governance",
       icon: "gavel",
-      description: "Backlog, project skills, git workflow, changelog and release planning",
+      description: "Backlog, project skills, git workflow, branches, changelog and release planning",
       children: [
         { href: "#/backlog", label: "Backlog", icon: "view_kanban", description: "Tasks still to do" },
         {
@@ -66,6 +66,12 @@ const documentation: NavNode = {
           label: "Git workflow",
           icon: "account_tree",
           description: "How the work goes from a branch to a release",
+        },
+        {
+          href: "#/branches",
+          label: "Branches",
+          icon: "fork_right",
+          description: "Every branch, its conversation and what the next release contains",
         },
         {
           href: "#/changelog",

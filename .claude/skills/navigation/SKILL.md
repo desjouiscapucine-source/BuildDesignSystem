@@ -31,6 +31,7 @@ Level 2   │   ├── Governance
 Level 3   │   │   ├── Backlog             (a ticket opens in a modal)
 Level 3   │   │   ├── How to use skills
 Level 3   │   │   ├── Git workflow        (organization diagram, link to the git-workflow skill)
+Level 3   │   │   ├── Branches            (every branch, its conversation, the next release)
 Level 3   │   │   ├── Changelog           (every version of every component)
 Level 3   │   │   └── Release planning    (the tickets of each release)
 Level 2   │   ├── Foundations             (one page per category)

@@ -241,8 +241,92 @@ function workTimeApi(): Plugin {
   };
 }
 
+// Branches of the repository for the Branches page (B109, local dev server only): every branch on GitHub and in a
+// local folder, its Claude conversation (read from the Claude app's session files), its ticket and its position
+// against develop; plus what develop adds to main (the next release).
+function branchesApi(): Plugin {
+  return {
+    name: "branches-api",
+    configureServer(server) {
+      server.middlewares.use("/api/branches", (_req, res) => {
+        const git = (args: string) => {
+          try {
+            return execSync(`git ${args}`, { cwd: root, encoding: "utf8", stdio: "pipe" }).trim();
+          } catch {
+            return "";
+          }
+        };
+        git("fetch -q --prune origin");
+        // Conversations of the Claude app, by folder (title, archived).
+        const conversations = new Map<string, { title: string; archived: boolean }>();
+        const sessions = resolve(homedir(), "Library/Application Support/Claude/claude-code-sessions");
+        const walk = (dir: string, depth: number) => {
+          if (depth > 3 || !existsSync(dir)) return;
+          for (const entry of readdirSync(dir, { withFileTypes: true })) {
+            const path = resolve(dir, entry.name);
+            if (entry.isDirectory()) walk(path, depth + 1);
+            else if (entry.name.endsWith(".json")) {
+              try {
+                const session = JSON.parse(readFileSync(path, "utf8"));
+                const folder = session.worktreePath ?? session.cwd;
+                const known = conversations.get(folder);
+                if (folder && session.title && (!known || known.archived))
+                  conversations.set(folder, { title: session.title, archived: Boolean(session.isArchived) });
+              } catch {
+                // Not a session file.
+              }
+            }
+          }
+        };
+        walk(sessions, 0);
+        // Folders (git worktrees) and the branch checked out in each one.
+        const folders = new Map<string, string>();
+        let path = "";
+        for (const line of git("worktree list --porcelain").split("\n")) {
+          if (line.startsWith("worktree ")) path = line.slice("worktree ".length);
+          if (line.startsWith("branch refs/heads/")) folders.set(line.slice("branch refs/heads/".length), path);
+        }
+        const remote = git("for-each-ref --format='%(refname:short)' refs/remotes/origin")
+          .split("\n")
+          .filter((name) => name && name !== "origin" && name !== "origin/HEAD")
+          .map((name) => name.replace(/^origin\//, ""));
+        const names = [...new Set([...remote, ...folders.keys()])].filter((name) => !name.startsWith("claude/"));
+        const branches = names.map((name) => {
+          const ref = remote.includes(name) ? `origin/${name}` : name;
+          const [behind, ahead] = git(`rev-list --left-right --count origin/develop...${ref}`).split(/\s+/).map(Number);
+          const log = git(`log --format=%s origin/develop..${ref}`);
+          const ticket = log.match(/\b(B\d{3})\b/g)?.at(-1) ?? null;
+          const folder = folders.get(name) ?? null;
+          const isRoot = folder !== null && folder === checkouts()[0];
+          return {
+            name,
+            onGitHub: remote.includes(name),
+            folder,
+            // The root folder holds develop and is never used to work: no conversation.
+            conversation: folder && !isRoot ? (conversations.get(folder) ?? null) : null,
+            root: isRoot,
+            ticket,
+            ahead: ahead || 0,
+            behind: behind || 0,
+            lastCommit: git(`log -1 --format=%cs·%s ${ref}`),
+          };
+        });
+        const nextRelease = git("log --format=%h·%cs·%s origin/main..origin/develop")
+          .split("\n")
+          .filter(Boolean)
+          .map((line) => {
+            const [hash, date, ...subject] = line.split("·");
+            return { hash, date, subject: subject.join("·") };
+          });
+        res.setHeader("Content-Type", "application/json");
+        res.end(JSON.stringify({ branches, nextRelease }));
+      });
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [react(), backlogApi(), designTokensApi(), workTimeApi()],
+  plugins: [react(), backlogApi(), designTokensApi(), workTimeApi(), branchesApi()],
   // Each Claude conversation gets its own port (PORT, set by the preview); 5173 otherwise.
   server: { port: Number(process.env.PORT) || 5173 },
   resolve: {

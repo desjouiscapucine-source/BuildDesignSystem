@@ -3890,3 +3890,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `docs/src/pages/GitWorkflowPage.tsx` (new)
 - `docs/src/pages/SkillsPage.tsx`, `docs/src/App.tsx`, `docs/src/structure.ts`, `docs/src/docs.css`, `docs/src/pages/NavigationPage.tsx`, `.claude/skills/navigation/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B109-1 — See the branches: announce rule and Branches page
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- Claude gives the branch it works on at the start of every task and in every message that asks for a validation; a fresh `claude/…` branch is renamed so the Claude app shows the real branch.
+- A Branches page in Governance. Priority medium, release R1.
+- The three branches already merged (`governance/backlog-skill`, `governance/landing-illustrations`, `prototype/work-description`) are deleted.
+
+**What was done**
+- `vite.config.ts`: dev-only endpoint `/api/branches` — every branch on GitHub and in a local folder, its folder, its Claude conversation (from the Claude app's session files; none for the root folder), its ticket (from its commits), ahead / behind `develop`, last commit; and the commits `develop` adds to `main`.
+- New page `docs/src/pages/BranchesPage.tsx` (`#/branches`, Governance under Git workflow, icon `fork_right`): branches table and "Next release". `docs/src/structure.ts`, `docs/src/App.tsx`, `docs/src/docs.css`, `docs/src/pages/NavigationPage.tsx`, `navigation` skill.
+- `git-workflow` skill (sections 2 and 3): say the branch; rename the fresh `claude/…` branch; the Branches page.
+- Backlog: B109 added (reserved first), done.
+- Verification: type check and build pass; the page lists the 9 branches and the 2 commits of the next release, no console errors.
+
+**Files**
+- `docs/src/pages/BranchesPage.tsx` (new)
+- `vite.config.ts`, `docs/src/structure.ts`, `docs/src/App.tsx`, `docs/src/docs.css`, `docs/src/pages/NavigationPage.tsx`, `.claude/skills/navigation/SKILL.md`, `.claude/skills/git-workflow/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)

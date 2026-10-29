@@ -52,13 +52,15 @@ Folders and sessions:
 - Each Claude session works in its own folder (git worktree), created automatically by the Claude app, on a branch named `claude/…`. At the start of the task, Claude switches that folder to the branch of the piece of work on its own (section 3), with no question about the name: it follows the table (section 1).
 - **Never work on a branch another session is working on.** Before using a branch, check where it is checked out: `git worktree list`. Already checked out in another folder → ask the Design System Lead.
 - Never switch branches in a folder another session uses.
+- **Say the branch** (B109): at the start of every task and in every message that asks for a validation, Claude gives the branch it works on, e.g. "Branch: `governance/release-planning` (from `develop`)" — or "no branch" between two topics. On a fresh `claude/…` branch, Claude renames it (`git branch -m <branch>`, section 3) so the Claude app shows the real branch.
+- The **Branches** page (`/docs/#/branches`, Governance) lists every branch with its conversation, folder, ticket and position against `develop`, and what `develop` adds to `main` (the next release).
 - The root folder of the project (`BuildDesignSystem/`) stays on **`develop`** and is never used to work: only updated after each merge (section 6). The Claude app reads the skills (the `/` commands) from it, so new rules reach every conversation at once, without waiting for the release.
 
 ## 3. Start a piece of work
 
 1. `git fetch origin`.
 2. Find the ticket. No ticket → ask in the chat first; once the Design System Lead agrees, ask its priority and its release and create it in `todo` (section 7, `backlog` and `release-planning` skills).
-3. Create the branch from `origin/develop` (`git checkout -b <branch> origin/develop`, or `git branch -m <branch>` + `git reset --hard origin/develop` on a fresh, clean `claude/…` branch) and push it: `git push -u origin <branch>`.
+3. Create the branch from `origin/develop`: on a fresh, clean `claude/…` branch, **rename it** (`git branch -m <branch>` + `git reset --hard origin/develop`) so the Claude app shows the real branch; otherwise `git checkout -b <branch> origin/develop` and push it: `git push -u origin <branch>`.
 4. On the branch, set the ticket status to `in-progress`.
 5. **Reserve the ticket at once**: commit `backlog/backlog.json` alone and push it on the branch, before any other work (commit message `Ticket <id> reserved: <title>`). Other conversations then see the ID (section 7). This is the only commit made before the Design System Lead validates, and it has no `STEPS.md` entry.
 
