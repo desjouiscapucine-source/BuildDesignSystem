@@ -4270,3 +4270,20 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/TicketCard/guidelines.md`, `components/TicketCard/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B115-4 — TicketCard: code with placeholder menus
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- Tags: category in tone `neutral`; "Decided" in tone `success` with the icon `check_circle` (as in the Tag examples).
+- Props: `ticketId`, `title`, `description?`, `category`, `decided`, `menus` (slot: the Selects, given by the page), `onOpen` (click or Enter).
+- `headingLevel` prop (h3 by default, under the h2 of a board column), the look does not change — as Card.
+- The menus of the examples and the playground are native selects (`examples/PlaceholderMenus.tsx`, not part of the component) until Select (B021) is coded.
+
+**What was done**
+- `TicketCard.tsx` (`<article>` focusable, `aria-label` "ID, title", click except on the menus, Enter on the card), `TicketCard.css` (Card tokens, state layers, focus outline), `examples.tsx` (6 examples), `playground.tsx`, export in `components/index.ts`.
+- Verification: type check and build pass; Examples and Playground tabs checked; Tab reaches the card (focus outline visible), Enter opens it.
+
+**Files**
+- `components/TicketCard/TicketCard.tsx`, `TicketCard.css`, `examples.tsx`, `playground.tsx`, `examples/PlaceholderMenus.tsx` (created / updated)
+- `components/index.ts`, `STEPS.md` (updated)

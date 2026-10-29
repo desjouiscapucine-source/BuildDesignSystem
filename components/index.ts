@@ -28,3 +28,5 @@ export { SelectOption } from "./SelectOption/SelectOption";
 export type { SelectOptionProps } from "./SelectOption/SelectOption";
 export { Tag } from "./Tag/Tag";
 export type { TagProps, TagTone } from "./Tag/Tag";
+export { TicketCard } from "./TicketCard/TicketCard";
+export type { TicketCardProps } from "./TicketCard/TicketCard";
