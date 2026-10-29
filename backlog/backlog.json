@@ -528,7 +528,7 @@
       "status": "in-progress",
       "origin": "decided",
       "description": "On the documentation site, not defined in the design system yet. Small labels: Atomic Design level, backlog category and \"Decided\" tags. Different from the Badge (counter).",
-      "stage": "design"
+      "stage": "guidelines"
     },
     {
       "id": "B060",

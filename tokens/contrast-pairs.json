@@ -192,6 +192,11 @@
       "min": 3
     },
     {
+      "foreground": "color.icon.secondary",
+      "background": "color.background.subtle",
+      "min": 3
+    },
+    {
       "foreground": "color.icon.brand",
       "background": "color.background.page",
       "min": 3
