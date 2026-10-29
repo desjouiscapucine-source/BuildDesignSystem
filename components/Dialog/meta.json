@@ -2,7 +2,13 @@
   "name": "Dialog",
   "description": "Dialog that opens over the page to show a detail or ask for an action.",
   "level": "organism",
-  "status": "code",
-  "version": "0.0",
-  "changelog": []
+  "status": "complete",
+  "version": "1.0",
+  "changelog": [
+    {
+      "version": "1.0",
+      "date": "2026-10-29",
+      "changes": "First complete version."
+    }
+  ]
 }

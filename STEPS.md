@@ -4024,6 +4024,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/Dialog/guidelines.md`, `components/Dialog/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
 
+## Step B029-3 — Dialog: code approved, component complete
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- Stage 3 (Code) approved: the Dialog is **complete**, version 1.0.
+
+**What was done**
+- `Dialog.tsx` + `Dialog.css` from the approved spec: overlay (`z-index.modal`, `color.background.overlay`, `space.16` margins), container sized by `size` (`size.dialog-*`), header (title `heading-4`, description `body` secondary, close IconButton `tertiary`), optional body (the only part that scrolls) and footer (Buttons aligned right); fade in / out `duration.200` `easing.ease-out`.
+- Accessibility: modal dialog named by the title and described by the description, focus on the close button at opening and back to the opener at closing, Tab kept inside, Escape and a click on the overlay close it, page behind not scrollable.
+- `examples.tsx` (small confirmation, medium, large detail, minimal, long content, long title and description), `playground.tsx` (size, title, description, body, footer); export in `components/index.ts`.
+- `meta.json`: status `complete`, version `1.0`, changelog "First complete version."; backlog B029 done.
+- Verification: type check and build pass; checked in the Examples and Playground tabs (desktop and mobile 375px, keyboard, focus, body scroll).
+
+**Files**
+- `components/Dialog/Dialog.tsx`, `components/Dialog/Dialog.css`, `components/Dialog/examples.tsx`, `components/Dialog/playground.tsx` (created); `components/Dialog/meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B113-1 — Playground: list of icons
 **Date:** 2026-10-29
 

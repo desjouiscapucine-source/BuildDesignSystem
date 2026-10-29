@@ -257,7 +257,7 @@
       "id": "B029",
       "title": "Dialog",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "proposal",
       "description": "Dialog, uses the highest shadow. Opens the detail of a Level 3 page (e.g. a ticket from the Backlog) instead of a new page (Navigation structure page, B082).",
       "stage": "code",
