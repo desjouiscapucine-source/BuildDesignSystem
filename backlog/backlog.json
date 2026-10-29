@@ -1044,7 +1044,7 @@
       "id": "B117",
       "title": "SelectOption",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "One option of the Select list. Building block of the Select (B021), built first.",
       "stage": "code",
