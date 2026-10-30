@@ -20,7 +20,7 @@ With the **`clickable-image`** variant, the card also shows images as thumbnails
 ## Anatomy
 1. Container (required) — white background with a thin border
 2. Title (required)
-3. Text (required) — under the title
+3. Text (required) — under the title: text, or rich content (lists, tables, a disclosure…), never another card
 4. Thumbnails (`clickable-image` only) — under the text, 3 per row; each one is a button that opens the ImageViewer
 
 ## Variants
@@ -31,7 +31,7 @@ With the **`clickable-image`** variant, the card also shows images as thumbnails
 | `variant` | `default`, `clickable-image` | `default` | `clickable-image` adds clickable thumbnails under the text. |
 | `images` | List of `{ src, alt, caption?, thumbnailSrc? }` (same as the ImageViewer) | — | `clickable-image` only, at least one image, no maximum. The thumbnail shows `thumbnailSrc` (or `src`); the ImageViewer receives the list as is. |
 | `title` | Text | — (required) | Title of the card. |
-| `children` | Text | — (required) | The text of the card. |
+| `children` | Text or rich content | — (required) | The text of the card; it can also hold lists, tables or a disclosure (never another card). |
 | `id` | Text | — (optional) | Anchor the card can be reached at (e.g. from a TimelineStep). |
 | `headingLevel` | 2 – 6 | 2 | Level of the title heading announced to screen readers (`h2`…`h6`); the look does not change. |
 
@@ -43,7 +43,7 @@ With the **`clickable-image`** variant, the card also shows images as thumbnails
 | Text | Required | Example | Max length | Overflow |
 | ---- | -------- | ------- | ---------- | -------- |
 | Title | Yes | "Order shipped" | 60 characters | Wraps |
-| Text | Yes | "The parcel left the warehouse…" | No limit | Wraps; the card grows in height |
+| Text | Yes | "The parcel left the warehouse…" | No limit | Wraps; the card grows in height. Rich content (list, table, disclosure) follows the same rule |
 | Image alternative text (`alt`) | Yes, per image (`clickable-image`) | "North facade of the building" | — | Not displayed; names the thumbnail button: "Open image: North facade of the building" |
 
 ## Sizes
@@ -53,6 +53,7 @@ One size only. The card takes the **full width available** (the column that cont
 | ---- | ---- |
 | Container | Padding `--space-16` |
 | Title / text | Gap `--space-8` |
+| Blocks inside the text (paragraphs, lists, tables, a disclosure) | Gap `--space-16` |
 | Text / thumbnails (`clickable-image`) | Gap `--space-16` |
 | Thumbnails (`clickable-image`) | **3 per row**, each one third of the content width (minus the gaps); ratio **16:9** (the image is cropped to fill it); corners `--radius-8`; gap `--space-8`; more than 3 → next row |
 
@@ -70,6 +71,7 @@ One size only. The card takes the **full width available** (the column that cont
 | Container | Radius | all | `--radius-8` |
 | Container | Padding | all | `--space-16` |
 | Container | Gap title / text | all | `--space-8` |
+| Text | Gap between its blocks | all | `--space-16` |
 | Title | Text style · color | all | `heading-5` · `--color-text-primary` |
 | Text | Text style · color | all | `body` · `--color-text-primary` |
 | Thumbnails | Gap with the text | `clickable-image` | `--space-16` |

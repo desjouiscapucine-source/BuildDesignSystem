@@ -5,9 +5,14 @@ import { useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties
 // Every Material Symbols icon name, from Google's codepoints file
 // (github.com/google/material-design-icons, variablefont/MaterialSymbolsOutlined[…].codepoints).
 import iconNames from "./material-symbols.json";
+import { tokenById } from "../../tokens/lib";
 
 const TYPEAHEAD_RESET = 700; // ms between two keys of the same typed name
-const LIST_HEIGHT = 320; // px, max-height of .icon-select-list
+// Size tokens of the list, in px: max height (--size-dropdown-list-height, max-height of .icon-select-list)
+// and min width (--size-dropdown-list-width).
+const sizeToken = (id: string) => parseFloat(tokenById.get(id)!.resolved);
+const LIST_HEIGHT = sizeToken("size.dropdown-list-height");
+const LIST_MIN_WIDTH = sizeToken("size.dropdown-list-width");
 
 // The list is placed over the page (position: fixed), under the button — above it when there is no room below —
 // so that the table of the controls (which scrolls horizontally) does not cut it.
@@ -15,7 +20,7 @@ function placeUnder(button: HTMLElement): CSSProperties {
   const rect = button.getBoundingClientRect();
   const below = window.innerHeight - rect.bottom;
   const vertical = below < LIST_HEIGHT && rect.top > below ? { bottom: window.innerHeight - rect.top } : { top: rect.bottom };
-  const width = Math.max(rect.width, 200);
+  const width = Math.max(rect.width, LIST_MIN_WIDTH);
   // Kept inside the window: aligned on the right edge of the button when it would overflow.
   const left = rect.left + width > window.innerWidth ? rect.right - width : rect.left;
   return { ...vertical, left, width };

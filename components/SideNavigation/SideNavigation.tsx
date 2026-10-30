@@ -7,10 +7,12 @@ export interface SideNavigationProps extends Omit<HTMLAttributes<HTMLElement>, "
   label?: string;
   /** The items of the navigation: NavigationItem components only. */
   children: ReactElement<NavigationItemProps> | ReactElement<NavigationItemProps>[];
+  /** Below desktop only: shown over the page (opened by a burger IconButton outside). Ignored on desktop. */
+  open?: boolean;
 }
 
-export function SideNavigation({ label = "Main navigation", children, className, ...rest }: SideNavigationProps) {
-  const classes = ["ds-side-navigation", className].filter(Boolean).join(" ");
+export function SideNavigation({ label = "Main navigation", children, open = false, className, ...rest }: SideNavigationProps) {
+  const classes = ["ds-side-navigation", open && "ds-side-navigation--open", className].filter(Boolean).join(" ");
   return (
     <nav className={classes} aria-label={label} {...rest}>
       <ul className="ds-side-navigation-list">

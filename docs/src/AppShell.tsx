@@ -1,5 +1,12 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Breadcrumb, type BreadcrumbLevel } from "@ds/components";
+import { useEffect, useRef, useState, type ReactElement, type ReactNode } from "react";
+import {
+  Breadcrumb,
+  IconButton,
+  NavigationItem,
+  SideNavigation,
+  type BreadcrumbLevel,
+  type NavigationItemProps,
+} from "@ds/components";
 import logo from "../../assets/logo/avatar-logo.svg";
 import { allPages, pathTo, spaces, type NavNode } from "./structure";
 
@@ -51,29 +58,23 @@ function WorkTime() {
   );
 }
 
-// Side navigation of one space: its Level 2 sections; the pages below a section open under it
-// while the current page is inside that section (navigation skill).
-function NavList({ nodes, path, current }: { nodes: NavNode[]; path: NavNode[]; current: string }) {
-  return (
-    <ul>
-      {nodes.map((node) => {
-        const open = path.includes(node);
-        const children = node.children ?? [];
-        return (
-          <li key={node.href + node.label}>
-            <a className="shell-nav-link" href={node.href} aria-current={node.href === current ? "page" : undefined}>
-              <span className="ds-icon" aria-hidden="true">
-                {node.icon}
-              </span>
-              {node.label}
-            </a>
-            {open && children.length > 0 && <NavList nodes={children} path={path} current={current} />}
-            {open && children.length === 0 && node.empty && <p className="shell-nav-empty">{node.empty}</p>}
-          </li>
-        );
-      })}
-    </ul>
-  );
+// Side navigation of one space (SideNavigation + NavigationItem): its Level 2 sections; a section with
+// pages below it is a parent (opens and closes only; open when the current page is inside), the others are links.
+// Children have no leading icon (NavigationItem ignores it).
+function navItems(nodes: NavNode[], current: string): ReactElement<NavigationItemProps>[] {
+  return nodes.map((node) => {
+    const children = node.children ?? [];
+    // A parent needs 2 children minimum (NavigationItem guidelines).
+    return children.length >= 2 ? (
+      <NavigationItem key={node.href + node.label} icon={node.icon} label={node.label}>
+        {navItems(children, current)}
+      </NavigationItem>
+    ) : (
+      <NavigationItem key={node.href + node.label} icon={node.icon} href={node.href} selected={node.href === current}>
+        {node.label}
+      </NavigationItem>
+    );
+  });
 }
 
 // Layout of the documentation site: header (logo → landing page, spaces, search, clock) + side navigation of the current space + content.
@@ -113,17 +114,15 @@ export function AppShell({ current, route = current, children }: AppShellProps) 
         Skip to content
       </a>
       <header className="shell-header">
-        <button
-          className="shell-icon-button shell-menu-button"
-          aria-label={navOpen ? "Close navigation" : "Open navigation"}
+        <IconButton
+          className="shell-menu-button"
+          variant="primary"
+          icon={navOpen ? "close" : "menu"}
+          label={navOpen ? "Close navigation" : "Open navigation"}
           aria-expanded={navOpen}
           aria-controls="shell-nav"
           onClick={() => setNavOpen(!navOpen)}
-        >
-          <span className="ds-icon" aria-hidden="true">
-            {navOpen ? "close" : "menu"}
-          </span>
-        </button>
+        />
         {/* Level 0: the logo goes back to the landing page from every level. */}
         <a className="shell-brand" href="/" aria-label="BuildDesignSystem, home">
           <img className="shell-brand-logo" src={logo} alt="" />
@@ -137,15 +136,20 @@ export function AppShell({ current, route = current, children }: AppShellProps) 
       </header>
 
       <div className="shell-body">
-        <nav id="shell-nav" className={`shell-nav${navOpen ? " open" : ""}`} aria-label={space.label}>
-          {/* Below desktop the header has no room for the spaces: they open at the top of the menu. */}
-          <div className="shell-nav-spaces">
-            <p className="shell-nav-title">Spaces</p>
-            {spaceLinks("shell-nav-spaces-list")}
-          </div>
-          <p className="shell-nav-title">{space.label}</p>
-          <NavList nodes={space.children ?? []} path={path} current={current} />
-        </nav>
+        <SideNavigation id="shell-nav" className="shell-nav" label={space.label} open={navOpen}>
+          {[
+            // Below desktop the header has no room for the spaces: a "Spaces" parent at the top of the navigation.
+            // Only the page displayed is selected (one selected item): the current space is not.
+            <NavigationItem key="spaces" className="shell-nav-spaces" icon="workspaces" label="Spaces">
+              {spaces.map((item) => (
+                <NavigationItem key={item.href} href={item.href}>
+                  {item.label}
+                </NavigationItem>
+              ))}
+            </NavigationItem>,
+            ...navItems(space.children ?? [], current),
+          ]}
+        </SideNavigation>
         <main id="main" className="shell-content" tabIndex={-1}>
           {levels.length > 0 && <Breadcrumb items={levels} />}
           {children}
@@ -214,9 +218,8 @@ function Search() {
       <kbd className="shell-search-key" aria-hidden="true">
         /
       </kbd>
-      {q && (
+      {q && results.length > 0 && (
         <ul id="shell-search-results" className="shell-search-results" role="listbox">
-          {results.length === 0 && <li className="shell-search-empty">No page found</li>}
           {results.map((item, index) => (
             <li
               key={item.href + item.label}
@@ -237,6 +240,14 @@ function Search() {
           ))}
         </ul>
       )}
+      {/* Polite live region, always rendered so that "No page found" is announced (outside the listbox). */}
+      <div className="shell-search-status" role="status">
+        {q && results.length === 0 && (
+          <div className="shell-search-results">
+            <p className="shell-search-empty">No page found</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

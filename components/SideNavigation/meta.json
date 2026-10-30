@@ -3,8 +3,13 @@
   "description": "Main navigation of an application, displayed on the side of the page.",
   "level": "organism",
   "status": "complete",
-  "version": "1.0",
+  "version": "1.1",
   "changelog": [
+    {
+      "version": "1.1",
+      "date": "2026-10-29",
+      "changes": "Below desktop: hidden, opened over the page with a burger button (new open prop)."
+    },
     {
       "version": "1.0",
       "date": "2026-10-20",

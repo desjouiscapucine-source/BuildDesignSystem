@@ -4222,6 +4222,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `components/TicketCard/` (created)
 - `backlog/backlog.json`, `STEPS.md` (updated)
 
+## Step B021-3 — Select: guidelines approved
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- Not for switching the view or filtering (Chips) nor for actions (Button). Always a placeholder: no option chosen in advance.
+- Content: label = a noun, no punctuation; placeholder "Choose a …"; error message = one sentence saying how to fix it.
+- Behavior: opens with a click, Enter, Space or Arrow down; focus on the chosen option, otherwise the first; Escape, Tab or a click outside close without changing; the error shows when the list closes without a choice and disappears once an option is chosen.
+- Keyboard: arrows, Home / End, typing a letter goes to the next option starting with it, Enter chooses.
+- Screen reader (`aria-haspopup="listbox"`, `aria-expanded`, `listbox` named by the label, `aria-describedby` + `aria-invalid` for the error), width set by the layout grid column, related components: approved with the guidelines.
+
+**What was done**
+- `components/Select/guidelines.md` written; do's and don'ts shown visually in the chat. `meta.json` status and backlog stage set to `code`.
+
+**Files**
+- `components/Select/guidelines.md`, `components/Select/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B059-3 — Tag: code approved, component complete
 **Date:** 2026-10-29
 
@@ -4237,3 +4253,340 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/Tag/Tag.tsx`, `components/Tag/Tag.css`, `components/Tag/examples.tsx`, `components/Tag/playground.tsx` (created)
 - `components/Tag/meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B021-5 — Select: code approved, component complete
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- Code of the Select approved: the component is **complete**, version **1.0**.
+- Technical API approved: `options` (`{ value, label, icon?, disabled? }`), `onChange(value)`, `onOpenChange(open)`, `id`, `className`; `error` + `disabled` forbidden by the types. The arrow turns with `--duration-200` `--easing-ease-in-out` (as NavigationItem); the list opens without animation.
+
+**What was done**
+- `Select.tsx`: label, field (`<button>` with `aria-haspopup="listbox"`, `aria-expanded`, `aria-labelledby` label + value, `aria-invalid` + `aria-describedby` for the error), list (`role="listbox"` of SelectOption). Keyboard: Enter / Space / Arrow down open; focus on the chosen option, otherwise the first; arrows, Home / End, typing a letter; Enter chooses and gives the focus back to the field; Escape, Tab and a click outside close without changing.
+- `Select.css`: semantic tokens only; open (`border-focus`, arrow turned), error, disabled (label included); list under the field at `--z-index-dropdown`.
+- `examples.tsx` (placeholder, option chosen, options with icons, error, error when the list closes without a choice, disabled, long texts), `playground.tsx`, export in `components/index.ts`.
+- `meta.json`: status `complete`, version `1.0`, changelog "First complete version."; ticket B021 `done`.
+- Verification: type check, build and tokens pass; keyboard and mouse behavior tested in the browser (a stale value in the error example was found and fixed).
+
+**Files**
+- `components/Select/Select.tsx`, `Select.css`, `examples.tsx`, `playground.tsx`, `meta.json`
+- `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B115-3 — TicketCard: guidelines approved
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- When to use: each ticket in a status column of the **Backlog board**. Not for the content of a step (Card), not inside a Card, not for a read-only list (not in the design system yet).
+- Cards stacked full width of their column, `--space-16` apart, ordered by priority (high → medium → low → none).
+- Title: short noun phrase, sentence case, no period (the component name for a component ticket). Description: one sentence ending with a period.
+- A menu change is saved at once and the card moves; a save error is shown above the board (`role="alert"`), the card keeps its old value.
+- Keyboard: Tab to the card, **Enter** opens the ticket, then Tab to the menus. A screen reader announces the **ID and title**.
+- Do's and don'ts: title, description, stacking, no nested card (visual examples shown in the chat).
+
+**What was done**
+- `components/TicketCard/guidelines.md` written; `meta.json` status `code`; backlog B115 stage `code`.
+
+**Files**
+- `components/TicketCard/guidelines.md`, `components/TicketCard/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B115-4 — TicketCard: code with placeholder menus
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- Tags: category in tone `neutral`; "Decided" in tone `success` with the icon `check_circle` (as in the Tag examples).
+- Props: `ticketId`, `title`, `description?`, `category`, `decided`, `menus` (slot: the Selects, given by the page), `onOpen` (click or Enter).
+- `headingLevel` prop (h3 by default, under the h2 of a board column), the look does not change — as Card.
+- The menus of the examples and the playground are native selects (`examples/PlaceholderMenus.tsx`, not part of the component) until Select (B021) is coded.
+
+**What was done**
+- `TicketCard.tsx` (`<article>` focusable, `aria-label` "ID, title", click except on the menus, Enter on the card), `TicketCard.css` (Card tokens, state layers, focus outline), `examples.tsx` (6 examples), `playground.tsx`, export in `components/index.ts`.
+- Verification: type check and build pass; Examples and Playground tabs checked; Tab reaches the card (focus outline visible), Enter opens it.
+
+**Files**
+- `components/TicketCard/TicketCard.tsx`, `TicketCard.css`, `examples.tsx`, `playground.tsx`, `examples/PlaceholderMenus.tsx` (created / updated)
+- `components/index.ts`, `STEPS.md` (updated)
+
+## Step B115-6 — TicketCard: code approved, component complete
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- The menus are the real **Select** (B021, complete), in a **grid of 2 columns** (Status, Priority / Release, Stage), `--space-8` apart (spec and guidelines updated).
+- **No card state layer while the pointer is on a menu** (the hover and pressed states belong to the Select); the card state layer is drawn under the menus (spec, States).
+- Playground canvas taller (`minHeight` 520px) so the list of a menu opened at the bottom of the card is not cut off.
+- Code approved: TicketCard is **complete**, version **1.0**.
+
+**What was done**
+- `TicketCard.css`: menus grid of 2 columns; state layer on `::before`, none while a menu is hovered or pressed. `examples/TicketMenus.tsx` (four Selects) replaces the placeholder menus in the examples and the playground.
+- `meta.json`: status `complete`, version `1.0`, changelog entry `1.0`. Spec: no open question left.
+- Verification: type check and build pass; a choice in a menu does not open the card; hovering a menu does not tint the card; the opened Stage list fits in the Playground canvas.
+- Ticket B115 stays `in-progress`: the Backlog page still has to show its tickets with TicketCard.
+
+**Files**
+- `components/TicketCard/TicketCard.css`, `examples.tsx`, `playground.tsx`, `spec.md`, `guidelines.md`, `meta.json` (updated)
+- `components/TicketCard/examples/TicketMenus.tsx` (created), `components/TicketCard/examples/PlaceholderMenus.tsx` (removed)
+- `STEPS.md` (updated)
+
+## Step B115-7 — Backlog page with TicketCard
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- The Backlog page shows its tickets with **TicketCard**; the menus are **Select** (B021), on the card and in the ticket's modal.
+- The board has **3 columns** (To do, In progress, Done) instead of a grid of 4: the cards are wider and the menu values are no longer cut.
+- Options of the Release menu: the release only ("R1"); the date is on the Release planning page.
+
+**What was done**
+- `docs/src/pages/BacklogPage.tsx`: one TicketCard per ticket (click or Enter opens its modal), the menus as Selects (Stage only for component tickets, change saved at once).
+- `docs/src/pages/TicketDialog.tsx`: the Selects side by side (`.ticket-menus`).
+- `docs/src/docs.css`: hand-drawn card, tags and native menus removed; cards 16px apart; board in 3 columns.
+- Verification: type check and build pass; at 1440px no menu value is cut; a click on a card opens its modal; the Release list opens over the modal content.
+- Ticket B115 `done`: TicketCard complete and used by the Backlog page.
+
+**Files**
+- `docs/src/pages/BacklogPage.tsx`, `docs/src/pages/TicketDialog.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B119-1 — Agent: design system compliance audit
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- A new agent, **`ds-compliance-audit`**, audits every UI element of the documentation site against the design system and sorts them in three groups: compliant, non-compliant, not in the design system.
+- It runs **after each approved step** (before its commit) and **during the release review**, and on request.
+- Its report is written in the repository, in `audits/` (`<date>-<ticket>-<n>.md` after a step, `<date>-R<n>.md` for a release), and its **non-compliant elements are shown in the chat**.
+
+**What was done**
+- `.claude/agents/ds-compliance-audit.md`: the agent (read-only; sources of truth, what to audit, classification, report shape, comparison with the previous audit).
+- `git-workflow` (sections 4 and 8), `orchestrator` (new row) and `CLAUDE.md` (Agents): when the agent runs and what Claude does with its report.
+- First audit: `audits/2026-10-29-B119-1.md` — 15 compliant, 24 non-compliant, 21 not in the design system; findings spot-checked by Claude.
+- Ticket B119 `done`.
+
+**Files**
+- `.claude/agents/ds-compliance-audit.md`, `audits/2026-10-29-B119-1.md` (created)
+- `.claude/skills/git-workflow/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B128-1 — Agents: audit proposes tickets, fix agent implements them
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- `ds-compliance-audit` ends its report with **proposed tickets** (findings grouped, existing tickets extended rather than duplicated); they are shown in the chat and created only once the Design System Lead agrees, with a priority and a release.
+- **Two agents**: the audit stays read-only; a second agent, **`ds-compliance-fix`**, implements a validated ticket. The next audit checks its work.
+- `ds-compliance-fix` changes **`docs/` only**: `tokens/`, `components/` and `prototypes/` stay forbidden to agents (a needed token is made by Claude after approval). It never runs git and starts only once every decision of the ticket is answered.
+
+**What was done**
+- `.claude/agents/ds-compliance-audit.md`: numbered non-compliant findings, "Proposed tickets" section and its rules.
+- `.claude/agents/ds-compliance-fix.md` (created): limits, how to fix, report (done, blockers and questions, noticed, checks).
+- `git-workflow` (section 4): proposed tickets after an audit, and the 5 steps to implement a compliance ticket; `orchestrator`: new row; `CLAUDE.md` (Agents): the `docs/` exception for `ds-compliance-fix`.
+- Audit before the commit: `audits/2026-10-29-B128-1.md`.
+- Ticket B128 `done`.
+
+**Files**
+- `.claude/agents/ds-compliance-fix.md`, `audits/2026-10-29-B128-1.md` (created)
+- `.claude/agents/ds-compliance-audit.md`, `.claude/skills/git-workflow/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B124-1 — Documentation site: use the Card component
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- **Card 1.1**: a card may also group the content of one subject in a page (a release, a skill, an iteration); its text may hold rich content (lists, tables, a disclosure), never another card.
+- The title is the name of the subject only ("R1", the skill name, "Iteration 1"); details (date, progress, decision) go in the first line of the text.
+- Kept as implemented: " · " between the date and the progress of a release, 16px between the blocks inside a card, the divider above the release note.
+
+**What was done**
+- `components/Card/spec.md`, `guidelines.md`, `meta.json` (version 1.1 and changelog entry): the new usage and rich content (by Claude).
+- First run of the `ds-compliance-fix` agent (B128), `docs/` only: release cards, skill cards and ticket iterations are Cards; the hand-built card CSS is removed; `.card-content` stacks the blocks inside a card.
+- Verification: no file outside `docs/` changed by the agent; type check and build pass; Release planning, How to use skills and a ticket modal (B031) render without console errors.
+- Compliance audit: `audits/2026-10-29-B124-1.md`.
+- Ticket B124 `done`.
+
+**Files**
+- `audits/2026-10-29-B124-1.md` (created)
+- `components/Card/spec.md`, `components/Card/guidelines.md`, `components/Card/meta.json`, `docs/src/pages/ReleasePlanningPage.tsx`, `docs/src/pages/SkillsPage.tsx`, `docs/src/pages/TicketDialog.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B124-2 — Card 1.2: blocks of the text 16px apart
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- The 16px between the blocks inside a card's text goes into the **Card spec** (Card 1.2).
+- Skill card titles stay the raw skill name (e.g. `git-workflow`): exception to sentence case for names written as in code.
+- The separator above a release note uses the card border (`border.subtle`).
+- The next site compliance tickets are done on **one shared branch**, `governance/docs-compliance` (one step per ticket), merged into `develop` together at the end — exception to "one ticket = one branch". This branch is merged with them.
+
+**What was done**
+- `components/Card/Card.css`: blocks of `.ds-card-text` 16px apart; `spec.md` (anatomy, sizes, tokens), `guidelines.md` (title exception), `meta.json` (1.2, changelog).
+- `docs/`: `.card-content` wrapper removed from the release, skill and iteration cards; site rules keeping the 16px inside cards (`table.tokens`, ticket modal); `.release-note` border `border.subtle`.
+- Verification: 16px between blocks measured on Release planning, How to use skills and a ticket modal (B031); type check and build pass; no console error.
+- Compliance audit: `audits/2026-10-29-B124-2.md` (no new finding).
+
+**Files**
+- `audits/2026-10-29-B124-2.md` (created)
+- `components/Card/Card.css`, `spec.md`, `guidelines.md`, `meta.json`, `docs/src/docs.css`, `docs/src/pages/ReleasePlanningPage.tsx`, `SkillsPage.tsx`, `TicketDialog.tsx`, `STEPS.md` (updated)
+
+## Step B122-1 — Documentation site: use SideNavigation and IconButton
+**Date:** 2026-10-29
+
+**Decisions (made by the Design System Lead)**
+- **SideNavigation 1.1**: below desktop it is hidden and opens over the page with a burger **IconButton `primary`** (as the site did); closed with the burger or when a page opens (no Escape, no click outside). New `open` prop.
+- Sections with pages below them are **parent items without a page**; their page is reached from the Overview cards and the breadcrumb (`navigation` skill updated).
+- Follow the SideNavigation spec: no space title, no empty note, no icons on sub-pages. Below desktop, a **"Spaces"** parent item (icon `workspaces`) at the top lists the spaces; only the page displayed is selected.
+- The site may place the navigation under its header; heights use `100dvh`.
+
+**What was done**
+- `components/SideNavigation`: `open` prop and below-desktop CSS (hidden, not focusable when closed, slides in with `--shadow-panel`), spec, guidelines, playground (`open` control), `meta.json` 1.1 (by Claude).
+- `ds-compliance-fix`, `docs/` only: `AppShell.tsx` builds the navigation with SideNavigation + NavigationItem and the burger with IconButton; hand-built navigation CSS removed; `structure.ts` empty note removed. Then Claude: "Spaces" icon, no selected space, `100dvh`.
+- `.claude/skills/navigation/SKILL.md`: side navigation and Level 2 sections rules.
+- Verification: type check and build pass; 1440px: sticky navigation 240px, no burger, no "Spaces"; 375px and 800px: the burger opens the navigation over the page, one selected item; no console error.
+- Compliance audit: `audits/2026-10-29-B122-1.md` (#1, #2, #20 fixed; #25–#28 resolved).
+- Ticket B122 `done`. Committed on `governance/docs-compliance`, not merged into `develop` yet (Design System Lead's choice, Step B124-2).
+
+**Files**
+- `audits/2026-10-29-B122-1.md` (created)
+- `components/SideNavigation/SideNavigation.tsx`, `SideNavigation.css`, `spec.md`, `guidelines.md`, `meta.json`, `playground.tsx`, `docs/src/AppShell.tsx`, `docs/src/docs.css`, `docs/src/structure.ts`, `.claude/skills/navigation/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B123-1 — Documentation site: use Button and Select
+**Date:** 2026-10-30
+
+**Decisions (made by the Design System Lead)**
+- "Copy" and "Show / Hide rejected": **Button `tertiary`**. The Copy button goes **above the code block**, right-aligned, on the page background, 16px from the code.
+- The selects of the Design preview and Playground tables are **Select** components with a **visible label** naming the row (slot, token or prop).
+- **Select 1.1**: a value may be shown as chosen in advance when the field shows a setting that already exists.
+- **Select 1.2**: the list shows **8 options at most**, then scrolls.
+- **Readable labels** for code names: no "--" prefix, no token category (kept when the rest is only a number: "Space 16"), dashes and dots become spaces, sentence case.
+- `IconSelect` stays: approved site exception, candidate for a future Combobox component.
+
+**What was done**
+- `components/Select`: guidelines (value chosen in advance, long lists), spec (list height), `Select.css` (max height of 8 options, scroll), `meta.json` 1.1 and 1.2 (by Claude).
+- `ds-compliance-fix` (two runs), `docs/` only: Button and Select on the Component page (Code, Design preview, Playground) and the Backlog; `docs/src/readableName.ts`; Copy buttons above the code; unused CSS removed. Then Claude: category kept for number-only tokens, readable names for every Playground control, code block margin.
+- Verification: type check and build pass; on the Button page, readable labels ("Variant", "Border width 2", "Background brand subtle"), a list of 8 options that scrolls, Copy button 16px above the code.
+- Compliance audit: `audits/2026-10-30-B123-1.md` (#3, #4, #6 fixed, #7 approved exception; #32 still open, smaller).
+- Ticket B123 `done`. Committed on `governance/docs-compliance`, not merged into `develop` yet.
+
+**Files**
+- `docs/src/readableName.ts`, `audits/2026-10-30-B123-1.md` (created)
+- `components/Select/Select.css`, `spec.md`, `guidelines.md`, `meta.json`, `docs/src/DesignPreview.tsx`, `docs/src/PlaygroundTab.tsx`, `docs/src/pages/ComponentPage.tsx`, `docs/src/pages/BacklogPage.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B125-1 — Documentation site: accessibility fixes
+**Date:** 2026-10-30
+
+**Decisions (made by the Design System Lead)**
+- Component page tabs: complete the WAI-ARIA tabs pattern now, without changing the look (replaced later by Tabs, B093); accessible name "Component documentation".
+- The active option of the search results and of IconSelect is shown **like a focused SelectOption**: focus state layer + `border.focus` outline, hover layer, `--radius-8`, `--duration-100` transition; the IconSelect list gets `--space-4` padding on all sides.
+- "No page found" leaves the listbox and is announced by a live region; it keeps the color shown so far (`text.primary`).
+
+**What was done**
+- `tokens/contrast-pairs.json` (by Claude): 6 semantic pairs added (text.brand on background.subtle, border.info / border.error on their subtle backgrounds, text.primary on info-subtle and error-subtle, icon.inverse on background.brand); 52/52 pass.
+- `ds-compliance-fix`, `docs/` only: `ComponentPage.tsx` (tabs pattern), `AppShell.tsx` (live region), `docs.css` (active option). Then Claude: list padding, radius, hover layer and transition (`docs.css`).
+- Verification: type check and build pass; Right arrow selects and focuses the next tab, tab ↔ panel linked; search active option with 2px outline and state layer; "No page found" announced without an empty listbox; IconSelect outline fully visible (4px padding).
+- Compliance audit: `audits/2026-10-30-B125-1.md` (#11–#14 fixed, #37 and #38 found and fixed).
+- Ticket B125 `done`. Committed on `governance/docs-compliance`, not merged into `develop` yet.
+
+**Files**
+- `audits/2026-10-30-B125-1.md` (created)
+- `tokens/contrast-pairs.json`, `docs/src/pages/ComponentPage.tsx`, `docs/src/AppShell.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B126-1 — Documentation site: tokens only
+**Date:** 2026-10-30
+
+**Decisions (made by the Design System Lead)**
+- Site sizes become **design system tokens** `size.*`, named by usage (30 new: header, logo, search field, home, Backlog, ticket menu, dropdown list, Playground, code block, previews, icon grid, git flow, tree connector, Foundations samples, checkbox, simulated screens, canvas minimum height); values unchanged.
+- New semantic shadows: `shadow.dropdown` and `shadow.hover` → `shadow.2`, `shadow.frame` → `shadow.1`.
+- **Site exceptions** (documented at the top of `docs.css`): primitive colors of the clock and the landing page, VT323 clock font, inline code em units (until B067), skip link `top: -100px` (until B066), `--doc-mono` (B067).
+
+**What was done**
+- `tokens/semantic.json` (by Claude): 30 `size.*` tokens and 3 shadows; `tokens/tokens.css` rebuilt (52/52 pairs pass); `CLAUDE.md` updated.
+- `ds-compliance-fix`, `docs/` only: `docs.css` (sizes, shadows, `.z-stack` removed, exceptions comment), `IconSelect.tsx` (list size from tokens), `PlaygroundTab.tsx` (breakpoints). Then Claude: `PrototypePage.tsx` and `PlaygroundTab.tsx` read the simulated screen and canvas tokens, `size.checkbox`.
+- Verification: type check and build pass; header 64px, logo 32px, search field 40px measured in the browser (nothing changes on screen).
+- Compliance audit: `audits/2026-10-30-B126-1.md` (#15, #17, #18, #19, #39 fixed; #16 approved exception).
+- Ticket B126 `done`. Committed on `governance/docs-compliance`, not merged into `develop` yet.
+
+**Files**
+- `audits/2026-10-30-B126-1.md` (created)
+- `tokens/semantic.json`, `tokens/tokens.css`, `CLAUDE.md`, `docs/src/docs.css`, `docs/src/IconSelect.tsx`, `docs/src/PlaygroundTab.tsx`, `docs/src/pages/PrototypePage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B127-1 — Documentation site: layout, page header and text styles
+**Date:** 2026-10-30
+
+**Decisions (made by the Design System Lead)**
+- Section titles: `h2` → `heading-4`, `h3` → `heading-5`. Small texts (12px) → `body-sm`; tables and notes (14px) → `body`; Backlog column titles and ticket sub-headings → `label`; the site name → `heading-5` at every screen size.
+- Text styles are applied in the site CSS with the **4 tokens of the style**; the `.ds-text-*` classes are not required in the markup (`page-header` skill).
+- Approved full-width exceptions: the **Backlog** and **Prototype** pages (`layout` skill).
+- The Select list in tables that scroll horizontally (#32) is accepted as is.
+- `ds-compliance-fix` may run **read-only git commands** (`diff`, `status`, `log`, `show`).
+
+**What was done**
+- `.claude/skills/page-header/SKILL.md` and `.claude/skills/layout/SKILL.md` (by Claude); `ds-compliance-fix` agent and `git-workflow`: read-only git.
+- `ds-compliance-fix`, `docs/` only: top-level blocks 16px apart, shared `Header` with `title` on 11 pages, text styles with their 4 tokens, comments on the full-width exceptions. Then Claude: ticket sub-headings `label`, site name `heading-5` below desktop, `title` on the landing page (`index.html`), B127 "done when" updated.
+- Verification: type check and build pass; 16px between all top-level blocks measured on the Button, Governance and Backlog pages; `title` on the Backlog title and subtitle.
+- Compliance audit: `audits/2026-10-30-B127-1.md` (#21, #23 fixed; #22, #32 approved exceptions; #24 smaller; #40, #41 new).
+- Ticket B127 stays `in-progress`: #24 (16 partial styles), #40 (spacing inside nested blocks) and #41 (clock sizes) need decisions.
+
+**Files**
+- `audits/2026-10-30-B127-1.md` (created)
+- `docs/src/docs.css`, `docs/src/pages/SectionPages.tsx` and 11 page files, `index.html`, `.claude/skills/page-header/SKILL.md`, `.claude/skills/layout/SKILL.md`, `.claude/skills/git-workflow/SKILL.md`, `.claude/agents/ds-compliance-fix.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B127-2 — Text styles completed, last site exceptions
+**Date:** 2026-10-30
+
+**Decisions (made by the Design System Lead)**
+- Code-font text (`--doc-mono`, until B067) takes only the **size and line height** of its text style.
+- The **spacing inside nested blocks** (Foundations sections, component tab panels, Markdown) is kept; 16px applies between the top-level blocks (`layout` skill).
+- The clock sizes (28px, 40px) are part of the **VT323 clock exception**.
+
+**What was done**
+- `docs/src/docs.css` (by Claude): the 12 rules that set part of a text style now set its 4 tokens; exceptions comment updated.
+- `.claude/skills/layout/SKILL.md` and `.claude/skills/page-header/SKILL.md`: nested spacing and font exceptions.
+- Visible: `.git-flow-arrow-label` becomes semibold (label-sm); link card titles take the heading line height (1.2).
+- Verification: type check and build pass; label-sm measured on the Git workflow and Navigation pages.
+- Compliance check: `audits/2026-10-30-B127-2.md` (#24 fixed; #40, #41 approved exceptions).
+- Ticket B127 `done`.
+
+**Files**
+- `audits/2026-10-30-B127-2.md` (created)
+- `docs/src/docs.css`, `.claude/skills/layout/SKILL.md`, `.claude/skills/page-header/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B129-1 — Agents page
+**Date:** 2026-10-30
+
+**Decisions (made by the Design System Lead)**
+- An **Agents** page in Governance documents every agent of the project, read from `.claude/agents/`, with the rules shared by all agents. Ticket B129: Tooling, priority medium, release R1.
+- After the compliance audit: the allowed tools of an agent are shown as **plain text** (not Tags: Tag guidelines allow 3 tags side by side, and a tool is not a category or a status); the Governance subtitle becomes "Backlog, skills, agents, git workflow, branches, changelog and releases" (70 characters, maximum 80).
+
+**What was done**
+- `docs/src/agents.ts`: reads `.claude/agents/*.md` (frontmatter `name`, `description`, `tools`; the `## Report` section, code blocks ignored) and the `## Agents` section of `CLAUDE.md` (shared rules).
+- `docs/src/pages/AgentsPage.tsx` (`#/agents`, Level 3 under Governance, after How to use skills): intro, "Rules for every agent", one Card per agent (description: role and when it is run; allowed tools; "What it reports" and "Show the full agent", folded). A new agent appears without changing the page.
+- Navigation: `structure.ts` (entry, Governance subtitle), `App.tsx` (route), Navigation structure page and `navigation` skill tree; `CLAUDE.md` (Agents section).
+- Compliance audit (`ds-compliance-audit`): report checked and written to `audits/2026-10-30-B129-1.md`; its two new findings (#25 Tags, #26 subtitle) came from the step and were fixed in it; 23 findings still open, covered by B094, B118, B122 to B127.
+- Verification: type check and build pass; the page shows the 4 shared rules and the 2 agents with their tools and folded sections.
+
+**Files**
+- `docs/src/agents.ts`, `docs/src/pages/AgentsPage.tsx`, `audits/2026-10-30-B129-1.md` (created)
+- `docs/src/App.tsx`, `docs/src/structure.ts`, `docs/src/pages/NavigationPage.tsx`, `.claude/skills/navigation/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B127-3 — Agents page aligned, full audit before the merge into develop
+**Date:** 2026-10-30
+
+**What was done**
+- `develop` merged into `governance/docs-compliance` (B129 Agents page, B130 reservation); `STEPS.md` conflict resolved by keeping both sides.
+- `docs/src/pages/AgentsPage.tsx`: shared `Header` (title attribute), `.card-content` wrapper removed (Card 1.2 spacing) — the B127 and B124-2 rules applied to the page that came from develop.
+- Full compliance audit of the site: `audits/2026-10-30-before-develop-merge.md` (30 compliant, 6 non-compliant: #5, #10 → B094; #9 → B118; #42–#44 new, tickets to propose).
+- `governance/docs-compliance` merged into `develop` (B124-2, B122, B123, B125, B126, B127), as decided by the Design System Lead.
+
+**Files**
+- `audits/2026-10-30-before-develop-merge.md` (created)
+- `docs/src/pages/AgentsPage.tsx`, `STEPS.md` (updated)
+
+## Step B131-1 — Git workflow: project branches
+**Date:** 2026-10-30
+
+**Decisions (made by the Design System Lead)**
+- A third branch type, **`project/<name>`** (kebab-case), for a long piece of work on the documentation site or the tooling, used only when the Design System Lead asks for it. Long lifetime; merged into `develop` once the project is validated, or on request. Ticket B131: Tooling, priority medium, release R1.
+- One conversation per project, **Projet `<Name>`**, archived once the project is validated and merged.
+- First project: the UX playground (B130), on `project/ux-playground`.
+
+**What was done**
+- `git-workflow` skill: three branch types, the `project/` row in the Branches table and its conversation, diagram, end of a project.
+- `CLAUDE.md` (Git): branch types, conversations, merge into `develop`.
+- Git workflow page of the site: a 4th branch box `project/<name>` and the Projet conversation.
+- Compliance audit (`ds-compliance-audit`): report checked and written to `audits/2026-10-30-B131-1.md`; no finding introduced by the step; one older finding found (#27, the git workflow diagram is hidden from screen readers), not fixed in this step.
+- Verification: type check passes; the Git workflow page shows the 4 branch types.
+
+**Files**
+- `audits/2026-10-30-B131-1.md` (created)
+- `.claude/skills/git-workflow/SKILL.md`, `CLAUDE.md`, `docs/src/pages/GitWorkflowPage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)

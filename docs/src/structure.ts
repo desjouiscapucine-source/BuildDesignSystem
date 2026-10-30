@@ -10,7 +10,6 @@ export interface NavNode {
   icon: string; // Material Symbols name
   description?: string; // one line, shown on the cards that link to this page
   children?: NavNode[];
-  empty?: string; // shown in the side navigation when there are no children
 }
 
 /** URL slug of an Atomic Design category page: "atom" → "atoms". */
@@ -52,7 +51,7 @@ const documentation: NavNode = {
       href: "#/governance",
       label: "Governance",
       icon: "gavel",
-      description: "Backlog, project skills, git workflow, branches, changelog and release planning",
+      description: "Backlog, skills, agents, git workflow, branches, changelog and releases",
       children: [
         { href: "#/backlog", label: "Backlog", icon: "view_kanban", description: "Tasks still to do" },
         {
@@ -60,6 +59,12 @@ const documentation: NavNode = {
           label: "How to use skills",
           icon: "psychology",
           description: "The orchestrator, its child skills and how to call them",
+        },
+        {
+          href: "#/agents",
+          label: "Agents",
+          icon: "smart_toy",
+          description: "The agents Claude runs for recurring checks, and their rules",
         },
         {
           href: "#/git-workflow",
@@ -111,7 +116,6 @@ const documentation: NavNode = {
           label: title,
           icon: "category",
           description: list.length === 0 ? "No component yet" : list.map((c) => c.name).join(", "),
-          empty: "No component yet",
           children: list.map((c) => ({
             href: `#/components/${c.slug}`,
             label: c.name,

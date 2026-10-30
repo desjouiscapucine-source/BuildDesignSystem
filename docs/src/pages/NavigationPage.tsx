@@ -1,4 +1,5 @@
 import { components, levels } from "../registry";
+import { Header } from "./SectionPages";
 
 // Navigation structure of the site, approved by the Design System Lead on 2026-10-27.
 // The site follows it; the modal is the Dialog component.
@@ -42,6 +43,7 @@ const structure: NavNode = {
           children: [
             { label: "Backlog", level: 3, note: "a ticket opens in a modal" },
             { label: "How to use skills", level: 3 },
+            { label: "Agents", level: 3 },
             { label: "Git workflow", level: 3 },
             { label: "Branches", level: 3 },
             { label: "Changelog", level: 3 },
@@ -123,8 +125,7 @@ function Node({ node }: { node: NavNode }) {
 export function NavigationPage() {
   return (
     <>
-      <h1>Navigation structure</h1>
-      <p className="lead">Navigation levels of the site and how to move between them</p>
+      <Header title="Navigation structure" lead="Navigation levels of the site and how to move between them" />
       <p>
         Structure of the site, approved by the Design System Lead. The site follows it; the modal is the Dialog component. Talk about the
         navigation in levels: Level 0 is the landing page.

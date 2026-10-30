@@ -27,13 +27,16 @@
 - Accessible name: "Main navigation" by default; change it with `label` only if the product needs a more precise name.
 
 ## Behavior
-- Always expanded, 240px wide (`--size-side-navigation`).
+- Always expanded on desktop, 240px wide (`--size-side-navigation`).
+- **Below desktop**: hidden; a burger **IconButton** (`primary`) outside the navigation opens it over the page and closes it. It also closes when a page is opened. Escape and a click outside do not close it.
+- To reach other spaces or products below desktop, put them **in the navigation**, as a parent item (e.g. "Spaces"): never an extra zone.
 - Full height of the screen; **scrolls** when the items do not fit.
 
 ## Accessibility
 - **Landmark:** a navigation region (`<nav>`) named "Main navigation" by default (`label`).
 - **Keyboard:** Tab moves from one item to the next, in the order of the list; disabled items are skipped.
 - **Focus:** white focus ring on each item (see NavigationItem).
+- **Burger button** (below desktop): `aria-expanded` gives the state, `aria-controls` points to the navigation; its label says the action ("Open navigation" / "Close navigation").
 - **Screen reader:** the items are announced as a list of links; the selected item is announced as the current page.
 - **Contrast:** see NavigationItem.
 

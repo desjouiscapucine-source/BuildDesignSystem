@@ -1,14 +1,16 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { tokenById } from "../../../tokens/lib";
 import { prototypeName } from "../prototypes";
+import { Header } from "./SectionPages";
 
-const breakpoint = (id: string) => parseFloat(tokenById.get(id)!.resolved);
+const px = (id: string) => parseFloat(tokenById.get(id)!.resolved);
+const breakpoint = px;
 
 // Preview frames: the prototype at its real width, scaled down to fit the page.
 const frames = [
-  { name: "Mobile", width: 375, height: 812 },
-  { name: "Tablet", width: 768, height: 1024 },
-  { name: "Desktop", width: 1280, height: 800 },
+  { name: "Mobile", width: px("size.viewport-mobile"), height: px("size.viewport-mobile-height") },
+  { name: "Tablet", width: px("breakpoint.tablet"), height: px("breakpoint.desktop") },
+  { name: "Desktop", width: px("size.viewport-desktop"), height: px("size.viewport-desktop-height") },
 ].map((frame) => {
   // Columns of the layout grid at that width (mobile first, like tokens/grid.css).
   const screen =
@@ -47,8 +49,7 @@ export function PrototypePage({ name }: { name: string }) {
 
   return (
     <>
-      <h1 title={title}>{title}</h1>
-      <p className="lead">Live preview on mobile, tablet and desktop</p>
+      <Header title={title} lead="Live preview on mobile, tablet and desktop" />
       <div className="prototype-preview-actions">
         <label>
           <input type="checkbox" checked={showGrid} onChange={(event) => setShowGrid(event.target.checked)} /> Show grid

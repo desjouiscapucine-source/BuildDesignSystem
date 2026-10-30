@@ -21,7 +21,7 @@ TicketCard is an **organism**. It has the look of the **Card** molecule (same to
    - ID (required) — on the right of the row
 3. Title (required)
 4. Description (optional)
-5. Menus row (required) — one **Select** (B021) each: Status, Priority, Release, and Stage (shown only for component tickets)
+5. Menus (required) — one **Select** (B021) each, in a grid of 2 columns: Status, Priority, Release, and Stage (shown only for component tickets)
 
 Building blocks: **Tag** (B059) and **Select** (B021) are completed first; until then the design preview shows them as dashed placeholders.
 
@@ -51,12 +51,13 @@ One size only. The card takes the **full width available** (the column that cont
 | Container | Padding `--space-16` |
 | Rows (tags, title, description, menus) | Gap `--space-8` |
 | Tags row (tags and ID) | Gap `--space-4`; wraps when too long |
-| Menus row | Gap `--space-8`; wraps when too long |
+| Menus | Grid of **2 columns** of equal width (Status, Priority / Release, Stage); gap `--space-8` |
 
 ## States
 - **The whole card is clickable**: a click anywhere opens the ticket, except on the menus (a menu keeps its own behavior).
 - **Keyboard**: the card itself takes the focus (Tab); Enter opens the ticket. The menus inside come next in the tab order.
 - Interaction states on the card, with state layers in `--color-text-primary`: hover (`--state-layer-hover`), focus (`--state-layer-focus` + outline `--border-width-2` `--color-border-focus`), pressed (`--state-layer-pressed`).
+- **No card state layer while the pointer is on a menu**: the hover and pressed states belong to the Select. The card state layer is drawn under the menus, so the menus are never tinted.
 - No disabled state, no selected state.
 
 ## Design tokens
@@ -74,7 +75,7 @@ One size only. The card takes the **full width available** (the column that cont
 | ID | Text style · color | all | `body-sm` · `--color-text-secondary` |
 | Title | Text style · color | all | `heading-5` · `--color-text-primary` |
 | Description | Text style · color | all | `body` · `--color-text-primary` |
-| Menus row | Gap | all | `--space-8` |
+| Menus | Grid: 2 columns · gap | all | `--space-8` |
 | Tags | — | — | Tag tokens (B059) |
 | Menus | — | — | Select tokens (B021) |
 
@@ -87,4 +88,4 @@ One size only. The card takes the **full width available** (the column that cont
 | Focus outline (`border.focus` on `background.page`) | 6.10:1 ✓ |
 
 ## Open questions
-- Tags and menus: final look once Tag (B059) and Select (B021) are coded.
+- None.

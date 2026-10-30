@@ -182,10 +182,10 @@
       "id": "B021",
       "title": "Select",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "proposal",
       "description": "Choice in a list. Used on the documentation site: status and stage menus of the Backlog page, token menus of the Design preview tab.",
-      "stage": "guidelines",
+      "stage": "code",
       "release": "R1",
       "priority": "high"
     },
@@ -818,7 +818,10 @@
       "status": "todo",
       "origin": "decided",
       "description": "ChipGroup (molecule): arranges the Chips (B030) and handles the selection — one chip selected at a time, always one. Horizontal scroll when the chips do not fit (chosen while it was Tabs, to confirm). Replaces the chips of the documentation site (Backlog filter, Design preview variant switch).",
-      "stage": "design"
+      "stage": "design",
+      "doneWhen": [
+        "The documentation site uses ChipGroup (Backlog category filter, Design preview variant switch, Playground screen sizes)."
+      ]
     },
     {
       "id": "B092",
@@ -1055,7 +1058,7 @@
       "id": "B115",
       "title": "TicketCard",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "A design system component for the card of a backlog ticket.",
       "why": "The ticket card is coded for the documentation site only: as a component, it can be reused (Backlog, Release planning, prototypes) with the tokens and the rules of the design system.",
@@ -1064,11 +1067,12 @@
         "TicketCard is complete: design, guidelines and code approved.",
         "The Backlog page shows its tickets with TicketCard."
       ],
-      "stage": "guidelines",
+      "stage": "code",
       "priority": "medium",
       "release": "R1"
     },
     {
+<<<<<<< HEAD
       "id": "B118",
       "title": "Documentation site: use the Tag component",
       "category": "Tooling",
@@ -1083,6 +1087,239 @@
       ],
       "priority": "medium",
       "release": "R1"
+=======
+      "id": "B119",
+      "title": "Agent: design system compliance audit",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "decided",
+      "description": "An agent (ds-compliance-audit) that audits every UI element of the documentation site against the design system: compliant, non-compliant, or not existing in the design system.",
+      "why": "The site is the showcase of the design system: UI elements built outside the components, or with raw values, must be found before each release.",
+      "scope": "The agent definition (.claude/agents/ds-compliance-audit.md), its report written in the repository, and the rules saying when it runs (after each approved step and before each release).",
+      "doneWhen": [
+        "The agent audits the site and writes a report listing compliant, non-compliant and missing UI elements; the non-compliant elements are shown in the chat.",
+        "The skills run it after each approved step and during the release review."
+      ],
+      "priority": "high",
+      "release": "R1"
+    },
+    {
+      "id": "B120",
+      "title": "Agent: backlog cleanup",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "decided",
+      "description": "An agent that reviews the backlog and proposes what to clean up.",
+      "why": "The backlog collects duplicates, tickets already covered by other work, wrong statuses and incomplete tickets (B112 cleaned them up by hand).",
+      "scope": "An agent in .claude/agents/ that finds duplicate tickets, tickets already covered (by another ticket, a skill or a commit), wrong statuses (e.g. todo while the work is committed, in-progress without a branch, late on its release) and incomplete tickets (no Why, Scope or Done when, no priority or release). It reads and proposes only: the Design System Lead chooses in the chat, Claude applies on a branch. Not included: changing the backlog by itself. Related to B084 (dedicated agents).",
+      "doneWhen": [
+        "The agent lists the duplicates, the tickets already covered, the wrong statuses and the incomplete tickets, each with its reason.",
+        "It never changes backlog/backlog.json.",
+        "Claude checks its result before showing it to the Design System Lead."
+      ]
+    },
+    {
+      "id": "B121",
+      "title": "Composition sandbox page",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "decided",
+      "description": "A page of the documentation site to assemble the coded components freely and try an idea of screen or interaction.",
+      "why": "Trying a UX idea today means starting a prototype (ticket, branch, spec); a sandbox lets an idea be tested quickly with the real components.",
+      "scope": "A page where the coded components are put together freely, without creating a prototype. Its content and how it works are defined with the Design System Lead."
+    },
+    {
+      "id": "B122",
+      "title": "Documentation site: use SideNavigation and IconButton",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "proposal",
+      "description": "Replace the hand-built side navigation with SideNavigation and NavigationItem, and the burger button with IconButton.",
+      "why": "Found by the design system compliance audit (audits/2026-10-29-B119-1.md): the documentation site is the showcase of the design system and must be built with it.",
+      "scope": "Audit findings 1, 2 and 20. Decisions asked to the Design System Lead first: mobile behavior (the SideNavigation spec says it is never hidden, the site hides it behind a burger), IconButton variant. Focus ring on the brand navigation uses border.focus-inverse.",
+      "doneWhen": [
+        "The site navigation is built with SideNavigation and NavigationItem.",
+        "The burger button is an IconButton.",
+        "The next compliance audit no longer lists these findings."
+      ],
+      "priority": "medium",
+      "release": "R1"
+    },
+    {
+      "id": "B123",
+      "title": "Documentation site: use Button and Select",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "proposal",
+      "description": "Replace the hand-built buttons (Copy, Show / Hide rejected) with Button, and the native selects and IconSelect with Select.",
+      "why": "Found by the design system compliance audit (audits/2026-10-29-B119-1.md): the documentation site is the showcase of the design system and must be built with it.",
+      "scope": "Audit findings 3, 4, 6 and 7. Decisions asked first: button variants, Select without a visible label in a table cell, Select with about 3,000 icon options.",
+      "doneWhen": [
+        "The Copy and Show / Hide rejected buttons are Buttons.",
+        "The selects of the Design preview and the Playground, and the icon list, are Selects (or an approved exception).",
+        "The next compliance audit no longer lists these findings."
+      ],
+      "priority": "medium",
+      "release": "R1"
+    },
+    {
+      "id": "B124",
+      "title": "Documentation site: use the Card component",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "proposal",
+      "description": "Replace the hand-built release, skill and iteration cards with Card.",
+      "why": "Found by the design system compliance audit (audits/2026-10-29-B119-1.md): the documentation site is the showcase of the design system and must be built with it.",
+      "scope": "Audit finding 8: .release-card, .skill-card, the iteration items of the ticket modal.",
+      "doneWhen": [
+        "These containers are Cards.",
+        "The next compliance audit no longer lists this finding."
+      ],
+      "priority": "medium",
+      "release": "R1"
+    },
+    {
+      "id": "B125",
+      "title": "Documentation site: accessibility fixes",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "proposal",
+      "description": "Fix the accessibility issues of the site found by the audit.",
+      "why": "Found by the design system compliance audit (audits/2026-10-29-B119-1.md): the documentation site is the showcase of the design system and must be built with it.",
+      "scope": "Audit findings 11 to 14: ARIA tabs pattern of the component pages (until Tabs, B093), contrast of the active option (icon list, search), \"No page found\" item in the listbox, the 8 color pairs missing from tokens/contrast-pairs.json. Decisions asked first: how an active option is shown.",
+      "doneWhen": [
+        "The tabs follow the WAI-ARIA pattern.",
+        "The active option meets 3:1.",
+        "The used color pairs are in contrast-pairs.json and npm run tokens passes.",
+        "The next compliance audit no longer lists these findings."
+      ],
+      "priority": "medium",
+      "release": "R1"
+    },
+    {
+      "id": "B126",
+      "title": "Documentation site: tokens only",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "proposal",
+      "description": "Replace the primitive tokens and raw values of the site styles with semantic tokens.",
+      "why": "Found by the design system compliance audit (audits/2026-10-29-B119-1.md): the documentation site is the showcase of the design system and must be built with it.",
+      "scope": "Audit findings 15 to 19: primitive shadows, primitive colors of the clock and the landing page, raw px / em values and fonts, widths hard-coded in TSX (read the breakpoint tokens), spacing tokens used as sizes. Decisions asked first: exception for the primitive colors, size.* tokens.",
+      "doneWhen": [
+        "The site styles use semantic tokens only, or approved and documented exceptions.",
+        "The next compliance audit no longer lists these findings."
+      ],
+      "priority": "medium",
+      "release": "R1"
+    },
+    {
+      "id": "B127",
+      "title": "Documentation site: layout, page header and text styles",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "proposal",
+      "description": "Apply the layout, page-header and text style rules on every page of the site.",
+      "why": "Found by the design system compliance audit (audits/2026-10-29-B119-1.md): the documentation site is the showcase of the design system and must be built with it.",
+      "scope": "Audit findings 21 to 24: margins added to the 16px gap, full-width Backlog and Prototype pages, title attribute on page titles and subtitles, .ds-text-* classes. Decisions asked first: full-width pages, text styles of section titles and captions. Also audit finding 32 (B123): the token tables of the Design preview and Playground scroll horizontally and clip the Select list; decision asked first: stop the horizontal scroll so the list opens over the page.",
+      "doneWhen": [
+        "Blocks are 16px apart on every page.",
+        "Every page title and subtitle has its title attribute.",
+        "Text uses the text styles, applied with their 4 tokens (page-header skill).",
+        "The next compliance audit no longer lists these findings."
+      ],
+      "priority": "medium",
+      "release": "R1"
+    },
+    {
+      "id": "B128",
+      "title": "Agents: audit proposes tickets, fix agent implements them",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "decided",
+      "description": "ds-compliance-audit proposes the tickets from its findings; a second agent, ds-compliance-fix, implements a validated ticket on the documentation site.",
+      "why": "The audit findings become tickets without manual sorting, and the approved fixes are carried out by a dedicated agent; the next audit checks its work.",
+      "scope": "Proposed tickets section in the audit report; new agent .claude/agents/ds-compliance-fix.md allowed to change docs/ only (tokens/, components/ and prototypes/ stay forbidden to agents); rules in CLAUDE.md, git-workflow and orchestrator.",
+      "doneWhen": [
+        "The audit report ends with proposed tickets, shown in the chat and created only once the Design System Lead agrees.",
+        "ds-compliance-fix implements a validated ticket in docs/ only, after the Design System Lead answered its decisions; Claude checks it and gives the preview before any commit."
+      ],
+      "priority": "medium",
+      "release": "R1"
+    },
+    {
+      "id": "B129",
+      "title": "Agents page",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "decided",
+      "description": "An Agents page in Governance that documents every agent of the project.",
+      "why": "Agents now exist in .claude/agents/ (ds-compliance-audit, ds-compliance-fix) and more are planned (B084, B120), but the documentation site does not show them.",
+      "scope": "A page in Governance, like How to use skills, that reads .claude/agents/ and shows each agent: its role, when it is run, its allowed tools and what it reports; plus the rules shared by all agents (read and propose only, result checked by Claude). Not included: a skill on how to create an agent.",
+      "doneWhen": [
+        "The Agents page lists every agent of .claude/agents/, read from the files (a new agent appears without changing the page).",
+        "Each agent shows its role, when it is run, its allowed tools and what it reports.",
+        "The page shows the rules shared by all agents."
+      ],
+      "priority": "medium",
+      "release": "R1"
+    },
+    {
+      "id": "B130",
+      "title": "UX playground: compose components in a layout",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "decided",
+      "description": "A space of the documentation site where UX designers combine the coded components in a layout, like FigJam, before a prototype or development.",
+      "why": "Today, testing a combination of components means writing a prototype in code. UX designers need a quick way to explore an idea on their own, with real components, before it becomes a prototype or goes to development.",
+      "scope": "Included: only the coded components (@ds/components) and the tokens, so every composition can be built as is; a composition can be the starting point of a prototype ticket; a missing component found while composing is a signal for the backlog. Different from the playground.tsx of each component (one component, its props): here several components are combined. Decisions asked first: how to compose (free canvas like FigJam, the design system grid 4 / 8 / 12 columns, or a canvas with layout frames); whether the variants, states and texts of each placed component can be changed; how compositions are saved (not saved, in the browser, or in the repository and shared); whether a composition can become a prototype ticket; annotations (sticky notes, comments); where it sits in the navigation (a new space next to Prototypes, or a page under Prototypes).",
+      "priority": "medium",
+      "release": "R3"
+    },
+    {
+      "id": "B131",
+      "title": "Git workflow: project branches for long pieces of work",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "decided",
+      "description": "A new branch type, project/<name>, for long pieces of work on the documentation site, each with its own conversation.",
+      "why": "Governance branches are very short and merged as soon as a step is approved; a large piece of work like the UX playground (B130) needs its own long branch, merged once it is validated.",
+      "scope": "Included: the project/<name> branch type (kebab-case, long lifetime, merged into develop once the project is validated or on request) and its conversation Projet <Name>, archived at the end, in git-workflow, CLAUDE.md and the Git workflow page of the site; then governance/ux-playground renamed project/ux-playground and B130 updated. Not included: the work of the UX playground itself (B130).",
+      "priority": "medium",
+      "release": "R1"
+    },
+    {
+      "id": "B132",
+      "title": "Documentation site: accessibility follow-up",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Markdown code blocks scroll inside their own box; the brand fill of a checked control is checked for contrast.",
+      "why": "Found by the full compliance audit before the merge into develop (audits/2026-10-30-before-develop-merge.md).",
+      "scope": "Audit findings 42 and 43: Markdown code blocks of the Skills and Agents cards (and any Markdown) overflow the card; the pair background.brand on background.page (checkbox fill, pressed toggle) is not in tokens/contrast-pairs.json. Decisions asked first: same look as pre.code (surface background, padding) or scroll only; background.brand or border.focus for a checked control fill.",
+      "doneWhen": [
+        "Long code lines in Markdown scroll inside their block and never overflow the card.",
+        "The brand fill pair is in contrast-pairs.json and npm run tokens passes.",
+        "The next compliance audit no longer lists findings 42 and 43."
+      ],
+      "priority": "medium",
+      "release": "R2"
+    },
+    {
+      "id": "B133",
+      "title": "Documentation site: landing page layout",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "The landing page and the prototypes list follow the layout rules, or get an approved exception.",
+      "why": "Found by the full compliance audit before the merge into develop (audits/2026-10-30-before-develop-merge.md).",
+      "scope": "Audit finding 44: side margin 16px instead of 24px, 8px between the title and the subtitle, 24px between the panel and the cards (docs/src/docs.css .home, .home-panel h1, .home-links; also used by prototypes/list.tsx). Decision asked first: do the layout rules apply to the Level 0 landing page and /prototypes/, or is it a site exception?",
+      "doneWhen": [
+        "The landing page and the prototypes list follow the layout rules, or the exception is written in the layout skill.",
+        "The next compliance audit no longer lists finding 44."
+      ],
+      "priority": "medium",
+      "release": "R2"
+>>>>>>> origin/develop
     }
   ]
 }

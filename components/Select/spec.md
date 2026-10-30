@@ -57,7 +57,7 @@ One size only. The Select takes the **full width** of its container; the list ta
 | ---- | ------ | ------- | ---------- | --------- |
 | Label | One line | — | `label` | — |
 | Field | ≈ 39px (value line height + padding + border) | `--space-16` horizontal · `--space-8` vertical | `body` | `--icon-size-20` (arrow) |
-| List | Height of its options (no maximum) | `--space-4` | — | — |
+| List | Height of its options, **8 options at most**; beyond, the list scrolls | `--space-4` | — | — |
 | Error message | One line or more | — | `body-sm` | `--icon-size-16` (error icon) |
 
 - Space between label and field: `--space-4`.

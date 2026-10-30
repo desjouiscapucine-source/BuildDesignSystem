@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Header } from "./SectionPages";
 
 // Branches page (B109): every branch, its conversation, folder, ticket and position against develop, read live from
 // git by the dev server (/api/branches); plus what develop adds to main, the content of the next release.
@@ -40,8 +41,7 @@ export function BranchesPage() {
 
   return (
     <>
-      <h1>Branches</h1>
-      <p className="lead">Every branch, its conversation and what the next release contains</p>
+      <Header title="Branches" lead="Every branch, its conversation and what the next release contains" />
       <p>
         Read live from git when the site runs with <code>npm run dev</code>. Work branches start from{" "}
         <code>develop</code> and are merged into it; <code>main</code> changes on release day only (

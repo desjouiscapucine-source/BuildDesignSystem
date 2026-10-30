@@ -2,7 +2,13 @@
   "name": "TicketCard",
   "description": "The card of a backlog ticket, with its main information.",
   "level": "organism",
-  "status": "guidelines",
-  "version": "0.0",
-  "changelog": []
+  "status": "complete",
+  "version": "1.0",
+  "changelog": [
+    {
+      "version": "1.0",
+      "date": "2026-10-29",
+      "changes": "First complete version."
+    }
+  ]
 }

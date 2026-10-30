@@ -11,7 +11,7 @@ Main navigation of an application, displayed on the side of the page.
 ## Types
 | Type | Purpose |
 | ---- | ------- |
-| SideNavigation | The only type. Always expanded. |
+| SideNavigation | The only type. Always expanded on desktop; below desktop, opened and closed with a burger button. |
 
 ## Anatomy
 1. Container (required) — the brand-colored navigation area
@@ -28,6 +28,7 @@ None: the side navigation has a single look.
 | -------- | ------ | ------- | ----------- |
 | `label` | Text | "Main navigation" | Name of the navigation announced to screen readers. |
 | `children` | NavigationItem components | — (required) | The items of the navigation. |
+| `open` | `true`, `false` | `false` | Below desktop only: the navigation is shown over the page. Ignored on desktop (always shown). |
 
 ### Combinations
 - Not applicable (no variant property).
@@ -46,7 +47,8 @@ One size only.
 | Default | `--size-side-navigation` (240px) | Full height of the screen | `--space-16` | `--space-8` |
 
 - When the items do not fit in the height, the navigation **scrolls**.
-- Always expanded: no collapsed version, no hidden version on mobile.
+- Always expanded: no collapsed version.
+- **Below desktop** (`breakpoint.desktop`, 1024px): hidden by default, opened with a **burger button** placed outside the component (an **IconButton** `primary`, icon `menu` / `close`, label "Open navigation" / "Close navigation", `aria-expanded` and `aria-controls` = the navigation's `id`). When open (`open`), it slides in from the left **over the page**, with `--shadow-panel`, in `--duration-200` `--easing-ease-out`, at the `navigation` z-index. It closes with the burger button, or when a page is opened.
 
 ## States
 - The container has no interaction state.
@@ -59,7 +61,10 @@ One size only.
 | Container | Width | all | `--size-side-navigation` |
 | Container | Padding | all | `--space-16` |
 | Items | Gap | all | `--space-8` |
-| Container | Separation from the page | all | none (the brand background is enough) |
+| Container | Separation from the page | desktop | none (the brand background is enough) |
+| Container | Shadow | below desktop, open | `--shadow-panel` |
+| Container | Slide in / out | below desktop | `--duration-200` · `--easing-ease-out` |
+| Container | Stacking order | below desktop | `--z-index-navigation` |
 
 ### Contrast (WCAG 2.2 AA)
 - Items: see the NavigationItem spec (white on brand 6.10:1; selected brand on cream 5.35:1; focus ring white 6.10:1).

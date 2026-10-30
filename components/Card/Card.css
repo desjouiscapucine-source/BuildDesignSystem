@@ -31,8 +31,9 @@
   font-weight: var(--typography-body-weight);
   line-height: var(--typography-body-line-height);
 }
-.ds-card-text > :first-child { margin-top: 0; }
-.ds-card-text > :last-child { margin-bottom: 0; }
+/* Blocks of the text (paragraphs, lists, tables, a disclosure…): 16px apart */
+.ds-card-text > * { margin-top: 0; margin-bottom: 0; }
+.ds-card-text > * + * { margin-top: var(--space-16); }
 
 /* ---------- clickable-image: thumbnails under the text ---------- */
 /* 3 per row, 8px apart, 16px under the text (the card gap is 8px, so 8px more above) */

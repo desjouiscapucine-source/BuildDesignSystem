@@ -1,5 +1,5 @@
 import { useRef, type ReactNode } from "react";
-import { Dialog } from "@ds/components";
+import { Card, Dialog } from "@ds/components";
 import { Markdown } from "../Markdown";
 import { decisionLabels, prototypeSpecs, statusLabels, type BacklogItem } from "../backlog";
 
@@ -50,7 +50,7 @@ export function TicketDialog({
   return (
     <Dialog size="large" open={Boolean(id)} onClose={onClose} title={item.title} description={meta}>
       <div className="ticket">
-        {actions(item)}
+        <div className="ticket-menus">{actions(item)}</div>
         {error && (
           <p className="backlog-error" role="alert">
             {error}
@@ -113,11 +113,12 @@ export function TicketDialog({
                 <ol className="ticket-iterations">
                   {iterations.map((iteration, index) => (
                     <li key={index}>
-                      <div className="ticket-iteration-head">
-                        <strong>Iteration {index + 1}</strong>
-                        <span className={`backlog-tag ${iteration.decision}`}>{decisionLabels[iteration.decision]}</span>
-                      </div>
-                      <p>{iteration.feedback}</p>
+                      <Card title={`Iteration ${index + 1}`} headingLevel={4}>
+                        <p>
+                          <span className={`backlog-tag ${iteration.decision}`}>{decisionLabels[iteration.decision]}</span>
+                        </p>
+                        <p>{iteration.feedback}</p>
+                      </Card>
                     </li>
                   ))}
                 </ol>

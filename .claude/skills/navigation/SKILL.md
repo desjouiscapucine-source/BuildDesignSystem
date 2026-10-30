@@ -30,6 +30,7 @@ Level 2   │   ├── Overview                (content: Description + Summar
 Level 2   │   ├── Governance
 Level 3   │   │   ├── Backlog             (a ticket opens in a modal)
 Level 3   │   │   ├── How to use skills
+Level 3   │   │   ├── Agents
 Level 3   │   │   ├── Git workflow        (organization diagram, link to the git-workflow skill)
 Level 3   │   │   ├── Branches            (every branch, its conversation, the next release)
 Level 3   │   │   ├── Changelog           (every version of every component)
@@ -75,9 +76,9 @@ Decided by the Design System Lead on 2026-10-27 (B087). Prototypes and Navigatio
 | **Level 0** | Root page (`/`): one card per Level 1 space, in the order Documentation, Portfolio. No side navigation. |
 | **Logo** | In the header on every screen size; below tablet the logo stays and only the site name is hidden, so Level 0 is reachable from a phone. |
 | **Level 1 spaces** | Links in the header, same order; below desktop they open at the top of the menu. |
-| **Side navigation** | Shows only the current space: its Level 2 sections; the pages of a section open under it while the current page is inside it. |
+| **Side navigation** | The **SideNavigation** component (B122, 2026-10-29). Shows only the current space: its Level 2 sections. A section with pages below it (2 or more) is a **parent item**: it opens and closes its pages, it is **not a link** (open while the current page is inside it); a section without pages below it is a link. One selected item: the page displayed. Below desktop: hidden, opened with the burger button; a "Spaces" parent item (icon `workspaces`) at the top lists the spaces, none selected. |
 | **Overview** | Description, then Summary: one card per section (Governance, Foundations, Components, Prototypes, Navigation). |
-| **Level 2 sections** | A page of their own: title, subtitle and one card per Level 3 page (or per component category). |
+| **Level 2 sections** | A page of their own: title, subtitle and one card per Level 3 page (or per component category). Since B122, the page of a section with pages below it (and of a component category) is reached from the **Overview cards** and the **breadcrumb**, not from the side navigation (a parent item is not a page); on that page, no side navigation item is selected. |
 | **Foundations** | One page per category. Text styles are on Typography; the WCAG contrast table and the state layers are on Color. |
 | **Components** | The five categories are always listed; an empty one says "No component yet". |
 | **Prototypes** | Level 2 section of Documentation: one card / navigation item per prototype (Level 3), plus "All prototypes" (`/prototypes/`). |
