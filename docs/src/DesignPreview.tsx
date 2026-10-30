@@ -2,17 +2,22 @@
 // Design System Lead test any semantic token on each slot. Changes are saved to design/tokens.json.
 import { useState, type CSSProperties } from "react";
 import { tokens, tokenById, contrastRatio, textStyles, type Token } from "../../tokens/lib";
+import { Select } from "@ds/components";
 import type { ComponentDoc, DesignTokens, PreviewState, SlotType } from "./types";
+import { readableName, readableToken } from "./readableName";
+
+// Value of the "None" option (clears the token of a slot): not a token id, so an empty slot shows the placeholder.
+const NONE = "none";
 
 const states: PreviewState[] = ["default", "hover", "focus", "pressed", "disabled"];
 
 // Tokens offered for each slot type (semantic tier only, except shadows: primitives and semantic shadows).
 function optionsFor(type: SlotType): { id: string; label: string }[] {
-  if (type === "text-style") return textStyles.map((style) => ({ id: style.name, label: style.name }));
+  if (type === "text-style") return textStyles.map((style) => ({ id: style.name, label: readableName(style.name) }));
   const group = type === "shadow" ? "shadow" : type;
   return tokens
     .filter((token) => token.path[0] === group && (type === "shadow" || token.tier === "semantic"))
-    .map((token) => ({ id: token.id, label: token.cssVar }));
+    .map((token) => ({ id: token.id, label: readableToken(token) }));
 }
 
 function cssVars(design: DesignTokens, values: Record<string, string>): CSSProperties {
@@ -141,19 +146,16 @@ export function DesignPreview({ component }: { component: ComponentDoc }) {
                   {description && <div className="resolved">{description}</div>}
                 </td>
                 <td>
-                  <select
-                    className="design-preview-select"
-                    aria-label={`Token for ${slot}`}
+                  <Select
+                    label={readableName(slot)}
+                    placeholder="Choose a token"
                     value={values[slot] ?? ""}
-                    onChange={(event) => setSlot(slot, event.target.value)}
-                  >
-                    <option value="">— none —</option>
-                    {optionsFor(type).map((option) => (
-                      <option key={option.id} value={option.id}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </select>
+                    options={[
+                      { value: NONE, label: "None" },
+                      ...optionsFor(type).map((option) => ({ value: option.id, label: option.label })),
+                    ]}
+                    onChange={(next) => setSlot(slot, next === NONE ? "" : next)}
+                  />
                 </td>
                 <td>
                   {type === "color" && token && <span className="swatch" style={{ background: `var(${token.cssVar})` }} />}{" "}

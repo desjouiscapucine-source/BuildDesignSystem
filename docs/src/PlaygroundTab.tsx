@@ -2,9 +2,10 @@
 // Design preview tab once the component is complete.
 // The canvas is an iframe (docs/playground.html) at the chosen screen width; the controls, the tokens and the JSX code are here.
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Button, Chip } from "@ds/components";
+import { Button, Chip, Select } from "@ds/components";
 import { tokens, textStyles, type Token } from "../../tokens/lib";
 import { IconSelect } from "./IconSelect";
+import { readableName, readableToken } from "./readableName";
 import type { ComponentDoc } from "./types";
 import {
   defaultArgs,
@@ -221,27 +222,20 @@ function PlaygroundView({ component, playground }: { component: ComponentDoc; pl
                       <code>{row.kind === "token" ? row.token.cssVar : `text style ${row.name}`}</code>
                     </td>
                     <td>
-                      <select
-                        className="playground-input"
-                        aria-label={`Token tried for ${row.kind === "token" ? row.token.cssVar : `text style ${row.name}`}`}
+                      <Select
+                        label={row.kind === "token" ? readableToken(row.token) : readableName(row.name)}
+                        placeholder="Choose a token"
                         value={value}
-                        onChange={(event) => {
+                        options={
+                          row.kind === "token"
+                            ? row.options.map((option) => ({ value: option.id, label: readableToken(option) }))
+                            : textStyles.map((style) => ({ value: style.name, label: readableName(style.name) }))
+                        }
+                        onChange={(next) => {
                           const { [row.key]: _, ...rest } = tried;
-                          setTried(event.target.value === current ? rest : { ...rest, [row.key]: event.target.value });
+                          setTried(next === current ? rest : { ...rest, [row.key]: next });
                         }}
-                      >
-                        {row.kind === "token"
-                          ? row.options.map((option) => (
-                              <option key={option.id} value={option.id}>
-                                {option.cssVar}
-                              </option>
-                            ))
-                          : textStyles.map((style) => (
-                              <option key={style.name} value={style.name}>
-                                {style.name}
-                              </option>
-                            ))}
-                      </select>
+                      />
                     </td>
                   </tr>
                 );
@@ -256,11 +250,10 @@ function PlaygroundView({ component, playground }: { component: ComponentDoc; pl
 
       <h3>Code</h3>
       <div className="code-file">
-        <pre className="code">{source}</pre>
-        <button className="code-copy" onClick={copy}>
-          <span className="ds-icon" aria-hidden="true">{copied ? "check" : "content_copy"}</span>
+        <Button variant="tertiary" className="code-copy" icon={copied ? "check" : "content_copy"} onClick={copy}>
           {copied ? "Copied" : "Copy"}
-        </button>
+        </Button>
+        <pre className="code">{source}</pre>
       </div>
 
     </div>
@@ -278,7 +271,7 @@ function ControlInput({
   value: PlaygroundArgs[string];
   onChange: (value: PlaygroundArgs[string]) => void;
 }) {
-  const label = `Value of ${name}`;
+  const label = readableName(name);
   switch (control.type) {
     case "boolean":
       return (
@@ -286,11 +279,13 @@ function ControlInput({
       );
     case "select":
       return (
-        <select className="playground-input" aria-label={label} value={value as string} onChange={(event) => onChange(event.target.value)}>
-          {control.options.map((option) => (
-            <option key={option}>{option}</option>
-          ))}
-        </select>
+        <Select
+          label={readableName(name)}
+          placeholder={`Choose a ${readableName(name).toLowerCase()}`}
+          value={value as string}
+          options={control.options.map((option) => ({ value: option, label: readableName(option) }))}
+          onChange={onChange}
+        />
       );
     case "icon":
       return <IconSelect label={label} value={value as string} optional={control.optional} onChange={onChange} />;

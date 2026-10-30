@@ -4439,3 +4439,25 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-10-29-B122-1.md` (created)
 - `components/SideNavigation/SideNavigation.tsx`, `SideNavigation.css`, `spec.md`, `guidelines.md`, `meta.json`, `playground.tsx`, `docs/src/AppShell.tsx`, `docs/src/docs.css`, `docs/src/structure.ts`, `.claude/skills/navigation/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B123-1 — Documentation site: use Button and Select
+**Date:** 2026-10-30
+
+**Decisions (made by the Design System Lead)**
+- "Copy" and "Show / Hide rejected": **Button `tertiary`**. The Copy button goes **above the code block**, right-aligned, on the page background, 16px from the code.
+- The selects of the Design preview and Playground tables are **Select** components with a **visible label** naming the row (slot, token or prop).
+- **Select 1.1**: a value may be shown as chosen in advance when the field shows a setting that already exists.
+- **Select 1.2**: the list shows **8 options at most**, then scrolls.
+- **Readable labels** for code names: no "--" prefix, no token category (kept when the rest is only a number: "Space 16"), dashes and dots become spaces, sentence case.
+- `IconSelect` stays: approved site exception, candidate for a future Combobox component.
+
+**What was done**
+- `components/Select`: guidelines (value chosen in advance, long lists), spec (list height), `Select.css` (max height of 8 options, scroll), `meta.json` 1.1 and 1.2 (by Claude).
+- `ds-compliance-fix` (two runs), `docs/` only: Button and Select on the Component page (Code, Design preview, Playground) and the Backlog; `docs/src/readableName.ts`; Copy buttons above the code; unused CSS removed. Then Claude: category kept for number-only tokens, readable names for every Playground control, code block margin.
+- Verification: type check and build pass; on the Button page, readable labels ("Variant", "Border width 2", "Background brand subtle"), a list of 8 options that scrolls, Copy button 16px above the code.
+- Compliance audit: `audits/2026-10-30-B123-1.md` (#3, #4, #6 fixed, #7 approved exception; #32 still open, smaller).
+- Ticket B123 `done`. Committed on `governance/docs-compliance`, not merged into `develop` yet.
+
+**Files**
+- `docs/src/readableName.ts`, `audits/2026-10-30-B123-1.md` (created)
+- `components/Select/Select.css`, `spec.md`, `guidelines.md`, `meta.json`, `docs/src/DesignPreview.tsx`, `docs/src/PlaygroundTab.tsx`, `docs/src/pages/ComponentPage.tsx`, `docs/src/pages/BacklogPage.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Select, TicketCard } from "@ds/components";
+import { Button, Select, TicketCard } from "@ds/components";
 import type { Stage } from "../types";
 import {
   priorityLabels,
@@ -144,9 +144,9 @@ export function BacklogPage({ open }: { open?: string }) {
 
       {rejected.length > 0 && (
         <section className="backlog-rejected">
-          <button onClick={() => setShowRejected(!showRejected)} aria-expanded={showRejected}>
+          <Button variant="tertiary" onClick={() => setShowRejected(!showRejected)} aria-expanded={showRejected}>
             {showRejected ? "Hide" : "Show"} rejected ({rejected.length})
-          </button>
+          </Button>
           {showRejected && <ul className="backlog-rejected-list">{rejected.map(card)}</ul>}
         </section>
       )}

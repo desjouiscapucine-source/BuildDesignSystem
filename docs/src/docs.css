@@ -506,7 +506,7 @@ code {
 /* ---------- Backlog ---------- */
 .shell-content:has(.backlog-board) { max-width: none; }
 .backlog-filters { display: flex; flex-wrap: wrap; gap: var(--space-8); margin-bottom: var(--space-16); }
-.backlog-filters button, .backlog-rejected > button {
+.backlog-filters button {
   position: relative;
   font: inherit;
   font-size: var(--font-size-14);
@@ -632,7 +632,6 @@ pre.code { background: var(--color-background-surface); padding: var(--space-16)
   border: var(--border-width-1) solid var(--color-border-subtle); border-radius: var(--radius-8); background: var(--color-background-page);
 }
 .design-preview-states figcaption { margin-top: var(--space-4); text-align: center; color: var(--color-text-secondary); font-size: var(--font-size-12); text-transform: capitalize; }
-.design-preview-select { font: inherit; font-size: var(--font-size-14); padding: var(--space-4); border: var(--border-width-1) solid var(--color-border-strong); border-radius: var(--radius-4); max-width: 100%; }
 /* Simulated states for design previews (state layers in the content color) */
 .preview-state-layer { position: relative; }
 .preview-state-layer::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: currentColor; opacity: 0; pointer-events: none; }
@@ -642,16 +641,10 @@ pre.code { background: var(--color-background-surface); padding: var(--space-16)
 .preview-state-layer[data-state="focus"] { outline: var(--border-width-2) solid var(--color-border-focus); outline-offset: var(--border-width-2); }
 
 /* Code tab */
-.code-file { position: relative; }
-.code-file pre.code { max-height: 480px; padding-right: var(--space-64); }
-.code-copy {
-  position: absolute; top: var(--space-8); right: var(--space-8);
-  display: inline-flex; align-items: center; gap: var(--space-4);
-  font: inherit; font-size: var(--font-size-12); padding: var(--space-4) var(--space-8);
-  border: var(--border-width-1) solid var(--color-border-strong); border-radius: var(--radius-4);
-  background: var(--color-background-page); color: var(--color-text-primary); cursor: pointer;
-}
-.code-copy .ds-icon { font-size: var(--icon-size-16); }
+/* Copy button (Button tertiary) above the code, right-aligned, on the page background (B123 decision D) */
+.code-file { display: flex; flex-direction: column; gap: var(--space-16); }
+.code-file > .code-copy { align-self: flex-end; }
+.code-file pre.code { max-height: 480px; margin: 0; }
 
 /* Page header (page-header skill): title heading-1 + subtitle lead, one line each, ellipsis as a safety net */
 .shell-content > h1, .shell-content > .lead, .home-panel > h1, .home-panel > .lead {

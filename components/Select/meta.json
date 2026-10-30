@@ -3,8 +3,18 @@
   "description": "Choice of one option in a list.",
   "level": "molecule",
   "status": "complete",
-  "version": "1.0",
+  "version": "1.2",
   "changelog": [
+    {
+      "version": "1.2",
+      "date": "2026-10-30",
+      "changes": "The list shows 8 options at most, then scrolls."
+    },
+    {
+      "version": "1.1",
+      "date": "2026-10-30",
+      "changes": "A value can be shown as chosen in advance when the field shows a setting that already exists."
+    },
     {
       "version": "1.0",
       "date": "2026-10-29",

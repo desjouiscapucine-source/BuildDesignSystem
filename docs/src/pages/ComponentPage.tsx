@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button } from "@ds/components";
 import type { ComponentDoc } from "../types";
 import { Markdown } from "../Markdown";
 import { StageBadge } from "../StageBadge";
@@ -122,11 +123,10 @@ function CodeTab({ component }: { component: ComponentDoc }) {
     <>
       <h3>Import</h3>
       <div className="code-file">
-        <pre className="code">{usage}</pre>
-        <button className="code-copy" onClick={() => copy("import", usage)}>
-          <span className="ds-icon" aria-hidden="true">{copied === "import" ? "check" : "content_copy"}</span>
+        <Button variant="tertiary" className="code-copy" icon={copied === "import" ? "check" : "content_copy"} onClick={() => copy("import", usage)}>
           {copied === "import" ? "Copied" : "Copy"}
-        </button>
+        </Button>
+        <pre className="code">{usage}</pre>
       </div>
       {files.map(([name, content]) => (
         <section key={name}>
@@ -134,11 +134,10 @@ function CodeTab({ component }: { component: ComponentDoc }) {
             <code>{name}</code>
           </h3>
           <div className="code-file">
-            <pre className="code">{content}</pre>
-            <button className="code-copy" onClick={() => copy(name, content)}>
-              <span className="ds-icon" aria-hidden="true">{copied === name ? "check" : "content_copy"}</span>
+            <Button variant="tertiary" className="code-copy" icon={copied === name ? "check" : "content_copy"} onClick={() => copy(name, content)}>
               {copied === name ? "Copied" : "Copy"}
-            </button>
+            </Button>
+            <pre className="code">{content}</pre>
           </div>
         </section>
       ))}

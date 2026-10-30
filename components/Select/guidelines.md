@@ -10,7 +10,7 @@
 - To **trigger an action** (e.g. "Delete", "Duplicate"): use a **Button**. A menu of actions is not in the design system yet.
 
 ## Usage best practices
-- **Always a placeholder**: no option is chosen in advance; the user always chooses.
+- **Always a placeholder**: no option is chosen in advance; the user always chooses. **Exception**: when the field shows a setting that already exists (e.g. the token a component uses, the current value of a prop), that value is shown as chosen; the placeholder stays for when no value is set.
 - **Full width**: the Select takes the width of its container; place it in a column of the layout grid to set its width.
 - **Options**: follow the SelectOption guidelines (order, icons all or none, prefer hiding to disabling).
 - **Error and disabled are never combined**: a disabled Select cannot be corrected.
@@ -32,6 +32,7 @@
 
 ## Behavior
 - **Open**: a click on the field, or Enter, Space or Arrow down when the field has the focus. The list opens under the field, over the page.
+- **Long lists**: the list shows 8 options at most, then scrolls; the focused option is always scrolled into view.
 - **Focus when opening**: on the chosen option; on the first option when none is chosen.
 - **Choose**: a click or Enter on an option chooses it, closes the list and gives the focus back to the field.
 - **Close without changing**: Escape, Tab, or a click outside the list; the value stays the same.
