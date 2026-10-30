@@ -4520,3 +4520,23 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-10-30-B127-1.md` (created)
 - `docs/src/docs.css`, `docs/src/pages/SectionPages.tsx` and 11 page files, `index.html`, `.claude/skills/page-header/SKILL.md`, `.claude/skills/layout/SKILL.md`, `.claude/skills/git-workflow/SKILL.md`, `.claude/agents/ds-compliance-fix.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B127-2 — Text styles completed, last site exceptions
+**Date:** 2026-10-30
+
+**Decisions (made by the Design System Lead)**
+- Code-font text (`--doc-mono`, until B067) takes only the **size and line height** of its text style.
+- The **spacing inside nested blocks** (Foundations sections, component tab panels, Markdown) is kept; 16px applies between the top-level blocks (`layout` skill).
+- The clock sizes (28px, 40px) are part of the **VT323 clock exception**.
+
+**What was done**
+- `docs/src/docs.css` (by Claude): the 12 rules that set part of a text style now set its 4 tokens; exceptions comment updated.
+- `.claude/skills/layout/SKILL.md` and `.claude/skills/page-header/SKILL.md`: nested spacing and font exceptions.
+- Visible: `.git-flow-arrow-label` becomes semibold (label-sm); link card titles take the heading line height (1.2).
+- Verification: type check and build pass; label-sm measured on the Git workflow and Navigation pages.
+- Compliance check: `audits/2026-10-30-B127-2.md` (#24 fixed; #40, #41 approved exceptions).
+- Ticket B127 `done`.
+
+**Files**
+- `audits/2026-10-30-B127-2.md` (created)
+- `docs/src/docs.css`, `.claude/skills/layout/SKILL.md`, `.claude/skills/page-header/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)

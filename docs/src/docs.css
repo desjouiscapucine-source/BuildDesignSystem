@@ -2,11 +2,12 @@
 @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 /* Styles of the documentation site, built with the design system tokens.
    Documented site exceptions (decided by the Design System Lead; raw or primitive values kept):
-   - --doc-mono: code font, which has no design token (until B067).
-   - VT323: digital clock font of the header (site only).
+   - --doc-mono: code font, which has no design token (until B067); code text takes only the size and line height of its text style.
+   - VT323: digital clock font of the header and the landing page, with its own sizes (28px, 40px) (site only).
    - Primitive colors of the clock and the landing page: primary-950, primary-900, secondary-600 (site only).
    - Inline code: em units, relative to the surrounding text (until B067).
-   - Skip link: top: -100px to hide it off screen (until the Skip link component, B066). */
+   - Skip link: top: -100px to hide it off screen (until the Skip link component, B066).
+   - Spacing inside nested blocks (sections, tab panels, Markdown): kept as is; 16px applies between the top-level blocks (layout skill). */
 :root {
   --doc-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --doc-header-height: var(--size-header);
@@ -69,6 +70,8 @@ code {
   color: var(--color-text-secondary);
   font-family: var(--typography-body-sm-family);
   font-size: var(--typography-body-sm-size);
+  font-weight: var(--typography-body-sm-weight);
+  line-height: var(--typography-body-sm-line-height);
 }
 
 /* State layers: interactive elements get an ::after overlay in the content color
@@ -354,6 +357,7 @@ code {
   font-family: var(--typography-heading-5-family);
   font-size: var(--typography-heading-5-size);
   font-weight: var(--typography-heading-5-weight);
+  line-height: var(--typography-heading-5-line-height);
 }
 .home-links span, .cards span { color: var(--color-text-secondary); }
 
@@ -376,11 +380,11 @@ code {
   background: var(--color-background-page);
 }
 .git-flow-box code { font-weight: var(--font-weight-semibold); }
-.git-flow-box span { color: var(--color-text-secondary); font-size: var(--typography-body-sm-size); }
+.git-flow-box span { color: var(--color-text-secondary); font-size: var(--typography-body-sm-size); font-family: var(--typography-body-sm-family); font-weight: var(--typography-body-sm-weight); line-height: var(--typography-body-sm-line-height); }
 .git-flow-box--develop { background: var(--color-background-brand-subtle); }
 .git-flow-box--main { background: var(--color-background-surface); border-width: var(--border-width-2); }
 .git-flow-arrow { display: flex; flex-direction: column; align-items: center; gap: var(--space-4); color: var(--color-text-secondary); text-align: center; }
-.git-flow-arrow-label { font-size: var(--typography-label-sm-size); }
+.git-flow-arrow-label { font-size: var(--typography-label-sm-size); font-family: var(--typography-label-sm-family); font-weight: var(--typography-label-sm-weight); line-height: var(--typography-label-sm-line-height); }
 .git-flow-link { display: inline-flex; align-items: center; gap: var(--space-4); font-weight: var(--font-weight-semibold); }
 /* Below breakpoint.tablet: stacked */
 @media not all and (min-width: 768px) {
@@ -388,7 +392,7 @@ code {
   .git-flow-arrow .ds-icon { transform: rotate(90deg); }
 }
 
-.branch-note { color: var(--color-text-secondary); font-size: var(--typography-body-sm-size); }
+.branch-note { color: var(--color-text-secondary); font-size: var(--typography-body-sm-size); font-family: var(--typography-body-sm-family); font-weight: var(--typography-body-sm-weight); line-height: var(--typography-body-sm-line-height); }
 
 /* ---------- Release planning ---------- */
 .release-list { display: flex; flex-direction: column; gap: var(--space-16); margin: 0; padding: 0; list-style: none; }
@@ -411,6 +415,7 @@ code {
   background: var(--color-background-subtle);
   color: var(--color-text-secondary);
   text-transform: capitalize;
+  line-height: var(--typography-label-sm-line-height);
 }
 .stages li.done { background: var(--color-background-brand-subtle); color: var(--color-text-brand); }
 .stages li.current { background: var(--color-background-brand); color: var(--color-text-inverse); }
@@ -526,9 +531,11 @@ code {
   background: var(--color-background-brand-subtle);
   font-size: var(--typography-label-sm-size);
   font-weight: var(--font-weight-semibold);
+  font-family: var(--typography-label-sm-family);
+  line-height: var(--typography-label-sm-line-height);
 }
 .nav-tree-label { font-weight: var(--font-weight-semibold); }
-.nav-tree-note { color: var(--color-text-secondary); font-size: var(--typography-body-sm-size); }
+.nav-tree-note { color: var(--color-text-secondary); font-size: var(--typography-body-sm-size); font-family: var(--typography-body-sm-family); font-weight: var(--typography-body-sm-weight); line-height: var(--typography-body-sm-line-height); }
 .skill-card { scroll-margin-top: calc(var(--size-header) + var(--space-16)); } /* below the sticky header */
 .skill-card summary { cursor: pointer; color: var(--color-text-brand); font-weight: var(--font-weight-semibold); }
 .skill-card details[open] summary { margin-bottom: var(--space-16); }
@@ -574,6 +581,7 @@ code {
   border-radius: var(--radius-4);
   background: var(--color-background-subtle);
   color: var(--color-text-secondary);
+  line-height: var(--typography-label-sm-line-height);
 }
 .backlog-id { margin-left: auto; font-family: var(--doc-mono); font-size: var(--typography-body-sm-size); line-height: var(--typography-body-sm-line-height); color: var(--color-text-secondary); }
 .backlog-error {
@@ -602,7 +610,7 @@ code {
 
 /* ---------- Icons page ---------- */
 pre.code { background: var(--color-background-surface); padding: var(--space-16); border-radius: var(--radius-8); font-family: var(--doc-mono); font-size: var(--typography-body-size); line-height: var(--typography-body-line-height); overflow-x: auto; }
-.icon-try { display: flex; flex-direction: column; gap: var(--space-4); max-width: var(--size-icon-try); font-family: var(--typography-label-family); font-size: var(--typography-label-size); font-weight: var(--typography-label-weight); }
+.icon-try { display: flex; flex-direction: column; gap: var(--space-4); max-width: var(--size-icon-try); font-family: var(--typography-label-family); font-size: var(--typography-label-size); font-weight: var(--typography-label-weight); line-height: var(--typography-label-line-height); }
 .icon-try input {
   font: inherit;
   font-weight: var(--font-weight-regular);
@@ -638,6 +646,7 @@ pre.code { background: var(--color-background-surface); padding: var(--space-16)
   font-family: var(--typography-label-family);
   font-size: var(--typography-label-size);
   font-weight: var(--font-weight-semibold);
+  line-height: var(--typography-label-line-height);
 }
 .level-tag {
   display: inline-block;
@@ -651,6 +660,7 @@ pre.code { background: var(--color-background-surface); padding: var(--space-16)
   font-family: var(--typography-label-sm-family);
   font-size: var(--typography-label-sm-size);
   font-weight: var(--typography-label-sm-weight);
+  line-height: var(--typography-label-sm-line-height);
 }
 
 /* ---------- Design preview ---------- */

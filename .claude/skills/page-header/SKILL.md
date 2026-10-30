@@ -58,6 +58,7 @@ Decided by the Design System Lead on 2026-10-30 (B127):
 - **Section titles**: `h2` → `heading-4`, `h3` → `heading-5`.
 - Small texts (captions, hints, IDs, 12px) → `body-sm`; tables and notes (14px) → `body`; Backlog column titles and ticket sub-headings → `label`; the site name in the header → `heading-5` at every screen size.
 - Text styles are applied in the site CSS with the four tokens of the style (`--typography-<style>-family`, `-size`, `-weight`, `-line-height`), never a `--font-size-*` alone. The `.ds-text-<style>` classes are not required in the markup.
+- Exceptions: text in the **code font** (`--doc-mono`, until B067) takes only the size and line height of its style; the **clock** (VT323) keeps its own font and sizes (site exception).
 
 ## Not defined yet — ask before deciding
 
