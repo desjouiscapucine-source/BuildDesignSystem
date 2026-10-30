@@ -1200,7 +1200,7 @@
       "id": "B127",
       "title": "Documentation site: layout, page header and text styles",
       "category": "Tooling",
-      "status": "todo",
+      "status": "in-progress",
       "origin": "proposal",
       "description": "Apply the layout, page-header and text style rules on every page of the site.",
       "why": "Found by the design system compliance audit (audits/2026-10-29-B119-1.md): the documentation site is the showcase of the design system and must be built with it.",
