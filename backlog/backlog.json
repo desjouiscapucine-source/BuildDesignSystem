@@ -1234,7 +1234,7 @@
       "id": "B129",
       "title": "Agents page",
       "category": "Tooling",
-      "status": "todo",
+      "status": "in-progress",
       "origin": "decided",
       "description": "An Agents page in Governance that documents every agent of the project.",
       "why": "Agents now exist in .claude/agents/ (ds-compliance-audit, ds-compliance-fix) and more are planned (B084, B120), but the documentation site does not show them.",
