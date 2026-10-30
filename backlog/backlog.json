@@ -1229,6 +1229,23 @@
       ],
       "priority": "medium",
       "release": "R1"
+    },
+    {
+      "id": "B129",
+      "title": "Agents page",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "decided",
+      "description": "An Agents page in Governance that documents every agent of the project.",
+      "why": "Agents now exist in .claude/agents/ (ds-compliance-audit, ds-compliance-fix) and more are planned (B084, B120), but the documentation site does not show them.",
+      "scope": "A page in Governance, like How to use skills, that reads .claude/agents/ and shows each agent: its role, when it is run, its allowed tools and what it reports; plus the rules shared by all agents (read and propose only, result checked by Claude). Not included: a skill on how to create an agent.",
+      "doneWhen": [
+        "The Agents page lists every agent of .claude/agents/, read from the files (a new agent appears without changing the page).",
+        "Each agent shows its role, when it is run, its allowed tools and what it reports.",
+        "The page shows the rules shared by all agents."
+      ],
+      "priority": "medium",
+      "release": "R1"
     }
   ]
 }
