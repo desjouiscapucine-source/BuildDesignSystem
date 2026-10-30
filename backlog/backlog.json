@@ -1270,6 +1270,39 @@
       "scope": "Included: the project/<name> branch type (kebab-case, long lifetime, merged into develop once the project is validated or on request) and its conversation Projet <Name>, archived at the end, in git-workflow, CLAUDE.md and the Git workflow page of the site; then governance/ux-playground renamed project/ux-playground and B130 updated. Not included: the work of the UX playground itself (B130).",
       "priority": "medium",
       "release": "R1"
+    },
+    {
+      "id": "B132",
+      "title": "Documentation site: accessibility follow-up",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Markdown code blocks scroll inside their own box; the brand fill of a checked control is checked for contrast.",
+      "why": "Found by the full compliance audit before the merge into develop (audits/2026-10-30-before-develop-merge.md).",
+      "scope": "Audit findings 42 and 43: Markdown code blocks of the Skills and Agents cards (and any Markdown) overflow the card; the pair background.brand on background.page (checkbox fill, pressed toggle) is not in tokens/contrast-pairs.json. Decisions asked first: same look as pre.code (surface background, padding) or scroll only; background.brand or border.focus for a checked control fill.",
+      "doneWhen": [
+        "Long code lines in Markdown scroll inside their block and never overflow the card.",
+        "The brand fill pair is in contrast-pairs.json and npm run tokens passes.",
+        "The next compliance audit no longer lists findings 42 and 43."
+      ],
+      "priority": "medium",
+      "release": "R2"
+    },
+    {
+      "id": "B133",
+      "title": "Documentation site: landing page layout",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "The landing page and the prototypes list follow the layout rules, or get an approved exception.",
+      "why": "Found by the full compliance audit before the merge into develop (audits/2026-10-30-before-develop-merge.md).",
+      "scope": "Audit finding 44: side margin 16px instead of 24px, 8px between the title and the subtitle, 24px between the panel and the cards (docs/src/docs.css .home, .home-panel h1, .home-links; also used by prototypes/list.tsx). Decision asked first: do the layout rules apply to the Level 0 landing page and /prototypes/, or is it a site exception?",
+      "doneWhen": [
+        "The landing page and the prototypes list follow the layout rules, or the exception is written in the layout skill.",
+        "The next compliance audit no longer lists finding 44."
+      ],
+      "priority": "medium",
+      "release": "R2"
     }
   ]
 }
