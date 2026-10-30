@@ -1303,6 +1303,22 @@
       ],
       "priority": "medium",
       "release": "R2"
+    },
+    {
+      "id": "B134",
+      "title": "Documentation site: text alternative of the git workflow diagram",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Make the branch types and their merge rules of the Git workflow diagram available to screen readers.",
+      "why": "Found by the design system compliance audit (audits/2026-10-30-B131-1.md, finding 27): the Organization diagram has role=\"img\", so screen readers do not read its branch list, and its aria-label does not name the branch types or when each one is merged (WCAG 1.1.1, 1.3.1).",
+      "scope": "The Organization diagram of the Git workflow page (docs/src/pages/GitWorkflowPage.tsx). Asked first: keep role=\"img\" with a full description, or show the list to screen readers.",
+      "doneWhen": [
+        "A screen reader reads every branch type of the diagram and when it is merged.",
+        "The next compliance audit no longer lists finding 27."
+      ],
+      "priority": "medium",
+      "release": "R2"
     }
   ]
 }
