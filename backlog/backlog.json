@@ -1258,6 +1258,18 @@
       "scope": "Included: only the coded components (@ds/components) and the tokens, so every composition can be built as is; a composition can be the starting point of a prototype ticket; a missing component found while composing is a signal for the backlog. Different from the playground.tsx of each component (one component, its props): here several components are combined. Decisions asked first: how to compose (free canvas like FigJam, the design system grid 4 / 8 / 12 columns, or a canvas with layout frames); whether the variants, states and texts of each placed component can be changed; how compositions are saved (not saved, in the browser, or in the repository and shared); whether a composition can become a prototype ticket; annotations (sticky notes, comments); where it sits in the navigation (a new space next to Prototypes, or a page under Prototypes).",
       "priority": "medium",
       "release": "R3"
+    },
+    {
+      "id": "B131",
+      "title": "Git workflow: project branches for long pieces of work",
+      "category": "Tooling",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "A new branch type, project/<name>, for long pieces of work on the documentation site, each with its own conversation.",
+      "why": "Governance branches are very short and merged as soon as a step is approved; a large piece of work like the UX playground (B130) needs its own long branch, merged once it is validated.",
+      "scope": "Included: the project/<name> branch type (kebab-case, long lifetime, merged into develop once the project is validated or on request) and its conversation Projet <Name>, archived at the end, in git-workflow, CLAUDE.md and the Git workflow page of the site; then governance/ux-playground renamed project/ux-playground and B130 updated. Not included: the work of the UX playground itself (B130).",
+      "priority": "medium",
+      "release": "R1"
     }
   ]
 }
