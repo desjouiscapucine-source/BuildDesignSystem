@@ -1246,6 +1246,18 @@
       ],
       "priority": "medium",
       "release": "R1"
+    },
+    {
+      "id": "B130",
+      "title": "UX playground: compose components in a layout",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "decided",
+      "description": "A space of the documentation site where UX designers combine the coded components in a layout, like FigJam, before a prototype or development.",
+      "why": "Today, testing a combination of components means writing a prototype in code. UX designers need a quick way to explore an idea on their own, with real components, before it becomes a prototype or goes to development.",
+      "scope": "Included: only the coded components (@ds/components) and the tokens, so every composition can be built as is; a composition can be the starting point of a prototype ticket; a missing component found while composing is a signal for the backlog. Different from the playground.tsx of each component (one component, its props): here several components are combined. Decisions asked first: how to compose (free canvas like FigJam, the design system grid 4 / 8 / 12 columns, or a canvas with layout frames); whether the variants, states and texts of each placed component can be changed; how compositions are saved (not saved, in the browser, or in the repository and shared); whether a composition can become a prototype ticket; annotations (sticky notes, comments); where it sits in the navigation (a new space next to Prototypes, or a page under Prototypes).",
+      "priority": "medium",
+      "release": "R3"
     }
   ]
 }
