@@ -4558,3 +4558,16 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `docs/src/agents.ts`, `docs/src/pages/AgentsPage.tsx`, `audits/2026-10-30-B129-1.md` (created)
 - `docs/src/App.tsx`, `docs/src/structure.ts`, `docs/src/pages/NavigationPage.tsx`, `.claude/skills/navigation/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B127-3 — Agents page aligned, full audit before the merge into develop
+**Date:** 2026-10-30
+
+**What was done**
+- `develop` merged into `governance/docs-compliance` (B129 Agents page, B130 reservation); `STEPS.md` conflict resolved by keeping both sides.
+- `docs/src/pages/AgentsPage.tsx`: shared `Header` (title attribute), `.card-content` wrapper removed (Card 1.2 spacing) — the B127 and B124-2 rules applied to the page that came from develop.
+- Full compliance audit of the site: `audits/2026-10-30-before-develop-merge.md` (30 compliant, 6 non-compliant: #5, #10 → B094; #9 → B118; #42–#44 new, tickets to propose).
+- `governance/docs-compliance` merged into `develop` (B124-2, B122, B123, B125, B126, B127), as decided by the Design System Lead.
+
+**Files**
+- `audits/2026-10-30-before-develop-merge.md` (created)
+- `docs/src/pages/AgentsPage.tsx`, `STEPS.md` (updated)

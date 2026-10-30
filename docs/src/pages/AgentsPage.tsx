@@ -2,34 +2,33 @@ import { Card } from "@ds/components";
 import { Markdown } from "../Markdown";
 import { agentRules, agents, type Agent } from "../agents";
 import { cardBody } from "../skills";
+import { Header } from "./SectionPages";
 
 function AgentCard({ agent }: { agent: Agent }) {
   return (
     <Card className="skill-card" id={`agent-${agent.name}`} title={agent.name} headingLevel={3}>
-      <div className="card-content">
-        <p>{agent.description}</p>
-        <p>
-          Allowed tools:{" "}
-          {agent.tools.length === 0
-            ? "every tool"
-            : agent.tools.map((tool, index) => (
-                <span key={tool}>
-                  {index > 0 && ", "}
-                  <code>{tool}</code>
-                </span>
-              ))}
-        </p>
-        {agent.report && (
-          <details>
-            <summary>What it reports</summary>
-            <Markdown source={cardBody(`# ${agent.name}\n${agent.report}`)} />
-          </details>
-        )}
+      <p>{agent.description}</p>
+      <p>
+        Allowed tools:{" "}
+        {agent.tools.length === 0
+          ? "every tool"
+          : agent.tools.map((tool, index) => (
+              <span key={tool}>
+                {index > 0 && ", "}
+                <code>{tool}</code>
+              </span>
+            ))}
+      </p>
+      {agent.report && (
         <details>
-          <summary>Show the full agent</summary>
-          <Markdown source={cardBody(agent.body)} />
+          <summary>What it reports</summary>
+          <Markdown source={cardBody(`# ${agent.name}\n${agent.report}`)} />
         </details>
-      </div>
+      )}
+      <details>
+        <summary>Show the full agent</summary>
+        <Markdown source={cardBody(agent.body)} />
+      </details>
     </Card>
   );
 }
@@ -38,8 +37,7 @@ function AgentCard({ agent }: { agent: Agent }) {
 export function AgentsPage() {
   return (
     <>
-      <h1>Agents</h1>
-      <p className="lead">The agents Claude runs for recurring checks, and their rules</p>
+      <Header title="Agents" lead="The agents Claude runs for recurring checks, and their rules" />
       <p>
         An agent is a sub-agent that Claude launches for one recurring task, with its own instructions and a limited set of
         tools. The agents live in <code>.claude/agents/</code> (one <code>&lt;name&gt;.md</code> per agent); this page reads
