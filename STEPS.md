@@ -4399,3 +4399,21 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-10-29-B124-1.md` (created)
 - `components/Card/spec.md`, `components/Card/guidelines.md`, `components/Card/meta.json`, `docs/src/pages/ReleasePlanningPage.tsx`, `docs/src/pages/SkillsPage.tsx`, `docs/src/pages/TicketDialog.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B129-1 — Agents page
+**Date:** 2026-10-30
+
+**Decisions (made by the Design System Lead)**
+- An **Agents** page in Governance documents every agent of the project, read from `.claude/agents/`, with the rules shared by all agents. Ticket B129: Tooling, priority medium, release R1.
+- After the compliance audit: the allowed tools of an agent are shown as **plain text** (not Tags: Tag guidelines allow 3 tags side by side, and a tool is not a category or a status); the Governance subtitle becomes "Backlog, skills, agents, git workflow, branches, changelog and releases" (70 characters, maximum 80).
+
+**What was done**
+- `docs/src/agents.ts`: reads `.claude/agents/*.md` (frontmatter `name`, `description`, `tools`; the `## Report` section, code blocks ignored) and the `## Agents` section of `CLAUDE.md` (shared rules).
+- `docs/src/pages/AgentsPage.tsx` (`#/agents`, Level 3 under Governance, after How to use skills): intro, "Rules for every agent", one Card per agent (description: role and when it is run; allowed tools; "What it reports" and "Show the full agent", folded). A new agent appears without changing the page.
+- Navigation: `structure.ts` (entry, Governance subtitle), `App.tsx` (route), Navigation structure page and `navigation` skill tree; `CLAUDE.md` (Agents section).
+- Compliance audit (`ds-compliance-audit`): report checked and written to `audits/2026-10-30-B129-1.md`; its two new findings (#25 Tags, #26 subtitle) came from the step and were fixed in it; 23 findings still open, covered by B094, B118, B122 to B127.
+- Verification: type check and build pass; the page shows the 4 shared rules and the 2 agents with their tools and folded sections.
+
+**Files**
+- `docs/src/agents.ts`, `docs/src/pages/AgentsPage.tsx`, `audits/2026-10-30-B129-1.md` (created)
+- `docs/src/App.tsx`, `docs/src/structure.ts`, `docs/src/pages/NavigationPage.tsx`, `.claude/skills/navigation/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)

@@ -76,6 +76,7 @@ Guidelines are updated whenever coding or prototyping reveals a new rule or edge
 ## Agents
 - Agents (sub-agents launched by Claude) **read and propose only**: they never change `tokens/`, `components/` or `prototypes/`. Only exception: **`ds-compliance-fix`** changes `docs/` (the site) to implement a validated ticket (B128).
 - Claude checks every agent result before showing it to the Design System Lead; the `never-invent` rule applies to agents too.
+- The **Agents** page of the documentation site (`/docs/#/agents`) reads the agents from `.claude/agents/` and these rules, and shows them (B129).
 - Agents live in `.claude/agents/`. **`ds-compliance-audit`** audits every UI element of the documentation site against the design system (compliant / non-compliant / not in the design system); it runs after each approved step and during the release review, and its checked report is written to `audits/` and its non-compliant elements are shown in the chat, with the **tickets it proposes** (created only once the Design System Lead agrees, with priority and release). **`ds-compliance-fix`** implements one validated ticket in `docs/` only, once the Design System Lead has answered its decisions; Claude checks it, re-runs the audit and gives the preview before any commit (`git-workflow`).
 
 ## Component guidelines
