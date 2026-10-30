@@ -230,6 +230,36 @@
       "foreground": "color.border.focus-inverse",
       "background": "color.background.inverse",
       "min": 3
+    },
+    {
+      "foreground": "color.text.brand",
+      "background": "color.background.subtle",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.border.info",
+      "background": "color.background.info-subtle",
+      "min": 3
+    },
+    {
+      "foreground": "color.border.error",
+      "background": "color.background.error-subtle",
+      "min": 3
+    },
+    {
+      "foreground": "color.text.primary",
+      "background": "color.background.info-subtle",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.primary",
+      "background": "color.background.error-subtle",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.icon.inverse",
+      "background": "color.background.brand",
+      "min": 3
     }
   ]
 }

@@ -206,13 +206,29 @@ code {
   align-items: center;
   gap: var(--space-8);
   padding: var(--space-8);
-  border-radius: var(--radius-4);
+  border-radius: var(--radius-8);
   color: var(--color-text-primary);
   cursor: pointer;
 }
-.shell-search-results li[aria-selected="true"] { background: var(--color-background-subtle); }
+/* Active option: shown like a focused SelectOption (state layer in the content color + focus outline). */
+.shell-search-results li { position: relative; }
+.shell-search-results li::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-100) var(--easing-ease-out);
+}
+.shell-search-results li:hover::after { opacity: var(--state-layer-hover); }
+.shell-search-results li[aria-selected="true"] { outline: var(--border-width-2) solid var(--color-border-focus); }
+.shell-search-results li[aria-selected="true"]::after { opacity: var(--state-layer-focus); }
 .shell-search-section { margin-left: auto; color: var(--color-text-secondary); font-size: var(--font-size-12); }
-.shell-search-empty { color: var(--color-text-secondary); cursor: default; }
+/* "No page found": outside the listbox, announced by the polite live region .shell-search-status. */
+.shell-search-status { position: absolute; top: 100%; left: 0; right: 0; }
+.shell-search-empty { margin: 0; padding: var(--space-8); color: var(--color-text-primary); }
 
 .shell-body { display: flex; min-height: calc(100dvh - var(--doc-header-height)); }
 /* SideNavigation of the site: under the sticky header, full remaining height. */
@@ -751,7 +767,7 @@ body.playground-frame { padding: var(--space-24); }
   max-height: 320px;
   overflow-y: auto;
   margin: 0;
-  padding: var(--space-4) 0;
+  padding: var(--space-4);
   list-style: none;
   background: var(--color-background-page);
   border: var(--border-width-1) solid var(--color-border-strong);
@@ -760,6 +776,19 @@ body.playground-frame { padding: var(--space-24); }
   font-size: var(--font-size-14);
 }
 .icon-select-list:focus-visible { outline: none; }
-.icon-select-option { padding: var(--space-4) var(--space-8); cursor: pointer; }
-.icon-select-option.active { background: var(--color-background-subtle); }
+.icon-select-option { position: relative; padding: var(--space-4) var(--space-8); border-radius: var(--radius-8); cursor: pointer; }
+/* Active option: shown like a focused SelectOption (state layer in the content color + focus outline). */
+.icon-select-option::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-100) var(--easing-ease-out);
+}
+.icon-select-option:hover::after { opacity: var(--state-layer-hover); }
+.icon-select-option.active { outline: var(--border-width-2) solid var(--color-border-focus); }
+.icon-select-option.active::after { opacity: var(--state-layer-focus); }
 .icon-select-option[aria-selected="true"] { font-weight: var(--font-weight-semibold); color: var(--color-text-brand); }

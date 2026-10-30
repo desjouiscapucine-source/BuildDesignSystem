@@ -1166,7 +1166,7 @@
       "id": "B125",
       "title": "Documentation site: accessibility fixes",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "proposal",
       "description": "Fix the accessibility issues of the site found by the audit.",
       "why": "Found by the design system compliance audit (audits/2026-10-29-B119-1.md): the documentation site is the showcase of the design system and must be built with it.",

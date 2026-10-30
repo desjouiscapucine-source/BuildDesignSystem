@@ -218,9 +218,8 @@ function Search() {
       <kbd className="shell-search-key" aria-hidden="true">
         /
       </kbd>
-      {q && (
+      {q && results.length > 0 && (
         <ul id="shell-search-results" className="shell-search-results" role="listbox">
-          {results.length === 0 && <li className="shell-search-empty">No page found</li>}
           {results.map((item, index) => (
             <li
               key={item.href + item.label}
@@ -241,6 +240,14 @@ function Search() {
           ))}
         </ul>
       )}
+      {/* Polite live region, always rendered so that "No page found" is announced (outside the listbox). */}
+      <div className="shell-search-status" role="status">
+        {q && results.length === 0 && (
+          <div className="shell-search-results">
+            <p className="shell-search-empty">No page found</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

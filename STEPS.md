@@ -4461,3 +4461,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `docs/src/readableName.ts`, `audits/2026-10-30-B123-1.md` (created)
 - `components/Select/Select.css`, `spec.md`, `guidelines.md`, `meta.json`, `docs/src/DesignPreview.tsx`, `docs/src/PlaygroundTab.tsx`, `docs/src/pages/ComponentPage.tsx`, `docs/src/pages/BacklogPage.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B125-1 — Documentation site: accessibility fixes
+**Date:** 2026-10-30
+
+**Decisions (made by the Design System Lead)**
+- Component page tabs: complete the WAI-ARIA tabs pattern now, without changing the look (replaced later by Tabs, B093); accessible name "Component documentation".
+- The active option of the search results and of IconSelect is shown **like a focused SelectOption**: focus state layer + `border.focus` outline, hover layer, `--radius-8`, `--duration-100` transition; the IconSelect list gets `--space-4` padding on all sides.
+- "No page found" leaves the listbox and is announced by a live region; it keeps the color shown so far (`text.primary`).
+
+**What was done**
+- `tokens/contrast-pairs.json` (by Claude): 6 semantic pairs added (text.brand on background.subtle, border.info / border.error on their subtle backgrounds, text.primary on info-subtle and error-subtle, icon.inverse on background.brand); 52/52 pass.
+- `ds-compliance-fix`, `docs/` only: `ComponentPage.tsx` (tabs pattern), `AppShell.tsx` (live region), `docs.css` (active option). Then Claude: list padding, radius, hover layer and transition (`docs.css`).
+- Verification: type check and build pass; Right arrow selects and focuses the next tab, tab ↔ panel linked; search active option with 2px outline and state layer; "No page found" announced without an empty listbox; IconSelect outline fully visible (4px padding).
+- Compliance audit: `audits/2026-10-30-B125-1.md` (#11–#14 fixed, #37 and #38 found and fixed).
+- Ticket B125 `done`. Committed on `governance/docs-compliance`, not merged into `develop` yet.
+
+**Files**
+- `audits/2026-10-30-B125-1.md` (created)
+- `tokens/contrast-pairs.json`, `docs/src/pages/ComponentPage.tsx`, `docs/src/AppShell.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)

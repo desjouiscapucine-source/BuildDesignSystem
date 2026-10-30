@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useId, useRef, useState, type KeyboardEvent } from "react";
 import { Button } from "@ds/components";
 import type { ComponentDoc } from "../types";
 import { Markdown } from "../Markdown";
@@ -28,6 +28,29 @@ export function ComponentPage({ component }: { component: ComponentDoc }) {
   const hasGuidelines = component.level !== "template" && component.level !== "page";
   const shown = (id: Tab) =>
     (hasGuidelines || id !== "guidelines") && (hasPreview || id !== "preview") && (coded || id !== "playground");
+  const visibleTabs = tabs.filter(({ id }) => shown(id));
+
+  // WAI-ARIA tabs pattern (B125), until the Tabs component replaces it (B093): roving tabindex,
+  // Left / Right move and select (wrapping), Home / End go to the first / last tab.
+  const baseId = useId();
+  const tabId = (id: Tab) => `${baseId}-tab-${id}`;
+  const panelId = `${baseId}-panel`;
+  const tabRefs = useRef<Partial<Record<Tab, HTMLButtonElement | null>>>({});
+  const onTabKeyDown = (event: KeyboardEvent) => {
+    const index = Math.max(0, visibleTabs.findIndex(({ id }) => id === tab));
+    const last = visibleTabs.length - 1;
+    const target: Record<string, number> = {
+      ArrowRight: index === last ? 0 : index + 1,
+      ArrowLeft: index === 0 ? last : index - 1,
+      Home: 0,
+      End: last,
+    };
+    if (!(event.key in target)) return;
+    event.preventDefault();
+    const next = visibleTabs[target[event.key]].id;
+    setTab(next);
+    tabRefs.current[next]?.focus();
+  };
 
   return (
     <>
@@ -43,15 +66,26 @@ export function ComponentPage({ component }: { component: ComponentDoc }) {
       <p className="level-tag">{component.level}</p>
       <StageBadge status={component.status} level={component.level} />
 
-      <div className="tabs" role="tablist">
-        {tabs.filter(({ id }) => shown(id)).map(({ id, label }) => (
-          <button key={id} role="tab" aria-selected={tab === id} onClick={() => setTab(id)}>
+      <div className="tabs" role="tablist" aria-label="Component documentation" onKeyDown={onTabKeyDown}>
+        {visibleTabs.map(({ id, label }) => (
+          <button
+            key={id}
+            ref={(element) => {
+              tabRefs.current[id] = element;
+            }}
+            id={tabId(id)}
+            role="tab"
+            aria-selected={tab === id}
+            aria-controls={panelId}
+            tabIndex={tab === id ? 0 : -1}
+            onClick={() => setTab(id)}
+          >
             {label}
           </button>
         ))}
       </div>
 
-      <div role="tabpanel">
+      <div id={panelId} role="tabpanel" aria-labelledby={tabId(tab)}>
         {tab === "playground" && <PlaygroundTab component={component} playground={playgrounds[component.slug]} />}
         {tab === "preview" && component.design && <DesignPreview component={component} />}
         {tab === "spec" &&
