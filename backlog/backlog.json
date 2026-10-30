@@ -1263,7 +1263,7 @@
       "id": "B131",
       "title": "Git workflow: project branches for long pieces of work",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "A new branch type, project/<name>, for long pieces of work on the documentation site, each with its own conversation.",
       "why": "Governance branches are very short and merged as soon as a step is approved; a large piece of work like the UX playground (B130) needs its own long branch, merged once it is validated.",

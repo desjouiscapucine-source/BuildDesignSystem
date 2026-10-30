@@ -4417,3 +4417,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `docs/src/agents.ts`, `docs/src/pages/AgentsPage.tsx`, `audits/2026-10-30-B129-1.md` (created)
 - `docs/src/App.tsx`, `docs/src/structure.ts`, `docs/src/pages/NavigationPage.tsx`, `.claude/skills/navigation/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B131-1 — Git workflow: project branches
+**Date:** 2026-10-30
+
+**Decisions (made by the Design System Lead)**
+- A third branch type, **`project/<name>`** (kebab-case), for a long piece of work on the documentation site or the tooling, used only when the Design System Lead asks for it. Long lifetime; merged into `develop` once the project is validated, or on request. Ticket B131: Tooling, priority medium, release R1.
+- One conversation per project, **Projet `<Name>`**, archived once the project is validated and merged.
+- First project: the UX playground (B130), on `project/ux-playground`.
+
+**What was done**
+- `git-workflow` skill: three branch types, the `project/` row in the Branches table and its conversation, diagram, end of a project.
+- `CLAUDE.md` (Git): branch types, conversations, merge into `develop`.
+- Git workflow page of the site: a 4th branch box `project/<name>` and the Projet conversation.
+- Compliance audit (`ds-compliance-audit`): report checked and written to `audits/2026-10-30-B131-1.md`; no finding introduced by the step; one older finding found (#27, the git workflow diagram is hidden from screen readers), not fixed in this step.
+- Verification: type check passes; the Git workflow page shows the 4 branch types.
+
+**Files**
+- `audits/2026-10-30-B131-1.md` (created)
+- `.claude/skills/git-workflow/SKILL.md`, `CLAUDE.md`, `docs/src/pages/GitWorkflowPage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
