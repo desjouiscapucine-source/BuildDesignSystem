@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Card } from "@ds/components";
 import { Markdown } from "../Markdown";
 import { cardBody, childSkills, dispatchTable, parentSkill, PARENT_SKILL, type Skill } from "../skills";
+import { Header } from "./SectionPages";
 
 const anchor = (name: string) => `skill-${name}`;
 
@@ -28,8 +29,7 @@ export function SkillsPage({ open }: { open?: string } = {}) {
 
   return (
     <>
-      <h1>How to use skills</h1>
-      <p className="lead">The orchestrator, its child skills and how to call them</p>
+      <Header title="How to use skills" lead="The orchestrator, its child skills and how to call them" />
       <p>
         A skill is a set of rules Claude follows for one kind of task. The skills live in <code>.claude/skills/</code>{" "}
         (one folder per skill, with a <code>SKILL.md</code>); this page reads them directly, so it is always up to date.

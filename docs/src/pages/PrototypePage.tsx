@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { tokenById } from "../../../tokens/lib";
 import { prototypeName } from "../prototypes";
+import { Header } from "./SectionPages";
 
 const px = (id: string) => parseFloat(tokenById.get(id)!.resolved);
 const breakpoint = px;
@@ -48,8 +49,7 @@ export function PrototypePage({ name }: { name: string }) {
 
   return (
     <>
-      <h1 title={title}>{title}</h1>
-      <p className="lead">Live preview on mobile, tablet and desktop</p>
+      <Header title={title} lead="Live preview on mobile, tablet and desktop" />
       <div className="prototype-preview-actions">
         <label>
           <input type="checkbox" checked={showGrid} onChange={(event) => setShowGrid(event.target.checked)} /> Show grid

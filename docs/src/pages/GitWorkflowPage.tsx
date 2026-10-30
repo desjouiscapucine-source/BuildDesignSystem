@@ -1,5 +1,6 @@
 // Organization diagram of the git workflow (B107): work branches → develop → main on release day.
 // The full rules are the git-workflow skill, linked at the bottom.
+import { Header } from "./SectionPages";
 
 const workBranches = [
   { name: "component/<Name>", detail: "a component: merged after each approved stage" },
@@ -19,8 +20,7 @@ const Arrow = ({ label }: { label?: string }) => (
 export function GitWorkflowPage() {
   return (
     <>
-      <h1>Git workflow</h1>
-      <p className="lead">How the work goes from a branch to a release</p>
+      <Header title="Git workflow" lead="How the work goes from a branch to a release" />
       <p>
         One piece of work = one branch = one folder = one Claude session. Everything is automatic: Claude creates the
         branches, commits, merges and prepares the releases; you describe the task, review and approve.

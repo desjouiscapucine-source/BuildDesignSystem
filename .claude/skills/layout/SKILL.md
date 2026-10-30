@@ -38,6 +38,7 @@ Approved by the Design System Lead on 2026-10-20. Tokens in the `token-naming` s
 | Desktop (1024px and above) | 12 | 16px | 24px |
 
 - **Maximum content width: 1040px, margins included** (992px for the columns). Beyond that, the grid stays centered.
+- **Exceptions (full width)**, approved by the Design System Lead on 2026-10-30 (B127): the **Backlog** page (Kanban board) and the **Prototype** pages (preview frames); and a page combining a Timeline and Cards (`page-content` skill).
 - Classes (`tokens/grid.css`): `.ds-grid` on the container, `.ds-grid-span-<n>` on each item (1 column by default).
 - A span wider than the current number of columns takes the full width (e.g. `span-6` on mobile) — approved by the Design System Lead on 2026-10-20.
 

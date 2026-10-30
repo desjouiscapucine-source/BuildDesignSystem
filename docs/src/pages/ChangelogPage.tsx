@@ -1,4 +1,5 @@
 import { components } from "../registry";
+import { Header } from "./SectionPages";
 
 // Every version of every component, newest first (read from the meta.json changelogs; `changelog` skill).
 const entries = components
@@ -8,8 +9,7 @@ const entries = components
 export function ChangelogPage() {
   return (
     <>
-      <h1>Changelog</h1>
-      <p className="lead">Every version of every component, newest first</p>
+      <Header title="Changelog" lead="Every version of every component, newest first" />
       <p>
         Read from the <code>changelog</code> of each component (<code>meta.json</code>). A complete component starts at
         1.0; <code>Y</code> goes up for an addition or a fix, <code>X</code> for a breaking change.

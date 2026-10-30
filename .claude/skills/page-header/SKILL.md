@@ -52,6 +52,13 @@ max-width: 100%;
 - Every page of the documentation site (`h1` + `.lead` in the content area, and the home pages).
 - **Component descriptions** in `meta.json`: they are the subtitle of the component page → 80 characters maximum.
 
+## Section titles and text styles of the site
+
+Decided by the Design System Lead on 2026-10-30 (B127):
+- **Section titles**: `h2` → `heading-4`, `h3` → `heading-5`.
+- Small texts (captions, hints, IDs, 12px) → `body-sm`; tables and notes (14px) → `body`; Backlog column titles and ticket sub-headings → `label`; the site name in the header → `heading-5` at every screen size.
+- Text styles are applied in the site CSS with the four tokens of the style (`--typography-<style>-family`, `-size`, `-weight`, `-line-height`), never a `--font-size-*` alone. The `.ds-text-<style>` classes are not required in the markup.
+
 ## Not defined yet — ask before deciding
 
-- Section titles and other title / subtitle pairs.
+- Other title / subtitle pairs.

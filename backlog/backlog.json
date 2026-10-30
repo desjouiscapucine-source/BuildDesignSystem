@@ -1208,7 +1208,7 @@
       "doneWhen": [
         "Blocks are 16px apart on every page.",
         "Every page title and subtitle has its title attribute.",
-        "Text uses the .ds-text-* classes.",
+        "Text uses the text styles, applied with their 4 tokens (page-header skill).",
         "The next compliance audit no longer lists these findings."
       ],
       "priority": "medium",

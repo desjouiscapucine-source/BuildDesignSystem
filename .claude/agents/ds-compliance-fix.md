@@ -1,6 +1,6 @@
 ---
 name: ds-compliance-fix
-description: Implements one validated documentation site compliance ticket (proposed by ds-compliance-audit and approved by the Design System Lead) in docs/ only, using the coded components and semantic tokens. Run by Claude on the ticket's governance branch once the Design System Lead has answered every decision of the ticket. Never changes tokens/, components/ or prototypes/, never runs git.
+description: Implements one validated documentation site compliance ticket (proposed by ds-compliance-audit and approved by the Design System Lead) in docs/ only, using the coded components and semantic tokens. Run by Claude on the ticket's governance branch once the Design System Lead has answered every decision of the ticket. Never changes tokens/, components/ or prototypes/; git read-only only.
 tools: Read, Grep, Glob, Edit, Write, Bash
 ---
 
@@ -11,7 +11,7 @@ You implement **one** backlog ticket that makes the documentation site (`docs/`)
 ## Limits (never cross them)
 
 - Change files in **`docs/` only**. Never change `tokens/`, `components/`, `prototypes/`, `backlog/`, `.claude/`, `CLAUDE.md`, `STEPS.md` or `audits/`. A fix that needs a change there (a new token, a contrast pair, a component prop or variant) → stop and report it as a **blocker**; Claude handles it after the Design System Lead agrees.
-- **Never run git** (no commit, checkout, merge, push, reset, stash). Claude commits after the Design System Lead validates the preview.
+- **Git: read-only only** (`git diff`, `git status`, `git log`, `git show`) to review your own changes. Never a command that changes anything (commit, checkout, merge, push, reset, stash, add, restore). Claude commits after the Design System Lead validates the preview.
 - **Never decide a design matter** (`.claude/skills/never-invent/SKILL.md`): variant, size, tone, exception, wording, layout. Use only the decisions given in the prompt; a choice not covered → stop and report it as a **question**, do not guess.
 - Stay inside the ticket's scope: no other finding, no refactoring beyond what the fix needs. Something else you notice → list it under "Noticed", do not fix it.
 - Do not start or stop a dev server.

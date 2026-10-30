@@ -21,7 +21,8 @@ function LinkCards({ nodes, children }: { nodes: NavNode[]; children?: (node: Na
   );
 }
 
-function Header({ title, lead }: { title: string; lead: string }) {
+// Page header (page-header skill): title + subtitle, with their full text in the title attribute (shown on hover when cut).
+export function Header({ title, lead }: { title: string; lead: string }) {
   return (
     <>
       <h1 title={title}>{title}</h1>

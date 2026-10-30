@@ -12,6 +12,7 @@ import {
   type BacklogStatus as Status,
 } from "../backlog";
 import { TicketDialog } from "./TicketDialog";
+import { Header } from "./SectionPages";
 
 const columns: { status: Status; title: string; hint: string }[] = [
   { status: "todo", title: "To do", hint: "Approved, not started" },
@@ -105,8 +106,7 @@ export function BacklogPage({ open }: { open?: string }) {
 
   return (
     <>
-      <h1>Backlog</h1>
-      <p className="lead">Tasks still to do.</p>
+      <Header title="Backlog" lead="Tasks still to do." />
       <p>
         Source: <code>backlog/backlog.json</code> — completed work is logged in <code>STEPS.md</code>.
       </p>

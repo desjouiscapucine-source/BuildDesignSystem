@@ -4499,3 +4499,24 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-10-30-B126-1.md` (created)
 - `tokens/semantic.json`, `tokens/tokens.css`, `CLAUDE.md`, `docs/src/docs.css`, `docs/src/IconSelect.tsx`, `docs/src/PlaygroundTab.tsx`, `docs/src/pages/PrototypePage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B127-1 — Documentation site: layout, page header and text styles
+**Date:** 2026-10-30
+
+**Decisions (made by the Design System Lead)**
+- Section titles: `h2` → `heading-4`, `h3` → `heading-5`. Small texts (12px) → `body-sm`; tables and notes (14px) → `body`; Backlog column titles and ticket sub-headings → `label`; the site name → `heading-5` at every screen size.
+- Text styles are applied in the site CSS with the **4 tokens of the style**; the `.ds-text-*` classes are not required in the markup (`page-header` skill).
+- Approved full-width exceptions: the **Backlog** and **Prototype** pages (`layout` skill).
+- The Select list in tables that scroll horizontally (#32) is accepted as is.
+- `ds-compliance-fix` may run **read-only git commands** (`diff`, `status`, `log`, `show`).
+
+**What was done**
+- `.claude/skills/page-header/SKILL.md` and `.claude/skills/layout/SKILL.md` (by Claude); `ds-compliance-fix` agent and `git-workflow`: read-only git.
+- `ds-compliance-fix`, `docs/` only: top-level blocks 16px apart, shared `Header` with `title` on 11 pages, text styles with their 4 tokens, comments on the full-width exceptions. Then Claude: ticket sub-headings `label`, site name `heading-5` below desktop, `title` on the landing page (`index.html`), B127 "done when" updated.
+- Verification: type check and build pass; 16px between all top-level blocks measured on the Button, Governance and Backlog pages; `title` on the Backlog title and subtitle.
+- Compliance audit: `audits/2026-10-30-B127-1.md` (#21, #23 fixed; #22, #32 approved exceptions; #24 smaller; #40, #41 new).
+- Ticket B127 stays `in-progress`: #24 (16 partial styles), #40 (spacing inside nested blocks) and #41 (clock sizes) need decisions.
+
+**Files**
+- `audits/2026-10-30-B127-1.md` (created)
+- `docs/src/docs.css`, `docs/src/pages/SectionPages.tsx` and 11 page files, `index.html`, `.claude/skills/page-header/SKILL.md`, `.claude/skills/layout/SKILL.md`, `.claude/skills/git-workflow/SKILL.md`, `.claude/agents/ds-compliance-fix.md`, `backlog/backlog.json`, `STEPS.md` (updated)

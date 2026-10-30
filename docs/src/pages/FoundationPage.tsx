@@ -1,5 +1,6 @@
 import { tokens, textStyles, contrastResults, type Tier, type Token } from "../../../tokens/lib";
 import type { Foundation } from "../foundations";
+import { Header } from "./SectionPages";
 
 function Preview({ token }: { token: Token }) {
   const group = token.path[0];
@@ -144,10 +145,7 @@ function Contrast() {
 export function FoundationPage({ foundation }: { foundation: Foundation }) {
   return (
     <>
-      <h1>{foundation.label}</h1>
-      <p className="lead" title={foundation.lead}>
-        {foundation.lead}
-      </p>
+      <Header title={foundation.label} lead={foundation.lead} />
       <p>
         Sources of truth: <code>tokens/primitives.json</code> and <code>tokens/semantic.json</code>, compiled to{" "}
         <code>tokens/tokens.css</code>.

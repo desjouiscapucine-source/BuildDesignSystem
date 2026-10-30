@@ -186,8 +186,10 @@ code {
 }
 .shell-search input::placeholder { color: var(--color-text-secondary); }
 .shell-search-key {
+  /* body-sm size and line height; code font (--doc-mono) */
   font-family: var(--doc-mono);
-  font-size: var(--font-size-12);
+  font-size: var(--typography-body-sm-size);
+  line-height: var(--typography-body-sm-line-height);
   color: var(--color-text-secondary);
   border: var(--border-width-1) solid var(--color-border-default);
   border-radius: var(--radius-4);
@@ -230,7 +232,7 @@ code {
 .shell-search-results li:hover::after { opacity: var(--state-layer-hover); }
 .shell-search-results li[aria-selected="true"] { outline: var(--border-width-2) solid var(--color-border-focus); }
 .shell-search-results li[aria-selected="true"]::after { opacity: var(--state-layer-focus); }
-.shell-search-section { margin-left: auto; color: var(--color-text-secondary); font-size: var(--font-size-12); }
+.shell-search-section { margin-left: auto; color: var(--color-text-secondary); font-family: var(--typography-body-sm-family); font-size: var(--typography-body-sm-size); line-height: var(--typography-body-sm-line-height); font-weight: var(--typography-body-sm-weight); }
 /* "No page found": outside the listbox, announced by the polite live region .shell-search-status. */
 .shell-search-status { position: absolute; top: 100%; left: 0; right: 0; }
 .shell-search-empty { margin: 0; padding: var(--space-8); color: var(--color-text-primary); }
@@ -247,7 +249,12 @@ code {
 .shell-content { flex: 1; min-width: 0; padding: var(--space-24); max-width: var(--size-content); outline: 0; }
 /* Layout skill: blocks of content stacked vertically with --space-16 */
 .shell-content { display: flex; flex-direction: column; gap: var(--space-16); }
-.shell-content > * { margin-top: 0; margin-bottom: 0; }
+.shell-content > *,
+/* Blocks that set their own vertical margin: named so the reset wins (no margin added to the 16px gap). */
+.shell-content > :is(.cards, .tabs, .stages, .level-tag, table.tokens, .backlog-filters, .backlog-rejected, .icon-try-preview) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
 
 /* Below desktop: --breakpoint-desktop (1024px) */
 @media not all and (min-width: 1024px) {
@@ -255,7 +262,6 @@ code {
   .ds-icon-button.shell-menu-button { display: inline-flex; }
   .shell-search { margin-left: 0; flex: 1; }
   .shell-search-key { display: none; }
-  .shell-brand { font-size: var(--font-size-16); }
   .shell-work-time { display: none; }
   .shell-spaces { display: none; }
 }
@@ -441,7 +447,10 @@ code {
   margin: var(--space-8) 0 var(--space-16);
   display: block;
   overflow-x: auto;
-  font-size: var(--font-size-14);
+  font-family: var(--typography-body-family);
+  font-size: var(--typography-body-size);
+  line-height: var(--typography-body-line-height);
+  font-weight: var(--typography-body-weight);
 }
 .markdown th, .markdown td, table.tokens th, table.tokens td {
   text-align: left;
@@ -525,12 +534,16 @@ code {
 .skill-card details[open] summary { margin-bottom: var(--space-16); }
 
 /* ---------- Backlog ---------- */
+/* Layout skill exception (approved 2026-10-30, B127): the Backlog page (Kanban board) uses the full width. */
 .shell-content:has(.backlog-board) { max-width: none; }
 .backlog-filters { display: flex; flex-wrap: wrap; gap: var(--space-8); margin-bottom: var(--space-16); }
 .backlog-filters button {
   position: relative;
   font: inherit;
-  font-size: var(--font-size-14);
+  font-family: var(--typography-body-family);
+  font-size: var(--typography-body-size);
+  line-height: var(--typography-body-line-height);
+  font-weight: var(--typography-body-weight);
   padding: var(--space-4) var(--space-16);
   border-radius: var(--radius-8);
   border: var(--border-width-1) solid var(--color-border-strong);
@@ -541,9 +554,15 @@ code {
 .backlog-filters button[aria-pressed="true"] { background: var(--color-background-brand); border-color: var(--color-background-brand); color: var(--color-text-inverse); }
 .backlog-board { display: grid; grid-template-columns: repeat(3, minmax(var(--size-backlog-column), 1fr)); gap: var(--space-16); align-items: start; overflow-x: auto; }
 .backlog-column { background: var(--color-background-surface); border-radius: var(--radius-8); padding: var(--space-16); }
-.backlog-column h2 { margin: 0 0 var(--space-4); font-size: var(--font-size-16); }
+.backlog-column h2 {
+  margin: 0 0 var(--space-4);
+  font-family: var(--typography-label-family);
+  font-size: var(--typography-label-size);
+  line-height: var(--typography-label-line-height);
+  font-weight: var(--typography-label-weight);
+}
 .backlog-count { color: var(--color-text-secondary); font-weight: var(--font-weight-regular); }
-.backlog-hint { margin: 0 0 var(--space-8); font-size: var(--font-size-12); color: var(--color-text-secondary); }
+.backlog-hint { margin: 0 0 var(--space-8); font-family: var(--typography-body-sm-family); font-size: var(--typography-body-sm-size); line-height: var(--typography-body-sm-line-height); font-weight: var(--typography-body-sm-weight); color: var(--color-text-secondary); }
 .backlog-column ul, .backlog-rejected-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-16); }
 /* Menus of a ticket in its modal: one Select each, side by side */
 .ticket-menus { display: grid; grid-template-columns: repeat(auto-fit, minmax(var(--size-ticket-menu), 1fr)); gap: var(--space-8); }
@@ -556,7 +575,7 @@ code {
   background: var(--color-background-subtle);
   color: var(--color-text-secondary);
 }
-.backlog-id { margin-left: auto; font-family: var(--doc-mono); font-size: var(--font-size-12); color: var(--color-text-secondary); }
+.backlog-id { margin-left: auto; font-family: var(--doc-mono); font-size: var(--typography-body-sm-size); line-height: var(--typography-body-sm-line-height); color: var(--color-text-secondary); }
 .backlog-error {
   background: var(--color-background-error-subtle);
   border: var(--border-width-1) solid var(--color-border-error);
@@ -573,7 +592,7 @@ code {
 .ticket h3 { margin: 0 0 var(--space-4); }
 .ticket p, .ticket ul, .ticket ol { margin: 0; }
 .ticket .ds-card-text > * + * { margin-top: var(--space-16); }
-.ticket h4:not(.ds-card-title) { margin: var(--space-8) 0 var(--space-4); font-size: var(--font-size-14); }
+.ticket h4:not(.ds-card-title) { margin: var(--space-8) 0 var(--space-4); font-family: var(--typography-label-family); font-size: var(--typography-label-size); line-height: var(--typography-label-line-height); font-weight: var(--typography-label-weight); }
 
 /* ---------- Ticket ---------- */
 .backlog-tag.validated { background: var(--color-background-success-subtle); color: var(--color-text-success); }
@@ -582,7 +601,7 @@ code {
 .ticket-iterations { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--space-16); }
 
 /* ---------- Icons page ---------- */
-pre.code { background: var(--color-background-surface); padding: var(--space-16); border-radius: var(--radius-8); font-family: var(--doc-mono); font-size: var(--font-size-14); overflow-x: auto; }
+pre.code { background: var(--color-background-surface); padding: var(--space-16); border-radius: var(--radius-8); font-family: var(--doc-mono); font-size: var(--typography-body-size); line-height: var(--typography-body-line-height); overflow-x: auto; }
 .icon-try { display: flex; flex-direction: column; gap: var(--space-4); max-width: var(--size-icon-try); font-family: var(--typography-label-family); font-size: var(--typography-label-size); font-weight: var(--typography-label-weight); }
 .icon-try input {
   font: inherit;
@@ -595,7 +614,7 @@ pre.code { background: var(--color-background-surface); padding: var(--space-16)
 .icon-try-preview { display: flex; gap: var(--space-24); align-items: center; margin: var(--space-16) 0; }
 .icon-grid { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--size-icon-grid-cell), 1fr)); gap: var(--space-8); }
 .icon-grid li { display: flex; flex-direction: column; align-items: center; gap: var(--space-8); padding: var(--space-16) var(--space-8); border: var(--border-width-1) solid var(--color-border-subtle); border-radius: var(--radius-8); }
-.icon-grid code { font-size: var(--font-size-12); background: none; color: var(--color-text-secondary); overflow-wrap: anywhere; text-align: center; }
+.icon-grid code { font-size: var(--typography-body-sm-size); line-height: var(--typography-body-sm-line-height); background: none; color: var(--color-text-secondary); overflow-wrap: anywhere; text-align: center; }
 
 .component-title {
   display: flex;
@@ -652,7 +671,7 @@ pre.code { background: var(--color-background-surface); padding: var(--space-16)
   min-height: var(--size-preview-min-height); display: flex; align-items: center; justify-content: center; padding: var(--space-16);
   border: var(--border-width-1) solid var(--color-border-subtle); border-radius: var(--radius-8); background: var(--color-background-page);
 }
-.design-preview-states figcaption { margin-top: var(--space-4); text-align: center; color: var(--color-text-secondary); font-size: var(--font-size-12); text-transform: capitalize; }
+.design-preview-states figcaption { margin-top: var(--space-4); text-align: center; color: var(--color-text-secondary); font-family: var(--typography-body-sm-family); font-size: var(--typography-body-sm-size); line-height: var(--typography-body-sm-line-height); font-weight: var(--typography-body-sm-weight); text-transform: capitalize; }
 /* Simulated states for design previews (state layers in the content color) */
 .preview-state-layer { position: relative; }
 .preview-state-layer::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: currentColor; opacity: 0; pointer-events: none; }
@@ -679,16 +698,17 @@ pre.code { background: var(--color-background-surface); padding: var(--space-16)
 
 /* Grid page — demo (the page already has its margin) */
 .grid-demo { padding-inline: 0; margin-inline: 0; }
-.grid-demo-column { padding: var(--space-8) 0; text-align: center; font-size: var(--font-size-12); background: var(--color-background-brand-subtle); border-radius: var(--radius-4); }
+.grid-demo-column { padding: var(--space-8) 0; text-align: center; font-family: var(--typography-body-sm-family); font-size: var(--typography-body-sm-size); line-height: var(--typography-body-sm-line-height); font-weight: var(--typography-body-sm-weight); background: var(--color-background-brand-subtle); border-radius: var(--radius-4); }
 
 /* ---------- Prototype preview ---------- */
+/* Layout skill exception (approved 2026-10-30, B127): the Prototype pages (preview frames) use the full width. */
 .shell-content:has(.prototype-preview) { max-width: none; }
 .prototype-preview-actions { display: flex; flex-wrap: wrap; gap: var(--space-24); align-items: center; }
 .prototype-preview-actions label { display: inline-flex; gap: var(--space-8); align-items: center; cursor: pointer; }
 .prototype-preview { display: flex; gap: var(--space-16); align-items: flex-start; }
 .prototype-preview.stacked { flex-direction: column; }
 .prototype-frame { margin: 0; display: flex; flex-direction: column; gap: var(--space-8); }
-.prototype-frame figcaption { font-size: var(--font-size-12); color: var(--color-text-secondary); }
+.prototype-frame figcaption { font-family: var(--typography-body-sm-family); font-size: var(--typography-body-sm-size); line-height: var(--typography-body-sm-line-height); font-weight: var(--typography-body-sm-weight); color: var(--color-text-secondary); }
 .prototype-frame-box {
   overflow: hidden;
   border: var(--border-width-1) solid var(--color-border-default);
@@ -714,7 +734,7 @@ pre.code { background: var(--color-background-surface); padding: var(--space-16)
 /* Playground tab (B111): canvas in an iframe at the chosen screen width, then the controls and the JSX code */
 .playground-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-16); margin-bottom: var(--space-16); }
 .playground-viewports { display: flex; flex-wrap: wrap; gap: var(--space-8); }
-.playground-size { margin: 0 auto 0 0; color: var(--color-text-secondary); font-size: var(--font-size-14); }
+.playground-size { margin: 0 auto 0 0; color: var(--color-text-secondary); font-family: var(--typography-body-family); font-size: var(--typography-body-size); line-height: var(--typography-body-line-height); font-weight: var(--typography-body-weight); }
 .playground-stage {
   position: relative;
   overflow: hidden;
@@ -726,7 +746,10 @@ pre.code { background: var(--color-background-surface); padding: var(--space-16)
 .playground-controls td { vertical-align: middle; }
 .playground-input {
   font: inherit;
-  font-size: var(--font-size-14);
+  font-family: var(--typography-body-family);
+  font-size: var(--typography-body-size);
+  line-height: var(--typography-body-line-height);
+  font-weight: var(--typography-body-weight);
   padding: var(--space-4) var(--space-8);
   border: var(--border-width-1) solid var(--color-border-strong);
   border-radius: var(--radius-4);
@@ -739,7 +762,7 @@ pre.code { background: var(--color-background-surface); padding: var(--space-16)
 
 /* The canvas page itself (docs/playground.html) */
 body.playground-frame { padding: var(--space-24); }
-.playground-note { color: var(--color-text-secondary); font-size: var(--font-size-14); margin: 0 0 var(--space-8); }
+.playground-note { color: var(--color-text-secondary); font-family: var(--typography-body-family); font-size: var(--typography-body-size); line-height: var(--typography-body-line-height); font-weight: var(--typography-body-weight); margin: 0 0 var(--space-8); }
 .playground-changed td:first-child code { font-weight: var(--font-weight-semibold); color: var(--color-text-brand); }
 /* Icon control of the Playground (B113): dropdown list with the icon of each option */
 .icon-select { position: relative; }
@@ -759,7 +782,10 @@ body.playground-frame { padding: var(--space-24); }
   border: var(--border-width-1) solid var(--color-border-strong);
   border-radius: var(--radius-4);
   box-shadow: var(--shadow-panel);
-  font-size: var(--font-size-14);
+  font-family: var(--typography-body-family);
+  font-size: var(--typography-body-size);
+  line-height: var(--typography-body-line-height);
+  font-weight: var(--typography-body-weight);
 }
 .icon-select-list:focus-visible { outline: none; }
 .icon-select-option { position: relative; padding: var(--space-4) var(--space-8); border-radius: var(--radius-8); cursor: pointer; }

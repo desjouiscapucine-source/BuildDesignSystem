@@ -1,4 +1,5 @@
 import { tokens, tokenById } from "../../../tokens/lib";
+import { Header } from "./SectionPages";
 
 const gridTokens = [...tokens.filter((token) => token.path[0] === "grid"), tokenById.get("size.content")!];
 const screens = [
@@ -10,8 +11,7 @@ const screens = [
 export function GridPage() {
   return (
     <>
-      <h1>Layout grid</h1>
-      <p className="lead">Columns, gutters and margins for every screen size</p>
+      <Header title="Layout grid" lead="Columns, gutters and margins for every screen size" />
       <p>
         Mobile first: 4 columns, 8 from tablet, 12 from desktop. Defined in <code>tokens/semantic.json</code>; classes in{" "}
         <code>tokens/grid.css</code>.

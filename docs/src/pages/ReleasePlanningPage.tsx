@@ -11,6 +11,7 @@ import {
   type Release,
 } from "../backlog";
 import { Markdown } from "../Markdown";
+import { Header } from "./SectionPages";
 
 // Release notes: releases/R<n>.md (git-workflow section 8), shown under their release.
 const notes: Record<string, string> = Object.fromEntries(
@@ -104,8 +105,7 @@ export function ReleasePlanningPage() {
 
   return (
     <>
-      <h1>Release planning</h1>
-      <p className="lead">The tickets delivered by each release, every two weeks</p>
+      <Header title="Release planning" lead="The tickets delivered by each release, every two weeks" />
       <p>
         A release is a batch of backlog tickets delivered on a given date: one every two weeks, on Friday. Plan a ticket
         with the Release list of the <a href="#/backlog">Backlog</a>.
