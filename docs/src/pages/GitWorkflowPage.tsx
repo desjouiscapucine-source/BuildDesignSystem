@@ -6,6 +6,7 @@ const workBranches = [
   { name: "component/<Name>", detail: "a component: merged after each approved stage" },
   { name: "component/<prototype-folder>", detail: "a prototype: merged when it is validated" },
   { name: "governance/<topic>", detail: "merged as soon as approved" },
+  { name: "project/<name>", detail: "a long project: merged when it is validated" },
 ];
 
 const Arrow = ({ label }: { label?: string }) => (
@@ -71,7 +72,7 @@ export function GitWorkflowPage() {
         </li>
         <li>
           <strong>Conversations</strong>: Gouvernance (one, permanent), Composant &lt;Name&gt; (one per
-          component or prototype, archived when finished).
+          component or prototype) and Projet &lt;Name&gt; (one per project), archived when finished.
         </li>
       </ul>
 
