@@ -1072,6 +1072,22 @@
       "release": "R1"
     },
     {
+      "id": "B118",
+      "title": "Documentation site: use the Tag component",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Replace the tags drawn by hand on the documentation site with the Tag component.",
+      "why": "The site still shows its own tag styles (level-tag, backlog-tag in docs.css), outside the design system, now that Tag is complete (B059).",
+      "scope": "The Atomic Design level tag of the component pages, the backlog category tag and the \"Decided\" tag of the Backlog cards, the iteration decision tags of the ticket modal, the level tags of the Navigation structure page (.nav-tree-level) and the \"Complete\" item of the component pages (compliance audit audits/2026-10-30-B131-1.md, finding 9). The tone of each tag is asked to the Design System Lead (Tag guidelines). Asked first: is \"Complete\" a Tag, or the stage indicator (B060)?",
+      "doneWhen": [
+        "Every tag of the documentation site is a Tag from @ds/components.",
+        "The level-tag, backlog-tag and nav-tree-level styles are removed from docs.css."
+      ],
+      "priority": "medium",
+      "release": "R2"
+    },
+    {
       "id": "B119",
       "title": "Agent: design system compliance audit",
       "category": "Tooling",
