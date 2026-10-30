@@ -1166,7 +1166,7 @@
       "id": "B125",
       "title": "Documentation site: accessibility fixes",
       "category": "Tooling",
-      "status": "todo",
+      "status": "in-progress",
       "origin": "proposal",
       "description": "Fix the accessibility issues of the site found by the audit.",
       "why": "Found by the design system compliance audit (audits/2026-10-29-B119-1.md): the documentation site is the showcase of the design system and must be built with it.",
@@ -1204,7 +1204,7 @@
       "origin": "proposal",
       "description": "Apply the layout, page-header and text style rules on every page of the site.",
       "why": "Found by the design system compliance audit (audits/2026-10-29-B119-1.md): the documentation site is the showcase of the design system and must be built with it.",
-      "scope": "Audit findings 21 to 24: margins added to the 16px gap, full-width Backlog and Prototype pages, title attribute on page titles and subtitles, .ds-text-* classes. Decisions asked first: full-width pages, text styles of section titles and captions.",
+      "scope": "Audit findings 21 to 24: margins added to the 16px gap, full-width Backlog and Prototype pages, title attribute on page titles and subtitles, .ds-text-* classes. Decisions asked first: full-width pages, text styles of section titles and captions. Also audit finding 32 (B123): the token tables of the Design preview and Playground scroll horizontally and clip the Select list; decision asked first: stop the horizontal scroll so the list opens over the page.",
       "doneWhen": [
         "Blocks are 16px apart on every page.",
         "Every page title and subtitle has its title attribute.",
