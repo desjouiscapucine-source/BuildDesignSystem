@@ -164,12 +164,12 @@ Approved by the Design System Lead on 2026-10-16.
   - **Spacing** (`tokens/semantic.json`): 8px grid in px, `space.0` → `space.64`, plus `space.4`.
   - **Radius** (`tokens/semantic.json`): `radius.0`, `.4`, `.8`, `.16` in px, and `radius.full` = 50%.
   - **Border width** (`tokens/semantic.json`): `border-width.0`, `.1`, `.2`, `.4` in px.
-  - **Shadows**: primitives `shadow.1` / `2` / `3` (neutral). Semantic shadows by usage: `shadow.panel` and `shadow.dialog` → `shadow.3`.
+  - **Shadows**: primitives `shadow.1` / `2` / `3` (neutral). Semantic shadows by usage: `shadow.panel` and `shadow.dialog` → `shadow.3`; `shadow.dropdown` and `shadow.hover` → `shadow.2`; `shadow.frame` → `shadow.1` (B126).
   - **Motion** (`tokens/semantic.json`): `duration.100` / `200` / `300` / `500`, `easing.ease-out`, `easing.ease-in-out`. Durations drop to 0.01ms with `prefers-reduced-motion` (WCAG 2.3.3).
   - **Opacity**: `opacity.disabled` = 0.38, for disabled elements on a colored background only; on light backgrounds, the disabled color roles.
   - **Breakpoints** (mobile first): `breakpoint.tablet` = 768px, `breakpoint.desktop` = 1024px. Media queries write these values (CSS cannot use variables there), with a comment naming the token; `npm run tokens` fails on any other width. The site navigation and the timeline switch to a burger menu below desktop.
   - **Z-index** (stacking order, by usage): `content` 0, `sticky` 10, `navigation` 20, `overlay` 30, `modal` 40, `dropdown` 50, `tooltip` 100, `skip-link` 110.
-  - **Size**: `size.side-navigation` = 240px, `size.timeline` = 400px max (timeline panel below desktop), `size.timeline-step-title` = 200px (minimum title width next to the dates), `size.content` = 1040px max (margins included), `size.dialog-small` / `-medium` / `-large` = 400 / 560 / 800px (sizes named by usage).
+  - **Size**: `size.side-navigation` = 240px, `size.timeline` = 400px max (timeline panel below desktop), `size.timeline-step-title` = 200px (minimum title width next to the dates), `size.content` = 1040px max (margins included), `size.dialog-small` / `-medium` / `-large` = 400 / 560 / 800px; plus 30 sizes of the documentation site (B126: header, logo, search field, dropdown list, code block, previews, simulated screens, Backlog, Foundations samples… see `tokens/semantic.json`) (sizes named by usage).
   - **Layout grid** (`tokens/semantic.json` + `tokens/grid.css`): 4 / 8 / 12 columns (mobile / tablet / desktop), `grid.gutter` 16px, `grid.margin` 24px; classes `.ds-grid` and `.ds-grid-span-<n>` — see the `layout` skill.
   - **Icons**: Material Symbols **Outlined**, weight 400, always unfilled, loaded from Google Fonts. Sizes `icon-size.16` / `20` / `24` (default) / `32`. Base class `.ds-icon` in `tokens/icons.css`; the icon takes the text color.
 - Dark mode is planned for later; the semantic tier will make it possible without changing components.

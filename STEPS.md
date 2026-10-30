@@ -4480,3 +4480,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-10-30-B125-1.md` (created)
 - `tokens/contrast-pairs.json`, `docs/src/pages/ComponentPage.tsx`, `docs/src/AppShell.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B126-1 — Documentation site: tokens only
+**Date:** 2026-10-30
+
+**Decisions (made by the Design System Lead)**
+- Site sizes become **design system tokens** `size.*`, named by usage (30 new: header, logo, search field, home, Backlog, ticket menu, dropdown list, Playground, code block, previews, icon grid, git flow, tree connector, Foundations samples, checkbox, simulated screens, canvas minimum height); values unchanged.
+- New semantic shadows: `shadow.dropdown` and `shadow.hover` → `shadow.2`, `shadow.frame` → `shadow.1`.
+- **Site exceptions** (documented at the top of `docs.css`): primitive colors of the clock and the landing page, VT323 clock font, inline code em units (until B067), skip link `top: -100px` (until B066), `--doc-mono` (B067).
+
+**What was done**
+- `tokens/semantic.json` (by Claude): 30 `size.*` tokens and 3 shadows; `tokens/tokens.css` rebuilt (52/52 pairs pass); `CLAUDE.md` updated.
+- `ds-compliance-fix`, `docs/` only: `docs.css` (sizes, shadows, `.z-stack` removed, exceptions comment), `IconSelect.tsx` (list size from tokens), `PlaygroundTab.tsx` (breakpoints). Then Claude: `PrototypePage.tsx` and `PlaygroundTab.tsx` read the simulated screen and canvas tokens, `size.checkbox`.
+- Verification: type check and build pass; header 64px, logo 32px, search field 40px measured in the browser (nothing changes on screen).
+- Compliance audit: `audits/2026-10-30-B126-1.md` (#15, #17, #18, #19, #39 fixed; #16 approved exception).
+- Ticket B126 `done`. Committed on `governance/docs-compliance`, not merged into `develop` yet.
+
+**Files**
+- `audits/2026-10-30-B126-1.md` (created)
+- `tokens/semantic.json`, `tokens/tokens.css`, `CLAUDE.md`, `docs/src/docs.css`, `docs/src/IconSelect.tsx`, `docs/src/PlaygroundTab.tsx`, `docs/src/pages/PrototypePage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)

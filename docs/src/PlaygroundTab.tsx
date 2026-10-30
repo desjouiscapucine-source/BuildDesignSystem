@@ -3,7 +3,7 @@
 // The canvas is an iframe (docs/playground.html) at the chosen screen width; the controls, the tokens and the JSX code are here.
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Button, Chip, Select } from "@ds/components";
-import { tokens, textStyles, type Token } from "../../tokens/lib";
+import { tokenById, tokens, textStyles, type Token } from "../../tokens/lib";
 import { IconSelect } from "./IconSelect";
 import { readableName, readableToken } from "./readableName";
 import type { ComponentDoc } from "./types";
@@ -15,15 +15,16 @@ import {
   type PlaygroundMessage,
 } from "./playground";
 
-// Screen widths of the canvas: mobile, --breakpoint-tablet, --breakpoint-desktop.
+// Screen widths of the canvas: --size-viewport-mobile, --breakpoint-tablet, --breakpoint-desktop.
+const px = (id: string) => parseFloat(tokenById.get(id)!.resolved);
 const viewports = [
-  { id: "mobile", label: "Mobile", width: 375 },
-  { id: "tablet", label: "Tablet", width: 768 },
-  { id: "desktop", label: "Desktop", width: 1024 },
+  { id: "mobile", label: "Mobile", width: px("size.viewport-mobile") },
+  { id: "tablet", label: "Tablet", width: px("breakpoint.tablet") },
+  { id: "desktop", label: "Desktop", width: px("breakpoint.desktop") },
 ] as const;
 type Viewport = (typeof viewports)[number]["id"];
 
-const MIN_HEIGHT = 120;
+const MIN_HEIGHT = px("size.playground-canvas-min");
 
 // ---------- Tokens section: the tokens used in the component's CSS, each replaceable by another of its family ----------
 

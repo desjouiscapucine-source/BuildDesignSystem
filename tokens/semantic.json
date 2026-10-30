@@ -601,6 +601,126 @@
     "dialog-large": {
       "$value": "800px",
       "$description": "Maximum width of a large Dialog"
+    },
+    "header": {
+      "$value": "64px",
+      "$description": "Height of the documentation site header"
+    },
+    "logo": {
+      "$value": "32px",
+      "$description": "Logo of the site header"
+    },
+    "search-field": {
+      "$value": "360px",
+      "$description": "Width of the site search field"
+    },
+    "search-field-height": {
+      "$value": "40px",
+      "$description": "Height of the site search field"
+    },
+    "home-content": {
+      "$value": "720px",
+      "$description": "Maximum width of the landing page content"
+    },
+    "home-avatar": {
+      "$value": "128px",
+      "$description": "Avatar of the landing page"
+    },
+    "backlog-column": {
+      "$value": "220px",
+      "$description": "Minimum width of a Backlog column"
+    },
+    "backlog-rejected": {
+      "$value": "420px",
+      "$description": "Maximum width of the list of rejected tickets"
+    },
+    "ticket-menu": {
+      "$value": "160px",
+      "$description": "Minimum width of a menu in the ticket modal"
+    },
+    "dropdown-list-height": {
+      "$value": "320px",
+      "$description": "Maximum height of a dropdown list (icon list of the Playground)"
+    },
+    "dropdown-list-width": {
+      "$value": "200px",
+      "$description": "Minimum width of a dropdown list (icon list of the Playground)"
+    },
+    "playground-input": {
+      "$value": "160px",
+      "$description": "Minimum width of a Playground input"
+    },
+    "code-block": {
+      "$value": "480px",
+      "$description": "Maximum height of a code block"
+    },
+    "preview-state": {
+      "$value": "200px",
+      "$description": "Base width of a state in the Design preview"
+    },
+    "preview-state-single": {
+      "$value": "640px",
+      "$description": "Width of a single state in the Design preview"
+    },
+    "preview-min-height": {
+      "$value": "112px",
+      "$description": "Minimum height of a preview area"
+    },
+    "icon-grid-cell": {
+      "$value": "112px",
+      "$description": "Minimum width of a cell of the icon grid"
+    },
+    "icon-try": {
+      "$value": "280px",
+      "$description": "Maximum width of the icon try-out"
+    },
+    "git-flow-arrow": {
+      "$value": "128px",
+      "$description": "Maximum width of an arrow of the git flow diagram"
+    },
+    "tree-connector": {
+      "$value": "16px",
+      "$description": "Horizontal line of a tree diagram (skills, navigation)"
+    },
+    "swatch": {
+      "$value": "32px",
+      "$description": "Color sample of the Foundations pages"
+    },
+    "shape": {
+      "$value": "40px",
+      "$description": "Radius sample of the Foundations pages"
+    },
+    "bar": {
+      "$value": "8px",
+      "$description": "Height of a spacing bar of the Foundations pages"
+    },
+    "bar-min": {
+      "$value": "1px",
+      "$description": "Minimum width of a spacing bar of the Foundations pages"
+    },
+    "checkbox": {
+      "$value": "16px",
+      "$description": "Checkbox of the Playground boolean controls (until the Checkbox component, B022)"
+    },
+    "viewport-mobile": {
+      "$value": "375px",
+      "$description": "Width of the simulated mobile screen (Playground, prototype frames)"
+    },
+    "viewport-mobile-height": {
+      "$value": "812px",
+      "$description": "Height of the simulated mobile screen (prototype frames)"
+    },
+    "viewport-desktop": {
+      "$value": "1280px",
+      "$description": "Width of the simulated desktop screen (prototype frames)"
+    },
+    "viewport-desktop-height": {
+      "$value": "800px",
+      "$description": "Height of the simulated desktop screen (prototype frames)"
+    },
+    "playground-canvas-min": {
+      "$value": "120px",
+      "$description": "Minimum height of the Playground canvas"
     }
   },
   "breakpoint": {
@@ -653,6 +773,18 @@
     "dialog": {
       "$value": "{shadow.3}",
       "$description": "Dialog over the page"
+    },
+    "dropdown": {
+      "$value": "{shadow.2}",
+      "$description": "Dropdown list over the page (e.g. search results)"
+    },
+    "hover": {
+      "$value": "{shadow.2}",
+      "$description": "Link card on hover"
+    },
+    "frame": {
+      "$value": "{shadow.1}",
+      "$description": "Frame of a preview (e.g. prototypes)"
     }
   },
   "z-index": {

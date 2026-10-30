@@ -1184,7 +1184,7 @@
       "id": "B126",
       "title": "Documentation site: tokens only",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "proposal",
       "description": "Replace the primitive tokens and raw values of the site styles with semantic tokens.",
       "why": "Found by the design system compliance audit (audits/2026-10-29-B119-1.md): the documentation site is the showcase of the design system and must be built with it.",
