@@ -4612,3 +4612,13 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-04-B104-2.md` (created)
 - `docs/src/structure.ts`, `docs/src/pages/NavigationPage.tsx`, `docs/src/App.tsx`, `.claude/skills/navigation/SKILL.md`, `STEPS.md` (updated)
+
+## Step B104-3 — Navigation architecture: ticket done
+**Date:** 2026-11-04
+
+**What was done**
+- B104 Navigation architecture closed by the Design System Lead: status `done` (release R1). The structure review is in Step B104-2; no other navigation principle to add.
+- Branch `governance/navigation-architecture` merged into `develop`, then deleted.
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)
