@@ -1293,13 +1293,14 @@
       "category": "Tooling",
       "status": "todo",
       "origin": "proposal",
-      "description": "Markdown code blocks scroll inside their own box; the brand fill of a checked control is checked for contrast.",
-      "why": "Found by the full compliance audit before the merge into develop (audits/2026-10-30-before-develop-merge.md).",
-      "scope": "Audit findings 42 and 43: Markdown code blocks of the Skills and Agents cards (and any Markdown) overflow the card; the pair background.brand on background.page (checkbox fill, pressed toggle) is not in tokens/contrast-pairs.json. Decisions asked first: same look as pre.code (surface background, padding) or scroll only; background.brand or border.focus for a checked control fill.",
+      "description": "Markdown code blocks and tables inside cards stay readable; the brand fill of a checked control is checked for contrast.",
+      "why": "Found by the full compliance audit before the merge into develop (audits/2026-10-30-before-develop-merge.md), and by the audit of Step B039-1 for finding 47 (audits/2026-11-04-B039-1.md).",
+      "scope": "Audit findings 42 and 43: Markdown code blocks of the Skills and Agents cards (and any Markdown) overflow the card; the pair background.brand on background.page (checkbox fill, pressed toggle) is not in tokens/contrast-pairs.json. Audit finding 47: tables inside a Card (Markdown tables and table.tokens on the How to use skills, Agents and Release planning pages) inherit overflow-wrap: anywhere from .ds-card-text, so the first column shrinks to about one character and words break in two. Decisions asked first: same look as pre.code (surface background, padding) or scroll only; background.brand or border.focus for a checked control fill; tables in cards fixed on the site only (docs.css) or in the Card component (complete: new version and changelog); too-wide tables scroll horizontally or wrap between words.",
       "doneWhen": [
         "Long code lines in Markdown scroll inside their block and never overflow the card.",
         "The brand fill pair is in contrast-pairs.json and npm run tokens passes.",
-        "The next compliance audit no longer lists findings 42 and 43."
+        "Tables inside cards keep whole words and never break a word in two.",
+        "The next compliance audit no longer lists findings 42, 43 and 47."
       ],
       "priority": "medium",
       "release": "R2"

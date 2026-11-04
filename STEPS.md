@@ -4675,3 +4675,15 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `.claude/skills/accessibility-check/SKILL.md`, `.claude/agents/ds-accessibility-audit.md`, `audits/2026-11-04-B039-1.md` (created)
 - `.claude/skills/orchestrator/SKILL.md`, `.claude/skills/component/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B132-1 — Accessibility follow-up: finding 47 added
+**Date:** 2026-11-04
+
+**Decisions (made by the Design System Lead)**
+- Finding 47 of the compliance audit of Step B039-1 (tables inside cards break words, `audits/2026-11-04-B039-1.md`) is added to **B132 Documentation site: accessibility follow-up** (priority medium, release R2), rather than a new ticket.
+
+**What was done**
+- `backlog/backlog.json`: B132 description, why, scope (finding 47 and its decisions to ask first: site only or Card component; scroll or wrap) and done-when updated. Status unchanged (`todo`).
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)
