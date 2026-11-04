@@ -914,7 +914,7 @@
       "id": "B104",
       "title": "Navigation architecture",
       "category": "Foundations",
-      "status": "todo",
+      "status": "done",
       "origin": "decided",
       "description": "New work on the navigation architecture, planned for R1. Content to define with the Design System Lead.",
       "release": "R1"

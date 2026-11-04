@@ -4591,6 +4591,38 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `audits/2026-10-30-B131-1.md` (created)
 - `.claude/skills/git-workflow/SKILL.md`, `CLAUDE.md`, `docs/src/pages/GitWorkflowPage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
 
+## Step B104-2 — Navigation structure page moved to Governance
+**Date:** 2026-11-04
+
+**Decisions (made by the Design System Lead)**
+- B104 Navigation architecture: review the structure of the site.
+- The Navigation section (Level 2 of Documentation) becomes a **Level 3 page of Governance**, placed right after **Changelog**. Same icon as Git workflow (`account_tree`). The URL stays `#/navigation`.
+- Its side navigation item and its card are labelled like the page title, **Navigation structure** (finding #46 of the audit).
+- Governance subtitle: "Backlog, skills, agents, git workflow, branches, changelog, navigation, releases" (80 characters, finding #45 of the audit).
+
+**What was done**
+- `docs/src/structure.ts`: Navigation structure moved from the Documentation sections to the Governance pages, after Changelog; Documentation and Governance descriptions updated. The Overview loses its Navigation card; the Governance page gets one; the breadcrumb of the page is now "BuildDesignSystem / Documentation / Governance".
+- `docs/src/pages/NavigationPage.tsx`: Levels table (Level 2 without Navigation) and Flow tree updated.
+- `docs/src/App.tsx`: route comment (`#/navigation` in Level 3).
+- `navigation` skill: Level 2 row, structure tree, history and the Navigation structure row.
+- The principle "the logo in the header goes back to the landing page" asked by the Design System Lead already exists ("Back to Level 0") and is applied by the site: nothing added.
+- Compliance audit (`ds-compliance-audit`): report checked and written to `audits/2026-11-04-B104-2.md`; #45 (introduced by the step) and #46 (older) fixed after the Design System Lead's decisions; 7 older findings still open, all covered by existing tickets.
+- Verification: type check and build pass; side navigation, Governance page and Navigation structure page checked in the browser.
+
+**Files**
+- `audits/2026-11-04-B104-2.md` (created)
+- `docs/src/structure.ts`, `docs/src/pages/NavigationPage.tsx`, `docs/src/App.tsx`, `.claude/skills/navigation/SKILL.md`, `STEPS.md` (updated)
+
+## Step B104-3 — Navigation architecture: ticket done
+**Date:** 2026-11-04
+
+**What was done**
+- B104 Navigation architecture closed by the Design System Lead: status `done` (release R1). The structure review is in Step B104-2; no other navigation principle to add.
+- Branch `governance/navigation-architecture` merged into `develop`, then deleted.
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B018-1 — Link: design approved
 **Date:** 2026-11-04
 
