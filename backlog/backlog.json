@@ -304,7 +304,7 @@
       "id": "B033",
       "title": "Split the tokens page by category",
       "category": "Tooling",
-      "status": "todo",
+      "status": "done",
       "origin": "proposal",
       "description": "One documentation page per category (colors, typography, spacing…)."
     },

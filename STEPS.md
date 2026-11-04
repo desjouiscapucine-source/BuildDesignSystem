@@ -4643,3 +4643,12 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/Link/` (created), `audits/2026-11-04-B018-1.md` (created)
 - `tokens/semantic.json`, `tokens/contrast-pairs.json`, `.claude/skills/token-naming/SKILL.md`, `CLAUDE.md`, `docs/src/types.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B033-1 — Split the tokens page by category: ticket done
+**Date:** 2026-11-04
+
+**What was done**
+- B033 closed by the Design System Lead: status `done`. The work was already delivered by Step B087-1 (2026-10-27): the Foundations section has one page per category (Color, Typography, Spacing, Radius, Border width, Shadows, Motion, Opacity, Size, Breakpoints, Layout grid, Z-index, Icons). The ticket had stayed in To do.
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)
