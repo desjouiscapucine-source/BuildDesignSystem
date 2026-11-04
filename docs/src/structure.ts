@@ -32,26 +32,18 @@ const prototypesSection: NavNode = {
   ],
 };
 
-// Level 2 — Navigation: a page of its own (Navigation structure), no Level 3 page.
-const navigation: NavNode = {
-  href: "#/navigation",
-  label: "Navigation",
-  icon: "account_tree",
-  description: "Navigation levels of the site and how to move between them",
-};
-
 const documentation: NavNode = {
   href: "#/",
   label: "Documentation",
   icon: "menu_book",
-  description: "Governance, foundations, components, prototypes and navigation",
+  description: "Governance, foundations, components and prototypes",
   children: [
     { href: "#/", label: "Overview", icon: "home", description: "What the documentation contains" },
     {
       href: "#/governance",
       label: "Governance",
       icon: "gavel",
-      description: "Backlog, skills, agents, git workflow, branches, changelog and releases",
+      description: "Backlog, skills, agents, git workflow, branches, changelog, navigation, releases",
       children: [
         { href: "#/backlog", label: "Backlog", icon: "view_kanban", description: "Tasks still to do" },
         {
@@ -83,6 +75,12 @@ const documentation: NavNode = {
           label: "Changelog",
           icon: "history",
           description: "Every version of every component, newest first",
+        },
+        {
+          href: "#/navigation",
+          label: "Navigation structure",
+          icon: "account_tree",
+          description: "Navigation levels of the site and how to move between them",
         },
         {
           href: "#/releases",
@@ -126,7 +124,6 @@ const documentation: NavNode = {
       }),
     },
     prototypesSection,
-    navigation,
   ],
 };
 

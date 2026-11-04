@@ -47,6 +47,7 @@ const structure: NavNode = {
             { label: "Git workflow", level: 3 },
             { label: "Branches", level: 3 },
             { label: "Changelog", level: 3 },
+            { label: "Navigation structure", level: 3, note: "this page" },
             { label: "Release planning", level: 3 },
           ],
         },
@@ -71,7 +72,6 @@ const structure: NavNode = {
           }),
         },
         { label: "Prototypes", level: 2, note: "one page per prototype (Level 3)" },
-        { label: "Navigation", level: 2, note: "this page" },
       ],
     },
     { label: "Portfolio", level: 1, note: "nothing yet" },
@@ -81,7 +81,7 @@ const structure: NavNode = {
 const levelRows = [
   { level: 0, content: "Landing page" },
   { level: 1, content: "Spaces: Documentation, Portfolio" },
-  { level: 2, content: "Sections of a space: Overview, Governance, Foundations, Components, Prototypes, Navigation" },
+  { level: 2, content: "Sections of a space: Overview, Governance, Foundations, Components, Prototypes" },
   { level: 3, content: "Pages of a section (e.g. one prototype), or categories of components" },
   { level: 4, content: "Component pages only" },
 ];
