@@ -4590,3 +4590,24 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-10-30-B131-1.md` (created)
 - `.claude/skills/git-workflow/SKILL.md`, `CLAUDE.md`, `docs/src/pages/GitWorkflowPage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B018-1 — Link: design approved
+**Date:** 2026-11-04
+
+**Decisions (made by the Design System Lead)**
+- Ticket B018 taken for release R1. Identity: `Link`, `components/Link/`, `.ds-link`, atom, "Text action that takes the user to another page or place."
+- One variant (default, `color.text.link`), size inherited from the surrounding text, text only, always underlined (`border-width.1`).
+- States: hover `color.text.link-hover` (primary-700), pressed `color.text.link-pressed` (primary-800), visited `color.text.link-visited` (primary-800) — a **Link exception to state layers** (no state layer on hover / pressed). Focus: no outline, no state layer, underline `border-width.2`. No disabled state.
+- Design stage approved; the component moves to Guidelines.
+
+**What was done**
+- Branch `component/Link` from `develop`; ticket B018 reserved (`in-progress`), then stage `guidelines`.
+- `components/Link/` from the template: `meta.json`, design preview (`design/Preview.tsx`, `design/tokens.json`, states default / hover / focus / pressed / visited), `spec.md`.
+- 3 new semantic tokens `color.text.link-hover`, `-pressed`, `-visited` in `tokens/semantic.json`, with 9 contrast pairs (page, surface, brand-subtle) in `tokens/contrast-pairs.json`: 61/61 pairs pass AA.
+- `token-naming` skill and `CLAUDE.md`: the Link exception and the new roles.
+- Docs site: `visited` added to the preview states (`docs/src/types.ts`).
+- Compliance audit (`ds-compliance-audit`): `audits/2026-11-04-B018-1.md` — 29 compliant, 6 non-compliant (all already open: #5, #9, #10, #42–#44), 0 new; the site's hand-written text links are tracked as "in progress (B018)".
+
+**Files**
+- `components/Link/` (created), `audits/2026-11-04-B018-1.md` (created)
+- `tokens/semantic.json`, `tokens/contrast-pairs.json`, `.claude/skills/token-naming/SKILL.md`, `CLAUDE.md`, `docs/src/types.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
