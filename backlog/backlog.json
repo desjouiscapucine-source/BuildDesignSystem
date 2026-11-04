@@ -352,7 +352,7 @@
       "id": "B039",
       "title": "Skill: accessibility-check",
       "category": "Skills",
-      "status": "todo",
+      "status": "in-progress",
       "origin": "proposal",
       "description": "WCAG 2.2 AA review of a component or prototype: contrast, keyboard, focus, screen reader, touch targets, reduced motion."
     },
