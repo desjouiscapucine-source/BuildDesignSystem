@@ -179,6 +179,7 @@ Approved by the Design System Lead on 2026-10-16.
 - Target: **WCAG 2.2 AA** — contrast 4.5:1 for text, 3:1 for UI elements and large text.
 - Animations always use the `--duration-*` tokens, so they respect the reduced motion setting.
 - Every new semantic color pair (text/background, icon/background, border/background) is added to `tokens/contrast-pairs.json`; `npm run tokens` fails if one is below AA.
+- **Accessibility check** before the approval of every component stage and of every token created or changed, or on request: the `ds-accessibility-audit` agent, against the checklist of the `accessibility-check` skill. **Blocking**: a failure is fixed before the approval, unless the Design System Lead accepts it as an exception (written in the report and in `STEPS.md`).
 
 ## Status
 - 2026-10-16: Project created; goal and workflow defined.

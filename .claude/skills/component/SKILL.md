@@ -43,7 +43,8 @@ Read `components/<Name>/meta.json` → `status`: it tells which stage skill appl
 
 ## 3. End of a stage — approval gate
 
-1. Show the result to the Design System Lead: in the chat (visual when helpful) and on the component page of the documentation site (`/docs/#/components/<slug>`).
+0. Run the **accessibility check** of the stage (`accessibility-check`, `ds-accessibility-audit` agent). It is **blocking**: a failure is fixed first, unless the Design System Lead accepts it as an exception.
+1. Show the result to the Design System Lead, with the accessibility report: in the chat (visual when helpful) and on the component page of the documentation site (`/docs/#/components/<slug>`).
 2. Ask for an **explicit approval**. List any open question.
 3. Once approved:
    - Set `meta.json` `status` to the next stage.

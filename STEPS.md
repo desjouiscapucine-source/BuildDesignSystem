@@ -4652,3 +4652,26 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B039-1 — Skill: accessibility-check
+**Date:** 2026-11-04
+
+**Decisions (made by the Design System Lead)**
+- A skill `accessibility-check`, run by a dedicated read-only agent **`ds-accessibility-audit`**, checks **components** (spec and design preview, guidelines, code) and **design tokens** against WCAG 2.2 AA.
+- When: before the approval of **every component stage** (the code check is also the check before `complete`), before the approval of a token created or changed, and on request.
+- **Blocking**: a failure is fixed before the approval; only the Design System Lead can accept a failure as an explicit exception, written in the report and in `STEPS.md`.
+- Checklist: the accessibility rules already approved (`CLAUDE.md`, `component-spec`, `component-guidelines`, `component-code`), plus four WCAG 2.2 AA criteria added: name, role, value and label in name (4.1.2, 2.5.3); no keyboard trap (2.1.2); focus not obscured (2.4.11); zoom, reflow and text spacing (1.4.4, 1.4.10, 1.4.12).
+- Reports in `audits/<YYYY-MM-DD>-<ticket>-<n>-accessibility.md`.
+
+**What was done**
+- `.claude/skills/accessibility-check/SKILL.md` (created): scope, moments, blocking rule and exception, how to run it, the checklist per stage and for tokens (each rule with its source).
+- `.claude/agents/ds-accessibility-audit.md` (created): read-only agent, report shape (pass / fail / not applicable, "Blocking: yes / no", what Claude checks in the browser at the code stage).
+- `orchestrator` skill: dispatch row. `component` skill: the accessibility check is step 0 of the approval gate. `CLAUDE.md` (Accessibility): the rule.
+- The skill and the agent show on the How to use skills and Agents pages (discovered automatically).
+- B039 done.
+- Compliance audit (`ds-compliance-audit`): report checked and written to `audits/2026-11-04-B039-1.md`; no finding introduced by the step; one older finding found (#47, tables inside cards break words), not fixed in this step; 7 older findings still open.
+- Verification: type check passes; both pages checked in the browser.
+
+**Files**
+- `.claude/skills/accessibility-check/SKILL.md`, `.claude/agents/ds-accessibility-audit.md`, `audits/2026-11-04-B039-1.md` (created)
+- `.claude/skills/orchestrator/SKILL.md`, `.claude/skills/component/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
