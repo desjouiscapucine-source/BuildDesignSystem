@@ -1,11 +1,17 @@
-// Playground tab of the documentation site: the component live, with a control per prop.
+// Playground tab of the documentation site: the link live, inside a sentence, with a control per prop.
+// The click is kept on the page, so hover, press and focus can be tried.
 import { definePlayground, jsx } from "../../docs/src/playground";
 import { Link } from "./Link";
 
 export const playground = definePlayground({
   controls: {
-    children: { type: "text", default: "Example", description: "The content of the component." },
+    href: { type: "text", default: "#/governance", description: "Destination: another page, an anchor of the same page, or another site. Opens in the same tab." },
+    children: { type: "text", default: "git workflow skill", description: "The label: says where the link goes, a few words, no final punctuation." },
   },
-  render: ({ children }) => <Link>{children}</Link>,
-  code: ({ children }) => jsx("Link", {}, children),
+  render: ({ href, children }) => (
+    <p className="ds-text-body" style={{ margin: 0, color: "var(--color-text-primary)" }}>
+      Read the <Link href={href} onClick={(event) => event.preventDefault()}>{children}</Link> before you start.
+    </p>
+  ),
+  code: ({ href, children }) => jsx("Link", { href }, children),
 });

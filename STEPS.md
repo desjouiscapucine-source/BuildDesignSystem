@@ -4687,3 +4687,38 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B018-2 — Link: guidelines approved
+**Date:** 2026-11-05
+
+**Decisions (made by the Design System Lead)**
+- Guidelines: when to use (link in a text, standalone, external); when not to use (action → Button, main navigation → SideNavigation / Breadcrumb, link with an icon → Button `tertiary` with `href`); best practices (links kept apart, no extra styling, one link per destination, allowed backgrounds, Markdown links styled like the Link); 4 do / don't pairs; content (label describes the destination, short, sentence case, no final punctuation, page title for a site page); behavior (same tab for every link, wrap, anchor scroll, browser `:visited`, no disabled state).
+- Accessibility check (`accessibility-check`, B039, run on the design and the guidelines): 7 failures on the first run. Decided: a standalone link uses the WCAG 2.5.8 spacing exception (24px from the next target, also written in `spec.md` Sizes); an anchor target stops below the sticky header (scroll offset); wording added for no keyboard trap, focus order and accessible name. **Accepted exceptions**: D2 — hover and pressed change color, no state layer; D3 — focus is a thicker underline (`border-width.1` → `border-width.2`), no outline and no `border.focus`.
+- Guidelines stage approved; the component moves to Code.
+
+**What was done**
+- `components/Link/guidelines.md` written; `spec.md` (Sizes, target size); `meta.json` status `code`; B018 stage `code`.
+- Accessibility report: `audits/2026-11-04-B018-2-accessibility.md` (second run: 11 pass, 0 fail, 2 accepted exceptions).
+- Compliance audit (`ds-compliance-audit`): `audits/2026-11-05-B018-2.md` — no site change in this step; 33 compliant, 7 non-compliant (all already open, covered by B094, B118, B132, B133, B134), 0 new.
+
+**Files**
+- `audits/2026-11-04-B018-2-accessibility.md`, `audits/2026-11-05-B018-2.md` (created)
+- `components/Link/guidelines.md`, `components/Link/spec.md`, `components/Link/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B018-3 — Link: code approved, component complete
+**Date:** 2026-11-05
+
+**Decisions (made by the Design System Lead)**
+- Code stage approved: Link is `complete`, version `1.0` ("First complete version.").
+- The documentation site adopts the Link inside B018 (next step, B018-4), before the ticket is done. Decisions for it: "Read the git-workflow skill" becomes a Link without the icon; the Icons page external link opens in the same tab; "Open in a new tab" on the Prototype page keeps the new tab (exception added to the guidelines, Behavior); the skill tree links become Links.
+
+**What was done**
+- `components/Link/Link.tsx` (`<a href>`, `href` and label required, `className` and native attributes passed through), `Link.css` (semantic tokens only: `text.link`, `-visited`, `-hover`, `-pressed`; underline `border-width.1`, `border-width.2` on `:focus-visible`, no outline), `examples.tsx` (in a text, inherited text styles, standalone, visited, long label, allowed backgrounds), `playground.tsx` (`href`, label); demo links keep the click on the page.
+- Export in `components/index.ts`; `meta.json` status `complete`, version `1.0`, changelog; B018 stage `complete` (status stays `in-progress` until the site adopts the Link).
+- `guidelines.md`: the new-tab exception.
+- Accessibility check (code): `audits/2026-11-05-B018-3-accessibility.md` — 8 pass, 0 fail; browser checks pass (keyboard, focus, 320px, 200% zoom, text spacing, standalone spacing); exceptions D2 / D3 unchanged.
+- Compliance audit (`ds-compliance-audit`): `audits/2026-11-05-B018-3.md` — 33 compliant, 13 non-compliant; 6 new (#45–#50, the site's hand-written links, scope of B018-4), 7 still open.
+
+**Files**
+- `audits/2026-11-05-B018-3-accessibility.md`, `audits/2026-11-05-B018-3.md` (created)
+- `components/Link/Link.tsx`, `Link.css`, `examples.tsx`, `playground.tsx`, `meta.json`, `guidelines.md`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)

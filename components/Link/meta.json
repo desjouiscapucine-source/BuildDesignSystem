@@ -2,7 +2,9 @@
   "name": "Link",
   "description": "Text action that takes the user to another page or place.",
   "level": "atom",
-  "status": "guidelines",
-  "version": "0.0",
-  "changelog": []
+  "status": "complete",
+  "version": "1.0",
+  "changelog": [
+    { "version": "1.0", "date": "2026-11-05", "changes": "First complete version." }
+  ]
 }
