@@ -4722,3 +4722,25 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-05-B018-3-accessibility.md`, `audits/2026-11-05-B018-3.md` (created)
 - `components/Link/Link.tsx`, `Link.css`, `examples.tsx`, `playground.tsx`, `meta.json`, `guidelines.md`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B084-1 — Dedicated agents: token audit
+**Date:** 2026-11-05
+
+**Decisions (made by the Design System Lead)**
+- B084 delivers one new agent, **`ds-token-audit`**: it checks that a component uses semantic tokens only — no raw value, no primitive token, no unknown or badly named token.
+- When: before the approval of a component's **design** and **code** stages, on **release day** (every component) and **on request**. **Blocking** (the stage, or the release), unless the Design System Lead accepts a failure as an exception.
+- Allowed without a token (current practice): `0`, `100%`, `auto`, `inherit`, `currentColor`, `transparent`, `none`, CSS keywords, flex ratios, `opacity` 0 / 1, and the 768 / 1024px media queries with their comment.
+- Not checked: contrast pairs (`ds-accessibility-audit`), `examples.tsx` / `playground.tsx`, the frames of the design preview (frame and placeholder sizes, space between mock-ups, `previewMinWidth`), and the role of a token on a property.
+- The `caption` bug of TimelineStep found by the trial run is fixed **before R1**: new ticket **B135** (priority high, release R1), worked on in a Composant TimelineStep conversation.
+
+**What was done**
+- `.claude/agents/ds-token-audit.md` (created): scope per stage and release, the four failure types, allowed values, report shape (failures, "Blocking: yes / no", exceptions).
+- `component` skill: the token audit at step 0 of the approval gate (design and code stages), report in `audits/<date>-<ticket>-<n>-tokens.md`. `git-workflow` skill, section 8: the token audit of every component on release day, blocking the release. `orchestrator` skill: dispatch row. `CLAUDE.md` (Agents): `ds-accessibility-audit` and `ds-token-audit` described; the Agents page shows them.
+- Trial run on the 17 components: `audits/2026-11-05-B084-1-tokens.md` — 4 failures left after the scope decisions, all TimelineStep `caption` (B135); Link (complete since B018-3) re-checked: no failure.
+- `backlog/backlog.json`: B135 created (reserved first); B084 done.
+- Compliance audit (`ds-compliance-audit`): `audits/2026-11-05-B084-1.md`; no finding introduced by the step; the text links become non-compliant now that Link is complete (#48–#53, the #45–#50 of `audits/2026-11-05-B018-3.md` renumbered), covered by B018-4.
+- Verification: type check passes; the Agents page shows the new agent and the rules.
+
+**Files**
+- `.claude/agents/ds-token-audit.md`, `audits/2026-11-05-B084-1-tokens.md`, `audits/2026-11-05-B084-1.md` (created)
+- `.claude/skills/component/SKILL.md`, `.claude/skills/git-workflow/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
