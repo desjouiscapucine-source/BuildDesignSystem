@@ -37,6 +37,7 @@
 
 ## Behavior
 - All links, external ones included, open in the **same tab**: the user keeps control.
+- One exception: a link whose purpose is to open a new tab (e.g. "Open in a new tab" on a prototype page) says so in its label and opens in a new tab (`target="_blank"`, `rel="noreferrer"`).
 - A long label wraps with the surrounding text; the underline follows each line.
 - A link to an anchor of the same page scrolls to the section and moves the focus to it; the section stops below the sticky header (scroll offset), never hidden under it.
 - The visited state is handled by the browser (`:visited`): nothing to do in the component.

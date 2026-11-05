@@ -154,7 +154,7 @@
       "status": "in-progress",
       "origin": "proposal",
       "description": "Text action, uses text.link. Used on the documentation site: links in texts and descriptions.",
-      "stage": "code",
+      "stage": "complete",
       "priority": "high",
       "release": "R1"
     },
