@@ -4744,3 +4744,31 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `.claude/agents/ds-token-audit.md`, `audits/2026-11-05-B084-1-tokens.md`, `audits/2026-11-05-B084-1.md` (created)
 - `.claude/skills/component/SKILL.md`, `.claude/skills/git-workflow/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B130-1 — UX playground: user journey content
+**Date:** 2026-11-05
+
+**Decisions (made by the Design System Lead)**
+- Before building the UX playground: a user journey, then a user flow, then a prototype. The reusable structure of a user journey (phases + actions, shown as a visual journey map) is governance work, made in the Gouvernance conversation; not in `develop` yet, so the content is recorded here and moved into the template once it is merged.
+- Playground decisions: free canvas holding layout frames (mobile, tablet, desktop), components on the grid of each frame; right panel with two tabs, Library and Properties (variants, states, texts, tokens); tokens changed for one placed component only, with another approved token or a free value marked not approved; compositions saved in the repository by the dev server; sticky notes and comments; a new space next to Prototypes.
+- Phase 7: two actions visible on the canvas, **Create the prototype** (prototype ticket and prototype) or **Add to the backlog** (ticket only); the ticket arrives **to be validated** by the Design System Lead, who chooses its priority and release; it takes over the components used, the frames (screens and journey steps), the sticky notes and comments, and a link to the composition. The "to be validated" status is a governance change, to ticket later.
+
+**User journey — UX playground** (user: a UX designer)
+
+| Phase | User actions | Touchpoints |
+| ----- | ------------ | ----------- |
+| 0. Have an idea | Has a need (a screen to explore, a feature to test) and opens the documentation site. | Landing page |
+| 1. Open the playground | Finds the UX playground space in the navigation, opens it, sees the existing compositions. | Side navigation, list of compositions |
+| 2. Create a composition | Creates a new composition and names it. | New composition button, name field |
+| 3. Compose | Adds frames (mobile, tablet, desktop), opens the component library, drags components into a frame, places them on the grid and moves them. | Canvas, frames, right panel (Library tab) |
+| 4. Adjust | Selects a placed component; changes its variants, states and texts; changes its tokens (that component only): another approved token or a free value marked not approved. | Right panel (Properties tab) |
+| 5. Annotate | Adds sticky notes on the canvas; comments on a component or a frame. | Sticky notes, comments |
+| 6. Save and share | Saves the composition in the repository; the team reopens it from the list. | Save button, list of compositions |
+| 7. Turn into a prototype or a ticket | Chooses Create the prototype (ticket + prototype) or Add to the backlog (ticket only); the ticket waits for the Design System Lead's validation (priority, release) and takes over the composition. | Two buttons on the canvas, Backlog, Prototypes space |
+
+**What was done**
+- `backlog/backlog.json`: B130 scope updated with the decisions and the order of the work.
+- No change to the documentation site: no compliance audit for this step (the last report, `audits/2026-11-05-B084-1.md`, still applies).
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)
