@@ -1,5 +1,5 @@
 import { useRef, type ReactNode } from "react";
-import { Card, Dialog } from "@ds/components";
+import { Card, Dialog, Link } from "@ds/components";
 import { Markdown } from "../Markdown";
 import { decisionLabels, prototypeSpecs, statusLabels, type BacklogItem } from "../backlog";
 
@@ -100,7 +100,7 @@ export function TicketDialog({
             <section>
               <h3>Specification</h3>
               <p>
-                Prototype: <a href={`/prototypes/${item.prototype}/`}>{item.prototype}</a> — spec in{" "}
+                Prototype: <Link href={`/prototypes/${item.prototype}/`}>{item.prototype}</Link> — spec in{" "}
                 <code>prototypes/{item.prototype}/spec.md</code>.
               </p>
               {spec ? <Markdown source={spec} /> : <p className="empty">No specification yet on this branch.</p>}

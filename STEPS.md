@@ -4745,6 +4745,27 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `.claude/agents/ds-token-audit.md`, `audits/2026-11-05-B084-1-tokens.md`, `audits/2026-11-05-B084-1.md` (created)
 - `.claude/skills/component/SKILL.md`, `.claude/skills/git-workflow/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
 
+## Step B018-4 — Documentation site: use the Link component
+**Date:** 2026-11-05
+
+**Decisions (made by the Design System Lead)**
+- The site adopts the Link in B018 (decisions of Step B018-3). Approved after review: the Icons page label becomes "Google Fonts icon library" (no raw URL); the skill tree parent chip is no longer semibold (no bold link).
+- Audit findings 51 and 52 go to a new ticket **B136** "Link: code labels and spacing in lists" (proposal, medium, R2).
+- B018 is done.
+
+**What was done**
+- `Link` from `@ds/components` in `GitWorkflowPage`, `BranchesPage`, `ReleasePlanningPage`, `TicketDialog`, `ChangelogPage`, `IconsPage` (same tab), `PrototypePage` ("Open in a new tab", approved exception), `SkillsPage` (tree links, parent chip on a wrapper span).
+- `Markdown.tsx`: rendered links get `class="ds-link"`.
+- `docs.css`: `.git-flow-link` and `.skill-tree a` rules removed; semibold removed from `.skill-tree-parent`.
+- Verification: type check and build pass; every content link of the site is a `.ds-link` (underlined, `text.link`, regular weight); no console error.
+- Compliance audit (`ds-compliance-audit`): `audits/2026-11-05-B018-4.md` — 38 compliant, 9 non-compliant; #45–#50 fixed; 2 new (#51, #52 → B136); 7 still open.
+- Token audit (`ds-token-audit`, rule B084 that reached `develop` during this step; Link's design and code were approved before it): `audits/2026-11-05-B018-4-tokens.md` — 33 values checked, 0 failure.
+- Ticket B136 created and reserved; B018 status `done`.
+
+**Files**
+- `audits/2026-11-05-B018-4.md`, `audits/2026-11-05-B018-4-tokens.md` (created)
+- `docs/src/pages/GitWorkflowPage.tsx`, `BranchesPage.tsx`, `ReleasePlanningPage.tsx`, `TicketDialog.tsx`, `ChangelogPage.tsx`, `IconsPage.tsx`, `PrototypePage.tsx`, `SkillsPage.tsx`, `docs/src/Markdown.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B130-1 — UX playground: user journey content
 **Date:** 2026-11-05
 

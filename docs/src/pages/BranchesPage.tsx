@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Header } from "./SectionPages";
+import { Link } from "@ds/components";
 
 // Branches page (B109): every branch, its conversation, folder, ticket and position against develop, read live from
 // git by the dev server (/api/branches); plus what develop adds to main, the content of the next release.
@@ -45,7 +46,7 @@ export function BranchesPage() {
       <p>
         Read live from git when the site runs with <code>npm run dev</code>. Work branches start from{" "}
         <code>develop</code> and are merged into it; <code>main</code> changes on release day only (
-        <a href="#/git-workflow">Git workflow</a>).
+        <Link href="#/git-workflow">Git workflow</Link>).
       </p>
       {error && <p className="empty">Only available when the site runs with `npm run dev`.</p>}
       {!data && !error && <p className="empty">Reading the branches…</p>}
@@ -83,7 +84,7 @@ export function BranchesPage() {
                     )}
                     {branch.folder && <div className="branch-note">{folderName(branch.folder)}</div>}
                   </td>
-                  <td>{branch.ticket ? <a href={`#/backlog/${branch.ticket}`}>{branch.ticket}</a> : "—"}</td>
+                  <td>{branch.ticket ? <Link href={`#/backlog/${branch.ticket}`}>{branch.ticket}</Link> : "—"}</td>
                   <td>
                     {branch.name === "develop"
                       ? "—"

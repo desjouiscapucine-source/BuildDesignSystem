@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { tokens } from "../../../tokens/lib";
 import { Header } from "./SectionPages";
+import { Link } from "@ds/components";
 
 const sizes = tokens.filter((token) => token.path[0] === "icon-size");
 const samples = [
@@ -17,10 +18,8 @@ export function IconsPage() {
     <>
       <Header title="Icons" lead="Material Symbols Outlined, weight 400, always unfilled." />
       <p>
-        Loaded from Google Fonts. Browse every icon name on{" "}
-        <a href="https://fonts.google.com/icons?icon.style=Outlined" target="_blank" rel="noreferrer">
-          fonts.google.com/icons
-        </a>
+        Loaded from Google Fonts. Browse every icon name in the{" "}
+        <Link href="https://fonts.google.com/icons?icon.style=Outlined">Google Fonts icon library</Link>
         .
       </p>
 

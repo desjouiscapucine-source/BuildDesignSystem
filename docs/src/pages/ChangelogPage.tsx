@@ -1,5 +1,6 @@
 import { components } from "../registry";
 import { Header } from "./SectionPages";
+import { Link } from "@ds/components";
 
 // Every version of every component, newest first (read from the meta.json changelogs; `changelog` skill).
 const entries = components
@@ -31,7 +32,7 @@ export function ChangelogPage() {
               <tr key={`${entry.component.slug}-${entry.version}`}>
                 <td>{entry.date}</td>
                 <td>
-                  <a href={`#/components/${entry.component.slug}`}>{entry.component.name}</a>
+                  <Link href={`#/components/${entry.component.slug}`}>{entry.component.name}</Link>
                 </td>
                 <td>{entry.version}</td>
                 <td>{entry.changes}</td>
