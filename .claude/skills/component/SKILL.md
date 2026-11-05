@@ -44,7 +44,8 @@ Read `components/<Name>/meta.json` → `status`: it tells which stage skill appl
 ## 3. End of a stage — approval gate
 
 0. Run the **accessibility check** of the stage (`accessibility-check`, `ds-accessibility-audit` agent). It is **blocking**: a failure is fixed first, unless the Design System Lead accepts it as an exception.
-1. Show the result to the Design System Lead, with the accessibility report: in the chat (visual when helpful) and on the component page of the documentation site (`/docs/#/components/<slug>`).
+   At the **design** and **code** stages, also run the **token audit** (`ds-token-audit` agent, B084): raw values, primitive tokens, unknown or badly named tokens. Same rule: **blocking**, unless the Design System Lead accepts a failure as an exception (written in the report and in `STEPS.md`). Claude checks its result and writes it to `audits/<YYYY-MM-DD>-<ticket>-<n>-tokens.md`.
+1. Show the result to the Design System Lead, with the accessibility report (and the token report at the design and code stages): in the chat (visual when helpful) and on the component page of the documentation site (`/docs/#/components/<slug>`).
 2. Ask for an **explicit approval**. List any open question.
 3. Once approved:
    - Set `meta.json` `status` to the next stage.
