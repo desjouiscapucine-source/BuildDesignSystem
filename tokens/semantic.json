@@ -19,6 +19,18 @@
       "link": {
         "$value": "{color.primary.600}"
       },
+      "link-hover": {
+        "$value": "{color.primary.700}",
+        "$description": "Link on hover (Link exception to state layers)"
+      },
+      "link-pressed": {
+        "$value": "{color.primary.800}",
+        "$description": "Link while pressed (Link exception to state layers)"
+      },
+      "link-visited": {
+        "$value": "{color.primary.800}",
+        "$description": "Link already visited"
+      },
       "brand": {
         "$value": "{color.primary.600}"
       },

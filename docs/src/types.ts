@@ -13,7 +13,7 @@ export interface Example {
   render: () => ReactNode;
 }
 
-export type PreviewState = "default" | "hover" | "focus" | "pressed" | "disabled";
+export type PreviewState = "default" | "hover" | "focus" | "pressed" | "disabled" | "visited";
 
 export interface PreviewProps {
   state: PreviewState;

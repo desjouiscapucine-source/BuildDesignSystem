@@ -32,3 +32,5 @@ export { Select } from "./Select/Select";
 export type { SelectProps, SelectOptionItem } from "./Select/Select";
 export { TicketCard } from "./TicketCard/TicketCard";
 export type { TicketCardProps } from "./TicketCard/TicketCard";
+export { Link } from "./Link/Link";
+export type { LinkProps } from "./Link/Link";

@@ -27,6 +27,8 @@ Every task starts here. This skill **only dispatches**: it says which child skil
 | Component status is `complete` and it changes | the stage skill of every stage the change touches |
 | New component, classification, a component that uses other components | `component-structure` |
 | A design token is created, renamed, referenced or reviewed | `token-naming` |
+| Before the approval of a component stage or of a token created or changed; an accessibility check is asked | `accessibility-check` (runs the `ds-accessibility-audit` agent) |
+| Before the approval of a component's design or code stage; release day; a token audit is asked | `component` (runs the `ds-token-audit` agent) |
 | Any design decision: value, name, palette, anatomy, variant, state, guideline, behavior, content | `never-invent` |
 | A page, screen or section is laid out (docs site, templates, pages, prototypes) | `layout` |
 | A page title or subtitle, or a component description in `meta.json` | `page-header` |

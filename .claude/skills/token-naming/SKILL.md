@@ -61,12 +61,14 @@ Pattern: **`color.<property>.<role>`** → `--color-<property>-<role>` (structur
 
 | Property | Roles |
 | -------- | ----- |
-| `text` | `primary`, `secondary`, `disabled`, `inverse`, `link`, `brand`, `success`, `warning`, `error`, `info` |
-| `icon` | Same roles as `text` |
+| `text` | `primary`, `secondary`, `disabled`, `inverse`, `link`, `link-hover`, `link-pressed`, `link-visited`, `brand`, `success`, `warning`, `error`, `info` |
+| `icon` | Same roles as `text`, except `link-hover`, `link-pressed` and `link-visited` |
 | `background` | `page`, `surface`, `subtle`, `inverse`, `disabled`, `overlay`, `brand`, `brand-subtle`, `success-subtle`, `warning-subtle`, `error-subtle`, `info-subtle`, `success`, `warning`, `error`, `info` |
 | `border` | `default`, `subtle`, `strong`, `focus`, `focus-inverse`, `success`, `warning`, `error`, `info` |
 
 **States:** there are **no per-role state tokens** (no `.hover`): interactive states use **state layers** (see below).
+
+**One exception — Link** (decided by the Design System Lead on 2026-11-04, B018): a text link changes color instead of using a state layer. Roles `color.text.link-hover` (primary-700), `color.text.link-pressed` (primary-800) and `color.text.link-visited` (primary-800) for a link already visited. Pattern: `<role>-<state>`. Any other exception must be approved.
 
 ## State layer tokens
 

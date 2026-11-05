@@ -151,10 +151,10 @@
       "id": "B018",
       "title": "Link",
       "category": "Components",
-      "status": "todo",
+      "status": "in-progress",
       "origin": "proposal",
       "description": "Text action, uses text.link. Used on the documentation site: links in texts and descriptions.",
-      "stage": "design",
+      "stage": "complete",
       "priority": "high",
       "release": "R1"
     },
@@ -304,7 +304,7 @@
       "id": "B033",
       "title": "Split the tokens page by category",
       "category": "Tooling",
-      "status": "todo",
+      "status": "done",
       "origin": "proposal",
       "description": "One documentation page per category (colors, typography, spacing…)."
     },
@@ -352,7 +352,7 @@
       "id": "B039",
       "title": "Skill: accessibility-check",
       "category": "Skills",
-      "status": "todo",
+      "status": "done",
       "origin": "proposal",
       "description": "WCAG 2.2 AA review of a component or prototype: contrast, keyboard, focus, screen reader, touch targets, reduced motion."
     },
@@ -738,7 +738,7 @@
       "id": "B084",
       "title": "Dedicated agents for recurring checks",
       "category": "Tooling",
-      "status": "todo",
+      "status": "done",
       "origin": "proposal",
       "description": "Reusable agents in .claude/agents/<name>.md (role, allowed tools, what to report) for checks that come back often, e.g. a token auditor that finds raw values in components. Only once a check is recurring.",
       "release": "R2"
@@ -914,7 +914,7 @@
       "id": "B104",
       "title": "Navigation architecture",
       "category": "Foundations",
-      "status": "todo",
+      "status": "done",
       "origin": "decided",
       "description": "New work on the navigation architecture, planned for R1. Content to define with the Design System Lead.",
       "release": "R1"
@@ -1293,13 +1293,14 @@
       "category": "Tooling",
       "status": "todo",
       "origin": "proposal",
-      "description": "Markdown code blocks scroll inside their own box; the brand fill of a checked control is checked for contrast.",
-      "why": "Found by the full compliance audit before the merge into develop (audits/2026-10-30-before-develop-merge.md).",
-      "scope": "Audit findings 42 and 43: Markdown code blocks of the Skills and Agents cards (and any Markdown) overflow the card; the pair background.brand on background.page (checkbox fill, pressed toggle) is not in tokens/contrast-pairs.json. Decisions asked first: same look as pre.code (surface background, padding) or scroll only; background.brand or border.focus for a checked control fill.",
+      "description": "Markdown code blocks and tables inside cards stay readable; the brand fill of a checked control is checked for contrast.",
+      "why": "Found by the full compliance audit before the merge into develop (audits/2026-10-30-before-develop-merge.md), and by the audit of Step B039-1 for finding 47 (audits/2026-11-04-B039-1.md).",
+      "scope": "Audit findings 42 and 43: Markdown code blocks of the Skills and Agents cards (and any Markdown) overflow the card; the pair background.brand on background.page (checkbox fill, pressed toggle) is not in tokens/contrast-pairs.json. Audit finding 47: tables inside a Card (Markdown tables and table.tokens on the How to use skills, Agents and Release planning pages) inherit overflow-wrap: anywhere from .ds-card-text, so the first column shrinks to about one character and words break in two. Decisions asked first: same look as pre.code (surface background, padding) or scroll only; background.brand or border.focus for a checked control fill; tables in cards fixed on the site only (docs.css) or in the Card component (complete: new version and changelog); too-wide tables scroll horizontally or wrap between words.",
       "doneWhen": [
         "Long code lines in Markdown scroll inside their block and never overflow the card.",
         "The brand fill pair is in contrast-pairs.json and npm run tokens passes.",
-        "The next compliance audit no longer lists findings 42 and 43."
+        "Tables inside cards keep whole words and never break a word in two.",
+        "The next compliance audit no longer lists findings 42, 43 and 47."
       ],
       "priority": "medium",
       "release": "R2"
@@ -1335,6 +1336,23 @@
       ],
       "priority": "medium",
       "release": "R2"
+    },
+    {
+      "id": "B135",
+      "title": "TimelineStep: date range text style",
+      "category": "Components",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "The date range of TimelineStep uses an approved text style instead of the caption style, which does not exist.",
+      "why": "Found by the trial run of the ds-token-audit agent (B084) on 2026-11-05: TimelineStep.css uses var(--typography-caption-*) but tokens/semantic.json has no caption text style, so the dates only inherit the font of their parent. The token audit blocks release R1 until it is fixed.",
+      "scope": "components/TimelineStep: TimelineStep.css (.ds-timeline-step-dates), spec.md (Design tokens table), design/tokens.json (date slot, default and selected). TimelineStep is complete: new version 1.1 and changelog entry (changelog skill). Decision asked first: which text style for the date range (body-sm is described as \"Notes, captions\"), or a new style.",
+      "doneWhen": [
+        "TimelineStep uses an existing text style for its date range, in the CSS, the spec and the design preview.",
+        "meta.json version 1.1 with its changelog entry.",
+        "The ds-token-audit agent reports no failure on TimelineStep."
+      ],
+      "priority": "high",
+      "release": "R1"
     }
   ]
 }

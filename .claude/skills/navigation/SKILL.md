@@ -17,7 +17,7 @@ Talk about the navigation in levels. **Level 0** is the landing page.
 | ----- | ------- |
 | **Level 0** | Landing page |
 | **Level 1** | Spaces: Documentation, Portfolio |
-| **Level 2** | Sections of a space: Overview, Governance, Foundations, Components, Prototypes, Navigation |
+| **Level 2** | Sections of a space: Overview, Governance, Foundations, Components, Prototypes |
 | **Level 3** | Pages of a section (e.g. one prototype), or categories of components |
 | **Level 4** | Component pages only |
 
@@ -34,6 +34,7 @@ Level 3   │   │   ├── Agents
 Level 3   │   │   ├── Git workflow        (organization diagram, link to the git-workflow skill)
 Level 3   │   │   ├── Branches            (every branch, its conversation, the next release)
 Level 3   │   │   ├── Changelog           (every version of every component)
+Level 3   │   │   ├── Navigation structure
 Level 3   │   │   └── Release planning    (the tickets of each release)
 Level 2   │   ├── Foundations             (one page per category)
 Level 3   │   │   └── Color · Typography · Spacing · Radius · Border width · Shadows · Motion
@@ -41,9 +42,8 @@ Level 3   │   │   └── Color · Typography · Spacing · Radius · Bord
 Level 2   │   ├── Components              (one category per Atomic Design level)
 Level 3   │   │   ├── Atoms · Molecules · Organisms · Templates · Pages
 Level 4   │   │   └── one page per component, with its tabs
-Level 2   │   ├── Prototypes
-Level 3   │   │   └── one page per prototype
-Level 2   │   └── Navigation              (Navigation structure page)
+Level 2   │   └── Prototypes
+Level 3   │       └── one page per prototype
 Level 1   └── Portfolio
 ```
 
@@ -69,7 +69,7 @@ The breadcrumb is the **Breadcrumb** component (B083, complete). The modal is th
 
 ## How the site applies it
 
-Decided by the Design System Lead on 2026-10-27 (B087). Prototypes and Navigation moved from Level 1 spaces to Level 2 sections of Documentation, same day.
+Decided by the Design System Lead on 2026-10-27 (B087). Prototypes and Navigation moved from Level 1 spaces to Level 2 sections of Documentation, same day. Navigation moved again to a Level 3 page of Governance, right after Changelog, on 2026-11-04 (B104).
 
 | Item | Rule |
 | ---- | ---- |
@@ -77,12 +77,12 @@ Decided by the Design System Lead on 2026-10-27 (B087). Prototypes and Navigatio
 | **Logo** | In the header on every screen size; below tablet the logo stays and only the site name is hidden, so Level 0 is reachable from a phone. |
 | **Level 1 spaces** | Links in the header, same order; below desktop they open at the top of the menu. |
 | **Side navigation** | The **SideNavigation** component (B122, 2026-10-29). Shows only the current space: its Level 2 sections. A section with pages below it (2 or more) is a **parent item**: it opens and closes its pages, it is **not a link** (open while the current page is inside it); a section without pages below it is a link. One selected item: the page displayed. Below desktop: hidden, opened with the burger button; a "Spaces" parent item (icon `workspaces`) at the top lists the spaces, none selected. |
-| **Overview** | Description, then Summary: one card per section (Governance, Foundations, Components, Prototypes, Navigation). |
+| **Overview** | Description, then Summary: one card per section (Governance, Foundations, Components, Prototypes). |
 | **Level 2 sections** | A page of their own: title, subtitle and one card per Level 3 page (or per component category). Since B122, the page of a section with pages below it (and of a component category) is reached from the **Overview cards** and the **breadcrumb**, not from the side navigation (a parent item is not a page); on that page, no side navigation item is selected. |
 | **Foundations** | One page per category. Text styles are on Typography; the WCAG contrast table and the state layers are on Color. |
 | **Components** | The five categories are always listed; an empty one says "No component yet". |
 | **Prototypes** | Level 2 section of Documentation: one card / navigation item per prototype (Level 3), plus "All prototypes" (`/prototypes/`). |
-| **Navigation** | Level 2 section of Documentation, a page of its own (Navigation structure), with no Level 3 page. |
+| **Navigation structure** | Level 3 page of Governance, right after Changelog (B104, 2026-11-04). Side navigation item and card labelled like the page title, "Navigation structure". Same icon as Git workflow (`account_tree`). |
 | **Portfolio** | Title, subtitle and "Nothing yet." until its content is defined. |
 | **Breadcrumb** | Decided by the Design System Lead on 2026-10-28 (B091). The Breadcrumb component, first block of every page from Level 2 to Level 4, above the title. Starts at Level 0, labelled **BuildDesignSystem** (link to `/`), and ends with the parent of the page. Overview (where Documentation opens): "BuildDesignSystem / Documentation". No breadcrumb on Level 1 (Portfolio). Built once in `docs/src/AppShell.tsx` from `structure.ts`. |
 | **Backlog tickets** | Decided on 2026-10-29 (B114). A click on a ticket of the Backlog page opens it in a **Dialog** (`large`) over the page, at `#/backlog/<id>` (a link to a ticket opens the Backlog with its modal). The Backlog stays the page shown: side navigation, breadcrumb and scroll do not change. The menus of a ticket (status, priority, release, stage) do not open it; they are also at the top of the modal. |

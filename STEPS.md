@@ -4590,3 +4590,157 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-10-30-B131-1.md` (created)
 - `.claude/skills/git-workflow/SKILL.md`, `CLAUDE.md`, `docs/src/pages/GitWorkflowPage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B104-2 — Navigation structure page moved to Governance
+**Date:** 2026-11-04
+
+**Decisions (made by the Design System Lead)**
+- B104 Navigation architecture: review the structure of the site.
+- The Navigation section (Level 2 of Documentation) becomes a **Level 3 page of Governance**, placed right after **Changelog**. Same icon as Git workflow (`account_tree`). The URL stays `#/navigation`.
+- Its side navigation item and its card are labelled like the page title, **Navigation structure** (finding #46 of the audit).
+- Governance subtitle: "Backlog, skills, agents, git workflow, branches, changelog, navigation, releases" (80 characters, finding #45 of the audit).
+
+**What was done**
+- `docs/src/structure.ts`: Navigation structure moved from the Documentation sections to the Governance pages, after Changelog; Documentation and Governance descriptions updated. The Overview loses its Navigation card; the Governance page gets one; the breadcrumb of the page is now "BuildDesignSystem / Documentation / Governance".
+- `docs/src/pages/NavigationPage.tsx`: Levels table (Level 2 without Navigation) and Flow tree updated.
+- `docs/src/App.tsx`: route comment (`#/navigation` in Level 3).
+- `navigation` skill: Level 2 row, structure tree, history and the Navigation structure row.
+- The principle "the logo in the header goes back to the landing page" asked by the Design System Lead already exists ("Back to Level 0") and is applied by the site: nothing added.
+- Compliance audit (`ds-compliance-audit`): report checked and written to `audits/2026-11-04-B104-2.md`; #45 (introduced by the step) and #46 (older) fixed after the Design System Lead's decisions; 7 older findings still open, all covered by existing tickets.
+- Verification: type check and build pass; side navigation, Governance page and Navigation structure page checked in the browser.
+
+**Files**
+- `audits/2026-11-04-B104-2.md` (created)
+- `docs/src/structure.ts`, `docs/src/pages/NavigationPage.tsx`, `docs/src/App.tsx`, `.claude/skills/navigation/SKILL.md`, `STEPS.md` (updated)
+
+## Step B104-3 — Navigation architecture: ticket done
+**Date:** 2026-11-04
+
+**What was done**
+- B104 Navigation architecture closed by the Design System Lead: status `done` (release R1). The structure review is in Step B104-2; no other navigation principle to add.
+- Branch `governance/navigation-architecture` merged into `develop`, then deleted.
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B018-1 — Link: design approved
+**Date:** 2026-11-04
+
+**Decisions (made by the Design System Lead)**
+- Ticket B018 taken for release R1. Identity: `Link`, `components/Link/`, `.ds-link`, atom, "Text action that takes the user to another page or place."
+- One variant (default, `color.text.link`), size inherited from the surrounding text, text only, always underlined (`border-width.1`).
+- States: hover `color.text.link-hover` (primary-700), pressed `color.text.link-pressed` (primary-800), visited `color.text.link-visited` (primary-800) — a **Link exception to state layers** (no state layer on hover / pressed). Focus: no outline, no state layer, underline `border-width.2`. No disabled state.
+- Design stage approved; the component moves to Guidelines.
+
+**What was done**
+- Branch `component/Link` from `develop`; ticket B018 reserved (`in-progress`), then stage `guidelines`.
+- `components/Link/` from the template: `meta.json`, design preview (`design/Preview.tsx`, `design/tokens.json`, states default / hover / focus / pressed / visited), `spec.md`.
+- 3 new semantic tokens `color.text.link-hover`, `-pressed`, `-visited` in `tokens/semantic.json`, with 9 contrast pairs (page, surface, brand-subtle) in `tokens/contrast-pairs.json`: 61/61 pairs pass AA.
+- `token-naming` skill and `CLAUDE.md`: the Link exception and the new roles.
+- Docs site: `visited` added to the preview states (`docs/src/types.ts`).
+- Compliance audit (`ds-compliance-audit`): `audits/2026-11-04-B018-1.md` — 29 compliant, 6 non-compliant (all already open: #5, #9, #10, #42–#44), 0 new; the site's hand-written text links are tracked as "in progress (B018)".
+
+**Files**
+- `components/Link/` (created), `audits/2026-11-04-B018-1.md` (created)
+- `tokens/semantic.json`, `tokens/contrast-pairs.json`, `.claude/skills/token-naming/SKILL.md`, `CLAUDE.md`, `docs/src/types.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B033-1 — Split the tokens page by category: ticket done
+**Date:** 2026-11-04
+
+**What was done**
+- B033 closed by the Design System Lead: status `done`. The work was already delivered by Step B087-1 (2026-10-27): the Foundations section has one page per category (Color, Typography, Spacing, Radius, Border width, Shadows, Motion, Opacity, Size, Breakpoints, Layout grid, Z-index, Icons). The ticket had stayed in To do.
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B039-1 — Skill: accessibility-check
+**Date:** 2026-11-04
+
+**Decisions (made by the Design System Lead)**
+- A skill `accessibility-check`, run by a dedicated read-only agent **`ds-accessibility-audit`**, checks **components** (spec and design preview, guidelines, code) and **design tokens** against WCAG 2.2 AA.
+- When: before the approval of **every component stage** (the code check is also the check before `complete`), before the approval of a token created or changed, and on request.
+- **Blocking**: a failure is fixed before the approval; only the Design System Lead can accept a failure as an explicit exception, written in the report and in `STEPS.md`.
+- Checklist: the accessibility rules already approved (`CLAUDE.md`, `component-spec`, `component-guidelines`, `component-code`), plus four WCAG 2.2 AA criteria added: name, role, value and label in name (4.1.2, 2.5.3); no keyboard trap (2.1.2); focus not obscured (2.4.11); zoom, reflow and text spacing (1.4.4, 1.4.10, 1.4.12).
+- Reports in `audits/<YYYY-MM-DD>-<ticket>-<n>-accessibility.md`.
+
+**What was done**
+- `.claude/skills/accessibility-check/SKILL.md` (created): scope, moments, blocking rule and exception, how to run it, the checklist per stage and for tokens (each rule with its source).
+- `.claude/agents/ds-accessibility-audit.md` (created): read-only agent, report shape (pass / fail / not applicable, "Blocking: yes / no", what Claude checks in the browser at the code stage).
+- `orchestrator` skill: dispatch row. `component` skill: the accessibility check is step 0 of the approval gate. `CLAUDE.md` (Accessibility): the rule.
+- The skill and the agent show on the How to use skills and Agents pages (discovered automatically).
+- B039 done.
+- Compliance audit (`ds-compliance-audit`): report checked and written to `audits/2026-11-04-B039-1.md`; no finding introduced by the step; one older finding found (#47, tables inside cards break words), not fixed in this step; 7 older findings still open.
+- Verification: type check passes; both pages checked in the browser.
+
+**Files**
+- `.claude/skills/accessibility-check/SKILL.md`, `.claude/agents/ds-accessibility-audit.md`, `audits/2026-11-04-B039-1.md` (created)
+- `.claude/skills/orchestrator/SKILL.md`, `.claude/skills/component/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B132-1 — Accessibility follow-up: finding 47 added
+**Date:** 2026-11-04
+
+**Decisions (made by the Design System Lead)**
+- Finding 47 of the compliance audit of Step B039-1 (tables inside cards break words, `audits/2026-11-04-B039-1.md`) is added to **B132 Documentation site: accessibility follow-up** (priority medium, release R2), rather than a new ticket.
+
+**What was done**
+- `backlog/backlog.json`: B132 description, why, scope (finding 47 and its decisions to ask first: site only or Card component; scroll or wrap) and done-when updated. Status unchanged (`todo`).
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B018-2 — Link: guidelines approved
+**Date:** 2026-11-05
+
+**Decisions (made by the Design System Lead)**
+- Guidelines: when to use (link in a text, standalone, external); when not to use (action → Button, main navigation → SideNavigation / Breadcrumb, link with an icon → Button `tertiary` with `href`); best practices (links kept apart, no extra styling, one link per destination, allowed backgrounds, Markdown links styled like the Link); 4 do / don't pairs; content (label describes the destination, short, sentence case, no final punctuation, page title for a site page); behavior (same tab for every link, wrap, anchor scroll, browser `:visited`, no disabled state).
+- Accessibility check (`accessibility-check`, B039, run on the design and the guidelines): 7 failures on the first run. Decided: a standalone link uses the WCAG 2.5.8 spacing exception (24px from the next target, also written in `spec.md` Sizes); an anchor target stops below the sticky header (scroll offset); wording added for no keyboard trap, focus order and accessible name. **Accepted exceptions**: D2 — hover and pressed change color, no state layer; D3 — focus is a thicker underline (`border-width.1` → `border-width.2`), no outline and no `border.focus`.
+- Guidelines stage approved; the component moves to Code.
+
+**What was done**
+- `components/Link/guidelines.md` written; `spec.md` (Sizes, target size); `meta.json` status `code`; B018 stage `code`.
+- Accessibility report: `audits/2026-11-04-B018-2-accessibility.md` (second run: 11 pass, 0 fail, 2 accepted exceptions).
+- Compliance audit (`ds-compliance-audit`): `audits/2026-11-05-B018-2.md` — no site change in this step; 33 compliant, 7 non-compliant (all already open, covered by B094, B118, B132, B133, B134), 0 new.
+
+**Files**
+- `audits/2026-11-04-B018-2-accessibility.md`, `audits/2026-11-05-B018-2.md` (created)
+- `components/Link/guidelines.md`, `components/Link/spec.md`, `components/Link/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B018-3 — Link: code approved, component complete
+**Date:** 2026-11-05
+
+**Decisions (made by the Design System Lead)**
+- Code stage approved: Link is `complete`, version `1.0` ("First complete version.").
+- The documentation site adopts the Link inside B018 (next step, B018-4), before the ticket is done. Decisions for it: "Read the git-workflow skill" becomes a Link without the icon; the Icons page external link opens in the same tab; "Open in a new tab" on the Prototype page keeps the new tab (exception added to the guidelines, Behavior); the skill tree links become Links.
+
+**What was done**
+- `components/Link/Link.tsx` (`<a href>`, `href` and label required, `className` and native attributes passed through), `Link.css` (semantic tokens only: `text.link`, `-visited`, `-hover`, `-pressed`; underline `border-width.1`, `border-width.2` on `:focus-visible`, no outline), `examples.tsx` (in a text, inherited text styles, standalone, visited, long label, allowed backgrounds), `playground.tsx` (`href`, label); demo links keep the click on the page.
+- Export in `components/index.ts`; `meta.json` status `complete`, version `1.0`, changelog; B018 stage `complete` (status stays `in-progress` until the site adopts the Link).
+- `guidelines.md`: the new-tab exception.
+- Accessibility check (code): `audits/2026-11-05-B018-3-accessibility.md` — 8 pass, 0 fail; browser checks pass (keyboard, focus, 320px, 200% zoom, text spacing, standalone spacing); exceptions D2 / D3 unchanged.
+- Compliance audit (`ds-compliance-audit`): `audits/2026-11-05-B018-3.md` — 33 compliant, 13 non-compliant; 6 new (#45–#50, the site's hand-written links, scope of B018-4), 7 still open.
+
+**Files**
+- `audits/2026-11-05-B018-3-accessibility.md`, `audits/2026-11-05-B018-3.md` (created)
+- `components/Link/Link.tsx`, `Link.css`, `examples.tsx`, `playground.tsx`, `meta.json`, `guidelines.md`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B084-1 — Dedicated agents: token audit
+**Date:** 2026-11-05
+
+**Decisions (made by the Design System Lead)**
+- B084 delivers one new agent, **`ds-token-audit`**: it checks that a component uses semantic tokens only — no raw value, no primitive token, no unknown or badly named token.
+- When: before the approval of a component's **design** and **code** stages, on **release day** (every component) and **on request**. **Blocking** (the stage, or the release), unless the Design System Lead accepts a failure as an exception.
+- Allowed without a token (current practice): `0`, `100%`, `auto`, `inherit`, `currentColor`, `transparent`, `none`, CSS keywords, flex ratios, `opacity` 0 / 1, and the 768 / 1024px media queries with their comment.
+- Not checked: contrast pairs (`ds-accessibility-audit`), `examples.tsx` / `playground.tsx`, the frames of the design preview (frame and placeholder sizes, space between mock-ups, `previewMinWidth`), and the role of a token on a property.
+- The `caption` bug of TimelineStep found by the trial run is fixed **before R1**: new ticket **B135** (priority high, release R1), worked on in a Composant TimelineStep conversation.
+
+**What was done**
+- `.claude/agents/ds-token-audit.md` (created): scope per stage and release, the four failure types, allowed values, report shape (failures, "Blocking: yes / no", exceptions).
+- `component` skill: the token audit at step 0 of the approval gate (design and code stages), report in `audits/<date>-<ticket>-<n>-tokens.md`. `git-workflow` skill, section 8: the token audit of every component on release day, blocking the release. `orchestrator` skill: dispatch row. `CLAUDE.md` (Agents): `ds-accessibility-audit` and `ds-token-audit` described; the Agents page shows them.
+- Trial run on the 17 components: `audits/2026-11-05-B084-1-tokens.md` — 4 failures left after the scope decisions, all TimelineStep `caption` (B135); Link (complete since B018-3) re-checked: no failure.
+- `backlog/backlog.json`: B135 created (reserved first); B084 done.
+- Compliance audit (`ds-compliance-audit`): `audits/2026-11-05-B084-1.md`; no finding introduced by the step; the text links become non-compliant now that Link is complete (#48–#53, the #45–#50 of `audits/2026-11-05-B018-3.md` renumbered), covered by B018-4.
+- Verification: type check passes; the Agents page shows the new agent and the rules.
+
+**Files**
+- `.claude/agents/ds-token-audit.md`, `audits/2026-11-05-B084-1-tokens.md`, `audits/2026-11-05-B084-1.md` (created)
+- `.claude/skills/component/SKILL.md`, `.claude/skills/git-workflow/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)

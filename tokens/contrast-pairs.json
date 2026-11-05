@@ -57,6 +57,51 @@
       "min": 4.5
     },
     {
+      "foreground": "color.text.link-hover",
+      "background": "color.background.page",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.link-hover",
+      "background": "color.background.surface",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.link-hover",
+      "background": "color.background.brand-subtle",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.link-pressed",
+      "background": "color.background.page",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.link-pressed",
+      "background": "color.background.surface",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.link-pressed",
+      "background": "color.background.brand-subtle",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.link-visited",
+      "background": "color.background.page",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.link-visited",
+      "background": "color.background.surface",
+      "min": 4.5
+    },
+    {
+      "foreground": "color.text.link-visited",
+      "background": "color.background.brand-subtle",
+      "min": 4.5
+    },
+    {
       "foreground": "color.text.brand",
       "background": "color.background.brand-subtle",
       "min": 4.5
