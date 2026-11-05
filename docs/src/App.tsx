@@ -14,6 +14,8 @@ import { ChangelogPage } from "./pages/ChangelogPage";
 import { ReleasePlanningPage } from "./pages/ReleasePlanningPage";
 import { PrototypePage } from "./pages/PrototypePage";
 import { NavigationPage } from "./pages/NavigationPage";
+import { ProjectPage } from "./pages/ProjectPage";
+import { projects } from "./projects";
 import {
   CategoryPage,
   ComponentsPage,
@@ -28,8 +30,8 @@ import { categorySlug } from "./structure";
 
 // Hash routes, by navigation level (navigation skill):
 // Level 1  #/ (Documentation, opens on Overview)  ·  #/portfolio
-// Level 2  #/governance  ·  #/foundations  ·  #/components  ·  #/prototypes
-// Level 3  #/backlog  ·  #/backlog/<id> (ticket in a modal over the Backlog)  ·  #/skills  ·  #/skills/<name>  ·  #/agents  ·  #/git-workflow  ·  #/branches  ·  #/changelog  ·  #/navigation  ·  #/releases  ·  #/foundations/<slug>  ·  #/components/<category>  ·  #/prototypes/<name>
+// Level 2  #/governance  ·  #/foundations  ·  #/components  ·  #/prototypes  ·  #/projects
+// Level 3  #/backlog  ·  #/backlog/<id> (ticket in a modal over the Backlog)  ·  #/skills  ·  #/skills/<name>  ·  #/agents  ·  #/git-workflow  ·  #/branches  ·  #/changelog  ·  #/navigation  ·  #/releases  ·  #/foundations/<slug>  ·  #/components/<category>  ·  #/prototypes/<name>  ·  #/projects/<name>
 // Level 4  #/components/<slug>
 function useHashRoute() {
   const read = () => {
@@ -68,6 +70,7 @@ export function App() {
   const component = components.find((c) => route === `/components/${c.slug}`);
   const category = levels.find(({ title }) => route === `/components/${categorySlug(title)}`);
   const foundation = foundations.find((f) => route === `/foundations/${f.slug}`);
+  const project = projects.find((p) => route === `/projects/${p.slug}`);
   const prototype = route.startsWith("/prototypes/") ? route.slice("/prototypes/".length) : null;
 
   let page = <OverviewPage />;
@@ -90,6 +93,8 @@ export function App() {
   else if (component) page = <ComponentPage key={component.slug} component={component} />;
   else if (route === "/prototypes") page = <PrototypesPage />;
   else if (prototype && prototypes.includes(prototype)) page = <PrototypePage key={route} name={prototype} />;
+  else if (route === "/projects") page = <SectionPage key={route} href="#/projects" />;
+  else if (project) page = <ProjectPage key={route} project={project} />;
   else if (route === "/navigation") page = <NavigationPage />;
   else if (route === "/portfolio") page = <PortfolioPage />;
 

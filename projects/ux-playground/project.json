@@ -1,0 +1,50 @@
+{
+  "name": "UX playground",
+  "lead": "Compose the coded components in a layout before a prototype",
+  "ticket": "B130",
+  "journey": {
+    "user": "A UX designer",
+    "phases": [
+      {
+        "title": "Have an idea",
+        "actions": "Has a need (a screen to explore, a feature to test) and opens the documentation site.",
+        "touchpoints": "Landing page"
+      },
+      {
+        "title": "Open the playground",
+        "actions": "Finds the UX playground space in the navigation, opens it and sees the existing compositions.",
+        "touchpoints": "Side navigation, list of compositions"
+      },
+      {
+        "title": "Create a composition",
+        "actions": "Creates a new composition and names it.",
+        "touchpoints": "New composition button, name field"
+      },
+      {
+        "title": "Compose",
+        "actions": "Adds frames (mobile, tablet, desktop), opens the component library, drags components into a frame, places them on the grid and moves them.",
+        "touchpoints": "Canvas, frames, right panel (Library tab)"
+      },
+      {
+        "title": "Adjust",
+        "actions": "Selects a placed component and changes its variants, states, texts and tokens (that component only): another approved token or a free value marked not approved.",
+        "touchpoints": "Right panel (Properties tab)"
+      },
+      {
+        "title": "Annotate",
+        "actions": "Adds sticky notes on the canvas and comments on a component or a frame.",
+        "touchpoints": "Sticky notes, comments"
+      },
+      {
+        "title": "Save and share",
+        "actions": "Saves the composition in the repository; the team reopens it from the list.",
+        "touchpoints": "Save button, list of compositions"
+      },
+      {
+        "title": "Turn into a prototype or a ticket",
+        "actions": "Chooses Create the prototype (ticket and prototype) or Add to the backlog (ticket only); the ticket waits for the Design System Lead's validation and takes over the composition.",
+        "touchpoints": "Two buttons on the canvas, Backlog, Prototypes space"
+      }
+    ]
+  }
+}

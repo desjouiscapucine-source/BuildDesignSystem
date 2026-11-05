@@ -3,6 +3,7 @@
 import { components, levels } from "./registry";
 import { foundations } from "./foundations";
 import { prototypeName, prototypes } from "./prototypes";
+import { projects } from "./projects";
 
 export interface NavNode {
   href: string; // "#/backlog", or "/prototypes/" for a page outside the documentation site
@@ -32,11 +33,25 @@ const prototypesSection: NavNode = {
   ],
 };
 
+// Level 2 — Projects: one Level 3 page per project (its user journey, then user flow and prototype).
+const projectsSection: NavNode = {
+  href: "#/projects",
+  label: "Projects",
+  icon: "folder_special",
+  description: "User journeys of each project, before its user flow and prototype",
+  children: projects.map((project) => ({
+    href: `#/projects/${project.slug}`,
+    label: project.name,
+    icon: "folder_special",
+    description: project.lead,
+  })),
+};
+
 const documentation: NavNode = {
   href: "#/",
   label: "Documentation",
   icon: "menu_book",
-  description: "Governance, foundations, components and prototypes",
+  description: "Governance, foundations, components, prototypes and projects",
   children: [
     { href: "#/", label: "Overview", icon: "home", description: "What the documentation contains" },
     {
@@ -124,6 +139,7 @@ const documentation: NavNode = {
       }),
     },
     prototypesSection,
+    projectsSection,
   ],
 };
 

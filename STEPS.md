@@ -4793,3 +4793,24 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B130-2 — Projects section and the UX playground journey map
+**Date:** 2026-11-05
+
+**Decisions (made by the Design System Lead)**
+- **Projects**: a Level 2 section of Documentation, right after Prototypes, icon `folder_special`; one Level 3 page per project.
+- A project page has **one section per deliverable** (User journey, then User flow and Prototype); the user journey is a **journey map, one Card per phase** (4 columns on desktop, 2 on tablet, 1 on mobile).
+- Subtitles approved with the preview: Projects "User journeys of each project, before its user flow and prototype"; UX playground "Compose the coded components in a layout before a prototype".
+
+**What was done**
+- `projects/ux-playground/project.json` (created): name, subtitle, ticket and the user journey of Step B130-1 (user, 8 phases with actions and touchpoints). Moved into the format of the user journey template once it is in `develop`.
+- `docs/src/projects.ts` (created): discovers `projects/<name>/project.json`. `docs/src/pages/ProjectPage.tsx` (created): page header and the User journey section. `docs/src/docs.css`: `.journey-map` (tokens only, 768 / 1024px media queries).
+- `docs/src/structure.ts`: the Projects section; Documentation description. `docs/src/App.tsx`: routes `#/projects` and `#/projects/<name>`.
+- `navigation` skill and Navigation structure page: Projects in the levels, the tree and the rules.
+- Branch updated from `develop` (B018-4 and others).
+- Compliance audit (`ds-compliance-audit`): `audits/2026-11-05-B130-2.md` — 4 new findings from this step (#54 phase number in the card titles, #55 "Touchpoints" line, #56 cards side by side, #57 side navigation of a single project); #48–#53 fixed by the update from `develop`. The new findings are worked on in the next step of B130.
+- Verification: type check and build pass; the Projects page and the UX playground page show with no console error.
+
+**Files**
+- `projects/ux-playground/project.json`, `docs/src/projects.ts`, `docs/src/pages/ProjectPage.tsx`, `audits/2026-11-05-B130-2.md` (created)
+- `docs/src/structure.ts`, `docs/src/App.tsx`, `docs/src/docs.css`, `docs/src/pages/NavigationPage.tsx`, `.claude/skills/navigation/SKILL.md`, `STEPS.md` (updated)

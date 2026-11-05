@@ -810,3 +810,24 @@ body.playground-frame { padding: var(--space-24); }
 .icon-select-option.active { outline: var(--border-width-2) solid var(--color-border-focus); }
 .icon-select-option.active::after { opacity: var(--state-layer-focus); }
 .icon-select-option[aria-selected="true"] { font-weight: var(--font-weight-semibold); color: var(--color-text-brand); }
+
+/* Project page — journey map: one card per phase (ProjectPage). */
+.journey-map {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--grid-gutter);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.journey-map > li { display: flex; }
+.journey-map > li > .ds-card { flex: 1; }
+.journey-touchpoints { color: var(--color-text-secondary); }
+/* --breakpoint-tablet (768px) */
+@media (min-width: 768px) {
+  .journey-map { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* --breakpoint-desktop (1024px) */
+@media (min-width: 1024px) {
+  .journey-map { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
