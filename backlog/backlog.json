@@ -1336,6 +1336,24 @@
       ],
       "priority": "medium",
       "release": "R2"
+    },
+    {
+      "id": "B136",
+      "title": "Link: code labels and spacing in lists",
+      "category": "Components",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "Links whose label is code, and standalone links in lists and tables, follow the Link guidelines.",
+      "why": "Found by the compliance audit of Step B018-4 (audits/2026-11-05-B018-4.md), once the documentation site adopted the Link.",
+      "scope": "Audit finding 51: the skill tree links (How to use skills) have a <code> label on background.subtle, a background not in the Link guidelines nor in contrast-pairs.json (the contrast passes: 5.50:1 to 9.56:1), and the code style replaces the surrounding text style. Audit finding 52: standalone links in the skill tree list (8px apart) and in the Branches and Changelog tables (16px apart) are closer than the 24px of the Link guidelines, while WCAG 2.5.8 (24px between target centers) passes. Decisions asked first: may a link label contain code (then add the text.link* on background.subtle pairs and allow that background), or drop <code> inside links; does the 24px rule mean the gap or the WCAG center distance (rewrite the guidelines wording), or apply 24px in lists and tables.",
+      "doneWhen": [
+        "The Link guidelines say whether a link label may contain code, and the site follows it.",
+        "The Link guidelines state the 24px rule unambiguously, and the lists and tables of the site follow it.",
+        "Any new contrast pair is in contrast-pairs.json and npm run tokens passes.",
+        "The next compliance audit no longer lists findings 51 and 52."
+      ],
+      "priority": "medium",
+      "release": "R2"
     }
   ]
 }
