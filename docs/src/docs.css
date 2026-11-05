@@ -385,7 +385,6 @@ code {
 .git-flow-box--main { background: var(--color-background-surface); border-width: var(--border-width-2); }
 .git-flow-arrow { display: flex; flex-direction: column; align-items: center; gap: var(--space-4); color: var(--color-text-secondary); text-align: center; }
 .git-flow-arrow-label { font-size: var(--typography-label-sm-size); font-family: var(--typography-label-sm-family); font-weight: var(--typography-label-sm-weight); line-height: var(--typography-label-sm-line-height); }
-.git-flow-link { display: inline-flex; align-items: center; gap: var(--space-4); font-weight: var(--font-weight-semibold); }
 /* Below breakpoint.tablet: stacked */
 @media not all and (min-width: 768px) {
   .git-flow { flex-direction: column; align-items: stretch; }
@@ -484,14 +483,11 @@ code {
 .contrast-sample { display: inline-block; padding: var(--space-4) var(--space-8); border-radius: var(--radius-4); border: var(--border-width-1) solid var(--color-border-subtle); font-weight: var(--font-weight-semibold); }
 
 /* ---------- Skills ---------- */
-.skill-tree a { color: var(--color-text-primary); text-decoration: none; }
-.skill-tree a:hover { text-decoration: underline; }
 .skill-tree-parent {
   display: inline-block;
   padding: var(--space-8) var(--space-16);
   border-radius: var(--radius-8);
   background: var(--color-background-brand-subtle);
-  font-weight: var(--font-weight-semibold);
 }
 .skill-tree ul {
   list-style: none;

@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { tokenById } from "../../../tokens/lib";
 import { prototypeName } from "../prototypes";
 import { Header } from "./SectionPages";
+import { Link } from "@ds/components";
 
 const px = (id: string) => parseFloat(tokenById.get(id)!.resolved);
 const breakpoint = px;
@@ -54,9 +55,9 @@ export function PrototypePage({ name }: { name: string }) {
         <label>
           <input type="checkbox" checked={showGrid} onChange={(event) => setShowGrid(event.target.checked)} /> Show grid
         </label>
-        <a href={url} target="_blank" rel="noreferrer">
+        <Link href={url} target="_blank" rel="noreferrer">
           Open in a new tab
-        </a>
+        </Link>
       </div>
 
       <div ref={ref} className={`prototype-preview${stacked ? " stacked" : ""}`}>

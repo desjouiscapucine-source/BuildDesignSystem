@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Card } from "@ds/components";
+import { Card, Link } from "@ds/components";
 import { Markdown } from "../Markdown";
 import { cardBody, childSkills, dispatchTable, parentSkill, PARENT_SKILL, type Skill } from "../skills";
 import { Header } from "./SectionPages";
@@ -60,15 +60,17 @@ export function SkillsPage({ open }: { open?: string } = {}) {
 
       <h2>Hierarchy</h2>
       <div className="skill-tree">
-        <a className="skill-tree-parent" href={`#${anchor(PARENT_SKILL)}`}>
-          <code>{PARENT_SKILL}</code>
-        </a>
+        <span className="skill-tree-parent">
+          <Link href={`#${anchor(PARENT_SKILL)}`}>
+            <code>{PARENT_SKILL}</code>
+          </Link>
+        </span>
         <ul>
           {childSkills.map((skill) => (
             <li key={skill.name}>
-              <a href={`#${anchor(skill.name)}`}>
+              <Link href={`#${anchor(skill.name)}`}>
                 <code>{skill.name}</code>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

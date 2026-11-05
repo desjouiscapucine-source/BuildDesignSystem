@@ -1,4 +1,4 @@
-import { Card } from "@ds/components";
+import { Card, Link } from "@ds/components";
 import {
   formatReleaseDate,
   priorityLabels,
@@ -108,7 +108,7 @@ export function ReleasePlanningPage() {
       <Header title="Release planning" lead="The tickets delivered by each release, every two weeks" />
       <p>
         A release is a batch of backlog tickets delivered on a given date: one every two weeks, on Friday. Plan a ticket
-        with the Release list of the <a href="#/backlog">Backlog</a>.
+        with the Release list of the <Link href="#/backlog">Backlog</Link>.
       </p>
       <ul className="release-list">{upcoming.map(card)}</ul>
       {past.length > 0 && (

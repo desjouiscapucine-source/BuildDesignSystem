@@ -1,6 +1,7 @@
 // Organization diagram of the git workflow (B107): work branches → develop → main on release day.
 // The full rules are the git-workflow skill, linked at the bottom.
 import { Header } from "./SectionPages";
+import { Link } from "@ds/components";
 
 const workBranches = [
   { name: "component/<Name>", detail: "a component: merged after each approved stage" },
@@ -68,7 +69,7 @@ export function GitWorkflowPage() {
           </strong>{" "}
           changes only on release day, every two weeks: review of what was pushed and committed, release note, then{" "}
           <code>develop</code> is merged into <code>main</code> and tagged <code>R&lt;n&gt;</code> (see{" "}
-          <a href="#/releases">Release planning</a>).
+          <Link href="#/releases">Release planning</Link>).
         </li>
         <li>
           <strong>Conversations</strong>: Gouvernance (one, permanent), Composant &lt;Name&gt; (one per
@@ -77,12 +78,7 @@ export function GitWorkflowPage() {
       </ul>
 
       <p>
-        <a className="git-flow-link" href="#/skills/git-workflow">
-          Read the git-workflow skill
-          <span className="ds-icon" aria-hidden="true">
-            arrow_forward
-          </span>
-        </a>
+        <Link href="#/skills/git-workflow">Read the git-workflow skill</Link>
       </p>
     </>
   );
