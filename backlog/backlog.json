@@ -1336,6 +1336,23 @@
       ],
       "priority": "medium",
       "release": "R2"
+    },
+    {
+      "id": "B135",
+      "title": "TimelineStep: date range text style",
+      "category": "Components",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "The date range of TimelineStep uses an approved text style instead of the caption style, which does not exist.",
+      "why": "Found by the trial run of the ds-token-audit agent (B084) on 2026-11-05: TimelineStep.css uses var(--typography-caption-*) but tokens/semantic.json has no caption text style, so the dates only inherit the font of their parent. The token audit blocks release R1 until it is fixed.",
+      "scope": "components/TimelineStep: TimelineStep.css (.ds-timeline-step-dates), spec.md (Design tokens table), design/tokens.json (date slot, default and selected). TimelineStep is complete: new version 1.1 and changelog entry (changelog skill). Decision asked first: which text style for the date range (body-sm is described as \"Notes, captions\"), or a new style.",
+      "doneWhen": [
+        "TimelineStep uses an existing text style for its date range, in the CSS, the spec and the design preview.",
+        "meta.json version 1.1 with its changelog entry.",
+        "The ds-token-audit agent reports no failure on TimelineStep."
+      ],
+      "priority": "high",
+      "release": "R1"
     }
   ]
 }
