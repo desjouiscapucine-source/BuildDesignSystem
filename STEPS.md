@@ -4643,3 +4643,20 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/Link/` (created), `audits/2026-11-04-B018-1.md` (created)
 - `tokens/semantic.json`, `tokens/contrast-pairs.json`, `.claude/skills/token-naming/SKILL.md`, `CLAUDE.md`, `docs/src/types.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B018-2 — Link: guidelines approved
+**Date:** 2026-11-05
+
+**Decisions (made by the Design System Lead)**
+- Guidelines: when to use (link in a text, standalone, external); when not to use (action → Button, main navigation → SideNavigation / Breadcrumb, link with an icon → Button `tertiary` with `href`); best practices (links kept apart, no extra styling, one link per destination, allowed backgrounds, Markdown links styled like the Link); 4 do / don't pairs; content (label describes the destination, short, sentence case, no final punctuation, page title for a site page); behavior (same tab for every link, wrap, anchor scroll, browser `:visited`, no disabled state).
+- Accessibility check (`accessibility-check`, B039, run on the design and the guidelines): 7 failures on the first run. Decided: a standalone link uses the WCAG 2.5.8 spacing exception (24px from the next target, also written in `spec.md` Sizes); an anchor target stops below the sticky header (scroll offset); wording added for no keyboard trap, focus order and accessible name. **Accepted exceptions**: D2 — hover and pressed change color, no state layer; D3 — focus is a thicker underline (`border-width.1` → `border-width.2`), no outline and no `border.focus`.
+- Guidelines stage approved; the component moves to Code.
+
+**What was done**
+- `components/Link/guidelines.md` written; `spec.md` (Sizes, target size); `meta.json` status `code`; B018 stage `code`.
+- Accessibility report: `audits/2026-11-04-B018-2-accessibility.md` (second run: 11 pass, 0 fail, 2 accepted exceptions).
+- Compliance audit (`ds-compliance-audit`): `audits/2026-11-05-B018-2.md` — no site change in this step; 33 compliant, 7 non-compliant (all already open, covered by B094, B118, B132, B133, B134), 0 new.
+
+**Files**
+- `audits/2026-11-04-B018-2-accessibility.md`, `audits/2026-11-05-B018-2.md` (created)
+- `components/Link/guidelines.md`, `components/Link/spec.md`, `components/Link/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)

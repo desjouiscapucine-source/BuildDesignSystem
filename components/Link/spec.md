@@ -36,7 +36,7 @@ No size of its own: the link **inherits the text style of the surrounding text**
 | ---- | ---------- | ------------------- |
 | Inherited | Surrounding text | `--border-width-1` |
 
-Target size: a link inside a sentence is exempt from WCAG 2.5.8 (inline exception).
+Target size (WCAG 2.5.8): a link inside a sentence is exempt (inline exception). A standalone link uses the spacing exception: a 24px circle centered on the link never touches another target, so it keeps at least 24px from the next target (decided on 2026-11-04).
 
 ## States
 - **Default** — `text.link`, underline 1px.
