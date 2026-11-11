@@ -4781,3 +4781,21 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/TimelineStep/TimelineStep.css`, `components/TimelineStep/design/tokens.json`, `components/TimelineStep/spec.md`, `components/TimelineStep/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step R1-1 — Release R1
+**Date:** 2026-11-11 (planned 2026-11-06)
+
+**Decisions (made by the Design System Lead)**
+- Release R1 validated after review: commits, files, tickets, compliance audit and release note.
+- The token audit blocked the release on TimelineStep (unknown `caption` text style): fixed before the release with `body-sm` (B135, Step B135-1, TimelineStep 1.1).
+- The release note shows the actual date with the planned date in parentheses.
+
+**What was done**
+- Compliance audit of `develop`: `audits/2026-11-11-R1.md` — 41 compliant, 10 non-compliant (all covered by existing tickets), 21 not in the design system; no new ticket.
+- Token audit of every component: `audits/2026-11-11-R1-tokens.md` — 4 failures (TimelineStep), fixed by B135-1 and re-checked: 0 failure.
+- Release note `releases/R1.md`: tickets delivered by category, component versions, B055 and B057 carried over to R2.
+- `develop` merged into `main` (fast-forward) and tagged `R1`.
+
+**Files**
+- `releases/R1.md`, `audits/2026-11-11-R1.md`, `audits/2026-11-11-R1-tokens.md` (created)
+- `STEPS.md` (updated)
