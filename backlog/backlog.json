@@ -1341,7 +1341,7 @@
       "id": "B135",
       "title": "TimelineStep: date range text style",
       "category": "Components",
-      "status": "todo",
+      "status": "done",
       "origin": "proposal",
       "description": "The date range of TimelineStep uses an approved text style instead of the caption style, which does not exist.",
       "why": "Found by the trial run of the ds-token-audit agent (B084) on 2026-11-05: TimelineStep.css uses var(--typography-caption-*) but tokens/semantic.json has no caption text style, so the dates only inherit the font of their parent. The token audit blocks release R1 until it is fixed.",

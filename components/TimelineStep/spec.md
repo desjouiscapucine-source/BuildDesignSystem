@@ -94,7 +94,7 @@ Focus outline: `--border-width-2` solid `--color-border-focus`, around the click
 | Clickable area | State layer | hover / focus / pressed | `--state-layer-hover` / `--state-layer-focus` / `--state-layer-pressed` |
 | Clickable area | Focus outline | focus | `--border-width-2` · `--color-border-focus` |
 | Title | Text style · color | all | `label` · `--color-text-primary` |
-| Date range | Text style · color | all | `caption` · `--color-text-primary` |
+| Date range | Text style · color | all | `body-sm` · `--color-text-primary` |
 | Description | Text style · color | all | `body` · `--color-text-primary` |
 
 ### Contrast (WCAG 2.2 AA, on the page background)

@@ -95,10 +95,10 @@
 }
 .ds-timeline-step-dates {
   white-space: nowrap;
-  font-family: var(--typography-caption-family);
-  font-size: var(--typography-caption-size);
-  font-weight: var(--typography-caption-weight);
-  line-height: var(--typography-caption-line-height);
+  font-family: var(--typography-body-sm-family);
+  font-size: var(--typography-body-sm-size);
+  font-weight: var(--typography-body-sm-weight);
+  line-height: var(--typography-body-sm-line-height);
 }
 .ds-timeline-step-description {
   font-family: var(--typography-body-family);

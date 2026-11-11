@@ -4765,3 +4765,19 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-05-B018-4.md`, `audits/2026-11-05-B018-4-tokens.md` (created)
 - `docs/src/pages/GitWorkflowPage.tsx`, `BranchesPage.tsx`, `ReleasePlanningPage.tsx`, `TicketDialog.tsx`, `ChangelogPage.tsx`, `IconsPage.tsx`, `PrototypePage.tsx`, `SkillsPage.tsx`, `docs/src/Markdown.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B135-1 — TimelineStep: date range text style
+**Date:** 2026-11-11
+
+**Decisions (made by the Design System Lead)**
+- The date range of TimelineStep uses the existing `body-sm` text style ("Notes, captions"); no new `caption` style. Fixed before release R1 (token audit of R1, B084).
+
+**What was done**
+- `TimelineStep.css`: `--typography-caption-*` (undefined) replaced with `--typography-body-sm-*`. The dates now render at 12px (they inherited 14px from their parent before).
+- `design/tokens.json` (variants default and selected) and `spec.md` (Design tokens table): `caption` → `body-sm`.
+- `meta.json`: version 1.1 with its changelog entry.
+- Verification: type check and `npm run tokens` pass; computed style of the dates = Open Sans 12px / 400 / 1.5; no console error. Color unchanged (`text.primary`), so contrast unchanged. `docs/` unchanged: the R1 compliance audit (`audits/2026-11-11-R1.md`) still applies.
+- B135 status `done`.
+
+**Files**
+- `components/TimelineStep/TimelineStep.css`, `components/TimelineStep/design/tokens.json`, `components/TimelineStep/spec.md`, `components/TimelineStep/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
