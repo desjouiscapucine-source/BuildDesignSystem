@@ -4852,6 +4852,7 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-14-B139-1.md` (created)
 - `docs/src/skills.ts`, `docs/src/pages/SkillsPage.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B138-1 — Portfolio page: experience of the Design System Lead
 **Date:** 2026-11-14
 
@@ -4951,6 +4952,27 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-14-B141-1-accessibility.md`, `audits/2026-11-14-B141-1-tokens.md` (created)
 - `components/Tag/spec.md`, `components/Tag/design/tokens.json`, `tokens/contrast-pairs.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B141-2 — Tag: brand tone, guidelines approved
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- `brand` highlights content with no meaning of feedback (e.g. skills, keywords); `neutral` stays the default for categories; never `brand` for a status.
+- Tones can be mixed in the same group of tags.
+- No limit on the number of tags side by side: they wrap to the next line (replaces "at most 3"; finding 56 of `audits/2026-11-14-B138-1.md`).
+- Component description: "A small label that names a category or a status, or highlights content."
+- Guidelines approved; next: code.
+
+**What was done**
+- `guidelines.md`: When to use, Usage best practices, Do's and don'ts (brand pair replaces the "3 tags" pair).
+- `meta.json`: description.
+- Accessibility check (`audits/2026-11-14-B141-2-accessibility.md`): 3 pass, 0 fail.
+- `docs/` unchanged: the latest compliance audit still applies. B141 stage `code`.
+
+**Files**
+- `audits/2026-11-14-B141-2-accessibility.md` (created)
+- `components/Tag/guidelines.md`, `components/Tag/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B138-3 — Portfolio page: Tokywoky mockups
 **Date:** 2026-11-14
 
@@ -4971,3 +4993,145 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `assets/portfolio/tokywoky/` (6 PNG), `audits/2026-11-14-B138-3.md` (created)
 - `docs/src/pages/PortfolioPage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B138-4 — Portfolio page: BNP Paribas diagrams, data visualization, credit chain
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B138-3 merged into `develop`.
+- Two BNP Paribas workshop diagrams are added to the BNP Paribas card (workspace and settings map; user flow of a data table page). Publishing them is the Lead's decision.
+- New section "Data visualization": dashboards and charts for a reporting application linked to My Credit App.
+- Context of the card: a cross-functional UX team at BNP Paribas CIB, working across the credit chain; timeline step description "Cross-functional UX team, credit chain."
+
+**What was done**
+- `assets/portfolio/bnp-paribas/workspace-map.webp`, `table-user-flow.webp` (new): images given by the Lead.
+- `docs/src/pages/PortfolioPage.tsx`: BNP Paribas card in `clickable-image` with alt texts; "Data visualization" section; context and timeline description.
+- Verification: typecheck passes; the 2 thumbnails load (2000 px), no console error.
+- Compliance audit: `audits/2026-11-14-B138-4.md` — 56 compliant, 11 non-compliant, 22 not in the design system; #9 fixed (B118, from `develop`), no new finding. Remarks: diagrams cropped to 16:9 in the thumbnails; dense images may need a longer text alternative (guideline question).
+
+**Files**
+- `assets/portfolio/bnp-paribas/` (2 images), `audits/2026-11-14-B138-4.md` (created)
+- `docs/src/pages/PortfolioPage.tsx`, `STEPS.md` (updated)
+
+## Step B141-3 — Tag: brand tone, code approved (Tag 1.1)
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- Code of the brand tone approved; the `code` icon stays on the "React" tag of the "With an icon" example.
+- Tag version 1.1 (addition).
+
+**What was done**
+- `Tag.tsx`: `"brand"` added to `TagTone`; prop and component comments updated.
+- `Tag.css`: `.ds-tag--brand` (`--color-background-brand-subtle`, `--color-text-brand`, `--color-icon-brand`).
+- `examples.tsx`: brand "React" in Tones and With an icon; Side by side describes the no-limit rule and shows mixed tones wrapping.
+- `playground.tsx`: `brand` in the Tone control.
+- `meta.json`: version 1.1 with its changelog entry.
+- Verification: `tsc` and `npm run build` pass; computed colors checked (5.35:1); wrapping and ellipsis checked at 375px; no console error.
+- Accessibility check (`audits/2026-11-14-B141-3-accessibility.md`): 5 pass, 0 fail. Token audit (`audits/2026-11-14-B141-3-tokens.md`): 30 values, 0 fail.
+- `docs/` unchanged: the latest compliance audit still applies.
+
+**Files**
+- `audits/2026-11-14-B141-3-accessibility.md`, `audits/2026-11-14-B141-3-tokens.md` (created)
+- `components/Tag/Tag.tsx`, `components/Tag/Tag.css`, `components/Tag/examples.tsx`, `components/Tag/playground.tsx`, `components/Tag/meta.json`, `STEPS.md` (updated)
+
+## Step B138-5 — Portfolio page: personal design system project, governance, mc2i
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B138-4 merged into `develop`.
+- New first step and card: **"Design system built with AI — Personal project"** (16 Oct 2026 → today, "Ongoing"): design system without Figma, 20 Claude skills, 4 agents, full process; 4 captures of the documentation site (landing page, Card component page, Backlog, How to use skills).
+- BNP Paribas card: the Lead is a consultant employed by mc2i, on assignment at BNP Paribas CIB (context sentence); design system governance process item and the Lead's governance flowchart (3rd image); Design System PO: "Integration tests" removed, "UI review of what has been developed, against the design" and "Breaking down epics into user stories" added.
+
+**What was done**
+- `assets/portfolio/bnp-paribas/governance-process.webp` (image given by the Lead), `assets/portfolio/build-design-system/*.png` (4 captures of the local site at 1440 × 900, headless Chrome).
+- `docs/src/pages/PortfolioPage.tsx`: new experience first (timeline 9 steps), BNP Paribas images, context and items.
+- Verification: typecheck passes; the new card, its "Ongoing" Tag and its 4 thumbnails load; 3 BNP thumbnails load; no console error.
+- Compliance audit: `audits/2026-11-14-B138-5.md` — 58 compliant, 11 non-compliant, 22 not in the design system; no new finding. Remarks: thumbnails cropped to 16:9, dense flowchart, PNG captures heavier than WebP.
+
+**Files**
+- `assets/portfolio/bnp-paribas/governance-process.webp`, `assets/portfolio/build-design-system/` (4 captures), `audits/2026-11-14-B138-5.md` (created)
+- `docs/src/pages/PortfolioPage.tsx`, `STEPS.md` (updated)
+
+## Step B138-6 — Portfolio page: AI team organization at BNP Paribas
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B138-5 merged into `develop`.
+- In the "AI-assisted design" section of the BNP Paribas card: the team organization set up around the AI tools (an owner per domain, GitHub as the source of truth for the UX and development docs, a branch and pull request workflow with Claude, linked to the Jira tickets), and the Lead's team workflow diagram (4th image, already anonymized).
+
+**What was done**
+- `assets/portfolio/bnp-paribas/ai-team-workflow.webp` (image given by the Lead).
+- `docs/src/pages/PortfolioPage.tsx`: new item and image with its alt text.
+- Verification: typecheck passes; the 4 BNP thumbnails load; no console error.
+- Compliance audit: `audits/2026-11-14-B138-6.md` — 58 compliant, 11 non-compliant, 22 not in the design system; no new finding.
+
+**Files**
+- `assets/portfolio/bnp-paribas/ai-team-workflow.webp`, `audits/2026-11-14-B138-6.md` (created)
+- `docs/src/pages/PortfolioPage.tsx`, `STEPS.md` (updated)
+
+## Step B141-4 — Portfolio page: skills in the brand Tag tone
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- The skills, tools and expertise of the Portfolio page use the Tag `brand` tone. Rendering validated.
+
+**What was done**
+- `PortfolioPage.tsx`: `<Tag>` → `<Tag tone="brand">` for the 22 skills tags (the "Ongoing" tag stays `info`). Checked in the browser: 22 brand tags on the `background.subtle` panel, no console error.
+- Compliance audit (`audits/2026-11-14-B141-4.md`): 59 compliant, 10 non-compliant (all covered by existing tickets), 22 not in the design system; finding 56 fixed; no new ticket.
+
+**Files**
+- `audits/2026-11-14-B141-4.md` (created)
+## Step B138-7 — Portfolio page: anonymized BNP Paribas mockups
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B138-6 merged into `develop`.
+- Mockups exported as SVG by the Lead are anonymized by Claude and added to the BNP Paribas card: "Dashboard — Pending signatures" and "Prototype" (AI data extraction). "Request_Greenlight" is anonymized too but kept in Figma only, not in the portfolio.
+- Anonymization of an SVG: MyCreditApp logo → neutral "Logo" block; BNP Paribas colors → design system colors (header → brand, green and gold actions → brand, teal and purple → info, tags → warning / success); outlined text → one lorem ipsum line per text line, same position and size, not distorted (the first version, squeezed to the original width, was blurry).
+- Each anonymized mockup is also imported into the Figma file "All project" (editable vectors).
+
+**What was done**
+- `assets/portfolio/bnp-paribas/dashboard-pending-signatures.svg`, `ai-data-extraction.svg` (new, anonymized; the anonymizer script stays outside the repository).
+- `docs/src/pages/PortfolioPage.tsx`: 2 images with alt texts in the BNP Paribas card (6 images).
+- Verification: typecheck passes; the 6 BNP thumbnails load; no console error; each SVG checked visually and only design system colors left.
+- Compliance audit: `audits/2026-11-14-B138-7.md` — 58 compliant, 11 non-compliant, 22 not in the design system; no new finding. Remarks: dashboard SVG heavy (654 KB, outlined text); lorem text of the AI mockup in the system font when Open Sans is not installed; near-square dashboard cropped in its thumbnail.
+
+**Files**
+- `assets/portfolio/bnp-paribas/dashboard-pending-signatures.svg`, `ai-data-extraction.svg`, `audits/2026-11-14-B138-7.md` (created)
+- `docs/src/pages/PortfolioPage.tsx`, `STEPS.md` (updated)
+
+## Step B141-5 — Tag: brand level tag, 16px between tags; ticket closed
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- The Atomic Design level of the component pages uses the Tag `brand` tone (the L0–L4 tags of the Navigation structure page stay `neutral`).
+- Tag guidelines: a category is `neutral` by default, `brand` when it is highlighted (e.g. the level of a component in its page header) — replaces "always neutral".
+- Spacing between tags side by side: `--space-16`, in both directions (between the lines when they wrap too). Applied to TicketCard.
+- Tag 1.2 and TicketCard 1.1.
+
+**What was done**
+- `ComponentPage.tsx`: level Tag `tone="brand"` (comment updated).
+- Tag: `guidelines.md` (category rule, spacing), `examples.tsx` (gap `--space-16`), `meta.json` 1.2.
+- TicketCard: `TicketCard.css`, `spec.md`, `design/tokens.json` (tags row gap `--space-16`), `meta.json` 1.1.
+- `docs.css`: `.portfolio-tags` gap `--space-16`.
+- Verification: type check passes; computed gap 16px on the Portfolio and Backlog pages; Backlog at 320px: no overflow, no horizontal scroll; no console error.
+- Token audit (`audits/2026-11-14-B141-5-tokens.md`): 105 values, 0 fail. Accessibility check (`audits/2026-11-14-B141-5-accessibility.md`): 3 pass, 0 fail.
+- Compliance audit (`audits/2026-11-14-B141-5.md`): 59 compliant, 10 non-compliant (existing tickets), 22 not in the design system; 0 new; question added for the stage indicator spacing (B060). No new ticket.
+- B141 status `done`.
+
+**Files**
+- `audits/2026-11-14-B141-5.md`, `audits/2026-11-14-B141-5-tokens.md`, `audits/2026-11-14-B141-5-accessibility.md` (created)
+- `docs/src/pages/ComponentPage.tsx`, `docs/src/docs.css`, `components/Tag/guidelines.md`, `components/Tag/examples.tsx`, `components/Tag/meta.json`, `components/TicketCard/TicketCard.css`, `components/TicketCard/spec.md`, `components/TicketCard/design/tokens.json`, `components/TicketCard/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B138-8 — Portfolio page: ticket closed
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B138-7 merged into `develop`. B138 is finished: the Portfolio page shows the personal project, the experience (BNP Paribas, mc2i, volunteer projects, Tokywoky) and the education on a timeline with cards, the skills panel (brand Tag tone, B141-4) and the mockups and diagrams; the BNP Paribas mockups are anonymized.
+
+**What was done**
+- `backlog/backlog.json`: B138 `done`. Branch `governance/portfolio-page` merged into `develop` and deleted.
+- No change to the documentation site: no compliance audit for this step (last report: `audits/2026-11-14-B138-7.md`).
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)

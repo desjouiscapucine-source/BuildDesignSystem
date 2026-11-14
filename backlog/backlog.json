@@ -1505,7 +1505,7 @@
       "id": "B138",
       "title": "Portfolio page: CV of the Design System Lead",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "The Portfolio page of the documentation site shows the experience of the Design System Lead with a Timeline and Cards.",
       "why": "Decided by the Design System Lead: the CV content goes on the Portfolio page (empty today, \"Nothing yet.\"), not in the WorkDescription prototype (B031).",
@@ -1521,7 +1521,7 @@
       "id": "B141",
       "title": "Tag: brand tone",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "proposal",
       "description": "A brand tone for the Tag, to highlight content without the meaning of a feedback state (e.g. the skills of the Portfolio page).",
       "why": "On a background.subtle surface, neutral Tags have the same background as the surface and do not stand out (Portfolio skills panel, B138). Proposed by Claude, approved by the Design System Lead on 2026-11-14.",
@@ -1533,6 +1533,7 @@
         "The Portfolio page (B138) uses it for its skills.",
         "The tags of the documentation site that use the brand tone, chosen by the Design System Lead, use it."
       ],
+<<<<<<< HEAD
       "stage": "guidelines",
       "priority": "high",
       "release": "R2"
@@ -1551,6 +1552,9 @@
         "Every section given by the Design System Lead has no BNP Paribas logo, color, text, name or amount left, and uses the design system variables and text styles.",
         "The Design System Lead approves each section."
       ],
+=======
+      "stage": "code",
+>>>>>>> origin/develop
       "priority": "high",
       "release": "R2"
     }
