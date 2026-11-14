@@ -1553,6 +1553,23 @@
       ],
       "priority": "high",
       "release": "R2"
+    },
+    {
+      "id": "B148",
+      "title": "Portfolio page: Figma and GitHub links, languages",
+      "category": "Tooling",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "The Portfolio page gets links to the Figma file and to the GitHub repository at the top, and a Languages group in the left panel.",
+      "why": "Asked by the Design System Lead on 2026-11-14, after B138: let visitors open the portfolio mockups (Figma) and the design system code (GitHub), and show the languages.",
+      "scope": "docs/src/pages/PortfolioPage.tsx (and the Portfolio block of docs/src/docs.css if needed): two external links at the top of the page (Link component), to the whole Figma file All project and to the repository CapucineDjs/BuildDesignSystem (private); a Languages group in the skills panel: French, English (professional).",
+      "doneWhen": [
+        "The two links are at the top of the Portfolio page and open in a new tab.",
+        "The skills panel shows a Languages group.",
+        "The Design System Lead approves the page."
+      ],
+      "priority": "high",
+      "release": "R2"
     }
   ]
 }
