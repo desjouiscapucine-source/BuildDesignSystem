@@ -1533,8 +1533,7 @@
         "The Portfolio page (B138) uses it for its skills.",
         "The tags of the documentation site that use the brand tone, chosen by the Design System Lead, use it."
       ],
-<<<<<<< HEAD
-      "stage": "guidelines",
+      "stage": "code",
       "priority": "high",
       "release": "R2"
     },
@@ -1542,7 +1541,7 @@
       "id": "B147",
       "title": "Portfolio Figma: BNP projects restyled with the design system",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "proposal",
       "description": "The BNP Paribas projects imported in the Design System Lead's Figma file (All project) are anonymized and rebuilt with the design system.",
       "why": "Show the BNP Paribas work in the portfolio without any BNP Paribas branding or confidential content. Proposed by Claude, approved by the Design System Lead on 2026-11-14.",
@@ -1552,9 +1551,6 @@
         "Every section given by the Design System Lead has no BNP Paribas logo, color, text, name or amount left, and uses the design system variables and text styles.",
         "The Design System Lead approves each section."
       ],
-=======
-      "stage": "code",
->>>>>>> origin/develop
       "priority": "high",
       "release": "R2"
     }
