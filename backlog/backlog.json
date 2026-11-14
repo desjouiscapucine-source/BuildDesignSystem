@@ -166,7 +166,8 @@
       "origin": "proposal",
       "description": "Base of every form. Used on the documentation site: Content field of the Design preview tab, icon name field of the Icons page.",
       "stage": "design",
-      "priority": "low"
+      "priority": "high",
+      "release": "R2"
     },
     {
       "id": "B020",
@@ -809,7 +810,9 @@
       "status": "todo",
       "origin": "decided",
       "description": "Navigation within a page. Used on the documentation site: tabs of the component pages (Design preview, Design spec, Guidelines, Examples, Code).",
-      "stage": "design"
+      "stage": "design",
+      "priority": "high",
+      "release": "R2"
     },
     {
       "id": "B094",
@@ -1406,6 +1409,96 @@
       ],
       "priority": "medium",
       "release": "R3"
+    },
+    {
+      "id": "B142",
+      "title": "Canvas",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "The free canvas of the UX playground, which holds the layout frames.",
+      "why": "Missing component of the UX playground prototype (B130): the playground is a free canvas holding mobile, tablet and desktop frames.",
+      "scope": "Design, guidelines and code of the Canvas component, each stage approved by the Design System Lead (component skill). Anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant Canvas conversation on component/Canvas (never-invent).",
+      "doneWhen": [
+        "The Canvas design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "Canvas is exported from @ds/components, ready for the UX playground (B130)."
+      ],
+      "stage": "design",
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B143",
+      "title": "Frame",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "A layout frame on the canvas, in mobile, tablet or desktop size.",
+      "why": "Missing component of the UX playground prototype (B130): each composition is laid out in mobile, tablet and desktop frames on the canvas.",
+      "scope": "Design, guidelines and code of the Frame component, each stage approved by the Design System Lead (component skill). Anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant Frame conversation on component/Frame (never-invent).",
+      "doneWhen": [
+        "The Frame design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "Frame is exported from @ds/components, ready for the UX playground (B130)."
+      ],
+      "stage": "design",
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B144",
+      "title": "Panel",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "The panel on the right of the playground, with three tabs: Library, Properties and Compositions.",
+      "why": "Missing component of the UX playground prototype (B130): the playground needs a right panel with three tabs (Library, Properties, Compositions).",
+      "scope": "Design, guidelines and code of the Panel component, each stage approved by the Design System Lead (component skill). Anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant Panel conversation on component/Panel (never-invent).",
+      "doneWhen": [
+        "The Panel design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "Panel is exported from @ds/components, ready for the UX playground (B130)."
+      ],
+      "stage": "design",
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B145",
+      "title": "StickyNote",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "A sticky note placed on the canvas, to annotate a composition.",
+      "why": "Missing component of the UX playground prototype (B130): the playground has sticky notes to annotate a composition.",
+      "scope": "Design, guidelines and code of the StickyNote component, each stage approved by the Design System Lead (component skill). Anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant StickyNote conversation on component/StickyNote (never-invent).",
+      "doneWhen": [
+        "The StickyNote design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "StickyNote is exported from @ds/components, ready for the UX playground (B130)."
+      ],
+      "stage": "design",
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B146",
+      "title": "Comment",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "A comment attached to a component or a frame of the canvas.",
+      "why": "Missing component of the UX playground prototype (B130): the playground has comments on a component or a frame.",
+      "scope": "Design, guidelines and code of the Comment component, each stage approved by the Design System Lead (component skill). Anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant Comment conversation on component/Comment (never-invent).",
+      "doneWhen": [
+        "The Comment design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "Comment is exported from @ds/components, ready for the UX playground (B130)."
+      ],
+      "stage": "design",
+      "priority": "high",
+      "release": "R2"
     }
   ]
 }
