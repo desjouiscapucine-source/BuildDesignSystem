@@ -74,7 +74,7 @@ const structure: NavNode = {
         { label: "Prototypes", level: 2, note: "one page per prototype (Level 3)" },
       ],
     },
-    { label: "Portfolio", level: 1, note: "nothing yet" },
+    { label: "Portfolio", level: 1, note: "experience, skills and education" },
   ],
 };
 

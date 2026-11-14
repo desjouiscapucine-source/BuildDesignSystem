@@ -83,11 +83,10 @@ Decided by the Design System Lead on 2026-10-27 (B087). Prototypes and Navigatio
 | **Components** | The five categories are always listed; an empty one says "No component yet". |
 | **Prototypes** | Level 2 section of Documentation: one card / navigation item per prototype (Level 3), plus "All prototypes" (`/prototypes/`). |
 | **Navigation structure** | Level 3 page of Governance, right after Changelog (B104, 2026-11-04). Side navigation item and card labelled like the page title, "Navigation structure". Same icon as Git workflow (`account_tree`). |
-| **Portfolio** | Title, subtitle and "Nothing yet." until its content is defined. |
+| **Portfolio** | The experience of the Design System Lead (B138, 2026-11-14): title "Designing systems that scale", subtitle, skills panel on the left, one card per job with the Timeline on the right (`page-content` skill, most recent first: approved exception), then Education. **No side navigation on desktop** (a space that is its own only page); below desktop the burger opens the "Spaces" item only. |
 | **Breadcrumb** | Decided by the Design System Lead on 2026-10-28 (B091). The Breadcrumb component, first block of every page from Level 2 to Level 4, above the title. Starts at Level 0, labelled **BuildDesignSystem** (link to `/`), and ends with the parent of the page. Overview (where Documentation opens): "BuildDesignSystem / Documentation". No breadcrumb on Level 1 (Portfolio). Built once in `docs/src/AppShell.tsx` from `structure.ts`. |
 | **Backlog tickets** | Decided on 2026-10-29 (B114). A click on a ticket of the Backlog page opens it in a **Dialog** (`large`) over the page, at `#/backlog/<id>` (a link to a ticket opens the Backlog with its modal). The Backlog stays the page shown: side navigation, breadcrumb and scroll do not change. The menus of a ticket (status, priority, release, stage) do not open it; they are also at the top of the modal. |
 
 ## Not defined yet — ask before deciding
 
-- Content of Portfolio.
 - Pages that get the timeline on the right; the timeline on component pages (with their tabs).

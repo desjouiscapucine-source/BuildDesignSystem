@@ -95,6 +95,9 @@ export function AppShell({ current, route = current, children }: AppShellProps) 
   const path = pathTo(current);
   const space = path[0] ?? spaces[0];
   const levels = breadcrumbLevels(path, route === current);
+  // A space that is its own only page (Portfolio) has no side navigation on desktop; below desktop the burger
+  // still opens it, for the "Spaces" item only.
+  const singlePage = (space.children ?? []).every((node) => node.href === space.href);
 
   const spaceLinks = (className: string) => (
     <ul className={className}>
@@ -109,7 +112,7 @@ export function AppShell({ current, route = current, children }: AppShellProps) 
   );
 
   return (
-    <div className="shell">
+    <div className={singlePage ? "shell shell--single-page" : "shell"}>
       <a className="shell-skip" href="#main">
         Skip to content
       </a>
@@ -147,7 +150,7 @@ export function AppShell({ current, route = current, children }: AppShellProps) 
                 </NavigationItem>
               ))}
             </NavigationItem>,
-            ...navItems(space.children ?? [], current),
+            ...(singlePage ? [] : navItems(space.children ?? [], current)),
           ]}
         </SideNavigation>
         <main id="main" className="shell-content" tabIndex={-1}>

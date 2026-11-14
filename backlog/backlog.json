@@ -1376,7 +1376,7 @@
       "id": "B138",
       "title": "Portfolio page: CV of the Design System Lead",
       "category": "Tooling",
-      "status": "todo",
+      "status": "in-progress",
       "origin": "decided",
       "description": "The Portfolio page of the documentation site shows the experience of the Design System Lead with a Timeline and Cards.",
       "why": "Decided by the Design System Lead: the CV content goes on the Portfolio page (empty today, \"Nothing yet.\"), not in the WorkDescription prototype (B031).",

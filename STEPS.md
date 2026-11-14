@@ -4833,3 +4833,29 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-14-B102-2.md` (created)
 - `docs/src/docs.css`, `STEPS.md` (updated)
+
+## Step B138-1 — Portfolio page: experience of the Design System Lead
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- The Portfolio page shows the design experience of the Design System Lead (from the CV slides), in English, without the first name and without contact details. Title "Designing systems that scale", subtitle "Product Designer · Design Systems · AI-assisted design".
+- **Exception to the `page-content` skill and the TimelineStep guidelines** (chronological order), for this page only: the steps go from the most recent to the oldest — BNP Paribas, then the mc2i internal project right below it, then Volunteer projects, then Tokywoky.
+- **Exception to the `page-content` grid**: a skills panel on the left. Desktop: panel on 3 columns, cards on 6, timeline on 3.
+- Content of the cards approved: BNP Paribas (Tag "Ongoing", context, sections Product Designer, Design System PO, AI-powered forms, AI-assisted design · Since summer 2026), mc2i (Jan → Dec 2024), Volunteer projects (Jul → Sep 2022), Tokywoky (Jun 2021 → May 2023, start date chosen by Claude at the Lead's request); the short descriptions of the timeline steps; section titles in the `label` style, the note in the secondary color.
+- Skills panel: groups Skills, Tools, Expertise. Education: Icademie only, as a section under the experience cards, not linked to the timeline.
+- No side navigation on the Portfolio page (desktop); below desktop the burger still opens "Spaces".
+- The skills Tags need another color: new ticket **B141 — Tag: brand tone** (high, R2), worked in a Composant Tag conversation. Images: later (B138-2).
+
+**What was done**
+- `docs/src/pages/PortfolioPage.tsx` (new): page header, skills panel (Tag), Timeline + TimelineStep on the right, Card per job (anchor = step `href`, selection following the card at the top below the sticky header, measured space after the last card), Education (Card, `headingLevel` 3). Dates at day precision until B137 (month-year, "Present"); the ongoing job ends today.
+- `docs/src/docs.css`: Portfolio block (full-width 12-column grid, sticky panel and timeline below the header, cards' scroll margin, Tags 4px apart); `.shell--single-page` hides the side navigation on desktop.
+- `docs/src/AppShell.tsx`: a space that is its own only page has no side navigation (desktop) and only the "Spaces" item below desktop.
+- `docs/src/pages/SectionPages.tsx`, `docs/src/App.tsx`: placeholder removed, new page wired.
+- `.claude/skills/navigation/SKILL.md`, `docs/src/pages/NavigationPage.tsx`: Portfolio content and its missing side navigation.
+- Verification: typecheck and build pass, no console error; columns checked at 1440px, no overflow at 1024px, timeline button and no horizontal scroll at 375px; a click on a step jumps to its card below the header.
+- Compliance audit: `audits/2026-11-14-B138-1.md` — 50 compliant, 14 non-compliant, 22 not in the design system; 4 new (#56–#59), of which #57 (panel keyboard access) and #58 (note style) fixed in the step and #56 partly (Tag spacing). Open: #56 (more than 3 tags side by side → extend B141?), #59 (card sub-headings in `label` → extend B140?).
+- B138 status `in-progress`; B141 created and reserved.
+
+**Files**
+- `docs/src/pages/PortfolioPage.tsx`, `audits/2026-11-14-B138-1.md` (created)
+- `docs/src/docs.css`, `docs/src/AppShell.tsx`, `docs/src/App.tsx`, `docs/src/pages/SectionPages.tsx`, `docs/src/pages/NavigationPage.tsx`, `.claude/skills/navigation/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)

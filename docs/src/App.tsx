@@ -14,11 +14,11 @@ import { ChangelogPage } from "./pages/ChangelogPage";
 import { ReleasePlanningPage } from "./pages/ReleasePlanningPage";
 import { PrototypePage } from "./pages/PrototypePage";
 import { NavigationPage } from "./pages/NavigationPage";
+import { PortfolioPage } from "./pages/PortfolioPage";
 import {
   CategoryPage,
   ComponentsPage,
   OverviewPage,
-  PortfolioPage,
   PrototypesPage,
   SectionPage,
 } from "./pages/SectionPages";

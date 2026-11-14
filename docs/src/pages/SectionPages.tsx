@@ -1,5 +1,5 @@
 // Pages that only lead to other pages (navigation skill): Overview, Level 2 sections (Prototypes included),
-// component categories and Portfolio. Their links are stacked cards (card skill).
+// component categories. Their links are stacked cards (card skill).
 import type { ReactNode } from "react";
 import { components } from "../registry";
 import { StageBadge } from "../StageBadge";
@@ -112,11 +112,3 @@ export function PrototypesPage() {
 }
 
 // Level 1 — Portfolio: content not defined yet.
-export function PortfolioPage() {
-  return (
-    <>
-      <Header title="Portfolio" lead="Work made with the design system" />
-      <p className="empty">Nothing yet.</p>
-    </>
-  );
-}
