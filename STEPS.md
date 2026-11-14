@@ -4971,3 +4971,43 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-14-B141-2-accessibility.md` (created)
 - `components/Tag/guidelines.md`, `components/Tag/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B138-3 — Portfolio page: Tokywoky mockups
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B138-2 merged into `develop`.
+- Job titles and degree names stay in Title Case: an **approved exception** to the sentence case of the Card and TimelineStep guidelines (finding 60).
+- Images go inside the cards (Card `clickable-image`). The Tokywoky mockups are recreated by Claude from the Lead's captures, as a new section of the Lead's Figma file "All project" ("Tokywoky — mockups (recreated)", editable layers, local components, Lato), then exported and shown in the Tokywoky card. Photos and brand products are replaced by colored shapes.
+- The Figma connector now uses the Lead's personal account (the file is not on the BNP Paribas account).
+
+**What was done**
+- Figma (outside the repository): section "Tokywoky — mockups (recreated)" with palette, components (16 icons, Button 4 variants, round icon button, side menu, mobile tab bar 5 variants, text field, notification item, product tile) and 6 screens (desktop: Product testing — Apply to test, Homepage; mobile: Notifications, Edit profile, Routines — Product tag, Homepage).
+- `assets/portfolio/tokywoky/*.png` (new): the 6 screens exported from Figma (desktop 1440 px, mobile 2x).
+- `docs/src/pages/PortfolioPage.tsx`: optional `images` per experience; the Tokywoky card uses `clickable-image` with alt texts; the other cards stay `default`.
+- `backlog/backlog.json`: B138 scope ("cards with images where mockups exist").
+- Verification: typecheck passes; the 6 thumbnails load (1440 / 750 px), a click opens the ImageViewer with the right image, Escape closes it; no console error.
+- Compliance audit: `audits/2026-11-14-B138-3.md` — 52 compliant, 12 non-compliant, 22 not in the design system; #60 resolved by approval; no new finding. Remark: portrait mockups are cropped to 16:9 in the thumbnails (per the Card spec).
+
+**Files**
+- `assets/portfolio/tokywoky/` (6 PNG), `audits/2026-11-14-B138-3.md` (created)
+- `docs/src/pages/PortfolioPage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B138-4 — Portfolio page: BNP Paribas diagrams, data visualization, credit chain
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B138-3 merged into `develop`.
+- Two BNP Paribas workshop diagrams are added to the BNP Paribas card (workspace and settings map; user flow of a data table page). Publishing them is the Lead's decision.
+- New section "Data visualization": dashboards and charts for a reporting application linked to My Credit App.
+- Context of the card: a cross-functional UX team at BNP Paribas CIB, working across the credit chain; timeline step description "Cross-functional UX team, credit chain."
+
+**What was done**
+- `assets/portfolio/bnp-paribas/workspace-map.webp`, `table-user-flow.webp` (new): images given by the Lead.
+- `docs/src/pages/PortfolioPage.tsx`: BNP Paribas card in `clickable-image` with alt texts; "Data visualization" section; context and timeline description.
+- Verification: typecheck passes; the 2 thumbnails load (2000 px), no console error.
+- Compliance audit: `audits/2026-11-14-B138-4.md` — 56 compliant, 11 non-compliant, 22 not in the design system; #9 fixed (B118, from `develop`), no new finding. Remarks: diagrams cropped to 16:9 in the thumbnails; dense images may need a longer text alternative (guideline question).
+
+**Files**
+- `assets/portfolio/bnp-paribas/` (2 images), `audits/2026-11-14-B138-4.md` (created)
+- `docs/src/pages/PortfolioPage.tsx`, `STEPS.md` (updated)

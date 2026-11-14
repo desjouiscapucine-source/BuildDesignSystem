@@ -4,7 +4,15 @@
 // Exception approved by the Design System Lead on 2026-11-14: the steps go from the most recent to the oldest,
 // the mc2i internal project right below the BNP Paribas mission it runs alongside.
 import { useEffect, useRef, useState } from "react";
-import { Card, Tag, Timeline, TimelineStep } from "@ds/components";
+import { Card, Tag, Timeline, TimelineStep, type ImageViewerImage } from "@ds/components";
+import tokywokyProductTesting from "../../../assets/portfolio/tokywoky/desktop-product-testing.png";
+import tokywokyHomepage from "../../../assets/portfolio/tokywoky/desktop-homepage.png";
+import tokywokyMobileHomepage from "../../../assets/portfolio/tokywoky/mobile-homepage.png";
+import tokywokyNotifications from "../../../assets/portfolio/tokywoky/mobile-notifications.png";
+import tokywokyEditProfile from "../../../assets/portfolio/tokywoky/mobile-edit-profile.png";
+import tokywokyProductTag from "../../../assets/portfolio/tokywoky/mobile-product-tag.png";
+import bnpWorkspaceMap from "../../../assets/portfolio/bnp-paribas/workspace-map.webp";
+import bnpTableUserFlow from "../../../assets/portfolio/bnp-paribas/table-user-flow.webp";
 import { Header } from "./SectionPages";
 
 type Section = { title?: string; note?: string; text?: string; items: string[] };
@@ -18,6 +26,8 @@ type Experience = {
   description: string;
   context?: string;
   sections: Section[];
+  // Mockups shown as thumbnails under the text (Card clickable-image), opened in the ImageViewer.
+  images?: [ImageViewerImage, ...ImageViewerImage[]];
 };
 
 // Day precision until TimelineStep shows month-year dates and "Present" (B137): first day of the start month,
@@ -29,8 +39,14 @@ const experiences: Experience[] = [
     startDate: new Date(2023, 8, 1),
     endDate: new Date(),
     ongoing: true,
-    description: "CIB UX team, My Credit App.",
-    context: "Within the BNP Paribas CIB UX team, on My Credit App and the projects connected to it.",
+    description: "Cross-functional UX team, credit chain.",
+    // Workshop deliverables (B138-4).
+    images: [
+      { src: bnpWorkspaceMap, alt: "Map of the workspace and settings screens, with the links between them and workshop notes" },
+      { src: bnpTableUserFlow, alt: "User flow of a data table page: filters, consultation, bulk actions and details page, with the actions validated in workshop" },
+    ],
+    context:
+      "Within a cross-functional UX team at BNP Paribas CIB, working across the credit chain: My Credit App and the projects connected to it.",
     sections: [
       {
         title: "Product Designer",
@@ -50,6 +66,10 @@ const experiences: Experience[] = [
           "Specifications, visual and functional guidelines, usage documentation in zeroheight.",
           "Integration tests for consistency and reuse.",
         ],
+      },
+      {
+        title: "Data visualization",
+        items: ["Dashboards and charts for a reporting application linked to My Credit App."],
       },
       {
         title: "AI-powered forms",
@@ -112,6 +132,15 @@ const experiences: Experience[] = [
     startDate: new Date(2021, 5, 1),
     endDate: new Date(2023, 4, 31),
     description: "Product design and design system.",
+    // Mockups recreated in Figma from the original screens (B138-3).
+    images: [
+      { src: tokywokyProductTesting, alt: "Desktop mockup of a product testing campaign page with an Apply to test button" },
+      { src: tokywokyHomepage, alt: "Desktop mockup of the community homepage: welcome, tasks to earn points and the feed" },
+      { src: tokywokyMobileHomepage, alt: "Mobile mockup of the community homepage" },
+      { src: tokywokyNotifications, alt: "Mobile mockup of the notifications screen, with an alert to turn on notifications" },
+      { src: tokywokyEditProfile, alt: "Mobile mockup of the edit profile form: picture, username, birth date and city" },
+      { src: tokywokyProductTag, alt: "Mobile mockup of a routine product picker showing a grid of foundations" },
+    ],
     sections: [
       {
         items: [
@@ -295,31 +324,49 @@ export function PortfolioPage() {
           </Timeline>
         </div>
         <div className="portfolio-cards" ref={cards}>
-          {experiences.map((experience) => (
-            <Card key={experience.id} id={experience.id} title={experience.title}>
-              {experience.ongoing && (
-                <p>
-                  <Tag tone="info">Ongoing</Tag>
-                </p>
-              )}
-              {experience.context && <p>{experience.context}</p>}
-              {experience.sections.map((section, index) => (
-                <div key={section.title ?? index} className="portfolio-section">
-                  {section.title && (
-                    <h3 className="ds-text-label">
-                      {section.title}
-                      {section.note && <span className="portfolio-section-note"> · {section.note}</span>}
-                    </h3>
-                  )}
-                  <ul>
-                    {section.items.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </Card>
-          ))}
+          {experiences.map((experience) => {
+            const content = (
+              <>
+                {experience.ongoing && (
+                  <p>
+                    <Tag tone="info">Ongoing</Tag>
+                  </p>
+                )}
+                {experience.context && <p>{experience.context}</p>}
+                {experience.sections.map((section, index) => (
+                  <div key={section.title ?? index} className="portfolio-section">
+                    {section.title && (
+                      <h3 className="ds-text-label">
+                        {section.title}
+                        {section.note && <span className="portfolio-section-note"> · {section.note}</span>}
+                      </h3>
+                    )}
+                    <ul>
+                      {section.items.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </>
+            );
+            // A card with mockups shows them as thumbnails (clickable-image); the others stay default.
+            return experience.images ? (
+              <Card
+                key={experience.id}
+                id={experience.id}
+                title={experience.title}
+                variant="clickable-image"
+                images={experience.images}
+              >
+                {content}
+              </Card>
+            ) : (
+              <Card key={experience.id} id={experience.id} title={experience.title}>
+                {content}
+              </Card>
+            );
+          })}
           <h2 className="portfolio-education-title">Education</h2>
           {education.map((training) => (
             <Card key={training.id} id={training.id} title={training.title} headingLevel={3}>
