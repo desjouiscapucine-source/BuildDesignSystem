@@ -11,6 +11,8 @@ import tokywokyMobileHomepage from "../../../assets/portfolio/tokywoky/mobile-ho
 import tokywokyNotifications from "../../../assets/portfolio/tokywoky/mobile-notifications.png";
 import tokywokyEditProfile from "../../../assets/portfolio/tokywoky/mobile-edit-profile.png";
 import tokywokyProductTag from "../../../assets/portfolio/tokywoky/mobile-product-tag.png";
+import bnpWorkspaceMap from "../../../assets/portfolio/bnp-paribas/workspace-map.webp";
+import bnpTableUserFlow from "../../../assets/portfolio/bnp-paribas/table-user-flow.webp";
 import { Header } from "./SectionPages";
 
 type Section = { title?: string; note?: string; text?: string; items: string[] };
@@ -37,8 +39,14 @@ const experiences: Experience[] = [
     startDate: new Date(2023, 8, 1),
     endDate: new Date(),
     ongoing: true,
-    description: "CIB UX team, My Credit App.",
-    context: "Within the BNP Paribas CIB UX team, on My Credit App and the projects connected to it.",
+    description: "Cross-functional UX team, credit chain.",
+    // Workshop deliverables (B138-4).
+    images: [
+      { src: bnpWorkspaceMap, alt: "Map of the workspace and settings screens, with the links between them and workshop notes" },
+      { src: bnpTableUserFlow, alt: "User flow of a data table page: filters, consultation, bulk actions and details page, with the actions validated in workshop" },
+    ],
+    context:
+      "Within a cross-functional UX team at BNP Paribas CIB, working across the credit chain: My Credit App and the projects connected to it.",
     sections: [
       {
         title: "Product Designer",
@@ -58,6 +66,10 @@ const experiences: Experience[] = [
           "Specifications, visual and functional guidelines, usage documentation in zeroheight.",
           "Integration tests for consistency and reuse.",
         ],
+      },
+      {
+        title: "Data visualization",
+        items: ["Dashboards and charts for a reporting application linked to My Credit App."],
       },
       {
         title: "AI-powered forms",

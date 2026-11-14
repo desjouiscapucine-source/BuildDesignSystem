@@ -4971,3 +4971,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `assets/portfolio/tokywoky/` (6 PNG), `audits/2026-11-14-B138-3.md` (created)
 - `docs/src/pages/PortfolioPage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B138-4 — Portfolio page: BNP Paribas diagrams, data visualization, credit chain
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B138-3 merged into `develop`.
+- Two BNP Paribas workshop diagrams are added to the BNP Paribas card (workspace and settings map; user flow of a data table page). Publishing them is the Lead's decision.
+- New section "Data visualization": dashboards and charts for a reporting application linked to My Credit App.
+- Context of the card: a cross-functional UX team at BNP Paribas CIB, working across the credit chain; timeline step description "Cross-functional UX team, credit chain."
+
+**What was done**
+- `assets/portfolio/bnp-paribas/workspace-map.webp`, `table-user-flow.webp` (new): images given by the Lead.
+- `docs/src/pages/PortfolioPage.tsx`: BNP Paribas card in `clickable-image` with alt texts; "Data visualization" section; context and timeline description.
+- Verification: typecheck passes; the 2 thumbnails load (2000 px), no console error.
+- Compliance audit: `audits/2026-11-14-B138-4.md` — 56 compliant, 11 non-compliant, 22 not in the design system; #9 fixed (B118, from `develop`), no new finding. Remarks: diagrams cropped to 16:9 in the thumbnails; dense images may need a longer text alternative (guideline question).
+
+**Files**
+- `assets/portfolio/bnp-paribas/` (2 images), `audits/2026-11-14-B138-4.md` (created)
+- `docs/src/pages/PortfolioPage.tsx`, `STEPS.md` (updated)
