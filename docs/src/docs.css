@@ -534,7 +534,9 @@ code {
 }
 .nav-tree-label { font-weight: var(--font-weight-semibold); }
 .nav-tree-note { color: var(--color-text-secondary); font-size: var(--typography-body-sm-size); font-family: var(--typography-body-sm-family); font-weight: var(--typography-body-sm-weight); line-height: var(--typography-body-sm-line-height); }
+.skill-group { display: flex; flex-direction: column; gap: var(--space-16); } /* same spacing as the page content (layout skill) */
 .skill-card { scroll-margin-top: calc(var(--size-header) + var(--space-16)); } /* below the sticky header */
+.skill-card .ds-card-text :is(h5, h6) { font-size: inherit; } /* headings of the skill body (h5, h6 since B139): body text size, no text style yet (audit finding 56) */
 .skill-card summary { cursor: pointer; color: var(--color-text-brand); font-weight: var(--font-weight-semibold); }
 .skill-card details[open] summary { margin-bottom: var(--space-16); }
 

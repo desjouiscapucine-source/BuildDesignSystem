@@ -4834,6 +4834,24 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `audits/2026-11-14-B102-2.md` (created)
 - `docs/src/docs.css`, `STEPS.md` (updated)
 
+## Step B139-1 — How to use skills: skills grouped by theme
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- Ticket B139 (Tooling, priority high, release R2): organize the How to use skills page by grouping the skills by theme.
+- Themes, in order: Entry point (orchestrator, never-invent), Components (component, component-spec, component-guidelines, component-code, component-structure, changelog, accessibility-check), Tokens (token-naming), Pages & layout (layout, page-header, page-content, card, navigation), Prototypes (prototype-setup), Backlog & releases (backlog, ticket, release-planning, git-workflow).
+
+**What was done**
+- `docs/src/skills.ts`: `SKILL_THEMES` (the approved themes) and `skillGroups` (the skills grouped in that order; a skill without a theme goes to a last group, "Other"). `cardBody` takes the card heading level, so the body headings stay under the card title (h6 at most).
+- `docs/src/pages/SkillsPage.tsx`: the Skills section shows one `section` per theme with an `h3` title; skill cards are `h4`. The "Add a skill" item says to add its theme to `SKILL_THEMES`. How to use and Hierarchy unchanged.
+- `docs/src/docs.css`: `.skill-group` keeps the 16px spacing between cards; body headings (now h5/h6) keep the body text size.
+- Verification: all 20 skills in one group each, 16px between cards, `#/skills/<name>` still opens and scrolls to the skill, no console error, typecheck and build pass.
+- Compliance audit: `audits/2026-11-14-B139-1.md` — 42 compliant, 11 non-compliant, 21 not in the design system; 0 fixed, 1 new (#56: headings in the skill body have no text style), proposed as a new ticket.
+- B139 status `done`.
+
+**Files**
+- `audits/2026-11-14-B139-1.md` (created)
+- `docs/src/skills.ts`, `docs/src/pages/SkillsPage.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
 ## Step B138-1 — Portfolio page: experience of the Design System Lead
 **Date:** 2026-11-14
 

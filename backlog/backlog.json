@@ -166,7 +166,8 @@
       "origin": "proposal",
       "description": "Base of every form. Used on the documentation site: Content field of the Design preview tab, icon name field of the Icons page.",
       "stage": "design",
-      "priority": "low"
+      "priority": "high",
+      "release": "R2"
     },
     {
       "id": "B020",
@@ -809,7 +810,9 @@
       "status": "todo",
       "origin": "decided",
       "description": "Navigation within a page. Used on the documentation site: tabs of the component pages (Design preview, Design spec, Guidelines, Examples, Code).",
-      "stage": "design"
+      "stage": "design",
+      "priority": "high",
+      "release": "R2"
     },
     {
       "id": "B094",
@@ -1370,6 +1373,131 @@
         "The next compliance audit no longer lists findings 51 and 52."
       ],
       "priority": "medium",
+      "release": "R2"
+    },
+    {
+      "id": "B139",
+      "title": "How to use skills: skills grouped by theme",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "decided",
+      "description": "The Skills section of the How to use skills page groups the skills by theme instead of one flat list.",
+      "why": "The page lists the 20 project skills as one flat list of cards, which makes a skill hard to find as the number of skills grows.",
+      "scope": "docs/src/pages/SkillsPage.tsx: the Skills section is split into theme groups, each with a heading and its skill cards. The themes and which skill goes in each are decided with the Design System Lead first (never-invent). The How to use and Hierarchy sections are not changed.",
+      "doneWhen": [
+        "The themes and the skill of each theme are approved by the Design System Lead.",
+        "The Skills section shows one group per theme, each with its heading and its skill cards.",
+        "Every skill of .claude/skills/ appears in exactly one group, and a new skill without a theme is still shown.",
+        "The page follows the layout, page-header and card skills, and the compliance audit finds nothing new."
+      ],
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B140",
+      "title": "Documentation site: text style of the headings in skill cards",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "The headings inside the skill cards of the How to use skills page use an approved text style.",
+      "why": "Found by the compliance audit of Step B139-1 (audits/2026-11-14-B139-1.md, finding 56): the headings of the skill body (h5, h6 since B139) have no text style, only font-size: inherit (docs.css), so their weight, line height and margins come from the browser, and ## and ### headings look the same.",
+      "scope": "docs/src/docs.css (.skill-card .ds-card-text :is(h5, h6)) and, if needed, cardBody in docs/src/skills.ts. Decisions asked first: which text style for these headings; whether ## and ### headings look different; whether the rule covers the Agents cards too (same skill-card class) or only the Skills page; whether the theme titles (h3) and the card titles (h4) may share the heading-5 look.",
+      "doneWhen": [
+        "The headings of the skill body use the approved text style (its four tokens), as decided by the Design System Lead.",
+        "The Agents page follows the decision about its cards.",
+        "The next compliance audit no longer lists finding 56."
+      ],
+      "priority": "medium",
+      "release": "R3"
+    },
+    {
+      "id": "B142",
+      "title": "Canvas",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "The free canvas of the UX playground, which holds the layout frames.",
+      "why": "Missing component of the UX playground prototype (B130): the playground is a free canvas holding mobile, tablet and desktop frames.",
+      "scope": "Design, guidelines and code of the Canvas component, each stage approved by the Design System Lead (component skill). Anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant Canvas conversation on component/Canvas (never-invent).",
+      "doneWhen": [
+        "The Canvas design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "Canvas is exported from @ds/components, ready for the UX playground (B130)."
+      ],
+      "stage": "design",
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B143",
+      "title": "Frame",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "A layout frame on the canvas, in mobile, tablet or desktop size.",
+      "why": "Missing component of the UX playground prototype (B130): each composition is laid out in mobile, tablet and desktop frames on the canvas.",
+      "scope": "Design, guidelines and code of the Frame component, each stage approved by the Design System Lead (component skill). Anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant Frame conversation on component/Frame (never-invent).",
+      "doneWhen": [
+        "The Frame design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "Frame is exported from @ds/components, ready for the UX playground (B130)."
+      ],
+      "stage": "design",
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B144",
+      "title": "Panel",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "The panel on the right of the playground, with three tabs: Library, Properties and Compositions.",
+      "why": "Missing component of the UX playground prototype (B130): the playground needs a right panel with three tabs (Library, Properties, Compositions).",
+      "scope": "Design, guidelines and code of the Panel component, each stage approved by the Design System Lead (component skill). Anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant Panel conversation on component/Panel (never-invent).",
+      "doneWhen": [
+        "The Panel design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "Panel is exported from @ds/components, ready for the UX playground (B130)."
+      ],
+      "stage": "design",
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B145",
+      "title": "StickyNote",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "A sticky note placed on the canvas, to annotate a composition.",
+      "why": "Missing component of the UX playground prototype (B130): the playground has sticky notes to annotate a composition.",
+      "scope": "Design, guidelines and code of the StickyNote component, each stage approved by the Design System Lead (component skill). Anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant StickyNote conversation on component/StickyNote (never-invent).",
+      "doneWhen": [
+        "The StickyNote design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "StickyNote is exported from @ds/components, ready for the UX playground (B130)."
+      ],
+      "stage": "design",
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B146",
+      "title": "Comment",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "A comment attached to a component or a frame of the canvas.",
+      "why": "Missing component of the UX playground prototype (B130): the playground has comments on a component or a frame.",
+      "scope": "Design, guidelines and code of the Comment component, each stage approved by the Design System Lead (component skill). Anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant Comment conversation on component/Comment (never-invent).",
+      "doneWhen": [
+        "The Comment design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "Comment is exported from @ds/components, ready for the UX playground (B130)."
+      ],
+      "stage": "design",
+      "priority": "high",
       "release": "R2"
     },
     {
