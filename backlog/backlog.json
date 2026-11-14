@@ -1371,6 +1371,22 @@
       ],
       "priority": "medium",
       "release": "R2"
+    },
+    {
+      "id": "B138",
+      "title": "Portfolio page: CV of the Design System Lead",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "decided",
+      "description": "The Portfolio page of the documentation site shows the experience of the Design System Lead with a Timeline and Cards.",
+      "why": "Decided by the Design System Lead: the CV content goes on the Portfolio page (empty today, \"Nothing yet.\"), not in the WorkDescription prototype (B031).",
+      "scope": "docs/src/pages/SectionPages.tsx (PortfolioPage), laid out with the page-content and card skills. Content drafted with the Design System Lead on 2026-11-14 (Composant WorkDescription conversation), in English, design experience only, no contact details: header \"Capucine Desjouis\" / \"Product Designer · Design Systems · AI-assisted design\"; skills as Tags (to review); 4 steps: Product Designer — Tokywoky (2021 → May 2023), UX/UI Designer — Volunteer projects (Jul → Sep 2022), Product Designer · Design System PO — BNP Paribas (Sep 2023 → ongoing, Tag \"Ongoing\" info in its card), Lead Design System — mc2i (2024, in parallel); cards without images, a bulleted list of tasks each. Still to decide: step order (most recent first? exception or rule change of page-content and TimelineStep guidelines), the AI part, the skills, the images. Month-year dates and \"Present\": B137.",
+      "doneWhen": [
+        "The Portfolio page shows one card per timeline step with the content approved by the Design System Lead.",
+        "The page follows the page-content and card checklists, or an approved exception."
+      ],
+      "priority": "high",
+      "release": "R2"
     }
   ]
 }
