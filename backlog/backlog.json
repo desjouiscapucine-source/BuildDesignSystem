@@ -1371,6 +1371,23 @@
       ],
       "priority": "medium",
       "release": "R2"
+    },
+    {
+      "id": "B137",
+      "title": "TimelineStep: month-year dates and ongoing end (Present)",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "TimelineStep can show its date range as month and year, and a step with no end date ends with \"Present\".",
+      "why": "Decided by the Design System Lead for the WorkDescription prototype (B031), which shows a CV: a day is a false precision for a job, and the current job has no end date.",
+      "scope": "components/TimelineStep: spec (date format, optional end date), guidelines, code (TimelineStep.tsx, examples, playground). TimelineStep is complete: new version and changelog entry (changelog skill). Decisions asked first: the API (e.g. a date precision prop, optional endDate), the exact format and the wording of the ongoing end.",
+      "doneWhen": [
+        "TimelineStep shows month-year dates and an ongoing end \"Present\", approved at each stage (design, guidelines, code).",
+        "New version with its changelog entry; the accessibility and token audits pass.",
+        "WorkDescription (B031) uses it for its steps."
+      ],
+      "priority": "high",
+      "release": "R2"
     }
   ]
 }
