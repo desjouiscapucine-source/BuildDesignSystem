@@ -50,7 +50,7 @@ One size only. The card takes the **full width available** (the column that cont
 | ---- | ---- |
 | Container | Padding `--space-16` |
 | Rows (tags, title, description, menus) | Gap `--space-8` |
-| Tags row (tags and ID) | Gap `--space-4`; wraps when too long |
+| Tags row (tags and ID) | Gap `--space-16` (Tag guidelines); wraps when too long |
 | Menus | Grid of **2 columns** of equal width (Status, Priority / Release, Stage); gap `--space-8` |
 
 ## States
@@ -71,7 +71,7 @@ One size only. The card takes the **full width available** (the column that cont
 | Container | Gap between rows | all | `--space-8` |
 | Container | State layer | hover / focus / pressed | `--state-layer-hover` / `--state-layer-focus` / `--state-layer-pressed` (in `--color-text-primary`) |
 | Container | Focus outline | focus | `--border-width-2` · `--color-border-focus` |
-| Tags row | Gap | all | `--space-4` |
+| Tags row | Gap | all | `--space-16` |
 | ID | Text style · color | all | `body-sm` · `--color-text-secondary` |
 | Title | Text style · color | all | `heading-5` · `--color-text-primary` |
 | Description | Text style · color | all | `body` · `--color-text-primary` |

@@ -15,13 +15,13 @@
 - To give a message or a sentence of feedback: use an **inline alert** instead (not in the design system yet).
 
 ## Usage best practices
-- **Neutral for categories**: a category has no meaning of success or error, so its tag is always `neutral`.
+- **Neutral for categories**: a category has no meaning of success or error, so its tag is `neutral` by default; `brand` when a category is highlighted (e.g. the level of a component in its page header).
 - **The tone matches the meaning**: `success` = done or positive, `warning` = needs attention, `error` = problem, `info` = information. Never a tone for decoration.
 - **Brand to highlight**: `brand` highlights content with no meaning of feedback (e.g. skills, keywords). `neutral` stays the default for categories. Never `brand` for a status.
 - **Tones can be mixed**: `brand` may sit next to `neutral` and the feedback tones in the same group.
 - **Never color alone**: the label always carries the meaning; the tone only reinforces it.
 - **No limit on the number of tags side by side**: they wrap to the next line when the space runs out (e.g. a list of skills).
-- **Spacing between tags**: `--space-4`.
+- **Spacing between tags**: `--space-16`, between tags side by side and between the lines when they wrap.
 
 ## Do's and don'ts
 | Do | Don't |

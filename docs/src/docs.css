@@ -799,7 +799,7 @@ body.playground-frame { padding: var(--space-24); }
   background: var(--color-background-subtle);
 }
 .portfolio-skills h2 { margin: 0 0 var(--space-8); }
-.portfolio-tags { display: flex; flex-wrap: wrap; gap: var(--space-4); /* Tag guidelines */ margin: 0; padding: 0; list-style: none; }
+.portfolio-tags { display: flex; flex-wrap: wrap; gap: var(--space-16); /* Tag guidelines */ margin: 0; padding: 0; list-style: none; }
 /* Cards stacked, full width of their column, 16px apart (card skill); the jump to a card stops below the sticky header. */
 .portfolio-content { display: flex; flex-direction: column; gap: var(--space-16); }
 .portfolio-cards { display: flex; flex-direction: column; gap: var(--space-16); }

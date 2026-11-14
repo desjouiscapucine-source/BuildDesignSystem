@@ -5082,3 +5082,26 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-14-B141-4.md` (created)
 - `docs/src/pages/PortfolioPage.tsx`, `STEPS.md` (updated)
+
+## Step B141-5 — Tag: brand level tag, 16px between tags; ticket closed
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- The Atomic Design level of the component pages uses the Tag `brand` tone (the L0–L4 tags of the Navigation structure page stay `neutral`).
+- Tag guidelines: a category is `neutral` by default, `brand` when it is highlighted (e.g. the level of a component in its page header) — replaces "always neutral".
+- Spacing between tags side by side: `--space-16`, in both directions (between the lines when they wrap too). Applied to TicketCard.
+- Tag 1.2 and TicketCard 1.1.
+
+**What was done**
+- `ComponentPage.tsx`: level Tag `tone="brand"` (comment updated).
+- Tag: `guidelines.md` (category rule, spacing), `examples.tsx` (gap `--space-16`), `meta.json` 1.2.
+- TicketCard: `TicketCard.css`, `spec.md`, `design/tokens.json` (tags row gap `--space-16`), `meta.json` 1.1.
+- `docs.css`: `.portfolio-tags` gap `--space-16`.
+- Verification: type check passes; computed gap 16px on the Portfolio and Backlog pages; Backlog at 320px: no overflow, no horizontal scroll; no console error.
+- Token audit (`audits/2026-11-14-B141-5-tokens.md`): 105 values, 0 fail. Accessibility check (`audits/2026-11-14-B141-5-accessibility.md`): 3 pass, 0 fail.
+- Compliance audit (`audits/2026-11-14-B141-5.md`): 59 compliant, 10 non-compliant (existing tickets), 22 not in the design system; 0 new; question added for the stage indicator spacing (B060). No new ticket.
+- B141 status `done`.
+
+**Files**
+- `audits/2026-11-14-B141-5.md`, `audits/2026-11-14-B141-5-tokens.md`, `audits/2026-11-14-B141-5-accessibility.md` (created)
+- `docs/src/pages/ComponentPage.tsx`, `docs/src/docs.css`, `components/Tag/guidelines.md`, `components/Tag/examples.tsx`, `components/Tag/meta.json`, `components/TicketCard/TicketCard.css`, `components/TicketCard/spec.md`, `components/TicketCard/design/tokens.json`, `components/TicketCard/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)

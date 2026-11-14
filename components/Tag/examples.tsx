@@ -2,7 +2,7 @@
 import type { Example } from "../../docs/src/types";
 import { Tag } from "./Tag";
 
-const row = { display: "flex", flexWrap: "wrap", gap: "var(--space-4)" } as const;
+const row = { display: "flex", flexWrap: "wrap", gap: "var(--space-16)" } as const;
 
 export const examples: Example[] = [
   {
@@ -35,7 +35,7 @@ export const examples: Example[] = [
   },
   {
     title: "Side by side",
-    description: "No limit, space-4 apart; tones can be mixed; they wrap to the next line when the space runs out.",
+    description: "No limit, space-16 apart; tones can be mixed; they wrap to the next line when the space runs out.",
     render: () => (
       <div style={{ ...row, width: "200px" }}>
         <Tag>Components</Tag>

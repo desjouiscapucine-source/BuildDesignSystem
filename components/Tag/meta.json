@@ -3,8 +3,13 @@
   "description": "A small label that names a category or a status, or highlights content.",
   "level": "atom",
   "status": "complete",
-  "version": "1.1",
+  "version": "1.2",
   "changelog": [
+    {
+      "version": "1.2",
+      "date": "2026-11-14",
+      "changes": "Spacing between tags side by side is now space-16; brand may highlight a category (e.g. the level of a component in its page header)."
+    },
     {
       "version": "1.1",
       "date": "2026-11-14",

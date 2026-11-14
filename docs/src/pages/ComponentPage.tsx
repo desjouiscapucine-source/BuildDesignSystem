@@ -63,9 +63,9 @@ export function ComponentPage({ component }: { component: ComponentDoc }) {
       <p className="lead" title={component.description}>
         {component.description}
       </p>
-      {/* Atomic Design level: neutral Tag, sentence case (Tag has no text-transform) */}
+      {/* Atomic Design level: brand Tag (highlighted category), sentence case (Tag has no text-transform) */}
       <p className="component-level">
-        <Tag>{component.level.charAt(0).toUpperCase() + component.level.slice(1)}</Tag>
+        <Tag tone="brand">{component.level.charAt(0).toUpperCase() + component.level.slice(1)}</Tag>
       </p>
       <StageBadge status={component.status} level={component.level} />
 
