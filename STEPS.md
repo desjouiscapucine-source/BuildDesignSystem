@@ -5011,3 +5011,24 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `assets/portfolio/bnp-paribas/` (2 images), `audits/2026-11-14-B138-4.md` (created)
 - `docs/src/pages/PortfolioPage.tsx`, `STEPS.md` (updated)
+
+## Step B141-3 — Tag: brand tone, code approved (Tag 1.1)
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- Code of the brand tone approved; the `code` icon stays on the "React" tag of the "With an icon" example.
+- Tag version 1.1 (addition).
+
+**What was done**
+- `Tag.tsx`: `"brand"` added to `TagTone`; prop and component comments updated.
+- `Tag.css`: `.ds-tag--brand` (`--color-background-brand-subtle`, `--color-text-brand`, `--color-icon-brand`).
+- `examples.tsx`: brand "React" in Tones and With an icon; Side by side describes the no-limit rule and shows mixed tones wrapping.
+- `playground.tsx`: `brand` in the Tone control.
+- `meta.json`: version 1.1 with its changelog entry.
+- Verification: `tsc` and `npm run build` pass; computed colors checked (5.35:1); wrapping and ellipsis checked at 375px; no console error.
+- Accessibility check (`audits/2026-11-14-B141-3-accessibility.md`): 5 pass, 0 fail. Token audit (`audits/2026-11-14-B141-3-tokens.md`): 30 values, 0 fail.
+- `docs/` unchanged: the latest compliance audit still applies.
+
+**Files**
+- `audits/2026-11-14-B141-3-accessibility.md`, `audits/2026-11-14-B141-3-tokens.md` (created)
+- `components/Tag/Tag.tsx`, `components/Tag/Tag.css`, `components/Tag/examples.tsx`, `components/Tag/playground.tsx`, `components/Tag/meta.json`, `STEPS.md` (updated)
