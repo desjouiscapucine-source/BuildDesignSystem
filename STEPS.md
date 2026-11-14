@@ -5122,3 +5122,16 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-14-B141-5.md`, `audits/2026-11-14-B141-5-tokens.md`, `audits/2026-11-14-B141-5-accessibility.md` (created)
 - `docs/src/pages/ComponentPage.tsx`, `docs/src/docs.css`, `components/Tag/guidelines.md`, `components/Tag/examples.tsx`, `components/Tag/meta.json`, `components/TicketCard/TicketCard.css`, `components/TicketCard/spec.md`, `components/TicketCard/design/tokens.json`, `components/TicketCard/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B138-8 — Portfolio page: ticket closed
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B138-7 merged into `develop`. B138 is finished: the Portfolio page shows the personal project, the experience (BNP Paribas, mc2i, volunteer projects, Tokywoky) and the education on a timeline with cards, the skills panel (brand Tag tone, B141-4) and the mockups and diagrams; the BNP Paribas mockups are anonymized.
+
+**What was done**
+- `backlog/backlog.json`: B138 `done`. Branch `governance/portfolio-page` merged into `develop` and deleted.
+- No change to the documentation site: no compliance audit for this step (last report: `audits/2026-11-14-B138-7.md`).
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)
