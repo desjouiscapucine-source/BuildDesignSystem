@@ -1389,6 +1389,23 @@
       ],
       "priority": "high",
       "release": "R2"
+    },
+    {
+      "id": "B140",
+      "title": "Documentation site: text style of the headings in skill cards",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "The headings inside the skill cards of the How to use skills page use an approved text style.",
+      "why": "Found by the compliance audit of Step B139-1 (audits/2026-11-14-B139-1.md, finding 56): the headings of the skill body (h5, h6 since B139) have no text style, only font-size: inherit (docs.css), so their weight, line height and margins come from the browser, and ## and ### headings look the same.",
+      "scope": "docs/src/docs.css (.skill-card .ds-card-text :is(h5, h6)) and, if needed, cardBody in docs/src/skills.ts. Decisions asked first: which text style for these headings; whether ## and ### headings look different; whether the rule covers the Agents cards too (same skill-card class) or only the Skills page; whether the theme titles (h3) and the card titles (h4) may share the heading-5 look.",
+      "doneWhen": [
+        "The headings of the skill body use the approved text style (its four tokens), as decided by the Design System Lead.",
+        "The Agents page follows the decision about its cards.",
+        "The next compliance audit no longer lists finding 56."
+      ],
+      "priority": "medium",
+      "release": "R3"
     }
   ]
 }
