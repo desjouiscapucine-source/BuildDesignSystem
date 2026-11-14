@@ -128,8 +128,50 @@ const experiences: Experience[] = [
   },
 ];
 
-// Education: below the experience cards, not linked to the timeline (one card per training).
-const education = [{ id: "icademie", title: "UX/UI Design training — Icademie", dates: "Feb 2022 – Apr 2023" }];
+// Education: steps of the same timeline, after the experience (most recent first), with their cards under the
+// "Education" title. Years only in the CV: first day to last day of the years until B137 (month-year dates).
+type Training = { id: string; title: string; degree: string; dates: string; startDate: Date; endDate: Date };
+
+const education: Training[] = [
+  {
+    id: "icademie",
+    title: "UX/UI Design — Icademie",
+    degree: "Professional training",
+    dates: "Feb 2022 – Apr 2023",
+    startDate: new Date(2022, 1, 1),
+    endDate: new Date(2023, 3, 30),
+  },
+  {
+    id: "euridis",
+    title: "IT Business Engineering — Euridis Business School",
+    degree: "Master's degree",
+    dates: "2019 – 2021",
+    startDate: new Date(2019, 0, 1),
+    endDate: new Date(2021, 11, 31),
+  },
+  {
+    id: "ipac",
+    title: "Marketing & Negotiation — Ipac",
+    degree: "Bachelor's degree",
+    dates: "2018 – 2019",
+    startDate: new Date(2018, 0, 1),
+    endDate: new Date(2019, 11, 31),
+  },
+  {
+    id: "ecole-sup-paris",
+    title: "Retail Management — École Sup Paris",
+    degree: "BTS (two-year degree)",
+    dates: "2015 – 2017",
+    startDate: new Date(2015, 0, 1),
+    endDate: new Date(2017, 11, 31),
+  },
+];
+
+// Every step of the timeline, in the order of the cards.
+const steps = [
+  ...experiences.map(({ id, title, startDate, endDate, description }) => ({ id, title, startDate, endDate, description })),
+  ...education.map(({ id, title, startDate, endDate, degree }) => ({ id, title, startDate, endDate, description: `${degree}.` })),
+];
 
 const skills: { title: string; tags: string[] }[] = [
   {
@@ -157,8 +199,8 @@ const skills: { title: string; tags: string[] }[] = [
 // The step of the card at the top of the reading area (below the sticky header): the last card whose top
 // has reached its scroll margin.
 function cardAtTop(): string {
-  let current = experiences[0].id;
-  for (const experience of experiences) {
+  let current = steps[0].id;
+  for (const experience of steps) {
     const card = document.getElementById(experience.id);
     if (card && card.getBoundingClientRect().top <= parseFloat(getComputedStyle(card).scrollMarginTop) + 1)
       current = experience.id;
@@ -167,7 +209,7 @@ function cardAtTop(): string {
 }
 
 export function PortfolioPage() {
-  const [selected, setSelected] = useState(experiences[0].id);
+  const [selected, setSelected] = useState(steps[0].id);
   // A clicked step stays selected until the reader scrolls again (even if the jump leaves its card just below the top).
   const clicked = useRef<{ id: string; scrollY: number | null } | null>(null);
 
@@ -236,18 +278,18 @@ export function PortfolioPage() {
           ))}
         </aside>
         <div className="portfolio-timeline">
-          <Timeline label="Experience">
-            {experiences.map((experience) => (
+          <Timeline label="Experience and education">
+            {steps.map((step) => (
               <TimelineStep
-                key={experience.id}
-                title={experience.title}
-                startDate={experience.startDate}
-                endDate={experience.endDate}
-                href={`#${experience.id}`}
-                selected={experience.id === selected}
-                onClick={() => onStepClick(experience.id)}
+                key={step.id}
+                title={step.title}
+                startDate={step.startDate}
+                endDate={step.endDate}
+                href={`#${step.id}`}
+                selected={step.id === selected}
+                onClick={() => onStepClick(step.id)}
               >
-                {experience.description}
+                {step.description}
               </TimelineStep>
             ))}
           </Timeline>
@@ -281,7 +323,9 @@ export function PortfolioPage() {
           <h2 className="portfolio-education-title">Education</h2>
           {education.map((training) => (
             <Card key={training.id} id={training.id} title={training.title} headingLevel={3}>
-              <p>{training.dates}</p>
+              <p>
+                {training.degree} · {training.dates}
+              </p>
             </Card>
           ))}
         </div>
