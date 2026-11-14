@@ -1,10 +1,10 @@
-// Level 3 — one project: its deliverables as sections (User journey, then User flow and Prototype later).
+// Level 3 — one project: its deliverables as sections (User journey, User flow, then Prototype later).
 import { Card } from "@ds/components";
 import type { Project } from "../projects";
 import { Header } from "./SectionPages";
 
 export function ProjectPage({ project }: { project: Project }) {
-  const { journey } = project;
+  const { journey, userFlow } = project;
   return (
     <>
       <Header title={project.name} lead={project.lead} />
@@ -27,6 +27,34 @@ export function ProjectPage({ project }: { project: Project }) {
               ))}
             </ol>
           </>
+        ) : (
+          <p className="empty">Not written yet.</p>
+        )}
+      </section>
+      <section id="user-flow">
+        <h2>User flow</h2>
+        {userFlow ? (
+          // Flow diagram: the steps in order, each with its boxes, and a labelled arrow to the next one.
+          <ol className="user-flow">
+            {userFlow.steps.map((step) => (
+              <li key={step.title}>
+                <h3>{step.title}</h3>
+                <ul className={`user-flow-boxes${step.main ? " user-flow-boxes--main" : ""}`}>
+                  {step.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+                {step.next && (
+                  <p className="user-flow-arrow">
+                    <span className="ds-icon" aria-hidden="true">
+                      arrow_downward
+                    </span>
+                    {step.next}
+                  </p>
+                )}
+              </li>
+            ))}
+          </ol>
         ) : (
           <p className="empty">Not written yet.</p>
         )}

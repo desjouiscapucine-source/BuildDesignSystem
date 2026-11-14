@@ -4904,3 +4904,25 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-14-B130-3.md` (created)
 - `docs/src/pages/ProjectPage.tsx`, `docs/src/structure.ts`, `docs/src/pages/SectionPages.tsx`, `docs/src/AppShell.tsx`, `.claude/skills/card/SKILL.md`, `.claude/skills/layout/SKILL.md`, `.claude/skills/navigation/SKILL.md`, `STEPS.md` (updated)
+
+## Step B130-4 — UX playground user flow
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- Entry points of the playground: a Level 2 section "UX playground" of Documentation, after Projects, and an icon button `design_services` in the header, just before the search field. Both open the playground page.
+- The playground opens directly on a canvas, which is a new composition, named on its first save; saved compositions are in the right panel of the canvas, a third tab "Compositions" (with Library and Properties).
+- First features: frames, library, properties, tokens, annotations, save, create the prototype / add to the backlog, pan and zoom.
+- User journey updated: phases 1 (Open the playground), 2 (Create a composition) and 6 (Save and share).
+- The user flow is shown as a **diagram** in a "User flow" section of the project page: steps in order (Entry points, Playground page, On the canvas, Exit), boxes, labelled arrows.
+- Audit finding #59: the user flow boxes in 4 / 2 / 1 columns, 8px apart, are an exception written in the `layout` skill.
+
+**What was done**
+- `projects/ux-playground/project.json`: `userFlow` (4 steps) and the 3 journey phases.
+- `docs/src/projects.ts`: `FlowStep` type. `docs/src/pages/ProjectPage.tsx`: User flow section (ordered list of steps, `h3`, boxes, arrow with label). `docs/src/docs.css`: `.user-flow` styles (tokens only, same boxes as the git workflow diagram, 768 / 1024px media queries).
+- `layout` skill: the user flow exception.
+- Compliance audit (`ds-compliance-audit`): `audits/2026-11-14-B130-4.md` — #59 found and settled by the decision above; "Flow diagrams" (not in the design system) now counts 2 pages; no new open finding.
+- Verification: type check and build pass; the project page shows the user flow on desktop and mobile with no console error.
+
+**Files**
+- `audits/2026-11-14-B130-4.md` (created)
+- `projects/ux-playground/project.json`, `docs/src/projects.ts`, `docs/src/pages/ProjectPage.tsx`, `docs/src/docs.css`, `.claude/skills/layout/SKILL.md`, `STEPS.md` (updated)

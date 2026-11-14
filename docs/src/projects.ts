@@ -5,12 +5,20 @@ export interface JourneyPhase {
   touchpoints: string;
 }
 
+export interface FlowStep {
+  title: string;
+  items: string[];
+  main?: boolean; // the screen the flow is built around
+  next?: string; // label of the arrow to the next step (or to the end of the flow)
+}
+
 export interface Project {
   slug: string; // folder name, kebab-case
   name: string;
   lead: string; // subtitle of the project page (page-header skill: 80 characters max)
   ticket?: string;
   journey?: { user: string; phases: JourneyPhase[] };
+  userFlow?: { steps: FlowStep[] };
 }
 
 const files = import.meta.glob<Omit<Project, "slug">>(["../../projects/*/project.json", "!../../projects/_*/**"], {

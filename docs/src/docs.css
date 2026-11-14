@@ -834,3 +834,41 @@ body.playground-frame { padding: var(--space-24); }
 @media (min-width: 1024px) {
   .journey-map { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
+
+/* Project page — user flow diagram: steps in order, boxes, labelled arrows (ProjectPage); same boxes as the git workflow diagram. */
+.user-flow { display: flex; flex-direction: column; gap: var(--space-8); margin: 0; padding: 0; list-style: none; }
+.user-flow h3 { margin: 0 0 var(--space-8); }
+.user-flow-boxes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-8);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.user-flow-boxes > li {
+  padding: var(--space-16);
+  border: var(--border-width-1) solid var(--color-border-default);
+  border-radius: var(--radius-8);
+  background: var(--color-background-page);
+}
+.user-flow-boxes--main > li { background: var(--color-background-brand-subtle); }
+.user-flow-arrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  margin: var(--space-8) 0 0;
+  color: var(--color-text-secondary);
+  font-size: var(--typography-label-sm-size);
+  font-family: var(--typography-label-sm-family);
+  font-weight: var(--typography-label-sm-weight);
+  line-height: var(--typography-label-sm-line-height);
+}
+/* --breakpoint-tablet (768px) */
+@media (min-width: 768px) {
+  .user-flow-boxes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* --breakpoint-desktop (1024px) */
+@media (min-width: 1024px) {
+  .user-flow-boxes { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}

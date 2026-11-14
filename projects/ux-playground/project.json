@@ -12,13 +12,13 @@
       },
       {
         "title": "Open the playground",
-        "actions": "Finds the UX playground space in the navigation, opens it and sees the existing compositions.",
-        "touchpoints": "Side navigation, list of compositions"
+        "actions": "Opens the UX playground from the side navigation or from the icon in the header; the playground opens on an empty canvas.",
+        "touchpoints": "Side navigation, header icon (design_services), canvas"
       },
       {
         "title": "Create a composition",
-        "actions": "Creates a new composition and names it.",
-        "touchpoints": "New composition button, name field"
+        "actions": "The empty canvas is a new composition; or opens a saved composition from the right panel.",
+        "touchpoints": "Canvas, right panel (Compositions tab)"
       },
       {
         "title": "Compose",
@@ -37,13 +37,56 @@
       },
       {
         "title": "Save and share",
-        "actions": "Saves the composition in the repository; the team reopens it from the list.",
-        "touchpoints": "Save button, list of compositions"
+        "actions": "Saves the composition in the repository, naming it on the first save; the team reopens it from the right panel.",
+        "touchpoints": "Save button, name field, right panel (Compositions tab)"
       },
       {
         "title": "Turn into a prototype or a ticket",
         "actions": "Chooses Create the prototype (ticket and prototype) or Add to the backlog (ticket only); the ticket waits for the Design System Lead's validation and takes over the composition.",
         "touchpoints": "Two buttons on the canvas, Backlog, Prototypes space"
+      }
+    ]
+  },
+  "userFlow": {
+    "steps": [
+      {
+        "title": "Entry points",
+        "items": [
+          "Side navigation: the UX playground section, after Projects",
+          "Header: the design_services icon button, before the search field"
+        ],
+        "next": "opens"
+      },
+      {
+        "title": "Playground page",
+        "main": true,
+        "items": [
+          "A canvas: a new composition",
+          "Right panel with three tabs: Library, Properties, Compositions"
+        ],
+        "next": "on the canvas, in any order"
+      },
+      {
+        "title": "On the canvas",
+        "items": [
+          "Frames: mobile, tablet and desktop, with the 4 / 8 / 12 column grid",
+          "Library: drag a component into a frame, place it on the grid, move it",
+          "Properties: variants, states and texts of the selected component",
+          "Tokens: an approved token or a free value marked not approved, for the selected component",
+          "Annotations: sticky notes, comments on a component or a frame",
+          "Pan and zoom",
+          "Save: the composition is named on the first save",
+          "Compositions: open a saved composition"
+        ],
+        "next": "action on the canvas"
+      },
+      {
+        "title": "Exit",
+        "items": [
+          "Create the prototype: prototype ticket and prototype",
+          "Add to the backlog: ticket only"
+        ],
+        "next": "ticket waits for the Design System Lead's validation (priority, release)"
       }
     ]
   }
