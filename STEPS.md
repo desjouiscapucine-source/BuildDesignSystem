@@ -5081,6 +5081,23 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `audits/2026-11-14-B141-4.md` (created)
+## Step B138-7 — Portfolio page: anonymized BNP Paribas mockups
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B138-6 merged into `develop`.
+- Mockups exported as SVG by the Lead are anonymized by Claude and added to the BNP Paribas card: "Dashboard — Pending signatures" and "Prototype" (AI data extraction). "Request_Greenlight" is anonymized too but kept in Figma only, not in the portfolio.
+- Anonymization of an SVG: MyCreditApp logo → neutral "Logo" block; BNP Paribas colors → design system colors (header → brand, green and gold actions → brand, teal and purple → info, tags → warning / success); outlined text → one lorem ipsum line per text line, same position and size, not distorted (the first version, squeezed to the original width, was blurry).
+- Each anonymized mockup is also imported into the Figma file "All project" (editable vectors).
+
+**What was done**
+- `assets/portfolio/bnp-paribas/dashboard-pending-signatures.svg`, `ai-data-extraction.svg` (new, anonymized; the anonymizer script stays outside the repository).
+- `docs/src/pages/PortfolioPage.tsx`: 2 images with alt texts in the BNP Paribas card (6 images).
+- Verification: typecheck passes; the 6 BNP thumbnails load; no console error; each SVG checked visually and only design system colors left.
+- Compliance audit: `audits/2026-11-14-B138-7.md` — 58 compliant, 11 non-compliant, 22 not in the design system; no new finding. Remarks: dashboard SVG heavy (654 KB, outlined text); lorem text of the AI mockup in the system font when Open Sans is not installed; near-square dashboard cropped in its thumbnail.
+
+**Files**
+- `assets/portfolio/bnp-paribas/dashboard-pending-signatures.svg`, `ai-data-extraction.svg`, `audits/2026-11-14-B138-7.md` (created)
 - `docs/src/pages/PortfolioPage.tsx`, `STEPS.md` (updated)
 
 ## Step B141-5 — Tag: brand level tag, 16px between tags; ticket closed

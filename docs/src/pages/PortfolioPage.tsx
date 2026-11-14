@@ -15,6 +15,8 @@ import bnpWorkspaceMap from "../../../assets/portfolio/bnp-paribas/workspace-map
 import bnpTableUserFlow from "../../../assets/portfolio/bnp-paribas/table-user-flow.webp";
 import bnpGovernanceProcess from "../../../assets/portfolio/bnp-paribas/governance-process.webp";
 import bnpAiTeamWorkflow from "../../../assets/portfolio/bnp-paribas/ai-team-workflow.webp";
+import bnpPendingSignatures from "../../../assets/portfolio/bnp-paribas/dashboard-pending-signatures.svg";
+import bnpAiDataExtraction from "../../../assets/portfolio/bnp-paribas/ai-data-extraction.svg";
 import bdsLanding from "../../../assets/portfolio/build-design-system/landing.png";
 import bdsComponentPage from "../../../assets/portfolio/build-design-system/component-page.png";
 import bdsBacklog from "../../../assets/portfolio/build-design-system/backlog.png";
@@ -77,6 +79,8 @@ const experiences: Experience[] = [
       { src: bnpTableUserFlow, alt: "User flow of a data table page: filters, consultation, bulk actions and details page, with the actions validated in workshop" },
       { src: bnpGovernanceProcess, alt: "Design system governance flowchart: from a new need, decide whether to reuse, extend or create a component, then write guidelines, review and release" },
       { src: bnpAiTeamWorkflow, alt: "Team workflow with GitHub and Claude: domain owners, the docs repository as source of truth, the steps from branch to merge, and the link to Jira tickets" },
+      { src: bnpPendingSignatures, alt: "Anonymized dashboard mockup: a table of pending signatures with status tags, tabs, filters and pagination" },
+      { src: bnpAiDataExtraction, alt: "Anonymized mockup of AI-powered forms: data extracted by AI shown in highlighted fields, each to confirm one by one" },
     ],
     context:
       "Consultant employed by mc2i, on assignment at BNP Paribas CIB. Within a cross-functional UX team, working across the credit chain: My Credit App and the projects connected to it.",
