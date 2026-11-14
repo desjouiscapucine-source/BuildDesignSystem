@@ -4799,3 +4799,21 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `releases/R1.md`, `audits/2026-11-11-R1.md`, `audits/2026-11-11-R1-tokens.md` (created)
 - `STEPS.md` (updated)
+
+## Step B102-1 — Prototype preview frames: Timeline panel visible in Safari
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- The bug happens in **Safari** on the Prototype page of the documentation site (`/docs/#/prototypes/work-description`): in the Mobile and Tablet frames, a click on the `timeline` icon button showed a blank frame, or the panel cut and on the left, with no dimmed background and no step text.
+- Fix validated in Safari by the Design System Lead.
+
+**What was done**
+- Cause: the preview frames are iframes scaled down with `transform: scale()`; Safari does not paint the fixed, animated layers inside them correctly (the Timeline panel). Not reproduced in Chromium, nor in the prototype opened on its own; the Timeline and the prototype are not at fault.
+- `docs/src/docs.css`: `.prototype-frame-screen` gets `will-change: transform`, so Safari paints each scaled frame on its own layer (comment naming B102). Timeline, prototype and components unchanged.
+- Verification: in Chromium the panel still opens in the Mobile and Tablet frames, no console error; in Safari checked by the Design System Lead.
+- Compliance audit: `audits/2026-11-14-B102-1.md` — 41 compliant, 10 non-compliant (all covered by existing tickets), 21 not in the design system; 0 fixed, 0 new; no new ticket.
+- B102 status `done`.
+
+**Files**
+- `audits/2026-11-14-B102-1.md` (created)
+- `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)

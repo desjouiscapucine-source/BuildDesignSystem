@@ -896,7 +896,7 @@
       "id": "B102",
       "title": "Bug: panel not visible on tablet and mobile",
       "category": "Prototypes",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "Prototype work-description: the panel does not show below desktop (tablet and mobile).",
       "priority": "medium",
