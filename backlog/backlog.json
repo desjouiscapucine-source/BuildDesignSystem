@@ -1532,6 +1532,24 @@
       ],
       "priority": "high",
       "release": "R2"
+    },
+    {
+      "id": "B147",
+      "title": "Tag: brand tone",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "Add a brand tone to the Tag component.",
+      "why": "The Design System Lead wants a brand-colored tag, next to the neutral and feedback tones. The documentation site used a brand-subtle tag before B118 (levels of the Navigation structure page).",
+      "scope": "Tag (complete, v1.0) goes back through Design (tokens of the brand tone, asked to the Design System Lead), Guidelines (when to use the brand tone) and Code. Then B118 chooses which tags of the documentation site use it.",
+      "doneWhen": [
+        "The Tag has a brand tone, approved in design, guidelines and code.",
+        "Its contrast pairs pass AA.",
+        "The Tag version and changelog are updated."
+      ],
+      "stage": "design",
+      "priority": "high",
+      "release": "R2"
     }
   ]
 }
