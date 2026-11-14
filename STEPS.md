@@ -4814,3 +4814,71 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `projects/ux-playground/project.json`, `docs/src/projects.ts`, `docs/src/pages/ProjectPage.tsx`, `audits/2026-11-05-B130-2.md` (created)
 - `docs/src/structure.ts`, `docs/src/App.tsx`, `docs/src/docs.css`, `docs/src/pages/NavigationPage.tsx`, `.claude/skills/navigation/SKILL.md`, `STEPS.md` (updated)
+
+## Step B135-1 — TimelineStep: date range text style
+**Date:** 2026-11-11
+
+**Decisions (made by the Design System Lead)**
+- The date range of TimelineStep uses the existing `body-sm` text style ("Notes, captions"); no new `caption` style. Fixed before release R1 (token audit of R1, B084).
+
+**What was done**
+- `TimelineStep.css`: `--typography-caption-*` (undefined) replaced with `--typography-body-sm-*`. The dates now render at 12px (they inherited 14px from their parent before).
+- `design/tokens.json` (variants default and selected) and `spec.md` (Design tokens table): `caption` → `body-sm`.
+- `meta.json`: version 1.1 with its changelog entry.
+- Verification: type check and `npm run tokens` pass; computed style of the dates = Open Sans 12px / 400 / 1.5; no console error. Color unchanged (`text.primary`), so contrast unchanged. `docs/` unchanged: the R1 compliance audit (`audits/2026-11-11-R1.md`) still applies.
+- B135 status `done`.
+
+**Files**
+- `components/TimelineStep/TimelineStep.css`, `components/TimelineStep/design/tokens.json`, `components/TimelineStep/spec.md`, `components/TimelineStep/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step R1-1 — Release R1
+**Date:** 2026-11-11 (planned 2026-11-06)
+
+**Decisions (made by the Design System Lead)**
+- Release R1 validated after review: commits, files, tickets, compliance audit and release note.
+- The token audit blocked the release on TimelineStep (unknown `caption` text style): fixed before the release with `body-sm` (B135, Step B135-1, TimelineStep 1.1).
+- The release note shows the actual date with the planned date in parentheses.
+
+**What was done**
+- Compliance audit of `develop`: `audits/2026-11-11-R1.md` — 41 compliant, 10 non-compliant (all covered by existing tickets), 21 not in the design system; no new ticket.
+- Token audit of every component: `audits/2026-11-11-R1-tokens.md` — 4 failures (TimelineStep), fixed by B135-1 and re-checked: 0 failure.
+- Release note `releases/R1.md`: tickets delivered by category, component versions, B055 and B057 carried over to R2.
+- `develop` merged into `main` (fast-forward) and tagged `R1`.
+
+**Files**
+- `releases/R1.md`, `audits/2026-11-11-R1.md`, `audits/2026-11-11-R1-tokens.md` (created)
+- `STEPS.md` (updated)
+
+## Step B102-1 — Prototype preview frames: Timeline panel visible in Safari
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- The bug happens in **Safari** on the Prototype page of the documentation site (`/docs/#/prototypes/work-description`): in the Mobile and Tablet frames, a click on the `timeline` icon button showed a blank frame, or the panel cut and on the left, with no dimmed background and no step text.
+- Fix validated in Safari by the Design System Lead.
+
+**What was done**
+- Cause: the preview frames are iframes scaled down with `transform: scale()`; Safari does not paint the fixed, animated layers inside them correctly (the Timeline panel). Not reproduced in Chromium, nor in the prototype opened on its own; the Timeline and the prototype are not at fault.
+- `docs/src/docs.css`: `.prototype-frame-screen` gets `will-change: transform`, so Safari paints each scaled frame on its own layer (comment naming B102). Timeline, prototype and components unchanged.
+- Verification: in Chromium the panel still opens in the Mobile and Tablet frames, no console error; in Safari checked by the Design System Lead.
+- Compliance audit: `audits/2026-11-14-B102-1.md` — 41 compliant, 10 non-compliant (all covered by existing tickets), 21 not in the design system; 0 fixed, 0 new; no new ticket.
+- B102 status `done`.
+
+**Files**
+- `audits/2026-11-14-B102-1.md` (created)
+- `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B102-2 — Playground canvas: visible in Safari
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B102-1 merged into `develop`.
+- The same fix is applied to the Playground tab of the component pages, which scales its canvas iframe the same way.
+
+**What was done**
+- `docs/src/docs.css`: `.playground-canvas` gets `will-change: transform` (comment naming B102), so Safari paints the scaled canvas on its own layer.
+- Verification: in Chromium, Timeline Playground at Mobile (375px): the `timeline` button opens the panel with its steps, no console error; in Safari checked by the Design System Lead.
+- Compliance audit: `audits/2026-11-14-B102-2.md` — 41 compliant, 10 non-compliant (all covered by existing tickets), 21 not in the design system; 0 fixed, 0 new; no new ticket.
+
+**Files**
+- `audits/2026-11-14-B102-2.md` (created)
+- `docs/src/docs.css`, `STEPS.md` (updated)

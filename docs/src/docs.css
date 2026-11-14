@@ -722,7 +722,9 @@ pre.code { background: var(--color-background-surface); padding: var(--space-16)
   box-shadow: var(--shadow-frame);
   background: var(--color-background-page);
 }
-.prototype-frame-screen { position: relative; transform-origin: top left; }
+/* will-change: Safari paints the scaled iframe on its own layer; without it, a fixed or animated layer inside the
+   prototype (e.g. the Timeline panel below desktop) is drawn blank or misplaced (B102). */
+.prototype-frame-screen { position: relative; transform-origin: top left; will-change: transform; }
 .prototype-frame-screen iframe { display: block; border: 0; }
 /* Grid overlay: same rules as .ds-grid (tokens/grid.css), with the column count of the frame width. */
 .prototype-grid-overlay { position: absolute; inset: 0; pointer-events: none; }
@@ -748,7 +750,8 @@ pre.code { background: var(--color-background-surface); padding: var(--space-16)
   border-radius: var(--radius-8);
   box-sizing: content-box;
 }
-.playground-canvas { display: block; border: 0; transform-origin: top left; background: var(--color-background-page); }
+/* will-change: Safari paints the scaled iframe on its own layer, so fixed or animated layers inside it show (B102). */
+.playground-canvas { display: block; border: 0; transform-origin: top left; will-change: transform; background: var(--color-background-page); }
 .playground-controls td { vertical-align: middle; }
 .playground-input {
   font: inherit;
