@@ -4877,3 +4877,24 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `docs/src/pages/PortfolioPage.tsx`, `audits/2026-11-14-B138-1.md` (created)
 - `docs/src/docs.css`, `docs/src/AppShell.tsx`, `docs/src/App.tsx`, `docs/src/pages/SectionPages.tsx`, `docs/src/pages/NavigationPage.tsx`, `.claude/skills/navigation/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B138-2 — Portfolio page: education in the timeline, landing description
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B138-1 merged into `develop`.
+- Education: the other degrees of the CV are added (Euridis, Ipac, École Sup Paris, with Icademie), and the trainings become steps of the timeline, after the jobs, each group from the most recent to the oldest (same approved exception). Short titles (60 characters max): the degree type goes to the step description and the card ("Master's degree · 2019 – 2021"); years only: 1 Jan → 31 Dec until B137; timeline label "Experience and education".
+- Landing page: the Portfolio space description becomes "Experience, skills and education".
+- Finding 56 (more than 3 tags side by side): the **Tag guidelines change** (no exception) → B141 extended. Finding 59 (card sub-headings in `label`): **B140 extended** to the Portfolio cards.
+- The Tag brand tone (B141) is worked in its own Composant Tag conversation.
+
+**What was done**
+- `docs/src/pages/PortfolioPage.tsx`: `education` with dates and degree; a `steps` array (jobs then trainings) drives the timeline and the selection; education cards show "<degree> · <dates>".
+- `index.html`, `docs/src/structure.ts`: Portfolio description.
+- `backlog/backlog.json`: B141 and B140 scope and "done when" extended.
+- Verification: typecheck passes; 8 steps; a click on a training step jumps to its card below the header and selects it; landing page shows the new description; Backlog page loads.
+- Compliance audit: `audits/2026-11-14-B138-2.md` — 50 compliant, 13 non-compliant, 22 not in the design system; 2 fixed (#57, #58), 1 new (#60: job and degree titles in Title Case, sentence case asked → question for the Design System Lead, B138).
+
+**Files**
+- `audits/2026-11-14-B138-2.md` (created)
+- `docs/src/pages/PortfolioPage.tsx`, `docs/src/structure.ts`, `index.html`, `backlog/backlog.json`, `STEPS.md` (updated)

@@ -1401,11 +1401,12 @@
       "origin": "proposal",
       "description": "The headings inside the skill cards of the How to use skills page use an approved text style.",
       "why": "Found by the compliance audit of Step B139-1 (audits/2026-11-14-B139-1.md, finding 56): the headings of the skill body (h5, h6 since B139) have no text style, only font-size: inherit (docs.css), so their weight, line height and margins come from the browser, and ## and ### headings look the same.",
-      "scope": "docs/src/docs.css (.skill-card .ds-card-text :is(h5, h6)) and, if needed, cardBody in docs/src/skills.ts. Decisions asked first: which text style for these headings; whether ## and ### headings look different; whether the rule covers the Agents cards too (same skill-card class) or only the Skills page; whether the theme titles (h3) and the card titles (h4) may share the heading-5 look.",
+      "scope": "docs/src/docs.css (.skill-card .ds-card-text :is(h5, h6)) and, if needed, cardBody in docs/src/skills.ts. Decisions asked first: which text style for these headings; whether ## and ### headings look different; whether the rule covers the Agents cards too (same skill-card class) or only the Skills page; whether the theme titles (h3) and the card titles (h4) may share the heading-5 look. Extended on 2026-11-14 (Design System Lead): also the sub-headings inside the Portfolio cards (docs/src/pages/PortfolioPage.tsx, h3 in the label style, approved for B138; finding 59 of audits/2026-11-14-B138-1.md).",
       "doneWhen": [
         "The headings of the skill body use the approved text style (its four tokens), as decided by the Design System Lead.",
         "The Agents page follows the decision about its cards.",
-        "The next compliance audit no longer lists finding 56."
+        "The next compliance audit no longer lists finding 56.",
+        "The sub-headings inside the Portfolio cards follow the same decision (finding 59 of audits/2026-11-14-B138-1.md)."
       ],
       "priority": "medium",
       "release": "R3"
@@ -1524,9 +1525,10 @@
       "origin": "proposal",
       "description": "A brand tone for the Tag, to highlight content without the meaning of a feedback state (e.g. the skills of the Portfolio page).",
       "why": "On a background.subtle surface, neutral Tags have the same background as the surface and do not stand out (Portfolio skills panel, B138). Proposed by Claude, approved by the Design System Lead on 2026-11-14.",
-      "scope": "components/Tag: spec (new tone), guidelines (when to use brand vs neutral), code (Tag.tsx, Tag.css, examples, playground). Tag is complete: new version and changelog entry (changelog skill). Design to approve first (never-invent); lead to explore: background background.brand-subtle, label text.brand, icon icon.brand (contrast pairs checked). Worked in a Composant Tag conversation, on component/Tag.",
+      "scope": "components/Tag: spec (new tone), guidelines (when to use brand vs neutral), code (Tag.tsx, Tag.css, examples, playground). Tag is complete: new version and changelog entry (changelog skill). Design to approve first (never-invent); lead to explore: background background.brand-subtle, label text.brand, icon icon.brand (contrast pairs checked). Worked in a Composant Tag conversation, on component/Tag. Guidelines also change the rule \"at most 3 tags side by side\" (finding 56 of audits/2026-11-14-B138-1.md: the Portfolio skills groups show up to 10 tags): decided by the Design System Lead on 2026-11-14 to change the guidelines rather than make an exception; the new rule is asked in the Composant Tag conversation. Once the brand tone exists, B118 (documentation site: use the Tag component) chooses which tags of the site use it, e.g. the levels L0-L4 of the Navigation structure page (decided by the Design System Lead on 2026-11-14; B147, a duplicate of this ticket, removed).",
       "doneWhen": [
         "The Tag brand tone is approved at each stage (design, guidelines, code).",
+        "The Tag guidelines say how many tags may be shown side by side (e.g. a list of skills), as decided by the Design System Lead; the next compliance audit no longer lists finding 56 of audits/2026-11-14-B138-1.md.",
         "New version with its changelog entry; the accessibility and token audits pass.",
         "The Portfolio page (B138) uses it for its skills."
       ],

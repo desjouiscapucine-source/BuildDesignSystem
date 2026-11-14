@@ -131,7 +131,7 @@ const portfolio: NavNode = {
   href: "#/portfolio",
   label: "Portfolio",
   icon: "work",
-  description: "Work made with the design system",
+  description: "Experience, skills and education",
   children: [{ href: "#/portfolio", label: "Portfolio", icon: "work" }],
 };
 
