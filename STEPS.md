@@ -4917,3 +4917,18 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-14-B118-1.md` (created)
 - `docs/src/pages/ComponentPage.tsx`, `docs/src/pages/NavigationPage.tsx`, `docs/src/pages/TicketDialog.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B118-2 — Documentation site: tags use the Tag component, ticket closed
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B118 is closed with the tones of B118-1 (neutral levels, success / warning iteration decisions), without waiting for the brand tone.
+- Choosing which tags of the documentation site use the brand tone (e.g. the levels L0–L4 of the Navigation structure page) becomes part of B141 (scope and "done when" extended on `develop`).
+
+**What was done**
+- `backlog/backlog.json`: B118 `done`, scope updated.
+- No change to the site since B118-1: the compliance audit `audits/2026-11-14-B118-1.md` stays valid.
+- Branch updated from `develop`, then merged into `develop`.
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)
