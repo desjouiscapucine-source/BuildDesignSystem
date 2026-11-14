@@ -339,7 +339,7 @@ export function PortfolioPage() {
               <ul className="portfolio-tags">
                 {group.tags.map((tag) => (
                   <li key={tag}>
-                    <Tag>{tag}</Tag>
+                    <Tag tone="brand">{tag}</Tag>
                   </li>
                 ))}
               </ul>

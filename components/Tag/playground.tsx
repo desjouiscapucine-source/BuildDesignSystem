@@ -6,9 +6,9 @@ export const playground = definePlayground({
   controls: {
     tone: {
       type: "select",
-      options: ["neutral", "success", "warning", "error", "info"],
+      options: ["neutral", "brand", "success", "warning", "error", "info"],
       default: "neutral",
-      description: "Color of the tag: neutral for a category, a feedback tone only when it matches the meaning. Default: neutral.",
+      description: "Color of the tag: neutral for a category, brand to highlight content (never a status), a feedback tone only when it matches the meaning. Default: neutral.",
     },
     icon: { type: "icon", default: "", optional: true, description: "Icon before the label: a Material Symbols name. Decorative." },
     children: { type: "text", default: "Decided", description: "The label: 1 or 2 words, sentence case." },

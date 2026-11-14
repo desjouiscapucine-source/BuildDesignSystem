@@ -3,8 +3,13 @@
   "description": "A small label that names a category or a status, or highlights content.",
   "level": "atom",
   "status": "complete",
-  "version": "1.0",
+  "version": "1.1",
   "changelog": [
+    {
+      "version": "1.1",
+      "date": "2026-11-14",
+      "changes": "New brand tone, to highlight content with no meaning of feedback; no limit on the number of tags side by side."
+    },
     {
       "version": "1.0",
       "date": "2026-10-29",
