@@ -4951,6 +4951,27 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-14-B141-1-accessibility.md`, `audits/2026-11-14-B141-1-tokens.md` (created)
 - `components/Tag/spec.md`, `components/Tag/design/tokens.json`, `tokens/contrast-pairs.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B141-2 — Tag: brand tone, guidelines approved
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- `brand` highlights content with no meaning of feedback (e.g. skills, keywords); `neutral` stays the default for categories; never `brand` for a status.
+- Tones can be mixed in the same group of tags.
+- No limit on the number of tags side by side: they wrap to the next line (replaces "at most 3"; finding 56 of `audits/2026-11-14-B138-1.md`).
+- Component description: "A small label that names a category or a status, or highlights content."
+- Guidelines approved; next: code.
+
+**What was done**
+- `guidelines.md`: When to use, Usage best practices, Do's and don'ts (brand pair replaces the "3 tags" pair).
+- `meta.json`: description.
+- Accessibility check (`audits/2026-11-14-B141-2-accessibility.md`): 3 pass, 0 fail.
+- `docs/` unchanged: the latest compliance audit still applies. B141 stage `code`.
+
+**Files**
+- `audits/2026-11-14-B141-2-accessibility.md` (created)
+- `components/Tag/guidelines.md`, `components/Tag/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B138-3 — Portfolio page: Tokywoky mockups
 **Date:** 2026-11-14
 

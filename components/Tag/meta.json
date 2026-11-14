@@ -1,6 +1,6 @@
 {
   "name": "Tag",
-  "description": "A small label that names a category or a status.",
+  "description": "A small label that names a category or a status, or highlights content.",
   "level": "atom",
   "status": "complete",
   "version": "1.0",
