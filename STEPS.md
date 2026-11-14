@@ -4898,3 +4898,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-14-B138-2.md` (created)
 - `docs/src/pages/PortfolioPage.tsx`, `docs/src/structure.ts`, `index.html`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B118-1 — Documentation site: tags use the Tag component
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- Atomic Design level of the component pages: neutral Tag, sentence case ("Atom").
+- Iteration decisions of the ticket modal: "Validated" success, "Changes requested" warning, no icon.
+- Levels L0–L4 of the Navigation structure page: neutral Tag.
+- "Complete" stays in the stage indicator (B060), out of B118.
+- B118 stays in progress: it waits for the brand tone of the Tag (B141), then chooses which tags of the site use it. B147, created as a duplicate of B141, is removed (B141 scope extended).
+
+**What was done**
+- `ds-compliance-fix` agent: hand-drawn tags replaced with `Tag` from `@ds/components` (backlog category and "Decided" already in TicketCard); `.level-tag`, `.backlog-tag`, `.nav-tree-level` removed from `docs.css`.
+- Verification: typecheck and build pass; preview checked on a component page, the Navigation structure page and the B031 ticket modal; no console error.
+- Compliance audit: `audits/2026-11-14-B118-1.md` — 54 compliant, 12 non-compliant, 22 not in the design system; 1 fixed (#9), 0 new; no new ticket.
+
+**Files**
+- `audits/2026-11-14-B118-1.md` (created)
+- `docs/src/pages/ComponentPage.tsx`, `docs/src/pages/NavigationPage.tsx`, `docs/src/pages/TicketDialog.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
