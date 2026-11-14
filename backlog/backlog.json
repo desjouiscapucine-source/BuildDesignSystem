@@ -1078,7 +1078,7 @@
       "id": "B118",
       "title": "Documentation site: use the Tag component",
       "category": "Tooling",
-      "status": "todo",
+      "status": "in-progress",
       "origin": "proposal",
       "description": "Replace the tags drawn by hand on the documentation site with the Tag component.",
       "why": "The site still shows its own tag styles (level-tag, backlog-tag in docs.css), outside the design system, now that Tag is complete (B059).",
