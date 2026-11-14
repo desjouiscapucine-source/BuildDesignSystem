@@ -4852,6 +4852,7 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-14-B139-1.md` (created)
 - `docs/src/skills.ts`, `docs/src/pages/SkillsPage.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B138-1 — Portfolio page: experience of the Design System Lead
 **Date:** 2026-11-14
 
@@ -5032,3 +5033,38 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-14-B141-3-accessibility.md`, `audits/2026-11-14-B141-3-tokens.md` (created)
 - `components/Tag/Tag.tsx`, `components/Tag/Tag.css`, `components/Tag/examples.tsx`, `components/Tag/playground.tsx`, `components/Tag/meta.json`, `STEPS.md` (updated)
+
+## Step B138-5 — Portfolio page: personal design system project, governance, mc2i
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B138-4 merged into `develop`.
+- New first step and card: **"Design system built with AI — Personal project"** (16 Oct 2026 → today, "Ongoing"): design system without Figma, 20 Claude skills, 4 agents, full process; 4 captures of the documentation site (landing page, Card component page, Backlog, How to use skills).
+- BNP Paribas card: the Lead is a consultant employed by mc2i, on assignment at BNP Paribas CIB (context sentence); design system governance process item and the Lead's governance flowchart (3rd image); Design System PO: "Integration tests" removed, "UI review of what has been developed, against the design" and "Breaking down epics into user stories" added.
+
+**What was done**
+- `assets/portfolio/bnp-paribas/governance-process.webp` (image given by the Lead), `assets/portfolio/build-design-system/*.png` (4 captures of the local site at 1440 × 900, headless Chrome).
+- `docs/src/pages/PortfolioPage.tsx`: new experience first (timeline 9 steps), BNP Paribas images, context and items.
+- Verification: typecheck passes; the new card, its "Ongoing" Tag and its 4 thumbnails load; 3 BNP thumbnails load; no console error.
+- Compliance audit: `audits/2026-11-14-B138-5.md` — 58 compliant, 11 non-compliant, 22 not in the design system; no new finding. Remarks: thumbnails cropped to 16:9, dense flowchart, PNG captures heavier than WebP.
+
+**Files**
+- `assets/portfolio/bnp-paribas/governance-process.webp`, `assets/portfolio/build-design-system/` (4 captures), `audits/2026-11-14-B138-5.md` (created)
+- `docs/src/pages/PortfolioPage.tsx`, `STEPS.md` (updated)
+
+## Step B138-6 — Portfolio page: AI team organization at BNP Paribas
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B138-5 merged into `develop`.
+- In the "AI-assisted design" section of the BNP Paribas card: the team organization set up around the AI tools (an owner per domain, GitHub as the source of truth for the UX and development docs, a branch and pull request workflow with Claude, linked to the Jira tickets), and the Lead's team workflow diagram (4th image, already anonymized).
+
+**What was done**
+- `assets/portfolio/bnp-paribas/ai-team-workflow.webp` (image given by the Lead).
+- `docs/src/pages/PortfolioPage.tsx`: new item and image with its alt text.
+- Verification: typecheck passes; the 4 BNP thumbnails load; no console error.
+- Compliance audit: `audits/2026-11-14-B138-6.md` — 58 compliant, 11 non-compliant, 22 not in the design system; no new finding.
+
+**Files**
+- `assets/portfolio/bnp-paribas/ai-team-workflow.webp`, `audits/2026-11-14-B138-6.md` (created)
+- `docs/src/pages/PortfolioPage.tsx`, `STEPS.md` (updated)

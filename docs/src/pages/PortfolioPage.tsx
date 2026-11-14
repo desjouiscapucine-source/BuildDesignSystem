@@ -2,7 +2,7 @@
 // (one card per timeline step, timeline on the right) and the `card` skill (cards stacked, 16px apart), with a skills
 // panel on the left (approved 2026-11-14).
 // Exception approved by the Design System Lead on 2026-11-14: the steps go from the most recent to the oldest,
-// the mc2i internal project right below the BNP Paribas mission it runs alongside.
+// the mc2i internal project right below the BNP Paribas mission it runs alongside; the personal design system project first (B138-5).
 import { useEffect, useRef, useState } from "react";
 import { Card, Tag, Timeline, TimelineStep, type ImageViewerImage } from "@ds/components";
 import tokywokyProductTesting from "../../../assets/portfolio/tokywoky/desktop-product-testing.png";
@@ -13,6 +13,12 @@ import tokywokyEditProfile from "../../../assets/portfolio/tokywoky/mobile-edit-
 import tokywokyProductTag from "../../../assets/portfolio/tokywoky/mobile-product-tag.png";
 import bnpWorkspaceMap from "../../../assets/portfolio/bnp-paribas/workspace-map.webp";
 import bnpTableUserFlow from "../../../assets/portfolio/bnp-paribas/table-user-flow.webp";
+import bnpGovernanceProcess from "../../../assets/portfolio/bnp-paribas/governance-process.webp";
+import bnpAiTeamWorkflow from "../../../assets/portfolio/bnp-paribas/ai-team-workflow.webp";
+import bdsLanding from "../../../assets/portfolio/build-design-system/landing.png";
+import bdsComponentPage from "../../../assets/portfolio/build-design-system/component-page.png";
+import bdsBacklog from "../../../assets/portfolio/build-design-system/backlog.png";
+import bdsSkills from "../../../assets/portfolio/build-design-system/skills.png";
 import { Header } from "./SectionPages";
 
 type Section = { title?: string; note?: string; text?: string; items: string[] };
@@ -34,6 +40,31 @@ type Experience = {
 // last day of the end month; an ongoing job ends today.
 const experiences: Experience[] = [
   {
+    id: "build-design-system",
+    title: "Design system built with AI — Personal project",
+    startDate: new Date(2026, 9, 16),
+    endDate: new Date(),
+    ongoing: true,
+    description: "Design system, Claude skills and agents.",
+    sections: [
+      {
+        items: [
+          "A design system built without Figma: design tokens, components in React and TypeScript, usage guidelines and a documentation site, all in one repository.",
+          "20 Claude skills that guide every task: component lifecycle (design, guidelines, code), token naming, layout, navigation, backlog, git workflow and release planning.",
+          "4 agents that check the work: compliance of the documentation site, accessibility (WCAG 2.2 AA), design token usage, and fixing of approved findings.",
+          "A full process: backlog with tickets, one branch per piece of work, review and approval at each stage, a release every two weeks.",
+        ],
+      },
+    ],
+    // Captures of the documentation site (B138-5).
+    images: [
+      { src: bdsLanding, alt: "Landing page of the design system site, with an illustrated background and the Documentation and Portfolio spaces" },
+      { src: bdsComponentPage, alt: "Card component page: version, stages, and the Playground tab with its controls" },
+      { src: bdsBacklog, alt: "Backlog page: tickets in To do, In progress and Done columns, with status, priority and release menus" },
+      { src: bdsSkills, alt: "How to use skills page: how the orchestrator dispatches a task, and the tree of skills" },
+    ],
+  },
+  {
     id: "bnp-paribas",
     title: "Product Designer · Design System PO — BNP Paribas",
     startDate: new Date(2023, 8, 1),
@@ -44,9 +75,11 @@ const experiences: Experience[] = [
     images: [
       { src: bnpWorkspaceMap, alt: "Map of the workspace and settings screens, with the links between them and workshop notes" },
       { src: bnpTableUserFlow, alt: "User flow of a data table page: filters, consultation, bulk actions and details page, with the actions validated in workshop" },
+      { src: bnpGovernanceProcess, alt: "Design system governance flowchart: from a new need, decide whether to reuse, extend or create a component, then write guidelines, review and release" },
+      { src: bnpAiTeamWorkflow, alt: "Team workflow with GitHub and Claude: domain owners, the docs repository as source of truth, the steps from branch to merge, and the link to Jira tickets" },
     ],
     context:
-      "Within a cross-functional UX team at BNP Paribas CIB, working across the credit chain: My Credit App and the projects connected to it.",
+      "Consultant employed by mc2i, on assignment at BNP Paribas CIB. Within a cross-functional UX team, working across the credit chain: My Credit App and the projects connected to it.",
     sections: [
       {
         title: "Product Designer",
@@ -63,8 +96,10 @@ const experiences: Experience[] = [
         items: [
           "Setting up and maintaining the design system with Storybook.",
           "Design system governance and roadmap.",
+          "Governance process of the design system, from a new need to a release: reuse an existing component, add a variant or create a new component, then guidelines, UI review and merge.",
           "Specifications, visual and functional guidelines, usage documentation in zeroheight.",
-          "Integration tests for consistency and reuse.",
+          "UI review of what has been developed, against the design.",
+          "Breaking down epics into user stories.",
         ],
       },
       {
@@ -83,6 +118,7 @@ const experiences: Experience[] = [
         note: "Since summer 2026",
         items: [
           "AI tools: Claude and Qwen.",
+          "Setting up a team organization around the AI tools: an owner per domain, GitHub as the source of truth for the UX and development docs (.md files), a branch and pull request workflow with Claude, linked to the Jira tickets.",
           "Git workflow with GitHub and Bitbucket: branches, reviews, releases.",
           "A Bitbucket repository for the prototypes, with a shared commit and push process for the team.",
           "Repository organization: design tokens, components, documentation and prototypes in a single repository.",
