@@ -5029,3 +5029,20 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `assets/portfolio/bnp-paribas/governance-process.webp`, `assets/portfolio/build-design-system/` (4 captures), `audits/2026-11-14-B138-5.md` (created)
 - `docs/src/pages/PortfolioPage.tsx`, `STEPS.md` (updated)
+
+## Step B138-6 — Portfolio page: AI team organization at BNP Paribas
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B138-5 merged into `develop`.
+- In the "AI-assisted design" section of the BNP Paribas card: the team organization set up around the AI tools (an owner per domain, GitHub as the source of truth for the UX and development docs, a branch and pull request workflow with Claude, linked to the Jira tickets), and the Lead's team workflow diagram (4th image, already anonymized).
+
+**What was done**
+- `assets/portfolio/bnp-paribas/ai-team-workflow.webp` (image given by the Lead).
+- `docs/src/pages/PortfolioPage.tsx`: new item and image with its alt text.
+- Verification: typecheck passes; the 4 BNP thumbnails load; no console error.
+- Compliance audit: `audits/2026-11-14-B138-6.md` — 58 compliant, 11 non-compliant, 22 not in the design system; no new finding.
+
+**Files**
+- `assets/portfolio/bnp-paribas/ai-team-workflow.webp`, `audits/2026-11-14-B138-6.md` (created)
+- `docs/src/pages/PortfolioPage.tsx`, `STEPS.md` (updated)

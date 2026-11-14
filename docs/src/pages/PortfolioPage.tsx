@@ -14,6 +14,7 @@ import tokywokyProductTag from "../../../assets/portfolio/tokywoky/mobile-produc
 import bnpWorkspaceMap from "../../../assets/portfolio/bnp-paribas/workspace-map.webp";
 import bnpTableUserFlow from "../../../assets/portfolio/bnp-paribas/table-user-flow.webp";
 import bnpGovernanceProcess from "../../../assets/portfolio/bnp-paribas/governance-process.webp";
+import bnpAiTeamWorkflow from "../../../assets/portfolio/bnp-paribas/ai-team-workflow.webp";
 import bdsLanding from "../../../assets/portfolio/build-design-system/landing.png";
 import bdsComponentPage from "../../../assets/portfolio/build-design-system/component-page.png";
 import bdsBacklog from "../../../assets/portfolio/build-design-system/backlog.png";
@@ -75,6 +76,7 @@ const experiences: Experience[] = [
       { src: bnpWorkspaceMap, alt: "Map of the workspace and settings screens, with the links between them and workshop notes" },
       { src: bnpTableUserFlow, alt: "User flow of a data table page: filters, consultation, bulk actions and details page, with the actions validated in workshop" },
       { src: bnpGovernanceProcess, alt: "Design system governance flowchart: from a new need, decide whether to reuse, extend or create a component, then write guidelines, review and release" },
+      { src: bnpAiTeamWorkflow, alt: "Team workflow with GitHub and Claude: domain owners, the docs repository as source of truth, the steps from branch to merge, and the link to Jira tickets" },
     ],
     context:
       "Consultant employed by mc2i, on assignment at BNP Paribas CIB. Within a cross-functional UX team, working across the credit chain: My Credit App and the projects connected to it.",
@@ -116,6 +118,7 @@ const experiences: Experience[] = [
         note: "Since summer 2026",
         items: [
           "AI tools: Claude and Qwen.",
+          "Setting up a team organization around the AI tools: an owner per domain, GitHub as the source of truth for the UX and development docs (.md files), a branch and pull request workflow with Claude, linked to the Jira tickets.",
           "Git workflow with GitHub and Bitbucket: branches, reviews, releases.",
           "A Bitbucket repository for the prototypes, with a shared commit and push process for the team.",
           "Repository organization: design tokens, components, documentation and prototypes in a single repository.",
