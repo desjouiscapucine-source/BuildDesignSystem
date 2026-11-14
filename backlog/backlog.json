@@ -1533,7 +1533,8 @@
         "The Portfolio page (B138) uses it for its skills.",
         "The tags of the documentation site that use the brand tone, chosen by the Design System Lead, use it."
       ],
-      "priority": "high",
+      "stage": "guidelines",
+  "priority": "high",
       "release": "R2"
     }
   ]

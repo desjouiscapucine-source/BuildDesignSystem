@@ -4932,3 +4932,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B141-1 — Tag: brand tone, design approved
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- New Tag tone **`brand`** (prop `tone="brand"`, class `.ds-tag--brand`): background `background.brand-subtle`, label `text.brand`, icon `icon.brand` (5.35:1). Chosen over a solid brand background with white text.
+- Design stage of the brand tone approved; next: guidelines.
+
+**What was done**
+- `spec.md`: `brand` added to the `tone` values and to the Design tokens table.
+- `design/tokens.json`: variant `brand`.
+- `tokens/contrast-pairs.json`: pair `icon.brand` on `background.brand-subtle` (3:1) added; `npm run tokens`: 62/62 pairs pass.
+- Accessibility check (`audits/2026-11-14-B141-1-accessibility.md`): 2 pass, 0 fail. Token audit (`audits/2026-11-14-B141-1-tokens.md`): 90 values, 0 fail.
+- `docs/` unchanged: the latest compliance audit (`audits/2026-11-14-B138-2.md`) still applies.
+- The Tag stays `complete` 1.0 until the code of the brand tone is approved (new version then). B141 stage `guidelines`.
+
+**Files**
+- `audits/2026-11-14-B141-1-accessibility.md`, `audits/2026-11-14-B141-1-tokens.md` (created)
+- `components/Tag/spec.md`, `components/Tag/design/tokens.json`, `tokens/contrast-pairs.json`, `backlog/backlog.json`, `STEPS.md` (updated)
