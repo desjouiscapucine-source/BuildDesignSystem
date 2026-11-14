@@ -13,11 +13,11 @@ export function ProjectPage({ project }: { project: Project }) {
         {journey ? (
           <>
             <p>User: {journey.user}</p>
-            {/* Journey map: one card per phase, in order (4 columns on desktop, 2 on tablet, 1 on mobile). */}
+            {/* Journey map: one card per phase, in order (4 columns on desktop, 2 on tablet, 1 on mobile): exception to the card skill (B130). */}
             <ol className="journey-map">
-              {journey.phases.map((phase, index) => (
+              {journey.phases.map((phase) => (
                 <li key={phase.title}>
-                  <Card title={`${index}. ${phase.title}`} headingLevel={3}>
+                  <Card title={phase.title} headingLevel={3}>
                     <p>{phase.actions}</p>
                     <p className="journey-touchpoints">
                       <strong>Touchpoints:</strong> {phase.touchpoints}

@@ -57,12 +57,13 @@ export function OverviewPage() {
 }
 
 // Level 2 — a section with Level 3 pages (Governance, Foundations): one card per page.
+// A section with an "All …" item of its own (e.g. Projects → All projects) shows the section, without a card to itself.
 export function SectionPage({ href }: { href: string }) {
-  const node = nodeAt(href);
+  const node = pathTo(href).find((n) => n.href === href && n.children) ?? nodeAt(href);
   return (
     <>
       <Header title={node.label} lead={node.description ?? ""} />
-      <LinkCards nodes={node.children ?? []} />
+      <LinkCards nodes={(node.children ?? []).filter((child) => child.href !== href)} />
     </>
   );
 }

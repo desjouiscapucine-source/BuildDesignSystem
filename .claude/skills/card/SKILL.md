@@ -18,6 +18,13 @@ A page combining a **Timeline** and Cards also follows the `page-content` skill 
 | Space between two stacked cards | **16px** (`--space-16`), the vertical spacing between blocks (`layout` skill) |
 | Columns | On the **layout grid** (`layout` skill) |
 
+## Exceptions
+
+Approved by the Design System Lead on 2026-11-11 (B130, audit findings #55 and #56).
+
+- **Journey map** (project pages, User journey section): one card per phase, **side by side** on the layout grid columns — 4 per row on desktop, 2 on tablet, 1 on mobile — instead of stacked; 16px (`--grid-gutter`) between them. Card titles are the phase name only (no number): the order is read in the grid.
+- **Label line**: a card may end with a label line (e.g. "Touchpoints: Landing page"): a bold label followed by a list of nouns, with no final period — an exception to "complete sentences".
+
 ## Grouping
 
 - **No nested cards**: never put a card inside another card.

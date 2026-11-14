@@ -4882,3 +4882,25 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-14-B102-2.md` (created)
 - `docs/src/docs.css`, `STEPS.md` (updated)
+
+## Step B130-3 — Journey map card rules and Projects in the side navigation
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead, from the findings of `audits/2026-11-05-B130-2.md`)**
+- #54: journey map card titles are the phase name only, no number.
+- #55: the "Touchpoints" label line (a bold label and a list of nouns, no final period) is an exception to "complete sentences", written in the `card` skill.
+- #56: the journey map cards sit side by side (4 / 2 / 1 per row), an exception written in the `card` and `layout` skills.
+- #57: Projects is a parent item in the side navigation, with each project and "All projects" (`#/projects`), like "All prototypes".
+- Timeline on the right of a project page: one step per section (User journey, User flow, Prototype), working dates, the role of the deliverable as description; User flow and Prototype dates empty for now. TimelineStep requires dates: a new ticket "TimelineStep: optional dates" (priority high, release R2) is created in a Composant TimelineStep conversation; the timeline comes to the project page once it is done.
+
+**What was done**
+- `docs/src/pages/ProjectPage.tsx`: card titles without the number. `docs/src/structure.ts`: "All projects" item.
+- `docs/src/pages/SectionPages.tsx` and `docs/src/AppShell.tsx`: a section with its own "All …" item shows the section (title, subtitle, cards without itself) and the breadcrumb stops above it — fix of #58, found by the audit of this step.
+- `card`, `layout` and `navigation` skills: the exceptions and the Projects rule.
+- Branch updated from `develop` (B135, R1, B102).
+- Compliance audit (`ds-compliance-audit`): `audits/2026-11-14-B130-3.md` — B130-2 #54–#57 fixed; #58 found and fixed in the step (checked in the browser); no new open finding.
+- Verification: type check and build pass; `#/projects`, `#/projects/ux-playground`, Overview and Governance checked in the browser.
+
+**Files**
+- `audits/2026-11-14-B130-3.md` (created)
+- `docs/src/pages/ProjectPage.tsx`, `docs/src/structure.ts`, `docs/src/pages/SectionPages.tsx`, `docs/src/AppShell.tsx`, `.claude/skills/card/SKILL.md`, `.claude/skills/layout/SKILL.md`, `.claude/skills/navigation/SKILL.md`, `STEPS.md` (updated)

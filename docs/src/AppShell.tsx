@@ -82,7 +82,9 @@ function navItems(nodes: NavNode[], current: string): ReactElement<NavigationIte
 // Level 1 pages have none: Portfolio is its own only page (same label as its space).
 function breadcrumbLevels(path: NavNode[], inNavigation: boolean): BreadcrumbLevel[] {
   if (path.length < 2 || path[1].label === path[0].label) return [];
-  const above = inNavigation ? path.slice(0, -1) : path;
+  // A section reached through its own "All …" item (e.g. Projects → All projects) is the page itself, not a level above it.
+  const page = path[path.length - 1];
+  const above = inNavigation ? path.slice(0, -1).filter((node, index) => index === 0 || node.href !== page.href) : path;
   return [{ label: "BuildDesignSystem", href: "/" }, ...above.map((node) => ({ label: node.label, href: node.href }))];
 }
 

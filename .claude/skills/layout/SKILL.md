@@ -39,6 +39,7 @@ Approved by the Design System Lead on 2026-10-20. Tokens in the `token-naming` s
 
 - **Maximum content width: 1040px, margins included** (992px for the columns). Beyond that, the grid stays centered.
 - **Exceptions (full width)**, approved by the Design System Lead on 2026-10-30 (B127): the **Backlog** page (Kanban board) and the **Prototype** pages (preview frames); and a page combining a Timeline and Cards (`page-content` skill).
+- **Journey map** (project pages): its cards sit side by side, 4 / 2 / 1 per row (desktop / tablet / mobile) with the 16px gutter, instead of stacked — approved by the Design System Lead on 2026-11-11 (B130, `card` skill).
 - The **16px between blocks** applies to the top-level blocks of a page. **Inside** a nested block (a section of a Foundations page, a tab panel of a component page, Markdown content such as a spec, guidelines or a release note), the current spacing is kept (e.g. more space above a section title): approved on 2026-10-30 (B127).
 - Classes (`tokens/grid.css`): `.ds-grid` on the container, `.ds-grid-span-<n>` on each item (1 column by default).
 - A span wider than the current number of columns takes the full width (e.g. `span-6` on mobile) — approved by the Design System Lead on 2026-10-20.

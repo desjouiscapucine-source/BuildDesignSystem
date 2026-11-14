@@ -39,12 +39,15 @@ const projectsSection: NavNode = {
   label: "Projects",
   icon: "folder_special",
   description: "User journeys of each project, before its user flow and prototype",
-  children: projects.map((project) => ({
-    href: `#/projects/${project.slug}`,
-    label: project.name,
-    icon: "folder_special",
-    description: project.lead,
-  })),
+  children: [
+    ...projects.map((project) => ({
+      href: `#/projects/${project.slug}`,
+      label: project.name,
+      icon: "folder_special",
+      description: project.lead,
+    })),
+    { href: "#/projects", label: "All projects", icon: "folder_special", description: "Open the projects list" },
+  ],
 };
 
 const documentation: NavNode = {
