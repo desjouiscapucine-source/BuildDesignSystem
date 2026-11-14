@@ -5135,3 +5135,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B148-1 — Portfolio page: Figma and GitHub links, languages
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- New ticket **B148** (high, R2) after B138 was closed.
+- Two link buttons on the subtitle line of the Portfolio page, aligned right: "Open the Figma file" (the whole file All project) and "Open GitHub repository" (`CapucineDjs/BuildDesignSystem`, private for now; it will be made public and moved to another account later, the link will be updated then). Brown buttons (Button `primary`) with the `open_in_new` icon, opening in a new tab (the Link guidelines exception: the icon and the accessible name say it).
+- A "Languages" group in the skills panel: French, English (professional).
+
+**What was done**
+- `docs/src/pages/PortfolioPage.tsx`: the page header is written inline (title, then a row with the subtitle and the two buttons); "Languages" in the skills data.
+- `docs/src/docs.css`: `.portfolio-lead-row` (subtitle and buttons on one line, wrapping below on small screens; the subtitle keeps the one-line + ellipsis rule), `.portfolio-links`.
+- `backlog/backlog.json`: B148 reserved, then `done`.
+- Verification: typecheck passes; at 1024px the subtitle and the buttons share one line, buttons right-aligned; at 375px the subtitle is cut with an ellipsis, the buttons go below, no horizontal scroll; `target="_blank"`, accessible names "…, in a new tab".
+- Compliance audit: `audits/2026-11-14-B148-1.md` — 61 compliant, 10 non-compliant, 22 not in the design system; #56 fixed (B141 Tag guidelines); #61 (subtitle ellipsis) and #62 (label in name) found and fixed in the step.
+
+**Files**
+- `audits/2026-11-14-B148-1.md` (created)
+- `docs/src/pages/PortfolioPage.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)

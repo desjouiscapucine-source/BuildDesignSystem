@@ -788,7 +788,12 @@ body.playground-frame { padding: var(--space-24); }
 /* ---------- Portfolio (B138) ---------- */
 /* page-content skill: the 12-column grid on the full width (no --size-content maximum), as the Backlog (B127). */
 .shell-content:has(.portfolio-content) { max-width: none; }
-.shell-content > .portfolio-content { margin-top: 0; margin-bottom: 0; }
+.shell-content > :is(.portfolio-content, .portfolio-lead-row) { margin-top: 0; margin-bottom: 0; }
+/* Subtitle and external link buttons on one line, the buttons aligned right; they wrap below on small screens (B148). */
+.portfolio-lead-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-16); }
+/* page-header skill: the subtitle stays on one line, cut with an ellipsis as a safety net. */
+.portfolio-lead-row .lead { flex: 1 1 0; margin: 0; min-width: 0; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.portfolio-links { display: flex; flex-wrap: wrap; gap: var(--space-16); }
 /* Skills panel: groups of Tags on a subtle background (not a Card, so it is not read as an experience). */
 .portfolio-skills {
   display: flex;

@@ -4,7 +4,7 @@
 // Exception approved by the Design System Lead on 2026-11-14: the steps go from the most recent to the oldest,
 // the mc2i internal project right below the BNP Paribas mission it runs alongside; the personal design system project first (B138-5).
 import { useEffect, useRef, useState } from "react";
-import { Card, Tag, Timeline, TimelineStep, type ImageViewerImage } from "@ds/components";
+import { Button, Card, Tag, Timeline, TimelineStep, type ImageViewerImage } from "@ds/components";
 import tokywokyProductTesting from "../../../assets/portfolio/tokywoky/desktop-product-testing.png";
 import tokywokyHomepage from "../../../assets/portfolio/tokywoky/desktop-homepage.png";
 import tokywokyMobileHomepage from "../../../assets/portfolio/tokywoky/mobile-homepage.png";
@@ -21,7 +21,6 @@ import bdsLanding from "../../../assets/portfolio/build-design-system/landing.pn
 import bdsComponentPage from "../../../assets/portfolio/build-design-system/component-page.png";
 import bdsBacklog from "../../../assets/portfolio/build-design-system/backlog.png";
 import bdsSkills from "../../../assets/portfolio/build-design-system/skills.png";
-import { Header } from "./SectionPages";
 
 type Section = { title?: string; note?: string; text?: string; items: string[] };
 
@@ -263,6 +262,7 @@ const skills: { title: string; tags: string[] }[] = [
     tags: ["Figma", "Storybook", "zeroheight", "Jira", "Maze", "Notion", "Claude", "Qwen", "GitHub", "Bitbucket"],
   },
   { title: "Expertise", tags: ["Banking", "E-commerce"] },
+  { title: "Languages", tags: ["French", "English (professional)"] },
 ];
 
 // The step of the card at the top of the reading area (below the sticky header): the last card whose top
@@ -329,7 +329,36 @@ export function PortfolioPage() {
 
   return (
     <>
-      <Header title="Designing systems that scale" lead="Product Designer · Design Systems · AI-assisted design" />
+      {/* Page header (page-header skill) with the external links on the subtitle line, aligned right (B148).
+          Buttons that open a new tab: the icon shows it, the accessible name says it (Link guidelines exception). */}
+      <h1 title="Designing systems that scale">Designing systems that scale</h1>
+      <div className="portfolio-lead-row">
+        <p className="lead" title="Product Designer · Design Systems · AI-assisted design">
+          Product Designer · Design Systems · AI-assisted design
+        </p>
+        <div className="portfolio-links">
+          <Button
+            variant="primary"
+            icon="open_in_new"
+            href="https://www.figma.com/design/W7K0rZVNMtEd7qW9LY1fUT/All-project"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Open the Figma file, in a new tab"
+          >
+            Open the Figma file
+          </Button>
+          <Button
+            variant="primary"
+            icon="open_in_new"
+            href="https://github.com/CapucineDjs/BuildDesignSystem"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Open GitHub repository, in a new tab"
+          >
+            Open GitHub repository
+          </Button>
+        </div>
+      </div>
       <div className="portfolio-content">
         {/* Focusable: on short screens the panel scrolls on its own, so it must be reachable with the keyboard (WCAG 2.1.1). */}
         <aside className="portfolio-skills" aria-label="Skills, tools and expertise" tabIndex={0}>
