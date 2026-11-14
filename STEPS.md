@@ -4817,3 +4817,19 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-14-B102-1.md` (created)
 - `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B102-2 — Playground canvas: visible in Safari
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B102-1 merged into `develop`.
+- The same fix is applied to the Playground tab of the component pages, which scales its canvas iframe the same way.
+
+**What was done**
+- `docs/src/docs.css`: `.playground-canvas` gets `will-change: transform` (comment naming B102), so Safari paints the scaled canvas on its own layer.
+- Verification: in Chromium, Timeline Playground at Mobile (375px): the `timeline` button opens the panel with its steps, no console error; in Safari checked by the Design System Lead.
+- Compliance audit: `audits/2026-11-14-B102-2.md` — 41 compliant, 10 non-compliant (all covered by existing tickets), 21 not in the design system; 0 fixed, 0 new; no new ticket.
+
+**Files**
+- `audits/2026-11-14-B102-2.md` (created)
+- `docs/src/docs.css`, `STEPS.md` (updated)

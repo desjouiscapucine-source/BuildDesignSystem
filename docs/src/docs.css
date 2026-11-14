@@ -750,7 +750,8 @@ pre.code { background: var(--color-background-surface); padding: var(--space-16)
   border-radius: var(--radius-8);
   box-sizing: content-box;
 }
-.playground-canvas { display: block; border: 0; transform-origin: top left; background: var(--color-background-page); }
+/* will-change: Safari paints the scaled iframe on its own layer, so fixed or animated layers inside it show (B102). */
+.playground-canvas { display: block; border: 0; transform-origin: top left; will-change: transform; background: var(--color-background-page); }
 .playground-controls td { vertical-align: middle; }
 .playground-input {
   font: inherit;
