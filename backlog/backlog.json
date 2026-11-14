@@ -1387,6 +1387,23 @@
       ],
       "priority": "high",
       "release": "R2"
+    },
+    {
+      "id": "B141",
+      "title": "Tag: brand tone",
+      "category": "Components",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "A brand tone for the Tag, to highlight content without the meaning of a feedback state (e.g. the skills of the Portfolio page).",
+      "why": "On a background.subtle surface, neutral Tags have the same background as the surface and do not stand out (Portfolio skills panel, B138). Proposed by Claude, approved by the Design System Lead on 2026-11-14.",
+      "scope": "components/Tag: spec (new tone), guidelines (when to use brand vs neutral), code (Tag.tsx, Tag.css, examples, playground). Tag is complete: new version and changelog entry (changelog skill). Design to approve first (never-invent); lead to explore: background background.brand-subtle, label text.brand, icon icon.brand (contrast pairs checked). Worked in a Composant Tag conversation, on component/Tag.",
+      "doneWhen": [
+        "The Tag brand tone is approved at each stage (design, guidelines, code).",
+        "New version with its changelog entry; the accessibility and token audits pass.",
+        "The Portfolio page (B138) uses it for its skills."
+      ],
+      "priority": "high",
+      "release": "R2"
     }
   ]
 }
