@@ -1371,6 +1371,24 @@
       ],
       "priority": "medium",
       "release": "R2"
+    },
+    {
+      "id": "B139",
+      "title": "How to use skills: skills grouped by theme",
+      "category": "Tooling",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "The Skills section of the How to use skills page groups the skills by theme instead of one flat list.",
+      "why": "The page lists the 20 project skills as one flat list of cards, which makes a skill hard to find as the number of skills grows.",
+      "scope": "docs/src/pages/SkillsPage.tsx: the Skills section is split into theme groups, each with a heading and its skill cards. The themes and which skill goes in each are decided with the Design System Lead first (never-invent). The How to use and Hierarchy sections are not changed.",
+      "doneWhen": [
+        "The themes and the skill of each theme are approved by the Design System Lead.",
+        "The Skills section shows one group per theme, each with its heading and its skill cards.",
+        "Every skill of .claude/skills/ appears in exactly one group, and a new skill without a theme is still shown.",
+        "The page follows the layout, page-header and card skills, and the compliance audit finds nothing new."
+      ],
+      "priority": "high",
+      "release": "R2"
     }
   ]
 }
