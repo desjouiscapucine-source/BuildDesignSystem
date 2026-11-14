@@ -1,3 +1,4 @@
+import { Tag } from "@ds/components";
 import { components, levels } from "../registry";
 import { Header } from "./SectionPages";
 
@@ -107,7 +108,7 @@ function Node({ node }: { node: NavNode }) {
   return (
     <li>
       <div className="nav-tree-row">
-        <span className="nav-tree-level">L{node.level}</span>
+        <Tag>L{node.level}</Tag>
         <span className="nav-tree-label">{node.label}</span>
         {node.note && <span className="nav-tree-note">{node.note}</span>}
       </div>

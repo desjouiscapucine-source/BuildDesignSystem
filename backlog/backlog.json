@@ -1078,11 +1078,11 @@
       "id": "B118",
       "title": "Documentation site: use the Tag component",
       "category": "Tooling",
-      "status": "todo",
+      "status": "done",
       "origin": "proposal",
       "description": "Replace the tags drawn by hand on the documentation site with the Tag component.",
       "why": "The site still shows its own tag styles (level-tag, backlog-tag in docs.css), outside the design system, now that Tag is complete (B059).",
-      "scope": "The Atomic Design level tag of the component pages, the backlog category tag and the \"Decided\" tag of the Backlog cards, the iteration decision tags of the ticket modal, the level tags of the Navigation structure page (.nav-tree-level) and the \"Complete\" item of the component pages (compliance audit audits/2026-10-30-B131-1.md, finding 9). The tone of each tag is asked to the Design System Lead (Tag guidelines). Asked first: is \"Complete\" a Tag, or the stage indicator (B060)?",
+      "scope": "The Atomic Design level tag of the component pages, the backlog category tag and the \"Decided\" tag of the Backlog cards, the iteration decision tags of the ticket modal, the level tags of the Navigation structure page (.nav-tree-level) and the \"Complete\" item of the component pages (compliance audit audits/2026-10-30-B131-1.md, finding 9). The tone of each tag is asked to the Design System Lead (Tag guidelines). Decided by the Design System Lead on 2026-11-14: level tags and the level of the Navigation structure page neutral, iteration decisions success (\"Validated\") / warning (\"Changes requested\"); \"Complete\" stays in the stage indicator (B060), out of scope. Closed with these tones; the tags of the site that will use the brand tone are chosen in B141.",
       "doneWhen": [
         "Every tag of the documentation site is a Tag from @ds/components.",
         "The level-tag, backlog-tag and nav-tree-level styles are removed from docs.css."
@@ -1521,18 +1521,20 @@
       "id": "B141",
       "title": "Tag: brand tone",
       "category": "Components",
-      "status": "todo",
+      "status": "in-progress",
       "origin": "proposal",
       "description": "A brand tone for the Tag, to highlight content without the meaning of a feedback state (e.g. the skills of the Portfolio page).",
       "why": "On a background.subtle surface, neutral Tags have the same background as the surface and do not stand out (Portfolio skills panel, B138). Proposed by Claude, approved by the Design System Lead on 2026-11-14.",
-      "scope": "components/Tag: spec (new tone), guidelines (when to use brand vs neutral), code (Tag.tsx, Tag.css, examples, playground). Tag is complete: new version and changelog entry (changelog skill). Design to approve first (never-invent); lead to explore: background background.brand-subtle, label text.brand, icon icon.brand (contrast pairs checked). Worked in a Composant Tag conversation, on component/Tag. Guidelines also change the rule \"at most 3 tags side by side\" (finding 56 of audits/2026-11-14-B138-1.md: the Portfolio skills groups show up to 10 tags): decided by the Design System Lead on 2026-11-14 to change the guidelines rather than make an exception; the new rule is asked in the Composant Tag conversation.",
+      "scope": "components/Tag: spec (new tone), guidelines (when to use brand vs neutral), code (Tag.tsx, Tag.css, examples, playground). Tag is complete: new version and changelog entry (changelog skill). Design to approve first (never-invent); lead to explore: background background.brand-subtle, label text.brand, icon icon.brand (contrast pairs checked). Worked in a Composant Tag conversation, on component/Tag. Guidelines also change the rule \"at most 3 tags side by side\" (finding 56 of audits/2026-11-14-B138-1.md: the Portfolio skills groups show up to 10 tags): decided by the Design System Lead on 2026-11-14 to change the guidelines rather than make an exception; the new rule is asked in the Composant Tag conversation. Once the brand tone exists, this ticket also chooses with the Design System Lead which tags of the documentation site use it, e.g. the levels L0-L4 of the Navigation structure page (B118 closed with neutral tags; decided by the Design System Lead on 2026-11-14).",
       "doneWhen": [
         "The Tag brand tone is approved at each stage (design, guidelines, code).",
         "The Tag guidelines say how many tags may be shown side by side (e.g. a list of skills), as decided by the Design System Lead; the next compliance audit no longer lists finding 56 of audits/2026-11-14-B138-1.md.",
         "New version with its changelog entry; the accessibility and token audits pass.",
-        "The Portfolio page (B138) uses it for its skills."
+        "The Portfolio page (B138) uses it for its skills.",
+        "The tags of the documentation site that use the brand tone, chosen by the Design System Lead, use it."
       ],
-      "priority": "high",
+      "stage": "guidelines",
+  "priority": "high",
       "release": "R2"
     }
   ]

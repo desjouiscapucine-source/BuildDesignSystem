@@ -1,5 +1,5 @@
 import { useId, useRef, useState, type KeyboardEvent } from "react";
-import { Button } from "@ds/components";
+import { Button, Tag } from "@ds/components";
 import type { ComponentDoc } from "../types";
 import { Markdown } from "../Markdown";
 import { StageBadge } from "../StageBadge";
@@ -63,7 +63,10 @@ export function ComponentPage({ component }: { component: ComponentDoc }) {
       <p className="lead" title={component.description}>
         {component.description}
       </p>
-      <p className="level-tag">{component.level}</p>
+      {/* Atomic Design level: neutral Tag, sentence case (Tag has no text-transform) */}
+      <p className="component-level">
+        <Tag>{component.level.charAt(0).toUpperCase() + component.level.slice(1)}</Tag>
+      </p>
       <StageBadge status={component.status} level={component.level} />
 
       <div className="tabs" role="tablist" aria-label="Component documentation" onKeyDown={onTabKeyDown}>

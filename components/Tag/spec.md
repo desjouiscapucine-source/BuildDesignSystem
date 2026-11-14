@@ -21,7 +21,7 @@ A small label that names a category or a status. Replaces the tags drawn by hand
 ### Variant properties
 | Property | Values | Default | Description |
 | -------- | ------ | ------- | ----------- |
-| `tone` | `neutral` / `success` / `warning` / `error` / `info` | `neutral` | Color of the tag. |
+| `tone` | `neutral` / `brand` / `success` / `warning` / `error` / `info` | `neutral` | Color of the tag. `brand` highlights content without the meaning of a feedback state (B141). |
 | `icon` | Material Symbol name, or none | none | Icon shown before the label. |
 
 ### Combinations
@@ -52,18 +52,21 @@ Not interactive: no target size requirement (WCAG 2.5.8 does not apply).
 | Part | Property | Variant / state | Token |
 | ---- | -------- | --------------- | ----- |
 | Container | Background | `tone = neutral` | `--color-background-subtle` |
+| Container | Background | `tone = brand` | `--color-background-brand-subtle` |
 | Container | Background | `tone = success` / `warning` / `error` / `info` | `--color-background-success-subtle` / `-warning-subtle` / `-error-subtle` / `-info-subtle` |
 | Container | Padding vertical / horizontal | all | `--space-0` / `--space-8` |
 | Container | Radius | all | `--radius-4` |
 | Container | Gap icon / label | all | `--space-4` |
 | Label | Text style | all | `label-sm` (`.ds-text-label-sm`) |
 | Label | Color | `tone = neutral` | `--color-text-secondary` |
+| Label | Color | `tone = brand` | `--color-text-brand` |
 | Label | Color | `tone = success` / `warning` / `error` / `info` | `--color-text-success` / `-warning` / `-error` / `-info` |
 | Icon | Size | all | `--icon-size-16` |
 | Icon | Color | `tone = neutral` | `--color-icon-secondary` |
+| Icon | Color | `tone = brand` | `--color-icon-brand` |
 | Icon | Color | `tone = success` / `warning` / `error` / `info` | `--color-icon-success` / `-warning` / `-error` / `-info` |
 
-Contrast (checked in `tokens/contrast-pairs.json`): every label color on its background — 4.5:1; every icon color on its background — 3:1 (`icon.secondary` on `background.subtle` added for this component).
+Contrast (checked in `tokens/contrast-pairs.json`): every label color on its background — 4.5:1; every icon color on its background — 3:1 (`icon.secondary` on `background.subtle` added for this component; `icon.brand` on `background.brand-subtle` added for the brand tone, B141).
 
 ## Open questions
 - None.

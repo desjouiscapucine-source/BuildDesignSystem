@@ -247,6 +247,11 @@
       "min": 3
     },
     {
+      "foreground": "color.icon.brand",
+      "background": "color.background.brand-subtle",
+      "min": 3
+    },
+    {
       "foreground": "color.icon.inverse",
       "background": "color.background.inverse",
       "min": 3

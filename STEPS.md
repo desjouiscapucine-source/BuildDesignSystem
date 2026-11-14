@@ -4899,6 +4899,58 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `audits/2026-11-14-B138-2.md` (created)
 - `docs/src/pages/PortfolioPage.tsx`, `docs/src/structure.ts`, `index.html`, `backlog/backlog.json`, `STEPS.md` (updated)
 
+## Step B118-1 — Documentation site: tags use the Tag component
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- Atomic Design level of the component pages: neutral Tag, sentence case ("Atom").
+- Iteration decisions of the ticket modal: "Validated" success, "Changes requested" warning, no icon.
+- Levels L0–L4 of the Navigation structure page: neutral Tag.
+- "Complete" stays in the stage indicator (B060), out of B118.
+- B118 stays in progress: it waits for the brand tone of the Tag (B141), then chooses which tags of the site use it. B147, created as a duplicate of B141, is removed (B141 scope extended).
+
+**What was done**
+- `ds-compliance-fix` agent: hand-drawn tags replaced with `Tag` from `@ds/components` (backlog category and "Decided" already in TicketCard); `.level-tag`, `.backlog-tag`, `.nav-tree-level` removed from `docs.css`.
+- Verification: typecheck and build pass; preview checked on a component page, the Navigation structure page and the B031 ticket modal; no console error.
+- Compliance audit: `audits/2026-11-14-B118-1.md` — 54 compliant, 12 non-compliant, 22 not in the design system; 1 fixed (#9), 0 new; no new ticket.
+
+**Files**
+- `audits/2026-11-14-B118-1.md` (created)
+- `docs/src/pages/ComponentPage.tsx`, `docs/src/pages/NavigationPage.tsx`, `docs/src/pages/TicketDialog.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B118-2 — Documentation site: tags use the Tag component, ticket closed
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B118 is closed with the tones of B118-1 (neutral levels, success / warning iteration decisions), without waiting for the brand tone.
+- Choosing which tags of the documentation site use the brand tone (e.g. the levels L0–L4 of the Navigation structure page) becomes part of B141 (scope and "done when" extended on `develop`).
+
+**What was done**
+- `backlog/backlog.json`: B118 `done`, scope updated.
+- No change to the site since B118-1: the compliance audit `audits/2026-11-14-B118-1.md` stays valid.
+- Branch updated from `develop`, then merged into `develop`.
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B141-1 — Tag: brand tone, design approved
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- New Tag tone **`brand`** (prop `tone="brand"`, class `.ds-tag--brand`): background `background.brand-subtle`, label `text.brand`, icon `icon.brand` (5.35:1). Chosen over a solid brand background with white text.
+- Design stage of the brand tone approved; next: guidelines.
+
+**What was done**
+- `spec.md`: `brand` added to the `tone` values and to the Design tokens table.
+- `design/tokens.json`: variant `brand`.
+- `tokens/contrast-pairs.json`: pair `icon.brand` on `background.brand-subtle` (3:1) added; `npm run tokens`: 62/62 pairs pass.
+- Accessibility check (`audits/2026-11-14-B141-1-accessibility.md`): 2 pass, 0 fail. Token audit (`audits/2026-11-14-B141-1-tokens.md`): 90 values, 0 fail.
+- `docs/` unchanged: the latest compliance audit (`audits/2026-11-14-B138-2.md`) still applies.
+- The Tag stays `complete` 1.0 until the code of the brand tone is approved (new version then). B141 stage `guidelines`.
+
+**Files**
+- `audits/2026-11-14-B141-1-accessibility.md`, `audits/2026-11-14-B141-1-tokens.md` (created)
+- `components/Tag/spec.md`, `components/Tag/design/tokens.json`, `tokens/contrast-pairs.json`, `backlog/backlog.json`, `STEPS.md` (updated)
 ## Step B138-3 — Portfolio page: Tokywoky mockups
 **Date:** 2026-11-14
 

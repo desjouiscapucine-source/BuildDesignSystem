@@ -254,7 +254,7 @@ code {
 .shell-content { display: flex; flex-direction: column; gap: var(--space-16); }
 .shell-content > *,
 /* Blocks that set their own vertical margin: named so the reset wins (no margin added to the 16px gap). */
-.shell-content > :is(.cards, .tabs, .stages, .level-tag, table.tokens, .backlog-filters, .backlog-rejected, .icon-try-preview) {
+.shell-content > :is(.cards, .tabs, .stages, table.tokens, .backlog-filters, .backlog-rejected, .icon-try-preview) {
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -523,15 +523,6 @@ code {
   width: var(--size-tree-connector);
   border-top: var(--border-width-1) solid var(--color-border-default);
 }
-.nav-tree-level {
-  padding: 0 var(--space-8);
-  border-radius: var(--radius-4);
-  background: var(--color-background-brand-subtle);
-  font-size: var(--typography-label-sm-size);
-  font-weight: var(--font-weight-semibold);
-  font-family: var(--typography-label-sm-family);
-  line-height: var(--typography-label-sm-line-height);
-}
 .nav-tree-label { font-weight: var(--font-weight-semibold); }
 .nav-tree-note { color: var(--color-text-secondary); font-size: var(--typography-body-sm-size); font-family: var(--typography-body-sm-family); font-weight: var(--typography-body-sm-weight); line-height: var(--typography-body-sm-line-height); }
 .skill-group { display: flex; flex-direction: column; gap: var(--space-16); } /* same spacing as the page content (layout skill) */
@@ -573,16 +564,6 @@ code {
 .backlog-column ul, .backlog-rejected-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-16); }
 /* Menus of a ticket in its modal: one Select each, side by side */
 .ticket-menus { display: grid; grid-template-columns: repeat(auto-fit, minmax(var(--size-ticket-menu), 1fr)); gap: var(--space-8); }
-.backlog-tag {
-  font-family: var(--typography-label-sm-family);
-  font-size: var(--typography-label-sm-size);
-  font-weight: var(--typography-label-sm-weight);
-  padding: 0 var(--space-8);
-  border-radius: var(--radius-4);
-  background: var(--color-background-subtle);
-  color: var(--color-text-secondary);
-  line-height: var(--typography-label-sm-line-height);
-}
 .backlog-id { margin-left: auto; font-family: var(--doc-mono); font-size: var(--typography-body-sm-size); line-height: var(--typography-body-sm-line-height); color: var(--color-text-secondary); }
 .backlog-error {
   background: var(--color-background-error-subtle);
@@ -603,8 +584,6 @@ code {
 .ticket h4:not(.ds-card-title) { margin: var(--space-8) 0 var(--space-4); font-family: var(--typography-label-family); font-size: var(--typography-label-size); line-height: var(--typography-label-line-height); font-weight: var(--typography-label-weight); }
 
 /* ---------- Ticket ---------- */
-.backlog-tag.validated { background: var(--color-background-success-subtle); color: var(--color-text-success); }
-.backlog-tag.changes-requested { background: var(--color-background-warning-subtle); color: var(--color-text-warning); }
 /* Card skill: iteration cards stacked 16px apart */
 .ticket-iterations { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--space-16); }
 
@@ -648,20 +627,8 @@ pre.code { background: var(--color-background-surface); padding: var(--space-16)
   font-weight: var(--font-weight-semibold);
   line-height: var(--typography-label-line-height);
 }
-.level-tag {
-  display: inline-block;
-  align-self: flex-start;
-  text-transform: capitalize;
-  margin: 0 0 var(--space-8);
-  padding: 0 var(--space-8);
-  border-radius: var(--radius-4);
-  background: var(--color-background-inverse);
-  color: var(--color-text-inverse);
-  font-family: var(--typography-label-sm-family);
-  font-size: var(--typography-label-sm-size);
-  font-weight: var(--typography-label-sm-weight);
-  line-height: var(--typography-label-sm-line-height);
-}
+/* Atomic Design level of a component page (a Tag): flex so the line box adds no height */
+.component-level { display: flex; }
 
 /* ---------- Design preview ---------- */
 .design-preview-note {
