@@ -5068,3 +5068,17 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `assets/portfolio/bnp-paribas/ai-team-workflow.webp`, `audits/2026-11-14-B138-6.md` (created)
 - `docs/src/pages/PortfolioPage.tsx`, `STEPS.md` (updated)
+
+## Step B141-4 — Portfolio page: skills in the brand Tag tone
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- The skills, tools and expertise of the Portfolio page use the Tag `brand` tone. Rendering validated.
+
+**What was done**
+- `PortfolioPage.tsx`: `<Tag>` → `<Tag tone="brand">` for the 22 skills tags (the "Ongoing" tag stays `info`). Checked in the browser: 22 brand tags on the `background.subtle` panel, no console error.
+- Compliance audit (`audits/2026-11-14-B141-4.md`): 59 compliant, 10 non-compliant (all covered by existing tickets), 22 not in the design system; finding 56 fixed; no new ticket.
+
+**Files**
+- `audits/2026-11-14-B141-4.md` (created)
+- `docs/src/pages/PortfolioPage.tsx`, `STEPS.md` (updated)
