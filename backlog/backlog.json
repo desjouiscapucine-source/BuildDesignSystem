@@ -1625,6 +1625,23 @@
       ],
       "priority": "high",
       "release": "R3"
+    },
+    {
+      "id": "B152",
+      "title": "Public site: frozen work time and read-only tickets",
+      "category": "Tooling",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "On the public site, the work-time clock shows a frozen total and the ticket menus are disabled.",
+      "why": "Asked by the Design System Lead on 2026-11-15: online, the time spent building is shown and the tickets are read-only.",
+      "scope": "Work time: the total is saved in a file of the repository (updated on release day) and shown online, frozen; locally the clock keeps ticking. Tickets: online, the Select menus of the Backlog page and the ticket modal are disabled, until the read-only TicketCard variant (B153).",
+      "doneWhen": [
+        "Online, the landing page and the site header show the frozen time spent building.",
+        "Online, the ticket menus are disabled; locally they still save.",
+        "Release day updates the saved total (git-workflow)."
+      ],
+      "priority": "high",
+      "release": "R3"
     }
   ]
 }
