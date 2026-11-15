@@ -1664,7 +1664,7 @@
       "id": "B155",
       "title": "Design preview: announced save message",
       "category": "Tooling",
-      "status": "todo",
+      "status": "done",
       "origin": "proposal",
       "description": "The save message of the Design preview tab is announced by screen readers and styled like the other error messages.",
       "why": "Compliance audit finding 68 (audits/2026-11-15-B154-1.md): the \"Saved…\" and \"Could not save the change. Try again.\" messages are not announced (WCAG 4.1.3), and the error uses secondary text, unlike the Backlog error.",

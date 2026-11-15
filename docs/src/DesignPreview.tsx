@@ -43,7 +43,8 @@ export function DesignPreview({ component }: { component: ComponentDoc }) {
   const variantNames = Object.keys(design.variants);
   const [variant, setVariant] = useState(variantNames[0]);
   const [text, setText] = useState(design.text ?? "Label");
-  const [status, setStatus] = useState<string | null>(null);
+  // Save message: "saved" is a status, "error" an alert styled like the Backlog error (B155).
+  const [status, setStatus] = useState<{ kind: "saved" | "error"; text: string } | null>(null);
   // Online (public site, built without the dev server): the token pickers are disabled and nothing is saved (B154).
   const readOnly = !import.meta.env.DEV;
   const lock = readOnly ? ({ disabled: true } as const) : {};
@@ -62,8 +63,9 @@ export function DesignPreview({ component }: { component: ComponentDoc }) {
     return merged;
   };
 
+  /** Saves a change locally; returns false when it could not be saved. */
   async function save(change: Record<string, unknown>) {
-    if (readOnly) return;
+    if (readOnly) return true;
     try {
       const response = await fetch("/api/design-tokens", {
         method: "PATCH",
@@ -71,15 +73,19 @@ export function DesignPreview({ component }: { component: ComponentDoc }) {
         body: JSON.stringify({ folder: component.folder, ...change }),
       });
       if (!response.ok) throw new Error(await response.text());
-      setStatus("Saved to design/tokens.json");
+      setStatus({ kind: "saved", text: "Saved to design/tokens.json" });
+      return true;
     } catch {
-      setStatus("Could not save the change. Try again.");
+      setStatus({ kind: "error", text: "Could not save the change. Try again." });
+      return false;
     }
   }
 
-  function setSlot(slot: string, token: string) {
+  // A token that cannot be saved goes back to the saved one (B155).
+  async function setSlot(slot: string, token: string) {
+    const saved = design;
     setDesign({ ...design, variants: { ...design.variants, [variant]: { ...values, [slot]: token } } });
-    save({ variant, slot, token });
+    if (!(await save({ variant, slot, token }))) setDesign(saved);
   }
 
   const color = (slot: string, state: PreviewState): Token | undefined => tokenById.get(valuesFor(state)[slot]);
@@ -129,7 +135,12 @@ export function DesignPreview({ component }: { component: ComponentDoc }) {
         ))}
       </div>
 
-      {status && <p className="resolved">{status}</p>}
+      <div role="status">{status?.kind === "saved" && <p className="resolved">{status.text}</p>}</div>
+      {status?.kind === "error" && (
+        <p className="backlog-error" role="alert">
+          {status.text}
+        </p>
+      )}
 
       <h3>Tokens — {variant}</h3>
       <table className="tokens">

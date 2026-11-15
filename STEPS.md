@@ -5312,3 +5312,21 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-15-B154-1.md` (created)
 - `docs/src/pages/BacklogPage.tsx`, `docs/src/DesignPreview.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B155-1 — Design preview: announced save message
+**Date:** 2026-11-15
+
+**Decisions (made by the Design System Lead)**
+- The error "Could not save the change. Try again." is an alert (`role="alert"`) in the same style as the Backlog error; "Saved to design/tokens.json" is a status (`role="status"`), in secondary text.
+- After a failed save, the token picker goes back to the saved value.
+- B155 finished before the early release R3.
+
+**What was done**
+- `docs/src/DesignPreview.tsx`: save message by kind (saved / error), a persistent `role="status"` region, the error in `.backlog-error` with `role="alert"`, `save` returns whether it saved and `setSlot` restores the saved design on a failure.
+- Checked on the dev server with Breadcrumb set to the design stage on the local copy only (restored after) and a simulated failed save: alert shown, picker back to the saved token, nothing saved.
+- Compliance audit: `audits/2026-11-15-B155-1.md` — 61 compliant, 14 non-compliant (#68 fixed, no new finding), 22 not in the design system.
+- `backlog/backlog.json`: B155 `done`.
+
+**Files**
+- `audits/2026-11-15-B155-1.md` (created)
+- `docs/src/DesignPreview.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
