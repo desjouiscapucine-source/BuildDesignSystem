@@ -5292,3 +5292,23 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `audits/2026-11-15-B152-1.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B154-1 — Documentation site: feedback when a change cannot be saved
+**Date:** 2026-11-15
+
+**Decisions (made by the Design System Lead)**
+- Locally, a ticket change that cannot be saved shows "Could not save the change. Try again." above the board; the ticket keeps its old value (TicketCard guidelines).
+- Online, the Design preview token pickers are disabled and nothing is saved (same exception as audit finding 67, until B153).
+- Locally, a backlog that cannot be read: menus disabled, no message (as online).
+- B154 finished before the early release R3.
+
+**What was done**
+- `docs/src/pages/BacklogPage.tsx`: error message on a failed local save.
+- `docs/src/DesignPreview.tsx`: pickers disabled online (`import.meta.env.DEV`), no save online (the Content field stays editable, not saved); the same message on a failed local save.
+- Checked on the dev server with a simulated failed save: message shown (`role="alert"`), value kept, nothing saved. During a first test the simulation did not apply: B008 was saved `in-progress` in `develop` by the Backlog page, then set back to `todo` the same way (two automatic `Backlog: B008` commits).
+- Compliance audit: `audits/2026-11-15-B154-1.md` — 60 compliant, 15 non-compliant (#66 fixed; new: #68, Design preview save message not announced; #67 extended to the Design preview pickers), 22 not in the design system.
+- `backlog/backlog.json`: B154 `done`.
+
+**Files**
+- `audits/2026-11-15-B154-1.md` (created)
+- `docs/src/pages/BacklogPage.tsx`, `docs/src/DesignPreview.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)

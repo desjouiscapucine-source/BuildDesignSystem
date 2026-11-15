@@ -44,6 +44,9 @@ export function DesignPreview({ component }: { component: ComponentDoc }) {
   const [variant, setVariant] = useState(variantNames[0]);
   const [text, setText] = useState(design.text ?? "Label");
   const [status, setStatus] = useState<string | null>(null);
+  // Online (public site, built without the dev server): the token pickers are disabled and nothing is saved (B154).
+  const readOnly = !import.meta.env.DEV;
+  const lock = readOnly ? ({ disabled: true } as const) : {};
 
   const values = design.variants[variant] ?? {};
   // Components without interaction states (e.g. a timeline step) show a single, wide canvas.
@@ -60,6 +63,7 @@ export function DesignPreview({ component }: { component: ComponentDoc }) {
   };
 
   async function save(change: Record<string, unknown>) {
+    if (readOnly) return;
     try {
       const response = await fetch("/api/design-tokens", {
         method: "PATCH",
@@ -69,7 +73,7 @@ export function DesignPreview({ component }: { component: ComponentDoc }) {
       if (!response.ok) throw new Error(await response.text());
       setStatus("Saved to design/tokens.json");
     } catch {
-      setStatus(null); // Online (public site): read-only, no message.
+      setStatus("Could not save the change. Try again.");
     }
   }
 
@@ -147,6 +151,7 @@ export function DesignPreview({ component }: { component: ComponentDoc }) {
                 </td>
                 <td>
                   <Select
+                    {...lock}
                     label={readableName(slot)}
                     placeholder="Choose a token"
                     value={values[slot] ?? ""}

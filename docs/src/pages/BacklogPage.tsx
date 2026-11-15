@@ -48,7 +48,8 @@ export function BacklogPage({ open }: { open?: string }) {
       setItems(data.items);
       setError(data.mainError ? `Saved in this folder only, not in develop: ${data.mainError}.` : null);
     } catch {
-      // Reached locally only (the menus are disabled online, B152): no message yet (audit finding 66).
+      // Reached locally only: the menus are disabled online (B152). The card keeps its old value (TicketCard guidelines, B154).
+      setError("Could not save the change. Try again.");
     }
   }
 

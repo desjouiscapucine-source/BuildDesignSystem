@@ -1647,7 +1647,7 @@
       "id": "B154",
       "title": "Documentation site: feedback when a change cannot be saved",
       "category": "Tooling",
-      "status": "todo",
+      "status": "done",
       "origin": "proposal",
       "description": "The site says when a change cannot be saved: Backlog menus and Design preview token pickers, online and locally.",
       "why": "Compliance audit finding 66 (audits/2026-11-15-B152-1.md): a failed save shows nothing, against the TicketCard guidelines (error message above the board, role=\"alert\"); online, the Design preview pickers stay enabled but save nothing.",
