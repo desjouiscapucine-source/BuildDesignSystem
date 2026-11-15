@@ -5154,3 +5154,18 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-14-B148-1.md` (created)
 - `docs/src/pages/PortfolioPage.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B148-2 — Portfolio page: French (native)
+**Date:** 2026-11-15
+
+**Decisions (made by the Design System Lead)**
+- B148-1 merged into `develop`. In the Languages group, French gets its level: "French (native)".
+
+**What was done**
+- `docs/src/pages/PortfolioPage.tsx`: Languages tag "French (native)".
+- Verification: typecheck passes; the Languages group shows "French (native)" and "English (professional)".
+- Compliance audit: `audits/2026-11-15-B148-2.md` — 61 compliant, 10 non-compliant, 22 not in the design system; no change.
+
+**Files**
+- `audits/2026-11-15-B148-2.md` (created)
+- `docs/src/pages/PortfolioPage.tsx`, `STEPS.md` (updated)

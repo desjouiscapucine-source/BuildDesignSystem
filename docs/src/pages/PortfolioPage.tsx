@@ -262,7 +262,7 @@ const skills: { title: string; tags: string[] }[] = [
     tags: ["Figma", "Storybook", "zeroheight", "Jira", "Maze", "Notion", "Claude", "Qwen", "GitHub", "Bitbucket"],
   },
   { title: "Expertise", tags: ["Banking", "E-commerce"] },
-  { title: "Languages", tags: ["French", "English (professional)"] },
+  { title: "Languages", tags: ["French (native)", "English (professional)"] },
 ];
 
 // The step of the card at the top of the reading area (below the sticky header): the last card whose top
