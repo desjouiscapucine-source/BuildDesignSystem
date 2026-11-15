@@ -1595,7 +1595,7 @@
       "id": "B150",
       "title": "Public site on Netlify",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "The documentation site and the prototypes are published online on Netlify, deployed from main.",
       "why": "Asked by the Design System Lead on 2026-11-15: make the work public, with a link that anyone can open (Portfolio).",

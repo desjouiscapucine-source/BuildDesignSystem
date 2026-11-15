@@ -5225,3 +5225,15 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `netlify.toml`, `audits/2026-11-15-B150-1.md` (created)
 - `.claude/launch.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B150-2 — Public site online, B150 done
+**Date:** 2026-11-15
+
+**What was done**
+- The Design System Lead created the Netlify site, connected to the repository and deployed from `main`: https://builddesignsystem.netlify.app
+- Checked online: landing page, Portfolio, documentation and the WorkDescription prototype show; the only console errors are the expected 404s of `/api/work-time` (local dev server only; the clock is hidden online).
+- `netlify.toml` reaches `main` with release R3; until then the same settings are set in the Netlify UI.
+- `backlog/backlog.json`: B150 `done`.
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)
