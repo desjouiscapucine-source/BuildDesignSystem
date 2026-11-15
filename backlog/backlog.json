@@ -1298,12 +1298,14 @@
       "origin": "proposal",
       "description": "Markdown code blocks and tables inside cards stay readable; the brand fill of a checked control is checked for contrast.",
       "why": "Found by the full compliance audit before the merge into develop (audits/2026-10-30-before-develop-merge.md), and by the audit of Step B039-1 for finding 47 (audits/2026-11-04-B039-1.md).",
-      "scope": "Audit findings 42 and 43: Markdown code blocks of the Skills and Agents cards (and any Markdown) overflow the card; the pair background.brand on background.page (checkbox fill, pressed toggle) is not in tokens/contrast-pairs.json. Audit finding 47: tables inside a Card (Markdown tables and table.tokens on the How to use skills, Agents and Release planning pages) inherit overflow-wrap: anywhere from .ds-card-text, so the first column shrinks to about one character and words break in two. Decisions asked first: same look as pre.code (surface background, padding) or scroll only; background.brand or border.focus for a checked control fill; tables in cards fixed on the site only (docs.css) or in the Card component (complete: new version and changelog); too-wide tables scroll horizontally or wrap between words.",
+      "scope": "Audit findings 42 and 43: Markdown code blocks of the Skills and Agents cards (and any Markdown) overflow the card; the pair background.brand on background.page (checkbox fill, pressed toggle) is not in tokens/contrast-pairs.json. Audit finding 47: tables inside a Card (Markdown tables and table.tokens on the How to use skills, Agents and Release planning pages) inherit overflow-wrap: anywhere from .ds-card-text, so the first column shrinks to about one character and words break in two. Decisions asked first: same look as pre.code (surface background, padding) or scroll only; background.brand or border.focus for a checked control fill; tables in cards fixed on the site only (docs.css) or in the Card component (complete: new version and changelog); too-wide tables scroll horizontally or wrap between words. Extended on 2026-11-15 (Design System Lead, R2 release review, audits/2026-11-15-R2.md): finding 64, the search field border on the header (border.strong on background.brand-subtle, measured 3.19:1) is not in tokens/contrast-pairs.json; finding 65, the accessible name of the Portfolio skills panel (\"Skills, tools and expertise\", PortfolioPage.tsx) no longer names the Languages group. Decisions asked first: list the pair in contrast-pairs.json or change the field or header colors; the wording of the panel name.",
       "doneWhen": [
         "Long code lines in Markdown scroll inside their block and never overflow the card.",
         "The brand fill pair is in contrast-pairs.json and npm run tokens passes.",
         "Tables inside cards keep whole words and never break a word in two.",
-        "The next compliance audit no longer lists findings 42, 43 and 47."
+        "The search field border pair is in contrast-pairs.json (or the colors are changed) and npm run tokens passes.",
+        "The accessible name of the Portfolio skills panel covers every group, Languages included.",
+        "The next compliance audit no longer lists findings 42, 43, 47, 64 and 65."
       ],
       "priority": "medium",
       "release": "R2"
@@ -1401,12 +1403,13 @@
       "origin": "proposal",
       "description": "The headings inside the skill cards of the How to use skills page use an approved text style.",
       "why": "Found by the compliance audit of Step B139-1 (audits/2026-11-14-B139-1.md, finding 56): the headings of the skill body (h5, h6 since B139) have no text style, only font-size: inherit (docs.css), so their weight, line height and margins come from the browser, and ## and ### headings look the same.",
-      "scope": "docs/src/docs.css (.skill-card .ds-card-text :is(h5, h6)) and, if needed, cardBody in docs/src/skills.ts. Decisions asked first: which text style for these headings; whether ## and ### headings look different; whether the rule covers the Agents cards too (same skill-card class) or only the Skills page; whether the theme titles (h3) and the card titles (h4) may share the heading-5 look. Extended on 2026-11-14 (Design System Lead): also the sub-headings inside the Portfolio cards (docs/src/pages/PortfolioPage.tsx, h3 in the label style, approved for B138; finding 59 of audits/2026-11-14-B138-1.md).",
+      "scope": "docs/src/docs.css (.skill-card .ds-card-text :is(h5, h6)) and, if needed, cardBody in docs/src/skills.ts. Decisions asked first: which text style for these headings; whether ## and ### headings look different; whether the rule covers the Agents cards too (same skill-card class) or only the Skills page; whether the theme titles (h3) and the card titles (h4) may share the heading-5 look. Extended on 2026-11-14 (Design System Lead): also the sub-headings inside the Portfolio cards (docs/src/pages/PortfolioPage.tsx, h3 in the label style, approved for B138; finding 59 of audits/2026-11-14-B138-1.md). Extended on 2026-11-15 (Design System Lead, R2 release review, finding 63 of audits/2026-11-15-R2.md): the headings of the Agents cards — ## becomes h4 (docs/src/pages/AgentsPage.tsx), which has no site rule (browser defaults).",
       "doneWhen": [
         "The headings of the skill body use the approved text style (its four tokens), as decided by the Design System Lead.",
         "The Agents page follows the decision about its cards.",
         "The next compliance audit no longer lists finding 56.",
-        "The sub-headings inside the Portfolio cards follow the same decision (finding 59 of audits/2026-11-14-B138-1.md)."
+        "The sub-headings inside the Portfolio cards follow the same decision (finding 59 of audits/2026-11-14-B138-1.md).",
+        "The h4 headings of the Agents cards follow the same decision (finding 63 of audits/2026-11-15-R2.md)."
       ],
       "priority": "medium",
       "release": "R3"

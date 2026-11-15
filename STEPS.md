@@ -5189,3 +5189,21 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-15-B149-1.md` (created)
 - `CLAUDE.md`, `docs/src/pages/PortfolioPage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step R2-1 — Release R2
+**Date:** 2026-11-15
+
+**Decisions (made by the Design System Lead)**
+- Release R2 made on 2026-11-15, ahead of its planned date (Fri 2026-11-20); release validated after the review.
+- B132 extended with findings 64 (search field border pair `border.strong` / `background.brand-subtle`) and 65 (accessible name of the Portfolio skills panel); B140 extended with the h4 headings of the Agents cards (finding 63).
+
+**What was done**
+- Review of `origin/main..origin/develop`: 50 commits, 68 files; 9 of the 23 R2 tickets done (B084 delivered early in R1).
+- Release note `releases/R2.md`: B141 Tag brand tone; B102; B118, B139, B138, B148, B147, B149; Tag 1.2, TicketCard 1.1; 14 tickets carried over to R3 (B055 and B057 from R1).
+- Token audit of every component: `audits/2026-11-15-R2-tokens.md` — 17 components, 0 failures, not blocking.
+- Compliance audit: `audits/2026-11-15-R2.md` — 61 compliant, 13 non-compliant (new: 64, 65; 63 re-listed), 22 not in the design system; no new ticket.
+- `develop` merged into `main`, tag `R2`.
+
+**Files**
+- `releases/R2.md`, `audits/2026-11-15-R2.md`, `audits/2026-11-15-R2-tokens.md` (created)
+- `backlog/backlog.json`, `STEPS.md` (updated)
