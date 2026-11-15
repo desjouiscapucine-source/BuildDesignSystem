@@ -1676,6 +1676,21 @@
       ],
       "priority": "high",
       "release": "R3"
+    },
+    {
+      "id": "B156",
+      "title": "Add an All rights reserved license",
+      "category": "Tooling",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "The public repository states that its content is copyrighted, all rights reserved.",
+      "why": "Asked by the Design System Lead on 2026-11-15: GitHub cannot turn off the ZIP download of a public repository, so the license makes it explicit that the code, design and documentation may be read but not reused.",
+      "scope": "A LICENSE file at the root of the repository (All rights reserved, Capucine Desjouis), and the license field of package.json. No change to the visibility of the repository.",
+      "doneWhen": [
+        "LICENSE is at the root of the repository and GitHub shows it on the repository page.",
+        "package.json declares the license."
+      ],
+      "priority": "high"
     }
   ]
 }
