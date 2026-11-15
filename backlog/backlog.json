@@ -1587,6 +1587,23 @@
       ],
       "priority": "high",
       "release": "R2"
+    },
+    {
+      "id": "B150",
+      "title": "Public site on Netlify",
+      "category": "Tooling",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "The documentation site and the prototypes are published online on Netlify, deployed from main.",
+      "why": "Asked by the Design System Lead on 2026-11-15: make the work public, with a link that anyone can open (Portfolio).",
+      "scope": "Static build of the whole site (/docs/ and /prototypes/) hosted on Netlify, connected to the public repository desjouiscapucine-source/BuildDesignSystem and deployed automatically from main (released work only). Online, the site is read-only: Backlog page changes only work on the local dev server. The Netlify account and its link to the repository are created by the Design System Lead.",
+      "doneWhen": [
+        "The site (/docs/ and /prototypes/) opens at a public Netlify address.",
+        "Every push to main deploys the site again, automatically.",
+        "Pages that need the local dev server (Backlog edits, skills, agents, branches) work or say clearly that they are read-only online."
+      ],
+      "priority": "high",
+      "release": "R2"
     }
   ]
 }
