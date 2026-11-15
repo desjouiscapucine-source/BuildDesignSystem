@@ -350,7 +350,7 @@ export function PortfolioPage() {
           <Button
             variant="primary"
             icon="open_in_new"
-            href="https://github.com/CapucineDjs/BuildDesignSystem"
+            href="https://github.com/desjouiscapucine-source/BuildDesignSystem"
             target="_blank"
             rel="noreferrer"
             aria-label="Open GitHub repository, in a new tab"

@@ -5169,3 +5169,23 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-15-B148-2.md` (created)
 - `docs/src/pages/PortfolioPage.tsx`, `STEPS.md` (updated)
+
+## Step B149-1 — Repository moved to the new GitHub account
+**Date:** 2026-11-15
+
+**Decisions (made by the Design System Lead)**
+- New ticket **B149** (high, R2): the repository moves from `CapucineDjs/BuildDesignSystem` (private) to **`desjouiscapucine-source/BuildDesignSystem` (public)**, an empty repository created by the Lead; `CapucineDjs` invited as a collaborator (push).
+- No token pasted in the chat: access through the collaborator invitation.
+
+**What was done**
+- History scanned before going public: all 309 commits use the GitHub noreply address; no real name, client ID, phone number or personal email in any version of any file.
+- Every branch (8) and the tag R1 pushed to the new repository, full history; refs compared: identical.
+- `origin` of the project now points to the new repository: one setting shared by the root folder, `BuildDesignSystem-main` and every worktree (the other conversations push there at their next commit).
+- `CLAUDE.md`: the public repository and its move; `docs/src/pages/PortfolioPage.tsx`: the "Open GitHub repository" button points to the new repository. No skill or other page named the repository.
+- `backlog/backlog.json`: B149 reserved, then `done`.
+- Compliance audit: `audits/2026-11-15-B149-1.md` — 61 compliant, 10 non-compliant, 22 not in the design system; no change.
+- Left to the Lead on GitHub (admin of the new account): default branch → `main` (GitHub chose `component/Select`, the first branch pushed); archive or delete the old repository.
+
+**Files**
+- `audits/2026-11-15-B149-1.md` (created)
+- `CLAUDE.md`, `docs/src/pages/PortfolioPage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)

@@ -1575,7 +1575,7 @@
       "id": "B149",
       "title": "Migrate the repository to the new GitHub account",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "The project repository moves from CapucineDjs/BuildDesignSystem (private) to desjouiscapucine-source/BuildDesignSystem (public).",
       "why": "Asked by the Design System Lead on 2026-11-15: a public repository on the new account, linked from the Portfolio page.",
