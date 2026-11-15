@@ -5349,3 +5349,20 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `releases/R3.md`, `audits/2026-11-15-R3.md`, `audits/2026-11-15-R3-tokens.md` (created)
 - `docs/src/work-time.json`, `STEPS.md` (updated)
+
+## Step B156-1 — All rights reserved license
+**Date:** 2026-11-15
+
+**Decisions (made by the Design System Lead)**
+- New ticket **B156** (high, no release): GitHub cannot turn off the ZIP download of a public repository, so the repository stays public with an explicit **All rights reserved** license (option chosen over making the repository private, so the GitHub link of the Portfolio page and the CV keeps working).
+- License text validated, with the Lead's email as contact.
+
+**What was done**
+- `LICENSE` at the root: copyright Capucine Desjouis 2026, all rights reserved; the content may be viewed, not copied, modified, distributed or reused without written permission.
+- `package.json`: `"license": "SEE LICENSE IN LICENSE"`.
+- `backlog/backlog.json`: B156 reserved, then `done`.
+- Compliance audit: `audits/2026-11-15-B156-1.md` — 61 compliant, 14 non-compliant, 22 not in the design system; no change, no new ticket.
+
+**Files**
+- `LICENSE`, `audits/2026-11-15-B156-1.md` (created)
+- `package.json`, `backlog/backlog.json`, `STEPS.md` (updated)
