@@ -1625,6 +1625,22 @@
       ],
       "priority": "high",
       "release": "R3"
+    },
+    {
+      "id": "B153",
+      "title": "TicketCard: read-only variant",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "A read-only TicketCard: the status, priority, release and stage shown as plain values instead of menus.",
+      "why": "Asked by the Design System Lead on 2026-11-15: on the public site, tickets are read-only. Until this variant exists, the menus are disabled online (B152).",
+      "scope": "New read-only variant of TicketCard (design spec and preview, guidelines, code), then used on the Backlog page and in the ticket modal of the public site instead of the disabled menus.",
+      "doneWhen": [
+        "The read-only variant is designed, documented and coded, approved at each stage.",
+        "Online, the Backlog page and the ticket modal show it instead of disabled menus."
+      ],
+      "priority": "high",
+      "stage": "design"
     }
   ]
 }
