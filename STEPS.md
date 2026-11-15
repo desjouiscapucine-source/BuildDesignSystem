@@ -5330,3 +5330,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-15-B155-1.md` (created)
 - `docs/src/DesignPreview.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step R3-1 — Release R3
+**Date:** 2026-11-15
+
+**Decisions (made by the Design System Lead)**
+- Release R3 made on 2026-11-15, ahead of its planned date (Fri 2026-12-04), so that B151, B152, B154 and B155 reach the public site; release validated after the review.
+- **Exception**: the release was run from the conversation of the public site work, not from the Gouvernance conversation (git-workflow, section 8), at the Design System Lead's request.
+
+**What was done**
+- Review of `origin/main..origin/develop`: 19 commits, 29 files; no change in `components/` or `tokens/`. Tickets delivered: B150 (carried over from R2), B151, B152, B154, B155.
+- Release note `releases/R3.md`: delivered tickets; no component version; tickets carried over to R4.
+- `npm run work-time`: `docs/src/work-time.json` — 72,400 s (20:06:40), shown frozen on the public site.
+- Token audit of every component: `audits/2026-11-15-R3-tokens.md` — 17 components, 0 failures, not blocking.
+- Compliance audit: `audits/2026-11-15-R3.md` — 61 compliant, 14 non-compliant (no new finding; #66 and #68 fixed during the cycle, #67 accepted exception), 22 not in the design system; no new ticket.
+- `develop` merged into `main`, tag `R3`; Netlify deploys `main` to https://builddesignsystem.netlify.app
+
+**Files**
+- `releases/R3.md`, `audits/2026-11-15-R3.md`, `audits/2026-11-15-R3-tokens.md` (created)
+- `docs/src/work-time.json`, `STEPS.md` (updated)
