@@ -59,7 +59,7 @@ const experiences: Experience[] = [
     ],
     // Captures of the documentation site (B138-5).
     images: [
-      { src: bdsLanding, alt: "Landing page of the design system site, with an illustrated background and the Documentation and Portfolio spaces" },
+      { src: bdsLanding, alt: "Landing page of the design system site, with an illustrated background and the Design system and Portfolio spaces" },
       { src: bdsComponentPage, alt: "Card component page: version, stages, and the Playground tab with its controls" },
       { src: bdsBacklog, alt: "Backlog page: tickets in To do, In progress and Done columns, with status, priority and release menus" },
       { src: bdsSkills, alt: "How to use skills page: how the orchestrator dispatches a task, and the tree of skills" },

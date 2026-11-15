@@ -69,7 +69,7 @@ export function DesignPreview({ component }: { component: ComponentDoc }) {
       if (!response.ok) throw new Error(await response.text());
       setStatus("Saved to design/tokens.json");
     } catch {
-      setStatus("Not saved: changes are saved only when the site runs with `npm run dev`.");
+      setStatus(null); // Online (public site): read-only, no message.
     }
   }
 

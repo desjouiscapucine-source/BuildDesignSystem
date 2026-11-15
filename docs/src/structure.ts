@@ -34,11 +34,11 @@ const prototypesSection: NavNode = {
 
 const documentation: NavNode = {
   href: "#/",
-  label: "Documentation",
+  label: "Design system",
   icon: "menu_book",
   description: "Governance, foundations, components and prototypes",
   children: [
-    { href: "#/", label: "Overview", icon: "home", description: "What the documentation contains" },
+    { href: "#/", label: "Overview", icon: "home", description: "What the design system contains" },
     {
       href: "#/governance",
       label: "Governance",

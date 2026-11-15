@@ -5237,3 +5237,27 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B151-1 — Public site: landing page and Design system wording
+**Date:** 2026-11-15
+
+**Decisions (made by the Design System Lead)**
+- Landing page: subtitle "A design system built with AI, from tokens to code." and an introduction text ("BuildDesignSystem is a design system built without Figma…"); the Documentation card renamed Design system.
+- The Documentation space is renamed **Design system** everywhere on the site.
+- Overview: new Description — the design system of BuildDesignSystem, the project that built this site.
+- Every text mentioning `npm run dev` is removed: no message on the Backlog page and in the Design preview tab; Branches page: "Read live from git." and "Not available online.".
+- B151: Tooling, priority high, release R3.
+
+**What was done**
+- `index.html`: subtitle, introduction paragraph, Design system card. `docs/index.html`: tab title "Design system — BuildDesignSystem".
+- `docs/src/structure.ts` (space label, Overview description), `App.tsx` (comment), `pages/NavigationPage.tsx`, `pages/PortfolioPage.tsx` (image alt): Design system.
+- `pages/SectionPages.tsx`: Overview Description.
+- `backlog.ts`, `pages/BacklogPage.tsx`, `DesignPreview.tsx`, `pages/BranchesPage.tsx`: `npm run dev` messages removed.
+- `.claude/skills/navigation/SKILL.md`: the structure, Level 0 and breadcrumb rules say Design system.
+- Checked on the dev server and on the built site (`vite preview`): no text mentions `npm run dev`.
+- Compliance audit: `audits/2026-11-15-B151-1.md` — 62 compliant, 14 non-compliant (new: #66, no feedback when a change cannot be saved; #44 one new occurrence), 22 not in the design system.
+- `backlog/backlog.json`: B151 `done`.
+
+**Files**
+- `audits/2026-11-15-B151-1.md` (created)
+- `index.html`, `docs/index.html`, `docs/src/structure.ts`, `docs/src/App.tsx`, `docs/src/backlog.ts`, `docs/src/DesignPreview.tsx`, `docs/src/pages/SectionPages.tsx`, `docs/src/pages/NavigationPage.tsx`, `docs/src/pages/PortfolioPage.tsx`, `docs/src/pages/BacklogPage.tsx`, `docs/src/pages/BranchesPage.tsx`, `.claude/skills/navigation/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)

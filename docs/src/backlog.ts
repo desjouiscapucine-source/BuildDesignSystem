@@ -92,7 +92,9 @@ export function useBacklog() {
     fetch("/api/backlog")
       .then((response) => (response.ok ? response.json() : Promise.reject()))
       .then((data) => setItems(data.items))
-      .catch(() => setError("Read-only: changes are saved only when the site runs with `npm run dev`."));
+      .catch(() => {
+        // Online (public site): read-only, no message.
+      });
   }, []);
 
   return { items, setItems, error, setError };

@@ -33,7 +33,7 @@ const structure: NavNode = {
   level: 0,
   children: [
     {
-      label: "Documentation",
+      label: "Design system",
       level: 1,
       note: "opens on Overview",
       children: [
@@ -81,7 +81,7 @@ const structure: NavNode = {
 
 const levelRows = [
   { level: 0, content: "Landing page" },
-  { level: 1, content: "Spaces: Documentation, Portfolio" },
+  { level: 1, content: "Spaces: Design system, Portfolio" },
   { level: 2, content: "Sections of a space: Overview, Governance, Foundations, Components, Prototypes" },
   { level: 3, content: "Pages of a section (e.g. one prototype), or categories of components" },
   { level: 4, content: "Component pages only" },

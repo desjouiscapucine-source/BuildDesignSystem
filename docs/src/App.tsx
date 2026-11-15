@@ -27,7 +27,7 @@ import { prototypes } from "./prototypes";
 import { categorySlug } from "./structure";
 
 // Hash routes, by navigation level (navigation skill):
-// Level 1  #/ (Documentation, opens on Overview)  ·  #/portfolio
+// Level 1  #/ (Design system, opens on Overview)  ·  #/portfolio
 // Level 2  #/governance  ·  #/foundations  ·  #/components  ·  #/prototypes
 // Level 3  #/backlog  ·  #/backlog/<id> (ticket in a modal over the Backlog)  ·  #/skills  ·  #/skills/<name>  ·  #/agents  ·  #/git-workflow  ·  #/branches  ·  #/changelog  ·  #/navigation  ·  #/releases  ·  #/foundations/<slug>  ·  #/components/<category>  ·  #/prototypes/<name>
 // Level 4  #/components/<slug>

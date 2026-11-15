@@ -44,8 +44,9 @@ export function OverviewPage() {
       <section>
         <h2>Description</h2>
         <p>
-          The documentation of the design system, built without Figma: the rules of the project, the design tokens, and
-          each component with its design spec, usage guidelines and code.
+          This is the design system of BuildDesignSystem, the project that built this site. Everything you see here (the
+          rules of the project, the design tokens, each component with its design spec, usage guidelines and code) was
+          made with it, without Figma.
         </p>
       </section>
       <section>

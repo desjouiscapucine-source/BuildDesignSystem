@@ -1612,16 +1612,16 @@
       "id": "B151",
       "title": "Public site: landing page and Design system wording",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
-      "description": "The public site presents the project: new landing page texts, the Documentation space renamed Design system, and no mention of npm run dev.",
+      "description": "The public site presents the project: new landing page texts, the Documentation space renamed Design system, and no mention of the local dev server command.",
       "why": "Asked by the Design System Lead on 2026-11-15, once the site is public on Netlify (B150): the texts written for the local workspace do not fit a public site.",
-      "scope": "Landing page: new subtitle and an introduction text; the Documentation card renamed Design system. The Documentation space renamed Design system everywhere (navigation, breadcrumb, browser tab title, Navigation structure page, Portfolio image text). Overview page: new Description explaining that this is the design system of BuildDesignSystem, the project that built the site. Every text mentioning npm run dev removed (Backlog, Design preview, Branches).",
+      "scope": "Landing page: new subtitle and an introduction text; the Documentation card renamed Design system. The Documentation space renamed Design system everywhere (navigation, breadcrumb, browser tab title, Navigation structure page, Portfolio image text). Overview page: new Description explaining that this is the design system of BuildDesignSystem, the project that built the site. Every text mentioning the local dev server command removed (Backlog, Design preview, Branches).",
       "doneWhen": [
         "The landing page shows the approved subtitle and introduction text, and a Design system card.",
         "No page of the site says Documentation for the space any more.",
         "The Overview page shows the approved Description.",
-        "No text of the site mentions npm run dev."
+        "No text of the site mentions the local dev server command."
       ],
       "priority": "high",
       "release": "R3"

@@ -44,11 +44,11 @@ export function BranchesPage() {
     <>
       <Header title="Branches" lead="Every branch, its conversation and what the next release contains" />
       <p>
-        Read live from git when the site runs with <code>npm run dev</code>. Work branches start from{" "}
+        Read live from git. Work branches start from{" "}
         <code>develop</code> and are merged into it; <code>main</code> changes on release day only (
         <Link href="#/git-workflow">Git workflow</Link>).
       </p>
-      {error && <p className="empty">Only available when the site runs with `npm run dev`.</p>}
+      {error && <p className="empty">Not available online.</p>}
       {!data && !error && <p className="empty">Reading the branches…</p>}
 
       {data && (

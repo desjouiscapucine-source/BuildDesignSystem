@@ -46,7 +46,7 @@ export function BacklogPage({ open }: { open?: string }) {
       setItems(data.items);
       setError(data.mainError ? `Saved in this folder only, not in develop: ${data.mainError}.` : null);
     } catch {
-      setError("Could not save. Changes are saved only when the site runs with `npm run dev`.");
+      // Online (public site): read-only, nothing is saved and no message is shown.
     }
   }
 
