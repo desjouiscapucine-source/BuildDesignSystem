@@ -1,0 +1,8 @@
+# Public site on Netlify (B150): the whole site (/docs/ and /prototypes/), deployed from main.
+# Online the site is read-only: the /api/* routes exist only on the local dev server (npm run dev).
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "24"
