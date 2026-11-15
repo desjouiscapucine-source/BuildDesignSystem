@@ -5282,3 +5282,13 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `scripts/work-time.ts`, `scripts/save-work-time.ts`, `docs/src/work-time.json`, `audits/2026-11-15-B152-1.md` (created)
 - `vite.config.ts`, `package.json`, `home.ts`, `docs/src/AppShell.tsx`, `docs/src/backlog.ts`, `docs/src/pages/BacklogPage.tsx`, `.claude/skills/git-workflow/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B152-2 — Audit decisions: exception for finding 67, ticket B154
+**Date:** 2026-11-15
+
+**Decisions (made by the Design System Lead)**
+- Compliance audit finding 67 (ticket menus shown as disabled Selects on the public site) is **accepted as an exception** until the read-only TicketCard variant (B153).
+- Finding 66 gets its own ticket: **B154** "Documentation site: feedback when a change cannot be saved" (`todo`, origin `proposal`, priority high, release R3); its decisions are asked when it is worked on.
+
+**Files**
+- `audits/2026-11-15-B152-1.md`, `backlog/backlog.json`, `STEPS.md` (updated)
