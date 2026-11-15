@@ -1570,6 +1570,23 @@
       ],
       "priority": "high",
       "release": "R2"
+    },
+    {
+      "id": "B149",
+      "title": "Migrate the repository to the new GitHub account",
+      "category": "Tooling",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "The project repository moves from CapucineDjs/BuildDesignSystem (private) to desjouiscapucine-source/BuildDesignSystem (public).",
+      "why": "Asked by the Design System Lead on 2026-11-15: a public repository on the new account, linked from the Portfolio page.",
+      "scope": "Push the full history (every branch, tag R1) to the new repository; point the origin remote of the project (root folder and every worktree) to it; update the references to the old repository (CLAUDE.md, skills, documentation site, the GitHub button of the Portfolio page). History scanned before going public: commits use the GitHub noreply address, no sensitive content found.",
+      "doneWhen": [
+        "The new repository has every branch and the tag R1, with the full history.",
+        "origin points to the new repository in every folder; push and fetch work.",
+        "No reference to the old repository is left in CLAUDE.md, the skills or the site (except the history in STEPS.md and closed tickets)."
+      ],
+      "priority": "high",
+      "release": "R2"
     }
   ]
 }
