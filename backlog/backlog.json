@@ -1642,6 +1642,23 @@
       ],
       "priority": "high",
       "release": "R3"
+    },
+    {
+      "id": "B154",
+      "title": "Documentation site: feedback when a change cannot be saved",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "The site says when a change cannot be saved: Backlog menus and Design preview token pickers, online and locally.",
+      "why": "Compliance audit finding 66 (audits/2026-11-15-B152-1.md): a failed save shows nothing, against the TicketCard guidelines (error message above the board, role=\"alert\"); online, the Design preview pickers stay enabled but save nothing.",
+      "scope": "Backlog page: a failed local save of a ticket menu, a failed local load of the backlog. Design preview tab: the token pickers online and a failed local save. Decisions to ask first: locally, the TicketCard error message above the board and its wording; online, Design preview pickers disabled, hidden, or enabled with a message; a failed local backlog load: a message, or disabled menus.",
+      "doneWhen": [
+        "A change that cannot be saved always gives feedback, as decided by the Design System Lead.",
+        "Online, the Design preview pickers follow the decision.",
+        "Finding 66 is gone from the next compliance audit."
+      ],
+      "priority": "high",
+      "release": "R3"
     }
   ]
 }
