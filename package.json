@@ -9,7 +9,8 @@
     "dev": "npm run tokens && vite",
     "build": "npm run tokens && npm run check:prototypes && tsc --noEmit && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "work-time": "node scripts/save-work-time.ts"
   },
   "dependencies": {
     "marked": "^18.1.1",

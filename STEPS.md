@@ -5261,3 +5261,24 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-15-B151-1.md` (created)
 - `index.html`, `docs/index.html`, `docs/src/structure.ts`, `docs/src/App.tsx`, `docs/src/backlog.ts`, `docs/src/DesignPreview.tsx`, `docs/src/pages/SectionPages.tsx`, `docs/src/pages/NavigationPage.tsx`, `docs/src/pages/PortfolioPage.tsx`, `docs/src/pages/BacklogPage.tsx`, `docs/src/pages/BranchesPage.tsx`, `.claude/skills/navigation/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B152-1 — Public site: frozen work time and read-only tickets
+**Date:** 2026-11-15
+
+**Decisions (made by the Design System Lead)**
+- Online, the time spent building is shown as a frozen total, saved in the repository and updated on release day; locally the clock keeps ticking.
+- Online, the ticket menus are disabled (Select `disabled`) until the read-only TicketCard variant (B153, reserved on `component/TicketCard`, priority high, no release yet).
+- B152: Tooling, priority high, release R3; an early release R3 follows, run from the Gouvernance conversation.
+
+**What was done**
+- `scripts/work-time.ts`: the work-time calculation, moved out of `vite.config.ts` (which now imports it); `scripts/save-work-time.ts` + `npm run work-time`: saves the total in `docs/src/work-time.json` (69,508 s today).
+- `home.ts` and `docs/src/AppShell.tsx`: without `/api/work-time`, the clock shows the saved total, frozen.
+- `docs/src/backlog.ts` (`readOnly` when `/api/backlog` is missing) and `docs/src/pages/BacklogPage.tsx`: the menus of the cards and of the ticket modal are disabled online.
+- `.claude/skills/git-workflow/SKILL.md`, section 8: `npm run work-time` on release day.
+- Checked on the built site (`vite preview`): frozen clock on the landing page and in the header, disabled menus; on the dev server: live clock, menus enabled.
+- Compliance audit: `audits/2026-11-15-B152-1.md` — 61 compliant, 15 non-compliant (new: #67, disabled Selects online until B153; #66 partly fixed), 22 not in the design system.
+- `backlog/backlog.json`: B152 `done`.
+
+**Files**
+- `scripts/work-time.ts`, `scripts/save-work-time.ts`, `docs/src/work-time.json`, `audits/2026-11-15-B152-1.md` (created)
+- `vite.config.ts`, `package.json`, `home.ts`, `docs/src/AppShell.tsx`, `docs/src/backlog.ts`, `docs/src/pages/BacklogPage.tsx`, `.claude/skills/git-workflow/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)

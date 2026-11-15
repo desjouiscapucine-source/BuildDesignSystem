@@ -86,18 +86,18 @@ export const prototypeSpecs: Record<string, string> = Object.fromEntries(
 export function useBacklog() {
   const [items, setItems] = useState<BacklogItem[]>(initial.items as BacklogItem[]);
   const [error, setError] = useState<string | null>(null);
+  // Online (public site, no dev server API): the tickets are read-only (B152).
+  const [readOnly, setReadOnly] = useState(false);
 
   // Always start from the file on disk, not from the version bundled with the page.
   useEffect(() => {
     fetch("/api/backlog")
       .then((response) => (response.ok ? response.json() : Promise.reject()))
       .then((data) => setItems(data.items))
-      .catch(() => {
-        // Online (public site): read-only, no message.
-      });
+      .catch(() => setReadOnly(true));
   }, []);
 
-  return { items, setItems, error, setError };
+  return { items, setItems, error, setError, readOnly };
 }
 
 /** Release calendar (backlog.json `releases`): R1 on `first`, then one every `everyDays` days. */

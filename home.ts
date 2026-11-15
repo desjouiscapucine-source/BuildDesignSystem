@@ -1,4 +1,5 @@
 import "./home-clouds";
+import saved from "./docs/src/work-time.json";
 
 // Landing page animation: the avatar types on its laptop (CSS, docs.css) while the
 // work-time clock counts up to the time spent building the site, once, on load.
@@ -28,8 +29,12 @@ function current(data: WorkTimeData) {
   return data.seconds + (sinceLast <= data.pauseMs ? Math.floor(sinceLast / 1000) : 0);
 }
 
+// Online (public site, no dev server API): the total saved on release day, frozen (B152).
+const frozen: WorkTimeData = { seconds: saved.seconds, lastActivity: null, pauseMs: 0 };
+
 fetch("/api/work-time")
   .then((response) => (response.ok ? (response.json() as Promise<WorkTimeData>) : Promise.reject()))
+  .catch(() => frozen)
   .then((data) => {
     clock.hidden = false;
     const live = () => setInterval(() => show(current(data)), 1000);
@@ -47,7 +52,4 @@ fetch("/api/work-time")
       else live();
     };
     requestAnimationFrame(step);
-  })
-  .catch(() => {
-    // No dev server API (e.g. a static build): the clock stays hidden.
   });

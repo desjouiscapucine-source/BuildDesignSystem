@@ -9,6 +9,7 @@ import {
 } from "@ds/components";
 import logo from "../../assets/logo/avatar-logo.svg";
 import { allPages, pathTo, spaces, type NavNode } from "./structure";
+import saved from "./work-time.json";
 
 interface AppShellProps {
   current: string; // current page in the navigation, e.g. "#/backlog"
@@ -31,9 +32,10 @@ function WorkTime() {
   useEffect(() => {
     const load = () =>
       fetch("/api/work-time")
-        .then((response) => (response.ok ? response.json() : null))
+        .then((response) => (response.ok ? response.json() : Promise.reject()))
         .then(setData)
-        .catch(() => setData(null));
+        // Online (public site, no dev server API): the total saved on release day, frozen (B152).
+        .catch(() => setData({ seconds: saved.seconds, lastActivity: null, pauseMs: 0 }));
     load();
     const refresh = setInterval(load, 60_000);
     const tick = setInterval(() => setNow(Date.now()), 1000);

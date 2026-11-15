@@ -1630,7 +1630,7 @@
       "id": "B152",
       "title": "Public site: frozen work time and read-only tickets",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "On the public site, the work-time clock shows a frozen total and the ticket menus are disabled.",
       "why": "Asked by the Design System Lead on 2026-11-15: online, the time spent building is shown and the tickets are read-only.",
