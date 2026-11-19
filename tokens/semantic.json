@@ -757,6 +757,10 @@
     "playground-canvas-min": {
       "$value": "120px",
       "$description": "Minimum height of the Playground canvas"
+    },
+    "sticky-note": {
+      "$value": "160px",
+      "$description": "Width and height of a sticky note (StickyNote, fixed square)"
     }
   },
   "breakpoint": {

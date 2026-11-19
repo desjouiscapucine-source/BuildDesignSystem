@@ -1472,7 +1472,7 @@
       "id": "B145",
       "title": "StickyNote",
       "category": "Components",
-      "status": "todo",
+      "status": "in-progress",
       "origin": "decided",
       "description": "A sticky note placed on the canvas, to annotate a composition.",
       "why": "Missing component of the UX playground prototype (B130): the playground has sticky notes to annotate a composition.",
@@ -1482,7 +1482,7 @@
         "The accessibility and token audits pass.",
         "StickyNote is exported from @ds/components, ready for the UX playground (B130)."
       ],
-      "stage": "design",
+      "stage": "guidelines",
       "priority": "high",
       "release": "R2"
     },
