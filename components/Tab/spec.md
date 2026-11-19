@@ -63,6 +63,8 @@ One size.
 | Container | Radius (top corners of the state layer and focus ring) | Hover · Focus · Pressed | `--radius-4` |
 | Container | State layer opacity | Hover · Focus · Pressed | `--state-layer-hover` · `--state-layer-focus` · `--state-layer-pressed` |
 | Container | Focus ring | Focus | `--border-width-2`, `--color-border-focus` |
+| Container | Focus ring offset | Focus | `--border-width-2` |
+| Container | State layer transition | Hover · Focus · Pressed | `--duration-100`, `--easing-ease-out` |
 | Label | Color | Default | `--color-text-secondary` |
 | Label | Color | Selected | `--color-text-brand` |
 | Label | Color | Disabled | `--color-text-disabled` |

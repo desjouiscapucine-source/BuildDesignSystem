@@ -34,3 +34,5 @@ export { TicketCard } from "./TicketCard/TicketCard";
 export type { TicketCardProps } from "./TicketCard/TicketCard";
 export { Link } from "./Link/Link";
 export type { LinkProps } from "./Link/Link";
+export { Tab } from "./Tab/Tab";
+export type { TabProps } from "./Tab/Tab";

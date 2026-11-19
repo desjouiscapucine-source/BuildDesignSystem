@@ -1696,7 +1696,7 @@
       "id": "B157",
       "title": "Tab",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "One tab of a tab list. Building block of Tabs (B093), built first.",
       "why": "Decided by the Design System Lead on 2026-11-19: Tabs is made of repeated tabs, so the tab is split into its own component (building block rule, component-structure), built through its three stages before Tabs.",
