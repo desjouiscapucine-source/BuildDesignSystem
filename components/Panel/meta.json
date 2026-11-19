@@ -1,0 +1,8 @@
+{
+  "name": "Panel",
+  "description": "Right panel of the UX playground: Library, Properties and Compositions tabs.",
+  "level": "organism",
+  "status": "guidelines",
+  "version": "0.0",
+  "changelog": []
+}

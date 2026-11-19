@@ -1418,7 +1418,7 @@
       "id": "B142",
       "title": "Canvas",
       "category": "Components",
-      "status": "todo",
+      "status": "in-progress",
       "origin": "decided",
       "description": "The free canvas of the UX playground, which holds the layout frames.",
       "why": "Missing component of the UX playground prototype (B130): the playground is a free canvas holding mobile, tablet and desktop frames.",
@@ -1454,7 +1454,7 @@
       "id": "B144",
       "title": "Panel",
       "category": "Components",
-      "status": "todo",
+      "status": "in-progress",
       "origin": "decided",
       "description": "The panel on the right of the playground, with three tabs: Library, Properties and Compositions.",
       "why": "Missing component of the UX playground prototype (B130): the playground needs a right panel with three tabs (Library, Properties, Compositions).",
@@ -1464,7 +1464,7 @@
         "The accessibility and token audits pass.",
         "Panel is exported from @ds/components, ready for the UX playground (B130)."
       ],
-      "stage": "design",
+      "stage": "guidelines",
       "priority": "high",
       "release": "R2"
     },
@@ -1724,6 +1724,24 @@
       ],
       "priority": "high",
       "release": "R4"
+    },
+    {
+      "id": "B161",
+      "title": "ZoomControls",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "The zoom controls of the canvas: zoom out, zoom level, zoom in and fit to screen.",
+      "why": "Building block of the Canvas (B142): the UX playground canvas has visible zoom controls, a group reused as one unit, so it is its own component, completed before the Canvas code (component-structure).",
+      "scope": "Design, guidelines and code of the ZoomControls component, each stage approved by the Design System Lead (component skill), in a Composant ZoomControls conversation on component/ZoomControls. Already decided in the Composant Canvas conversation: a zoom out button, the zoom level in percent, a zoom in button and a fit to screen button; tertiary IconButtons; a container with background surface, radius 8 and shadow.dropdown; placed at the bottom right of the Canvas. The rest of the anatomy, the sizes, states and tokens are decided in the design stage (never-invent).",
+      "doneWhen": [
+        "The ZoomControls design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "ZoomControls is exported from @ds/components, ready for the Canvas (B142)."
+      ],
+      "stage": "design",
+      "priority": "high",
+      "release": "R2"
     },
     {
       "id": "B162",

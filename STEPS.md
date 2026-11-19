@@ -5367,6 +5367,7 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `LICENSE`, `audits/2026-11-15-B156-1.md` (created)
 - `package.json`, `backlog/backlog.json`, `STEPS.md` (updated)
 
+<<<<<<< HEAD
 ## Step B158-1 — One conversation per release ticket
 **Date:** 2026-11-19
 
@@ -5429,3 +5430,35 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/Frame/` (created), `audits/2026-11-19-B143-1.md`, `audits/2026-11-19-B143-1-accessibility.md`, `audits/2026-11-19-B143-1-tokens.md` (created)
 - `tokens/semantic.json`, `tokens/contrast-pairs.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+>>>>>>> origin/develop
+
+## Step B144-1 — Panel: design approved
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- **Identity**: `Panel`, folder `components/Panel/`, class `ds-panel`, level **organism**, description "Right panel of the UX playground: Library, Properties and Compositions tabs."
+- **Specific to the playground** (B130): three fixed tabs, Library, Properties and Compositions, built with the **Tabs** component (B093). The spec is approved with a placeholder for the tabs; Tabs must be complete before the Panel code.
+- **Behavior**: fixed on the right, full height, over the canvas; collapsible; resizable.
+- **Look**: background `color.background.surface`, shadow `shadow.panel`, no border.
+- **Width**: new tokens `size.panel` (320px, default), `size.panel-min` (280px), `size.panel-max` (480px).
+- **Header**: tabs + collapse IconButton `tertiary`, icon `right_panel_close`; padding `space.8` top and right, `space.24` left.
+- **Tab content**: padding `space.16`, `space.24` on the left (clear of the resize handle); scrolls when long.
+- **Resize handle**: `drag_indicator` icon (`color.icon.secondary`, `icon-size.20`), always visible, inside the panel against its left edge; hit area new token `size.resize-handle` (24px, WCAG 2.5.8), corners `radius.4`; state layers on hover and while dragging; focusable, focus outline `color.border.focus` `border-width.2` drawn inside the hit area; left / right arrow keys change the width; double-click resets it to `size.panel`.
+- **Collapsed** (prop `collapsed`, default `false`): narrow strip of three IconButton `tertiary` — Library `widgets`, Properties `tune`, Compositions `dashboard` — padding and gap `space.8`; a click reopens the panel on that tab.
+- **Animation**: `duration.200`, `easing.ease-out`.
+- Stage 1 (Design) approved; status `guidelines`.
+
+**What was done**
+- `components/Panel/` created from the template: `meta.json`, `spec.md`, design preview (`design/Preview.tsx`, `design/tokens.json`, variants `expanded` / `collapsed`).
+- `tokens/semantic.json`: `size.panel`, `size.panel-min`, `size.panel-max`, `size.resize-handle`; added to the size table of the `token-naming` skill.
+- `tokens/contrast-pairs.json`: `color.icon.secondary`, `color.border.focus` and `color.icon.brand` on `color.background.surface` (min 3) — `npm run tokens`: 65/65 pairs pass.
+- Accessibility check: `audits/2026-11-19-B144-1-accessibility.md` — 3 failures (missing contrast pairs, colors unchanged) fixed; not blocking.
+- Token audit: `audits/2026-11-19-B144-1-tokens.md` — 65 values, 0 failures.
+- `backlog/backlog.json`: B144 `in-progress`, stage `guidelines`.
+- Open questions kept in the spec: look of the tabs (Tabs, B093); behavior below desktop (guidelines stage).
+- Compliance audit: `audits/2026-11-19-B144-1.md` — 61 compliant, 14 non-compliant (0 fixed, 0 new), 22 not in the design system; no new ticket.
+
+**Files**
+- `components/Panel/` (created), `audits/2026-11-19-B144-1-accessibility.md`, `audits/2026-11-19-B144-1-tokens.md`, `audits/2026-11-19-B144-1.md` (created)
+- `tokens/semantic.json`, `tokens/contrast-pairs.json`, `.claude/skills/token-naming/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+=======
