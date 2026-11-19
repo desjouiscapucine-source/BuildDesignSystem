@@ -1,0 +1,8 @@
+{
+  "name": "Frame",
+  "description": "A layout frame on the canvas, in mobile, tablet or desktop size.",
+  "level": "molecule",
+  "status": "guidelines",
+  "version": "0.0",
+  "changelog": []
+}

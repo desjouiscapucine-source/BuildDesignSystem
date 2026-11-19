@@ -310,6 +310,16 @@
       "foreground": "color.icon.inverse",
       "background": "color.background.brand",
       "min": 3
+    },
+    {
+      "foreground": "color.border.focus",
+      "background": "color.background.subtle",
+      "min": 3
+    },
+    {
+      "foreground": "color.border.strong",
+      "background": "color.background.subtle",
+      "min": 3
     }
   ]
 }

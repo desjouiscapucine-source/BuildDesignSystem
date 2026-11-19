@@ -5366,3 +5366,27 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `LICENSE`, `audits/2026-11-15-B156-1.md` (created)
 - `package.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B143-1 — Frame: design approved
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- Component **Frame**: molecule, folder `components/Frame/`, class `.ds-frame`, description "A layout frame on the canvas, in mobile, tablet or desktop size."; one type.
+- Props: `size` (`mobile` default, `tablet`, `desktop`), `selected`, `empty`, `name`.
+- Sizes: mobile 375 × 812, tablet **768 × 1024** (new tokens `size.viewport-tablet` / `size.viewport-tablet-height`), desktop 1280 × 800.
+- Anatomy: name (`label`, `text.primary`) and size label (`body-sm`, `text.secondary`) above the frame, `space.8` apart and `space.8` from the frame; container on `background.page`, 1px `border.subtle`, `radius.8`, `shadow.frame`; device bar (status bar on mobile and tablet, browser bar on desktop) on `background.page` with a `border.subtle` line, `label-sm` + `text.primary`, `icon-size.16`, padding `space.8` / `space.16`, items `space.8` apart, status icons `space.4` apart, desktop address field `background.subtle` + `radius.16`.
+- Content: long name cut with an ellipsis at the frame width; the content scrolls inside the frame; empty = `add_box` (`icon-size.32`) + "Drop components here" (`body`, `text.secondary`), gap `space.8`, padding `space.16`.
+- States: hover = `border.strong` + `state-layer.hover`; focus = 2px `border.focus` outline offset `space.4` + `state-layer.focus`; selected = 2px `border.focus` outline on the frame; focus and selected show together.
+- Contrast pairs added: `border.focus` / `background.subtle` and `border.strong` / `background.subtle` (min 3).
+
+**What was done**
+- `components/Frame/` from the template: `meta.json`, `spec.md`, design preview (`design/Preview.tsx`, `design/tokens.json`).
+- Accessibility check: `audits/2026-11-19-B143-1-accessibility.md` — 3 failures at first (two missing contrast pairs, no state layers), fixed with the Lead's decisions; 0 failure, no exception.
+- Token audit: `audits/2026-11-19-B143-1-tokens.md` — 241 values, 0 failure.
+- Design approved: `meta.json` status and the B143 `stage` set to `guidelines`.
+- Compliance audit: `audits/2026-11-19-B143-1.md` — 61 compliant, 15 non-compliant (1 new: #68, the site's simulated tablet screen should use the new `size.viewport-tablet*` tokens), 22 not in the design system.
+- Open question: the canvas background is decided by Canvas (B142); the label contrast is checked again then.
+
+**Files**
+- `components/Frame/` (created), `audits/2026-11-19-B143-1.md`, `audits/2026-11-19-B143-1-accessibility.md`, `audits/2026-11-19-B143-1-tokens.md` (created)
+- `tokens/semantic.json`, `tokens/contrast-pairs.json`, `backlog/backlog.json`, `STEPS.md` (updated)
