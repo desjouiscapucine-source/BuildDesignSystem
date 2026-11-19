@@ -1490,7 +1490,7 @@
       "id": "B146",
       "title": "Comment",
       "category": "Components",
-      "status": "todo",
+      "status": "in-progress",
       "origin": "decided",
       "description": "A comment attached to a component or a frame of the canvas.",
       "why": "Missing component of the UX playground prototype (B130): the playground has comments on a component or a frame.",
