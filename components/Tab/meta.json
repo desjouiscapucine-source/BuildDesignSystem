@@ -2,7 +2,7 @@
   "name": "Tab",
   "description": "One tab of a tab list, that shows one panel of the page.",
   "level": "atom",
-  "status": "guidelines",
+  "status": "code",
   "version": "0.0",
   "changelog": []
 }

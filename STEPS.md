@@ -5367,7 +5367,6 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `LICENSE`, `audits/2026-11-15-B156-1.md` (created)
 - `package.json`, `backlog/backlog.json`, `STEPS.md` (updated)
 
-<<<<<<< HEAD
 ## Step B158-1 — One conversation per release ticket
 **Date:** 2026-11-19
 
@@ -5429,8 +5428,7 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/Frame/` (created), `audits/2026-11-19-B143-1.md`, `audits/2026-11-19-B143-1-accessibility.md`, `audits/2026-11-19-B143-1-tokens.md` (created)
-- `tokens/semantic.json`, `tokens/contrast-pairs.json`, `backlog/backlog.json`, `STEPS.md` (updated)
->>>>>>> origin/develop
+- `tokens/semantic.json`, `tokens/contrast-pairs.json`, `.claude/skills/token-naming/SKILL.md` (size table), `backlog/backlog.json`, `STEPS.md` (updated)
 
 ## Step B144-1 — Panel: design approved
 **Date:** 2026-11-19
@@ -5461,7 +5459,6 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/Panel/` (created), `audits/2026-11-19-B144-1-accessibility.md`, `audits/2026-11-19-B144-1-tokens.md`, `audits/2026-11-19-B144-1.md` (created)
 - `tokens/semantic.json`, `tokens/contrast-pairs.json`, `.claude/skills/token-naming/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
-=======
 
 ## Step B143-2 — Frame: guidelines approved
 **Date:** 2026-11-19
@@ -5485,3 +5482,51 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-19-B143-2.md`, `audits/2026-11-19-B143-2-accessibility.md` (created)
 - `components/Frame/guidelines.md`, `components/Frame/spec.md`, `components/Frame/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+=======
+
+## Step B145-1 — StickyNote: design stage
+**Date:** 2026-11-19
+
+**Decisions (made or approved by the Design System Lead)**
+- Component **StickyNote** (`components/StickyNote/`, `.ds-sticky-note`), level **molecule** (it uses the IconButton atom); description "A sticky note placed on the canvas, to annotate a composition."
+- One type, one color, one fixed size: a 160 × 160 square, new token **`size.sticky-note`** = 160px (value chosen and name approved by the Design System Lead).
+- Container: `background.brand-subtle`, `radius.4`, `shadow.frame`, padding `space.8`.
+- Anatomy: text on top (`body`, cut with an ellipsis after 4 lines); footer with the author in initials (`label-sm`) and a short date (`body-sm`) on the left, Edit and Delete actions on the right (tertiary IconButtons, always visible); gaps `space.8` (text / footer) and `space.4` (footer). The "more" menu was dropped: no Menu component exists.
+- States: hover and focus with the state layers; **selected** and **editing**: border `border-width.2` `border.strong`, no state layer (the focus outline still shows); **editing**: the full text scrolls; **dragging**: `shadow.hover`.
+- Accessibility fixes chosen by the Design System Lead: the date is `text.primary` (text.secondary fell to 3.83:1 under the focus layer); no state layer on a selected or editing note (the border fell to 2.54:1).
+
+**What was done**
+- `components/StickyNote/`: `meta.json`, `spec.md`, design preview (`design/Preview.tsx`, `design/tokens.json`; selected, editing and dragging shown as variants).
+- `tokens/semantic.json`: `size.sticky-note`; `tokens/contrast-pairs.json`: `color.border.strong` on `color.background.brand-subtle` (min 3).
+- Token audit: `audits/2026-11-19-B145-1-tokens.md` — 103 values, 0 failures.
+- Accessibility check: `audits/2026-11-19-B145-1-accessibility.md` — first run 2 failures, fixed; 6 pass, 0 fail.
+- Compliance audit: `audits/2026-11-19-B145-1.md` — 61 compliant, 13 non-compliant (#64 fixed by the new contrast pair), 22 not in the design system; no new ticket.
+- Design stage approved: `meta.json` status and backlog B145 stage → `guidelines`.
+
+**Files**
+- `components/StickyNote/meta.json`, `spec.md`, `design/Preview.tsx`, `design/tokens.json`, `audits/2026-11-19-B145-1.md`, `audits/2026-11-19-B145-1-tokens.md`, `audits/2026-11-19-B145-1-accessibility.md` (created)
+- `tokens/semantic.json`, `tokens/contrast-pairs.json`, `.claude/skills/token-naming/SKILL.md` (size table), `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B157-2 — Tab: guidelines approved
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- When to use: only inside Tabs, one tab per panel; to go to another page → NavigationItem; for a sequence of steps → TimelineStep.
+- Disabled only when the content of the panel is not available yet (e.g. Code before the Code stage); a tab whose content will not exist is removed. Never selected and disabled.
+- Content: name the content of the panel, one to three words, sentence case, text only, no punctuation.
+- Behavior: automatic activation — the arrow keys move the focus and select the tab (as the current tabs of the site, B125); long label on one line, the tab grows.
+- The four do / don't pairs (case and punctuation, name the content, when to disable, never selected and disabled).
+- Accessibility: WAI-ARIA tabs pattern (Tab enters on the selected tab; Left / Right move and select, wrapping; Home / End; disabled tabs skipped; tab role, name = label, selected state, linked to its panel); sentence "The focused tab is never hidden by a sticky element or a panel." added after the accessibility check (WCAG 2.4.11).
+- Related components: Tabs only.
+- Guidelines approved; next stage: code.
+
+**What was done**
+- `components/Tab/guidelines.md` written; `meta.json` status `code`; backlog B157 stage `code`.
+- Accessibility check: `audits/2026-11-19-B157-2-accessibility.md` — first run 1 failure (WCAG 2.4.11), fixed; 7 pass, 0 fail.
+- Compliance audit: `audits/2026-11-19-B157-2.md` — 61 compliant, 14 non-compliant, 22 not in the design system; no change, no new ticket.
+
+**Files**
+- `audits/2026-11-19-B157-2.md`, `audits/2026-11-19-B157-2-accessibility.md` (new)
+- `components/Tab/guidelines.md`, `components/Tab/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+
