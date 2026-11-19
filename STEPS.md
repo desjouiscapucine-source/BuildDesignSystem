@@ -5367,6 +5367,99 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `LICENSE`, `audits/2026-11-15-B156-1.md` (created)
 - `package.json`, `backlog/backlog.json`, `STEPS.md` (updated)
 
+## Step B158-1 — One conversation per release ticket
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- New ticket **B158** (high, R4): when the tickets of a release are worked on, Claude prepares one suggestion (task chip) per component or prototype ticket, which opens its own conversation already set up, instead of taking the tickets one after another in the same conversation. First reserved as B157, renumbered: B157 was taken meanwhile by `component/Tabs` (Tab).
+- Tried first on the tickets of R2 not done yet: 8 chips (TextInput, Tabs, Canvas, Frame, Panel, StickyNote, Comment, SearchField), all started by the Design System Lead.
+
+**What was done**
+- `.claude/skills/git-workflow/SKILL.md`, section 2: rule "Working on the tickets of a release" — one chip per component or prototype ticket of the release not done yet; the opened conversation names itself `Composant <Name>`, sets up its branch and reserves its ticket (section 3), reads the ticket and starts the current stage, in French; self-contained chip prompt (ticket, release, branch, steps, related tickets); governance tickets stay in the Gouvernance conversation; Claude can only suggest, the Design System Lead clicks each chip.
+- `backlog/backlog.json`: B158 reserved, then `done`.
+- Compliance audit: `audits/2026-11-19-B158-1.md` — 61 compliant, 14 non-compliant, 22 not in the design system; no change, no new ticket.
+
+**Files**
+- `audits/2026-11-19-B158-1.md` (created)
+- `.claude/skills/git-workflow/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B157-1 — Tab: design approved
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- B093 Tabs started (branch `component/Tabs`). Split into a building block, **Tab**, built first (new ticket **B157**, high, R2), in this same conversation; then **Tabs**.
+- **Tab**: atom, class `.ds-tab`, description "One tab of a tab list, that shows one panel of the page.", one type (underline), one size, text label only (no icon, no counter).
+- Label: `body`, `--color-text-secondary`; selected: `label` style (semibold), `--color-text-brand`, selection indicator `--border-width-2` in `--color-border-focus` (as the current tabs of the site).
+- Padding `--space-8` top and bottom, `--space-16` left and right.
+- States: hover, focus (ring `--color-border-focus` + focus state layer) and pressed with state layers, top corners `--radius-4`; disabled = label in `--color-text-disabled`, not focusable. Selected + disabled is forbidden.
+- Long label: one line, the tab grows; lack of space is handled by Tabs.
+- Design approved; next stage: guidelines.
+
+**What was done**
+- `components/Tab/` created from the template: `meta.json` (status `guidelines`), `spec.md`, design preview (`design/Preview.tsx`, `design/tokens.json`, variants `default` and `selected`, disabled state).
+- Accessibility check: `audits/2026-11-19-B157-1-accessibility.md` — 5 pass, 0 fail, 1 not applicable; note: the label on the pressed state layer is 3.97:1 / 4.33:1 (shared state layer value, not a checklist criterion).
+- Token audit: `audits/2026-11-19-B157-1-tokens.md` — 39 values, 0 failures.
+- Backlog: B093 in progress; B157 added (reserved first), stage `guidelines`.
+
+**Files**
+- `components/Tab/meta.json`, `spec.md`, `guidelines.md` (template), `design/Preview.tsx`, `design/tokens.json` (new)
+- `audits/2026-11-19-B157-1-accessibility.md`, `audits/2026-11-19-B157-1-tokens.md` (new)
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B143-1 — Frame: design approved
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- Component **Frame**: molecule, folder `components/Frame/`, class `.ds-frame`, description "A layout frame on the canvas, in mobile, tablet or desktop size."; one type.
+- Props: `size` (`mobile` default, `tablet`, `desktop`), `selected`, `empty`, `name`.
+- Sizes: mobile 375 × 812, tablet **768 × 1024** (new tokens `size.viewport-tablet` / `size.viewport-tablet-height`), desktop 1280 × 800.
+- Anatomy: name (`label`, `text.primary`) and size label (`body-sm`, `text.secondary`) above the frame, `space.8` apart and `space.8` from the frame; container on `background.page`, 1px `border.subtle`, `radius.8`, `shadow.frame`; device bar (status bar on mobile and tablet, browser bar on desktop) on `background.page` with a `border.subtle` line, `label-sm` + `text.primary`, `icon-size.16`, padding `space.8` / `space.16`, items `space.8` apart, status icons `space.4` apart, desktop address field `background.subtle` + `radius.16`.
+- Content: long name cut with an ellipsis at the frame width; the content scrolls inside the frame; empty = `add_box` (`icon-size.32`) + "Drop components here" (`body`, `text.secondary`), gap `space.8`, padding `space.16`.
+- States: hover = `border.strong` + `state-layer.hover`; focus = 2px `border.focus` outline offset `space.4` + `state-layer.focus`; selected = 2px `border.focus` outline on the frame; focus and selected show together.
+- Contrast pairs added: `border.focus` / `background.subtle` and `border.strong` / `background.subtle` (min 3).
+
+**What was done**
+- `components/Frame/` from the template: `meta.json`, `spec.md`, design preview (`design/Preview.tsx`, `design/tokens.json`).
+- Accessibility check: `audits/2026-11-19-B143-1-accessibility.md` — 3 failures at first (two missing contrast pairs, no state layers), fixed with the Lead's decisions; 0 failure, no exception.
+- Token audit: `audits/2026-11-19-B143-1-tokens.md` — 241 values, 0 failure.
+- Design approved: `meta.json` status and the B143 `stage` set to `guidelines`.
+- Compliance audit: `audits/2026-11-19-B143-1.md` — 61 compliant, 15 non-compliant (1 new: #68, the site's simulated tablet screen should use the new `size.viewport-tablet*` tokens), 22 not in the design system.
+- Open question: the canvas background is decided by Canvas (B142); the label contrast is checked again then.
+
+**Files**
+- `components/Frame/` (created), `audits/2026-11-19-B143-1.md`, `audits/2026-11-19-B143-1-accessibility.md`, `audits/2026-11-19-B143-1-tokens.md` (created)
+- `tokens/semantic.json`, `tokens/contrast-pairs.json`, `.claude/skills/token-naming/SKILL.md` (size table), `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B144-1 — Panel: design approved
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- **Identity**: `Panel`, folder `components/Panel/`, class `ds-panel`, level **organism**, description "Right panel of the UX playground: Library, Properties and Compositions tabs."
+- **Specific to the playground** (B130): three fixed tabs, Library, Properties and Compositions, built with the **Tabs** component (B093). The spec is approved with a placeholder for the tabs; Tabs must be complete before the Panel code.
+- **Behavior**: fixed on the right, full height, over the canvas; collapsible; resizable.
+- **Look**: background `color.background.surface`, shadow `shadow.panel`, no border.
+- **Width**: new tokens `size.panel` (320px, default), `size.panel-min` (280px), `size.panel-max` (480px).
+- **Header**: tabs + collapse IconButton `tertiary`, icon `right_panel_close`; padding `space.8` top and right, `space.24` left.
+- **Tab content**: padding `space.16`, `space.24` on the left (clear of the resize handle); scrolls when long.
+- **Resize handle**: `drag_indicator` icon (`color.icon.secondary`, `icon-size.20`), always visible, inside the panel against its left edge; hit area new token `size.resize-handle` (24px, WCAG 2.5.8), corners `radius.4`; state layers on hover and while dragging; focusable, focus outline `color.border.focus` `border-width.2` drawn inside the hit area; left / right arrow keys change the width; double-click resets it to `size.panel`.
+- **Collapsed** (prop `collapsed`, default `false`): narrow strip of three IconButton `tertiary` — Library `widgets`, Properties `tune`, Compositions `dashboard` — padding and gap `space.8`; a click reopens the panel on that tab.
+- **Animation**: `duration.200`, `easing.ease-out`.
+- Stage 1 (Design) approved; status `guidelines`.
+
+**What was done**
+- `components/Panel/` created from the template: `meta.json`, `spec.md`, design preview (`design/Preview.tsx`, `design/tokens.json`, variants `expanded` / `collapsed`).
+- `tokens/semantic.json`: `size.panel`, `size.panel-min`, `size.panel-max`, `size.resize-handle`; added to the size table of the `token-naming` skill.
+- `tokens/contrast-pairs.json`: `color.icon.secondary`, `color.border.focus` and `color.icon.brand` on `color.background.surface` (min 3) — `npm run tokens`: 65/65 pairs pass.
+- Accessibility check: `audits/2026-11-19-B144-1-accessibility.md` — 3 failures (missing contrast pairs, colors unchanged) fixed; not blocking.
+- Token audit: `audits/2026-11-19-B144-1-tokens.md` — 65 values, 0 failures.
+- `backlog/backlog.json`: B144 `in-progress`, stage `guidelines`.
+- Open questions kept in the spec: look of the tabs (Tabs, B093); behavior below desktop (guidelines stage).
+- Compliance audit: `audits/2026-11-19-B144-1.md` — 61 compliant, 14 non-compliant (0 fixed, 0 new), 22 not in the design system; no new ticket.
+
+**Files**
+- `components/Panel/` (created), `audits/2026-11-19-B144-1-accessibility.md`, `audits/2026-11-19-B144-1-tokens.md`, `audits/2026-11-19-B144-1.md` (created)
+- `tokens/semantic.json`, `tokens/contrast-pairs.json`, `.claude/skills/token-naming/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B145-1 — StickyNote: design stage
 **Date:** 2026-11-19
 
@@ -5388,4 +5481,4 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/StickyNote/meta.json`, `spec.md`, `design/Preview.tsx`, `design/tokens.json`, `audits/2026-11-19-B145-1.md`, `audits/2026-11-19-B145-1-tokens.md`, `audits/2026-11-19-B145-1-accessibility.md` (created)
-- `tokens/semantic.json`, `tokens/contrast-pairs.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+- `tokens/semantic.json`, `tokens/contrast-pairs.json`, `.claude/skills/token-naming/SKILL.md` (size table), `backlog/backlog.json`, `STEPS.md` (updated)

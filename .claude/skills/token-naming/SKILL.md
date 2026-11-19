@@ -213,6 +213,11 @@ Semantic tier: **`size.<usage>`** → `--size-<usage>`, named by usage. Values i
 | `size.dialog-small` | 400px | Maximum width of a small Dialog |
 | `size.dialog-medium` | 560px | Maximum width of a medium Dialog (default) |
 | `size.dialog-large` | 800px | Maximum width of a large Dialog |
+| `size.panel` | 320px | Default width of the Panel of the UX playground |
+| `size.panel-min` | 280px | Minimum width of the Panel when it is resized |
+| `size.panel-max` | 480px | Maximum width of the Panel when it is resized |
+| `size.resize-handle` | 24px | Width and height of the hit area of a resize handle (WCAG 2.5.8) |
+| `size.sticky-note` | 160px | Width and height of a sticky note (StickyNote, fixed square) |
 
 ## Breakpoint tokens
 
