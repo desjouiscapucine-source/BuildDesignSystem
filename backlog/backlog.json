@@ -1708,6 +1708,22 @@
       "stage": "guidelines",
       "priority": "high",
       "release": "R2"
+    },
+    {
+      "id": "B158",
+      "title": "Skill git-workflow: one conversation per release ticket",
+      "category": "Skills",
+      "status": "done",
+      "origin": "decided",
+      "description": "When the tickets of a release are worked on, Claude prepares one suggestion per component or prototype ticket, which opens its own conversation already set up.",
+      "why": "Asked by the Design System Lead on 2026-11-19: working on the tickets of a release meant opening and setting up one conversation per component by hand.",
+      "scope": "A rule in the git-workflow skill (section 2). Governance tickets of the release stay in the Gouvernance conversation. No change to the documentation site.",
+      "doneWhen": [
+        "The git-workflow skill describes the rule: one suggestion per component or prototype ticket, what the opened conversation does on its own, and what stays in Gouvernance.",
+        "The How to use skills page shows the new rule."
+      ],
+      "priority": "high",
+      "release": "R4"
     }
   ]
 }
