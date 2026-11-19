@@ -722,6 +722,14 @@
       "$value": "812px",
       "$description": "Height of the simulated mobile screen (prototype frames)"
     },
+    "viewport-tablet": {
+      "$value": "768px",
+      "$description": "Width of the simulated tablet screen (Frame, B143)"
+    },
+    "viewport-tablet-height": {
+      "$value": "1024px",
+      "$description": "Height of the simulated tablet screen (Frame, B143)"
+    },
     "viewport-desktop": {
       "$value": "1280px",
       "$description": "Width of the simulated desktop screen (prototype frames)"
