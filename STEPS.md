@@ -5366,3 +5366,19 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `LICENSE`, `audits/2026-11-15-B156-1.md` (created)
 - `package.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B158-1 — One conversation per release ticket
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- New ticket **B158** (high, R4): when the tickets of a release are worked on, Claude prepares one suggestion (task chip) per component or prototype ticket, which opens its own conversation already set up, instead of taking the tickets one after another in the same conversation. First reserved as B157, renumbered: B157 was taken meanwhile by `component/Tabs` (Tab).
+- Tried first on the tickets of R2 not done yet: 8 chips (TextInput, Tabs, Canvas, Frame, Panel, StickyNote, Comment, SearchField), all started by the Design System Lead.
+
+**What was done**
+- `.claude/skills/git-workflow/SKILL.md`, section 2: rule "Working on the tickets of a release" — one chip per component or prototype ticket of the release not done yet; the opened conversation names itself `Composant <Name>`, sets up its branch and reserves its ticket (section 3), reads the ticket and starts the current stage, in French; self-contained chip prompt (ticket, release, branch, steps, related tickets); governance tickets stay in the Gouvernance conversation; Claude can only suggest, the Design System Lead clicks each chip.
+- `backlog/backlog.json`: B158 reserved, then `done`.
+- Compliance audit: `audits/2026-11-19-B158-1.md` — 61 compliant, 14 non-compliant, 22 not in the design system; no change, no new ticket.
+
+**Files**
+- `audits/2026-11-19-B158-1.md` (created)
+- `.claude/skills/git-workflow/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)

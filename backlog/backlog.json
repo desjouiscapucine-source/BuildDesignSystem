@@ -1696,7 +1696,7 @@
       "id": "B158",
       "title": "Skill git-workflow: one conversation per release ticket",
       "category": "Skills",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "When the tickets of a release are worked on, Claude prepares one suggestion per component or prototype ticket, which opens its own conversation already set up.",
       "why": "Asked by the Design System Lead on 2026-11-19: working on the tickets of a release meant opening and setting up one conversation per component by hand.",
