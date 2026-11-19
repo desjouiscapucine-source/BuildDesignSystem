@@ -5460,6 +5460,29 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `components/Panel/` (created), `audits/2026-11-19-B144-1-accessibility.md`, `audits/2026-11-19-B144-1-tokens.md`, `audits/2026-11-19-B144-1.md` (created)
 - `tokens/semantic.json`, `tokens/contrast-pairs.json`, `.claude/skills/token-naming/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
 
+## Step B143-2 — Frame: guidelines approved
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- Audit finding #68 → new ticket **B162** "Documentation site: tablet screen size tokens" (`proposal`, low, R4).
+- When to use: on the canvas of the UX playground only. When not to use: outside the canvas → Screen (prototypes) or the layout of the page.
+- Best practices: one composition per frame; explicit names; frames of a composition side by side, mobile → tablet → desktop; content on the layout grid of its size; no nested frames.
+- Do's and don'ts (shown visually): explicit name, one screen per frame, sizes aligned, no frame inside a frame.
+- Content: name in sentence case, a few words, no final period, never the size.
+- Behavior: a click anywhere in the frame selects it.
+- Accessibility: Tab to the frame, Enter / Space toggle the selection, Escape removes it; after the content, Tab goes to the next frame, then out of the canvas (Shift+Tab backwards); focused content scrolled below the device bar, focused frame never under the Panel; the frame is a named group ("Home, Mobile 375 × 812") and its name is a toggle button exposing the selection (anatomy line added to `spec.md`); the name button meets WCAG 2.5.8 with the spacing exception.
+- Related components: Canvas (B142), Panel (B144), StickyNote (B145), Comment (B146).
+
+**What was done**
+- `components/Frame/guidelines.md` written; `spec.md`: the name is a toggle button.
+- Accessibility check: `audits/2026-11-19-B143-2-accessibility.md` — 6 failures over the runs (keyboard exit, focus obscured, selected state on a group, contrast pairs listed, target size, its wording), all fixed with the Lead's decisions; no exception.
+- Guidelines approved: `meta.json` status and the B143 `stage` set to `code`.
+- Compliance audit: `audits/2026-11-19-B143-2.md` — 61 compliant, 15 non-compliant (no new finding; #68 now B162), 22 not in the design system; no new ticket.
+
+**Files**
+- `audits/2026-11-19-B143-2.md`, `audits/2026-11-19-B143-2-accessibility.md` (created)
+- `components/Frame/guidelines.md`, `components/Frame/spec.md`, `components/Frame/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B145-1 — StickyNote: design stage
 **Date:** 2026-11-19
 
@@ -5504,6 +5527,8 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-19-B157-2.md`, `audits/2026-11-19-B157-2-accessibility.md` (new)
 - `components/Tab/guidelines.md`, `components/Tab/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+
 
 ## Step B157-3 — Tab: code approved, component complete
 **Date:** 2026-11-19

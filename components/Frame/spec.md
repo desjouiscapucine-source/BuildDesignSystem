@@ -14,7 +14,7 @@ A layout frame placed on the canvas (Canvas, B142) of the UX playground (B130). 
 | Frame | The only type. |
 
 ## Anatomy
-1. **Name** (required) — above the frame, on the left: the name of the composition (e.g. "Home").
+1. **Name** (required) — above the frame, on the left: the name of the composition (e.g. "Home"). It is a toggle button that selects the frame (accessibility decision, guidelines stage); it looks like text.
 2. **Size label** (required) — next to the name, on the same line: the size name and its dimensions (e.g. "Mobile · 375 × 812").
 3. **Container** (required) — the frame itself, at the real size of the screen: background, thin border, rounded corners, shadow.
 4. **Device bar** (required) — at the top of the container:
