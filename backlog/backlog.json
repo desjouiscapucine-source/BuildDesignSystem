@@ -1472,7 +1472,7 @@
       "id": "B145",
       "title": "StickyNote",
       "category": "Components",
-      "status": "todo",
+      "status": "in-progress",
       "origin": "decided",
       "description": "A sticky note placed on the canvas, to annotate a composition.",
       "why": "Missing component of the UX playground prototype (B130): the playground has sticky notes to annotate a composition.",
