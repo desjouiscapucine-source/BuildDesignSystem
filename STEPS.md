@@ -5429,3 +5429,26 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/Frame/` (created), `audits/2026-11-19-B143-1.md`, `audits/2026-11-19-B143-1-accessibility.md`, `audits/2026-11-19-B143-1-tokens.md` (created)
 - `tokens/semantic.json`, `tokens/contrast-pairs.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B146-1 — Comment: first design decisions (draft spec)
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- B146 Comment started on `component/Comment`; level **organism**.
+- Type: a **marker** placed on a component or a frame of the canvas, which opens a **bubble** with the comment thread. The marker is the Avatar of the author of the first message.
+- Content of each message: author (initials in an avatar + name), date and time, text; replies form a thread.
+- Actions: Reply, Resolve, Edit / delete a message, Close.
+- Component-specific states: open / closed, selected, resolved, editing (in addition to hover, focus, pressed).
+- Text field: its place is defined in the design; the component (Textarea B020 or Text input B019) is chosen at the Code stage.
+- Building blocks, built first through all their stages: new tickets **B159 Avatar** (atom) and **B160 CommentMessage** (molecule), both high priority, release R2 (proposals approved by the Design System Lead).
+- Name `Comment`, class `.ds-comment` and the description are proposals, still to confirm (open question of the spec).
+
+**What was done**
+- `components/Comment/meta.json` (status `design`, version 0.0) and a draft `components/Comment/spec.md` with the approved decisions only; everything else under "Not decided yet" or Open questions. No design preview yet: its look waits for Avatar and CommentMessage.
+- `backlog/backlog.json`: B146 `in-progress`; B159 and B160 created (`todo`, `origin: proposal`).
+- `develop` merged into `component/Comment` (backlog conflict: both sides kept).
+- Compliance audit: `audits/2026-11-19-B146-1.md` — 61 compliant, 15 non-compliant (#68 already reported by B143-1), 22 not in the design system; no new ticket.
+
+**Files**
+- `components/Comment/meta.json`, `components/Comment/spec.md`, `audits/2026-11-19-B146-1.md` (created)
+- `backlog/backlog.json`, `STEPS.md` (updated)
