@@ -1691,6 +1691,42 @@
         "package.json declares the license."
       ],
       "priority": "high"
+    },
+    {
+      "id": "B159",
+      "title": "Avatar",
+      "category": "Components",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "A round avatar showing a person's initials.",
+      "why": "Building block found while designing Comment (B146), approved by the Design System Lead on 2026-11-19: the comment marker and each comment message show the author's initials in an avatar.",
+      "scope": "Design, guidelines and code of the Avatar component (atom), each stage approved by the Design System Lead (component skill). Anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant Avatar conversation on component/Avatar (never-invent).",
+      "doneWhen": [
+        "The Avatar design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "Avatar is exported from @ds/components, ready for CommentMessage (B160) and Comment (B146)."
+      ],
+      "stage": "design",
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B160",
+      "title": "CommentMessage",
+      "category": "Components",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "One message of a comment thread: author avatar and name, date and text.",
+      "why": "Building block of Comment (B146), approved by the Design System Lead on 2026-11-19: a comment holds a thread of messages (the first one and its replies), so the repeated message is its own component, built before Comment.",
+      "scope": "Design, guidelines and code of the CommentMessage component (molecule), each stage approved by the Design System Lead (component skill). Anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant CommentMessage conversation on component/CommentMessage (never-invent).",
+      "doneWhen": [
+        "The CommentMessage design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "CommentMessage is exported from @ds/components, ready for Comment (B146)."
+      ],
+      "stage": "design",
+      "priority": "high",
+      "release": "R2"
     }
   ]
 }
