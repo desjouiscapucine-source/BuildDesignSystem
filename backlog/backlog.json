@@ -1691,6 +1691,23 @@
         "package.json declares the license."
       ],
       "priority": "high"
+    },
+    {
+      "id": "B157",
+      "title": "Tab",
+      "category": "Components",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "One tab of a tab list. Building block of Tabs (B093), built first.",
+      "why": "Decided by the Design System Lead on 2026-11-19: Tabs is made of repeated tabs, so the tab is split into its own component (building block rule, component-structure), built through its three stages before Tabs.",
+      "scope": "components/Tab: design (spec and design preview), guidelines and code. Atom, class .ds-tab, underline style, one size, text label only. The tab list (alignment, selection, keyboard) belongs to Tabs (B093).",
+      "doneWhen": [
+        "Tab is complete: design, guidelines and code approved by the Design System Lead.",
+        "Tab is exported from components/index.ts."
+      ],
+      "stage": "design",
+      "priority": "high",
+      "release": "R2"
     }
   ]
 }
