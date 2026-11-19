@@ -324,6 +324,16 @@
     {
       "foreground": "color.icon.brand",
       "background": "color.background.surface",
+  "min": 3
+    },
+    {
+      "foreground": "color.border.focus",
+      "background": "color.background.subtle",
+      "min": 3
+    },
+    {
+      "foreground": "color.border.strong",
+      "background": "color.background.subtle",
       "min": 3
     }
   ]
