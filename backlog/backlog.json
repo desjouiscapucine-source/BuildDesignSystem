@@ -1724,6 +1724,22 @@
       ],
       "priority": "high",
       "release": "R4"
+    },
+    {
+      "id": "B162",
+      "title": "Documentation site: tablet screen size tokens",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "The site's simulated tablet screens use the size.viewport-tablet tokens, like mobile and desktop.",
+      "why": "Compliance audit finding 68 (audits/2026-11-19-B143-1.md): the Playground tab and the Prototype preview frames read the tablet width and height from breakpoint.tablet / breakpoint.desktop (media-query tokens), while size.viewport-tablet / size.viewport-tablet-height now exist for a simulated tablet screen (B143).",
+      "scope": "docs/src/PlaygroundTab.tsx (tablet screen size and its comment) and docs/src/pages/PrototypePage.tsx (tablet preview frame): width from size.viewport-tablet, height from size.viewport-tablet-height. Same values (768 × 1024): no visual change.",
+      "doneWhen": [
+        "The site's simulated tablet screens read size.viewport-tablet and size.viewport-tablet-height.",
+        "Finding 68 is gone from the next compliance audit."
+      ],
+      "priority": "low",
+      "release": "R4"
     }
   ]
 }
