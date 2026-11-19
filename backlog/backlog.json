@@ -1705,7 +1705,7 @@
         "Tab is complete: design, guidelines and code approved by the Design System Lead.",
         "Tab is exported from components/index.ts."
       ],
-      "stage": "guidelines",
+      "stage": "code",
       "priority": "high",
       "release": "R2"
     },

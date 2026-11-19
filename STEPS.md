@@ -5405,3 +5405,25 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `components/Tab/meta.json`, `spec.md`, `guidelines.md` (template), `design/Preview.tsx`, `design/tokens.json` (new)
 - `audits/2026-11-19-B157-1-accessibility.md`, `audits/2026-11-19-B157-1-tokens.md` (new)
 - `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B157-2 — Tab: guidelines approved
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- When to use: only inside Tabs, one tab per panel; to go to another page → NavigationItem; for a sequence of steps → TimelineStep.
+- Disabled only when the content of the panel is not available yet (e.g. Code before the Code stage); a tab whose content will not exist is removed. Never selected and disabled.
+- Content: name the content of the panel, one to three words, sentence case, text only, no punctuation.
+- Behavior: automatic activation — the arrow keys move the focus and select the tab (as the current tabs of the site, B125); long label on one line, the tab grows.
+- The four do / don't pairs (case and punctuation, name the content, when to disable, never selected and disabled).
+- Accessibility: WAI-ARIA tabs pattern (Tab enters on the selected tab; Left / Right move and select, wrapping; Home / End; disabled tabs skipped; tab role, name = label, selected state, linked to its panel); sentence "The focused tab is never hidden by a sticky element or a panel." added after the accessibility check (WCAG 2.4.11).
+- Related components: Tabs only.
+- Guidelines approved; next stage: code.
+
+**What was done**
+- `components/Tab/guidelines.md` written; `meta.json` status `code`; backlog B157 stage `code`.
+- Accessibility check: `audits/2026-11-19-B157-2-accessibility.md` — first run 1 failure (WCAG 2.4.11), fixed; 7 pass, 0 fail.
+- Compliance audit: `audits/2026-11-19-B157-2.md` — 61 compliant, 14 non-compliant, 22 not in the design system; no change, no new ticket.
+
+**Files**
+- `audits/2026-11-19-B157-2.md`, `audits/2026-11-19-B157-2-accessibility.md` (new)
+- `components/Tab/guidelines.md`, `components/Tab/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
