@@ -5366,3 +5366,26 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `LICENSE`, `audits/2026-11-15-B156-1.md` (created)
 - `package.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B157-1 — Tab: design approved
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- B093 Tabs started (branch `component/Tabs`). Split into a building block, **Tab**, built first (new ticket **B157**, high, R2), in this same conversation; then **Tabs**.
+- **Tab**: atom, class `.ds-tab`, description "One tab of a tab list, that shows one panel of the page.", one type (underline), one size, text label only (no icon, no counter).
+- Label: `body`, `--color-text-secondary`; selected: `label` style (semibold), `--color-text-brand`, selection indicator `--border-width-2` in `--color-border-focus` (as the current tabs of the site).
+- Padding `--space-8` top and bottom, `--space-16` left and right.
+- States: hover, focus (ring `--color-border-focus` + focus state layer) and pressed with state layers, top corners `--radius-4`; disabled = label in `--color-text-disabled`, not focusable. Selected + disabled is forbidden.
+- Long label: one line, the tab grows; lack of space is handled by Tabs.
+- Design approved; next stage: guidelines.
+
+**What was done**
+- `components/Tab/` created from the template: `meta.json` (status `guidelines`), `spec.md`, design preview (`design/Preview.tsx`, `design/tokens.json`, variants `default` and `selected`, disabled state).
+- Accessibility check: `audits/2026-11-19-B157-1-accessibility.md` — 5 pass, 0 fail, 1 not applicable; note: the label on the pressed state layer is 3.97:1 / 4.33:1 (shared state layer value, not a checklist criterion).
+- Token audit: `audits/2026-11-19-B157-1-tokens.md` — 39 values, 0 failures.
+- Backlog: B093 in progress; B157 added (reserved first), stage `guidelines`.
+
+**Files**
+- `components/Tab/meta.json`, `spec.md`, `guidelines.md` (template), `design/Preview.tsx`, `design/tokens.json` (new)
+- `audits/2026-11-19-B157-1-accessibility.md`, `audits/2026-11-19-B157-1-tokens.md` (new)
+- `backlog/backlog.json`, `STEPS.md` (updated)
