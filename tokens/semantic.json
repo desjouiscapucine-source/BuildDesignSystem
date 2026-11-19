@@ -614,6 +614,22 @@
       "$value": "800px",
       "$description": "Maximum width of a large Dialog"
     },
+    "panel": {
+      "$value": "320px",
+      "$description": "Default width of the Panel of the UX playground"
+    },
+    "panel-min": {
+      "$value": "280px",
+      "$description": "Minimum width of the Panel when it is resized"
+    },
+    "panel-max": {
+      "$value": "480px",
+      "$description": "Maximum width of the Panel when it is resized"
+    },
+    "resize-handle": {
+      "$value": "24px",
+      "$description": "Width and height of the hit area of a resize handle (WCAG 2.5.8)"
+    },
     "header": {
       "$value": "64px",
       "$description": "Height of the documentation site header"
@@ -721,6 +737,14 @@
     "viewport-mobile-height": {
       "$value": "812px",
       "$description": "Height of the simulated mobile screen (prototype frames)"
+    },
+    "viewport-tablet": {
+      "$value": "768px",
+      "$description": "Width of the simulated tablet screen (Frame, B143)"
+    },
+    "viewport-tablet-height": {
+      "$value": "1024px",
+      "$description": "Height of the simulated tablet screen (Frame, B143)"
     },
     "viewport-desktop": {
       "$value": "1280px",

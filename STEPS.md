@@ -5406,6 +5406,60 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `audits/2026-11-19-B157-1-accessibility.md`, `audits/2026-11-19-B157-1-tokens.md` (new)
 - `backlog/backlog.json`, `STEPS.md` (updated)
 
+## Step B143-1 — Frame: design approved
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- Component **Frame**: molecule, folder `components/Frame/`, class `.ds-frame`, description "A layout frame on the canvas, in mobile, tablet or desktop size."; one type.
+- Props: `size` (`mobile` default, `tablet`, `desktop`), `selected`, `empty`, `name`.
+- Sizes: mobile 375 × 812, tablet **768 × 1024** (new tokens `size.viewport-tablet` / `size.viewport-tablet-height`), desktop 1280 × 800.
+- Anatomy: name (`label`, `text.primary`) and size label (`body-sm`, `text.secondary`) above the frame, `space.8` apart and `space.8` from the frame; container on `background.page`, 1px `border.subtle`, `radius.8`, `shadow.frame`; device bar (status bar on mobile and tablet, browser bar on desktop) on `background.page` with a `border.subtle` line, `label-sm` + `text.primary`, `icon-size.16`, padding `space.8` / `space.16`, items `space.8` apart, status icons `space.4` apart, desktop address field `background.subtle` + `radius.16`.
+- Content: long name cut with an ellipsis at the frame width; the content scrolls inside the frame; empty = `add_box` (`icon-size.32`) + "Drop components here" (`body`, `text.secondary`), gap `space.8`, padding `space.16`.
+- States: hover = `border.strong` + `state-layer.hover`; focus = 2px `border.focus` outline offset `space.4` + `state-layer.focus`; selected = 2px `border.focus` outline on the frame; focus and selected show together.
+- Contrast pairs added: `border.focus` / `background.subtle` and `border.strong` / `background.subtle` (min 3).
+
+**What was done**
+- `components/Frame/` from the template: `meta.json`, `spec.md`, design preview (`design/Preview.tsx`, `design/tokens.json`).
+- Accessibility check: `audits/2026-11-19-B143-1-accessibility.md` — 3 failures at first (two missing contrast pairs, no state layers), fixed with the Lead's decisions; 0 failure, no exception.
+- Token audit: `audits/2026-11-19-B143-1-tokens.md` — 241 values, 0 failure.
+- Design approved: `meta.json` status and the B143 `stage` set to `guidelines`.
+- Compliance audit: `audits/2026-11-19-B143-1.md` — 61 compliant, 15 non-compliant (1 new: #68, the site's simulated tablet screen should use the new `size.viewport-tablet*` tokens), 22 not in the design system.
+- Open question: the canvas background is decided by Canvas (B142); the label contrast is checked again then.
+
+**Files**
+- `components/Frame/` (created), `audits/2026-11-19-B143-1.md`, `audits/2026-11-19-B143-1-accessibility.md`, `audits/2026-11-19-B143-1-tokens.md` (created)
+- `tokens/semantic.json`, `tokens/contrast-pairs.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B144-1 — Panel: design approved
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- **Identity**: `Panel`, folder `components/Panel/`, class `ds-panel`, level **organism**, description "Right panel of the UX playground: Library, Properties and Compositions tabs."
+- **Specific to the playground** (B130): three fixed tabs, Library, Properties and Compositions, built with the **Tabs** component (B093). The spec is approved with a placeholder for the tabs; Tabs must be complete before the Panel code.
+- **Behavior**: fixed on the right, full height, over the canvas; collapsible; resizable.
+- **Look**: background `color.background.surface`, shadow `shadow.panel`, no border.
+- **Width**: new tokens `size.panel` (320px, default), `size.panel-min` (280px), `size.panel-max` (480px).
+- **Header**: tabs + collapse IconButton `tertiary`, icon `right_panel_close`; padding `space.8` top and right, `space.24` left.
+- **Tab content**: padding `space.16`, `space.24` on the left (clear of the resize handle); scrolls when long.
+- **Resize handle**: `drag_indicator` icon (`color.icon.secondary`, `icon-size.20`), always visible, inside the panel against its left edge; hit area new token `size.resize-handle` (24px, WCAG 2.5.8), corners `radius.4`; state layers on hover and while dragging; focusable, focus outline `color.border.focus` `border-width.2` drawn inside the hit area; left / right arrow keys change the width; double-click resets it to `size.panel`.
+- **Collapsed** (prop `collapsed`, default `false`): narrow strip of three IconButton `tertiary` — Library `widgets`, Properties `tune`, Compositions `dashboard` — padding and gap `space.8`; a click reopens the panel on that tab.
+- **Animation**: `duration.200`, `easing.ease-out`.
+- Stage 1 (Design) approved; status `guidelines`.
+
+**What was done**
+- `components/Panel/` created from the template: `meta.json`, `spec.md`, design preview (`design/Preview.tsx`, `design/tokens.json`, variants `expanded` / `collapsed`).
+- `tokens/semantic.json`: `size.panel`, `size.panel-min`, `size.panel-max`, `size.resize-handle`; added to the size table of the `token-naming` skill.
+- `tokens/contrast-pairs.json`: `color.icon.secondary`, `color.border.focus` and `color.icon.brand` on `color.background.surface` (min 3) — `npm run tokens`: 65/65 pairs pass.
+- Accessibility check: `audits/2026-11-19-B144-1-accessibility.md` — 3 failures (missing contrast pairs, colors unchanged) fixed; not blocking.
+- Token audit: `audits/2026-11-19-B144-1-tokens.md` — 65 values, 0 failures.
+- `backlog/backlog.json`: B144 `in-progress`, stage `guidelines`.
+- Open questions kept in the spec: look of the tabs (Tabs, B093); behavior below desktop (guidelines stage).
+- Compliance audit: `audits/2026-11-19-B144-1.md` — 61 compliant, 14 non-compliant (0 fixed, 0 new), 22 not in the design system; no new ticket.
+
+**Files**
+- `components/Panel/` (created), `audits/2026-11-19-B144-1-accessibility.md`, `audits/2026-11-19-B144-1-tokens.md`, `audits/2026-11-19-B144-1.md` (created)
+- `tokens/semantic.json`, `tokens/contrast-pairs.json`, `.claude/skills/token-naming/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B157-2 — Tab: guidelines approved
 **Date:** 2026-11-19
 
