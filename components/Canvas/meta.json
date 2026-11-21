@@ -1,0 +1,8 @@
+{
+  "name": "Canvas",
+  "description": "The free canvas of the UX playground, which holds the layout frames.",
+  "level": "organism",
+  "status": "guidelines",
+  "version": "0.0",
+  "changelog": []
+}

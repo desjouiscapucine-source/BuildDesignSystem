@@ -5573,3 +5573,27 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-21-B143-3.md`, `audits/2026-11-21-B143-3-tokens.md`, `audits/2026-11-21-B143-3-accessibility.md` (created)
 - `components/Frame/Frame.tsx`, `Frame.css`, `examples.tsx`, `playground.tsx`, `spec.md`, `guidelines.md`, `meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B142-1 — Canvas: design approved
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- Component **Canvas**: organism, folder `components/Canvas/`, class `.ds-canvas`, description "The free canvas of the UX playground, which holds the layout frames."; one type: an infinite canvas with pan and zoom.
+- Surface: fills its container, no border, no rounded corners; background `background.subtle`; grid of dots `border.subtle`, diameter `border-width.2`, every `space.16` at 100% zoom.
+- Content: Frames (B143), sticky notes (B145), comments (B146) and components placed on their own; stacking `z-index.content`.
+- Zoom controls: a separate building block, **ZoomControls** (new ticket B161, high, R2), at the bottom right, `z-index.sticky`: zoom out, zoom level in percent, zoom in, fit to screen; tertiary IconButtons; container `background.surface`, `radius.8`, `shadow.dropdown`. The Canvas design goes on; its code waits for ZoomControls to be complete.
+- Prop: `zoom` (10 → 400, steps of 10, default 100). Empty is not a prop: deduced from the content; empty message "Add a frame to start" (`body`, `text.secondary`, centered, no icon).
+- Behavior: pan with Space + drag or wheel / trackpad; a drag on the background draws the selection rectangle. Keyboard with focus: arrow keys move the view by `space.16`, `+` / `−` zoom, `0` back to 100%, `Shift` + `1` fit to screen.
+- States: empty, panning (grab cursor), focus (2px `border.focus` outline inside the edges, in front of the content and the zoom controls), selecting (1px `border.focus` border, fill `border.focus` at `state-layer.hover`).
+
+**What was done**
+- `components/Canvas/` from the template: `meta.json`, `spec.md`, design preview (`design/Preview.tsx`, `design/tokens.json`, variants `empty` and `selection`, states default and focus).
+- Ticket B161 ZoomControls created and reserved, merged into `develop`.
+- Accessibility check: `audits/2026-11-19-B142-1-accessibility.md` — 7 pass, 0 failure, no exception (focus outline question resolved by the Lead).
+- Token audit: `audits/2026-11-19-B142-1-tokens.md` — 55 values, 0 failure.
+- Design approved: `meta.json` status and the B142 `stage` set to `guidelines`.
+- Compliance audit: `audits/2026-11-19-B142-1.md` — 61 compliant, 15 non-compliant (0 new, 0 fixed), 22 not in the design system; no new ticket.
+
+**Files**
+- `components/Canvas/` (created), `audits/2026-11-19-B142-1.md`, `audits/2026-11-19-B142-1-accessibility.md`, `audits/2026-11-19-B142-1-tokens.md` (created)
+- `backlog/backlog.json`, `STEPS.md` (updated)
