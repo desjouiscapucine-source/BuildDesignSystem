@@ -36,7 +36,7 @@
 
 ## Accessibility
 - **Keyboard:** Tab enters the tab list on the selected tab; Left and Right arrows move to the previous or next tab and select it (wrapping at both ends); Home and End go to the first and last tab. Disabled tabs are skipped. Tab again leaves the list for the panel.
-- **Focus:** one tab in the tab order at a time (the selected one); focus ring `--color-border-focus` plus the focus state layer. The focused tab is never hidden by a sticky element or a panel.
+- **Focus:** one tab in the tab order at a time (the selected one); focus ring `--color-border-focus` inside the tab, plus the focus state layer. The focused tab is never hidden by a sticky element or a panel.
 - **Screen reader:** each tab has the tab role, is named by its label, says whether it is selected, and is linked to its panel. A disabled tab is announced as unavailable.
 - **Contrast:** label `text.secondary` 5.49:1 and selected label `text.brand` 6.10:1 on the page background; selection indicator and focus ring `border.focus` 6.10:1. Disabled text is exempt.
 - **Touch target:** about 39px tall, width = label + 2 × `--space-16`; above 24×24px.
