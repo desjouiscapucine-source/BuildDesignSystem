@@ -1443,7 +1443,7 @@
       "id": "B143",
       "title": "Frame",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "A layout frame on the canvas, in mobile, tablet or desktop size.",
       "why": "Missing component of the UX playground prototype (B130): each composition is laid out in mobile, tablet and desktop frames on the canvas.",
@@ -1453,7 +1453,7 @@
         "The accessibility and token audits pass.",
         "Frame is exported from @ds/components, ready for the UX playground (B130)."
       ],
-      "stage": "code",
+      "stage": "complete",
       "priority": "high",
       "release": "R2"
     },
@@ -1764,6 +1764,23 @@
         "Finding 68 is gone from the next compliance audit."
       ],
       "priority": "low",
+      "release": "R4"
+    },
+    {
+      "id": "B163",
+      "title": "Documentation site: component page tabs on small screens",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "The tab row of the component pages stays within the page width on mobile and tablet.",
+      "why": "Compliance audit finding 69 (audits/2026-11-21-B143-3.md): the hand-built tab row (display: flex, no wrap, no overflow) needs about 590px on a phone against about 327px; the whole page scrolls sideways (WCAG 1.4.10 Reflow). Seen in the browser on Button and Frame.",
+      "scope": "docs/src/pages/ComponentPage.tsx (tab row, lines 72-89) and docs/src/docs.css (.tabs, lines 428-440): fix the hand-built tablist now, without waiting for Tabs (B093). Then check the Playground canvas again at mobile width. Decision to ask first: how the row behaves when the tabs do not fit (e.g. horizontal scroll of the row, wrap, or a menu).",
+      "doneWhen": [
+        "On mobile and tablet, the component page tab row stays within the page width and the page does not scroll sideways.",
+        "The Playground tab does not overflow the page at mobile width.",
+        "Finding 69 is gone from the next compliance audit."
+      ],
+      "priority": "high",
       "release": "R4"
     }
   ]
