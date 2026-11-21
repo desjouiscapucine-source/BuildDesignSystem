@@ -5687,3 +5687,24 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-21-B093-2.md`, `audits/2026-11-21-B093-2-accessibility.md` (new)
 - `components/Tabs/guidelines.md`, `components/Tabs/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B093-3 — Tabs: code approved, component complete
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- Code approved: Tabs is **complete**, version 1.0.
+- Next: replace the hand-built tabs of the component pages with Tabs (finding #70, last "Done when" of B093).
+
+**What was done**
+- `components/Tabs/Tabs.tsx`: props `label` (required name of the tab list), `tabs` (`id`, `label`, `disabled`, `content`), `selected` + `onSelect` (controlled) or `defaultSelected`; a disabled tab is never the selected one (falls back to the first enabled tab); WAI-ARIA tabs with automatic activation (arrows wrapping, Home / End, disabled tabs skipped); the selected tab scrolled into view inside the row without scrolling the page; only the selected panel is rendered (`tabpanel`, named by its tab, `tabIndex={0}`), `aria-controls` on the selected tab only.
+- `components/Tabs/Tabs.css`: semantic tokens only; full width; row `--space-4`, `overflow-x: auto`, scrollbar hidden, line as an inset shadow (`--border-width-1`, `--color-border-subtle`); panel `--space-24` above, focus ring `--border-width-2` `--color-border-focus`.
+- `examples.tsx` (default, with a disabled tab, on the surface background, not enough space with seven tabs) and `playground.tsx` (uncontrolled, restarted when the control changes); export in `components/index.ts`; `meta.json` `complete`, 1.0, changelog "First complete version."
+- Backlog: B093 `why` renumbered to finding #70 (asked by the Design System Lead through the Gouvernance conversation).
+- Accessibility check: `audits/2026-11-21-B093-3-accessibility.md` — 9 pass, 0 fail, 1 not applicable; keyboard, Tab / Shift+Tab, scrolling row and 375px checked in the browser; screen reader, 200% zoom and text spacing still to check manually.
+- Token audit: `audits/2026-11-21-B093-3-tokens.md` — 13 values, 0 failures.
+- Compliance audit: `audits/2026-11-21-B093-3.md` — 61 compliant, 15 non-compliant (#69 fixed by B163), 21 not in the design system; no new ticket.
+
+**Files**
+- `components/Tabs/Tabs.tsx`, `Tabs.css`, `examples.tsx`, `playground.tsx` (new)
+- `audits/2026-11-21-B093-3.md`, `audits/2026-11-21-B093-3-accessibility.md`, `audits/2026-11-21-B093-3-tokens.md` (new)
+- `components/Tabs/meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
