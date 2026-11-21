@@ -5574,6 +5574,57 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `audits/2026-11-21-B143-3.md`, `audits/2026-11-21-B143-3-tokens.md`, `audits/2026-11-21-B143-3-accessibility.md` (created)
 - `components/Frame/Frame.tsx`, `Frame.css`, `examples.tsx`, `playground.tsx`, `spec.md`, `guidelines.md`, `meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
 
+## Step B093-1 — Tabs: design approved (and Tab 1.1)
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- **Tabs**: molecule, class `.ds-tabs`, description "A row of tabs that shows one panel of the page at a time.", one type, one size, no variant property.
+- Row of **Tab** (B157), left-aligned, each tab as wide as its label, `--space-4` between tabs; line `--border-width-1` in `--color-border-subtle` under the whole row (as the current tabs of the site).
+- Not enough space: the row scrolls horizontally, no button, scrollbar hidden; the selected tab is brought into view.
+- The panel of the selected tab is part of Tabs: under the row, `--space-24` above, no padding, always focusable (focus ring `--border-width-2` `--color-border-focus`).
+- Backgrounds: `background.page` and `background.surface` (Panel, B144).
+- Disabled tabs: a rule belongs to the guidelines.
+- B093 ticket completed (Why, Scope, Done when); its scope includes replacing the hand-built tabs of the component pages with Tabs (compliance finding #68).
+- Accessibility check failure (WCAG 2.4.7, the scrolling row cut the Tab focus ring): **the Tab focus ring is drawn inside the tab** → **Tab 1.1** (spec, guidelines, design preview, CSS, changelog). Also, the line under the row is drawn inside the row (inset shadow) so the scrolling row no longer cuts the selection line (measured: 1px hidden).
+- Design approved; next stage: guidelines.
+
+**What was done**
+- `components/Tabs/` created from the template: `meta.json` (status `guidelines`), `spec.md`, design preview (`design/Preview.tsx` with the coded Tab, `design/tokens.json`, states default and focus).
+- `components/Tab/`: `Tab.css` (`outline-offset: calc(var(--border-width-2) * -1)`), `spec.md`, `guidelines.md`, `design/Preview.tsx`, `meta.json` 1.1.
+- Accessibility check: `audits/2026-11-21-B093-1-accessibility.md` — first run 1 failure (2.4.7), fixed; 13 pass, 0 fail.
+- Token audit: `audits/2026-11-21-B093-1-tokens.md` — 27 values, 0 failures.
+- Compliance audit: `audits/2026-11-21-B093-1.md` — 61 compliant, 17 non-compliant (2 new, #69 and #70, carried from `develop`), 21 not in the design system; no new ticket.
+- Backlog: B093 stage `guidelines`.
+
+**Files**
+- `components/Tabs/meta.json`, `spec.md`, `guidelines.md` (template), `design/Preview.tsx`, `design/tokens.json` (new)
+- `audits/2026-11-21-B093-1.md`, `audits/2026-11-21-B093-1-accessibility.md`, `audits/2026-11-21-B093-1-tokens.md` (new)
+- `components/Tab/Tab.css`, `spec.md`, `guidelines.md`, `design/Preview.tsx`, `meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B142-1 — Canvas: design approved
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- Component **Canvas**: organism, folder `components/Canvas/`, class `.ds-canvas`, description "The free canvas of the UX playground, which holds the layout frames."; one type: an infinite canvas with pan and zoom.
+- Surface: fills its container, no border, no rounded corners; background `background.subtle`; grid of dots `border.subtle`, diameter `border-width.2`, every `space.16` at 100% zoom.
+- Content: Frames (B143), sticky notes (B145), comments (B146) and components placed on their own; stacking `z-index.content`.
+- Zoom controls: a separate building block, **ZoomControls** (new ticket B161, high, R2), at the bottom right, `z-index.sticky`: zoom out, zoom level in percent, zoom in, fit to screen; tertiary IconButtons; container `background.surface`, `radius.8`, `shadow.dropdown`. The Canvas design goes on; its code waits for ZoomControls to be complete.
+- Prop: `zoom` (10 → 400, steps of 10, default 100). Empty is not a prop: deduced from the content; empty message "Add a frame to start" (`body`, `text.secondary`, centered, no icon).
+- Behavior: pan with Space + drag or wheel / trackpad; a drag on the background draws the selection rectangle. Keyboard with focus: arrow keys move the view by `space.16`, `+` / `−` zoom, `0` back to 100%, `Shift` + `1` fit to screen.
+- States: empty, panning (grab cursor), focus (2px `border.focus` outline inside the edges, in front of the content and the zoom controls), selecting (1px `border.focus` border, fill `border.focus` at `state-layer.hover`).
+
+**What was done**
+- `components/Canvas/` from the template: `meta.json`, `spec.md`, design preview (`design/Preview.tsx`, `design/tokens.json`, variants `empty` and `selection`, states default and focus).
+- Ticket B161 ZoomControls created and reserved, merged into `develop`.
+- Accessibility check: `audits/2026-11-19-B142-1-accessibility.md` — 7 pass, 0 failure, no exception (focus outline question resolved by the Lead).
+- Token audit: `audits/2026-11-19-B142-1-tokens.md` — 55 values, 0 failure.
+- Design approved: `meta.json` status and the B142 `stage` set to `guidelines`.
+- Compliance audit: `audits/2026-11-19-B142-1.md` — 61 compliant, 15 non-compliant (0 new, 0 fixed), 22 not in the design system; no new ticket.
+
+**Files**
+- `components/Canvas/` (created), `audits/2026-11-19-B142-1.md`, `audits/2026-11-19-B142-1-accessibility.md`, `audits/2026-11-19-B142-1-tokens.md` (created)
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B145-2 — StickyNote: guidelines approved
 **Date:** 2026-11-21
 

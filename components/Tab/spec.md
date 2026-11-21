@@ -51,7 +51,7 @@ One size.
 - **Default** — label `--color-text-secondary`, `body`.
 - **Selected** — label `--color-text-brand`, `label` (semibold); selection indicator `--border-width-2` in `--color-border-focus`.
 - **Hover** — state layer `--state-layer-hover` (content color), top corners `--radius-4`.
-- **Focus** — ring `--border-width-2` in `--color-border-focus` + state layer `--state-layer-focus`, top corners `--radius-4`.
+- **Focus** — ring `--border-width-2` in `--color-border-focus`, drawn inside the tab (so a scrolling tab list never cuts it), + state layer `--state-layer-focus`, top corners `--radius-4`.
 - **Pressed** — state layer `--state-layer-pressed`, top corners `--radius-4`.
 - **Disabled** — label `--color-text-disabled`; not focusable, not clickable.
 
@@ -63,7 +63,7 @@ One size.
 | Container | Radius (top corners of the state layer and focus ring) | Hover · Focus · Pressed | `--radius-4` |
 | Container | State layer opacity | Hover · Focus · Pressed | `--state-layer-hover` · `--state-layer-focus` · `--state-layer-pressed` |
 | Container | Focus ring | Focus | `--border-width-2`, `--color-border-focus` |
-| Container | Focus ring offset | Focus | `--border-width-2` |
+| Container | Focus ring offset (inside the tab) | Focus | `--border-width-2`, negative |
 | Container | State layer transition | Hover · Focus · Pressed | `--duration-100`, `--easing-ease-out` |
 | Label | Color | Default | `--color-text-secondary` |
 | Label | Color | Selected | `--color-text-brand` |
