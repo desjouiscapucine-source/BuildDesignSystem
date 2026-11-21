@@ -1,0 +1,8 @@
+{
+  "name": "Tabs",
+  "description": "A row of tabs that shows one panel of the page at a time.",
+  "level": "molecule",
+  "status": "code",
+  "version": "0.0",
+  "changelog": []
+}

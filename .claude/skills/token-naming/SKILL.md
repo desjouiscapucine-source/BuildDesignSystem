@@ -217,6 +217,7 @@ Semantic tier: **`size.<usage>`** → `--size-<usage>`, named by usage. Values i
 | `size.panel-min` | 280px | Minimum width of the Panel when it is resized |
 | `size.panel-max` | 480px | Maximum width of the Panel when it is resized |
 | `size.resize-handle` | 24px | Width and height of the hit area of a resize handle (WCAG 2.5.8) |
+| `size.sticky-note` | 160px | Width and height of a sticky note (StickyNote, fixed square) |
 
 ## Breakpoint tokens
 

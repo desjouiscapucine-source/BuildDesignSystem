@@ -1,0 +1,55 @@
+/* Tab — semantic design tokens only. See spec.md.
+   Classes: .ds-tab · selected = .ds-tab--selected + [aria-selected="true"] */
+.ds-tab {
+  position: relative;
+  display: inline-flex;
+  margin: 0;
+  padding: var(--space-8) var(--space-16);
+  border: 0;
+  border-bottom: var(--border-width-2) solid transparent;
+  border-radius: var(--radius-4) var(--radius-4) 0 0;
+  background: none;
+  color: var(--color-text-secondary);
+  font-family: var(--typography-body-family);
+  font-size: var(--typography-body-size);
+  font-weight: var(--typography-body-weight);
+  line-height: var(--typography-body-line-height);
+  /* Long label: one line, the tab grows (lack of space is handled by Tabs) */
+  white-space: nowrap;
+  cursor: pointer;
+}
+.ds-tab--selected {
+  border-bottom-color: var(--color-border-focus);
+  color: var(--color-text-brand);
+  font-family: var(--typography-label-family);
+  font-size: var(--typography-label-size);
+  font-weight: var(--typography-label-weight);
+  line-height: var(--typography-label-line-height);
+}
+
+/* State layers, in the content color */
+.ds-tab::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-100) var(--easing-ease-out);
+}
+.ds-tab:hover::after { opacity: var(--state-layer-hover); }
+.ds-tab:focus-visible::after { opacity: var(--state-layer-focus); }
+.ds-tab:active::after { opacity: var(--state-layer-pressed); }
+/* Focus ring inside the tab, so a scrolling tab list never cuts it */
+.ds-tab:focus-visible {
+  outline: var(--border-width-2) solid var(--color-border-focus);
+  outline-offset: calc(var(--border-width-2) * -1);
+}
+
+/* Disabled: content not available yet; no state layer */
+.ds-tab:disabled {
+  color: var(--color-text-disabled);
+  cursor: default;
+}
+.ds-tab:disabled::after { opacity: 0; }

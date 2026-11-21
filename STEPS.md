@@ -5367,7 +5367,6 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `LICENSE`, `audits/2026-11-15-B156-1.md` (created)
 - `package.json`, `backlog/backlog.json`, `STEPS.md` (updated)
 
-<<<<<<< HEAD
 ## Step B158-1 — One conversation per release ticket
 **Date:** 2026-11-19
 
@@ -5429,8 +5428,7 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/Frame/` (created), `audits/2026-11-19-B143-1.md`, `audits/2026-11-19-B143-1-accessibility.md`, `audits/2026-11-19-B143-1-tokens.md` (created)
-- `tokens/semantic.json`, `tokens/contrast-pairs.json`, `backlog/backlog.json`, `STEPS.md` (updated)
->>>>>>> origin/develop
+- `tokens/semantic.json`, `tokens/contrast-pairs.json`, `.claude/skills/token-naming/SKILL.md` (size table), `backlog/backlog.json`, `STEPS.md` (updated)
 
 ## Step B144-1 — Panel: design approved
 **Date:** 2026-11-19
@@ -5461,7 +5459,298 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/Panel/` (created), `audits/2026-11-19-B144-1-accessibility.md`, `audits/2026-11-19-B144-1-tokens.md`, `audits/2026-11-19-B144-1.md` (created)
 - `tokens/semantic.json`, `tokens/contrast-pairs.json`, `.claude/skills/token-naming/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
-=======
+
+## Step B143-2 — Frame: guidelines approved
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- Audit finding #68 → new ticket **B162** "Documentation site: tablet screen size tokens" (`proposal`, low, R4).
+- When to use: on the canvas of the UX playground only. When not to use: outside the canvas → Screen (prototypes) or the layout of the page.
+- Best practices: one composition per frame; explicit names; frames of a composition side by side, mobile → tablet → desktop; content on the layout grid of its size; no nested frames.
+- Do's and don'ts (shown visually): explicit name, one screen per frame, sizes aligned, no frame inside a frame.
+- Content: name in sentence case, a few words, no final period, never the size.
+- Behavior: a click anywhere in the frame selects it.
+- Accessibility: Tab to the frame, Enter / Space toggle the selection, Escape removes it; after the content, Tab goes to the next frame, then out of the canvas (Shift+Tab backwards); focused content scrolled below the device bar, focused frame never under the Panel; the frame is a named group ("Home, Mobile 375 × 812") and its name is a toggle button exposing the selection (anatomy line added to `spec.md`); the name button meets WCAG 2.5.8 with the spacing exception.
+- Related components: Canvas (B142), Panel (B144), StickyNote (B145), Comment (B146).
+
+**What was done**
+- `components/Frame/guidelines.md` written; `spec.md`: the name is a toggle button.
+- Accessibility check: `audits/2026-11-19-B143-2-accessibility.md` — 6 failures over the runs (keyboard exit, focus obscured, selected state on a group, contrast pairs listed, target size, its wording), all fixed with the Lead's decisions; no exception.
+- Guidelines approved: `meta.json` status and the B143 `stage` set to `code`.
+- Compliance audit: `audits/2026-11-19-B143-2.md` — 61 compliant, 15 non-compliant (no new finding; #68 now B162), 22 not in the design system; no new ticket.
+
+**Files**
+- `audits/2026-11-19-B143-2.md`, `audits/2026-11-19-B143-2-accessibility.md` (created)
+- `components/Frame/guidelines.md`, `components/Frame/spec.md`, `components/Frame/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B145-1 — StickyNote: design stage
+**Date:** 2026-11-19
+
+**Decisions (made or approved by the Design System Lead)**
+- Component **StickyNote** (`components/StickyNote/`, `.ds-sticky-note`), level **molecule** (it uses the IconButton atom); description "A sticky note placed on the canvas, to annotate a composition."
+- One type, one color, one fixed size: a 160 × 160 square, new token **`size.sticky-note`** = 160px (value chosen and name approved by the Design System Lead).
+- Container: `background.brand-subtle`, `radius.4`, `shadow.frame`, padding `space.8`.
+- Anatomy: text on top (`body`, cut with an ellipsis after 4 lines); footer with the author in initials (`label-sm`) and a short date (`body-sm`) on the left, Edit and Delete actions on the right (tertiary IconButtons, always visible); gaps `space.8` (text / footer) and `space.4` (footer). The "more" menu was dropped: no Menu component exists.
+- States: hover and focus with the state layers; **selected** and **editing**: border `border-width.2` `border.strong`, no state layer (the focus outline still shows); **editing**: the full text scrolls; **dragging**: `shadow.hover`.
+- Accessibility fixes chosen by the Design System Lead: the date is `text.primary` (text.secondary fell to 3.83:1 under the focus layer); no state layer on a selected or editing note (the border fell to 2.54:1).
+
+**What was done**
+- `components/StickyNote/`: `meta.json`, `spec.md`, design preview (`design/Preview.tsx`, `design/tokens.json`; selected, editing and dragging shown as variants).
+- `tokens/semantic.json`: `size.sticky-note`; `tokens/contrast-pairs.json`: `color.border.strong` on `color.background.brand-subtle` (min 3).
+- Token audit: `audits/2026-11-19-B145-1-tokens.md` — 103 values, 0 failures.
+- Accessibility check: `audits/2026-11-19-B145-1-accessibility.md` — first run 2 failures, fixed; 6 pass, 0 fail.
+- Compliance audit: `audits/2026-11-19-B145-1.md` — 61 compliant, 13 non-compliant (#64 fixed by the new contrast pair), 22 not in the design system; no new ticket.
+- Design stage approved: `meta.json` status and backlog B145 stage → `guidelines`.
+
+**Files**
+- `components/StickyNote/meta.json`, `spec.md`, `design/Preview.tsx`, `design/tokens.json`, `audits/2026-11-19-B145-1.md`, `audits/2026-11-19-B145-1-tokens.md`, `audits/2026-11-19-B145-1-accessibility.md` (created)
+- `tokens/semantic.json`, `tokens/contrast-pairs.json`, `.claude/skills/token-naming/SKILL.md` (size table), `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B157-2 — Tab: guidelines approved
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- When to use: only inside Tabs, one tab per panel; to go to another page → NavigationItem; for a sequence of steps → TimelineStep.
+- Disabled only when the content of the panel is not available yet (e.g. Code before the Code stage); a tab whose content will not exist is removed. Never selected and disabled.
+- Content: name the content of the panel, one to three words, sentence case, text only, no punctuation.
+- Behavior: automatic activation — the arrow keys move the focus and select the tab (as the current tabs of the site, B125); long label on one line, the tab grows.
+- The four do / don't pairs (case and punctuation, name the content, when to disable, never selected and disabled).
+- Accessibility: WAI-ARIA tabs pattern (Tab enters on the selected tab; Left / Right move and select, wrapping; Home / End; disabled tabs skipped; tab role, name = label, selected state, linked to its panel); sentence "The focused tab is never hidden by a sticky element or a panel." added after the accessibility check (WCAG 2.4.11).
+- Related components: Tabs only.
+- Guidelines approved; next stage: code.
+
+**What was done**
+- `components/Tab/guidelines.md` written; `meta.json` status `code`; backlog B157 stage `code`.
+- Accessibility check: `audits/2026-11-19-B157-2-accessibility.md` — first run 1 failure (WCAG 2.4.11), fixed; 7 pass, 0 fail.
+- Compliance audit: `audits/2026-11-19-B157-2.md` — 61 compliant, 14 non-compliant, 22 not in the design system; no change, no new ticket.
+
+**Files**
+- `audits/2026-11-19-B157-2.md`, `audits/2026-11-19-B157-2-accessibility.md` (new)
+- `components/Tab/guidelines.md`, `components/Tab/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+
+
+## Step B157-3 — Tab: code approved, component complete
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- Code approved: Tab is **complete**, version 1.0.
+- Two rows added to the Design tokens table of the spec, at the Design System Lead's request: focus ring offset `--border-width-2`; state layer transition `--duration-100`, `--easing-ease-out` (already in the code).
+
+**What was done**
+- `components/Tab/Tab.tsx`: `<button type="button" role="tab" aria-selected>`; prop `selected` (default `false`), native `disabled` (not focusable); selected + disabled forbidden by the types; roving `tabIndex` (0 when selected, -1 otherwise, set by Tabs); `ref` and native attributes passed through (`role`, `aria-selected`, `type`, `disabled` cannot be overridden).
+- `components/Tab/Tab.css`: semantic tokens only; selected = `label` style, `--color-text-brand`, indicator `--border-width-2` `--color-border-focus`; state layers, focus ring, top corners `--radius-4`; disabled `--color-text-disabled`, no state layer.
+- `examples.tsx` (default, selected, disabled, several tabs, long label) and `playground.tsx`; a tab shown alone and not selected gets `tabIndex={0}` so it stays reachable with the keyboard.
+- Export in `components/index.ts`; `meta.json` `complete`, version 1.0, changelog "First complete version."; backlog B157 `done`.
+- Accessibility check: `audits/2026-11-19-B157-3-accessibility.md` — 9 pass, 0 fail, 1 not applicable; keyboard checked in the browser; screen reader still to check in a manual test.
+- Token audit: `audits/2026-11-19-B157-3-tokens.md` — 35 values, 0 failures.
+- Compliance audit: `audits/2026-11-19-B157-3.md` — 61 compliant, 15 non-compliant (1 new: #68, the hand-built tabs of the component pages, to adopt Tabs once complete), 21 not in the design system.
+
+**Files**
+- `components/Tab/Tab.tsx`, `Tab.css`, `examples.tsx`, `playground.tsx` (new)
+- `audits/2026-11-19-B157-3.md`, `audits/2026-11-19-B157-3-accessibility.md`, `audits/2026-11-19-B157-3-tokens.md` (new)
+- `components/Tab/meta.json`, `components/Tab/spec.md`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B143-3 — Frame: code approved, component complete
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- Selection controlled by the canvas: props `selected` + `onSelectedChange(selected)` (added to the spec's properties).
+- The click that selects is on the container only; above the frame, only the name button is clickable (WCAG 2.5.8 spacing exception kept); guidelines Behavior line clarified.
+- The selected outline is styled from the native state (`aria-pressed="true"` on the name), not a class.
+- Hover on the container only (spec updated).
+- Examples and Playground content: an "Order tracking" screen made of coded components (Breadcrumb, heading, Timeline, Card, Button).
+- Open question added to the spec: components inside a frame respond to the browser width, not the frame width (iframe or container queries) — to decide with B130 and B142.
+
+**What was done**
+- `components/Frame/Frame.tsx`, `Frame.css` (semantic tokens only), `examples.tsx` (7 examples), `playground.tsx`; `Frame` and its types exported from `components/index.ts`.
+- Browser checks: real sizes 375 × 812 / 768 × 1024 / 1280 × 800; selection by click, name toggle and Escape; keyboard order name → content → next frame and back, no trap; focus and selected outlines together; long name ellipsis; scrolling content; no overflow of the Examples tab at mobile width.
+- Token audit: `audits/2026-11-21-B143-3-tokens.md` — 53 values, 0 failure.
+- Accessibility check: `audits/2026-11-21-B143-3-accessibility.md` — 2 failures (selected styled with a class, label row clickable), fixed with the Lead's decisions; no exception.
+- Component complete: `meta.json` status `complete`, version 1.0, changelog "First complete version."; B143 `done`.
+- Compliance audit: `audits/2026-11-21-B143-3.md` — 61 compliant, 16 non-compliant (1 new: #69, the component page tab row overflows the page on mobile), 22 not in the design system.
+
+**Files**
+- `audits/2026-11-21-B143-3.md`, `audits/2026-11-21-B143-3-tokens.md`, `audits/2026-11-21-B143-3-accessibility.md` (created)
+- `components/Frame/Frame.tsx`, `Frame.css`, `examples.tsx`, `playground.tsx`, `spec.md`, `guidelines.md`, `meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B093-1 — Tabs: design approved (and Tab 1.1)
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- **Tabs**: molecule, class `.ds-tabs`, description "A row of tabs that shows one panel of the page at a time.", one type, one size, no variant property.
+- Row of **Tab** (B157), left-aligned, each tab as wide as its label, `--space-4` between tabs; line `--border-width-1` in `--color-border-subtle` under the whole row (as the current tabs of the site).
+- Not enough space: the row scrolls horizontally, no button, scrollbar hidden; the selected tab is brought into view.
+- The panel of the selected tab is part of Tabs: under the row, `--space-24` above, no padding, always focusable (focus ring `--border-width-2` `--color-border-focus`).
+- Backgrounds: `background.page` and `background.surface` (Panel, B144).
+- Disabled tabs: a rule belongs to the guidelines.
+- B093 ticket completed (Why, Scope, Done when); its scope includes replacing the hand-built tabs of the component pages with Tabs (compliance finding #68).
+- Accessibility check failure (WCAG 2.4.7, the scrolling row cut the Tab focus ring): **the Tab focus ring is drawn inside the tab** → **Tab 1.1** (spec, guidelines, design preview, CSS, changelog). Also, the line under the row is drawn inside the row (inset shadow) so the scrolling row no longer cuts the selection line (measured: 1px hidden).
+- Design approved; next stage: guidelines.
+
+**What was done**
+- `components/Tabs/` created from the template: `meta.json` (status `guidelines`), `spec.md`, design preview (`design/Preview.tsx` with the coded Tab, `design/tokens.json`, states default and focus).
+- `components/Tab/`: `Tab.css` (`outline-offset: calc(var(--border-width-2) * -1)`), `spec.md`, `guidelines.md`, `design/Preview.tsx`, `meta.json` 1.1.
+- Accessibility check: `audits/2026-11-21-B093-1-accessibility.md` — first run 1 failure (2.4.7), fixed; 13 pass, 0 fail.
+- Token audit: `audits/2026-11-21-B093-1-tokens.md` — 27 values, 0 failures.
+- Compliance audit: `audits/2026-11-21-B093-1.md` — 61 compliant, 17 non-compliant (2 new, #69 and #70, carried from `develop`), 21 not in the design system; no new ticket.
+- Backlog: B093 stage `guidelines`.
+
+**Files**
+- `components/Tabs/meta.json`, `spec.md`, `guidelines.md` (template), `design/Preview.tsx`, `design/tokens.json` (new)
+- `audits/2026-11-21-B093-1.md`, `audits/2026-11-21-B093-1-accessibility.md`, `audits/2026-11-21-B093-1-tokens.md` (new)
+- `components/Tab/Tab.css`, `spec.md`, `guidelines.md`, `design/Preview.tsx`, `meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B142-1 — Canvas: design approved
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- Component **Canvas**: organism, folder `components/Canvas/`, class `.ds-canvas`, description "The free canvas of the UX playground, which holds the layout frames."; one type: an infinite canvas with pan and zoom.
+- Surface: fills its container, no border, no rounded corners; background `background.subtle`; grid of dots `border.subtle`, diameter `border-width.2`, every `space.16` at 100% zoom.
+- Content: Frames (B143), sticky notes (B145), comments (B146) and components placed on their own; stacking `z-index.content`.
+- Zoom controls: a separate building block, **ZoomControls** (new ticket B161, high, R2), at the bottom right, `z-index.sticky`: zoom out, zoom level in percent, zoom in, fit to screen; tertiary IconButtons; container `background.surface`, `radius.8`, `shadow.dropdown`. The Canvas design goes on; its code waits for ZoomControls to be complete.
+- Prop: `zoom` (10 → 400, steps of 10, default 100). Empty is not a prop: deduced from the content; empty message "Add a frame to start" (`body`, `text.secondary`, centered, no icon).
+- Behavior: pan with Space + drag or wheel / trackpad; a drag on the background draws the selection rectangle. Keyboard with focus: arrow keys move the view by `space.16`, `+` / `−` zoom, `0` back to 100%, `Shift` + `1` fit to screen.
+- States: empty, panning (grab cursor), focus (2px `border.focus` outline inside the edges, in front of the content and the zoom controls), selecting (1px `border.focus` border, fill `border.focus` at `state-layer.hover`).
+
+**What was done**
+- `components/Canvas/` from the template: `meta.json`, `spec.md`, design preview (`design/Preview.tsx`, `design/tokens.json`, variants `empty` and `selection`, states default and focus).
+- Ticket B161 ZoomControls created and reserved, merged into `develop`.
+- Accessibility check: `audits/2026-11-19-B142-1-accessibility.md` — 7 pass, 0 failure, no exception (focus outline question resolved by the Lead).
+- Token audit: `audits/2026-11-19-B142-1-tokens.md` — 55 values, 0 failure.
+- Design approved: `meta.json` status and the B142 `stage` set to `guidelines`.
+- Compliance audit: `audits/2026-11-19-B142-1.md` — 61 compliant, 15 non-compliant (0 new, 0 fixed), 22 not in the design system; no new ticket.
+
+**Files**
+- `components/Canvas/` (created), `audits/2026-11-19-B142-1.md`, `audits/2026-11-19-B142-1-accessibility.md`, `audits/2026-11-19-B142-1-tokens.md` (created)
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B145-2 — StickyNote: guidelines approved
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- When to use: annotate a composition, explain a user journey between Frames, a working note, review feedback. When not to use: a discussion with replies (Comment, B146), text that is part of the screen (real components in the Frame), outside the canvas.
+- Placement: anywhere on the canvas background, never inside a Frame; as many notes as needed, never overlapping (a moved note cannot cover another).
+- Content: one idea per note, short sentences, sentence case, a task starts with a verb; author in two capital initials, date "19 Nov" (no year).
+- Behavior: select with a click or Space; move by dragging or with the arrow keys; edit with the Edit button, a double-click or Enter (Enter = new line in editing); Escape or a click outside saves and leaves editing; an empty note is removed; delete at once (button, Delete / Backspace), undo handled by the Canvas.
+- Accessibility: Tab order note → Edit → Delete; the note is a group named "Sticky note by CD, 19 Nov: <full text>", with "selected" added to the name; editing = multi-line text box "Note text", announcing "Editing note, Escape to save"; the focused note is never hidden (no overlap, the Canvas scrolls to it); after a delete, the focus goes to the next note, or the canvas.
+- 4 do / don't pairs: one short idea; next to the Frame; side by side; initials and short date.
+- Left to Canvas (B142): behavior below desktop, single-pointer alternative to dragging (WCAG 2.5.7), scrolling to the focused element.
+- Spec wording aligned: the editing state is entered by the Edit action, a double-click, or Enter.
+
+**What was done**
+- `components/StickyNote/guidelines.md` written; `spec.md` (one wording line).
+- Accessibility check: `audits/2026-11-21-B145-2-accessibility.md` — first run 3 failures (focus not obscured, editing state and selected state for screen readers), fixed; 6 pass, 0 fail.
+- Compliance audit: `audits/2026-11-21-B145-2.md` — 61 compliant, 16 non-compliant (#64 fixed — corrected by Claude —, #70 renumbered from B157-3), 21 not in the design system; no new ticket.
+- Guidelines approved: `meta.json` status and backlog B145 stage → `code`.
+
+**Files**
+- `components/StickyNote/guidelines.md`, `audits/2026-11-21-B145-2.md`, `audits/2026-11-21-B145-2-accessibility.md` (created)
+- `components/StickyNote/spec.md`, `components/StickyNote/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B163-1 — Documentation site: component page tabs on small screens
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- When the tabs of a component page do not fit (mobile, tablet), the tab row scrolls horizontally inside itself; the page never scrolls sideways (WCAG 1.4.10).
+- The row follows the approved Tabs design (B093, decision relayed by the Composant Tabs conversation and confirmed here): scrollbar hidden, no button, the selected tab brought into view. Temporary: Tabs replaces this hand-built row once complete.
+- No ticket for finding #70 (hand-built tab buttons instead of Tab): it stays followed by the compliance audit.
+
+**What was done**
+- `.tabs` scrolls sideways (`overflow-x: auto`), tabs do not shrink or wrap, scrollbar hidden; a padding the size of the focus ring, cancelled by a negative margin, keeps the ring visible; the row line is drawn inside the row (content-box background) so the selected underline sits on it and stays within the content column.
+- A click or Left / Right / Home / End scrolls the selected tab into view, without animation.
+- Implemented by the `ds-compliance-fix` agent, checked and completed by Claude; checked in the browser on Button and Frame at 375px, 768px and desktop (page width = viewport, desktop unchanged).
+- Compliance audit: `audits/2026-11-21-B163-1.md` — #69 fixed; #71 (row line past the content column, caused by the fix) fixed in the same step; 1 new open: #70; 61 compliant, 16 non-compliant, 22 not in the design system.
+
+**Files**
+- `docs/src/docs.css`, `docs/src/pages/ComponentPage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
+- `audits/2026-11-21-B163-1.md` (created)
+
+## Step B093-2 — Tabs: guidelines approved
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- When to use: to switch between panels of the same page; to go to another page → SideNavigation; for a sequence of steps → Timeline; to filter a list → ChipGroup (not in the design system yet, B094).
+- Two to seven tabs; at least two enabled tabs (otherwise show the content directly); one Tabs per view; no Tabs inside a panel of Tabs; right under the header (or at the top of its container, as in Panel).
+- The four do / don't pairs (same page vs other pages, at least two enabled, no nesting, two to seven tabs).
+- Content: Tab label rules; the tab list has a required accessible name that names the content.
+- Behavior and accessibility: automatic activation, arrows wrapping, Home / End, disabled tabs skipped, Tab from the selected tab to the panel (always focusable), the selected or focused tab brought into view when the row scrolls; tablist named, tabs, tabpanel named by its tab.
+- Related components: Tab only.
+- B163 (another conversation): the hand-built tab row applies the horizontal scroll of the Tabs design until Tabs replaces it — decision relayed to the Gouvernance conversation, which applied it.
+- Guidelines approved; next stage: code.
+
+**What was done**
+- `components/Tabs/guidelines.md` written; `meta.json` status `code`; backlog B093 stage `code`, "Done when" renumbered to finding #70 (numbering aligned with `develop`).
+- Accessibility check: `audits/2026-11-21-B093-2-accessibility.md` — 7 pass, 0 fail.
+- Compliance audit: `audits/2026-11-21-B093-2.md` — 61 compliant, 16 non-compliant (#64 fixed; #68 / #70 renumbered to match `develop`), 21 not in the design system; no new ticket.
+
+**Files**
+- `audits/2026-11-21-B093-2.md`, `audits/2026-11-21-B093-2-accessibility.md` (new)
+- `components/Tabs/guidelines.md`, `components/Tabs/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B162-1 — Documentation site: tablet screen size tokens
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- The Playground Desktop screen uses `size.viewport-desktop` (1280px, was 1024px from `breakpoint.desktop`), like the prototype frames (audit finding #72, added to this step).
+- B093's `why` cited finding #68 for the hand-built tabs: corrected to #70 by the Composant Tabs conversation on `component/Tabs`.
+
+**What was done**
+- Playground Tablet screen and the prototype tablet preview frame read `size.viewport-tablet` / `size.viewport-tablet-height` instead of the breakpoint tokens (same values, 768 × 1024: no visual change). Implemented by the `ds-compliance-fix` agent, checked by Claude.
+- Playground Desktop screen reads `size.viewport-desktop` (visible change: 1280px); `size.viewport-desktop` description now says "(Playground, prototype frames)".
+- Checked in the browser: Playground Desktop 1280px, Tablet 768px, Mobile 375px; prototype tablet frame 768 × 1024; no console error. `npm run tokens`: 68/68 contrast pairs pass.
+- Compliance audit: `audits/2026-11-21-B162-1.md` — #68 fixed; #72 (Playground desktop size, existed before) fixed in the same step; 63 compliant, 15 non-compliant, 22 not in the design system.
+
+**Files**
+- `docs/src/PlaygroundTab.tsx`, `docs/src/pages/PrototypePage.tsx`, `tokens/semantic.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+- `audits/2026-11-21-B162-1.md` (created)
+
+## Step B019-1 — TextInput: design approved
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- New component **TextInput** (`components/TextInput/`, `.ds-text-input`), level **molecule**, description "Single-line field to type text.".
+- Types `text` (default), `search` (fixed `search` icon, clear button: icon inside the field with a 24×24px minimum target, no help text), `number` (digits only, no + / − buttons, aligned left).
+- Properties `type`, `label`, `placeholder`, `icon`, `helpText`, `error`, `disabled`.
+- **No label above the field**: the empty field shows **either a label or a placeholder, never both**; it disappears as soon as the user types. The accessible name is that label or placeholder.
+- Forbidden combinations: `label` + `placeholder`, `error` + `disabled`, `icon` + `search`, `icon` + `number`, `helpText` + `search`.
+- The error message replaces the help text. Extra state: error. One size, full width of the container. Value scrolls horizontally while typing, ellipsis when not focused; lengths as the Select.
+- Tokens validated in the Design preview (aligned on the Select).
+- **Accessibility exception**: WCAG 3.3.2 (no visible name once the field is filled) accepted on 2026-11-21.
+- Design stage approved on 2026-11-21.
+
+**What was done**
+- `components/TextInput/`: `meta.json` (status `guidelines`), `spec.md`, `design/Preview.tsx`, `design/tokens.json`, `guidelines.md` (template).
+- `tokens/contrast-pairs.json`: pair `color.icon.error` on `color.background.page` (min 3) added (`icon.secondary` on `surface` was already added on `develop`); `npm run tokens`: 69/69 pass.
+- Token audit: `audits/2026-11-19-B019-1-tokens.md` — 183 values, 0 failures.
+- Accessibility check: `audits/2026-11-19-B019-1-accessibility.md` — 2 missing contrast pairs fixed, 3.3.2 accepted as an exception.
+- Compliance audit: `audits/2026-11-21-B019-1.md` — 61 compliant, 15 non-compliant (#64 fixed, 0 new), 22 not in the design system; no new ticket.
+- `backlog/backlog.json`: B019 `in-progress`, stage `guidelines`.
+
+**Files**
+- `components/TextInput/` (meta.json, spec.md, guidelines.md, design/Preview.tsx, design/tokens.json), `audits/2026-11-19-B019-1-tokens.md`, `audits/2026-11-19-B019-1-accessibility.md`, `audits/2026-11-21-B019-1.md` (created)
+- `tokens/contrast-pairs.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B142-2 — Canvas: guidelines approved
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- When to use: only as the working surface of the UX playground (B130). Not for a prototype screen (Screen), a page layout (layout grid), the preview of one component (Playground tab) or an image (ImageViewer).
+- Best practice: one Canvas per page. Do's and don'ts: screens in Frames; sticky notes next to what they annotate; bottom right corner free for the zoom controls; background and grid of dots unchanged.
+- Empty message fixed: "Add a frame to start" (no prop).
+- Every screen size. **Spec completed** (approved again): touch gestures — one finger pans, pinch zooms, long press then drag draws the selection rectangle.
+- Accessibility (after a blocking check with 2 failures, fixed): focus order canvas → zoom controls → content by position (top to bottom, then left to right) → leave; a focused element is brought into view with a `space.16` margin, never under the zoom controls; single-pointer alternatives: zoom controls for pan and pinch, Shift + click / long press then tap / Shift + Enter to add to the selection; screen reader: region "Canvas" describing shortcuts and gestures, zoom level announced. No exception.
+- New ticket **B164** (high, R2): align the Frame guidelines with the Canvas on Tab order, focus never hidden and Shift + Enter.
+
+**What was done**
+- `components/Canvas/guidelines.md` written; `components/Canvas/spec.md` completed (touch gestures, selection without dragging, focus order, focus never hidden, `-` key).
+- Accessibility check: `audits/2026-11-21-B142-2-accessibility.md` — first run 2 failures (focus order, focus hidden), fixed; 8 pass, 0 failure.
+- Guidelines approved: `meta.json` status and the B142 `stage` set to `code`. The code waits for ZoomControls (B161) to be complete.
+- Compliance audit: `audits/2026-11-21-B142-2.md` — 61 compliant, 15 non-compliant (1 fixed: #69 by B163; 0 new), 22 not in the design system; no new ticket.
+
+**Files**
+- `audits/2026-11-21-B142-2.md`, `audits/2026-11-21-B142-2-accessibility.md` (created)
+- `components/Canvas/guidelines.md`, `components/Canvas/spec.md`, `components/Canvas/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
 
 ## Step B144-2 — Panel: guidelines approved
 **Date:** 2026-11-21
@@ -5480,9 +5769,10 @@ At the Design System Lead's request, listed the elements of the documentation si
 **What was done**
 - `components/Panel/guidelines.md` written; `components/Panel/spec.md` updated.
 - Accessibility check: `audits/2026-11-21-B144-2-accessibility.md` — 3 failures found during the stage (WCAG 2.1.2, 2.4.11 desktop and below desktop), all fixed; not blocking.
-- Compliance audit: `audits/2026-11-21-B144-2.md`.
+- Compliance audit: `audits/2026-11-21-B144-2.md` — 63 compliant, 14 non-compliant (1 fixed: #64, 0 new), 22 not in the design system; no new ticket.
 - `meta.json` status and `backlog/backlog.json` stage: `code`.
 
 **Files**
 - `audits/2026-11-21-B144-2-accessibility.md`, `audits/2026-11-21-B144-2.md` (created)
 - `components/Panel/guidelines.md`, `components/Panel/spec.md`, `components/Panel/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+=======
