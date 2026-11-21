@@ -815,9 +815,9 @@
       "doneWhen": [
         "Tabs is complete: design, guidelines and code approved by the Design System Lead.",
         "Tabs is exported from components/index.ts.",
-        "The component pages of the documentation site use Tabs; finding #68 is gone from the next compliance audit."
+        "The component pages of the documentation site use Tabs; finding #70 (numbering of audits/2026-11-21-B093-2.md) is gone from the next compliance audit."
       ],
-      "stage": "guidelines",
+      "stage": "code",
       "priority": "high",
       "release": "R2"
     },

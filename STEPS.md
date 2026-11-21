@@ -5666,6 +5666,28 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `docs/src/docs.css`, `docs/src/pages/ComponentPage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
 - `audits/2026-11-21-B163-1.md` (created)
 
+## Step B093-2 — Tabs: guidelines approved
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- When to use: to switch between panels of the same page; to go to another page → SideNavigation; for a sequence of steps → Timeline; to filter a list → ChipGroup (not in the design system yet, B094).
+- Two to seven tabs; at least two enabled tabs (otherwise show the content directly); one Tabs per view; no Tabs inside a panel of Tabs; right under the header (or at the top of its container, as in Panel).
+- The four do / don't pairs (same page vs other pages, at least two enabled, no nesting, two to seven tabs).
+- Content: Tab label rules; the tab list has a required accessible name that names the content.
+- Behavior and accessibility: automatic activation, arrows wrapping, Home / End, disabled tabs skipped, Tab from the selected tab to the panel (always focusable), the selected or focused tab brought into view when the row scrolls; tablist named, tabs, tabpanel named by its tab.
+- Related components: Tab only.
+- B163 (another conversation): the hand-built tab row applies the horizontal scroll of the Tabs design until Tabs replaces it — decision relayed to the Gouvernance conversation, which applied it.
+- Guidelines approved; next stage: code.
+
+**What was done**
+- `components/Tabs/guidelines.md` written; `meta.json` status `code`; backlog B093 stage `code`, "Done when" renumbered to finding #70 (numbering aligned with `develop`).
+- Accessibility check: `audits/2026-11-21-B093-2-accessibility.md` — 7 pass, 0 fail.
+- Compliance audit: `audits/2026-11-21-B093-2.md` — 61 compliant, 16 non-compliant (#64 fixed; #68 / #70 renumbered to match `develop`), 21 not in the design system; no new ticket.
+
+**Files**
+- `audits/2026-11-21-B093-2.md`, `audits/2026-11-21-B093-2-accessibility.md` (new)
+- `components/Tabs/guidelines.md`, `components/Tabs/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B162-1 — Documentation site: tablet screen size tokens
 **Date:** 2026-11-21
 
