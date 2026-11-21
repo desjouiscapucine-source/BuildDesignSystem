@@ -810,7 +810,14 @@
       "status": "in-progress",
       "origin": "decided",
       "description": "Navigation within a page. Used on the documentation site: tabs of the component pages (Design preview, Design spec, Guidelines, Examples, Code).",
-      "stage": "design",
+      "why": "The component pages of the documentation site use hand-built tabs (compliance finding #68), and Panel (B144) needs tabs for Library, Properties and Compositions.",
+      "scope": "components/Tabs (molecule, .ds-tabs): the row of Tab (B157) and the panel of the selected tab; design, guidelines and code. Then the component pages of the documentation site use Tabs instead of their hand-built tabs (ComponentPage.tsx, .tabs in docs.css), decided by the Design System Lead on 2026-11-19.",
+      "doneWhen": [
+        "Tabs is complete: design, guidelines and code approved by the Design System Lead.",
+        "Tabs is exported from components/index.ts.",
+        "The component pages of the documentation site use Tabs; finding #68 is gone from the next compliance audit."
+      ],
+      "stage": "guidelines",
       "priority": "high",
       "release": "R2"
     },
@@ -1428,7 +1435,7 @@
         "The accessibility and token audits pass.",
         "Canvas is exported from @ds/components, ready for the UX playground (B130)."
       ],
-      "stage": "design",
+      "stage": "guidelines",
       "priority": "high",
       "release": "R2"
     },
@@ -1482,7 +1489,7 @@
         "The accessibility and token audits pass.",
         "StickyNote is exported from @ds/components, ready for the UX playground (B130)."
       ],
-      "stage": "guidelines",
+      "stage": "code",
       "priority": "high",
       "release": "R2"
     },

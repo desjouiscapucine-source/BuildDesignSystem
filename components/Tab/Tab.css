@@ -41,9 +41,10 @@
 .ds-tab:hover::after { opacity: var(--state-layer-hover); }
 .ds-tab:focus-visible::after { opacity: var(--state-layer-focus); }
 .ds-tab:active::after { opacity: var(--state-layer-pressed); }
+/* Focus ring inside the tab, so a scrolling tab list never cuts it */
 .ds-tab:focus-visible {
   outline: var(--border-width-2) solid var(--color-border-focus);
-  outline-offset: var(--border-width-2);
+  outline-offset: calc(var(--border-width-2) * -1);
 }
 
 /* Disabled: content not available yet; no state layer */
