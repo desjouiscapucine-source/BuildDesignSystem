@@ -5573,3 +5573,21 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-21-B143-3.md`, `audits/2026-11-21-B143-3-tokens.md`, `audits/2026-11-21-B143-3-accessibility.md` (created)
 - `components/Frame/Frame.tsx`, `Frame.css`, `examples.tsx`, `playground.tsx`, `spec.md`, `guidelines.md`, `meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B163-1 — Documentation site: component page tabs on small screens
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- When the tabs of a component page do not fit (mobile, tablet), the tab row scrolls horizontally inside itself; the page never scrolls sideways (WCAG 1.4.10).
+- The row follows the approved Tabs design (B093, decision relayed by the Composant Tabs conversation and confirmed here): scrollbar hidden, no button, the selected tab brought into view. Temporary: Tabs replaces this hand-built row once complete.
+- No ticket for finding #70 (hand-built tab buttons instead of Tab): it stays followed by the compliance audit.
+
+**What was done**
+- `.tabs` scrolls sideways (`overflow-x: auto`), tabs do not shrink or wrap, scrollbar hidden; a padding the size of the focus ring, cancelled by a negative margin, keeps the ring visible; the row line is drawn inside the row (content-box background) so the selected underline sits on it and stays within the content column.
+- A click or Left / Right / Home / End scrolls the selected tab into view, without animation.
+- Implemented by the `ds-compliance-fix` agent, checked and completed by Claude; checked in the browser on Button and Frame at 375px, 768px and desktop (page width = viewport, desktop unchanged).
+- Compliance audit: `audits/2026-11-21-B163-1.md` — #69 fixed; #71 (row line past the content column, caused by the fix) fixed in the same step; 1 new open: #70; 61 compliant, 16 non-compliant, 22 not in the design system.
+
+**Files**
+- `docs/src/docs.css`, `docs/src/pages/ComponentPage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
+- `audits/2026-11-21-B163-1.md` (created)

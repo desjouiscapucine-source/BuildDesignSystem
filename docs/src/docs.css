@@ -254,7 +254,7 @@ code {
 .shell-content { display: flex; flex-direction: column; gap: var(--space-16); }
 .shell-content > *,
 /* Blocks that set their own vertical margin: named so the reset wins (no margin added to the 16px gap). */
-.shell-content > :is(.cards, .tabs, .stages, table.tokens, .backlog-filters, .backlog-rejected, .icon-try-preview) {
+.shell-content > :is(.cards, .stages, table.tokens, .backlog-filters, .backlog-rejected, .icon-try-preview) {
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -425,9 +425,28 @@ code {
 .stages li.complete { background: var(--color-background-success-subtle); color: var(--color-text-success); }
 .stages li.complete .ds-icon { color: var(--color-icon-success); }
 
-.tabs { display: flex; gap: var(--space-4); border-bottom: var(--border-width-1) solid var(--color-border-subtle); margin: var(--space-24) 0; }
+/* B163: the tab row stays on one line and scrolls sideways inside itself (the page never does, WCAG 1.4.10),
+   as in the approved Tabs design (B093), until Tabs replaces this hand-built row.
+   The scroll area clips at its padding box: a padding the size of the focus ring (width + offset) keeps the ring
+   visible, cancelled by a negative margin so the row keeps its place; the row line is drawn as a background of the
+   content box (the width of the content column), under the tabs, so the selected underline still covers it. */
+.tabs {
+  display: flex;
+  gap: var(--space-4);
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: calc(var(--border-width-2) * 2);
+  margin: calc(var(--border-width-2) * -2);
+  scroll-padding-inline: calc(var(--border-width-2) * 2);
+  scrollbar-width: none;
+  background: linear-gradient(var(--color-border-subtle), var(--color-border-subtle)) left bottom / 100% var(--border-width-1) no-repeat content-box;
+}
+/* Scrollbar hidden, as in the approved Tabs design (B093): the row still scrolls with a finger, a trackpad or the keyboard. */
+.tabs::-webkit-scrollbar { display: none; }
 .tabs button {
   position: relative;
+  flex-shrink: 0;
+  white-space: nowrap;
   font: inherit;
   background: none;
   border: 0;
@@ -435,7 +454,6 @@ code {
   cursor: pointer;
   color: var(--color-text-secondary);
   border-bottom: var(--border-width-2) solid transparent;
-  margin-bottom: calc(var(--border-width-1) * -1);
 }
 .tabs button[aria-selected="true"] { color: var(--color-text-brand); border-bottom-color: var(--color-border-focus); font-weight: var(--font-weight-semibold); }
 

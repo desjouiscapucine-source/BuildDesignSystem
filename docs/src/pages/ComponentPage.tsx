@@ -36,6 +36,11 @@ export function ComponentPage({ component }: { component: ComponentDoc }) {
   const tabId = (id: Tab) => `${baseId}-tab-${id}`;
   const panelId = `${baseId}-panel`;
   const tabRefs = useRef<Partial<Record<Tab, HTMLButtonElement | null>>>({});
+  // The tab row scrolls sideways on small screens (B163): the selected tab is scrolled into view (instant, no animation).
+  const select = (id: Tab) => {
+    setTab(id);
+    tabRefs.current[id]?.scrollIntoView({ block: "nearest", inline: "nearest" });
+  };
   const onTabKeyDown = (event: KeyboardEvent) => {
     const index = Math.max(0, visibleTabs.findIndex(({ id }) => id === tab));
     const last = visibleTabs.length - 1;
@@ -48,8 +53,8 @@ export function ComponentPage({ component }: { component: ComponentDoc }) {
     if (!(event.key in target)) return;
     event.preventDefault();
     const next = visibleTabs[target[event.key]].id;
-    setTab(next);
     tabRefs.current[next]?.focus();
+    select(next);
   };
 
   return (
@@ -81,7 +86,7 @@ export function ComponentPage({ component }: { component: ComponentDoc }) {
             aria-selected={tab === id}
             aria-controls={panelId}
             tabIndex={tab === id ? 0 : -1}
-            onClick={() => setTab(id)}
+            onClick={() => select(id)}
           >
             {label}
           </button>
