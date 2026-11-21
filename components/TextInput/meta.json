@@ -1,0 +1,8 @@
+{
+  "name": "TextInput",
+  "description": "Single-line field to type text.",
+  "level": "molecule",
+  "status": "guidelines",
+  "version": "0.0",
+  "changelog": []
+}
