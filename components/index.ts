@@ -38,3 +38,5 @@ export { Tab } from "./Tab/Tab";
 export type { TabProps } from "./Tab/Tab";
 export { Frame } from "./Frame/Frame";
 export type { FrameProps, FrameSize } from "./Frame/Frame";
+export { Tabs } from "./Tabs/Tabs";
+export type { TabsProps, TabsItem } from "./Tabs/Tabs";
