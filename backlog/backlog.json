@@ -1464,7 +1464,7 @@
         "The accessibility and token audits pass.",
         "Panel is exported from @ds/components, ready for the UX playground (B130)."
       ],
-      "stage": "guidelines",
+      "stage": "code",
       "priority": "high",
       "release": "R2"
     },
