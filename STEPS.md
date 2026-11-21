@@ -5687,3 +5687,29 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-21-B093-2.md`, `audits/2026-11-21-B093-2-accessibility.md` (new)
 - `components/Tabs/guidelines.md`, `components/Tabs/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B019-1 — TextInput: design approved
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- New component **TextInput** (`components/TextInput/`, `.ds-text-input`), level **molecule**, description "Single-line field to type text.".
+- Types `text` (default), `search` (fixed `search` icon, clear button: icon inside the field with a 24×24px minimum target, no help text), `number` (digits only, no + / − buttons, aligned left).
+- Properties `type`, `label`, `placeholder`, `icon`, `helpText`, `error`, `disabled`.
+- **No label above the field**: the empty field shows **either a label or a placeholder, never both**; it disappears as soon as the user types. The accessible name is that label or placeholder.
+- Forbidden combinations: `label` + `placeholder`, `error` + `disabled`, `icon` + `search`, `icon` + `number`, `helpText` + `search`.
+- The error message replaces the help text. Extra state: error. One size, full width of the container. Value scrolls horizontally while typing, ellipsis when not focused; lengths as the Select.
+- Tokens validated in the Design preview (aligned on the Select).
+- **Accessibility exception**: WCAG 3.3.2 (no visible name once the field is filled) accepted on 2026-11-21.
+- Design stage approved on 2026-11-21.
+
+**What was done**
+- `components/TextInput/`: `meta.json` (status `guidelines`), `spec.md`, `design/Preview.tsx`, `design/tokens.json`, `guidelines.md` (template).
+- `tokens/contrast-pairs.json`: pair `color.icon.error` on `color.background.page` (min 3) added (`icon.secondary` on `surface` was already added on `develop`); `npm run tokens`: 69/69 pass.
+- Token audit: `audits/2026-11-19-B019-1-tokens.md` — 183 values, 0 failures.
+- Accessibility check: `audits/2026-11-19-B019-1-accessibility.md` — 2 missing contrast pairs fixed, 3.3.2 accepted as an exception.
+- Compliance audit: `audits/2026-11-21-B019-1.md` — 61 compliant, 15 non-compliant (#64 fixed, 0 new), 22 not in the design system; no new ticket.
+- `backlog/backlog.json`: B019 `in-progress`, stage `guidelines`.
+
+**Files**
+- `components/TextInput/` (meta.json, spec.md, guidelines.md, design/Preview.tsx, design/tokens.json), `audits/2026-11-19-B019-1-tokens.md`, `audits/2026-11-19-B019-1-accessibility.md`, `audits/2026-11-21-B019-1.md` (created)
+- `tokens/contrast-pairs.json`, `backlog/backlog.json`, `STEPS.md` (updated)
