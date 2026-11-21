@@ -5665,3 +5665,20 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `docs/src/docs.css`, `docs/src/pages/ComponentPage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
 - `audits/2026-11-21-B163-1.md` (created)
+
+## Step B162-1 — Documentation site: tablet screen size tokens
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- The Playground Desktop screen uses `size.viewport-desktop` (1280px, was 1024px from `breakpoint.desktop`), like the prototype frames (audit finding #72, added to this step).
+- B093's `why` cited finding #68 for the hand-built tabs: corrected to #70 by the Composant Tabs conversation on `component/Tabs`.
+
+**What was done**
+- Playground Tablet screen and the prototype tablet preview frame read `size.viewport-tablet` / `size.viewport-tablet-height` instead of the breakpoint tokens (same values, 768 × 1024: no visual change). Implemented by the `ds-compliance-fix` agent, checked by Claude.
+- Playground Desktop screen reads `size.viewport-desktop` (visible change: 1280px); `size.viewport-desktop` description now says "(Playground, prototype frames)".
+- Checked in the browser: Playground Desktop 1280px, Tablet 768px, Mobile 375px; prototype tablet frame 768 × 1024; no console error. `npm run tokens`: 68/68 contrast pairs pass.
+- Compliance audit: `audits/2026-11-21-B162-1.md` — #68 fixed; #72 (Playground desktop size, existed before) fixed in the same step; 63 compliant, 15 non-compliant, 22 not in the design system.
+
+**Files**
+- `docs/src/PlaygroundTab.tsx`, `docs/src/pages/PrototypePage.tsx`, `tokens/semantic.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+- `audits/2026-11-21-B162-1.md` (created)

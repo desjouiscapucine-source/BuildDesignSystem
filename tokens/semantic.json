@@ -748,7 +748,7 @@
     },
     "viewport-desktop": {
       "$value": "1280px",
-      "$description": "Width of the simulated desktop screen (prototype frames)"
+      "$description": "Width of the simulated desktop screen (Playground, prototype frames)"
     },
     "viewport-desktop-height": {
       "$value": "800px",
