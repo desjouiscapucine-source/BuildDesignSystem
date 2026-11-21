@@ -5482,7 +5482,6 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-19-B143-2.md`, `audits/2026-11-19-B143-2-accessibility.md` (created)
 - `components/Frame/guidelines.md`, `components/Frame/spec.md`, `components/Frame/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
-=======
 
 ## Step B145-1 — StickyNote: design stage
 **Date:** 2026-11-19
@@ -5530,6 +5529,27 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `components/Tab/guidelines.md`, `components/Tab/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
 
 
+
+## Step B157-3 — Tab: code approved, component complete
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- Code approved: Tab is **complete**, version 1.0.
+- Two rows added to the Design tokens table of the spec, at the Design System Lead's request: focus ring offset `--border-width-2`; state layer transition `--duration-100`, `--easing-ease-out` (already in the code).
+
+**What was done**
+- `components/Tab/Tab.tsx`: `<button type="button" role="tab" aria-selected>`; prop `selected` (default `false`), native `disabled` (not focusable); selected + disabled forbidden by the types; roving `tabIndex` (0 when selected, -1 otherwise, set by Tabs); `ref` and native attributes passed through (`role`, `aria-selected`, `type`, `disabled` cannot be overridden).
+- `components/Tab/Tab.css`: semantic tokens only; selected = `label` style, `--color-text-brand`, indicator `--border-width-2` `--color-border-focus`; state layers, focus ring, top corners `--radius-4`; disabled `--color-text-disabled`, no state layer.
+- `examples.tsx` (default, selected, disabled, several tabs, long label) and `playground.tsx`; a tab shown alone and not selected gets `tabIndex={0}` so it stays reachable with the keyboard.
+- Export in `components/index.ts`; `meta.json` `complete`, version 1.0, changelog "First complete version."; backlog B157 `done`.
+- Accessibility check: `audits/2026-11-19-B157-3-accessibility.md` — 9 pass, 0 fail, 1 not applicable; keyboard checked in the browser; screen reader still to check in a manual test.
+- Token audit: `audits/2026-11-19-B157-3-tokens.md` — 35 values, 0 failures.
+- Compliance audit: `audits/2026-11-19-B157-3.md` — 61 compliant, 15 non-compliant (1 new: #68, the hand-built tabs of the component pages, to adopt Tabs once complete), 21 not in the design system.
+
+**Files**
+- `components/Tab/Tab.tsx`, `Tab.css`, `examples.tsx`, `playground.tsx` (new)
+- `audits/2026-11-19-B157-3.md`, `audits/2026-11-19-B157-3-accessibility.md`, `audits/2026-11-19-B157-3-tokens.md` (new)
+- `components/Tab/meta.json`, `components/Tab/spec.md`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
 
 ## Step B143-3 — Frame: code approved, component complete
 **Date:** 2026-11-21
