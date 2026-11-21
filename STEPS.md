@@ -5530,3 +5530,26 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `components/Tab/guidelines.md`, `components/Tab/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
 
 
+
+## Step B143-3 — Frame: code approved, component complete
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- Selection controlled by the canvas: props `selected` + `onSelectedChange(selected)` (added to the spec's properties).
+- The click that selects is on the container only; above the frame, only the name button is clickable (WCAG 2.5.8 spacing exception kept); guidelines Behavior line clarified.
+- The selected outline is styled from the native state (`aria-pressed="true"` on the name), not a class.
+- Hover on the container only (spec updated).
+- Examples and Playground content: an "Order tracking" screen made of coded components (Breadcrumb, heading, Timeline, Card, Button).
+- Open question added to the spec: components inside a frame respond to the browser width, not the frame width (iframe or container queries) — to decide with B130 and B142.
+
+**What was done**
+- `components/Frame/Frame.tsx`, `Frame.css` (semantic tokens only), `examples.tsx` (7 examples), `playground.tsx`; `Frame` and its types exported from `components/index.ts`.
+- Browser checks: real sizes 375 × 812 / 768 × 1024 / 1280 × 800; selection by click, name toggle and Escape; keyboard order name → content → next frame and back, no trap; focus and selected outlines together; long name ellipsis; scrolling content; no overflow of the Examples tab at mobile width.
+- Token audit: `audits/2026-11-21-B143-3-tokens.md` — 53 values, 0 failure.
+- Accessibility check: `audits/2026-11-21-B143-3-accessibility.md` — 2 failures (selected styled with a class, label row clickable), fixed with the Lead's decisions; no exception.
+- Component complete: `meta.json` status `complete`, version 1.0, changelog "First complete version."; B143 `done`.
+- Compliance audit: `audits/2026-11-21-B143-3.md` — 61 compliant, 16 non-compliant (1 new: #69, the component page tab row overflows the page on mobile), 22 not in the design system.
+
+**Files**
+- `audits/2026-11-21-B143-3.md`, `audits/2026-11-21-B143-3-tokens.md`, `audits/2026-11-21-B143-3-accessibility.md` (created)
+- `components/Frame/Frame.tsx`, `Frame.css`, `examples.tsx`, `playground.tsx`, `spec.md`, `guidelines.md`, `meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)

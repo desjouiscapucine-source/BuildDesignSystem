@@ -1436,7 +1436,7 @@
       "id": "B143",
       "title": "Frame",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "A layout frame on the canvas, in mobile, tablet or desktop size.",
       "why": "Missing component of the UX playground prototype (B130): each composition is laid out in mobile, tablet and desktop frames on the canvas.",
@@ -1446,7 +1446,7 @@
         "The accessibility and token audits pass.",
         "Frame is exported from @ds/components, ready for the UX playground (B130)."
       ],
-      "stage": "code",
+      "stage": "complete",
       "priority": "high",
       "release": "R2"
     },

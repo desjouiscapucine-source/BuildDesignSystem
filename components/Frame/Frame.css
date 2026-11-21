@@ -1,11 +1,76 @@
-/* Semantic design tokens only (var(--…)) — never raw values or primitive tokens.
-   Classes: .ds-<component> · modifier .ds-<component>--<value> · part .ds-<component>-<part> */
+/* Frame — semantic design tokens only. See spec.md.
+   Classes: .ds-frame · size .ds-frame--mobile / --tablet / --desktop · selected = [aria-pressed="true"] on the name
+   Parts: .ds-frame-labels, -name, -size, -container, -screen, -bar, -address, -content, -empty */
 .ds-frame {
-  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  cursor: default;
 }
 
-/* State layers: overlay in the content color */
-.ds-frame::after {
+/* Sizes: the container is the real size of the screen; the label row is as wide as the frame */
+.ds-frame--mobile { width: var(--size-viewport-mobile); }
+.ds-frame--mobile .ds-frame-container { height: var(--size-viewport-mobile-height); }
+.ds-frame--tablet { width: var(--size-viewport-tablet); }
+.ds-frame--tablet .ds-frame-container { height: var(--size-viewport-tablet-height); }
+.ds-frame--desktop { width: var(--size-viewport-desktop); }
+.ds-frame--desktop .ds-frame-container { height: var(--size-viewport-desktop-height); }
+
+/* Labels: name + size label on one line; a long name is cut with an ellipsis, the size label never */
+.ds-frame-labels {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-8);
+  min-width: 0;
+  white-space: nowrap;
+}
+.ds-frame-name {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: none;
+  background: none;
+  color: var(--color-text-primary);
+  font-family: var(--typography-label-family);
+  font-size: var(--typography-label-size);
+  font-weight: var(--typography-label-weight);
+  line-height: var(--typography-label-line-height);
+  text-align: left;
+  cursor: pointer;
+}
+/* The focus outline is drawn around the frame (below), not around the name */
+.ds-frame-name:focus-visible { outline: none; }
+.ds-frame-size {
+  flex-shrink: 0;
+  color: var(--color-text-secondary);
+  font-family: var(--typography-body-sm-family);
+  font-size: var(--typography-body-sm-size);
+  font-weight: var(--typography-body-sm-weight);
+  line-height: var(--typography-body-sm-line-height);
+}
+
+/* Container */
+.ds-frame-container {
+  position: relative;
+  box-sizing: border-box;
+  border: var(--border-width-1) solid var(--color-border-subtle);
+  border-radius: var(--radius-8);
+  background: var(--color-background-page);
+  box-shadow: var(--shadow-frame);
+  color: var(--color-text-primary);
+}
+.ds-frame-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+/* State layer (hover, focus) over the whole container, in the content color */
+.ds-frame-container::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -15,11 +80,81 @@
   pointer-events: none;
   transition: opacity var(--duration-100) var(--easing-ease-out);
 }
+.ds-frame-container:hover { border-color: var(--color-border-strong); }
+.ds-frame-container:hover::after { opacity: var(--state-layer-hover); }
+.ds-frame:has(.ds-frame-name:focus-visible) .ds-frame-container::after { opacity: var(--state-layer-focus); }
 
-/* Variant: default */
-.ds-frame--default {
+/* Selected: 2px outline on the container, no offset */
+.ds-frame:has(.ds-frame-name[aria-pressed="true"]) .ds-frame-container {
+  outline: var(--border-width-2) solid var(--color-border-focus);
+  outline-offset: 0;
 }
 
-/* Parts */
-.ds-frame-label {
+/* Focus: 2px outline around the container, offset by --space-4; shows together with the selected outline */
+.ds-frame-container::before {
+  content: "";
+  position: absolute;
+  inset: calc(-1 * (var(--space-4) + var(--border-width-1) + var(--border-width-2)));
+  border: var(--border-width-2) solid var(--color-border-focus);
+  border-radius: calc(var(--radius-8) + var(--space-4) + var(--border-width-2));
+  opacity: 0;
+  pointer-events: none;
 }
+.ds-frame:has(.ds-frame-name:focus-visible) .ds-frame-container::before { opacity: 1; }
+
+/* Device bar */
+.ds-frame-bar {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-8) var(--space-16);
+  border-bottom: var(--border-width-1) solid var(--color-border-subtle);
+  background: var(--color-background-page);
+  color: var(--color-text-primary);
+  font-family: var(--typography-label-sm-family);
+  font-size: var(--typography-label-sm-size);
+  font-weight: var(--typography-label-sm-weight);
+  line-height: var(--typography-label-sm-line-height);
+}
+.ds-frame-bar--status { justify-content: space-between; }
+.ds-frame-bar-icons {
+  display: flex;
+  gap: var(--space-4);
+}
+.ds-frame-bar-icon { font-size: var(--icon-size-16); }
+.ds-frame-address {
+  flex: 1;
+  min-width: 0;
+  padding: 0 var(--space-16);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-radius: var(--radius-16);
+  background: var(--color-background-subtle);
+}
+
+/* Content: scrolls inside the frame, under the device bar (the bar never covers a focused element) */
+.ds-frame-content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* Empty */
+.ds-frame-empty {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  padding: var(--space-16);
+  color: var(--color-text-secondary);
+  text-align: center;
+  font-family: var(--typography-body-family);
+  font-size: var(--typography-body-size);
+  font-weight: var(--typography-body-weight);
+  line-height: var(--typography-body-line-height);
+}
+.ds-frame-empty-icon { font-size: var(--icon-size-32); }

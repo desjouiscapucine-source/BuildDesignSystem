@@ -29,7 +29,7 @@
 - **Empty message**: "Drop components here" (set by `empty`).
 
 ## Behavior
-- **Selection**: a click anywhere in the frame selects it.
+- **Selection**: a click anywhere on the frame (the container) selects it. Above the frame, only the name is clickable: it toggles the selection.
 - **Content**: scrolls vertically inside the frame, under the device bar; the frame keeps its size.
 - **Long name**: one line, as wide as the frame; cut with an ellipsis. The size label is never cut.
 - **Empty** (`empty`): the empty message replaces the content.
