@@ -1435,7 +1435,7 @@
         "The accessibility and token audits pass.",
         "Canvas is exported from @ds/components, ready for the UX playground (B130)."
       ],
-      "stage": "design",
+      "stage": "guidelines",
       "priority": "high",
       "release": "R2"
     },
@@ -1489,7 +1489,7 @@
         "The accessibility and token audits pass.",
         "StickyNote is exported from @ds/components, ready for the UX playground (B130)."
       ],
-      "stage": "guidelines",
+      "stage": "code",
       "priority": "high",
       "release": "R2"
     },
@@ -1770,7 +1770,7 @@
       "id": "B163",
       "title": "Documentation site: component page tabs on small screens",
       "category": "Tooling",
-      "status": "todo",
+      "status": "done",
       "origin": "proposal",
       "description": "The tab row of the component pages stays within the page width on mobile and tablet.",
       "why": "Compliance audit finding 69 (audits/2026-11-21-B143-3.md): the hand-built tab row (display: flex, no wrap, no overflow) needs about 590px on a phone against about 327px; the whole page scrolls sideways (WCAG 1.4.10 Reflow). Seen in the browser on Button and Frame.",

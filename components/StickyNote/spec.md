@@ -63,7 +63,7 @@ One fixed size.
 - Selected and editing notes have **no state layer** (hover, focus): the border keeps its 3:1 contrast; the focus outline still shows.
 - Component-specific (approved):
   - **Selected** — the note is selected on the canvas: border `--border-width-2` `--color-border-strong`.
-  - **Editing** — the text becomes editable (after the Edit action): same border as Selected; the full text scrolls and the text cursor shows.
+  - **Editing** — the text becomes editable (Edit action, double-click, or Enter when the note has the focus): same border as Selected; the full text scrolls and the text cursor shows.
   - **Dragging** — the note is being moved on the canvas: shadow `--shadow-hover`.
 - The IconButtons keep their own states.
 

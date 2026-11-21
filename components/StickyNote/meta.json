@@ -2,7 +2,7 @@
   "name": "StickyNote",
   "description": "A sticky note placed on the canvas, to annotate a composition.",
   "level": "molecule",
-  "status": "guidelines",
+  "status": "code",
   "version": "0.0",
   "changelog": []
 }

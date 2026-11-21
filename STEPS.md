@@ -5601,6 +5601,71 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `audits/2026-11-21-B093-1.md`, `audits/2026-11-21-B093-1-accessibility.md`, `audits/2026-11-21-B093-1-tokens.md` (new)
 - `components/Tab/Tab.css`, `spec.md`, `guidelines.md`, `design/Preview.tsx`, `meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
 
+## Step B142-1 — Canvas: design approved
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- Component **Canvas**: organism, folder `components/Canvas/`, class `.ds-canvas`, description "The free canvas of the UX playground, which holds the layout frames."; one type: an infinite canvas with pan and zoom.
+- Surface: fills its container, no border, no rounded corners; background `background.subtle`; grid of dots `border.subtle`, diameter `border-width.2`, every `space.16` at 100% zoom.
+- Content: Frames (B143), sticky notes (B145), comments (B146) and components placed on their own; stacking `z-index.content`.
+- Zoom controls: a separate building block, **ZoomControls** (new ticket B161, high, R2), at the bottom right, `z-index.sticky`: zoom out, zoom level in percent, zoom in, fit to screen; tertiary IconButtons; container `background.surface`, `radius.8`, `shadow.dropdown`. The Canvas design goes on; its code waits for ZoomControls to be complete.
+- Prop: `zoom` (10 → 400, steps of 10, default 100). Empty is not a prop: deduced from the content; empty message "Add a frame to start" (`body`, `text.secondary`, centered, no icon).
+- Behavior: pan with Space + drag or wheel / trackpad; a drag on the background draws the selection rectangle. Keyboard with focus: arrow keys move the view by `space.16`, `+` / `−` zoom, `0` back to 100%, `Shift` + `1` fit to screen.
+- States: empty, panning (grab cursor), focus (2px `border.focus` outline inside the edges, in front of the content and the zoom controls), selecting (1px `border.focus` border, fill `border.focus` at `state-layer.hover`).
+
+**What was done**
+- `components/Canvas/` from the template: `meta.json`, `spec.md`, design preview (`design/Preview.tsx`, `design/tokens.json`, variants `empty` and `selection`, states default and focus).
+- Ticket B161 ZoomControls created and reserved, merged into `develop`.
+- Accessibility check: `audits/2026-11-19-B142-1-accessibility.md` — 7 pass, 0 failure, no exception (focus outline question resolved by the Lead).
+- Token audit: `audits/2026-11-19-B142-1-tokens.md` — 55 values, 0 failure.
+- Design approved: `meta.json` status and the B142 `stage` set to `guidelines`.
+- Compliance audit: `audits/2026-11-19-B142-1.md` — 61 compliant, 15 non-compliant (0 new, 0 fixed), 22 not in the design system; no new ticket.
+
+**Files**
+- `components/Canvas/` (created), `audits/2026-11-19-B142-1.md`, `audits/2026-11-19-B142-1-accessibility.md`, `audits/2026-11-19-B142-1-tokens.md` (created)
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B145-2 — StickyNote: guidelines approved
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- When to use: annotate a composition, explain a user journey between Frames, a working note, review feedback. When not to use: a discussion with replies (Comment, B146), text that is part of the screen (real components in the Frame), outside the canvas.
+- Placement: anywhere on the canvas background, never inside a Frame; as many notes as needed, never overlapping (a moved note cannot cover another).
+- Content: one idea per note, short sentences, sentence case, a task starts with a verb; author in two capital initials, date "19 Nov" (no year).
+- Behavior: select with a click or Space; move by dragging or with the arrow keys; edit with the Edit button, a double-click or Enter (Enter = new line in editing); Escape or a click outside saves and leaves editing; an empty note is removed; delete at once (button, Delete / Backspace), undo handled by the Canvas.
+- Accessibility: Tab order note → Edit → Delete; the note is a group named "Sticky note by CD, 19 Nov: <full text>", with "selected" added to the name; editing = multi-line text box "Note text", announcing "Editing note, Escape to save"; the focused note is never hidden (no overlap, the Canvas scrolls to it); after a delete, the focus goes to the next note, or the canvas.
+- 4 do / don't pairs: one short idea; next to the Frame; side by side; initials and short date.
+- Left to Canvas (B142): behavior below desktop, single-pointer alternative to dragging (WCAG 2.5.7), scrolling to the focused element.
+- Spec wording aligned: the editing state is entered by the Edit action, a double-click, or Enter.
+
+**What was done**
+- `components/StickyNote/guidelines.md` written; `spec.md` (one wording line).
+- Accessibility check: `audits/2026-11-21-B145-2-accessibility.md` — first run 3 failures (focus not obscured, editing state and selected state for screen readers), fixed; 6 pass, 0 fail.
+- Compliance audit: `audits/2026-11-21-B145-2.md` — 61 compliant, 16 non-compliant (#64 fixed — corrected by Claude —, #70 renumbered from B157-3), 21 not in the design system; no new ticket.
+- Guidelines approved: `meta.json` status and backlog B145 stage → `code`.
+
+**Files**
+- `components/StickyNote/guidelines.md`, `audits/2026-11-21-B145-2.md`, `audits/2026-11-21-B145-2-accessibility.md` (created)
+- `components/StickyNote/spec.md`, `components/StickyNote/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B163-1 — Documentation site: component page tabs on small screens
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- When the tabs of a component page do not fit (mobile, tablet), the tab row scrolls horizontally inside itself; the page never scrolls sideways (WCAG 1.4.10).
+- The row follows the approved Tabs design (B093, decision relayed by the Composant Tabs conversation and confirmed here): scrollbar hidden, no button, the selected tab brought into view. Temporary: Tabs replaces this hand-built row once complete.
+- No ticket for finding #70 (hand-built tab buttons instead of Tab): it stays followed by the compliance audit.
+
+**What was done**
+- `.tabs` scrolls sideways (`overflow-x: auto`), tabs do not shrink or wrap, scrollbar hidden; a padding the size of the focus ring, cancelled by a negative margin, keeps the ring visible; the row line is drawn inside the row (content-box background) so the selected underline sits on it and stays within the content column.
+- A click or Left / Right / Home / End scrolls the selected tab into view, without animation.
+- Implemented by the `ds-compliance-fix` agent, checked and completed by Claude; checked in the browser on Button and Frame at 375px, 768px and desktop (page width = viewport, desktop unchanged).
+- Compliance audit: `audits/2026-11-21-B163-1.md` — #69 fixed; #71 (row line past the content column, caused by the fix) fixed in the same step; 1 new open: #70; 61 compliant, 16 non-compliant, 22 not in the design system.
+
+**Files**
+- `docs/src/docs.css`, `docs/src/pages/ComponentPage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
+- `audits/2026-11-21-B163-1.md` (created)
+
 ## Step B093-2 — Tabs: guidelines approved
 **Date:** 2026-11-21
 
