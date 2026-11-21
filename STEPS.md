@@ -5573,3 +5573,26 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-21-B143-3.md`, `audits/2026-11-21-B143-3-tokens.md`, `audits/2026-11-21-B143-3-accessibility.md` (created)
 - `components/Frame/Frame.tsx`, `Frame.css`, `examples.tsx`, `playground.tsx`, `spec.md`, `guidelines.md`, `meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B145-2 — StickyNote: guidelines approved
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- When to use: annotate a composition, explain a user journey between Frames, a working note, review feedback. When not to use: a discussion with replies (Comment, B146), text that is part of the screen (real components in the Frame), outside the canvas.
+- Placement: anywhere on the canvas background, never inside a Frame; as many notes as needed, never overlapping (a moved note cannot cover another).
+- Content: one idea per note, short sentences, sentence case, a task starts with a verb; author in two capital initials, date "19 Nov" (no year).
+- Behavior: select with a click or Space; move by dragging or with the arrow keys; edit with the Edit button, a double-click or Enter (Enter = new line in editing); Escape or a click outside saves and leaves editing; an empty note is removed; delete at once (button, Delete / Backspace), undo handled by the Canvas.
+- Accessibility: Tab order note → Edit → Delete; the note is a group named "Sticky note by CD, 19 Nov: <full text>", with "selected" added to the name; editing = multi-line text box "Note text", announcing "Editing note, Escape to save"; the focused note is never hidden (no overlap, the Canvas scrolls to it); after a delete, the focus goes to the next note, or the canvas.
+- 4 do / don't pairs: one short idea; next to the Frame; side by side; initials and short date.
+- Left to Canvas (B142): behavior below desktop, single-pointer alternative to dragging (WCAG 2.5.7), scrolling to the focused element.
+- Spec wording aligned: the editing state is entered by the Edit action, a double-click, or Enter.
+
+**What was done**
+- `components/StickyNote/guidelines.md` written; `spec.md` (one wording line).
+- Accessibility check: `audits/2026-11-21-B145-2-accessibility.md` — first run 3 failures (focus not obscured, editing state and selected state for screen readers), fixed; 6 pass, 0 fail.
+- Compliance audit: `audits/2026-11-21-B145-2.md` — 61 compliant, 16 non-compliant (#64 fixed — corrected by Claude —, #70 renumbered from B157-3), 21 not in the design system; no new ticket.
+- Guidelines approved: `meta.json` status and backlog B145 stage → `code`.
+
+**Files**
+- `components/StickyNote/guidelines.md`, `audits/2026-11-21-B145-2.md`, `audits/2026-11-21-B145-2-accessibility.md` (created)
+- `components/StickyNote/spec.md`, `components/StickyNote/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
