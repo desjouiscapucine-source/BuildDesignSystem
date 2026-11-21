@@ -1,0 +1,19 @@
+{
+  "name": "Tab",
+  "description": "One tab of a tab list, that shows one panel of the page.",
+  "level": "atom",
+  "status": "complete",
+  "version": "1.1",
+  "changelog": [
+    {
+      "version": "1.1",
+      "date": "2026-11-21",
+      "changes": "The focus ring is drawn inside the tab, so a scrolling tab list never cuts it."
+    },
+    {
+      "version": "1.0",
+      "date": "2026-11-19",
+      "changes": "First complete version."
+    }
+  ]
+}
