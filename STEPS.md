@@ -5687,3 +5687,24 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-21-B093-2.md`, `audits/2026-11-21-B093-2-accessibility.md` (new)
 - `components/Tabs/guidelines.md`, `components/Tabs/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B142-2 — Canvas: guidelines approved
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- When to use: only as the working surface of the UX playground (B130). Not for a prototype screen (Screen), a page layout (layout grid), the preview of one component (Playground tab) or an image (ImageViewer).
+- Best practice: one Canvas per page. Do's and don'ts: screens in Frames; sticky notes next to what they annotate; bottom right corner free for the zoom controls; background and grid of dots unchanged.
+- Empty message fixed: "Add a frame to start" (no prop).
+- Every screen size. **Spec completed** (approved again): touch gestures — one finger pans, pinch zooms, long press then drag draws the selection rectangle.
+- Accessibility (after a blocking check with 2 failures, fixed): focus order canvas → zoom controls → content by position (top to bottom, then left to right) → leave; a focused element is brought into view with a `space.16` margin, never under the zoom controls; single-pointer alternatives: zoom controls for pan and pinch, Shift + click / long press then tap / Shift + Enter to add to the selection; screen reader: region "Canvas" describing shortcuts and gestures, zoom level announced. No exception.
+- New ticket **B164** (high, R2): align the Frame guidelines with the Canvas on Tab order, focus never hidden and Shift + Enter.
+
+**What was done**
+- `components/Canvas/guidelines.md` written; `components/Canvas/spec.md` completed (touch gestures, selection without dragging, focus order, focus never hidden, `-` key).
+- Accessibility check: `audits/2026-11-21-B142-2-accessibility.md` — first run 2 failures (focus order, focus hidden), fixed; 8 pass, 0 failure.
+- Guidelines approved: `meta.json` status and the B142 `stage` set to `code`. The code waits for ZoomControls (B161) to be complete.
+- Compliance audit: `audits/2026-11-21-B142-2.md` — 61 compliant, 15 non-compliant (1 fixed: #69 by B163; 0 new), 22 not in the design system; no new ticket.
+
+**Files**
+- `audits/2026-11-21-B142-2.md`, `audits/2026-11-21-B142-2-accessibility.md` (created)
+- `components/Canvas/guidelines.md`, `components/Canvas/spec.md`, `components/Canvas/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
