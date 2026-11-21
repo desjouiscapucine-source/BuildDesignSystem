@@ -162,10 +162,10 @@
       "id": "B019",
       "title": "Text input",
       "category": "Components",
-      "status": "todo",
+      "status": "in-progress",
       "origin": "proposal",
       "description": "Base of every form. Used on the documentation site: Content field of the Design preview tab, icon name field of the Icons page.",
-      "stage": "design",
+      "stage": "guidelines",
       "priority": "high",
       "release": "R2"
     },
@@ -1435,7 +1435,7 @@
         "The accessibility and token audits pass.",
         "Canvas is exported from @ds/components, ready for the UX playground (B130)."
       ],
-      "stage": "guidelines",
+      "stage": "code",
       "priority": "high",
       "release": "R2"
     },
@@ -1754,7 +1754,7 @@
       "id": "B162",
       "title": "Documentation site: tablet screen size tokens",
       "category": "Tooling",
-      "status": "todo",
+      "status": "done",
       "origin": "proposal",
       "description": "The site's simulated tablet screens use the size.viewport-tablet tokens, like mobile and desktop.",
       "why": "Compliance audit finding 68 (audits/2026-11-19-B143-1.md): the Playground tab and the Prototype preview frames read the tablet width and height from breakpoint.tablet / breakpoint.desktop (media-query tokens), while size.viewport-tablet / size.viewport-tablet-height now exist for a simulated tablet screen (B143).",
@@ -1782,6 +1782,24 @@
       ],
       "priority": "high",
       "release": "R4"
+    },
+    {
+      "id": "B164",
+      "title": "Frame: keyboard and focus aligned with Canvas",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "Align the Frame guidelines with the Canvas guidelines on keyboard order, focus visibility and selection.",
+      "why": "The Canvas guidelines (B142-2) order all the content of the canvas by position, keep a focused element out from under the zoom controls and add Shift + Enter to add to the selection; the Frame guidelines (complete, 1.x) still say the next frame, only the Panel, and no Shift + Enter.",
+      "scope": "Frame guidelines (and code if needed), in a Composant Frame conversation on component/Frame: after the content of a frame, Tab goes to the next element of the canvas by position, and leaves after the last element; a focused frame or element is never under the zoom controls (ZoomControls, B161) nor the Panel; Shift + Enter on the name adds the frame to the selection. New Frame version and changelog entry (changelog skill).",
+      "doneWhen": [
+        "The Frame guidelines say the same as the Canvas guidelines on Tab order, focus never hidden and Shift + Enter.",
+        "The change is approved, with a new Frame version and changelog entry.",
+        "The accessibility check passes."
+      ],
+      "stage": "guidelines",
+      "priority": "high",
+      "release": "R2"
     }
   ]
 }

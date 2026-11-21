@@ -18,7 +18,7 @@ The free canvas of the UX playground (B130): an infinite surface, moved and zoom
 2. **Content** (optional) — what is placed on the surface: Frames (B143), sticky notes (StickyNote, B145), comments (Comment, B146) and components placed on their own, outside any frame.
 3. **Zoom controls** (required) — the **ZoomControls** component (B161, building block), at the bottom right of the canvas: zoom out, zoom level in percent, zoom in, fit to screen.
 4. **Empty message** (empty only) — centered on the surface: "Add a frame to start".
-5. **Selection rectangle** (while selecting only) — drawn with the mouse on the background to select several elements.
+5. **Selection rectangle** (while selecting only) — drawn on the background (mouse drag, or a long press then a drag on touch screens) to select several elements.
 
 ## Variants
 
@@ -39,14 +39,18 @@ The free canvas of the UX playground (B130): an infinite surface, moved and zoom
 | Empty message | Yes, when empty | "Add a frame to start" | One line | — |
 
 ## Sizes
-One size: the canvas fills its container. The grid of dots is drawn at 100% zoom with a dot of `--border-width-2` every `--space-16`, and scales with the zoom.
+One size: the canvas fills its container, on every screen size (mobile, tablet, desktop). The grid of dots is drawn at 100% zoom with a dot of `--border-width-2` every `--space-16`, and scales with the zoom.
 
 ## Behavior
 - **Pan**: Space + drag, or the mouse wheel / trackpad. A plain drag on the background draws the selection rectangle.
-- **Zoom**: from 10% to 400%, in steps of 10% (ZoomControls, keyboard, trackpad).
+- **Zoom**: from 10% to 400%, in steps of 10% (ZoomControls, keyboard, trackpad, pinch).
+- **Touch**: one finger drags the view (pan), pinch zooms; a long press then a drag on the background draws the selection rectangle.
+- **Add to the selection** (without dragging): Shift + click on an element; on touch screens, after a long press on an element, a tap on another element; with the keyboard, Shift + Enter on the focused element.
+- **Focus order**: the canvas, then the zoom controls, then the content placed on the canvas, by position (top to bottom, then left to right); after the last element, the focus leaves the canvas.
+- **Focus never hidden**: when an element on the canvas receives the focus, the view moves to show it, with a `--space-16` margin, never under the zoom controls.
 - **Keyboard**, when the canvas has the focus:
   - Arrow keys: move the view by `--space-16` (one dot spacing), at the current zoom.
-  - `+` / `−`: zoom in / zoom out, one step.
+  - `+` / `-`: zoom in / zoom out, one step.
   - `0`: back to 100%.
   - `Shift` + `1`: fit all the content in the view.
 
@@ -55,7 +59,7 @@ One size: the canvas fills its container. The grid of dots is drawn at 100% zoom
 - **Empty** — nothing placed: the empty message.
 - **Panning** — while the view is moved: grab cursor.
 - **Focus** — keyboard focus on the canvas: outline inside the edges of the canvas, in front of the content and of the zoom controls, so it is never hidden (WCAG 2.4.11).
-- **Selecting** — the selection rectangle drawn with the mouse.
+- **Selecting** — the selection rectangle drawn with the mouse (or a long press then a drag, on touch screens).
 - No hover, pressed or disabled state on the surface itself.
 
 ## Design tokens
