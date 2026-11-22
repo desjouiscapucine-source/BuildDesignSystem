@@ -66,7 +66,7 @@
       "id": "B008",
       "title": "Semantic shadows by usage",
       "category": "Foundations",
-      "status": "todo",
+      "status": "in-progress",
       "origin": "decided",
       "description": "Usages to define (decided \"later\", step 33).",
       "priority": "high"
@@ -127,7 +127,7 @@
       "status": "todo",
       "origin": "proposal",
       "description": "radius.full (50%) gives an ellipse on rectangles: decide if pill buttons/tags are needed.",
-      "priority": "medium"
+      "priority": "low"
     },
     {
       "id": "B016",
@@ -227,7 +227,7 @@
       "origin": "decided",
       "description": "Small indicator (number or status). First uses: the counter of the Navigation item, and the version badge next to the title of the component pages (B096). A Tag (category, filter) would be a separate component, later. Note: change the color of the version badge (to define with the Design System Lead).",
       "stage": "design",
-      "priority": "high"
+      "priority": "medium"
     },
     {
       "id": "B026",
@@ -280,7 +280,7 @@
       "id": "B031",
       "title": "Prototype: WorkDescription",
       "category": "Prototypes",
-      "status": "in-progress",
+      "status": "done",
       "origin": "proposal",
       "description": "Once a few components are coded (e.g. a form or a product page). Screens and content to define with the Design System Lead.",
       "prototype": "work-description",
@@ -288,6 +288,10 @@
         {
           "feedback": "Cards in the clickable-image version: all 4 cards, 3 images each (one row), neutral placeholder images. The prototype follows the new card skill. New screens to define next.",
           "decision": "changes-requested"
+        },
+        {
+          "feedback": "Validé tel quel",
+          "decision": "validated"
         }
       ],
       "priority": "high",
@@ -1425,7 +1429,7 @@
       "id": "B142",
       "title": "Canvas",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "The free canvas of the UX playground, which holds the layout frames.",
       "why": "Missing component of the UX playground prototype (B130): the playground is a free canvas holding mobile, tablet and desktop frames.",
@@ -1435,7 +1439,7 @@
         "The accessibility and token audits pass.",
         "Canvas is exported from @ds/components, ready for the UX playground (B130)."
       ],
-      "stage": "code",
+      "stage": "complete",
       "priority": "high",
       "release": "R2"
     },
@@ -1736,7 +1740,7 @@
       "id": "B161",
       "title": "ZoomControls",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "The zoom controls of the canvas: zoom out, zoom level, zoom in and fit to screen.",
       "why": "Building block of the Canvas (B142): the UX playground canvas has visible zoom controls, a group reused as one unit, so it is its own component, completed before the Canvas code (component-structure).",
@@ -1746,7 +1750,7 @@
         "The accessibility and token audits pass.",
         "ZoomControls is exported from @ds/components, ready for the Canvas (B142)."
       ],
-      "stage": "guidelines",
+      "stage": "complete",
       "priority": "high",
       "release": "R2"
     },
@@ -1852,6 +1856,25 @@
       ],
       "priority": "high",
       "release": "R4"
+    },
+    {
+      "id": "B168",
+      "title": "Public site: login to edit the backlog live",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "decided",
+      "description": "A password login on the public site: once the Design System Lead logs in, the Backlog page becomes live-editable again, like the local work tool.",
+      "why": "Asked by the Design System Lead on 2026-11-22: the public site is a showcase (B152, read-only), but she also wants to use it as a real work tool — keep the showcase for visitors, and get the live, editable Backlog herself once logged in.",
+      "scope": "A login control in the site header (one account, a password); the session is a signed cookie. Logged out: the site stays exactly as today (showcase, Backlog read-only, last release shown). Logged in: the Backlog page's menus (status, priority, release, stage) work again, saving straight to `develop` on GitHub through a new Netlify Function, the same change rules as the local dev server (B092). Not in scope: several accounts; the Branches page (needs a local git worktree, cannot run on Netlify); live editing of design tokens or work time on the public site (could follow the same pattern later, on request).",
+      "doneWhen": [
+        "Logged out, the public site looks and behaves exactly as before (B152): Backlog menus disabled, last release shown.",
+        "A login control in the header opens a password form; the right password logs in, a wrong one shows an error.",
+        "Logged in, the Backlog page's menus are enabled and show the live state of `develop`, not the last release.",
+        "A change on a menu (status, priority, release, stage) is committed and pushed to `develop` on GitHub within the request, the same way the local dev server does it.",
+        "A \"Log out\" control ends the session; after it, the Backlog is read-only again.",
+        "The password and the signing secret are environment variables on Netlify, never written in the repository."
+      ],
+      "priority": "medium"
     }
   ]
 }

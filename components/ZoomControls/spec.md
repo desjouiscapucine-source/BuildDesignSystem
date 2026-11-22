@@ -18,7 +18,7 @@ One horizontal row, in this order:
 
 1. **Container** (required) — groups the controls, named "Zoom controls" for screen readers.
 2. **Zoom out button** (required) — tertiary IconButton, icon `remove`, accessible name "Zoom out".
-3. **Zoom level** (required) — plain text, read only: the zoom in percent (e.g. "100%"), announced as "Zoom level 100%".
+3. **Zoom level** (required) — plain text, read only: the zoom in percent (e.g. "100%"); a status (polite live region), announced as "Zoom level 100%" after each change.
 4. **Zoom in button** (required) — tertiary IconButton, icon `add`, accessible name "Zoom in".
 5. **Divider** (required) — a short vertical line, separating the zoom group from fit to screen.
 6. **Fit to screen button** (required) — tertiary IconButton, icon `fit_screen`, accessible name "Fit to screen".
@@ -67,6 +67,7 @@ Interactive targets: 36 × 36px (IconButton), above the 24 × 24px minimum (WCAG
 - **Buttons** — the IconButton states: default, hover, focus, pressed (state layers), disabled.
 - **Zoom out at the minimum (10%)** — the zoom out button is disabled.
 - **Zoom in at the maximum (400%)** — the zoom in button is disabled.
+- A disabled zoom button is the native IconButton disabled (skipped by the Tab key). When the button that has the focus becomes disabled, the focus moves to the other zoom button (zoom out at 400%, zoom in at 10%), so it is never lost.
 - **Fit to screen** — always enabled.
 - **Zoom level** — no state: plain text.
 
@@ -97,4 +98,3 @@ New token, decided by the Design System Lead (B161): **`size.zoom-level`** = 2.5
 
 ## Open questions
 - Names of the event props (zoom out, zoom in, fit to screen): decided at the code stage.
-- How "Zoom level 100%" is announced to screen readers (a name on a plain text is not reliable): decided at the guidelines and code stages.

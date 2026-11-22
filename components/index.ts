@@ -49,3 +49,7 @@ export { Panel } from "./Panel/Panel";
 export type { PanelProps, PanelTab } from "./Panel/Panel";
 export { Avatar } from "./Avatar/Avatar";
 export type { AvatarProps, AvatarSize } from "./Avatar/Avatar";
+export { ZoomControls } from "./ZoomControls/ZoomControls";
+export type { ZoomControlsProps } from "./ZoomControls/ZoomControls";
+export { Canvas } from "./Canvas/Canvas";
+export type { CanvasProps, SelectionRectangle } from "./Canvas/Canvas";
