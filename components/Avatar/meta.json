@@ -1,0 +1,8 @@
+{
+  "name": "Avatar",
+  "description": "A round avatar showing a person's initials.",
+  "level": "atom",
+  "status": "guidelines",
+  "version": "0.0",
+  "changelog": []
+}

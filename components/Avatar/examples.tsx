@@ -1,0 +1,10 @@
+// Live examples shown on the component's documentation page.
+import type { Example } from "../../docs/src/types";
+import { Avatar } from "./Avatar";
+
+export const examples: Example[] = [
+  {
+    title: "Default",
+    render: () => <Avatar>Example</Avatar>,
+  },
+];
