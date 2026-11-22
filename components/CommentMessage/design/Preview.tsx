@@ -1,8 +1,8 @@
 // CommentMessage design preview (stage 1) — NOT the final component code.
 // Every visual value of the message is a --preview-<slot> variable set by the Design preview tab.
 // The Content field sets the message text. The Avatar is drawn with its own approved tokens (B159, small).
-// The "…" button shows on hover and focus only (always on touch screens); in the focus state, it is the button that has the focus.
-// Hover also puts the hover state layer on the whole message.
+// author "me" only: the "…" button shows on hover and focus (always on touch screens); in the focus state, it is the button that has the focus.
+// Hover also puts the hover state layer on the whole message. author "other": no button, no hover (B160-2); the header keeps the same height.
 import type { CSSProperties } from "react";
 import type { PreviewProps } from "../../../docs/src/types";
 
@@ -20,11 +20,12 @@ function initials(name: string) {
   return (words.length === 1 ? [words[0]] : [words[0], words[words.length - 1]]).map((w) => w[0]).join("").toUpperCase();
 }
 
-function Mock({ state, text, name, edited }: PreviewProps & { name: string; edited?: boolean }) {
-  const showActions = state === "hover" || state === "focus";
+function Mock({ state, text, variant, name, edited }: PreviewProps & { name: string; edited?: boolean }) {
+  const isMe = variant?.endsWith("-me") ?? false;
+  const showActions = isMe && (state === "hover" || state === "focus");
   return (
     <div
-      data-state={state === "hover" ? "hover" : "default"}
+      data-state={isMe && state === "hover" ? "hover" : "default"}
       className="preview-state-layer"
       style={{
         display: "flex",

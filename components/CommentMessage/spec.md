@@ -23,7 +23,7 @@ One message of a comment thread: who wrote it, when, and what it says. Building 
    1. Avatar of the author (required), size `small`.
    2. Author name (required).
    3. Date and time (required), followed by "· Edited" when the message was changed (optional).
-   4. "…" button (required) — IconButton `tertiary`, icon `more_horiz`, at the end of the line; shown on hover and focus, always shown on touch screens.
+   4. "…" button (`author: me` only) — IconButton `tertiary`, icon `more_horiz`, at the end of the line; shown on hover and focus, always shown on touch screens. Only the author can change or delete a message (B160-2).
 3. Text of the message (required) — under the header, full width.
 
 ## Variants
@@ -32,7 +32,7 @@ One message of a comment thread: who wrote it, when, and what it says. Building 
 | Property | Values | Default | Description |
 | -------- | ------ | ------- | ----------- |
 | `position` | `first` / `reply` | `first` | Place of the message in the thread. A `reply` has a separator above it. |
-| `author` | `other` / `me` | `other` | Who wrote the message. A message of the current user (`me`) has a background; `other` has none. |
+| `author` | `other` / `me` | `other` | Who wrote the message. A message of the current user (`me`) has a background and the "…" button; `other` has neither. |
 
 ### Combinations
 - Allowed: all combinations (`first` / `reply` × `other` / `me`).
@@ -55,12 +55,13 @@ One size.
 | Space between the header and the text | `--space-8` |
 | Space between avatar, name, date and button | `--space-8` |
 | Avatar | `small` (`--space-24`) |
-| Header height | the height of the "…" IconButton (it keeps its place when hidden) |
+| Header height | the height of the "…" IconButton, on every message — with or without the button (`other`) — so the thread stays regular |
 | Author name | text style `label` |
 | Date and Edited mark | text style `label-sm` |
 | Text | text style `body` |
 
 ## States
+- States below apply to `author: me` only. A message `other` has **no interaction state**: no "…" button, no hover state layer (B160-2).
 - **Default**: the "…" button is hidden (always shown on touch screens, which have no hover).
 - **Hover**: hover state layer (`--state-layer-hover`, in the content color `--color-text-primary`) painted over the whole message, content included (like Button and NavigationItem), and the "…" button is shown. Contrast in hover: the date (`--color-text-secondary`) on `--color-background-subtle` stays at 4.62:1 (AA), at the limit (decided by the Design System Lead, B160).
 - **Focus**: when the "…" button has the keyboard focus, it is shown, with its own focus ring (IconButton).
@@ -73,7 +74,7 @@ One size.
 | Container | Background | `author: other` | none |
 | Container | Separator above, color | `position: reply` | `--color-border-subtle` |
 | Container | Separator above, width | `position: reply` | `--border-width-1` |
-| Container | State layer | hover | `--state-layer-hover` |
+| Container | State layer | hover, `author: me` | `--state-layer-hover` |
 | Container | Padding | all | `--space-8` |
 | Container | Corner radius | all | `--radius-8` |
 | Container | Gap header → text | all | `--space-8` |
@@ -84,7 +85,7 @@ One size.
 | Date, Edited | Text style | all | `label-sm` |
 | Text | Color | all | `--color-text-primary` |
 | Text | Text style | all | `body` |
-| "…" button | IconButton variant | all | `tertiary` (its own tokens) |
+| "…" button | IconButton variant | `author: me` | `tertiary` (its own tokens) |
 
 ## Open questions
 - The list of options of the "…" button (Edit, Delete) comes with the **Menu** component (B167, high, R4).

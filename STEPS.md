@@ -6200,3 +6200,30 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `components/CommentMessage/` (new)
 - `audits/2026-11-22-B160-1.md`, `audits/2026-11-22-B160-1-accessibility.md`, `audits/2026-11-22-B160-1-tokens.md` (new)
 - `tokens/contrast-pairs.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B160-2 — CommentMessage: guidelines approved
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Use for the thread of a Comment (B146). Not for a chat (not in the design system yet), a note with no author (StickyNote), a message from the application (message banner B063, not in the design system yet), a quote put forward (Card).
+- Thread: chronological order, one `first` then `reply` messages, messages stacked with no space between them (the separator above a reply is enough).
+- **Only the author changes or deletes a message** — spec change: the "…" button and the hover state layer exist on `author: me` only; `author: other` has no interaction state; the header keeps the same height (36px) on every message.
+- Delete is immediate, with no confirmation; deleting the `first` message deletes the whole Comment. Focus after a delete: the "…" button of the next `me` message, else the reply field of the Comment; when the whole Comment disappears, the Comment decides (B146).
+- Content: full name of the author, absolute date, "· Edited" with no date, plain text only (no formatting, link or image), never empty.
+- Same layout on narrow screens (name cut with an ellipsis, date never wraps).
+- Do's and don'ts: one `first`, full name, `me` for the signed-in user only, plain text. Related: Comment, Avatar, IconButton, Menu (B167), StickyNote, Card.
+- Screen reader: the thread is a list of articles; a `me` message is read with "(you)" after the name; the "…" button is named "Open message actions" (verb first).
+- **Accepted exception** (Design System Lead, 2026-11-22): the "…" button has the same accessible name on every message, so a screen reader user cannot tell which message it acts on.
+- Guidelines stage approved on 2026-11-22.
+
+**What was done**
+- `components/CommentMessage/guidelines.md` written; `spec.md`, `design/Preview.tsx` and `design/tokens.json` updated for the `me`-only button and hover; `meta.json` status `code`.
+- Accessibility check: `audits/2026-11-22-B160-2-accessibility.md` — 4 failures found (focus after a delete ×2, no keyboard trap / focus not obscured, same button name on every message): 3 fixed, 1 accepted as an exception; 0 blocking.
+- Compliance audit: `audits/2026-11-22-B160-2.md` — 67 compliant, 13 non-compliant (2 fixed by B165-1, 0 new), 22 not in the design system; no new ticket.
+- `backlog/backlog.json`: B160 stage `code`.
+- `develop` merged into `component/CommentMessage`.
+
+**Files**
+- `components/CommentMessage/guidelines.md` (written); `spec.md`, `meta.json`, `design/Preview.tsx`, `design/tokens.json` (updated)
+- `audits/2026-11-22-B160-2.md`, `audits/2026-11-22-B160-2-accessibility.md` (new)
+- `backlog/backlog.json`, `STEPS.md` (updated)

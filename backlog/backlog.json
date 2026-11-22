@@ -1837,7 +1837,7 @@
         "The accessibility and token audits pass.",
         "CommentMessage is exported from @ds/components, ready for Comment (B146)."
       ],
-      "stage": "guidelines",
+      "stage": "code",
       "priority": "high",
       "release": "R2"
     },
