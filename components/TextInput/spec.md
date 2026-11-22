@@ -104,6 +104,9 @@ Focus outline (field and clear button): `--border-width-2` solid `--color-border
 | Field | Radius | all | `--radius-8` |
 | Field | Focus outline | focus | `--border-width-2` · `--color-border-focus` |
 | Clear button | Focus outline | focus | `--border-width-2` · `--color-border-focus` |
+| Clear button | State layer | hover / focus / pressed | `--state-layer-hover` / `--state-layer-focus` / `--state-layer-pressed` |
+| Clear button | Radius (state layer) | all | `--radius-full` |
+| Field, clear button | State layer transition | all | `--duration-100` · `--easing-ease-out` |
 | Field | State layer | hover / focus / pressed | `--state-layer-hover` / `--state-layer-focus` / `--state-layer-pressed` |
 | Value | Text style | all | `body` |
 | Value | Color | default | `--color-text-primary` |

@@ -162,7 +162,7 @@
       "id": "B019",
       "title": "Text input",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "proposal",
       "description": "Base of every form. Used on the documentation site: Content field of the Design preview tab, icon name field of the Icons page.",
       "stage": "code",
