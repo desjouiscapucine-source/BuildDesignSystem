@@ -1852,6 +1852,25 @@
       ],
       "priority": "high",
       "release": "R4"
+    },
+    {
+      "id": "B168",
+      "title": "Public site: login to edit the backlog live",
+      "category": "Tooling",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "A password login on the public site: once the Design System Lead logs in, the Backlog page becomes live-editable again, like the local work tool.",
+      "why": "Asked by the Design System Lead on 2026-11-22: the public site is a showcase (B152, read-only), but she also wants to use it as a real work tool — keep the showcase for visitors, and get the live, editable Backlog herself once logged in.",
+      "scope": "A login control in the site header (one account, a password); the session is a signed cookie. Logged out: the site stays exactly as today (showcase, Backlog read-only, last release shown). Logged in: the Backlog page's menus (status, priority, release, stage) work again, saving straight to `develop` on GitHub through a new Netlify Function, the same change rules as the local dev server (B092). Not in scope: several accounts; the Branches page (needs a local git worktree, cannot run on Netlify); live editing of design tokens or work time on the public site (could follow the same pattern later, on request).",
+      "doneWhen": [
+        "Logged out, the public site looks and behaves exactly as before (B152): Backlog menus disabled, last release shown.",
+        "A login control in the header opens a password form; the right password logs in, a wrong one shows an error.",
+        "Logged in, the Backlog page's menus are enabled and show the live state of `develop`, not the last release.",
+        "A change on a menu (status, priority, release, stage) is committed and pushed to `develop` on GitHub within the request, the same way the local dev server does it.",
+        "A \"Log out\" control ends the session; after it, the Backlog is read-only again.",
+        "The password and the signing secret are environment variables on Netlify, never written in the repository."
+      ],
+      "priority": "medium"
     }
   ]
 }
