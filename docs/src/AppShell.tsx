@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type FormEvent, type ReactElement, type ReactNode } from "react";
+import { useEffect, useState, type FormEvent, type ReactElement, type ReactNode } from "react";
 import {
   Breadcrumb,
   Button,
@@ -6,6 +6,7 @@ import {
   IconButton,
   NavigationItem,
   SideNavigation,
+  TextInput,
   type BreadcrumbLevel,
   type NavigationItemProps,
 } from "@ds/components";
@@ -171,62 +172,39 @@ export function AppShell({ current, route = current, children }: AppShellProps) 
 function Search() {
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
-  const input = useRef<HTMLInputElement>(null);
 
   const all = allPages();
   const q = query.trim().toLowerCase();
   const results = q ? all.filter((item) => item.label.toLowerCase().includes(q)) : [];
 
-  // "/" focuses the search field.
-  useEffect(() => {
-    const onKey = (event: KeyboardEvent) => {
-      const target = event.target as HTMLElement;
-      if (event.key === "/" && !["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName)) {
-        event.preventDefault();
-        input.current?.focus();
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
   const go = (href: string) => {
     window.location.href = href;
     setQuery("");
-    input.current?.blur();
+    (document.activeElement as HTMLElement | null)?.blur();
   };
 
   return (
     <div className="shell-search" role="search">
-      <span className="ds-icon" aria-hidden="true">
-        search
-      </span>
-      <input
-        ref={input}
+      <TextInput
         type="search"
         placeholder="Search pages"
-        aria-label="Search pages"
         role="combobox"
         aria-expanded={results.length > 0}
         aria-controls="shell-search-results"
         aria-activedescendant={results.length > 0 ? `search-result-${active}` : undefined}
         value={query}
-        onChange={(event) => {
-          setQuery(event.target.value);
+        onChange={(next) => {
+          setQuery(next);
           setActive(0);
         }}
         onKeyDown={(event) => {
           if (event.key === "ArrowDown") setActive((index) => Math.min(index + 1, results.length - 1));
           else if (event.key === "ArrowUp") setActive((index) => Math.max(index - 1, 0));
           else if (event.key === "Enter" && results[active]) go(results[active].href);
-          else if (event.key === "Escape") setQuery("");
           else return;
           event.preventDefault();
         }}
       />
-      <kbd className="shell-search-key" aria-hidden="true">
-        /
-      </kbd>
       {q && results.length > 0 && (
         <ul id="shell-search-results" className="shell-search-results" role="listbox">
           {results.map((item, index) => (

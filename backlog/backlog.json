@@ -1827,7 +1827,7 @@
       "id": "B165",
       "title": "Documentation site: use the TextInput in the site search",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "proposal",
       "description": "The search field of the site header is the TextInput search type, without the \"/\" keyboard hint.",
       "why": "Compliance audit of Step B019-3 (audits/2026-11-22-B019-3.md), findings 71 and 75: TextInput is complete (B019) and its search type covers the site search (B056 rejected), but the header still uses a hand-built field with a \"/\" hint, and the \"/\" shortcut is a single-character shortcut that cannot be turned off (WCAG 2.1.4).",
