@@ -43,8 +43,8 @@
 - **Resolve and reopen**: Resolve marks the comment as resolved (check on the marker; Resolve becomes Reopen). A **reply to a resolved comment does not reopen it**: only Reopen does.
 - **Delete**: deleting the first message deletes the whole comment. The focus then goes to the marker of the next comment, in the order of the canvas, or to the canvas itself when there is none.
 - **Long thread**: the bubble grows with the thread up to 100% of the visible canvas, then the thread scrolls.
-- **Near the edge of the canvas**: the bubble flips to the left of the marker, or upward, to stay visible.
-- **Narrow screen and larger text**: the bubble is never wider than its container (`max-width: 100%`); nothing overflows.
+- **Near the edge of the canvas**: the bubble flips to the left of the marker, or upward, to stay visible. When it fits neither on the right nor on the left (narrow screen), it opens under the marker, inside the visible canvas, as wide as the space allows.
+- **Narrow screen and larger text**: the bubble is never wider than the visible canvas; nothing overflows.
 - **Touch screens**: the "…" button of the messages is always shown (CommentMessage); the marker is tapped like a button.
 
 ## Accessibility

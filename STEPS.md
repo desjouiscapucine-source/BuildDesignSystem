@@ -6351,3 +6351,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/Comment/guidelines.md`, `audits/2026-11-22-B146-3.md`, `audits/2026-11-22-B146-3-accessibility.md` (created)
 - `components/Comment/spec.md`, `components/Comment/design/Preview.tsx`, `components/Comment/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B146-4 — Comment: code approved, component complete
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Code approved; Comment is `complete`, version **1.0**.
+- Narrow canvas or screen: when the bubble fits neither on the right nor on the left of the marker, it opens **under the marker**, shifted and narrowed to stay inside the visible canvas, and above the marker near the bottom edge (spec "Position of the bubble" and guidelines updated).
+- **Exception accepted** (token audit): `100vw` and `100vh` in `Comment.css` (`width: min(var(--size-dialog-small), 100vw)`, `max-height: 100vh`) express "the visible canvas" of the spec; no token exists for it.
+
+**What was done**
+- `components/Comment/Comment.tsx`, `Comment.css`, `examples.tsx` (10 examples), `playground.tsx`; export in `components/index.ts`; `meta.json` `complete`, `1.0`, changelog entry; backlog B146 `done`.
+- Behavior: marker button with `aria-expanded`; bubble group with thread (list of articles), Resolve / Reopen, Close, reply field (TextInput) and Send (disabled while empty); Escape, Close and outside click; focus rules; draft kept; error under the field; polite status messages; flip to the left or upward, or under the marker; the Avatar is the marker, the check of the resolved marker is drawn in Comment until Avatar accepts an icon (B171).
+- Accessibility check (`audits/2026-11-22-B146-4-accessibility.md`): 1st run 2 failures (reflow on a narrow screen, repeated status messages), fixed; 2nd run 11 pass, 0 fail. To check by hand: screen reader, 320px and 200% zoom.
+- Token audit (`audits/2026-11-22-B146-4-tokens.md`): 0 failure; exception `100vw` / `100vh`.
+- Compliance audit: `audits/2026-11-22-B146-4.md` — 67 compliant, 13 non-compliant, 23 not in the design system; no new ticket.
+
+**Files**
+- `components/Comment/Comment.tsx`, `Comment.css`, `examples.tsx`, `playground.tsx`, `audits/2026-11-22-B146-4.md`, `audits/2026-11-22-B146-4-accessibility.md`, `audits/2026-11-22-B146-4-tokens.md` (created)
+- `components/index.ts`, `components/Comment/meta.json`, `components/Comment/spec.md`, `components/Comment/guidelines.md`, `backlog/backlog.json`, `STEPS.md` (updated)

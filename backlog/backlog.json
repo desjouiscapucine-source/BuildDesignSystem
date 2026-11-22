@@ -1501,7 +1501,7 @@
       "id": "B146",
       "title": "Comment",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "A comment attached to a component or a frame of the canvas.",
       "why": "Missing component of the UX playground prototype (B130): the playground has comments on a component or a frame.",
@@ -1511,7 +1511,7 @@
         "The accessibility and token audits pass.",
         "Comment is exported from @ds/components, ready for the UX playground (B130)."
       ],
-      "stage": "code",
+      "stage": "complete",
       "priority": "high",
       "release": "R2"
     },

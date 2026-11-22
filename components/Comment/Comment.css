@@ -1,0 +1,130 @@
+/* Comment — semantic design tokens only. See spec.md.
+   Classes: .ds-comment · modifiers .ds-comment--open, --selected, --resolved
+   Parts: .ds-comment-marker, -marker-check, -bubble, -header, -thread, -reply, -field, -status */
+.ds-comment {
+  position: relative;
+  display: inline-flex;
+}
+
+/* Marker: the Avatar medium, a button that opens and closes the bubble */
+.ds-comment-marker {
+  position: relative;
+  display: inline-flex;
+  padding: 0;
+  border: none;
+  background: none;
+  border-radius: var(--radius-full);
+  color: var(--color-text-inverse);
+  cursor: pointer;
+}
+
+/* State layers (hover, pressed) in the content color of the marker */
+.ds-comment-marker::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-100) var(--easing-ease-out);
+}
+.ds-comment-marker:hover::after { opacity: var(--state-layer-hover); }
+.ds-comment-marker:active::after { opacity: var(--state-layer-pressed); }
+
+/* Ring: selected (offset space.8) and focus (offset space.4, the focus wins when both apply) */
+.ds-comment--selected .ds-comment-marker {
+  outline: var(--border-width-2) solid var(--color-border-focus);
+  outline-offset: var(--space-8);
+}
+.ds-comment-marker:focus-visible {
+  outline: var(--border-width-2) solid var(--color-border-focus);
+  outline-offset: var(--space-4);
+}
+
+/* Resolved: the circle of the Avatar with a check instead of the initials, at full opacity */
+.ds-comment-marker-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-32);
+  height: var(--space-32);
+  border-radius: var(--radius-full);
+  background: var(--color-background-brand);
+  color: var(--color-icon-inverse);
+  font-size: var(--icon-size-20);
+}
+
+/* Bubble: to the right of the marker, aligned on its top edge */
+.ds-comment-bubble {
+  position: absolute;
+  top: 0;
+  left: calc(100% + var(--space-16));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  box-sizing: border-box;
+  width: min(var(--size-dialog-small), 100vw);
+  /* The bubble grows with the thread up to the height of the visible canvas, then the thread scrolls */
+  max-height: 100vh;
+  padding: var(--space-8);
+  background: var(--color-background-page);
+  box-shadow: var(--shadow-dropdown);
+  border-radius: var(--radius-8);
+  color: var(--color-text-primary);
+}
+
+/* Near the edge of the visible canvas: flipped to the left of the marker, or upward */
+.ds-comment-bubble[data-side="left"] {
+  left: auto;
+  right: calc(100% + var(--space-16));
+}
+.ds-comment-bubble[data-align="end"] {
+  top: auto;
+  bottom: 0;
+}
+/* Neither side fits: under the marker (above it near the bottom edge) */
+.ds-comment-bubble[data-side="below"] {
+  left: 0;
+  right: auto;
+  top: calc(100% + var(--space-16));
+}
+.ds-comment-bubble[data-side="below"][data-align="end"] {
+  top: auto;
+  bottom: calc(100% + var(--space-16));
+}
+
+.ds-comment-header {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-4);
+  color: var(--color-icon-brand);
+}
+
+.ds-comment-thread {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.ds-comment-reply {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.ds-comment-field {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Read by screen readers, not seen (status messages) */
+.ds-comment-status {
+  position: absolute;
+  width: var(--border-width-1);
+  height: var(--border-width-1);
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

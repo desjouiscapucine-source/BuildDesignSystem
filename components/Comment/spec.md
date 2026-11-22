@@ -66,7 +66,8 @@ One size. The bubble has a fixed width; its height follows its content.
 | ---- | ----- |
 | Marker | Avatar `medium`: `--space-32` |
 | Bubble width | `--size-dialog-small` (400px), `max-width: 100%` |
-| Bubble maximum height | 100% of the visible canvas; the thread scrolls beyond it |
+| Bubble maximum height | 100% of the visible canvas (`100vh` in the code); the thread scrolls beyond it |
+| Bubble maximum width | `--size-dialog-small`, and the visible canvas (`100vw` in the code) |
 | Bubble padding | `--space-8` |
 | Gap between header, thread and reply field | `--space-8` |
 | Gap between the marker and the bubble | `--space-16` (the ring of the selected state, 10px, must not touch the bubble) |
@@ -104,6 +105,7 @@ Interaction states of the other parts (hover, focus, pressed, disabled) are thos
 ## Position of the bubble
 - By default, to the right of the marker, aligned on its top edge.
 - Near the edge of the canvas, it flips to the left of the marker, or upward, to stay visible.
+- When it fits neither on the right nor on the left (narrow canvas or screen), it opens **under the marker**, shifted to stay inside the visible canvas and as wide as the space allows (`--size-dialog-small` at most); the marker stays visible above it. Under the marker, near the bottom edge, it flips above the marker (approved 2026-11-22).
 
 ## Design tokens
 | Part | Property | Variant / state | Token |
@@ -127,7 +129,7 @@ Interaction states of the other parts (hover, focus, pressed, disabled) are thos
 | Header | Action icon color | open | `--color-icon-brand` (IconButton `tertiary`, its own tokens) |
 | Reply field | Gap between field and Send | open | `--space-4` |
 
-No raw value and no new token: every value above is an existing semantic token.
+No raw value and no new token: every value above is an existing semantic token. Exception accepted by the Design System Lead (2026-11-22): the code expresses "100% of the visible canvas" with the viewport units `100vw` and `100vh`, since no token exists for it.
 
 Contrast (already checked in `tokens/contrast-pairs.json`): `icon.brand` on `background.page` (3:1 min, icon), `border.focus` on `background.page` (3:1 min, ring, which sits on the page background thanks to the offset) and `icon.inverse` on `background.brand` (6.10:1, the check icon of the resolved marker). Text and icons of the Avatar, the messages, the buttons and the field are checked in their own specs.
 
