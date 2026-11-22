@@ -26,6 +26,13 @@ A round mark that stands for a person, with their initials, or a generic person 
 
 The content is **not** a variant property: it is chosen automatically from the name (initials when a name is given, icon otherwise).
 
+Other props (decided at the code stage, B159-3):
+
+| Prop | Values | Default | Description |
+| ---- | ------ | ------- | ----------- |
+| `name` | text | none | The person's full name; the initials are computed from it. Without a name, the icon is shown. |
+| `decorative` | `true` / `false` | `true` | Hidden from screen readers (the name is written next to the avatar). `false` when the avatar is shown alone (e.g. a marker): it announces the full name. |
+
 ### Combinations
 - Allowed: all combinations (every size, with initials or the icon).
 
@@ -71,4 +78,4 @@ Not interactive: no target size requirement (WCAG 2.5.8 does not apply).
 Contrast (already checked in `tokens/contrast-pairs.json`): `text.inverse` on `background.brand` — 6.10:1 (min 4.5:1); `icon.inverse` on `background.brand` — 6.10:1 (min 3:1).
 
 ## Open questions
-- Prop name for the person's name in code (e.g. `name`), and how the code knows the name is written next to the avatar (decorative): decided at the code stage.
+- None.

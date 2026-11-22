@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { tokens } from "../../../tokens/lib";
 import { Header } from "./SectionPages";
-import { Link } from "@ds/components";
+import { Link, TextInput } from "@ds/components";
 
 const sizes = tokens.filter((token) => token.path[0] === "icon-size");
 const samples = [
@@ -60,10 +60,12 @@ export function IconsPage() {
       </table>
 
       <h2>Try an icon</h2>
-      <label className="icon-try">
-        Icon name
-        <input value={name} onChange={(event) => setName(event.target.value.trim().toLowerCase().replace(/\s+/g, "_"))} />
-      </label>
+      <TextInput
+        className="icon-try"
+        label="Icon name"
+        value={name}
+        onChange={(entry) => setName(entry.trim().toLowerCase().replace(/\s+/g, "_"))}
+      />
       <div className="icon-try-preview">
         {sizes.map((token) => (
           <span key={token.id} className="ds-icon" style={{ fontSize: `var(${token.cssVar})` }} aria-hidden="true">
