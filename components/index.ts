@@ -44,3 +44,5 @@ export { StickyNote } from "./StickyNote/StickyNote";
 export type { StickyNoteProps, StickyNoteMoveDirection } from "./StickyNote/StickyNote";
 export { Panel } from "./Panel/Panel";
 export type { PanelProps, PanelTab } from "./Panel/Panel";
+export { Avatar } from "./Avatar/Avatar";
+export type { AvatarProps, AvatarSize } from "./Avatar/Avatar";

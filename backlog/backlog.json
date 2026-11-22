@@ -1805,7 +1805,7 @@
       "id": "B159",
       "title": "Avatar",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "proposal",
       "description": "A round avatar showing a person's initials.",
       "why": "Building block found while designing Comment (B146), approved by the Design System Lead on 2026-11-19: the comment marker and each comment message show the author's initials in an avatar.",
@@ -1815,7 +1815,7 @@
         "The accessibility and token audits pass.",
         "Avatar is exported from @ds/components, ready for CommentMessage (B160) and Comment (B146)."
       ],
-      "stage": "code",
+      "stage": "complete",
       "priority": "high",
       "release": "R2"
     }

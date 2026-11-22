@@ -5932,3 +5932,23 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-22-B159-2.md`, `audits/2026-11-22-B159-2-accessibility.md` (new)
 - `components/Avatar/guidelines.md`, `components/Avatar/spec.md`, `components/Avatar/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B159-3 — Avatar: code approved, component complete
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Props: `name` (full name; initials computed from it; without a name the person icon), `size` (`small` / `medium` default / `large`), `decorative` (default `true`: hidden from screen readers, the name is written next to it; `false` when shown alone: `role="img"` named with the full name). Written into `spec.md` (Variants).
+- Accessibility exception accepted: at 200% text zoom (WCAG 1.4.4) the initials are cut off by the fixed-size circle (approved px diameters kept); no information lost (name written next to it, or announced).
+- Code approved; Avatar complete, version 1.0.
+
+**What was done**
+- `components/Avatar/Avatar.tsx` and `Avatar.css` (semantic tokens only; `.ds-avatar`, `.ds-avatar--<size>`, `.ds-avatar-initials`, `.ds-avatar-icon`; no state layer), `examples.tsx` (sizes, unknown name, initials, list of people, long name, shown alone), `playground.tsx` (controls `name`, `size`, `decorative`); exported from `components/index.ts` (`Avatar`, `AvatarProps`, `AvatarSize`).
+- Checked in the browser: diameters 24 / 32 / 48px, initials 12 / 14 / 20px, icon 16 / 20 / 32px, colors, aria attributes; Playground controls update the canvas and the code; 320px wide and increased text spacing pass.
+- `meta.json`: status `complete`, version `1.0`, changelog "First complete version."; backlog B159 `done`, stage `complete`.
+- Accessibility check: `audits/2026-11-22-B159-3-accessibility.md` — 8 pass, 0 fail, 1 accepted exception (WCAG 1.4.4), 4 not applicable.
+- Token audit: `audits/2026-11-22-B159-3-tokens.md` — 25 values, 0 fail.
+- Compliance audit: `audits/2026-11-22-B159-3.md` — 62 compliant, 18 non-compliant (5 new from `develop`, #71–#75, TextInput; 0 from this step), 21 not in the design system; no new ticket. Avatar is not used on the site: no site element shows a person.
+
+**Files**
+- `audits/2026-11-22-B159-3.md`, `audits/2026-11-22-B159-3-accessibility.md`, `audits/2026-11-22-B159-3-tokens.md` (new)
+- `components/Avatar/Avatar.tsx`, `Avatar.css`, `examples.tsx`, `playground.tsx`, `meta.json`, `spec.md`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
