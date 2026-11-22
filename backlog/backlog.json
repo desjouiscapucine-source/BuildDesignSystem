@@ -1425,7 +1425,7 @@
       "id": "B142",
       "title": "Canvas",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "The free canvas of the UX playground, which holds the layout frames.",
       "why": "Missing component of the UX playground prototype (B130): the playground is a free canvas holding mobile, tablet and desktop frames.",
@@ -1435,7 +1435,7 @@
         "The accessibility and token audits pass.",
         "Canvas is exported from @ds/components, ready for the UX playground (B130)."
       ],
-      "stage": "code",
+      "stage": "complete",
       "priority": "high",
       "release": "R2"
     },

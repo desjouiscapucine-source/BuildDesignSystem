@@ -6042,3 +6042,29 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-22-B161-3.md`, `audits/2026-11-22-B161-3-accessibility.md`, `audits/2026-11-22-B161-3-tokens.md` (created)
 - `components/ZoomControls/ZoomControls.tsx`, `ZoomControls.css`, `examples.tsx`, `playground.tsx`, `meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B142-3 — Canvas: code approved, component complete
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Pan is **controlled**: `panX`/`panY` + `onPanChange`, same convention as `zoom`/`onZoomChange` (ZoomControls precedent).
+- Children positioning is the **caller's responsibility**: neither Frame nor StickyNote have x/y props, so the Canvas only pans/zooms the whole content layer as one block; a consumer (UX playground, B130) positions each child itself (e.g. inline `position: absolute`).
+- Selection rectangle: the Canvas draws it and reports its final bounds in content space via `onSelectionRectangle`; it does not know its children, so the caller decides which ones are inside and selects them.
+- Code approved; Canvas complete, version 1.0.
+
+**What was done**
+- `components/Canvas/Canvas.tsx` and `.css`: pannable/zoomable surface (dot grid scaling with zoom via CSS custom properties), `ZoomControls` embedded bottom-right (DOM order before the content layer, for correct Tab order), content layer transformed by `panX`/`panY`/`zoom`, empty message, selection-rectangle overlay.
+  - Keyboard (canvas region focused only): arrows pan by one `--space-16` step scaled by zoom; `+`/`=`/`-` zoom one step anchored on the viewport center; `0` resets to 100%; `Shift+1` fits the actual rendered children's bounding box to the view (zoom floored to a multiple of 10, read from the real DOM children so it works regardless of how the caller positions them); Space arms pan-drag mode.
+  - Mouse: Space + drag pans; a plain drag on the background draws the selection rectangle. Touch: one finger pans; a ~500ms long-press then drag selects; a second touch pinch-zooms. `touch-action: none` so the browser does not intercept these gestures.
+  - Focus never hidden: a focus listener on the root pans the view to keep a newly focused descendant clear of the edges (`--space-16` margin) and the zoom-controls corner.
+  - `role="region"` `aria-label="Canvas"` `aria-describedby` a hidden description of the shortcuts and gestures; `:focus-visible` outline inside the edges (same technique as the approved Design preview mockup); single live region is ZoomControls' own (B161-2 decision, not repeated here).
+- `examples.tsx` (Default: two Frames + a StickyNote, each positioned by the example itself; Empty), `playground.tsx` (controls `zoom`, `empty`; `Demo` wraps local zoom/pan state so the canvas stays interactive, same pattern as Panel's and StickyNote's playgrounds); exported from `components/index.ts` (`Canvas`, `CanvasProps`, `SelectionRectangle`).
+- Checked in the browser: keyboard zoom and pan (exact pixel deltas), Space + drag pan, selection-rectangle lifecycle (appears during drag, gone after release), fit-to-screen math, Tab order (region → zoom controls → content), focus-visible.
+- `meta.json`: status `complete`, version `1.0`, changelog "First complete version."; `backlog/backlog.json`: B142 `done`, stage `complete`.
+- Token audit: `audits/2026-11-22-B142-3-tokens.md` — 32 values, 0 fail. The three inline custom properties (`--ds-canvas-zoom`, `--ds-canvas-pan-x`, `--ds-canvas-pan-y`) confirmed as component-local runtime state, not a token gap (same precedent as Panel's `--ds-panel-width`).
+- Accessibility check: `audits/2026-11-22-B142-3-accessibility.md` — first run 2 failures (`Shift+1` never fired: `event.key` is layout-dependent for a shifted digit, fixed with `event.code === "Digit1"`; Space did not call `preventDefault()`, risking a page scroll, fixed), both fixed and verified live; 13 pass, 0 fail.
+- Compliance audit: `audits/2026-11-22-B142-3.md` — 64 compliant (Canvas's own `examples.tsx` added), 18 non-compliant (unchanged, all covered by existing tickets), 21 not in the design system; no new ticket. Canvas's own `playground.tsx` checked specifically (after the ZoomControls Playground bug found at B161-3): already correctly wired, no repeat.
+
+**Files**
+- `audits/2026-11-22-B142-3.md`, `audits/2026-11-22-B142-3-accessibility.md`, `audits/2026-11-22-B142-3-tokens.md` (created)
+- `components/Canvas/Canvas.tsx`, `Canvas.css`, `examples.tsx`, `playground.tsx`, `meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
