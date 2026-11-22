@@ -1,0 +1,8 @@
+{
+  "name": "CommentMessage",
+  "description": "One message of a comment thread: author avatar and name, date and text.",
+  "level": "molecule",
+  "status": "guidelines",
+  "version": "0.0",
+  "changelog": []
+}

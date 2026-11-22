@@ -6135,3 +6135,30 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-22-B166-1.md` (new)
 - `docs/src/PlaygroundTab.tsx`, `docs/src/DesignPreview.tsx`, `docs/src/pages/IconsPage.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B160-1 — CommentMessage: design approved
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- B160 CommentMessage started on `component/CommentMessage` (ticket reserved from `component/Comment`, where it was created in B146-1): name `CommentMessage`, class `.ds-comment-message`, level **molecule**, description "One message of a comment thread: author avatar and name, date and text.", one size.
+- Header on one line: Avatar `small`, author name (`label`, `text.primary`, one line with an ellipsis), date and time always absolute ("19 Nov 2026, 14:43", `label-sm`, `text.secondary`) followed by "· Edited" when the message was changed, then a "…" IconButton `tertiary` (`more_horiz`); gap `space.8`. Header height = the IconButton (36px), which keeps its place when hidden.
+- Text: `body`, `text.primary`, wraps with no limit. Padding `space.8`, radius `radius.8`, gap header → text `space.8`.
+- Variants: `position` `first` / `reply` (reply: separator above, `border.subtle`, `border-width.1`); `author` `other` / `me` (me: `background.subtle`; other: no background). All combinations allowed.
+- States: hover = hover state layer (`text.primary`) painted over the whole message, content included, and the "…" button shown; focus on the "…" button shows it with its own focus ring; always shown on touch screens. The message itself is not focusable.
+- The "…" button opens Edit / Delete: list of options waits for a new **Menu** component — ticket **B167** created (`todo`, high, R4, `origin: proposal`).
+- Accessibility: hover contrast of the date on `background.subtle` measured with the layer over the content, 4.62:1 (AA, at the limit) — chosen by the Design System Lead.
+- Design stage approved on 2026-11-22.
+
+**What was done**
+- `components/CommentMessage/` created from the template: `meta.json` (status `guidelines`), `spec.md`, `design/Preview.tsx` and `design/tokens.json` (4 variants, states default / hover / focus), template files for the later stages.
+- `tokens/contrast-pairs.json`: pair `color.icon.brand` / `color.background.subtle` (min 3) added; 70/70 pairs pass.
+- Accessibility check: `audits/2026-11-22-B160-1-accessibility.md` — 2 failures found (hover contrast of the date, missing contrast pair), both resolved; note for the code stage: the hidden "…" button stays in the Tab order.
+- Token audit: `audits/2026-11-22-B160-1-tokens.md` — 102 values, 0 fail.
+- Compliance audit: `audits/2026-11-22-B160-1.md` — 66 compliant, 15 non-compliant (0 new, 0 fixed), 22 not in the design system (count corrected); no new ticket.
+- `backlog/backlog.json`: B160 `in-progress`, stage `guidelines`; B167 created.
+- `develop` merged into `component/CommentMessage`.
+
+**Files**
+- `components/CommentMessage/` (new)
+- `audits/2026-11-22-B160-1.md`, `audits/2026-11-22-B160-1-accessibility.md`, `audits/2026-11-22-B160-1-tokens.md` (new)
+- `tokens/contrast-pairs.json`, `backlog/backlog.json`, `STEPS.md` (updated)
