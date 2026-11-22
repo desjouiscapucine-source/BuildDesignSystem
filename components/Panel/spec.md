@@ -14,7 +14,7 @@ The right panel of the UX playground (B130): it holds the three tools of the pla
 ## Anatomy
 **Expanded**
 1. Container (required) — full height of the workspace, on the right, over the canvas (shadow).
-2. Resize handle (required) — `drag_indicator` icon, always visible, vertically centered against the left edge, inside the panel.
+2. Resize handle (required) — `drag_indicator` icon, always visible on desktop (hidden below desktop, where the panel is not resizable), vertically centered against the left edge, inside the panel.
 3. Tabs (required) — Library, Properties, Compositions, built with the **Tabs** component (B093).
 4. Collapse button (required) — IconButton `tertiary`, icon `right_panel_close`, on the right of the tabs.
 5. Tab content (required) — the content of the selected tab; scrolls when it is longer than the panel.
@@ -37,7 +37,7 @@ The right panel of the UX playground (B130): it holds the three tools of the pla
 | Text | Required | Example | Max length | Overflow |
 | ---- | -------- | ------- | ---------- | -------- |
 | Tab labels | Yes (fixed) | Library · Properties · Compositions | Fixed texts | — |
-| Accessible labels of the icon buttons | Yes | "Collapse the panel" · "Open Library" | — | Not visible (screen readers, tooltip) |
+| Accessible labels of the icon buttons | Yes | "Collapse the panel" · "Open Library" | — | Not visible (screen readers) |
 | Tab content | Yes | Given by the playground (B130) | — | The content area scrolls vertically |
 
 ## Sizes
@@ -59,7 +59,7 @@ One size. The width can be changed by the user.
 - **Expanded / collapsed** (variant above). The change is animated with `--duration-200` and `--easing-ease-out` (no animation when the user reduces motion).
 - **Resize handle**
   - Hover: `--state-layer-hover`; pressed (while dragging): `--state-layer-pressed`.
-  - Focus: the handle is focusable, with the focus outline `--color-border-focus`, width `--border-width-2`, drawn **inside** the 24×24px hit area (negative offset `--border-width-2`) so it stays on the panel background, and `--state-layer-focus`; the **left / right arrow keys** change the width, between `--size-panel-min` and `--size-panel-max` (WCAG 2.1.1).
+  - Focus: the handle is focusable, with the focus outline `--color-border-focus`, width `--border-width-2`, drawn **inside** the 24×24px hit area (negative offset `--border-width-2`) so it stays on the panel background, and `--state-layer-focus`; the **left / right arrow keys** change the width by `--space-8` per key press, between `--size-panel-min` and `--size-panel-max` (WCAG 2.1.1).
   - Double-click: the width goes back to `--size-panel`.
 - **Buttons** (collapse, tab icons): the states of the IconButton component.
 - **Tabs**: the states of the Tabs component (B093).
@@ -83,5 +83,5 @@ One size. The width can be changed by the user.
 | Resize handle | Focus outline width · offset | Focus | `--border-width-2` · minus `--border-width-2` (inside) |
 
 ## Open questions
-- **Below desktop** (small screens, WCAG 1.4.10 reflow): behavior to decide at the guidelines stage, checked in the browser at the code stage.
+- **Below desktop**: decided in the guidelines (always collapsed by default, no resize); reflow (WCAG 1.4.10) checked in the browser at the code stage.
 - **Tabs**: the look of the tabs comes from the Tabs component (B093, in progress). The spec is approved with a placeholder for the tabs; Tabs must be complete before the Panel code (decided by the Design System Lead on 2026-11-19).

@@ -10,7 +10,7 @@ const breakpoint = px;
 // Preview frames: the prototype at its real width, scaled down to fit the page.
 const frames = [
   { name: "Mobile", width: px("size.viewport-mobile"), height: px("size.viewport-mobile-height") },
-  { name: "Tablet", width: px("breakpoint.tablet"), height: px("breakpoint.desktop") },
+  { name: "Tablet", width: px("size.viewport-tablet"), height: px("size.viewport-tablet-height") },
   { name: "Desktop", width: px("size.viewport-desktop"), height: px("size.viewport-desktop-height") },
 ].map((frame) => {
   // Columns of the layout grid at that width (mobile first, like tokens/grid.css).
