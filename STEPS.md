@@ -5885,6 +5885,30 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `audits/2026-11-22-B019-2.md`, `audits/2026-11-22-B019-2-accessibility.md` (created)
 - `components/TextInput/guidelines.md`, `components/TextInput/spec.md`, `components/TextInput/meta.json`, `components/TextInput/design/tokens.json`, `backlog/backlog.json`, `STEPS.md` (updated)
 
+## Step B144-3 — Panel: code approved, component complete
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- **Space under the tabs**: only the `space.24` of Tabs; the tab content has no top padding (spec updated).
+- **Props**: `library`, `properties`, `compositions` (content of each tab); `collapsed` with `onCollapsedChange`; `selected` (`"library" | "properties" | "compositions"`) with `onSelect`; the width and the browser memory are handled by the Panel.
+- **Empty tab**: the sentence is written by the playground (example in `examples.tsx`).
+- **`size.panel` 320px → 400px**, so the three tabs fit next to the collapse button (token, `token-naming` and spec updated).
+- **Focus order** (accessibility check): resize handle → collapse button → tabs → content; the collapse button comes before the tabs in the DOM (guidelines updated).
+- Stage 3 (Code) approved: Panel **complete**, version **1.0**.
+
+**What was done**
+- `components/Panel/Panel.tsx` + `Panel.css`: built with Tabs and IconButton, semantic tokens only; collapse / expand with the focus following, resize by pointer, arrows (`space.8`) and double-click, browser memory (`localStorage` key `ds-panel`), below desktop always collapsed at open, Escape and leaving the panel collapse it; breakpoint read in the window the panel is shown in (Playground iframe).
+- Inside the Panel, the focus ring of the tab content is drawn inside (negative offset), like the resize handle, so it stays on the panel background.
+- `examples.tsx` (expanded, collapsed, empty tab, long content), `playground.tsx`; `components/index.ts` exports `Panel`, `PanelProps`, `PanelTab`.
+- Token audit: `audits/2026-11-22-B144-3-tokens.md` — 1 failure (raw `z-index`) fixed with no z-index; not blocking.
+- Accessibility check: `audits/2026-11-22-B144-3-accessibility.md` — 1 failure (focus order) fixed; checked with the keyboard in the browser; not blocking. Still to check later: keyboard focus leaving below desktop, reduced motion, 200% zoom, 320px reflow; WCAG 2.4.11 with Canvas (B142).
+- Compliance audit: `audits/2026-11-22-B144-3.md` — 64 compliant, 13 non-compliant (3 fixed: #70, #68, #64; 0 new), 21 not in the design system; no new ticket.
+- `meta.json`: status `complete`, version `1.0`, changelog "First complete version."; `backlog/backlog.json`: B144 `done`, stage `complete`.
+
+**Files**
+- `components/Panel/Panel.tsx`, `Panel.css`, `examples.tsx`, `playground.tsx`, `audits/2026-11-22-B144-3-tokens.md`, `audits/2026-11-22-B144-3-accessibility.md`, `audits/2026-11-22-B144-3.md` (created or rewritten from the template)
+- `components/Panel/meta.json`, `spec.md`, `guidelines.md`, `components/index.ts`, `tokens/semantic.json`, `.claude/skills/token-naming/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B159-2 — Avatar: guidelines approved
 **Date:** 2026-11-22
 

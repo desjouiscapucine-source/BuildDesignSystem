@@ -615,7 +615,7 @@
       "$description": "Maximum width of a large Dialog"
     },
     "panel": {
-      "$value": "320px",
+      "$value": "400px",
       "$description": "Default width of the Panel of the UX playground"
     },
     "panel-min": {

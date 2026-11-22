@@ -1461,7 +1461,7 @@
       "id": "B144",
       "title": "Panel",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "The panel on the right of the playground, with three tabs: Library, Properties and Compositions.",
       "why": "Missing component of the UX playground prototype (B130): the playground needs a right panel with three tabs (Library, Properties, Compositions).",
@@ -1471,7 +1471,7 @@
         "The accessibility and token audits pass.",
         "Panel is exported from @ds/components, ready for the UX playground (B130)."
       ],
-      "stage": "code",
+      "stage": "complete",
       "priority": "high",
       "release": "R2"
     },
