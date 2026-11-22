@@ -162,7 +162,7 @@
       "id": "B019",
       "title": "Text input",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "proposal",
       "description": "Base of every form. Used on the documentation site: Content field of the Design preview tab, icon name field of the Icons page.",
       "stage": "code",
@@ -1805,7 +1805,7 @@
       "id": "B159",
       "title": "Avatar",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "proposal",
       "description": "A round avatar showing a person's initials.",
       "why": "Building block found while designing Comment (B146), approved by the Design System Lead on 2026-11-19: the comment marker and each comment message show the author's initials in an avatar.",
@@ -1815,9 +1815,43 @@
         "The accessibility and token audits pass.",
         "Avatar is exported from @ds/components, ready for CommentMessage (B160) and Comment (B146)."
       ],
-      "stage": "code",
+      "stage": "complete",
       "priority": "high",
       "release": "R2"
+    },
+    {
+      "id": "B165",
+      "title": "Documentation site: use the TextInput in the site search",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "The search field of the site header is the TextInput search type, without the \"/\" keyboard hint.",
+      "why": "Compliance audit of Step B019-3 (audits/2026-11-22-B019-3.md), findings 71 and 75: TextInput is complete (B019) and its search type covers the site search (B056 rejected), but the header still uses a hand-built field with a \"/\" hint, and the \"/\" shortcut is a single-character shortcut that cannot be turned off (WCAG 2.1.4).",
+      "scope": "docs/src/AppShell.tsx: the hand-built search input becomes TextInput type search (placeholder \"Search pages\"), inside the role=\"search\" container of the results list; the \"/\" kbd hint is removed (decided by the Design System Lead, B019-2); docs/src/docs.css: field styles and .shell-search-key removed. Decisions asked first: the \"/\" shortcut removed with its hint, or kept with a way to turn it off (WCAG 2.1.4); how the results list is announced (combobox role) until the dropdown list B057 exists; size.search-field-height (40px) against the 39px TextInput, and size.search-field (360px) as the field width.",
+      "doneWhen": [
+        "The site search uses TextInput type search, with no \"/\" hint.",
+        "The \"/\" shortcut follows the Design System Lead's decision and meets WCAG 2.1.4.",
+        "Findings 71 and 75 are gone from the next compliance audit."
+      ],
+      "priority": "medium",
+      "release": "R4"
+    },
+    {
+      "id": "B166",
+      "title": "Documentation site: use the TextInput in the site fields",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "The text and number fields of the Playground, the Design preview and the Icons page are TextInputs.",
+      "why": "Compliance audit of Step B019-3 (audits/2026-11-22-B019-3.md), findings 72, 73 and 74: TextInput is complete (B019), but these fields are still hand-built, with a label above the field (Design preview, Icons) or nothing shown in the empty field (Playground).",
+      "scope": "docs/src/PlaygroundTab.tsx (text and number controls; the date control stays out), docs/src/DesignPreview.tsx (Content field, keeping its save on blur), docs/src/pages/IconsPage.tsx (Icon name field): TextInput with the label or placeholder inside the field and no label above (decided by the Design System Lead, B019-2); docs/src/docs.css: .playground-input and the input rules of .icon-try removed. Decisions asked first: Playground fields with a label or a placeholder; a number out of range clamped silently, or an error message or a help text with the range; the Icons field text or search type; widths kept with size.playground-input and size.icon-try, or set by the layout grid; the native date control kept.",
+      "doneWhen": [
+        "The Playground text and number controls, the Design preview Content field and the Icons field use TextInput.",
+        "No label above these fields; the label or placeholder is inside the field.",
+        "Findings 72, 73 and 74 are gone from the next compliance audit."
+      ],
+      "priority": "high",
+      "release": "R4"
     }
   ]
 }

@@ -1,25 +1,58 @@
-/* Semantic design tokens only (var(--…)) — never raw values or primitive tokens.
-   Classes: .ds-<component> · modifier .ds-<component>--<value> · part .ds-<component>-<part> */
+/* Avatar — semantic design tokens only. See spec.md.
+   Classes: .ds-avatar · modifiers .ds-avatar--<size> · parts .ds-avatar-initials, .ds-avatar-icon
+   Not interactive: no state layer. */
 .ds-avatar {
-  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: var(--radius-full);
+  background: var(--color-background-brand);
+  color: var(--color-text-inverse);
 }
 
-/* State layers: overlay in the content color */
-.ds-avatar::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: currentColor;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--duration-100) var(--easing-ease-out);
+.ds-avatar-initials {
+  white-space: nowrap;
 }
 
-/* Variant: default */
-.ds-avatar--default {
+.ds-avatar-icon {
+  color: var(--color-icon-inverse);
 }
 
-/* Parts */
-.ds-avatar-label {
+/* Sizes: diameter, initials text style, icon size */
+.ds-avatar--small {
+  width: var(--space-24);
+  height: var(--space-24);
+  font-family: var(--typography-label-sm-family);
+  font-size: var(--typography-label-sm-size);
+  font-weight: var(--typography-label-sm-weight);
+  line-height: var(--typography-label-sm-line-height);
+}
+.ds-avatar--small .ds-avatar-icon {
+  font-size: var(--icon-size-16);
+}
+
+.ds-avatar--medium {
+  width: var(--space-32);
+  height: var(--space-32);
+  font-family: var(--typography-label-family);
+  font-size: var(--typography-label-size);
+  font-weight: var(--typography-label-weight);
+  line-height: var(--typography-label-line-height);
+}
+.ds-avatar--medium .ds-avatar-icon {
+  font-size: var(--icon-size-20);
+}
+
+.ds-avatar--large {
+  width: var(--space-48);
+  height: var(--space-48);
+  font-family: var(--typography-heading-5-family);
+  font-size: var(--typography-heading-5-size);
+  font-weight: var(--typography-heading-5-weight);
+  line-height: var(--typography-heading-5-line-height);
+}
+.ds-avatar--large .ds-avatar-icon {
+  font-size: var(--icon-size-32);
 }

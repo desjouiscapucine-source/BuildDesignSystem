@@ -30,6 +30,9 @@ export { Tag } from "./Tag/Tag";
 export type { TagProps, TagTone } from "./Tag/Tag";
 export { Select } from "./Select/Select";
 export type { SelectProps, SelectOptionItem } from "./Select/Select";
+
+export { TextInput } from "./TextInput/TextInput";
+export type { TextInputProps, TextInputType } from "./TextInput/TextInput";
 export { TicketCard } from "./TicketCard/TicketCard";
 export type { TicketCardProps } from "./TicketCard/TicketCard";
 export { Link } from "./Link/Link";
@@ -44,3 +47,5 @@ export { StickyNote } from "./StickyNote/StickyNote";
 export type { StickyNoteProps, StickyNoteMoveDirection } from "./StickyNote/StickyNote";
 export { Panel } from "./Panel/Panel";
 export type { PanelProps, PanelTab } from "./Panel/Panel";
+export { Avatar } from "./Avatar/Avatar";
+export type { AvatarProps, AvatarSize } from "./Avatar/Avatar";

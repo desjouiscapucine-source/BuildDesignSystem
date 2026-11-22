@@ -5960,6 +5960,45 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `audits/2026-11-22-B161-1.md`, `audits/2026-11-22-B161-1-accessibility.md`, `audits/2026-11-22-B161-1-tokens.md` (new)
 - `tokens/semantic.json`, `tokens/tokens.css`, `.claude/skills/token-naming/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
 
+## Step B019-3 — TextInput: code approved, component complete
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Code stage approved on 2026-11-22: TextInput is **complete**, version **1.0** ("First complete version.").
+- Approved with the code: `--radius-full` for the clear button state layer, the clear button state layers and the `--duration-100` · `--easing-ease-out` transitions (added to the spec Design tokens table); example contents of the "Long texts" and "Search" examples.
+
+**What was done**
+- `components/TextInput/TextInput.tsx`: props `type`, `label` | `placeholder` (one of them), `icon`, `helpText`, `error`, `required`, `disabled`, `value` / `defaultValue` / `onChange`; forbidden combinations prevented by the types; native `<input>` (`search` → `type="search"`, `number` → `type="text"` + `inputMode="numeric"`); accessible name `aria-label` = label or placeholder; `aria-describedby`, `aria-invalid`, `aria-required`; error in an `aria-live="polite"` region always rendered; clear button (`<button>`, "Clear the search") gives the focus back to the field; Escape empties a filled `search` field and stops there (a Dialog closes on the next Escape).
+- `TextInput.css`: semantic tokens only; field state layer on `::before` so the clear button stays above it without a z-index.
+- `examples.tsx` (11 examples), `playground.tsx` (one control per prop), export in `components/index.ts`.
+- `meta.json`: status `complete`, version `1.0`, changelog; `backlog/backlog.json`: B019 `done`.
+- Token audit: `audits/2026-11-22-B019-3-tokens.md` — 57 values, 1 failure (raw `z-index: 1`) fixed in code.
+- Accessibility check: `audits/2026-11-22-B019-3-accessibility.md` — 10 passes, 0 failures; clear by click / Enter / Space, Escape, Shift+Tab, number error and mobile width checked in the browser; no screen reader pass (checked in the code).
+- Compliance audit: `audits/2026-11-22-B019-3.md` — 62 compliant, 18 non-compliant (5 new: #71–#74 the site text fields now covered by TextInput, #75 the "/" shortcut), 21 not in the design system; 2 tickets proposed (A: site search, B: Playground / Design preview / Icons fields).
+
+**Files**
+- `components/TextInput/TextInput.tsx`, `TextInput.css`, `examples.tsx`, `playground.tsx`, `audits/2026-11-22-B019-3.md`, `audits/2026-11-22-B019-3-tokens.md`, `audits/2026-11-22-B019-3-accessibility.md` (created)
+- `components/TextInput/meta.json`, `components/TextInput/spec.md`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B159-3 — Avatar: code approved, component complete
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Props: `name` (full name; initials computed from it; without a name the person icon), `size` (`small` / `medium` default / `large`), `decorative` (default `true`: hidden from screen readers, the name is written next to it; `false` when shown alone: `role="img"` named with the full name). Written into `spec.md` (Variants).
+- Accessibility exception accepted: at 200% text zoom (WCAG 1.4.4) the initials are cut off by the fixed-size circle (approved px diameters kept); no information lost (name written next to it, or announced).
+- Code approved; Avatar complete, version 1.0.
+
+**What was done**
+- `components/Avatar/Avatar.tsx` and `Avatar.css` (semantic tokens only; `.ds-avatar`, `.ds-avatar--<size>`, `.ds-avatar-initials`, `.ds-avatar-icon`; no state layer), `examples.tsx` (sizes, unknown name, initials, list of people, long name, shown alone), `playground.tsx` (controls `name`, `size`, `decorative`); exported from `components/index.ts` (`Avatar`, `AvatarProps`, `AvatarSize`).
+- Checked in the browser: diameters 24 / 32 / 48px, initials 12 / 14 / 20px, icon 16 / 20 / 32px, colors, aria attributes; Playground controls update the canvas and the code; 320px wide and increased text spacing pass.
+- `meta.json`: status `complete`, version `1.0`, changelog "First complete version."; backlog B159 `done`, stage `complete`.
+- Accessibility check: `audits/2026-11-22-B159-3-accessibility.md` — 8 pass, 0 fail, 1 accepted exception (WCAG 1.4.4), 4 not applicable.
+- Token audit: `audits/2026-11-22-B159-3-tokens.md` — 25 values, 0 fail.
+- Compliance audit: `audits/2026-11-22-B159-3.md` — 62 compliant, 18 non-compliant (5 new from `develop`, #71–#75, TextInput; 0 from this step), 21 not in the design system; no new ticket. Avatar is not used on the site: no site element shows a person.
+
+**Files**
+- `audits/2026-11-22-B159-3.md`, `audits/2026-11-22-B159-3-accessibility.md`, `audits/2026-11-22-B159-3-tokens.md` (new)
+- `components/Avatar/Avatar.tsx`, `Avatar.css`, `examples.tsx`, `playground.tsx`, `meta.json`, `spec.md`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
 ## Step B161-2 — ZoomControls: guidelines approved
 **Date:** 2026-11-22
 
