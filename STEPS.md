@@ -6136,6 +6136,26 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `audits/2026-11-22-B166-1.md` (new)
 - `docs/src/PlaygroundTab.tsx`, `docs/src/DesignPreview.tsx`, `docs/src/pages/IconsPage.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
 
+## Step B165-1 — Documentation site: TextInput in the site search
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- The "/" shortcut is removed with its hint (WCAG 2.1.4).
+- The results list keeps the combobox markup (`role="combobox"`, `aria-expanded`, `aria-controls`, `aria-activedescendant` on the input) until the dropdown list B057 exists.
+- The field takes the height of the TextInput (39px); the token `size.search-field-height` is removed.
+- Width kept with `size.search-field` (360px); full width below desktop.
+
+**What was done**
+- `AppShell.tsx`: the header search is a TextInput `search` (placeholder "Search pages"); the "/" listener and the `<kbd>` hint are removed; arrows, Enter and "No page found" unchanged, Escape handled by the TextInput.
+- `docs.css`: field, icon, placeholder and `.shell-search-key` rules removed; `.shell-search` only places the field and the results list.
+- `tokens/semantic.json`: `size.search-field-height` removed (no remaining reference).
+- Checked in the browser (results, ArrowDown, Escape, "No page found", 39px height); `npm run tokens`, `typecheck` and `build` pass.
+- Compliance audit: `audits/2026-11-22-B165-1.md` — 67 compliant, 13 non-compliant (2 fixed: #71, #75; 0 new), 23 not in the design system; no ticket proposed. B165 `done`.
+
+**Files**
+- `audits/2026-11-22-B165-1.md` (new)
+- `docs/src/AppShell.tsx`, `docs/src/docs.css`, `tokens/semantic.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B160-1 — CommentMessage: design approved
 **Date:** 2026-11-22
 
