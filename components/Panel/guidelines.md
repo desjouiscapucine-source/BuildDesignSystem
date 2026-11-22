@@ -44,7 +44,7 @@
 
 ## Accessibility
 - **Keyboard:**
-  - `Tab` / `Shift+Tab` move through the resize handle (desktop only), the tabs, the collapse button and the tab content (visual order, left to right then top to bottom); in the collapsed strip, through the three icons.
+  - `Tab` / `Shift+Tab` move through the resize handle (desktop only), the collapse button, the tabs and the tab content (the collapse button comes before the tabs, so it is reached quickly); in the collapsed strip, through the three icons.
   - Leaving the Panel: `Tab` / `Shift+Tab` go on to the rest of the page, expanded, collapsed and below desktop — the Panel is never a keyboard trap (WCAG 2.1.2).
   - `Enter` / `Space` activate the collapse button and the icons of the strip.
   - On the focused resize handle, `←` / `→` make the Panel wider / narrower by `space.8` (8px) per key press, between `size.panel-min` and `size.panel-max`.

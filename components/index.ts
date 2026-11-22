@@ -45,3 +45,5 @@ export { Tabs } from "./Tabs/Tabs";
 export type { TabsProps, TabsItem } from "./Tabs/Tabs";
 export { StickyNote } from "./StickyNote/StickyNote";
 export type { StickyNoteProps, StickyNoteMoveDirection } from "./StickyNote/StickyNote";
+export { Panel } from "./Panel/Panel";
+export type { PanelProps, PanelTab } from "./Panel/Panel";
