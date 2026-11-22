@@ -2,7 +2,7 @@
 // Design preview tab once the component is complete.
 // The canvas is an iframe (docs/playground.html) at the chosen screen width; the controls, the tokens and the JSX code are here.
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Button, Chip, Select } from "@ds/components";
+import { Button, Chip, Select, TextInput } from "@ds/components";
 import { tokenById, tokens, textStyles, type Token } from "../../tokens/lib";
 import { IconSelect } from "./IconSelect";
 import { readableName, readableToken } from "./readableName";
@@ -291,26 +291,76 @@ function ControlInput({
     case "icon":
       return <IconSelect label={label} value={value as string} optional={control.optional} onChange={onChange} />;
     case "number":
+      return <NumberControl label={label} min={control.min} max={control.max} value={value as number} onChange={onChange} />;
+    case "date":
       return (
         <input
-          type="number"
-          className="playground-input"
-          aria-label={label}
-          min={control.min}
-          max={control.max}
-          value={value as number}
-          onChange={(event) => onChange(Math.min(control.max, Math.max(control.min, Number(event.target.value))))}
-        />
-      );
-    default:
-      return (
-        <input
-          type={control.type === "date" ? "date" : "text"}
+          type="date"
           className="playground-input"
           aria-label={label}
           value={value as string}
           onChange={(event) => onChange(event.target.value)}
         />
       );
+    default:
+      return (
+        <TextInput
+          className="playground-text-input"
+          label={label}
+          value={value as string}
+          onChange={onChange}
+        />
+      );
   }
+}
+
+/** Number control: keeps what the user types; sends only a valid number within the range, and clamps it on blur. */
+function NumberControl({
+  label,
+  min,
+  max,
+  value,
+  onChange,
+}: {
+  label: string;
+  min: number;
+  max: number;
+  value: number;
+  onChange: (value: number) => void;
+}) {
+  const [text, setText] = useState(String(value));
+  const [shown, setShown] = useState(value);
+  // The value changed from outside (reset, saved state): the field shows it.
+  if (value !== shown) {
+    setShown(value);
+    setText(String(value));
+  }
+  const parse = (entry: string) => (entry.trim() === "" ? NaN : Number(entry));
+
+  return (
+    <TextInput
+      type="number"
+      className="playground-text-input"
+      label={label}
+      helpText={`From ${min} to ${max}`}
+      value={text}
+      onChange={(entry) => {
+        setText(entry);
+        const number = parse(entry);
+        if (Number.isFinite(number) && number >= min && number <= max && number !== value) {
+          setShown(number);
+          onChange(number);
+        }
+      }}
+      onBlur={() => {
+        const number = parse(text);
+        const next = Number.isFinite(number) ? Math.min(max, Math.max(min, number)) : value;
+        setText(String(next));
+        if (next !== value) {
+          setShown(next);
+          onChange(next);
+        }
+      }}
+    />
+  );
 }

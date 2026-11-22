@@ -6114,3 +6114,24 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-22-B142-3.md`, `audits/2026-11-22-B142-3-accessibility.md`, `audits/2026-11-22-B142-3-tokens.md` (created)
 - `components/Canvas/Canvas.tsx`, `Canvas.css`, `examples.tsx`, `playground.tsx`, `meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B166-1 — Documentation site: TextInput in the site fields
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Playground text and number controls: the control name as `label`, shown in the empty field.
+- Number out of range: help text "From {min} to {max}"; the field keeps what is typed and the value is brought back into the range on blur (no error message).
+- Icons page "Icon name" field: TextInput `text` type with a label (not `search`).
+- Widths kept with `size.playground-input` and `size.icon-try`; the native date control stays.
+
+**What was done**
+- Playground (`PlaygroundTab.tsx`): text controls are TextInputs; number controls use a new `NumberControl` (TextInput `number`, help text with the range, clamped on blur); the date control keeps the native input.
+- Design preview (`DesignPreview.tsx`): the "Content" field is a TextInput, save on blur kept.
+- Icons page (`IconsPage.tsx`): the "Icon name" field is a TextInput, same name cleanup.
+- `docs.css`: hand-built `.icon-try` label and input rules removed (only `max-width` kept), `.playground-text-input` width added.
+- Checked in the browser (Breadcrumb Playground: "9" stays while typing, becomes "3" on blur; Icons page), `npm run typecheck` and `npm run build` pass. Done by the `ds-compliance-fix` agent, checked by Claude (nothing outside `docs/`).
+- Compliance audit: `audits/2026-11-22-B166-1.md` — 66 compliant, 15 non-compliant (3 fixed: #72–#74; 0 new), 23 not in the design system (2 new: native date field, password field); no ticket proposed. B166 `done`.
+
+**Files**
+- `audits/2026-11-22-B166-1.md` (new)
+- `docs/src/PlaygroundTab.tsx`, `docs/src/DesignPreview.tsx`, `docs/src/pages/IconsPage.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
