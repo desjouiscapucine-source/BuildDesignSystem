@@ -496,7 +496,7 @@
       "id": "B056",
       "title": "Search field",
       "category": "Components",
-      "status": "todo",
+      "status": "rejected",
       "origin": "decided",
       "description": "On the documentation site, not defined in the design system yet. Search of the site header: input with a search icon, keyboard hint \"/\", list of results.",
       "stage": "design",
@@ -807,7 +807,7 @@
       "id": "B093",
       "title": "Tabs",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "Navigation within a page. Used on the documentation site: tabs of the component pages (Design preview, Design spec, Guidelines, Examples, Code).",
       "why": "The component pages of the documentation site use hand-built tabs (compliance finding #70), and Panel (B144) needs tabs for Library, Properties and Compositions.",
@@ -1471,7 +1471,7 @@
         "The accessibility and token audits pass.",
         "Panel is exported from @ds/components, ready for the UX playground (B130)."
       ],
-      "stage": "guidelines",
+      "stage": "code",
       "priority": "high",
       "release": "R2"
     },
