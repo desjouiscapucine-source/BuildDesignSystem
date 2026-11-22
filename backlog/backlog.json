@@ -1815,7 +1815,7 @@
         "The accessibility and token audits pass.",
         "Avatar is exported from @ds/components, ready for CommentMessage (B160) and Comment (B146)."
       ],
-      "stage": "guidelines",
+      "stage": "code",
       "priority": "high",
       "release": "R2"
     }

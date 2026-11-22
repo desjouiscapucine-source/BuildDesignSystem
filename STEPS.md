@@ -5861,3 +5861,27 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `components/Avatar/` (new: `meta.json`, `spec.md`, `design/`, template files for the later stages)
 - `audits/2026-11-22-B159-1.md`, `audits/2026-11-22-B159-1-accessibility.md`, `audits/2026-11-22-B159-1-tokens.md` (new)
 - `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B159-2 — Avatar: guidelines approved
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- When to use: author of content (comment, message), assignee of a ticket or task, signed-in user, list of people.
+- When not to use: logo or illustration (an image); status or category → Tag; group of overlapping avatars → AvatarGroup (not in the design system yet); clickable profile → wrap the avatar and the name in a Button or a Link (the Avatar is never interactive).
+- Name always written next to the avatar, `--space-8` apart; only exception: a marker that shows the name on click (Comment marker).
+- Sizes by context: `small` next to body text and in lists, `medium` (default) e.g. the Comment marker, `large` in a profile or page header. Lists: one person per row, same size for the whole list. No limit on the number of avatars per screen.
+- Do / don't: icon only for a genuinely unknown name (never "??"); one size per list (never mixed); a Tag for a status (never letters that are not a person).
+- Initials always computed from the full name, never typed by hand; the icon is never a loading placeholder.
+- Behavior: a long name next to the avatar wraps, the avatar stays aligned with the first line and never shrinks; same size on every screen.
+- Related components: CommentMessage (B160), Comment (B146).
+- **Spec change** (raised by the accessibility check): the avatar is **decorative when the name is written next to it**, so screen readers do not read the name twice; it announces the full name only when shown alone (marker); without a name it stays decorative. How the code knows it: decided at the code stage.
+- Guidelines approved; next stage: code.
+
+**What was done**
+- `components/Avatar/guidelines.md` written; `spec.md` (Content: screen reader rule; Open questions) updated; `meta.json` status `code`; backlog B159 stage `code`.
+- Accessibility check: `audits/2026-11-22-B159-2-accessibility.md` — 5 pass, 0 fail, 2 not applicable.
+- Compliance audit: `audits/2026-11-22-B159-2.md` — 62 compliant, 13 non-compliant (#70, #68, #64 fixed; 0 new), 21 not in the design system; no new ticket (B132's scope still names the fixed #64: to update in its own conversation).
+
+**Files**
+- `audits/2026-11-22-B159-2.md`, `audits/2026-11-22-B159-2-accessibility.md` (new)
+- `components/Avatar/guidelines.md`, `components/Avatar/spec.md`, `components/Avatar/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
