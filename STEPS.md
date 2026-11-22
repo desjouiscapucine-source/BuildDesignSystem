@@ -5523,6 +5523,29 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `components/Frame/` (created), `audits/2026-11-19-B143-1.md`, `audits/2026-11-19-B143-1-accessibility.md`, `audits/2026-11-19-B143-1-tokens.md` (created)
 - `tokens/semantic.json`, `tokens/contrast-pairs.json`, `.claude/skills/token-naming/SKILL.md` (size table), `backlog/backlog.json`, `STEPS.md` (updated)
 
+## Step B146-1 — Comment: first design decisions (draft spec)
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- B146 Comment started on `component/Comment`; level **organism**.
+- Type: a **marker** placed on a component or a frame of the canvas, which opens a **bubble** with the comment thread. The marker is the Avatar of the author of the first message.
+- Content of each message: author (initials in an avatar + name), date and time, text; replies form a thread.
+- Actions: Reply, Resolve, Edit / delete a message, Close.
+- Component-specific states: open / closed, selected, resolved, editing (in addition to hover, focus, pressed).
+- Text field: its place is defined in the design; the component (Textarea B020 or Text input B019) is chosen at the Code stage.
+- Building blocks, built first through all their stages: new tickets **B159 Avatar** (atom) and **B160 CommentMessage** (molecule), both high priority, release R2 (proposals approved by the Design System Lead).
+- Name `Comment`, class `.ds-comment` and the description are proposals, still to confirm (open question of the spec).
+
+**What was done**
+- `components/Comment/meta.json` (status `design`, version 0.0) and a draft `components/Comment/spec.md` with the approved decisions only; everything else under "Not decided yet" or Open questions. No design preview yet: its look waits for Avatar and CommentMessage.
+- `backlog/backlog.json`: B146 `in-progress`; B159 and B160 created (`todo`, `origin: proposal`).
+- `develop` merged into `component/Comment` (backlog conflict: both sides kept).
+- Compliance audit: `audits/2026-11-19-B146-1.md` — 61 compliant, 15 non-compliant (#68 already reported by B143-1), 22 not in the design system; no new ticket.
+
+**Files**
+- `components/Comment/meta.json`, `components/Comment/spec.md`, `audits/2026-11-19-B146-1.md` (created)
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B144-1 — Panel: design approved
 **Date:** 2026-11-19
 
@@ -6378,3 +6401,65 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `.claude/skills/fix/SKILL.md` (created)
 - `.claude/skills/git-workflow/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B146-2 — Comment: design approved
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Name `Comment`, class `.ds-comment`, description and texts validated; no variant property, no disabled state.
+- Marker: the Avatar `medium` (`space.32`) of the author of the first message, a **button** that opens and closes the bubble; hover / pressed = state layers, focus and selected = ring (`border.focus`, `border-width.2`); focus offset `space.4`, selected offset `space.8`, the focus offset wins when both apply; resolved = the icon `check` instead of the initials, at full opacity.
+- Bubble: to the right of the marker, aligned on its top edge, flips to the left (or upward) near the edge of the canvas; `background.page`, `shadow.dropdown`, `radius.8`, no border, width `size.dialog-small`, height following the thread up to 100% of the visible canvas (the thread scrolls); padding `space.8`, gaps `space.8`, marker → bubble gap `space.16` (so that the selected ring does not touch the bubble), `space.4` between the header buttons and between the field and Send.
+- Header: Resolve (becomes Reopen, icon `undo`, on a resolved comment) and Close, IconButton `tertiary`, icon color `icon.brand`; thread of CommentMessage; reply field always visible (TextInput "Write a reply" + IconButton `primary` Send).
+- Marker for screen readers: button named "Comment by <author>" (", resolved" when resolved), `aria-expanded`; the Avatar inside is decorative.
+- States: closed, open, selected, resolved, editing.
+- New ticket **B171** (Avatar 1.1: an icon in the Avatar; high, R4), needed by the resolved marker; to be done before the code stage of Comment.
+- `space.2` (asked for the focus offset) does not exist and is not allowed by the spacing rule; `space.4` kept instead.
+
+**What was done**
+- Complete `components/Comment/spec.md`, design preview (`components/Comment/design/`: tokens and Preview with the real Avatar, CommentMessage, IconButton and TextInput), `meta.json` status `guidelines`; backlog B146 stage `guidelines`.
+- Accessibility check (`audits/2026-11-22-B146-2-accessibility.md`): 1st run 2 failures (focus ring same color as the marker; resolved marker at `opacity.disabled` below 3:1), fixed with the Design System Lead; 2nd run 9 pass, 0 fail.
+- Token audit (`audits/2026-11-22-B146-2-tokens.md`): 0 failure, twice.
+- Compliance audit: `audits/2026-11-22-B146-2.md` — 67 compliant, 13 non-compliant (2 fixed since the previous audit, none new), 23 not in the design system; no new ticket.
+
+**Files**
+- `components/Comment/design/tokens.json`, `components/Comment/design/Preview.tsx`, `audits/2026-11-22-B146-2.md`, `audits/2026-11-22-B146-2-accessibility.md`, `audits/2026-11-22-B146-2-tokens.md` (created)
+- `components/Comment/spec.md`, `components/Comment/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B146-3 — Comment: guidelines approved
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Use: a discussion with replies; a question to be resolved. Not for: a free note (StickyNote), naming a frame (name of the Frame), an application message (banner, B063, not in the design system yet).
+- Practice: marker at the point clicked on the element, follows it; several comments per element, one per subject; reply in the thread; one bubble open at a time; resolve rather than delete; no length limit. Four do / don't pairs (one subject per thread, marker on the element, resolve not delete, reply in the thread).
+- Behavior: Escape (from any element of the bubble) or Close closes the bubble and returns the focus to the marker; a click on the canvas closes it without moving the focus; the unsent reply is kept; Enter sends; a reply to a resolved comment keeps it resolved (only Reopen reopens); deleting the whole comment moves the focus to the marker of the next comment, or the canvas; the focus goes to the reply field on opening and after a reply sent with Send.
+- Send is disabled while the field is empty (changes the spec: Comment has no disabled state of its own except this button); a reply that cannot be sent keeps its text and shows the TextInput error "Your reply wasn't sent. Try again." (new spec state "Reply not sent"); status messages announced politely: "Reply sent", "Comment resolved", "Comment reopened" (spec updated).
+- Accessibility: marker = button named "Comment by <author>" (", resolved") with `aria-expanded`; bubble = non-modal group with the same name; reply field named by its placeholder "Write a reply".
+- Related: CommentMessage, Avatar, StickyNote, Frame, Canvas. Open question left: what happens to the comments of an element that is deleted.
+
+**What was done**
+- `components/Comment/guidelines.md` written; `spec.md` and the design preview updated (Send disabled, state "Reply not sent", status messages, reply field name); `meta.json` status `code`; backlog B146 stage `code`.
+- Accessibility check (`audits/2026-11-22-B146-3-accessibility.md`): 1st run 2 failures (name of the reply field, state of Send when empty) and open questions, all decided; 2nd run 6 pass, 0 fail.
+- Compliance audit: `audits/2026-11-22-B146-3.md` — 67 compliant, 13 non-compliant, 23 not in the design system; no change, no new ticket.
+
+**Files**
+- `components/Comment/guidelines.md`, `audits/2026-11-22-B146-3.md`, `audits/2026-11-22-B146-3-accessibility.md` (created)
+- `components/Comment/spec.md`, `components/Comment/design/Preview.tsx`, `components/Comment/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B146-4 — Comment: code approved, component complete
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Code approved; Comment is `complete`, version **1.0**.
+- Narrow canvas or screen: when the bubble fits neither on the right nor on the left of the marker, it opens **under the marker**, shifted and narrowed to stay inside the visible canvas, and above the marker near the bottom edge (spec "Position of the bubble" and guidelines updated).
+- **Exception accepted** (token audit): `100vw` and `100vh` in `Comment.css` (`width: min(var(--size-dialog-small), 100vw)`, `max-height: 100vh`) express "the visible canvas" of the spec; no token exists for it.
+
+**What was done**
+- `components/Comment/Comment.tsx`, `Comment.css`, `examples.tsx` (10 examples), `playground.tsx`; export in `components/index.ts`; `meta.json` `complete`, `1.0`, changelog entry; backlog B146 `done`.
+- Behavior: marker button with `aria-expanded`; bubble group with thread (list of articles), Resolve / Reopen, Close, reply field (TextInput) and Send (disabled while empty); Escape, Close and outside click; focus rules; draft kept; error under the field; polite status messages; flip to the left or upward, or under the marker; the Avatar is the marker, the check of the resolved marker is drawn in Comment until Avatar accepts an icon (B171).
+- Accessibility check (`audits/2026-11-22-B146-4-accessibility.md`): 1st run 2 failures (reflow on a narrow screen, repeated status messages), fixed; 2nd run 11 pass, 0 fail. To check by hand: screen reader, 320px and 200% zoom.
+- Token audit (`audits/2026-11-22-B146-4-tokens.md`): 0 failure; exception `100vw` / `100vh`.
+- Compliance audit: `audits/2026-11-22-B146-4.md` — 67 compliant, 13 non-compliant, 23 not in the design system; no new ticket.
+
+**Files**
+- `components/Comment/Comment.tsx`, `Comment.css`, `examples.tsx`, `playground.tsx`, `audits/2026-11-22-B146-4.md`, `audits/2026-11-22-B146-4-accessibility.md`, `audits/2026-11-22-B146-4-tokens.md` (created)
+- `components/index.ts`, `components/Comment/meta.json`, `components/Comment/spec.md`, `components/Comment/guidelines.md`, `backlog/backlog.json`, `STEPS.md` (updated)

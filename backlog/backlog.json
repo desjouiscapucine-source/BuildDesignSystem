@@ -1501,7 +1501,7 @@
       "id": "B146",
       "title": "Comment",
       "category": "Components",
-      "status": "todo",
+      "status": "done",
       "origin": "decided",
       "description": "A comment attached to a component or a frame of the canvas.",
       "why": "Missing component of the UX playground prototype (B130): the playground has comments on a component or a frame.",
@@ -1511,7 +1511,7 @@
         "The accessibility and token audits pass.",
         "Comment is exported from @ds/components, ready for the UX playground (B130)."
       ],
-      "stage": "design",
+      "stage": "complete",
       "priority": "high",
       "release": "R2"
     },
@@ -1944,6 +1944,24 @@
         "The next fix of the documentation site follows the flow, with no version and no changelog."
       ],
       "priority": "medium"
+    },
+    {
+      "id": "B171",
+      "title": "Avatar 1.1: an icon in the Avatar",
+      "category": "Components",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "The Avatar can show an icon (e.g. check) instead of the initials.",
+      "why": "Found at the design stage of Comment (B146), approved by the Design System Lead on 2026-11-22: the marker of a resolved comment shows the icon check instead of the initials, at full opacity, because the reduced opacity left the marker below the contrast minimum (accessibility audit). Today the Avatar shows only the initials, or the icon person when the name is unknown.",
+      "scope": "A change to the complete Avatar component (atom), version 1.1: how an icon is given to the Avatar, its look (icon color icon.inverse on background.brand, size per Avatar size), its screen reader behavior, in spec.md, guidelines.md and code, each stage approved by the Design System Lead (component skill), in a Composant Avatar conversation on component/Avatar (never-invent). New changelog entry 1.1.",
+      "doneWhen": [
+        "The Avatar spec, guidelines and code are approved with the icon option; version 1.1 with a changelog entry.",
+        "The accessibility and token audits pass.",
+        "Comment (B146) can show the icon check in the marker of a resolved comment."
+      ],
+      "stage": "design",
+      "priority": "high",
+      "release": "R4"
     }
   ]
 }

@@ -1,0 +1,14 @@
+{
+  "name": "Comment",
+  "description": "A comment attached to a component or a frame of the canvas.",
+  "level": "organism",
+  "status": "complete",
+  "version": "1.0",
+  "changelog": [
+    {
+      "version": "1.0",
+      "date": "2026-11-22",
+      "changes": "First complete version."
+    }
+  ]
+}
