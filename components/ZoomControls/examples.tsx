@@ -6,7 +6,7 @@ import { ZoomControls } from "./ZoomControls";
 /** A ZoomControls that keeps the zoom level clicked by the user, starting from `initial`. */
 function Stateful({ initial }: { initial: number }) {
   const [zoom, setZoom] = useState(initial);
-  return <ZoomControls zoom={zoom} onZoomChange={setZoom} onFitToScreen={() => setZoom(100)} />;
+  return <ZoomControls zoom={zoom} onZoomChange={setZoom} onFit={() => setZoom(100)} />;
 }
 
 export const examples: Example[] = [

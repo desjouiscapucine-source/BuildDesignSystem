@@ -7,7 +7,7 @@ function Demo({ zoom }: { zoom: number }) {
   const [value, setValue] = useState(zoom);
   // The control sets the state; the buttons can still be used in the canvas.
   useEffect(() => setValue(zoom), [zoom]);
-  return <ZoomControls zoom={value} onZoomChange={setValue} onFitToScreen={() => setValue(100)} />;
+  return <ZoomControls zoom={value} onZoomChange={setValue} onFit={() => setValue(100)} />;
 }
 
 export const playground = definePlayground({
@@ -22,5 +22,5 @@ export const playground = definePlayground({
   },
   render: ({ zoom }) => <Demo zoom={zoom} />,
   code: ({ zoom }) =>
-    jsx("ZoomControls", { zoom, onZoomChange: code("setZoom"), onFitToScreen: code("() => setZoom(100)") }),
+    jsx("ZoomControls", { zoom, onZoomChange: code("setZoom"), onFit: code("() => setZoom(100)") }),
 });

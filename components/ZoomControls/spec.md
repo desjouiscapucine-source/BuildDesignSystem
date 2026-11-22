@@ -96,5 +96,10 @@ New token, decided by the Design System Lead (B161): **`size.zoom-level`** = 2.5
 | Zoom level `text.primary` on `background.surface` | see the Design preview tab | 4.5:1 |
 | Buttons | IconButton tertiary (checked in its spec) | 3:1 |
 
+## Events
+Decided by the Design System Lead at the code stage (B161):
+- `onZoomChange(zoom)` — zoom out and zoom in, with the new zoom level.
+- `onFit()` — fit to screen.
+
 ## Open questions
-- Names of the event props (zoom out, zoom in, fit to screen): decided at the code stage.
+- None.
