@@ -36,7 +36,10 @@ The content is **not** a variant property: it is chosen automatically from the n
 | Initials (derived from the name) | Shown when a name is given | CD | 2 letters | Never overflows: at most 2 letters. |
 
 - **Initials**: uppercase. Two letters for a name of two words or more — first letter of the **first** and of the **last** word ("Capucine Desjouis" → "CD", "Anne Marie Dupont" → "AD"); **one letter** for a one-word name ("Capucine" → "C").
-- **Screen reader**: an avatar with a name announces the **full name** of the person (not the initials). An avatar without a name (icon) is **decorative**: hidden from screen readers, the context says who it is.
+- **Screen reader** (changed at the guidelines stage, B159-2):
+  - avatar **shown alone** (e.g. the Comment marker): announces the **full name** of the person (not the initials);
+  - avatar **with the name written next to it**: **decorative**, hidden from screen readers, so the name is not read twice;
+  - avatar without a name (icon): **decorative**, hidden; the context says who it is.
 
 ## Sizes
 Three sizes. The circle is square: width = height = the diameter.
@@ -68,4 +71,4 @@ Not interactive: no target size requirement (WCAG 2.5.8 does not apply).
 Contrast (already checked in `tokens/contrast-pairs.json`): `text.inverse` on `background.brand` — 6.10:1 (min 4.5:1); `icon.inverse` on `background.brand` — 6.10:1 (min 3:1).
 
 ## Open questions
-- Prop name for the person's name in code (e.g. `name`): decided at the code stage.
+- Prop name for the person's name in code (e.g. `name`), and how the code knows the name is written next to the avatar (decorative): decided at the code stage.

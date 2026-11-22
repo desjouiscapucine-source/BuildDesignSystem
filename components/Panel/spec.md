@@ -45,11 +45,11 @@ One size. The width can be changed by the user.
 
 | Property | Token |
 | -------- | ----- |
-| Default width | `--size-panel` (320px) |
+| Default width | `--size-panel` (400px: the three tabs fit next to the collapse button) |
 | Minimum width | `--size-panel-min` (280px) |
 | Maximum width | `--size-panel-max` (480px) |
 | Height | Full height of the workspace |
-| Tab content padding | `--space-16` (top, right, bottom), `--space-24` (left, clear of the resize handle) |
+| Tab content padding | `--space-16` (right, bottom), `--space-24` (left, clear of the resize handle), none on top: the space under the tabs comes from Tabs (`--space-24`) |
 | Header padding (around the tabs and the collapse button) | `--space-8` top and right, `--space-24` left (aligned with the content) |
 | Collapsed strip padding / space between the icons | `--space-8` / `--space-8` |
 | Resize handle hit area | `--size-resize-handle` (24×24px, WCAG 2.5.8), corners `--radius-4` |
@@ -71,7 +71,7 @@ One size. The width can be changed by the user.
 | Container | Shadow | All | `--shadow-panel` |
 | Container | Width | Expanded | `--size-panel` (resizable from `--size-panel-min` to `--size-panel-max`) |
 | Container | Transition | Expanded ↔ collapsed | `--duration-200`, `--easing-ease-out` |
-| Tab content | Padding | Expanded | `--space-16` (top, right, bottom) · `--space-24` (left) |
+| Tab content | Padding | Expanded | `--space-16` (right, bottom) · `--space-24` (left) · top: the Tabs space under the row (`--space-24`) |
 | Header | Padding | Expanded | `--space-8` (top, right) · `--space-24` (left) |
 | Collapsed strip | Padding · gap | Collapsed | `--space-8` · `--space-8` |
 | Resize handle | Hit area width and height | Expanded | `--size-resize-handle` |

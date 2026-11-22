@@ -1,11 +1,66 @@
-/* Semantic design tokens only (var(--…)) — never raw values or primitive tokens.
-   Classes: .ds-<component> · modifier .ds-<component>--<value> · part .ds-<component>-<part> */
+/* Panel — semantic design tokens only. See spec.md and guidelines.md.
+   Classes: .ds-panel · modifiers .ds-panel--expanded, .ds-panel--collapsed
+   · parts .ds-panel-handle, .ds-panel-handle-icon, .ds-panel-body, .ds-panel-collapse, .ds-panel-strip
+   The look of the tabs belongs to Tabs and Tab; the buttons are IconButtons. */
+
+/* Container: on the right of the workspace (its parent is positioned), full height, over the canvas */
 .ds-panel {
-  position: relative;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  background: var(--color-background-surface);
+  box-shadow: var(--shadow-panel);
+  transition: width var(--duration-200) var(--easing-ease-out);
 }
 
+/* Width — mobile first: below desktop, the default width, not resizable */
+.ds-panel--expanded {
+  width: var(--size-panel);
+}
+/* --breakpoint-desktop (1024px) */
+@media (min-width: 1024px) {
+  .ds-panel--expanded {
+    /* --ds-panel-width: the width chosen by the user, between --size-panel-min and --size-panel-max */
+    width: var(--ds-panel-width, var(--size-panel));
+  }
+}
+/* Collapsed: the strip of IconButtons (icon + padding) and its padding */
+.ds-panel--collapsed {
+  width: calc(var(--icon-size-20) + var(--space-8) * 4);
+}
+/* While dragging, the width follows the pointer with no animation */
+.ds-panel[data-resizing="true"] {
+  transition: none;
+  cursor: ew-resize;
+  user-select: none;
+}
+
+/* Resize handle: inside the panel, against its left edge, vertically centered (first in the focus order) */
+.ds-panel-handle {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-resize-handle);
+  height: var(--size-resize-handle);
+  border-radius: var(--radius-4);
+  color: var(--color-icon-secondary);
+  cursor: ew-resize;
+  touch-action: none;
+}
+.ds-panel-handle-icon {
+  font-size: var(--icon-size-20);
+}
 /* State layers: overlay in the content color */
-.ds-panel::after {
+.ds-panel-handle::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -15,11 +70,61 @@
   pointer-events: none;
   transition: opacity var(--duration-100) var(--easing-ease-out);
 }
-
-/* Variant: default */
-.ds-panel--default {
+.ds-panel-handle:hover::after { opacity: var(--state-layer-hover); }
+.ds-panel-handle:focus-visible::after { opacity: var(--state-layer-focus); }
+.ds-panel-handle:active::after,
+.ds-panel[data-resizing="true"] .ds-panel-handle::after { opacity: var(--state-layer-pressed); }
+/* Focus drawn inside the hit area, so it stays on the panel background */
+.ds-panel-handle:focus-visible {
+  outline: var(--border-width-2) solid var(--color-border-focus);
+  outline-offset: calc(var(--border-width-2) * -1);
 }
 
-/* Parts */
-.ds-panel-label {
+/* Expanded content: tabs at the top (fixed), content of the tab scrolling below */
+.ds-panel-body {
+  /* Not positioned: the resize handle (positioned) stays in front of it with no z-index */
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  padding-top: var(--space-8);
+}
+.ds-panel-body[hidden] {
+  display: none;
+}
+.ds-panel-body > .ds-tabs {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+/* Header: space-24 on the left (clear of the handle), room for the collapse button on the right */
+.ds-panel-body .ds-tabs-list {
+  margin: 0 calc(var(--icon-size-20) + var(--space-8) * 4) 0 var(--space-24);
+}
+/* Tab content: the space under the tabs comes from Tabs (space-24); padding space-16, space-24 on the left */
+.ds-panel-body .ds-tabs-panel {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 var(--space-16) var(--space-16) var(--space-24);
+}
+/* Focus of the scrolling content drawn inside it, so it stays on the panel background */
+.ds-panel-body .ds-tabs-panel:focus-visible {
+  outline-offset: calc(var(--border-width-2) * -1);
+}
+.ds-panel-collapse {
+  /* Placed against the panel (the positioned container), at the right of the tabs */
+  position: absolute;
+  top: var(--space-8);
+  right: var(--space-8);
+}
+
+/* Collapsed strip: one IconButton per tab */
+.ds-panel-strip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-8);
 }
