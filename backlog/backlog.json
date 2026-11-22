@@ -1933,7 +1933,7 @@
       "id": "B170",
       "title": "Fix flow for the documentation site",
       "category": "Skills",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "A light flow for the fixes of the documentation site: a `fix/<topic>` branch, a short ticket, a minimal change, preview and validation, a short STEPS entry, no version and no changelog.",
       "why": "The fix of the Frame Playground canvas (B143-4) showed that a defect of the site does not need the component flow (version, changelog, audits). The Design System Lead decided on 2026-11-22 to keep a light circuit for these fixes.",

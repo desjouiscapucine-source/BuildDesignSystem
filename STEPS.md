@@ -6265,3 +6265,23 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `docs/src/playground.ts`, `docs/src/playground-frame.tsx`, `docs/src/PlaygroundTab.tsx`, `components/Frame/playground.tsx`, `STEPS.md` (updated)
+
+## Step B170-1 — Fix flow for the documentation site
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- A fix of the documentation site (a defect with no effect on components, tokens or guidelines) follows a light flow: **no version, no changelog**.
+- Scope: documentation site only; a fix of a component keeps the component flow.
+- New branch type `fix/<topic>` (four branch types now), one short ticket per fix (priority asked, release optional), a new skill `fix`.
+- No audit in the light flow (the compliance audit stays in the release review), except the accessibility check when a fix changes what a user sees or does; no dedicated conversation: a fix is made in the conversation where the defect is reported.
+
+**What was done**
+- New skill `fix`: scope, flow (ticket, branch, minimal change, check, preview, validation, short STEPS entry, merge), and what a fix never does.
+- `git-workflow`: four branch types, `fix/<topic>` row in the branches table.
+- `orchestrator`: dispatch row for the defects of the documentation site.
+- `CLAUDE.md`: the Git paragraph names the fourth branch type.
+- `backlog/backlog.json`: B170 `done`.
+
+**Files**
+- `.claude/skills/fix/SKILL.md` (created)
+- `.claude/skills/git-workflow/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
