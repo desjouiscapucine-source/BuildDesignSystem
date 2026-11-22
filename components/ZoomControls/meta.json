@@ -2,7 +2,7 @@
   "name": "ZoomControls",
   "description": "The zoom controls of the canvas: zoom out, zoom level, zoom in, fit.",
   "level": "molecule",
-  "status": "guidelines",
+  "status": "code",
   "version": "0.0",
   "changelog": []
 }

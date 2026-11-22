@@ -5959,3 +5959,27 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `components/ZoomControls/` (new)
 - `audits/2026-11-22-B161-1.md`, `audits/2026-11-22-B161-1-accessibility.md`, `audits/2026-11-22-B161-1-tokens.md` (new)
 - `tokens/semantic.json`, `tokens/tokens.css`, `.claude/skills/token-naming/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B161-2 — ZoomControls: guidelines approved
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- When not to use: showing an image (**ImageViewer**), enlarging the text of a page (never: browser zoom), a surface that does not zoom.
+- Placement: bottom right of the canvas, `space.16` from the edges, corner kept free; one per canvas; always the four parts.
+- Do's and don'ts: corner free, one per canvas, full set, level in steps of 10.
+- Content: level "120%" (whole number, no space, multiple of 10); no tooltip until the Tooltip component.
+- Behavior: fit to screen rounds the level **down** to a multiple of 10 (73% → 70%); empty canvas → back to 100%, centered; same bar on every screen size.
+- Accessibility: the zoom level is a **polite status** ("Zoom level 120%" after each change); disabled buttons stay the native IconButton disabled (no focusable disabled — IconButton unchanged); when the focused button becomes disabled, the focus moves to the other zoom button (zoom out at 400%, zoom in at 10%); the visible level is the explanation IconButton requires for a disabled button.
+- Related components: Canvas, ImageViewer.
+- **Spec changes** (approved with the guidelines): zoom level as a status; focus moved to the other zoom button at the limit.
+- Guidelines stage approved on 2026-11-22.
+
+**What was done**
+- `components/ZoomControls/guidelines.md` written; `spec.md` updated; `meta.json` status `code`.
+- Accessibility check: `audits/2026-11-22-B161-2-accessibility.md` — 6 passes, 0 failures (focusable disabled conflict with IconButton resolved by the decision above).
+- Compliance audit: `audits/2026-11-22-B161-2.md` — 62 compliant, 13 non-compliant (0 new, 0 fixed), 21 not in the design system; no new ticket.
+- `backlog/backlog.json`: B161 stage `code`.
+
+**Files**
+- `audits/2026-11-22-B161-2.md`, `audits/2026-11-22-B161-2-accessibility.md` (created)
+- `components/ZoomControls/guidelines.md`, `components/ZoomControls/spec.md`, `components/ZoomControls/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
