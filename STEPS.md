@@ -6250,3 +6250,18 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/CommentMessage/CommentMessage.tsx`, `CommentMessage.css`, `examples.tsx`, `playground.tsx`, `audits/2026-11-22-B160-3.md`, `audits/2026-11-22-B160-3-tokens.md`, `audits/2026-11-22-B160-3-accessibility.md` (created)
 - `components/CommentMessage/meta.json`, `spec.md`, `guidelines.md`, `design/Preview.tsx`, `design/tokens.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B143-4 — Frame: Playground canvas extended to the content
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- The Playground canvas of the Frame was restricted to the chosen screen width (375 / 768 / 1280px) and clipped the frame, which is wider; it is now as wide as its content.
+
+**What was done**
+- New opt-in option `fitWidth` of `definePlayground`: the canvas is as wide as the content instead of the chosen screen width. Other playgrounds are unchanged.
+- The canvas page (`playground-frame.tsx`) reports its content width (widest child + page padding) with a new `playground-width` message, on resize and on any change of the content; the Playground tab uses it (and still scales it down to the available width).
+- `components/Frame/playground.tsx` sets `fitWidth: true`.
+- Checked in the browser: mobile frame 471px, desktop frame 1376px shown at 53%. `tsc` passes.
+
+**Files**
+- `docs/src/playground.ts`, `docs/src/playground-frame.tsx`, `docs/src/PlaygroundTab.tsx`, `components/Frame/playground.tsx`, `STEPS.md` (updated)
