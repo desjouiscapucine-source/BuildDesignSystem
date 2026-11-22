@@ -1857,7 +1857,7 @@
       "id": "B168",
       "title": "Public site: login to edit the backlog live",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "A password login on the public site: once the Design System Lead logs in, the Backlog page becomes live-editable again, like the local work tool.",
       "why": "Asked by the Design System Lead on 2026-11-22: the public site is a showcase (B152, read-only), but she also wants to use it as a real work tool — keep the showcase for visitors, and get the live, editable Backlog herself once logged in.",

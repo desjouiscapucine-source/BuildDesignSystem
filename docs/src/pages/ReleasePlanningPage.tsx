@@ -1,4 +1,5 @@
 import { Card, Link } from "@ds/components";
+import { useAuth } from "../auth";
 import {
   formatReleaseDate,
   priorityLabels,
@@ -86,7 +87,8 @@ function ReleaseCard({ release, tickets }: { release: Release; tickets: Planned[
 }
 
 export function ReleasePlanningPage() {
-  const { items } = useBacklog();
+  const { loggedIn } = useAuth();
+  const { items } = useBacklog(loggedIn);
   const today = new Date().toISOString().slice(0, 10);
   const all = releases(items);
   const upcoming = all.filter((release) => release.date >= today);

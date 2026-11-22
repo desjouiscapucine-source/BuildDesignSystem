@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState, type ReactElement, type ReactNode } from "react";
+import { useEffect, useRef, useState, type FormEvent, type ReactElement, type ReactNode } from "react";
 import {
   Breadcrumb,
+  Button,
+  Dialog,
   IconButton,
   NavigationItem,
   SideNavigation,
@@ -8,6 +10,7 @@ import {
   type NavigationItemProps,
 } from "@ds/components";
 import logo from "../../assets/logo/avatar-logo.svg";
+import { useAuth } from "./auth";
 import { allPages, pathTo, spaces, type NavNode } from "./structure";
 import saved from "./work-time.json";
 
@@ -138,6 +141,7 @@ export function AppShell({ current, route = current, children }: AppShellProps) 
         </nav>
         <Search />
         <WorkTime />
+        <Login />
       </header>
 
       <div className="shell-body">
@@ -254,5 +258,90 @@ function Search() {
         )}
       </div>
     </div>
+  );
+}
+
+// Session of the Design System Lead (B168): logged out, an IconButton opens a password Dialog; logged in, the
+// same spot logs out. One account: no username field. A plain password field, like the Search input above
+// (TextInput has no password type) — not a design system component.
+function Login() {
+  const { loggedIn, login, logout } = useAuth();
+  const [open, setOpen] = useState(false);
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [pending, setPending] = useState(false);
+
+  async function submit(event: FormEvent) {
+    event.preventDefault();
+    if (!password || pending) return;
+    setPending(true);
+    const ok = await login(password);
+    setPending(false);
+    if (ok) {
+      setOpen(false);
+      setPassword("");
+      setError(null);
+    } else {
+      setError("Wrong password.");
+    }
+  }
+
+  function close() {
+    setOpen(false);
+    setPassword("");
+    setError(null);
+  }
+
+  if (loggedIn === null) return null; // The session is still being checked.
+
+  if (loggedIn) {
+    return <IconButton className="shell-login" variant="tertiary" icon="logout" label="Log out" onClick={() => logout()} />;
+  }
+
+  return (
+    <>
+      <IconButton
+        className="shell-login"
+        variant="tertiary"
+        icon="login"
+        label="Log in to edit the backlog live"
+        onClick={() => setOpen(true)}
+      />
+      <Dialog
+        open={open}
+        onClose={close}
+        title="Log in"
+        description="Edit the backlog live from this site."
+        footer={
+          <>
+            <Button variant="secondary" onClick={close}>
+              Cancel
+            </Button>
+            <Button type="submit" form="shell-login-form" disabled={pending || !password}>
+              Log in
+            </Button>
+          </>
+        }
+      >
+        <form id="shell-login-form" className="shell-login-form" onSubmit={submit}>
+          <label className="shell-login-label" htmlFor="shell-login-password">
+            Password
+          </label>
+          <input
+            id="shell-login-password"
+            className="shell-login-field"
+            type="password"
+            autoComplete="current-password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+          {error && (
+            <p className="shell-login-error" role="alert">
+              {error}
+            </p>
+          )}
+        </form>
+      </Dialog>
+    </>
   );
 }
