@@ -5862,6 +5862,29 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `audits/2026-11-22-B159-1.md`, `audits/2026-11-22-B159-1-accessibility.md`, `audits/2026-11-22-B159-1-tokens.md` (new)
 - `backlog/backlog.json`, `STEPS.md` (updated)
 
+## Step B019-2 — TextInput: guidelines approved
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Preview content: the sample text "kkkkk" (a test) replaced by "Primary button".
+- The TextInput `search` type covers the Search field ticket **B056** (set to `rejected` on the Backlog page); the "/" keyboard hint of the site search is removed (not part of the TextInput).
+- The fields of the Playground, the Design preview and the Icons page follow the rule "label or placeholder inside the field, no label above" when they adopt the TextInput.
+- Guidelines: when not to use (Textarea B020, Select, Chips, dedicated date / time / color field); label = a noun, placeholder = a verb and a noun; mitigations of the 3.3.2 exception (error names the field, help text when ambiguous, icon that recalls the field, short forms); full width set by the grid, `--space-16` between stacked fields, search above the content it filters; 5 do / don't pairs; sentence case, no punctuation, short help text.
+- Behavior: error checked while typing; required field: error when emptied or when the form is sent; `number`: any other character is written and shows an error; `search`: filters while typing, Escape empties the field, clearing (click, Enter, Space) gives the focus back to the field; in a Dialog or a panel, Escape first empties the field, then closes.
+- Accessibility: `number` is a text field (numeric keyboard, Arrow up / down do not change the value), `search` a search field; the error is announced when it appears or changes (`aria-live="polite"`).
+- **Spec changes** (approved with the guidelines): `number` line ("only digits are valid; any other character shows an error"); new property **`required`** (no visual mark, announced); clear button focus outline (`--border-width-2` `--color-border-focus`); roles and states announced; forbidden combination **`required` + `disabled`**.
+- Guidelines stage approved on 2026-11-22.
+
+**What was done**
+- `components/TextInput/guidelines.md` written; `spec.md` updated; `meta.json` status `code`; `design/tokens.json` sample text.
+- Accessibility check: `audits/2026-11-22-B019-2-accessibility.md` — 5 failures on the first run (2.1.2, 2.1.1, 2.4.11, 4.1.2 ×2), all fixed; 19 passes; 3.3.2 exception kept.
+- Compliance audit: `audits/2026-11-22-B019-2.md` — 62 compliant, 13 non-compliant (#70 fixed by B093-4, 0 new), 21 not in the design system; no new ticket.
+- `backlog/backlog.json`: B019 stage `code`.
+
+**Files**
+- `audits/2026-11-22-B019-2.md`, `audits/2026-11-22-B019-2-accessibility.md` (created)
+- `components/TextInput/guidelines.md`, `components/TextInput/spec.md`, `components/TextInput/meta.json`, `components/TextInput/design/tokens.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B159-2 — Avatar: guidelines approved
 **Date:** 2026-11-22
 
