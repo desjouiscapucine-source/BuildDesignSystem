@@ -5932,6 +5932,53 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-22-B159-2.md`, `audits/2026-11-22-B159-2-accessibility.md` (new)
 - `components/Avatar/guidelines.md`, `components/Avatar/spec.md`, `components/Avatar/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+## Step B161-1 — ZoomControls: design approved
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Identity: **ZoomControls**, folder `components/ZoomControls/`, class `.ds-zoom-controls`, level **molecule** (built from IconButton), description "The zoom controls of the canvas: zoom out, zoom level, zoom in, fit."
+- Already decided in the Composant Canvas conversation (B142): zoom out, zoom level in percent, zoom in, fit to screen; tertiary IconButtons; container `background.surface`, `radius.8`, `shadow.dropdown`; bottom right of the Canvas; zoom from 10 to 400 in steps of 10.
+- Layout: one horizontal row — zoom out (`remove`), zoom level, zoom in (`add`), divider, fit to screen (`fit_screen`).
+- Zoom level: plain text, read only, `label-sm`, `text.primary`, centered, minimum width = new token **`size.zoom-level` = 2.5rem** (40px; rem so it grows with the text size, WCAG 1.4.4).
+- Divider: `border.subtle`, `border-width.1`, height `icon-size.20`.
+- Container: no border, padding `space.4`, gap `space.4` (44px high).
+- Limits: zoom out disabled at 10%, zoom in disabled at 400%; fit to screen always enabled.
+- Accessible names: "Zoom controls" (group), "Zoom out", "Zoom level 100%", "Zoom in", "Fit to screen".
+- Design stage approved on 2026-11-22.
+
+**What was done**
+- Ticket B161 reserved (`in-progress`), branch `component/ZoomControls` from `develop`.
+- `components/ZoomControls/` created from the template: `meta.json` (status `guidelines`), `spec.md`, `design/Preview.tsx` and `design/tokens.json` (Design preview tab, zoom level as content), template files for the later stages.
+- Token `size.zoom-level` added to `tokens/semantic.json` and the `token-naming` skill.
+- Accessibility check: `audits/2026-11-22-B161-1-accessibility.md` — 5 passes, 0 failures (2 notes: width in rem → chosen; how the zoom level is announced → open question for guidelines / code).
+- Token audit: `audits/2026-11-22-B161-1-tokens.md` — 36 values, 0 fail.
+- Compliance audit: `audits/2026-11-22-B161-1.md` — 62 compliant, 13 non-compliant (0 new, 0 fixed), 21 not in the design system; no new ticket.
+- `backlog/backlog.json`: B161 stage `guidelines`.
+
+**Files**
+- `components/ZoomControls/` (new)
+- `audits/2026-11-22-B161-1.md`, `audits/2026-11-22-B161-1-accessibility.md`, `audits/2026-11-22-B161-1-tokens.md` (new)
+- `tokens/semantic.json`, `tokens/tokens.css`, `.claude/skills/token-naming/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B019-3 — TextInput: code approved, component complete
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Code stage approved on 2026-11-22: TextInput is **complete**, version **1.0** ("First complete version.").
+- Approved with the code: `--radius-full` for the clear button state layer, the clear button state layers and the `--duration-100` · `--easing-ease-out` transitions (added to the spec Design tokens table); example contents of the "Long texts" and "Search" examples.
+
+**What was done**
+- `components/TextInput/TextInput.tsx`: props `type`, `label` | `placeholder` (one of them), `icon`, `helpText`, `error`, `required`, `disabled`, `value` / `defaultValue` / `onChange`; forbidden combinations prevented by the types; native `<input>` (`search` → `type="search"`, `number` → `type="text"` + `inputMode="numeric"`); accessible name `aria-label` = label or placeholder; `aria-describedby`, `aria-invalid`, `aria-required`; error in an `aria-live="polite"` region always rendered; clear button (`<button>`, "Clear the search") gives the focus back to the field; Escape empties a filled `search` field and stops there (a Dialog closes on the next Escape).
+- `TextInput.css`: semantic tokens only; field state layer on `::before` so the clear button stays above it without a z-index.
+- `examples.tsx` (11 examples), `playground.tsx` (one control per prop), export in `components/index.ts`.
+- `meta.json`: status `complete`, version `1.0`, changelog; `backlog/backlog.json`: B019 `done`.
+- Token audit: `audits/2026-11-22-B019-3-tokens.md` — 57 values, 1 failure (raw `z-index: 1`) fixed in code.
+- Accessibility check: `audits/2026-11-22-B019-3-accessibility.md` — 10 passes, 0 failures; clear by click / Enter / Space, Escape, Shift+Tab, number error and mobile width checked in the browser; no screen reader pass (checked in the code).
+- Compliance audit: `audits/2026-11-22-B019-3.md` — 62 compliant, 18 non-compliant (5 new: #71–#74 the site text fields now covered by TextInput, #75 the "/" shortcut), 21 not in the design system; 2 tickets proposed (A: site search, B: Playground / Design preview / Icons fields).
+
+**Files**
+- `components/TextInput/TextInput.tsx`, `TextInput.css`, `examples.tsx`, `playground.tsx`, `audits/2026-11-22-B019-3.md`, `audits/2026-11-22-B019-3-tokens.md`, `audits/2026-11-22-B019-3-accessibility.md` (created)
+- `components/TextInput/meta.json`, `components/TextInput/spec.md`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
 
 ## Step B159-3 — Avatar: code approved, component complete
 **Date:** 2026-11-22
