@@ -82,22 +82,24 @@ export const prototypeSpecs: Record<string, string> = Object.fromEntries(
   ).map(([path, source]) => [path.split("/").at(-2)!, source]),
 );
 
-/** The backlog items, read from the file on disk when the site runs with `npm run dev`. */
-export function useBacklog() {
+/**
+ * The backlog items: from the file on disk with `npm run dev`, or live from `develop` once the Design System
+ * Lead is logged in (B168). Logged out (or not known yet), the showcase keeps the last release, read-only (B152):
+ * `develop` can hold unreleased tickets, so it is never fetched for a logged-out visitor.
+ */
+export function useBacklog(loggedIn: boolean | null) {
   const [items, setItems] = useState<BacklogItem[]>(initial.items as BacklogItem[]);
   const [error, setError] = useState<string | null>(null);
-  // Online (public site, no dev server API): the tickets are read-only (B152).
-  const [readOnly, setReadOnly] = useState(false);
 
-  // Always start from the file on disk, not from the version bundled with the page.
   useEffect(() => {
+    if (!loggedIn) return;
     fetch("/api/backlog")
       .then((response) => (response.ok ? response.json() : Promise.reject()))
       .then((data) => setItems(data.items))
-      .catch(() => setReadOnly(true));
-  }, []);
+      .catch(() => setError("Could not load the live backlog."));
+  }, [loggedIn]);
 
-  return { items, setItems, error, setError, readOnly };
+  return { items, setItems, error, setError, readOnly: !loggedIn };
 }
 
 /** Release calendar (backlog.json `releases`): R1 on `first`, then one every `everyDays` days. */
