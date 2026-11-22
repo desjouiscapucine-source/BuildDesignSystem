@@ -1,8 +1,32 @@
 # Public site on Netlify (B150): the whole site (/docs/ and /prototypes/), deployed from main.
-# Online the site is read-only: the /api/* routes exist only on the local dev server (npm run dev).
+# Logged out, the site is a showcase: the Backlog shows the last release, read-only (B152).
+# Logged in (B168): /api/login, /api/logout, /api/session and /api/backlog are served by Netlify Functions
+# (netlify/functions/), committing straight to `develop` on GitHub — the same routes the local dev server
+# serves itself (vite.config.ts) when working with `npm run dev`.
 [build]
   command = "npm run build"
   publish = "dist"
+  functions = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "24"
+
+[[redirects]]
+  from = "/api/login"
+  to = "/.netlify/functions/login"
+  status = 200
+
+[[redirects]]
+  from = "/api/logout"
+  to = "/.netlify/functions/logout"
+  status = 200
+
+[[redirects]]
+  from = "/api/session"
+  to = "/.netlify/functions/session"
+  status = 200
+
+[[redirects]]
+  from = "/api/backlog"
+  to = "/.netlify/functions/backlog"
+  status = 200

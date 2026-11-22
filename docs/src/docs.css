@@ -159,6 +159,29 @@ code {
   line-height: var(--line-height-heading);
   white-space: nowrap;
 }
+/* Login (B168): site-only form (plain input, like .shell-search — TextInput has no password type). */
+.shell-login-form { display: flex; flex-direction: column; gap: var(--space-8); }
+.shell-login-label {
+  color: var(--color-text-primary);
+  font-family: var(--typography-label-sm-family);
+  font-size: var(--typography-label-sm-size);
+  line-height: var(--typography-label-sm-line-height);
+  font-weight: var(--typography-label-sm-weight);
+}
+.shell-login-field {
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--space-8) var(--space-16);
+  border: var(--border-width-1) solid var(--color-border-strong);
+  border-radius: var(--radius-8);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font: inherit;
+  outline: none;
+}
+.shell-login-field:focus-visible { outline: var(--border-width-2) solid var(--color-border-focus); outline-offset: var(--border-width-2); }
+.shell-login-error { margin: 0; color: var(--color-text-error); }
+
 /* Burger IconButton: below desktop only. */
 .ds-icon-button.shell-menu-button { display: none; }
 

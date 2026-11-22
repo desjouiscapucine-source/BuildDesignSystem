@@ -5349,3 +5349,35 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `releases/R3.md`, `audits/2026-11-15-R3.md`, `audits/2026-11-15-R3-tokens.md` (created)
 - `docs/src/work-time.json`, `STEPS.md` (updated)
+
+## Step B168-1 — Public site: login to edit the backlog live
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Asked directly in the chat (not from a `Composant`/`Gouvernance` conversation): keep the public site a showcase for visitors, but get the live, editable Backlog herself once logged in — one account, a password.
+- Storage: commit straight to GitHub (`develop`), not a separate store (Netlify Blobs) — keeps the project's git-only philosophy (B092) and the full history of every change.
+- Priority `medium`, no release (not planned): asked and answered in the chat before the ticket was created.
+- Scope kept to the Backlog only: the Branches page cannot run on Netlify (needs a local git worktree); live editing of design tokens or work time on the public site is left for a later ticket, on request.
+- Pushed to `main` out of the usual two-week cycle, on the Design System Lead's explicit request, **on its own** (cherry-picked), not as a full `develop` merge: `develop` currently also carries other, not-yet-reviewed work (Canvas, ZoomControls, Avatar and others), which stays out of this release and will reach `main` at the normal release R3+1.
+
+**What was done**
+- `netlify/functions/`: `login.ts` (checks `ADMIN_PASSWORD`, sets a signed session cookie), `logout.ts`, `session.ts` (whether the cookie is valid), `backlog.ts` (GET/PATCH, auth-gated) and `_lib/session.ts` (HMAC cookie, `SESSION_SECRET`) + `_lib/github.ts` (reads/writes `backlog/backlog.json` on `develop` through the GitHub Contents API, same `BACKLOG_FIELDS` and one-item-at-a-time rule as the local dev server, `vite.config.ts`).
+- `netlify.toml`: `functions = "netlify/functions"` and redirects `/api/login`, `/api/logout`, `/api/session`, `/api/backlog` → the matching function.
+- `docs/src/auth.tsx` (new): `AuthProvider` / `useAuth` — checks `/api/session` on load, `login`/`logout` call the functions above. Wrapped around `<App />` in `main.tsx`.
+- `docs/src/backlog.ts`: `useBacklog` now takes `loggedIn` — logged out (or not known yet) it keeps the bundled last-release `items` and never calls `/api/backlog` (so `develop`, which can hold unreleased tickets, is never fetched for a logged-out visitor); logged in, it fetches the live items.
+- `docs/src/pages/BacklogPage.tsx`: reads `loggedIn` from `useAuth`, passes it to `useBacklog`; a note ("Showing the last release. Log in from the header to edit the live backlog.") shown when logged out.
+- `docs/src/pages/ReleasePlanningPage.tsx`: same wiring, so it also shows the live backlog once logged in.
+- `docs/src/AppShell.tsx` + `docs.css`: a `Login` control in the header, next to the work-time clock — logged out, an IconButton (`login`) opens a Dialog with a password field (plain `<input type="password">`, like the Search field above it: TextInput (B019, not in `main` yet) has no password type anyway) and a "Log in" / "Cancel" footer; logged in, the same spot is a "Log out" IconButton (`logout`).
+
+**Checked**
+- `npm run typecheck` and `npm run build`: pass, on this branch (based on `main`, not `develop`).
+- The Netlify Functions (outside the project's `tsconfig.json` `include`, so not covered by the commands above) type-check cleanly against their own, equivalent compiler options.
+- Local preview (`npm run dev`): the login control opens, the password form submits (fails locally with a generic "Wrong password" — `/api/login` only exists once deployed on Netlify), the Backlog page shows the logged-out note and its menus stay disabled.
+- Not run: the `ds-compliance-audit`, `ds-accessibility-audit` and `ds-token-audit` agents (not available in this session) — worth running from the usual Claude Code session once this reaches `develop`.
+- Checked once deployed: `GITHUB_TOKEN`, `ADMIN_PASSWORD` and `SESSION_SECRET` set as Netlify environment variables by the Design System Lead (never written here), then a deploy of `main` (direct, since this went straight there) to confirm the login and the live save actually work.
+- This same work already exists on `develop` (`project/public-site-login`, merged 2026-11-22, same ticket B168): nothing to redo there at the next release — R3+1 will simply carry `develop`'s other commits forward, past this already-delivered one.
+
+**Files**
+- `netlify/functions/login.ts`, `logout.ts`, `session.ts`, `backlog.ts`, `_lib/session.ts`, `_lib/github.ts` (new)
+- `netlify.toml`, `docs/src/backlog.ts`, `docs/src/AppShell.tsx`, `docs/src/docs.css`, `docs/src/main.tsx`, `docs/src/pages/BacklogPage.tsx`, `docs/src/pages/ReleasePlanningPage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
+- `docs/src/auth.tsx` (new)
