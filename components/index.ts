@@ -40,3 +40,5 @@ export { Frame } from "./Frame/Frame";
 export type { FrameProps, FrameSize } from "./Frame/Frame";
 export { Tabs } from "./Tabs/Tabs";
 export type { TabsProps, TabsItem } from "./Tabs/Tabs";
+export { StickyNote } from "./StickyNote/StickyNote";
+export type { StickyNoteProps, StickyNoteMoveDirection } from "./StickyNote/StickyNote";

@@ -759,8 +759,8 @@
       "$description": "Minimum height of the Playground canvas"
     },
     "sticky-note": {
-      "$value": "160px",
-      "$description": "Width and height of a sticky note (StickyNote, fixed square)"
+      "$value": "10rem",
+      "$description": "Width and height of a sticky note (StickyNote, fixed square): 160px at the default text size, in rem so it grows with the text size (WCAG 1.4.4)"
     }
   },
   "breakpoint": {

@@ -5772,3 +5772,25 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `components/Tabs/Tabs.tsx`, `Tabs.css`, `examples.tsx`, `playground.tsx` (new)
 - `audits/2026-11-21-B093-3.md`, `audits/2026-11-21-B093-3-accessibility.md`, `audits/2026-11-21-B093-3-tokens.md` (new)
 - `components/Tabs/meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B145-3 — StickyNote: code approved, component complete
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- API: `text`, `author`, `date`; `selected` + `onSelectedChange`; `editing` + `onEditingChange`; `dragging` (set by the Canvas); `onTextChange(text)` when leaving the editing state; `onDelete()` (Delete button, Delete / Backspace, empty text); `onMove(direction)` with the arrow keys — the distance is decided by the Canvas.
+- In editing, Tab out of the note saves and leaves the editing state, like a click outside (added to the guidelines); Escape works wherever the focus is in the note.
+- **`size.sticky-note` = 10rem** (160px at the default text size) instead of 160px, so the note grows with the text size (WCAG 1.4.4): first size token in rem, noted in `token-naming`.
+- Code approved: StickyNote complete, version 1.0.
+
+**What was done**
+- `components/StickyNote/StickyNote.tsx` and `StickyNote.css`: named group (author, date, full text, ", selected"), keyboard (Enter, Space, Delete / Backspace, arrows when selected, Escape), editing text box "Note text" described by "Editing note, Escape to save", focus into the text box when editing starts, save on Escape / focus leaving the note, empty text removes the note; selected / editing border drawn inside (inset shadow, `--border-width-2` `--color-border-strong`) so the content does not move; text cut after 4 lines (fix: the text box is not stretched, so no part of a 5th line shows).
+- `examples.tsx` (Default, Interactive, States, Text length), `playground.tsx`; export from `components/index.ts`.
+- `spec.md` and `guidelines.md` aligned (10rem size, Tab out of an editing note); `tokens/semantic.json` and `.claude/skills/token-naming/SKILL.md` (size table, rem exception).
+- Token audit: `audits/2026-11-21-B145-3-tokens.md` — 42 values, 0 failures.
+- Accessibility check: `audits/2026-11-21-B145-3-accessibility.md` — 2 failures fixed (editing exit only from the text box; text cut at 200% text size); 10 pass, 0 fail; browser checks (keyboard, 200% text, text spacing, mobile width).
+- Compliance audit: `audits/2026-11-22-B145-3.md` — 61 compliant, 14 non-compliant (#68 fixed by B162; #70 fixed on `develop` by B093-4), 21 not in the design system; no new ticket.
+- `meta.json`: status `complete`, version 1.0, changelog "First complete version."; backlog B145 `done`, stage `complete`.
+
+**Files**
+- `components/StickyNote/StickyNote.tsx`, `StickyNote.css`, `examples.tsx`, `playground.tsx`, `audits/2026-11-21-B145-3-tokens.md`, `audits/2026-11-21-B145-3-accessibility.md`, `audits/2026-11-22-B145-3.md` (created)
+- `components/StickyNote/meta.json`, `spec.md`, `guidelines.md`, `components/index.ts`, `tokens/semantic.json`, `.claude/skills/token-naming/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
