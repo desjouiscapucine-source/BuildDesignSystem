@@ -1962,6 +1962,25 @@
       "stage": "design",
       "priority": "high",
       "release": "R4"
+    },
+    {
+      "id": "B172",
+      "title": "Steps log: split STEPS.md by release",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "decided",
+      "description": "Split the 360 KB STEPS.md into one file per release in steps/, with STEPS.md kept as a short index.",
+      "why": "Asked by the Design System Lead on 2026-11-22 to cut token use: STEPS.md has 314 entries (about 90k tokens), and a session that reads it carries that context in every call. Appending an entry should not need the history.",
+      "scope": "Create steps/R1.md, R2.md, R3.md and the file of the current release (R4), each holding the entries of its release in the same order and wording; entries 1 to 169 (before numbering per ticket) go in steps/R1.md. STEPS.md becomes an index (purpose, writing rule `Step <ticket>-<n>`, table release / file / period). New entries are appended to the file of the current release. Update every reference to STEPS.md (CLAUDE.md, the skills git-workflow, changelog, never-invent, component, token-naming, component-guidelines and accessibility-check, the agent ds-compliance-fix, README.md, the Backlog page and backlog.json). Not in scope: changing the content of any entry; splitting by ticket.",
+      "doneWhen": [
+        "Every one of the 314 entries exists once in steps/, unchanged, in its release file; none is lost or duplicated.",
+        "STEPS.md is an index under 5 KB, readable in full, with the table release / file / period.",
+        "The writing rule says where a new entry goes (the file of the current release), and release day (git-workflow section 8) starts the next release file.",
+        "No reference to STEPS.md in the skills, the agent, CLAUDE.md, README.md or the docs site points to content that moved; the Backlog page still shows the links to the steps.",
+        "`npm run build` passes."
+      ],
+      "priority": "high",
+      "release": "R4"
     }
   ]
 }
