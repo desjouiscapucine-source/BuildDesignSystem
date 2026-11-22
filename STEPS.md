@@ -6072,3 +6072,19 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `netlify/functions/login.ts`, `logout.ts`, `session.ts`, `backlog.ts`, `_lib/session.ts`, `_lib/github.ts` (new)
 - `netlify.toml`, `docs/src/backlog.ts`, `docs/src/AppShell.tsx`, `docs/src/docs.css`, `docs/src/main.tsx`, `docs/src/pages/BacklogPage.tsx`, `docs/src/pages/ReleasePlanningPage.tsx`, `backlog/backlog.json`, `package-lock.json`, `STEPS.md` (updated)
 - `docs/src/auth.tsx` (new)
+
+## Step B031-2 — Prototype WorkDescription validated
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- The current version (one screen, Timeline + 4 `TimelineStep`, 4 `clickable-image` Cards with 3 placeholder images each) is validated as it is — no further screens added for now.
+
+**What was done**
+- `develop` merged into `component/work-description` (fast-forward up to date; brings in the ZoomControls and B168 login steps, no conflict).
+- Backlog: ticket B031 second iteration (feedback "Validé tel quel", decision `validated`); status set to `done`.
+- Compliance audit: `audits/2026-11-22-B031-2.md` — 64 compliant, 18 non-compliant (0 new from this step; 1 new since `develop` moved, #76 Login password field, "not in the design system", already covered by the done ticket B168 — question asked to the Design System Lead, no ticket), 22 not in the design system; no new ticket (every open finding already covered by an existing one).
+- Verification: typecheck and build pass.
+
+**Files**
+- `audits/2026-11-22-B031-2.md` (created)
+- `backlog/backlog.json`, `STEPS.md` (updated)
