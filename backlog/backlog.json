@@ -1962,6 +1962,59 @@
       "stage": "design",
       "priority": "high",
       "release": "R4"
+    },
+    {
+      "id": "B173",
+      "title": "UX playground: keyboard accessibility",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "A placed component is focused as one element, and a frame can be moved without dragging.",
+      "why": "The audit of the UX playground page (audits/2026-11-22-B130-6.md, #61 and #62) found that the controls inside a placed component stay tab stops nested in a button (WCAG 4.1.2, 2.1.1), and that a frame can only be moved by dragging, while components and notes move with the keyboard (WCAG 2.5.7).",
+      "scope": "Included: the keyboard behavior of the placed components and of the frames in the UX playground page (docs/). Decisions asked first: how a placed component is focused and exposes its controls; the keyboard or single-pointer way to move a frame, and whether it is a change of the Frame component (its own ticket) or of the page only. Not included: the other keyboard behaviors of the page.",
+      "doneWhen": [
+        "The controls inside a placed component are not reachable with Tab.",
+        "A frame can be moved with the keyboard or a single pointer.",
+        "The compliance audit no longer reports #61 and #62."
+      ],
+      "priority": "medium",
+      "release": "R4"
+    },
+    {
+      "id": "B174",
+      "title": "UX playground: link in the header",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "The header entry point of the UX playground is a link with a verb label.",
+      "why": "The audit of the UX playground page (audits/2026-11-22-B130-6.md, #60) found that the header button navigates through onClick and window.location.hash: it is not a link, its label has no verb, and it is hidden below desktop.",
+      "scope": "Included: the header entry point of the UX playground in docs/src/AppShell.tsx. Decisions asked first: a link element or an IconButton used as a link; the label wording (e.g. \"Open the UX playground\"); the entry point below desktop. Not included: the side navigation entry.",
+      "doneWhen": [
+        "The header entry point is a link (open in a new tab works).",
+        "Its label starts with a verb.",
+        "The behavior below desktop is decided and written in the navigation skill.",
+        "The compliance audit no longer reports #60."
+      ],
+      "priority": "medium",
+      "release": "R4"
+    },
+    {
+      "id": "B175",
+      "title": "UX playground: text styles and spacing",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "The text of the UX playground page uses the text style classes, and the space under its header is decided.",
+      "why": "The audit of the UX playground page (audits/2026-11-22-B130-6.md, #63 and #64) found that the library rows and the empty messages set font-family, font-size and line-height by hand instead of using .ds-text-body, and that the workspace sits against the subtitle with no space.",
+      "scope": "Included: the CSS and the page header of the UX playground page (docs/). Decision asked first: is a margin of 0 under the subtitle an exception for a full-height workspace (written in the layout skill), or does it keep --space-16. Also the title attribute on the page title and subtitle, like the other pages.",
+      "doneWhen": [
+        "Library rows and empty messages use .ds-text-body.",
+        "The space under the subtitle is decided and, if an exception, written in the layout skill.",
+        "The page title and subtitle have their title attribute.",
+        "The compliance audit no longer reports #63 and #64."
+      ],
+      "priority": "medium",
+      "release": "R4"
     }
   ]
 }
