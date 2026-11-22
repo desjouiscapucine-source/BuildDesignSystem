@@ -2,7 +2,7 @@
 // Design preview tab once the component is complete.
 // The canvas is an iframe (docs/playground.html) at the chosen screen width; the controls, the tokens and the JSX code are here.
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Button, Chip, Select } from "@ds/components";
+import { Button, Chip, Select, TextInput } from "@ds/components";
 import { tokenById, tokens, textStyles, type Token } from "../../tokens/lib";
 import { IconSelect } from "./IconSelect";
 import { readableName, readableToken } from "./readableName";
@@ -15,12 +15,12 @@ import {
   type PlaygroundMessage,
 } from "./playground";
 
-// Screen widths of the canvas: --size-viewport-mobile, --breakpoint-tablet, --breakpoint-desktop.
+// Screen widths of the canvas: --size-viewport-mobile, --size-viewport-tablet, --size-viewport-desktop.
 const px = (id: string) => parseFloat(tokenById.get(id)!.resolved);
 const viewports = [
   { id: "mobile", label: "Mobile", width: px("size.viewport-mobile") },
-  { id: "tablet", label: "Tablet", width: px("breakpoint.tablet") },
-  { id: "desktop", label: "Desktop", width: px("breakpoint.desktop") },
+  { id: "tablet", label: "Tablet", width: px("size.viewport-tablet") },
+  { id: "desktop", label: "Desktop", width: px("size.viewport-desktop") },
 ] as const;
 type Viewport = (typeof viewports)[number]["id"];
 
@@ -91,6 +91,7 @@ function PlaygroundView({ component, playground }: { component: ComponentDoc; pl
   varsRef.current = vars;
   const [viewport, setViewport] = useState<Viewport>("desktop");
   const [height, setHeight] = useState(MIN_HEIGHT);
+  const [contentWidth, setContentWidth] = useState(0);
   const [available, setAvailable] = useState(0);
   const [copied, setCopied] = useState(false);
   const frame = useRef<HTMLIFrameElement>(null);
@@ -110,6 +111,7 @@ function PlaygroundView({ component, playground }: { component: ComponentDoc; pl
         post({ type: "playground-tokens", vars: varsRef.current });
       }
       if (event.data.type === "playground-height") setHeight(event.data.height);
+      if (event.data.type === "playground-width") setContentWidth(event.data.width);
     };
     window.addEventListener("message", onMessage);
     return () => window.removeEventListener("message", onMessage);
@@ -125,7 +127,8 @@ function PlaygroundView({ component, playground }: { component: ComponentDoc; pl
     return () => observer.disconnect();
   }, []);
 
-  const width = viewports.find((entry) => entry.id === viewport)!.width;
+  const screenWidth = viewports.find((entry) => entry.id === viewport)!.width;
+  const width = playground.fitWidth && contentWidth > 0 ? contentWidth : screenWidth;
   const scale = available > 0 ? Math.min(1, available / width) : 1;
   const frameHeight = Math.max(height, playground.minHeight ?? MIN_HEIGHT);
   const source = playground.code(args);
@@ -291,26 +294,76 @@ function ControlInput({
     case "icon":
       return <IconSelect label={label} value={value as string} optional={control.optional} onChange={onChange} />;
     case "number":
+      return <NumberControl label={label} min={control.min} max={control.max} value={value as number} onChange={onChange} />;
+    case "date":
       return (
         <input
-          type="number"
-          className="playground-input"
-          aria-label={label}
-          min={control.min}
-          max={control.max}
-          value={value as number}
-          onChange={(event) => onChange(Math.min(control.max, Math.max(control.min, Number(event.target.value))))}
-        />
-      );
-    default:
-      return (
-        <input
-          type={control.type === "date" ? "date" : "text"}
+          type="date"
           className="playground-input"
           aria-label={label}
           value={value as string}
           onChange={(event) => onChange(event.target.value)}
         />
       );
+    default:
+      return (
+        <TextInput
+          className="playground-text-input"
+          label={label}
+          value={value as string}
+          onChange={onChange}
+        />
+      );
   }
+}
+
+/** Number control: keeps what the user types; sends only a valid number within the range, and clamps it on blur. */
+function NumberControl({
+  label,
+  min,
+  max,
+  value,
+  onChange,
+}: {
+  label: string;
+  min: number;
+  max: number;
+  value: number;
+  onChange: (value: number) => void;
+}) {
+  const [text, setText] = useState(String(value));
+  const [shown, setShown] = useState(value);
+  // The value changed from outside (reset, saved state): the field shows it.
+  if (value !== shown) {
+    setShown(value);
+    setText(String(value));
+  }
+  const parse = (entry: string) => (entry.trim() === "" ? NaN : Number(entry));
+
+  return (
+    <TextInput
+      type="number"
+      className="playground-text-input"
+      label={label}
+      helpText={`From ${min} to ${max}`}
+      value={text}
+      onChange={(entry) => {
+        setText(entry);
+        const number = parse(entry);
+        if (Number.isFinite(number) && number >= min && number <= max && number !== value) {
+          setShown(number);
+          onChange(number);
+        }
+      }}
+      onBlur={() => {
+        const number = parse(text);
+        const next = Number.isFinite(number) ? Math.min(max, Math.max(min, number)) : value;
+        setText(String(next));
+        if (next !== value) {
+          setShown(next);
+          onChange(next);
+        }
+      }}
+    />
+  );
 }

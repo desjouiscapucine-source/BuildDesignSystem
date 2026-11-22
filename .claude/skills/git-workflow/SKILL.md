@@ -1,6 +1,6 @@
 ---
 name: git-workflow
-description: How work is organized with git branches — three branch types (governance, component — prototypes included —, project), one folder and one Claude session per branch, the conversations and their usage (Gouvernance, Composant <Name>, Projet <Name>), steps numbered per backlog ticket, when and how a branch is merged into develop, and the release (review, develop merged into main, tag, release note). Use at the start of every task (which branch?), before every commit, whenever a branch is created, updated from develop or merged, and on release day.
+description: How work is organized with git branches — four branch types (governance, component — prototypes included —, project, fix), one folder and one Claude session per branch, the conversations and their usage (Gouvernance, Composant <Name>, Projet <Name>), steps numbered per backlog ticket, when and how a branch is merged into develop, and the release (review, develop merged into main, tag, release note). Use at the start of every task (which branch?), before every commit, whenever a branch is created, updated from develop or merged, and on release day.
 ---
 
 # Git workflow
@@ -10,7 +10,8 @@ Decided by the Design System Lead on 2026-10-29 (B107):
 
 ```
 component/…  ─┐
-project/…    ─┼──▶ develop ──(release R<n>, after review)──▶ main  + tag R<n> + release note
+project/…    ─┤
+fix/…        ─┼──▶ develop ──(release R<n>, after review)──▶ main  + tag R<n> + release note
 governance/… ─┘   (approved work, waiting for its release)
 ```
 
@@ -22,7 +23,7 @@ governance/… ─┘   (approved work, waiting for its release)
 
 ## 1. Branches
 
-Every branch is tied to a **backlog ticket** (`backlog/backlog.json`). **Three branch types only** (B110, B131): `governance/…`, `component/…` — a prototype is worked on a `component/` branch — and `project/…` for a long piece of work on the documentation site or the tooling.
+Every branch is tied to a **backlog ticket** (`backlog/backlog.json`). **Four branch types only** (B110, B131): `governance/…`, `component/…` — a prototype is worked on a `component/` branch —, `project/…` for a long piece of work on the documentation site or the tooling, and `fix/…` for a fix of the documentation site (`fix` skill).
 
 | Piece of work | Branch | Lifetime | Merged into `develop` |
 | ------------- | ------ | -------- | ------------------ |
@@ -30,6 +31,7 @@ Every branch is tied to a **backlog ticket** (`backlog/backlog.json`). **Three b
 | Prototype (screens, iterations, fixes) | `component/<prototype-folder>` (the folder name, kebab-case, e.g. `component/work-description`) | Long | When the Design System Lead **validates** the prototype, or asks for it |
 | Governance: backlog, process, skills, `CLAUDE.md`, documentation site, tooling | `governance/<topic>` (kebab-case, e.g. `governance/backlog-process`) | Very short | As soon as the Design System Lead **approves** it |
 | Project: a long piece of work on the documentation site or the tooling, chosen by the Design System Lead (e.g. the UX playground, B130) | `project/<name>` (kebab-case, e.g. `project/ux-playground`) | Long | When the Design System Lead **validates** the project, or asks for it |
+| Fix: a defect of the documentation site, no effect on components or tokens (`fix` skill) | `fix/<topic>` (kebab-case, e.g. `fix/playground-frame-width`) | Very short | As soon as the Design System Lead **validates** it |
 
 - A piece of work goes on a `project/` branch only when the Design System Lead asks for it; otherwise the documentation site and the tooling stay `governance/` work.
 - Governance is merged first: skills and `CLAUDE.md` guide every other session, so the new rules reach them sooner.
@@ -46,6 +48,7 @@ All conversations are opened in the same Claude project, `BuildDesignSystem`. Ea
 | **Projet `<Name>`** (one per project) | The steps of one project (e.g. `Projet UX playground`) | `project/<name>` | Archived once the project is validated and merged |
 
 - No conversation works on `develop` or `main` directly. Release day (section 8) is run from the **Gouvernance** conversation.
+- **Working on the tickets of a release** (B158): when the Design System Lead asks to work on the tickets of a release, Claude does not take them one after another in the same conversation. It creates **one suggestion (task chip) per component or prototype ticket** of the release not done yet; one click on a chip opens a new conversation that, on its own, names itself `Composant <Name>`, sets up its branch and reserves its ticket (section 3), reads the ticket and starts the current stage (`orchestrator`), in French. The prompt of each chip is self-contained: ticket ID and title, release, branch, these steps, and the related tickets (components that go together, a component another one builds on). The governance tickets of the release (documentation site, tooling) stay in the **Gouvernance** conversation, one topic at a time. Claude can only suggest: the Design System Lead clicks each chip.
 - At the start of a new conversation, Claude names it after the table (e.g. `Composant Modal`).
 - A task outside the usage of the conversation → Claude says which conversation to open, and does not start it there.
 - **End of a component, a prototype or a project**: once merged and its branch deleted, Claude offers to archive the conversation, and archives it once the Design System Lead agrees (archived, not deleted: the history stays readable and can be restored). A later change to that component → a new `Composant <Name>` conversation, with a new branch from `develop`; the decisions are in `spec.md`, `guidelines.md` and `STEPS.md`.
@@ -114,7 +117,7 @@ Only at the moments of the table (section 1), once the Design System Lead has ap
 On the date of a release (`release-planning`), in the **Gouvernance** conversation. `main` changes only here.
 
 1. **Prepare**: `git fetch origin`; list what `develop` adds to `main` since the previous release: `git log --oneline origin/main..origin/develop` (commits), `git diff --stat origin/main origin/develop` (files), the tickets of the release and their status, the new component versions (`changelog`); run the `ds-compliance-audit` agent on `origin/develop` and write its checked report to `audits/<YYYY-MM-DD>-R<n>.md` on the release-note branch, and show its non-compliant elements in the chat; run the `ds-token-audit` agent on every component of `origin/develop` and write its checked report to `audits/<YYYY-MM-DD>-R<n>-tokens.md`: a failure **blocks the release** until it is fixed (on its own branch, merged into `develop`) or accepted by the Design System Lead as an exception (B084).
-2. **Release note**: draft `releases/R<n>.md` on a `governance/release-R<n>` branch (template `releases/_template.md`): date, tickets delivered by category, component versions, tickets carried over to the next release. In English.
+2. **Release note**: draft `releases/R<n>.md` on a `governance/release-R<n>` branch (template `releases/_template.md`): date, tickets delivered by category, component versions, tickets carried over to the next release. In English. On the same branch, run `npm run work-time`: it saves the time spent building in `docs/src/work-time.json`, shown frozen on the public site (B152).
 3. **Review**: show the Design System Lead the commits, the files changed, the tickets, the compliance audit and the release note (preview on the Release planning page). Changes requested → fix them on their own branches first, merged into `develop` as usual.
 4. Once the Design System Lead **validates the release**: merge the release-note branch into `develop` (section 6), then:
    - `git push origin origin/develop:main` — a fast-forward: `main` only ever receives `develop`.

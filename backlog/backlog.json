@@ -66,7 +66,7 @@
       "id": "B008",
       "title": "Semantic shadows by usage",
       "category": "Foundations",
-      "status": "todo",
+      "status": "in-progress",
       "origin": "decided",
       "description": "Usages to define (decided \"later\", step 33).",
       "priority": "high"
@@ -127,7 +127,7 @@
       "status": "todo",
       "origin": "proposal",
       "description": "radius.full (50%) gives an ellipse on rectangles: decide if pill buttons/tags are needed.",
-      "priority": "medium"
+      "priority": "low"
     },
     {
       "id": "B016",
@@ -162,11 +162,12 @@
       "id": "B019",
       "title": "Text input",
       "category": "Components",
-      "status": "todo",
+      "status": "done",
       "origin": "proposal",
       "description": "Base of every form. Used on the documentation site: Content field of the Design preview tab, icon name field of the Icons page.",
-      "stage": "design",
-      "priority": "low"
+      "stage": "code",
+      "priority": "high",
+      "release": "R2"
     },
     {
       "id": "B020",
@@ -226,7 +227,7 @@
       "origin": "decided",
       "description": "Small indicator (number or status). First uses: the counter of the Navigation item, and the version badge next to the title of the component pages (B096). A Tag (category, filter) would be a separate component, later. Note: change the color of the version badge (to define with the Design System Lead).",
       "stage": "design",
-      "priority": "high"
+      "priority": "medium"
     },
     {
       "id": "B026",
@@ -279,7 +280,7 @@
       "id": "B031",
       "title": "Prototype: WorkDescription",
       "category": "Prototypes",
-      "status": "in-progress",
+      "status": "done",
       "origin": "proposal",
       "description": "Once a few components are coded (e.g. a form or a product page). Screens and content to define with the Design System Lead.",
       "prototype": "work-description",
@@ -287,6 +288,10 @@
         {
           "feedback": "Cards in the clickable-image version: all 4 cards, 3 images each (one row), neutral placeholder images. The prototype follows the new card skill. New screens to define next.",
           "decision": "changes-requested"
+        },
+        {
+          "feedback": "Validé tel quel",
+          "decision": "validated"
         }
       ],
       "priority": "high",
@@ -495,7 +500,7 @@
       "id": "B056",
       "title": "Search field",
       "category": "Components",
-      "status": "todo",
+      "status": "rejected",
       "origin": "decided",
       "description": "On the documentation site, not defined in the design system yet. Search of the site header: input with a search icon, keyboard hint \"/\", list of results.",
       "stage": "design",
@@ -806,10 +811,19 @@
       "id": "B093",
       "title": "Tabs",
       "category": "Components",
-      "status": "todo",
+      "status": "done",
       "origin": "decided",
       "description": "Navigation within a page. Used on the documentation site: tabs of the component pages (Design preview, Design spec, Guidelines, Examples, Code).",
-      "stage": "design"
+      "why": "The component pages of the documentation site use hand-built tabs (compliance finding #70), and Panel (B144) needs tabs for Library, Properties and Compositions.",
+      "scope": "components/Tabs (molecule, .ds-tabs): the row of Tab (B157) and the panel of the selected tab; design, guidelines and code. Then the component pages of the documentation site use Tabs instead of their hand-built tabs (ComponentPage.tsx, .tabs in docs.css), decided by the Design System Lead on 2026-11-19.",
+      "doneWhen": [
+        "Tabs is complete: design, guidelines and code approved by the Design System Lead.",
+        "Tabs is exported from components/index.ts.",
+        "The component pages of the documentation site use Tabs; finding #70 (numbering of audits/2026-11-21-B093-2.md) is gone from the next compliance audit."
+      ],
+      "stage": "code",
+      "priority": "high",
+      "release": "R2"
     },
     {
       "id": "B094",
@@ -1075,11 +1089,11 @@
       "id": "B118",
       "title": "Documentation site: use the Tag component",
       "category": "Tooling",
-      "status": "todo",
+      "status": "done",
       "origin": "proposal",
       "description": "Replace the tags drawn by hand on the documentation site with the Tag component.",
       "why": "The site still shows its own tag styles (level-tag, backlog-tag in docs.css), outside the design system, now that Tag is complete (B059).",
-      "scope": "The Atomic Design level tag of the component pages, the backlog category tag and the \"Decided\" tag of the Backlog cards, the iteration decision tags of the ticket modal, the level tags of the Navigation structure page (.nav-tree-level) and the \"Complete\" item of the component pages (compliance audit audits/2026-10-30-B131-1.md, finding 9). The tone of each tag is asked to the Design System Lead (Tag guidelines). Asked first: is \"Complete\" a Tag, or the stage indicator (B060)?",
+      "scope": "The Atomic Design level tag of the component pages, the backlog category tag and the \"Decided\" tag of the Backlog cards, the iteration decision tags of the ticket modal, the level tags of the Navigation structure page (.nav-tree-level) and the \"Complete\" item of the component pages (compliance audit audits/2026-10-30-B131-1.md, finding 9). The tone of each tag is asked to the Design System Lead (Tag guidelines). Decided by the Design System Lead on 2026-11-14: level tags and the level of the Navigation structure page neutral, iteration decisions success (\"Validated\") / warning (\"Changes requested\"); \"Complete\" stays in the stage indicator (B060), out of scope. Closed with these tones; the tags of the site that will use the brand tone are chosen in B141.",
       "doneWhen": [
         "Every tag of the documentation site is a Tag from @ds/components.",
         "The level-tag, backlog-tag and nav-tree-level styles are removed from docs.css."
@@ -1295,12 +1309,14 @@
       "origin": "proposal",
       "description": "Markdown code blocks and tables inside cards stay readable; the brand fill of a checked control is checked for contrast.",
       "why": "Found by the full compliance audit before the merge into develop (audits/2026-10-30-before-develop-merge.md), and by the audit of Step B039-1 for finding 47 (audits/2026-11-04-B039-1.md).",
-      "scope": "Audit findings 42 and 43: Markdown code blocks of the Skills and Agents cards (and any Markdown) overflow the card; the pair background.brand on background.page (checkbox fill, pressed toggle) is not in tokens/contrast-pairs.json. Audit finding 47: tables inside a Card (Markdown tables and table.tokens on the How to use skills, Agents and Release planning pages) inherit overflow-wrap: anywhere from .ds-card-text, so the first column shrinks to about one character and words break in two. Decisions asked first: same look as pre.code (surface background, padding) or scroll only; background.brand or border.focus for a checked control fill; tables in cards fixed on the site only (docs.css) or in the Card component (complete: new version and changelog); too-wide tables scroll horizontally or wrap between words.",
+      "scope": "Audit findings 42 and 43: Markdown code blocks of the Skills and Agents cards (and any Markdown) overflow the card; the pair background.brand on background.page (checkbox fill, pressed toggle) is not in tokens/contrast-pairs.json. Audit finding 47: tables inside a Card (Markdown tables and table.tokens on the How to use skills, Agents and Release planning pages) inherit overflow-wrap: anywhere from .ds-card-text, so the first column shrinks to about one character and words break in two. Decisions asked first: same look as pre.code (surface background, padding) or scroll only; background.brand or border.focus for a checked control fill; tables in cards fixed on the site only (docs.css) or in the Card component (complete: new version and changelog); too-wide tables scroll horizontally or wrap between words. Extended on 2026-11-15 (Design System Lead, R2 release review, audits/2026-11-15-R2.md): finding 64, the search field border on the header (border.strong on background.brand-subtle, measured 3.19:1) is not in tokens/contrast-pairs.json; finding 65, the accessible name of the Portfolio skills panel (\"Skills, tools and expertise\", PortfolioPage.tsx) no longer names the Languages group. Decisions asked first: list the pair in contrast-pairs.json or change the field or header colors; the wording of the panel name.",
       "doneWhen": [
         "Long code lines in Markdown scroll inside their block and never overflow the card.",
         "The brand fill pair is in contrast-pairs.json and npm run tokens passes.",
         "Tables inside cards keep whole words and never break a word in two.",
-        "The next compliance audit no longer lists findings 42, 43 and 47."
+        "The search field border pair is in contrast-pairs.json (or the colors are changed) and npm run tokens passes.",
+        "The accessible name of the Portfolio skills panel covers every group, Languages included.",
+        "The next compliance audit no longer lists findings 42, 43, 47, 64 and 65."
       ],
       "priority": "medium",
       "release": "R2"
@@ -1371,6 +1387,563 @@
       ],
       "priority": "medium",
       "release": "R2"
+    },
+    {
+      "id": "B139",
+      "title": "How to use skills: skills grouped by theme",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "decided",
+      "description": "The Skills section of the How to use skills page groups the skills by theme instead of one flat list.",
+      "why": "The page lists the 20 project skills as one flat list of cards, which makes a skill hard to find as the number of skills grows.",
+      "scope": "docs/src/pages/SkillsPage.tsx: the Skills section is split into theme groups, each with a heading and its skill cards. The themes and which skill goes in each are decided with the Design System Lead first (never-invent). The How to use and Hierarchy sections are not changed.",
+      "doneWhen": [
+        "The themes and the skill of each theme are approved by the Design System Lead.",
+        "The Skills section shows one group per theme, each with its heading and its skill cards.",
+        "Every skill of .claude/skills/ appears in exactly one group, and a new skill without a theme is still shown.",
+        "The page follows the layout, page-header and card skills, and the compliance audit finds nothing new."
+      ],
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B140",
+      "title": "Documentation site: text style of the headings in skill cards",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "The headings inside the skill cards of the How to use skills page use an approved text style.",
+      "why": "Found by the compliance audit of Step B139-1 (audits/2026-11-14-B139-1.md, finding 56): the headings of the skill body (h5, h6 since B139) have no text style, only font-size: inherit (docs.css), so their weight, line height and margins come from the browser, and ## and ### headings look the same.",
+      "scope": "docs/src/docs.css (.skill-card .ds-card-text :is(h5, h6)) and, if needed, cardBody in docs/src/skills.ts. Decisions asked first: which text style for these headings; whether ## and ### headings look different; whether the rule covers the Agents cards too (same skill-card class) or only the Skills page; whether the theme titles (h3) and the card titles (h4) may share the heading-5 look. Extended on 2026-11-14 (Design System Lead): also the sub-headings inside the Portfolio cards (docs/src/pages/PortfolioPage.tsx, h3 in the label style, approved for B138; finding 59 of audits/2026-11-14-B138-1.md). Extended on 2026-11-15 (Design System Lead, R2 release review, finding 63 of audits/2026-11-15-R2.md): the headings of the Agents cards — ## becomes h4 (docs/src/pages/AgentsPage.tsx), which has no site rule (browser defaults).",
+      "doneWhen": [
+        "The headings of the skill body use the approved text style (its four tokens), as decided by the Design System Lead.",
+        "The Agents page follows the decision about its cards.",
+        "The next compliance audit no longer lists finding 56.",
+        "The sub-headings inside the Portfolio cards follow the same decision (finding 59 of audits/2026-11-14-B138-1.md).",
+        "The h4 headings of the Agents cards follow the same decision (finding 63 of audits/2026-11-15-R2.md)."
+      ],
+      "priority": "medium",
+      "release": "R3"
+    },
+    {
+      "id": "B142",
+      "title": "Canvas",
+      "category": "Components",
+      "status": "done",
+      "origin": "decided",
+      "description": "The free canvas of the UX playground, which holds the layout frames.",
+      "why": "Missing component of the UX playground prototype (B130): the playground is a free canvas holding mobile, tablet and desktop frames.",
+      "scope": "Design, guidelines and code of the Canvas component, each stage approved by the Design System Lead (component skill). Anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant Canvas conversation on component/Canvas (never-invent).",
+      "doneWhen": [
+        "The Canvas design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "Canvas is exported from @ds/components, ready for the UX playground (B130)."
+      ],
+      "stage": "complete",
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B143",
+      "title": "Frame",
+      "category": "Components",
+      "status": "done",
+      "origin": "decided",
+      "description": "A layout frame on the canvas, in mobile, tablet or desktop size.",
+      "why": "Missing component of the UX playground prototype (B130): each composition is laid out in mobile, tablet and desktop frames on the canvas.",
+      "scope": "Design, guidelines and code of the Frame component, each stage approved by the Design System Lead (component skill). Anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant Frame conversation on component/Frame (never-invent).",
+      "doneWhen": [
+        "The Frame design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "Frame is exported from @ds/components, ready for the UX playground (B130)."
+      ],
+      "stage": "complete",
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B144",
+      "title": "Panel",
+      "category": "Components",
+      "status": "done",
+      "origin": "decided",
+      "description": "The panel on the right of the playground, with three tabs: Library, Properties and Compositions.",
+      "why": "Missing component of the UX playground prototype (B130): the playground needs a right panel with three tabs (Library, Properties, Compositions).",
+      "scope": "Design, guidelines and code of the Panel component, each stage approved by the Design System Lead (component skill). Anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant Panel conversation on component/Panel (never-invent).",
+      "doneWhen": [
+        "The Panel design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "Panel is exported from @ds/components, ready for the UX playground (B130)."
+      ],
+      "stage": "complete",
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B145",
+      "title": "StickyNote",
+      "category": "Components",
+      "status": "done",
+      "origin": "decided",
+      "description": "A sticky note placed on the canvas, to annotate a composition.",
+      "why": "Missing component of the UX playground prototype (B130): the playground has sticky notes to annotate a composition.",
+      "scope": "Design, guidelines and code of the StickyNote component, each stage approved by the Design System Lead (component skill). Anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant StickyNote conversation on component/StickyNote (never-invent).",
+      "doneWhen": [
+        "The StickyNote design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "StickyNote is exported from @ds/components, ready for the UX playground (B130)."
+      ],
+      "stage": "complete",
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B146",
+      "title": "Comment",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "A comment attached to a component or a frame of the canvas.",
+      "why": "Missing component of the UX playground prototype (B130): the playground has comments on a component or a frame.",
+      "scope": "Design, guidelines and code of the Comment component, each stage approved by the Design System Lead (component skill). Anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant Comment conversation on component/Comment (never-invent).",
+      "doneWhen": [
+        "The Comment design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "Comment is exported from @ds/components, ready for the UX playground (B130)."
+      ],
+      "stage": "design",
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B138",
+      "title": "Portfolio page: CV of the Design System Lead",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "decided",
+      "description": "The Portfolio page of the documentation site shows the experience of the Design System Lead with a Timeline and Cards.",
+      "why": "Decided by the Design System Lead: the CV content goes on the Portfolio page (empty today, \"Nothing yet.\"), not in the WorkDescription prototype (B031).",
+      "scope": "docs/src/pages/SectionPages.tsx (PortfolioPage), laid out with the page-content and card skills. Content drafted with the Design System Lead on 2026-11-14 (Composant WorkDescription conversation), in English, design experience only, no contact details: header \"Capucine Desjouis\" / \"Product Designer · Design Systems · AI-assisted design\"; skills as Tags (to review); 4 steps: Product Designer — Tokywoky (2021 → May 2023), UX/UI Designer — Volunteer projects (Jul → Sep 2022), Product Designer · Design System PO — BNP Paribas (Sep 2023 → ongoing, Tag \"Ongoing\" info in its card), Lead Design System — mc2i (2024, in parallel); cards with images where mockups exist (Tokywoky: mockups recreated in Figma, B138-3), a bulleted list of tasks each. Still to decide: step order (most recent first? exception or rule change of page-content and TimelineStep guidelines), the AI part, the skills, the images. Month-year dates and \"Present\": B137.",
+      "doneWhen": [
+        "The Portfolio page shows one card per timeline step with the content approved by the Design System Lead.",
+        "The page follows the page-content and card checklists, or an approved exception."
+      ],
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B141",
+      "title": "Tag: brand tone",
+      "category": "Components",
+      "status": "done",
+      "origin": "proposal",
+      "description": "A brand tone for the Tag, to highlight content without the meaning of a feedback state (e.g. the skills of the Portfolio page).",
+      "why": "On a background.subtle surface, neutral Tags have the same background as the surface and do not stand out (Portfolio skills panel, B138). Proposed by Claude, approved by the Design System Lead on 2026-11-14.",
+      "scope": "components/Tag: spec (new tone), guidelines (when to use brand vs neutral), code (Tag.tsx, Tag.css, examples, playground). Tag is complete: new version and changelog entry (changelog skill). Design to approve first (never-invent); lead to explore: background background.brand-subtle, label text.brand, icon icon.brand (contrast pairs checked). Worked in a Composant Tag conversation, on component/Tag. Guidelines also change the rule \"at most 3 tags side by side\" (finding 56 of audits/2026-11-14-B138-1.md: the Portfolio skills groups show up to 10 tags): decided by the Design System Lead on 2026-11-14 to change the guidelines rather than make an exception; the new rule is asked in the Composant Tag conversation. Once the brand tone exists, this ticket also chooses with the Design System Lead which tags of the documentation site use it, e.g. the levels L0-L4 of the Navigation structure page (B118 closed with neutral tags; decided by the Design System Lead on 2026-11-14).",
+      "doneWhen": [
+        "The Tag brand tone is approved at each stage (design, guidelines, code).",
+        "The Tag guidelines say how many tags may be shown side by side (e.g. a list of skills), as decided by the Design System Lead; the next compliance audit no longer lists finding 56 of audits/2026-11-14-B138-1.md.",
+        "New version with its changelog entry; the accessibility and token audits pass.",
+        "The Portfolio page (B138) uses it for its skills.",
+        "The tags of the documentation site that use the brand tone, chosen by the Design System Lead, use it."
+      ],
+      "stage": "code",
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B147",
+      "title": "Portfolio Figma: BNP projects restyled with the design system",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "proposal",
+      "description": "The BNP Paribas projects imported in the Design System Lead's Figma file (All project) are anonymized and rebuilt with the design system.",
+      "why": "Show the BNP Paribas work in the portfolio without any BNP Paribas branding or confidential content. Proposed by Claude, approved by the Design System Lead on 2026-11-14.",
+      "scope": "Figma file All project (personal account), section by section as given by the Design System Lead. First: the design system in Figma — variables (colors, spacing, radius, border width) and text styles with the names and values of tokens/primitives.json and tokens/semantic.json. Then, per section: BNP Paribas logo removed; colors bound to the design system variables; text in lorem ipsum (same length); amounts, rates, dates and numbers removed or neutral placeholders; client, company, user and product names replaced by generic placeholders; layout and structure kept.",
+      "doneWhen": [
+        "The design system variables and text styles exist in the Figma file, with the same names and values as the tokens.",
+        "Every section given by the Design System Lead has no BNP Paribas logo, color, text, name or amount left, and uses the design system variables and text styles.",
+        "The Design System Lead approves each section."
+      ],
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B148",
+      "title": "Portfolio page: Figma and GitHub links, languages",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "decided",
+      "description": "The Portfolio page gets links to the Figma file and to the GitHub repository at the top, and a Languages group in the left panel.",
+      "why": "Asked by the Design System Lead on 2026-11-14, after B138: let visitors open the portfolio mockups (Figma) and the design system code (GitHub), and show the languages.",
+      "scope": "docs/src/pages/PortfolioPage.tsx (and the Portfolio block of docs/src/docs.css if needed): two external link buttons (Button primary, icon open_in_new, new tab) on the subtitle line, aligned right, to the whole Figma file All project and to the repository CapucineDjs/BuildDesignSystem (private); a Languages group in the skills panel: French, English (professional).",
+      "doneWhen": [
+        "The two link buttons are on the subtitle line, aligned right, and open in a new tab (said by the icon and the accessible name).",
+        "The skills panel shows a Languages group.",
+        "The Design System Lead approves the page."
+      ],
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B149",
+      "title": "Migrate the repository to the new GitHub account",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "decided",
+      "description": "The project repository moves from CapucineDjs/BuildDesignSystem (private) to desjouiscapucine-source/BuildDesignSystem (public).",
+      "why": "Asked by the Design System Lead on 2026-11-15: a public repository on the new account, linked from the Portfolio page.",
+      "scope": "Push the full history (every branch, tag R1) to the new repository; point the origin remote of the project (root folder and every worktree) to it; update the references to the old repository (CLAUDE.md, skills, documentation site, the GitHub button of the Portfolio page). History scanned before going public: commits use the GitHub noreply address, no sensitive content found.",
+      "doneWhen": [
+        "The new repository has every branch and the tag R1, with the full history.",
+        "origin points to the new repository in every folder; push and fetch work.",
+        "No reference to the old repository is left in CLAUDE.md, the skills or the site (except the history in STEPS.md and closed tickets)."
+      ],
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B150",
+      "title": "Public site on Netlify",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "decided",
+      "description": "The documentation site and the prototypes are published online on Netlify, deployed from main.",
+      "why": "Asked by the Design System Lead on 2026-11-15: make the work public, with a link that anyone can open (Portfolio).",
+      "scope": "Static build of the whole site (/docs/ and /prototypes/) hosted on Netlify, connected to the public repository desjouiscapucine-source/BuildDesignSystem and deployed automatically from main (released work only). Online, the site is read-only: Backlog page changes only work on the local dev server. The Netlify account and its link to the repository are created by the Design System Lead.",
+      "doneWhen": [
+        "The site (/docs/ and /prototypes/) opens at a public Netlify address.",
+        "Every push to main deploys the site again, automatically.",
+        "Pages that need the local dev server (Backlog edits, skills, agents, branches) work or say clearly that they are read-only online."
+      ],
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B151",
+      "title": "Public site: landing page and Design system wording",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "decided",
+      "description": "The public site presents the project: new landing page texts, the Documentation space renamed Design system, and no mention of the local dev server command.",
+      "why": "Asked by the Design System Lead on 2026-11-15, once the site is public on Netlify (B150): the texts written for the local workspace do not fit a public site.",
+      "scope": "Landing page: new subtitle and an introduction text; the Documentation card renamed Design system. The Documentation space renamed Design system everywhere (navigation, breadcrumb, browser tab title, Navigation structure page, Portfolio image text). Overview page: new Description explaining that this is the design system of BuildDesignSystem, the project that built the site. Every text mentioning the local dev server command removed (Backlog, Design preview, Branches).",
+      "doneWhen": [
+        "The landing page shows the approved subtitle and introduction text, and a Design system card.",
+        "No page of the site says Documentation for the space any more.",
+        "The Overview page shows the approved Description.",
+        "No text of the site mentions the local dev server command."
+      ],
+      "priority": "high",
+      "release": "R3"
+    },
+    {
+      "id": "B152",
+      "title": "Public site: frozen work time and read-only tickets",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "decided",
+      "description": "On the public site, the work-time clock shows a frozen total and the ticket menus are disabled.",
+      "why": "Asked by the Design System Lead on 2026-11-15: online, the time spent building is shown and the tickets are read-only.",
+      "scope": "Work time: the total is saved in a file of the repository (updated on release day) and shown online, frozen; locally the clock keeps ticking. Tickets: online, the Select menus of the Backlog page and the ticket modal are disabled, until the read-only TicketCard variant (B153).",
+      "doneWhen": [
+        "Online, the landing page and the site header show the frozen time spent building.",
+        "Online, the ticket menus are disabled; locally they still save.",
+        "Release day updates the saved total (git-workflow)."
+      ],
+      "priority": "high",
+      "release": "R3"
+    },
+    {
+      "id": "B154",
+      "title": "Documentation site: feedback when a change cannot be saved",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "proposal",
+      "description": "The site says when a change cannot be saved: Backlog menus and Design preview token pickers, online and locally.",
+      "why": "Compliance audit finding 66 (audits/2026-11-15-B152-1.md): a failed save shows nothing, against the TicketCard guidelines (error message above the board, role=\"alert\"); online, the Design preview pickers stay enabled but save nothing.",
+      "scope": "Backlog page: a failed local save of a ticket menu, a failed local load of the backlog. Design preview tab: the token pickers online and a failed local save. Decisions to ask first: locally, the TicketCard error message above the board and its wording; online, Design preview pickers disabled, hidden, or enabled with a message; a failed local backlog load: a message, or disabled menus.",
+      "doneWhen": [
+        "A change that cannot be saved always gives feedback, as decided by the Design System Lead.",
+        "Online, the Design preview pickers follow the decision.",
+        "Finding 66 is gone from the next compliance audit."
+      ],
+      "priority": "high",
+      "release": "R3"
+    },
+    {
+      "id": "B155",
+      "title": "Design preview: announced save message",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "proposal",
+      "description": "The save message of the Design preview tab is announced by screen readers and styled like the other error messages.",
+      "why": "Compliance audit finding 68 (audits/2026-11-15-B154-1.md): the \"Saved…\" and \"Could not save the change. Try again.\" messages are not announced (WCAG 4.1.3), and the error uses secondary text, unlike the Backlog error.",
+      "scope": "Design preview tab, on the local dev server: live-region role and style of the save message, and the value shown after a failed save. Decisions to ask first: role=\"alert\" or role=\"status\" for the error; same style as the Backlog error or secondary text; after a failed save, keep the tested value or go back to the saved one.",
+      "doneWhen": [
+        "The save message is announced by screen readers.",
+        "The error message and the value after a failed save follow the decisions of the Design System Lead.",
+        "Finding 68 is gone from the next compliance audit."
+      ],
+      "priority": "high",
+      "release": "R3"
+    },
+    {
+      "id": "B156",
+      "title": "Add an All rights reserved license",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "decided",
+      "description": "The public repository states that its content is copyrighted, all rights reserved.",
+      "why": "Asked by the Design System Lead on 2026-11-15: GitHub cannot turn off the ZIP download of a public repository, so the license makes it explicit that the code, design and documentation may be read but not reused.",
+      "scope": "A LICENSE file at the root of the repository (All rights reserved, Capucine Desjouis), and the license field of package.json. No change to the visibility of the repository.",
+      "doneWhen": [
+        "LICENSE is at the root of the repository and GitHub shows it on the repository page.",
+        "package.json declares the license."
+      ],
+      "priority": "high"
+    },
+    {
+      "id": "B157",
+      "title": "Tab",
+      "category": "Components",
+      "status": "done",
+      "origin": "decided",
+      "description": "One tab of a tab list. Building block of Tabs (B093), built first.",
+      "why": "Decided by the Design System Lead on 2026-11-19: Tabs is made of repeated tabs, so the tab is split into its own component (building block rule, component-structure), built through its three stages before Tabs.",
+      "scope": "components/Tab: design (spec and design preview), guidelines and code. Atom, class .ds-tab, underline style, one size, text label only. The tab list (alignment, selection, keyboard) belongs to Tabs (B093).",
+      "doneWhen": [
+        "Tab is complete: design, guidelines and code approved by the Design System Lead.",
+        "Tab is exported from components/index.ts."
+      ],
+      "stage": "code",
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B158",
+      "title": "Skill git-workflow: one conversation per release ticket",
+      "category": "Skills",
+      "status": "done",
+      "origin": "decided",
+      "description": "When the tickets of a release are worked on, Claude prepares one suggestion per component or prototype ticket, which opens its own conversation already set up.",
+      "why": "Asked by the Design System Lead on 2026-11-19: working on the tickets of a release meant opening and setting up one conversation per component by hand.",
+      "scope": "A rule in the git-workflow skill (section 2). Governance tickets of the release stay in the Gouvernance conversation. No change to the documentation site.",
+      "doneWhen": [
+        "The git-workflow skill describes the rule: one suggestion per component or prototype ticket, what the opened conversation does on its own, and what stays in Gouvernance.",
+        "The How to use skills page shows the new rule."
+      ],
+      "priority": "high",
+      "release": "R4"
+    },
+    {
+      "id": "B161",
+      "title": "ZoomControls",
+      "category": "Components",
+      "status": "done",
+      "origin": "decided",
+      "description": "The zoom controls of the canvas: zoom out, zoom level, zoom in and fit to screen.",
+      "why": "Building block of the Canvas (B142): the UX playground canvas has visible zoom controls, a group reused as one unit, so it is its own component, completed before the Canvas code (component-structure).",
+      "scope": "Design, guidelines and code of the ZoomControls component, each stage approved by the Design System Lead (component skill), in a Composant ZoomControls conversation on component/ZoomControls. Already decided in the Composant Canvas conversation: a zoom out button, the zoom level in percent, a zoom in button and a fit to screen button; tertiary IconButtons; a container with background surface, radius 8 and shadow.dropdown; placed at the bottom right of the Canvas. The rest of the anatomy, the sizes, states and tokens are decided in the design stage (never-invent).",
+      "doneWhen": [
+        "The ZoomControls design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "ZoomControls is exported from @ds/components, ready for the Canvas (B142)."
+      ],
+      "stage": "complete",
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B162",
+      "title": "Documentation site: tablet screen size tokens",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "proposal",
+      "description": "The site's simulated tablet screens use the size.viewport-tablet tokens, like mobile and desktop.",
+      "why": "Compliance audit finding 68 (audits/2026-11-19-B143-1.md): the Playground tab and the Prototype preview frames read the tablet width and height from breakpoint.tablet / breakpoint.desktop (media-query tokens), while size.viewport-tablet / size.viewport-tablet-height now exist for a simulated tablet screen (B143).",
+      "scope": "docs/src/PlaygroundTab.tsx (tablet screen size and its comment) and docs/src/pages/PrototypePage.tsx (tablet preview frame): width from size.viewport-tablet, height from size.viewport-tablet-height. Same values (768 × 1024): no visual change.",
+      "doneWhen": [
+        "The site's simulated tablet screens read size.viewport-tablet and size.viewport-tablet-height.",
+        "Finding 68 is gone from the next compliance audit."
+      ],
+      "priority": "low",
+      "release": "R4"
+    },
+    {
+      "id": "B163",
+      "title": "Documentation site: component page tabs on small screens",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "proposal",
+      "description": "The tab row of the component pages stays within the page width on mobile and tablet.",
+      "why": "Compliance audit finding 69 (audits/2026-11-21-B143-3.md): the hand-built tab row (display: flex, no wrap, no overflow) needs about 590px on a phone against about 327px; the whole page scrolls sideways (WCAG 1.4.10 Reflow). Seen in the browser on Button and Frame.",
+      "scope": "docs/src/pages/ComponentPage.tsx (tab row, lines 72-89) and docs/src/docs.css (.tabs, lines 428-440): fix the hand-built tablist now, without waiting for Tabs (B093). Then check the Playground canvas again at mobile width. Decision to ask first: how the row behaves when the tabs do not fit (e.g. horizontal scroll of the row, wrap, or a menu).",
+      "doneWhen": [
+        "On mobile and tablet, the component page tab row stays within the page width and the page does not scroll sideways.",
+        "The Playground tab does not overflow the page at mobile width.",
+        "Finding 69 is gone from the next compliance audit."
+      ],
+      "priority": "high",
+      "release": "R4"
+    },
+    {
+      "id": "B164",
+      "title": "Frame: keyboard and focus aligned with Canvas",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "Align the Frame guidelines with the Canvas guidelines on keyboard order, focus visibility and selection.",
+      "why": "The Canvas guidelines (B142-2) order all the content of the canvas by position, keep a focused element out from under the zoom controls and add Shift + Enter to add to the selection; the Frame guidelines (complete, 1.x) still say the next frame, only the Panel, and no Shift + Enter.",
+      "scope": "Frame guidelines (and code if needed), in a Composant Frame conversation on component/Frame: after the content of a frame, Tab goes to the next element of the canvas by position, and leaves after the last element; a focused frame or element is never under the zoom controls (ZoomControls, B161) nor the Panel; Shift + Enter on the name adds the frame to the selection. New Frame version and changelog entry (changelog skill).",
+      "doneWhen": [
+        "The Frame guidelines say the same as the Canvas guidelines on Tab order, focus never hidden and Shift + Enter.",
+        "The change is approved, with a new Frame version and changelog entry.",
+        "The accessibility check passes."
+      ],
+      "stage": "guidelines",
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B159",
+      "title": "Avatar",
+      "category": "Components",
+      "status": "done",
+      "origin": "proposal",
+      "description": "A round avatar showing a person's initials.",
+      "why": "Building block found while designing Comment (B146), approved by the Design System Lead on 2026-11-19: the comment marker and each comment message show the author's initials in an avatar.",
+      "scope": "Design, guidelines and code of the Avatar component (atom), each stage approved by the Design System Lead (component skill). Anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant Avatar conversation on component/Avatar (never-invent).",
+      "doneWhen": [
+        "The Avatar design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "Avatar is exported from @ds/components, ready for CommentMessage (B160) and Comment (B146)."
+      ],
+      "stage": "complete",
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B160",
+      "title": "CommentMessage",
+      "category": "Components",
+      "status": "done",
+      "origin": "proposal",
+      "description": "One message of a comment thread: author avatar and name, date and text.",
+      "why": "Building block of Comment (B146), approved by the Design System Lead on 2026-11-19: a comment holds a thread of messages (the first one and its replies), so the repeated message is its own component, built before Comment.",
+      "scope": "Design, guidelines and code of the CommentMessage component (molecule), each stage approved by the Design System Lead (component skill). Anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant CommentMessage conversation on component/CommentMessage (never-invent).",
+      "doneWhen": [
+        "The CommentMessage design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "CommentMessage is exported from @ds/components, ready for Comment (B146)."
+      ],
+      "stage": "complete",
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B167",
+      "title": "Menu",
+      "category": "Components",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "A list of actions opened by a button.",
+      "why": "Found while designing CommentMessage (B160), approved by the Design System Lead on 2026-11-22: the \"…\" button of a message opens its actions (Edit, Delete), and no component shows a list of actions yet.",
+      "scope": "Design, guidelines and code of the Menu component, each stage approved by the Design System Lead (component skill). Level, anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant Menu conversation on component/Menu (never-invent). Related: Dropdown list (B057).",
+      "doneWhen": [
+        "The Menu design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "Menu is exported from @ds/components, ready for the \"…\" button of CommentMessage (B160)."
+      ],
+      "stage": "design",
+      "priority": "high",
+      "release": "R4"
+    },
+    {
+      "id": "B165",
+      "title": "Documentation site: use the TextInput in the site search",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "proposal",
+      "description": "The search field of the site header is the TextInput search type, without the \"/\" keyboard hint.",
+      "why": "Compliance audit of Step B019-3 (audits/2026-11-22-B019-3.md), findings 71 and 75: TextInput is complete (B019) and its search type covers the site search (B056 rejected), but the header still uses a hand-built field with a \"/\" hint, and the \"/\" shortcut is a single-character shortcut that cannot be turned off (WCAG 2.1.4).",
+      "scope": "docs/src/AppShell.tsx: the hand-built search input becomes TextInput type search (placeholder \"Search pages\"), inside the role=\"search\" container of the results list; the \"/\" kbd hint is removed (decided by the Design System Lead, B019-2); docs/src/docs.css: field styles and .shell-search-key removed. Decisions asked first: the \"/\" shortcut removed with its hint, or kept with a way to turn it off (WCAG 2.1.4); how the results list is announced (combobox role) until the dropdown list B057 exists; size.search-field-height (40px) against the 39px TextInput, and size.search-field (360px) as the field width.",
+      "doneWhen": [
+        "The site search uses TextInput type search, with no \"/\" hint.",
+        "The \"/\" shortcut follows the Design System Lead's decision and meets WCAG 2.1.4.",
+        "Findings 71 and 75 are gone from the next compliance audit."
+      ],
+      "priority": "medium",
+      "release": "R4"
+    },
+    {
+      "id": "B166",
+      "title": "Documentation site: use the TextInput in the site fields",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "proposal",
+      "description": "The text and number fields of the Playground, the Design preview and the Icons page are TextInputs.",
+      "why": "Compliance audit of Step B019-3 (audits/2026-11-22-B019-3.md), findings 72, 73 and 74: TextInput is complete (B019), but these fields are still hand-built, with a label above the field (Design preview, Icons) or nothing shown in the empty field (Playground).",
+      "scope": "docs/src/PlaygroundTab.tsx (text and number controls; the date control stays out), docs/src/DesignPreview.tsx (Content field, keeping its save on blur), docs/src/pages/IconsPage.tsx (Icon name field): TextInput with the label or placeholder inside the field and no label above (decided by the Design System Lead, B019-2); docs/src/docs.css: .playground-input and the input rules of .icon-try removed. Decisions asked first: Playground fields with a label or a placeholder; a number out of range clamped silently, or an error message or a help text with the range; the Icons field text or search type; widths kept with size.playground-input and size.icon-try, or set by the layout grid; the native date control kept.",
+      "doneWhen": [
+        "The Playground text and number controls, the Design preview Content field and the Icons field use TextInput.",
+        "No label above these fields; the label or placeholder is inside the field.",
+        "Findings 72, 73 and 74 are gone from the next compliance audit."
+      ],
+      "priority": "high",
+      "release": "R4"
+    },
+    {
+      "id": "B168",
+      "title": "Public site: login to edit the backlog live",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "decided",
+      "description": "A password login on the public site: once the Design System Lead logs in, the Backlog page becomes live-editable again, like the local work tool.",
+      "why": "Asked by the Design System Lead on 2026-11-22: the public site is a showcase (B152, read-only), but she also wants to use it as a real work tool — keep the showcase for visitors, and get the live, editable Backlog herself once logged in.",
+      "scope": "A login control in the site header (one account, a password); the session is a signed cookie. Logged out: the site stays exactly as today (showcase, Backlog read-only, last release shown). Logged in: the Backlog page's menus (status, priority, release, stage) work again, saving straight to `develop` on GitHub through a new Netlify Function, the same change rules as the local dev server (B092). Not in scope: several accounts; the Branches page (needs a local git worktree, cannot run on Netlify); live editing of design tokens or work time on the public site (could follow the same pattern later, on request).",
+      "doneWhen": [
+        "Logged out, the public site looks and behaves exactly as before (B152): Backlog menus disabled, last release shown.",
+        "A login control in the header opens a password form; the right password logs in, a wrong one shows an error.",
+        "Logged in, the Backlog page's menus are enabled and show the live state of `develop`, not the last release.",
+        "A change on a menu (status, priority, release, stage) is committed and pushed to `develop` on GitHub within the request, the same way the local dev server does it.",
+        "A \"Log out\" control ends the session; after it, the Backlog is read-only again.",
+        "The password and the signing secret are environment variables on Netlify, never written in the repository."
+      ],
+      "priority": "medium"
+    },
+    {
+      "id": "B169",
+      "title": "Password field: TextInput type or its own component",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "A password field for the design system: a `password` type of the TextInput, or a component of its own, replacing the native field of the site login.",
+      "why": "Compliance audit of Step B166-1 (audits/2026-11-22-B166-1.md): the password field of the login Dialog (B168) is a native <input type=\"password\">, because TextInput has no password type. The Design System Lead decided on 2026-11-22 to keep it native for now and to create this ticket.",
+      "scope": "Decide first whether the password field is a type of the TextInput or its own component (design stage, `component` skill). Then a design spec, guidelines and code: show or hide the password, autocomplete, error and help text, accessibility. Once complete, the login Dialog (docs/src/AppShell.tsx, .shell-login-form in docs/src/docs.css) uses it.",
+      "doneWhen": [
+        "The password field exists in the design system (a TextInput type or a component), through the stages of the `component` skill.",
+        "The login Dialog of the site uses it instead of the native field.",
+        "The password field is gone from the \"not in the design system\" list of the next compliance audit."
+      ],
+      "priority": "low",
+      "release": "R4"
+    },
+    {
+      "id": "B170",
+      "title": "Fix flow for the documentation site",
+      "category": "Skills",
+      "status": "done",
+      "origin": "decided",
+      "description": "A light flow for the fixes of the documentation site: a `fix/<topic>` branch, a short ticket, a minimal change, preview and validation, a short STEPS entry, no version and no changelog.",
+      "why": "The fix of the Frame Playground canvas (B143-4) showed that a defect of the site does not need the component flow (version, changelog, audits). The Design System Lead decided on 2026-11-22 to keep a light circuit for these fixes.",
+      "scope": "New `fix` skill, a fourth branch type `fix/<topic>` in `git-workflow`, a row in the `orchestrator` table and a line in `CLAUDE.md`. Only the documentation site is concerned: a fix of a component keeps the component flow.",
+      "doneWhen": [
+        "The `fix` skill exists and is dispatched by the `orchestrator`.",
+        "`git-workflow` and `CLAUDE.md` name the `fix/<topic>` branch type.",
+        "The next fix of the documentation site follows the flow, with no version and no changelog."
+      ],
+      "priority": "medium"
     }
   ]
 }

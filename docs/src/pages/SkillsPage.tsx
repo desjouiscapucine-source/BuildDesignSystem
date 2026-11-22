@@ -1,18 +1,18 @@
 import { useEffect } from "react";
 import { Card, Link } from "@ds/components";
 import { Markdown } from "../Markdown";
-import { cardBody, childSkills, dispatchTable, parentSkill, PARENT_SKILL, type Skill } from "../skills";
+import { cardBody, childSkills, dispatchTable, PARENT_SKILL, skillGroups, type Skill } from "../skills";
 import { Header } from "./SectionPages";
 
 const anchor = (name: string) => `skill-${name}`;
 
 function SkillCard({ skill, open }: { skill: Skill; open?: boolean }) {
   return (
-    <Card className="skill-card" id={anchor(skill.name)} title={skill.name} headingLevel={3}>
+    <Card className="skill-card" id={anchor(skill.name)} title={skill.name} headingLevel={4}>
       <p>{skill.description}</p>
       <details open={open}>
         <summary>Show the full skill</summary>
-        <Markdown source={cardBody(skill.body)} />
+        <Markdown source={cardBody(skill.body, 4)} />
       </details>
     </Card>
   );
@@ -50,7 +50,8 @@ export function SkillsPage({ open }: { open?: string } = {}) {
         <li>
           <strong>Add a skill</strong>: propose it in the Backlog (category Skills); once approved, create{" "}
           <code>.claude/skills/&lt;name&gt;/SKILL.md</code> with a <code>name</code> and a <code>description</code>, and add
-          its row to the dispatch table of the <code>{PARENT_SKILL}</code>. It appears on this page automatically.
+          its row to the dispatch table of the <code>{PARENT_SKILL}</code> and its theme to <code>SKILL_THEMES</code> in{" "}
+          <code>docs/src/skills.ts</code>. It appears on this page automatically (in "Other" until it has a theme).
         </li>
         <li>
           <strong>Child skills never dispatch to each other</strong>: dispatching happens only in the{" "}
@@ -79,9 +80,13 @@ export function SkillsPage({ open }: { open?: string } = {}) {
       {dispatchTable ? <Markdown source={dispatchTable} /> : <p className="empty">No dispatch table found.</p>}
 
       <h2>Skills</h2>
-      {parentSkill && <SkillCard skill={parentSkill} open={open === parentSkill.name} />}
-      {childSkills.map((skill) => (
-        <SkillCard key={skill.name} skill={skill} open={open === skill.name} />
+      {skillGroups.map((group) => (
+        <section key={group.title} className="skill-group">
+          <h3>{group.title}</h3>
+          {group.skills.map((skill) => (
+            <SkillCard key={skill.name} skill={skill} open={open === skill.name} />
+          ))}
+        </section>
       ))}
     </>
   );

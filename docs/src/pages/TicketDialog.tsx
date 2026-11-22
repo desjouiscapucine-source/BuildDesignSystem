@@ -1,5 +1,5 @@
 import { useRef, type ReactNode } from "react";
-import { Card, Dialog, Link } from "@ds/components";
+import { Card, Dialog, Link, Tag } from "@ds/components";
 import { Markdown } from "../Markdown";
 import { decisionLabels, prototypeSpecs, statusLabels, type BacklogItem } from "../backlog";
 
@@ -115,7 +115,9 @@ export function TicketDialog({
                     <li key={index}>
                       <Card title={`Iteration ${index + 1}`} headingLevel={4}>
                         <p>
-                          <span className={`backlog-tag ${iteration.decision}`}>{decisionLabels[iteration.decision]}</span>
+                          <Tag tone={iteration.decision === "validated" ? "success" : "warning"}>
+                            {decisionLabels[iteration.decision]}
+                          </Tag>
                         </p>
                         <p>{iteration.feedback}</p>
                       </Card>

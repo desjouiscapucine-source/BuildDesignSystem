@@ -39,9 +39,26 @@ function Canvas() {
   }, []);
 
   useEffect(() => {
-    const observer = new ResizeObserver(() => post({ type: "playground-height", height: document.body.scrollHeight }));
+    // Width: the widest child of the page plus the page padding (the page itself is as wide as the screen, so it cannot be measured).
+    const contentWidth = () => {
+      const style = getComputedStyle(document.body);
+      const padding = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+      const root = document.getElementById("root")!;
+      return Math.ceil(Math.max(0, ...Array.from(root.children, (child) => (child as HTMLElement).offsetWidth)) + padding);
+    };
+    const report = () => {
+      post({ type: "playground-height", height: document.body.scrollHeight });
+      post({ type: "playground-width", width: contentWidth() });
+    };
+    const observer = new ResizeObserver(report);
     observer.observe(document.body);
-    return () => observer.disconnect();
+    // The content is drawn after the first values arrive and can change width without the page changing size.
+    const mutations = new MutationObserver(report);
+    mutations.observe(document.getElementById("root")!, { childList: true, subtree: true, attributes: true });
+    return () => {
+      observer.disconnect();
+      mutations.disconnect();
+    };
   }, []);
 
   if (!playground) return <p className="empty">No playground for “{slug}”.</p>;

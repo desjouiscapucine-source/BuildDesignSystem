@@ -1,3 +1,4 @@
+import { Tag } from "@ds/components";
 import { components, levels } from "../registry";
 import { Header } from "./SectionPages";
 
@@ -32,7 +33,7 @@ const structure: NavNode = {
   level: 0,
   children: [
     {
-      label: "Documentation",
+      label: "Design system",
       level: 1,
       note: "opens on Overview",
       children: [
@@ -75,13 +76,13 @@ const structure: NavNode = {
         { label: "Projects", level: 2, note: "one page per project (Level 3): user journey, then user flow and prototype" },
       ],
     },
-    { label: "Portfolio", level: 1, note: "nothing yet" },
+    { label: "Portfolio", level: 1, note: "experience, skills and education" },
   ],
 };
 
 const levelRows = [
   { level: 0, content: "Landing page" },
-  { level: 1, content: "Spaces: Documentation, Portfolio" },
+  { level: 1, content: "Spaces: Design system, Portfolio" },
   { level: 2, content: "Sections of a space: Overview, Governance, Foundations, Components, Prototypes, Projects" },
   { level: 3, content: "Pages of a section (e.g. one prototype), or categories of components" },
   { level: 4, content: "Component pages only" },
@@ -108,7 +109,7 @@ function Node({ node }: { node: NavNode }) {
   return (
     <li>
       <div className="nav-tree-row">
-        <span className="nav-tree-level">L{node.level}</span>
+        <Tag>L{node.level}</Tag>
         <span className="nav-tree-label">{node.label}</span>
         {node.note && <span className="nav-tree-note">{node.note}</span>}
       </div>

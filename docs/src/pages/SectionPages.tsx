@@ -1,5 +1,5 @@
 // Pages that only lead to other pages (navigation skill): Overview, Level 2 sections (Prototypes included),
-// component categories and Portfolio. Their links are stacked cards (card skill).
+// component categories. Their links are stacked cards (card skill).
 import type { ReactNode } from "react";
 import { components } from "../registry";
 import { StageBadge } from "../StageBadge";
@@ -44,8 +44,9 @@ export function OverviewPage() {
       <section>
         <h2>Description</h2>
         <p>
-          The documentation of the design system, built without Figma: the rules of the project, the design tokens, and
-          each component with its design spec, usage guidelines and code.
+          This is the design system of BuildDesignSystem, the project that built this site. Everything you see here (the
+          rules of the project, the design tokens, each component with its design spec, usage guidelines and code) was
+          made with it, without Figma.
         </p>
       </section>
       <section>
@@ -113,11 +114,3 @@ export function PrototypesPage() {
 }
 
 // Level 1 — Portfolio: content not defined yet.
-export function PortfolioPage() {
-  return (
-    <>
-      <Header title="Portfolio" lead="Work made with the design system" />
-      <p className="empty">Nothing yet.</p>
-    </>
-  );
-}

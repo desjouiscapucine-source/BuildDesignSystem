@@ -202,7 +202,7 @@ Semantic tier: **`opacity.<usage>`** → `--opacity-<usage>`, named by usage.
 
 ## Size tokens
 
-Semantic tier: **`size.<usage>`** → `--size-<usage>`, named by usage. Values in **px**.
+Semantic tier: **`size.<usage>`** → `--size-<usage>`, named by usage. Values in **px**, except `size.sticky-note` and `size.zoom-level` (rem, see the table).
 
 | Token | Value | Usage |
 | ----- | ----- | ----- |
@@ -213,6 +213,12 @@ Semantic tier: **`size.<usage>`** → `--size-<usage>`, named by usage. Values i
 | `size.dialog-small` | 400px | Maximum width of a small Dialog |
 | `size.dialog-medium` | 560px | Maximum width of a medium Dialog (default) |
 | `size.dialog-large` | 800px | Maximum width of a large Dialog |
+| `size.panel` | 400px | Default width of the Panel of the UX playground |
+| `size.panel-min` | 280px | Minimum width of the Panel when it is resized |
+| `size.panel-max` | 480px | Maximum width of the Panel when it is resized |
+| `size.resize-handle` | 24px | Width and height of the hit area of a resize handle (WCAG 2.5.8) |
+| `size.sticky-note` | 10rem (160px) | Width and height of a sticky note (StickyNote, fixed square); **in rem**, so the note grows with the text size (WCAG 1.4.4) — decided by the Design System Lead, B145 |
+| `size.zoom-level` | 2.5rem (40px) | Minimum width of the zoom level of the ZoomControls (fits "400%"); **in rem**, so it grows with the text size (WCAG 1.4.4) and the buttons do not move when the level changes — decided by the Design System Lead, B161 |
 
 ## Breakpoint tokens
 

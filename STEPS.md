@@ -4926,3 +4926,1455 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-14-B130-4.md` (created)
 - `projects/ux-playground/project.json`, `docs/src/projects.ts`, `docs/src/pages/ProjectPage.tsx`, `docs/src/docs.css`, `.claude/skills/layout/SKILL.md`, `STEPS.md` (updated)
+
+## Step B139-1 — How to use skills: skills grouped by theme
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- Ticket B139 (Tooling, priority high, release R2): organize the How to use skills page by grouping the skills by theme.
+- Themes, in order: Entry point (orchestrator, never-invent), Components (component, component-spec, component-guidelines, component-code, component-structure, changelog, accessibility-check), Tokens (token-naming), Pages & layout (layout, page-header, page-content, card, navigation), Prototypes (prototype-setup), Backlog & releases (backlog, ticket, release-planning, git-workflow).
+
+**What was done**
+- `docs/src/skills.ts`: `SKILL_THEMES` (the approved themes) and `skillGroups` (the skills grouped in that order; a skill without a theme goes to a last group, "Other"). `cardBody` takes the card heading level, so the body headings stay under the card title (h6 at most).
+- `docs/src/pages/SkillsPage.tsx`: the Skills section shows one `section` per theme with an `h3` title; skill cards are `h4`. The "Add a skill" item says to add its theme to `SKILL_THEMES`. How to use and Hierarchy unchanged.
+- `docs/src/docs.css`: `.skill-group` keeps the 16px spacing between cards; body headings (now h5/h6) keep the body text size.
+- Verification: all 20 skills in one group each, 16px between cards, `#/skills/<name>` still opens and scrolls to the skill, no console error, typecheck and build pass.
+- Compliance audit: `audits/2026-11-14-B139-1.md` — 42 compliant, 11 non-compliant, 21 not in the design system; 0 fixed, 1 new (#56: headings in the skill body have no text style), proposed as a new ticket.
+- B139 status `done`.
+
+**Files**
+- `audits/2026-11-14-B139-1.md` (created)
+- `docs/src/skills.ts`, `docs/src/pages/SkillsPage.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B138-1 — Portfolio page: experience of the Design System Lead
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- The Portfolio page shows the design experience of the Design System Lead (from the CV slides), in English, without the first name and without contact details. Title "Designing systems that scale", subtitle "Product Designer · Design Systems · AI-assisted design".
+- **Exception to the `page-content` skill and the TimelineStep guidelines** (chronological order), for this page only: the steps go from the most recent to the oldest — BNP Paribas, then the mc2i internal project right below it, then Volunteer projects, then Tokywoky.
+- **Exception to the `page-content` grid**: a skills panel on the left. Desktop: panel on 3 columns, cards on 6, timeline on 3.
+- Content of the cards approved: BNP Paribas (Tag "Ongoing", context, sections Product Designer, Design System PO, AI-powered forms, AI-assisted design · Since summer 2026), mc2i (Jan → Dec 2024), Volunteer projects (Jul → Sep 2022), Tokywoky (Jun 2021 → May 2023, start date chosen by Claude at the Lead's request); the short descriptions of the timeline steps; section titles in the `label` style, the note in the secondary color.
+- Skills panel: groups Skills, Tools, Expertise. Education: Icademie only, as a section under the experience cards, not linked to the timeline.
+- No side navigation on the Portfolio page (desktop); below desktop the burger still opens "Spaces".
+- The skills Tags need another color: new ticket **B141 — Tag: brand tone** (high, R2), worked in a Composant Tag conversation. Images: later (B138-2).
+
+**What was done**
+- `docs/src/pages/PortfolioPage.tsx` (new): page header, skills panel (Tag), Timeline + TimelineStep on the right, Card per job (anchor = step `href`, selection following the card at the top below the sticky header, measured space after the last card), Education (Card, `headingLevel` 3). Dates at day precision until B137 (month-year, "Present"); the ongoing job ends today.
+- `docs/src/docs.css`: Portfolio block (full-width 12-column grid, sticky panel and timeline below the header, cards' scroll margin, Tags 4px apart); `.shell--single-page` hides the side navigation on desktop.
+- `docs/src/AppShell.tsx`: a space that is its own only page has no side navigation (desktop) and only the "Spaces" item below desktop.
+- `docs/src/pages/SectionPages.tsx`, `docs/src/App.tsx`: placeholder removed, new page wired.
+- `.claude/skills/navigation/SKILL.md`, `docs/src/pages/NavigationPage.tsx`: Portfolio content and its missing side navigation.
+- Verification: typecheck and build pass, no console error; columns checked at 1440px, no overflow at 1024px, timeline button and no horizontal scroll at 375px; a click on a step jumps to its card below the header.
+- Compliance audit: `audits/2026-11-14-B138-1.md` — 50 compliant, 14 non-compliant, 22 not in the design system; 4 new (#56–#59), of which #57 (panel keyboard access) and #58 (note style) fixed in the step and #56 partly (Tag spacing). Open: #56 (more than 3 tags side by side → extend B141?), #59 (card sub-headings in `label` → extend B140?).
+- B138 status `in-progress`; B141 created and reserved.
+
+**Files**
+- `docs/src/pages/PortfolioPage.tsx`, `audits/2026-11-14-B138-1.md` (created)
+- `docs/src/docs.css`, `docs/src/AppShell.tsx`, `docs/src/App.tsx`, `docs/src/pages/SectionPages.tsx`, `docs/src/pages/NavigationPage.tsx`, `.claude/skills/navigation/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B138-2 — Portfolio page: education in the timeline, landing description
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B138-1 merged into `develop`.
+- Education: the other degrees of the CV are added (Euridis, Ipac, École Sup Paris, with Icademie), and the trainings become steps of the timeline, after the jobs, each group from the most recent to the oldest (same approved exception). Short titles (60 characters max): the degree type goes to the step description and the card ("Master's degree · 2019 – 2021"); years only: 1 Jan → 31 Dec until B137; timeline label "Experience and education".
+- Landing page: the Portfolio space description becomes "Experience, skills and education".
+- Finding 56 (more than 3 tags side by side): the **Tag guidelines change** (no exception) → B141 extended. Finding 59 (card sub-headings in `label`): **B140 extended** to the Portfolio cards.
+- The Tag brand tone (B141) is worked in its own Composant Tag conversation.
+
+**What was done**
+- `docs/src/pages/PortfolioPage.tsx`: `education` with dates and degree; a `steps` array (jobs then trainings) drives the timeline and the selection; education cards show "<degree> · <dates>".
+- `index.html`, `docs/src/structure.ts`: Portfolio description.
+- `backlog/backlog.json`: B141 and B140 scope and "done when" extended.
+- Verification: typecheck passes; 8 steps; a click on a training step jumps to its card below the header and selects it; landing page shows the new description; Backlog page loads.
+- Compliance audit: `audits/2026-11-14-B138-2.md` — 50 compliant, 13 non-compliant, 22 not in the design system; 2 fixed (#57, #58), 1 new (#60: job and degree titles in Title Case, sentence case asked → question for the Design System Lead, B138).
+
+**Files**
+- `audits/2026-11-14-B138-2.md` (created)
+- `docs/src/pages/PortfolioPage.tsx`, `docs/src/structure.ts`, `index.html`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B118-1 — Documentation site: tags use the Tag component
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- Atomic Design level of the component pages: neutral Tag, sentence case ("Atom").
+- Iteration decisions of the ticket modal: "Validated" success, "Changes requested" warning, no icon.
+- Levels L0–L4 of the Navigation structure page: neutral Tag.
+- "Complete" stays in the stage indicator (B060), out of B118.
+- B118 stays in progress: it waits for the brand tone of the Tag (B141), then chooses which tags of the site use it. B147, created as a duplicate of B141, is removed (B141 scope extended).
+
+**What was done**
+- `ds-compliance-fix` agent: hand-drawn tags replaced with `Tag` from `@ds/components` (backlog category and "Decided" already in TicketCard); `.level-tag`, `.backlog-tag`, `.nav-tree-level` removed from `docs.css`.
+- Verification: typecheck and build pass; preview checked on a component page, the Navigation structure page and the B031 ticket modal; no console error.
+- Compliance audit: `audits/2026-11-14-B118-1.md` — 54 compliant, 12 non-compliant, 22 not in the design system; 1 fixed (#9), 0 new; no new ticket.
+
+**Files**
+- `audits/2026-11-14-B118-1.md` (created)
+- `docs/src/pages/ComponentPage.tsx`, `docs/src/pages/NavigationPage.tsx`, `docs/src/pages/TicketDialog.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B118-2 — Documentation site: tags use the Tag component, ticket closed
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B118 is closed with the tones of B118-1 (neutral levels, success / warning iteration decisions), without waiting for the brand tone.
+- Choosing which tags of the documentation site use the brand tone (e.g. the levels L0–L4 of the Navigation structure page) becomes part of B141 (scope and "done when" extended on `develop`).
+
+**What was done**
+- `backlog/backlog.json`: B118 `done`, scope updated.
+- No change to the site since B118-1: the compliance audit `audits/2026-11-14-B118-1.md` stays valid.
+- Branch updated from `develop`, then merged into `develop`.
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B141-1 — Tag: brand tone, design approved
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- New Tag tone **`brand`** (prop `tone="brand"`, class `.ds-tag--brand`): background `background.brand-subtle`, label `text.brand`, icon `icon.brand` (5.35:1). Chosen over a solid brand background with white text.
+- Design stage of the brand tone approved; next: guidelines.
+
+**What was done**
+- `spec.md`: `brand` added to the `tone` values and to the Design tokens table.
+- `design/tokens.json`: variant `brand`.
+- `tokens/contrast-pairs.json`: pair `icon.brand` on `background.brand-subtle` (3:1) added; `npm run tokens`: 62/62 pairs pass.
+- Accessibility check (`audits/2026-11-14-B141-1-accessibility.md`): 2 pass, 0 fail. Token audit (`audits/2026-11-14-B141-1-tokens.md`): 90 values, 0 fail.
+- `docs/` unchanged: the latest compliance audit (`audits/2026-11-14-B138-2.md`) still applies.
+- The Tag stays `complete` 1.0 until the code of the brand tone is approved (new version then). B141 stage `guidelines`.
+
+**Files**
+- `audits/2026-11-14-B141-1-accessibility.md`, `audits/2026-11-14-B141-1-tokens.md` (created)
+- `components/Tag/spec.md`, `components/Tag/design/tokens.json`, `tokens/contrast-pairs.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B141-2 — Tag: brand tone, guidelines approved
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- `brand` highlights content with no meaning of feedback (e.g. skills, keywords); `neutral` stays the default for categories; never `brand` for a status.
+- Tones can be mixed in the same group of tags.
+- No limit on the number of tags side by side: they wrap to the next line (replaces "at most 3"; finding 56 of `audits/2026-11-14-B138-1.md`).
+- Component description: "A small label that names a category or a status, or highlights content."
+- Guidelines approved; next: code.
+
+**What was done**
+- `guidelines.md`: When to use, Usage best practices, Do's and don'ts (brand pair replaces the "3 tags" pair).
+- `meta.json`: description.
+- Accessibility check (`audits/2026-11-14-B141-2-accessibility.md`): 3 pass, 0 fail.
+- `docs/` unchanged: the latest compliance audit still applies. B141 stage `code`.
+
+**Files**
+- `audits/2026-11-14-B141-2-accessibility.md` (created)
+- `components/Tag/guidelines.md`, `components/Tag/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B138-3 — Portfolio page: Tokywoky mockups
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B138-2 merged into `develop`.
+- Job titles and degree names stay in Title Case: an **approved exception** to the sentence case of the Card and TimelineStep guidelines (finding 60).
+- Images go inside the cards (Card `clickable-image`). The Tokywoky mockups are recreated by Claude from the Lead's captures, as a new section of the Lead's Figma file "All project" ("Tokywoky — mockups (recreated)", editable layers, local components, Lato), then exported and shown in the Tokywoky card. Photos and brand products are replaced by colored shapes.
+- The Figma connector now uses the Lead's personal account (the file is not on the BNP Paribas account).
+
+**What was done**
+- Figma (outside the repository): section "Tokywoky — mockups (recreated)" with palette, components (16 icons, Button 4 variants, round icon button, side menu, mobile tab bar 5 variants, text field, notification item, product tile) and 6 screens (desktop: Product testing — Apply to test, Homepage; mobile: Notifications, Edit profile, Routines — Product tag, Homepage).
+- `assets/portfolio/tokywoky/*.png` (new): the 6 screens exported from Figma (desktop 1440 px, mobile 2x).
+- `docs/src/pages/PortfolioPage.tsx`: optional `images` per experience; the Tokywoky card uses `clickable-image` with alt texts; the other cards stay `default`.
+- `backlog/backlog.json`: B138 scope ("cards with images where mockups exist").
+- Verification: typecheck passes; the 6 thumbnails load (1440 / 750 px), a click opens the ImageViewer with the right image, Escape closes it; no console error.
+- Compliance audit: `audits/2026-11-14-B138-3.md` — 52 compliant, 12 non-compliant, 22 not in the design system; #60 resolved by approval; no new finding. Remark: portrait mockups are cropped to 16:9 in the thumbnails (per the Card spec).
+
+**Files**
+- `assets/portfolio/tokywoky/` (6 PNG), `audits/2026-11-14-B138-3.md` (created)
+- `docs/src/pages/PortfolioPage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B138-4 — Portfolio page: BNP Paribas diagrams, data visualization, credit chain
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B138-3 merged into `develop`.
+- Two BNP Paribas workshop diagrams are added to the BNP Paribas card (workspace and settings map; user flow of a data table page). Publishing them is the Lead's decision.
+- New section "Data visualization": dashboards and charts for a reporting application linked to My Credit App.
+- Context of the card: a cross-functional UX team at BNP Paribas CIB, working across the credit chain; timeline step description "Cross-functional UX team, credit chain."
+
+**What was done**
+- `assets/portfolio/bnp-paribas/workspace-map.webp`, `table-user-flow.webp` (new): images given by the Lead.
+- `docs/src/pages/PortfolioPage.tsx`: BNP Paribas card in `clickable-image` with alt texts; "Data visualization" section; context and timeline description.
+- Verification: typecheck passes; the 2 thumbnails load (2000 px), no console error.
+- Compliance audit: `audits/2026-11-14-B138-4.md` — 56 compliant, 11 non-compliant, 22 not in the design system; #9 fixed (B118, from `develop`), no new finding. Remarks: diagrams cropped to 16:9 in the thumbnails; dense images may need a longer text alternative (guideline question).
+
+**Files**
+- `assets/portfolio/bnp-paribas/` (2 images), `audits/2026-11-14-B138-4.md` (created)
+- `docs/src/pages/PortfolioPage.tsx`, `STEPS.md` (updated)
+
+## Step B141-3 — Tag: brand tone, code approved (Tag 1.1)
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- Code of the brand tone approved; the `code` icon stays on the "React" tag of the "With an icon" example.
+- Tag version 1.1 (addition).
+
+**What was done**
+- `Tag.tsx`: `"brand"` added to `TagTone`; prop and component comments updated.
+- `Tag.css`: `.ds-tag--brand` (`--color-background-brand-subtle`, `--color-text-brand`, `--color-icon-brand`).
+- `examples.tsx`: brand "React" in Tones and With an icon; Side by side describes the no-limit rule and shows mixed tones wrapping.
+- `playground.tsx`: `brand` in the Tone control.
+- `meta.json`: version 1.1 with its changelog entry.
+- Verification: `tsc` and `npm run build` pass; computed colors checked (5.35:1); wrapping and ellipsis checked at 375px; no console error.
+- Accessibility check (`audits/2026-11-14-B141-3-accessibility.md`): 5 pass, 0 fail. Token audit (`audits/2026-11-14-B141-3-tokens.md`): 30 values, 0 fail.
+- `docs/` unchanged: the latest compliance audit still applies.
+
+**Files**
+- `audits/2026-11-14-B141-3-accessibility.md`, `audits/2026-11-14-B141-3-tokens.md` (created)
+- `components/Tag/Tag.tsx`, `components/Tag/Tag.css`, `components/Tag/examples.tsx`, `components/Tag/playground.tsx`, `components/Tag/meta.json`, `STEPS.md` (updated)
+
+## Step B138-5 — Portfolio page: personal design system project, governance, mc2i
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B138-4 merged into `develop`.
+- New first step and card: **"Design system built with AI — Personal project"** (16 Oct 2026 → today, "Ongoing"): design system without Figma, 20 Claude skills, 4 agents, full process; 4 captures of the documentation site (landing page, Card component page, Backlog, How to use skills).
+- BNP Paribas card: the Lead is a consultant employed by mc2i, on assignment at BNP Paribas CIB (context sentence); design system governance process item and the Lead's governance flowchart (3rd image); Design System PO: "Integration tests" removed, "UI review of what has been developed, against the design" and "Breaking down epics into user stories" added.
+
+**What was done**
+- `assets/portfolio/bnp-paribas/governance-process.webp` (image given by the Lead), `assets/portfolio/build-design-system/*.png` (4 captures of the local site at 1440 × 900, headless Chrome).
+- `docs/src/pages/PortfolioPage.tsx`: new experience first (timeline 9 steps), BNP Paribas images, context and items.
+- Verification: typecheck passes; the new card, its "Ongoing" Tag and its 4 thumbnails load; 3 BNP thumbnails load; no console error.
+- Compliance audit: `audits/2026-11-14-B138-5.md` — 58 compliant, 11 non-compliant, 22 not in the design system; no new finding. Remarks: thumbnails cropped to 16:9, dense flowchart, PNG captures heavier than WebP.
+
+**Files**
+- `assets/portfolio/bnp-paribas/governance-process.webp`, `assets/portfolio/build-design-system/` (4 captures), `audits/2026-11-14-B138-5.md` (created)
+- `docs/src/pages/PortfolioPage.tsx`, `STEPS.md` (updated)
+
+## Step B138-6 — Portfolio page: AI team organization at BNP Paribas
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B138-5 merged into `develop`.
+- In the "AI-assisted design" section of the BNP Paribas card: the team organization set up around the AI tools (an owner per domain, GitHub as the source of truth for the UX and development docs, a branch and pull request workflow with Claude, linked to the Jira tickets), and the Lead's team workflow diagram (4th image, already anonymized).
+
+**What was done**
+- `assets/portfolio/bnp-paribas/ai-team-workflow.webp` (image given by the Lead).
+- `docs/src/pages/PortfolioPage.tsx`: new item and image with its alt text.
+- Verification: typecheck passes; the 4 BNP thumbnails load; no console error.
+- Compliance audit: `audits/2026-11-14-B138-6.md` — 58 compliant, 11 non-compliant, 22 not in the design system; no new finding.
+
+**Files**
+- `assets/portfolio/bnp-paribas/ai-team-workflow.webp`, `audits/2026-11-14-B138-6.md` (created)
+- `docs/src/pages/PortfolioPage.tsx`, `STEPS.md` (updated)
+
+## Step B141-4 — Portfolio page: skills in the brand Tag tone
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- The skills, tools and expertise of the Portfolio page use the Tag `brand` tone. Rendering validated.
+
+**What was done**
+- `PortfolioPage.tsx`: `<Tag>` → `<Tag tone="brand">` for the 22 skills tags (the "Ongoing" tag stays `info`). Checked in the browser: 22 brand tags on the `background.subtle` panel, no console error.
+- Compliance audit (`audits/2026-11-14-B141-4.md`): 59 compliant, 10 non-compliant (all covered by existing tickets), 22 not in the design system; finding 56 fixed; no new ticket.
+
+**Files**
+- `audits/2026-11-14-B141-4.md` (created)
+## Step B138-7 — Portfolio page: anonymized BNP Paribas mockups
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B138-6 merged into `develop`.
+- Mockups exported as SVG by the Lead are anonymized by Claude and added to the BNP Paribas card: "Dashboard — Pending signatures" and "Prototype" (AI data extraction). "Request_Greenlight" is anonymized too but kept in Figma only, not in the portfolio.
+- Anonymization of an SVG: MyCreditApp logo → neutral "Logo" block; BNP Paribas colors → design system colors (header → brand, green and gold actions → brand, teal and purple → info, tags → warning / success); outlined text → one lorem ipsum line per text line, same position and size, not distorted (the first version, squeezed to the original width, was blurry).
+- Each anonymized mockup is also imported into the Figma file "All project" (editable vectors).
+
+**What was done**
+- `assets/portfolio/bnp-paribas/dashboard-pending-signatures.svg`, `ai-data-extraction.svg` (new, anonymized; the anonymizer script stays outside the repository).
+- `docs/src/pages/PortfolioPage.tsx`: 2 images with alt texts in the BNP Paribas card (6 images).
+- Verification: typecheck passes; the 6 BNP thumbnails load; no console error; each SVG checked visually and only design system colors left.
+- Compliance audit: `audits/2026-11-14-B138-7.md` — 58 compliant, 11 non-compliant, 22 not in the design system; no new finding. Remarks: dashboard SVG heavy (654 KB, outlined text); lorem text of the AI mockup in the system font when Open Sans is not installed; near-square dashboard cropped in its thumbnail.
+
+**Files**
+- `assets/portfolio/bnp-paribas/dashboard-pending-signatures.svg`, `ai-data-extraction.svg`, `audits/2026-11-14-B138-7.md` (created)
+- `docs/src/pages/PortfolioPage.tsx`, `STEPS.md` (updated)
+
+## Step B141-5 — Tag: brand level tag, 16px between tags; ticket closed
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- The Atomic Design level of the component pages uses the Tag `brand` tone (the L0–L4 tags of the Navigation structure page stay `neutral`).
+- Tag guidelines: a category is `neutral` by default, `brand` when it is highlighted (e.g. the level of a component in its page header) — replaces "always neutral".
+- Spacing between tags side by side: `--space-16`, in both directions (between the lines when they wrap too). Applied to TicketCard.
+- Tag 1.2 and TicketCard 1.1.
+
+**What was done**
+- `ComponentPage.tsx`: level Tag `tone="brand"` (comment updated).
+- Tag: `guidelines.md` (category rule, spacing), `examples.tsx` (gap `--space-16`), `meta.json` 1.2.
+- TicketCard: `TicketCard.css`, `spec.md`, `design/tokens.json` (tags row gap `--space-16`), `meta.json` 1.1.
+- `docs.css`: `.portfolio-tags` gap `--space-16`.
+- Verification: type check passes; computed gap 16px on the Portfolio and Backlog pages; Backlog at 320px: no overflow, no horizontal scroll; no console error.
+- Token audit (`audits/2026-11-14-B141-5-tokens.md`): 105 values, 0 fail. Accessibility check (`audits/2026-11-14-B141-5-accessibility.md`): 3 pass, 0 fail.
+- Compliance audit (`audits/2026-11-14-B141-5.md`): 59 compliant, 10 non-compliant (existing tickets), 22 not in the design system; 0 new; question added for the stage indicator spacing (B060). No new ticket.
+- B141 status `done`.
+
+**Files**
+- `audits/2026-11-14-B141-5.md`, `audits/2026-11-14-B141-5-tokens.md`, `audits/2026-11-14-B141-5-accessibility.md` (created)
+- `docs/src/pages/ComponentPage.tsx`, `docs/src/docs.css`, `components/Tag/guidelines.md`, `components/Tag/examples.tsx`, `components/Tag/meta.json`, `components/TicketCard/TicketCard.css`, `components/TicketCard/spec.md`, `components/TicketCard/design/tokens.json`, `components/TicketCard/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B138-8 — Portfolio page: ticket closed
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- B138-7 merged into `develop`. B138 is finished: the Portfolio page shows the personal project, the experience (BNP Paribas, mc2i, volunteer projects, Tokywoky) and the education on a timeline with cards, the skills panel (brand Tag tone, B141-4) and the mockups and diagrams; the BNP Paribas mockups are anonymized.
+
+**What was done**
+- `backlog/backlog.json`: B138 `done`. Branch `governance/portfolio-page` merged into `develop` and deleted.
+- No change to the documentation site: no compliance audit for this step (last report: `audits/2026-11-14-B138-7.md`).
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B148-1 — Portfolio page: Figma and GitHub links, languages
+**Date:** 2026-11-14
+
+**Decisions (made by the Design System Lead)**
+- New ticket **B148** (high, R2) after B138 was closed.
+- Two link buttons on the subtitle line of the Portfolio page, aligned right: "Open the Figma file" (the whole file All project) and "Open GitHub repository" (`CapucineDjs/BuildDesignSystem`, private for now; it will be made public and moved to another account later, the link will be updated then). Brown buttons (Button `primary`) with the `open_in_new` icon, opening in a new tab (the Link guidelines exception: the icon and the accessible name say it).
+- A "Languages" group in the skills panel: French, English (professional).
+
+**What was done**
+- `docs/src/pages/PortfolioPage.tsx`: the page header is written inline (title, then a row with the subtitle and the two buttons); "Languages" in the skills data.
+- `docs/src/docs.css`: `.portfolio-lead-row` (subtitle and buttons on one line, wrapping below on small screens; the subtitle keeps the one-line + ellipsis rule), `.portfolio-links`.
+- `backlog/backlog.json`: B148 reserved, then `done`.
+- Verification: typecheck passes; at 1024px the subtitle and the buttons share one line, buttons right-aligned; at 375px the subtitle is cut with an ellipsis, the buttons go below, no horizontal scroll; `target="_blank"`, accessible names "…, in a new tab".
+- Compliance audit: `audits/2026-11-14-B148-1.md` — 61 compliant, 10 non-compliant, 22 not in the design system; #56 fixed (B141 Tag guidelines); #61 (subtitle ellipsis) and #62 (label in name) found and fixed in the step.
+
+**Files**
+- `audits/2026-11-14-B148-1.md` (created)
+- `docs/src/pages/PortfolioPage.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B148-2 — Portfolio page: French (native)
+**Date:** 2026-11-15
+
+**Decisions (made by the Design System Lead)**
+- B148-1 merged into `develop`. In the Languages group, French gets its level: "French (native)".
+
+**What was done**
+- `docs/src/pages/PortfolioPage.tsx`: Languages tag "French (native)".
+- Verification: typecheck passes; the Languages group shows "French (native)" and "English (professional)".
+- Compliance audit: `audits/2026-11-15-B148-2.md` — 61 compliant, 10 non-compliant, 22 not in the design system; no change.
+
+**Files**
+- `audits/2026-11-15-B148-2.md` (created)
+- `docs/src/pages/PortfolioPage.tsx`, `STEPS.md` (updated)
+
+## Step B149-1 — Repository moved to the new GitHub account
+**Date:** 2026-11-15
+
+**Decisions (made by the Design System Lead)**
+- New ticket **B149** (high, R2): the repository moves from `CapucineDjs/BuildDesignSystem` (private) to **`desjouiscapucine-source/BuildDesignSystem` (public)**, an empty repository created by the Lead; `CapucineDjs` invited as a collaborator (push).
+- No token pasted in the chat: access through the collaborator invitation.
+
+**What was done**
+- History scanned before going public: all 309 commits use the GitHub noreply address; no real name, client ID, phone number or personal email in any version of any file.
+- Every branch (8) and the tag R1 pushed to the new repository, full history; refs compared: identical.
+- `origin` of the project now points to the new repository: one setting shared by the root folder, `BuildDesignSystem-main` and every worktree (the other conversations push there at their next commit).
+- `CLAUDE.md`: the public repository and its move; `docs/src/pages/PortfolioPage.tsx`: the "Open GitHub repository" button points to the new repository. No skill or other page named the repository.
+- `backlog/backlog.json`: B149 reserved, then `done`.
+- Compliance audit: `audits/2026-11-15-B149-1.md` — 61 compliant, 10 non-compliant, 22 not in the design system; no change.
+- Left to the Lead on GitHub (admin of the new account): default branch → `main` (GitHub chose `component/Select`, the first branch pushed); archive or delete the old repository.
+
+**Files**
+- `audits/2026-11-15-B149-1.md` (created)
+- `CLAUDE.md`, `docs/src/pages/PortfolioPage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step R2-1 — Release R2
+**Date:** 2026-11-15
+
+**Decisions (made by the Design System Lead)**
+- Release R2 made on 2026-11-15, ahead of its planned date (Fri 2026-11-20); release validated after the review.
+- B132 extended with findings 64 (search field border pair `border.strong` / `background.brand-subtle`) and 65 (accessible name of the Portfolio skills panel); B140 extended with the h4 headings of the Agents cards (finding 63).
+
+**What was done**
+- Review of `origin/main..origin/develop`: 50 commits, 68 files; 9 of the 23 R2 tickets done (B084 delivered early in R1).
+- Release note `releases/R2.md`: B141 Tag brand tone; B102; B118, B139, B138, B148, B147, B149; Tag 1.2, TicketCard 1.1; 14 tickets carried over to R3 (B055 and B057 from R1).
+- Token audit of every component: `audits/2026-11-15-R2-tokens.md` — 17 components, 0 failures, not blocking.
+- Compliance audit: `audits/2026-11-15-R2.md` — 61 compliant, 13 non-compliant (new: 64, 65; 63 re-listed), 22 not in the design system; no new ticket.
+- `develop` merged into `main`, tag `R2`.
+
+**Files**
+- `releases/R2.md`, `audits/2026-11-15-R2.md`, `audits/2026-11-15-R2-tokens.md` (created)
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B150-1 — Public site on Netlify
+**Date:** 2026-11-15
+
+**Decisions (made by the Design System Lead)**
+- The site is made public on Netlify (kept over GitHub Pages, even with the public repository), the whole site (`/docs/` and `/prototypes/`), deployed from `main` (released work only). B150: Tooling, priority high, release R2.
+- The Netlify account and its link to the repository are created by the Design System Lead.
+- The subtitle of the landing page ("Local workspace for the design system.") will change; the new text is still to give.
+
+**What was done**
+- `netlify.toml`: build command `npm run build`, publish folder `dist`, Node 24.
+- Online the site is read-only (no `/api/*` routes): checked on the built site (`vite preview`) — the Backlog page shows its read-only message, the Branches page says it needs `npm run dev`, the work-time clock is hidden; landing page, Portfolio, documentation and the WorkDescription prototype show with no console error.
+- `.claude/launch.json`: `public-site` configuration (`vite preview`, port 4173) to check the built site.
+- Compliance audit: `audits/2026-11-15-B150-1.md` — 61 compliant, 13 non-compliant, 22 not in the design system; no change, no new ticket.
+
+**Files**
+- `netlify.toml`, `audits/2026-11-15-B150-1.md` (created)
+- `.claude/launch.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B150-2 — Public site online, B150 done
+**Date:** 2026-11-15
+
+**What was done**
+- The Design System Lead created the Netlify site, connected to the repository and deployed from `main`: https://builddesignsystem.netlify.app
+- Checked online: landing page, Portfolio, documentation and the WorkDescription prototype show; the only console errors are the expected 404s of `/api/work-time` (local dev server only; the clock is hidden online).
+- `netlify.toml` reaches `main` with release R3; until then the same settings are set in the Netlify UI.
+- `backlog/backlog.json`: B150 `done`.
+
+**Files**
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B151-1 — Public site: landing page and Design system wording
+**Date:** 2026-11-15
+
+**Decisions (made by the Design System Lead)**
+- Landing page: subtitle "A design system built with AI, from tokens to code." and an introduction text ("BuildDesignSystem is a design system built without Figma…"); the Documentation card renamed Design system.
+- The Documentation space is renamed **Design system** everywhere on the site.
+- Overview: new Description — the design system of BuildDesignSystem, the project that built this site.
+- Every text mentioning `npm run dev` is removed: no message on the Backlog page and in the Design preview tab; Branches page: "Read live from git." and "Not available online.".
+- B151: Tooling, priority high, release R3.
+
+**What was done**
+- `index.html`: subtitle, introduction paragraph, Design system card. `docs/index.html`: tab title "Design system — BuildDesignSystem".
+- `docs/src/structure.ts` (space label, Overview description), `App.tsx` (comment), `pages/NavigationPage.tsx`, `pages/PortfolioPage.tsx` (image alt): Design system.
+- `pages/SectionPages.tsx`: Overview Description.
+- `backlog.ts`, `pages/BacklogPage.tsx`, `DesignPreview.tsx`, `pages/BranchesPage.tsx`: `npm run dev` messages removed.
+- `.claude/skills/navigation/SKILL.md`: the structure, Level 0 and breadcrumb rules say Design system.
+- Checked on the dev server and on the built site (`vite preview`): no text mentions `npm run dev`.
+- Compliance audit: `audits/2026-11-15-B151-1.md` — 62 compliant, 14 non-compliant (new: #66, no feedback when a change cannot be saved; #44 one new occurrence), 22 not in the design system.
+- `backlog/backlog.json`: B151 `done`.
+
+**Files**
+- `audits/2026-11-15-B151-1.md` (created)
+- `index.html`, `docs/index.html`, `docs/src/structure.ts`, `docs/src/App.tsx`, `docs/src/backlog.ts`, `docs/src/DesignPreview.tsx`, `docs/src/pages/SectionPages.tsx`, `docs/src/pages/NavigationPage.tsx`, `docs/src/pages/PortfolioPage.tsx`, `docs/src/pages/BacklogPage.tsx`, `docs/src/pages/BranchesPage.tsx`, `.claude/skills/navigation/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B152-1 — Public site: frozen work time and read-only tickets
+**Date:** 2026-11-15
+
+**Decisions (made by the Design System Lead)**
+- Online, the time spent building is shown as a frozen total, saved in the repository and updated on release day; locally the clock keeps ticking.
+- Online, the ticket menus are disabled (Select `disabled`) until the read-only TicketCard variant (B153, reserved on `component/TicketCard`, priority high, no release yet).
+- B152: Tooling, priority high, release R3; an early release R3 follows, run from the Gouvernance conversation.
+
+**What was done**
+- `scripts/work-time.ts`: the work-time calculation, moved out of `vite.config.ts` (which now imports it); `scripts/save-work-time.ts` + `npm run work-time`: saves the total in `docs/src/work-time.json` (69,508 s today).
+- `home.ts` and `docs/src/AppShell.tsx`: without `/api/work-time`, the clock shows the saved total, frozen.
+- `docs/src/backlog.ts` (`readOnly` when `/api/backlog` is missing) and `docs/src/pages/BacklogPage.tsx`: the menus of the cards and of the ticket modal are disabled online.
+- `.claude/skills/git-workflow/SKILL.md`, section 8: `npm run work-time` on release day.
+- Checked on the built site (`vite preview`): frozen clock on the landing page and in the header, disabled menus; on the dev server: live clock, menus enabled.
+- Compliance audit: `audits/2026-11-15-B152-1.md` — 61 compliant, 15 non-compliant (new: #67, disabled Selects online until B153; #66 partly fixed), 22 not in the design system.
+- `backlog/backlog.json`: B152 `done`.
+
+**Files**
+- `scripts/work-time.ts`, `scripts/save-work-time.ts`, `docs/src/work-time.json`, `audits/2026-11-15-B152-1.md` (created)
+- `vite.config.ts`, `package.json`, `home.ts`, `docs/src/AppShell.tsx`, `docs/src/backlog.ts`, `docs/src/pages/BacklogPage.tsx`, `.claude/skills/git-workflow/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B152-2 — Audit decisions: exception for finding 67, ticket B154
+**Date:** 2026-11-15
+
+**Decisions (made by the Design System Lead)**
+- Compliance audit finding 67 (ticket menus shown as disabled Selects on the public site) is **accepted as an exception** until the read-only TicketCard variant (B153).
+- Finding 66 gets its own ticket: **B154** "Documentation site: feedback when a change cannot be saved" (`todo`, origin `proposal`, priority high, release R3); its decisions are asked when it is worked on.
+
+**Files**
+- `audits/2026-11-15-B152-1.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B154-1 — Documentation site: feedback when a change cannot be saved
+**Date:** 2026-11-15
+
+**Decisions (made by the Design System Lead)**
+- Locally, a ticket change that cannot be saved shows "Could not save the change. Try again." above the board; the ticket keeps its old value (TicketCard guidelines).
+- Online, the Design preview token pickers are disabled and nothing is saved (same exception as audit finding 67, until B153).
+- Locally, a backlog that cannot be read: menus disabled, no message (as online).
+- B154 finished before the early release R3.
+
+**What was done**
+- `docs/src/pages/BacklogPage.tsx`: error message on a failed local save.
+- `docs/src/DesignPreview.tsx`: pickers disabled online (`import.meta.env.DEV`), no save online (the Content field stays editable, not saved); the same message on a failed local save.
+- Checked on the dev server with a simulated failed save: message shown (`role="alert"`), value kept, nothing saved. During a first test the simulation did not apply: B008 was saved `in-progress` in `develop` by the Backlog page, then set back to `todo` the same way (two automatic `Backlog: B008` commits).
+- Compliance audit: `audits/2026-11-15-B154-1.md` — 60 compliant, 15 non-compliant (#66 fixed; new: #68, Design preview save message not announced; #67 extended to the Design preview pickers), 22 not in the design system.
+- `backlog/backlog.json`: B154 `done`.
+
+**Files**
+- `audits/2026-11-15-B154-1.md` (created)
+- `docs/src/pages/BacklogPage.tsx`, `docs/src/DesignPreview.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B155-1 — Design preview: announced save message
+**Date:** 2026-11-15
+
+**Decisions (made by the Design System Lead)**
+- The error "Could not save the change. Try again." is an alert (`role="alert"`) in the same style as the Backlog error; "Saved to design/tokens.json" is a status (`role="status"`), in secondary text.
+- After a failed save, the token picker goes back to the saved value.
+- B155 finished before the early release R3.
+
+**What was done**
+- `docs/src/DesignPreview.tsx`: save message by kind (saved / error), a persistent `role="status"` region, the error in `.backlog-error` with `role="alert"`, `save` returns whether it saved and `setSlot` restores the saved design on a failure.
+- Checked on the dev server with Breadcrumb set to the design stage on the local copy only (restored after) and a simulated failed save: alert shown, picker back to the saved token, nothing saved.
+- Compliance audit: `audits/2026-11-15-B155-1.md` — 61 compliant, 14 non-compliant (#68 fixed, no new finding), 22 not in the design system.
+- `backlog/backlog.json`: B155 `done`.
+
+**Files**
+- `audits/2026-11-15-B155-1.md` (created)
+- `docs/src/DesignPreview.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step R3-1 — Release R3
+**Date:** 2026-11-15
+
+**Decisions (made by the Design System Lead)**
+- Release R3 made on 2026-11-15, ahead of its planned date (Fri 2026-12-04), so that B151, B152, B154 and B155 reach the public site; release validated after the review.
+- **Exception**: the release was run from the conversation of the public site work, not from the Gouvernance conversation (git-workflow, section 8), at the Design System Lead's request.
+
+**What was done**
+- Review of `origin/main..origin/develop`: 19 commits, 29 files; no change in `components/` or `tokens/`. Tickets delivered: B150 (carried over from R2), B151, B152, B154, B155.
+- Release note `releases/R3.md`: delivered tickets; no component version; tickets carried over to R4.
+- `npm run work-time`: `docs/src/work-time.json` — 72,400 s (20:06:40), shown frozen on the public site.
+- Token audit of every component: `audits/2026-11-15-R3-tokens.md` — 17 components, 0 failures, not blocking.
+- Compliance audit: `audits/2026-11-15-R3.md` — 61 compliant, 14 non-compliant (no new finding; #66 and #68 fixed during the cycle, #67 accepted exception), 22 not in the design system; no new ticket.
+- `develop` merged into `main`, tag `R3`; Netlify deploys `main` to https://builddesignsystem.netlify.app
+
+**Files**
+- `releases/R3.md`, `audits/2026-11-15-R3.md`, `audits/2026-11-15-R3-tokens.md` (created)
+- `docs/src/work-time.json`, `STEPS.md` (updated)
+
+## Step B156-1 — All rights reserved license
+**Date:** 2026-11-15
+
+**Decisions (made by the Design System Lead)**
+- New ticket **B156** (high, no release): GitHub cannot turn off the ZIP download of a public repository, so the repository stays public with an explicit **All rights reserved** license (option chosen over making the repository private, so the GitHub link of the Portfolio page and the CV keeps working).
+- License text validated, with the Lead's email as contact.
+
+**What was done**
+- `LICENSE` at the root: copyright Capucine Desjouis 2026, all rights reserved; the content may be viewed, not copied, modified, distributed or reused without written permission.
+- `package.json`: `"license": "SEE LICENSE IN LICENSE"`.
+- `backlog/backlog.json`: B156 reserved, then `done`.
+- Compliance audit: `audits/2026-11-15-B156-1.md` — 61 compliant, 14 non-compliant, 22 not in the design system; no change, no new ticket.
+
+**Files**
+- `LICENSE`, `audits/2026-11-15-B156-1.md` (created)
+- `package.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B158-1 — One conversation per release ticket
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- New ticket **B158** (high, R4): when the tickets of a release are worked on, Claude prepares one suggestion (task chip) per component or prototype ticket, which opens its own conversation already set up, instead of taking the tickets one after another in the same conversation. First reserved as B157, renumbered: B157 was taken meanwhile by `component/Tabs` (Tab).
+- Tried first on the tickets of R2 not done yet: 8 chips (TextInput, Tabs, Canvas, Frame, Panel, StickyNote, Comment, SearchField), all started by the Design System Lead.
+
+**What was done**
+- `.claude/skills/git-workflow/SKILL.md`, section 2: rule "Working on the tickets of a release" — one chip per component or prototype ticket of the release not done yet; the opened conversation names itself `Composant <Name>`, sets up its branch and reserves its ticket (section 3), reads the ticket and starts the current stage, in French; self-contained chip prompt (ticket, release, branch, steps, related tickets); governance tickets stay in the Gouvernance conversation; Claude can only suggest, the Design System Lead clicks each chip.
+- `backlog/backlog.json`: B158 reserved, then `done`.
+- Compliance audit: `audits/2026-11-19-B158-1.md` — 61 compliant, 14 non-compliant, 22 not in the design system; no change, no new ticket.
+
+**Files**
+- `audits/2026-11-19-B158-1.md` (created)
+- `.claude/skills/git-workflow/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B157-1 — Tab: design approved
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- B093 Tabs started (branch `component/Tabs`). Split into a building block, **Tab**, built first (new ticket **B157**, high, R2), in this same conversation; then **Tabs**.
+- **Tab**: atom, class `.ds-tab`, description "One tab of a tab list, that shows one panel of the page.", one type (underline), one size, text label only (no icon, no counter).
+- Label: `body`, `--color-text-secondary`; selected: `label` style (semibold), `--color-text-brand`, selection indicator `--border-width-2` in `--color-border-focus` (as the current tabs of the site).
+- Padding `--space-8` top and bottom, `--space-16` left and right.
+- States: hover, focus (ring `--color-border-focus` + focus state layer) and pressed with state layers, top corners `--radius-4`; disabled = label in `--color-text-disabled`, not focusable. Selected + disabled is forbidden.
+- Long label: one line, the tab grows; lack of space is handled by Tabs.
+- Design approved; next stage: guidelines.
+
+**What was done**
+- `components/Tab/` created from the template: `meta.json` (status `guidelines`), `spec.md`, design preview (`design/Preview.tsx`, `design/tokens.json`, variants `default` and `selected`, disabled state).
+- Accessibility check: `audits/2026-11-19-B157-1-accessibility.md` — 5 pass, 0 fail, 1 not applicable; note: the label on the pressed state layer is 3.97:1 / 4.33:1 (shared state layer value, not a checklist criterion).
+- Token audit: `audits/2026-11-19-B157-1-tokens.md` — 39 values, 0 failures.
+- Backlog: B093 in progress; B157 added (reserved first), stage `guidelines`.
+
+**Files**
+- `components/Tab/meta.json`, `spec.md`, `guidelines.md` (template), `design/Preview.tsx`, `design/tokens.json` (new)
+- `audits/2026-11-19-B157-1-accessibility.md`, `audits/2026-11-19-B157-1-tokens.md` (new)
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B143-1 — Frame: design approved
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- Component **Frame**: molecule, folder `components/Frame/`, class `.ds-frame`, description "A layout frame on the canvas, in mobile, tablet or desktop size."; one type.
+- Props: `size` (`mobile` default, `tablet`, `desktop`), `selected`, `empty`, `name`.
+- Sizes: mobile 375 × 812, tablet **768 × 1024** (new tokens `size.viewport-tablet` / `size.viewport-tablet-height`), desktop 1280 × 800.
+- Anatomy: name (`label`, `text.primary`) and size label (`body-sm`, `text.secondary`) above the frame, `space.8` apart and `space.8` from the frame; container on `background.page`, 1px `border.subtle`, `radius.8`, `shadow.frame`; device bar (status bar on mobile and tablet, browser bar on desktop) on `background.page` with a `border.subtle` line, `label-sm` + `text.primary`, `icon-size.16`, padding `space.8` / `space.16`, items `space.8` apart, status icons `space.4` apart, desktop address field `background.subtle` + `radius.16`.
+- Content: long name cut with an ellipsis at the frame width; the content scrolls inside the frame; empty = `add_box` (`icon-size.32`) + "Drop components here" (`body`, `text.secondary`), gap `space.8`, padding `space.16`.
+- States: hover = `border.strong` + `state-layer.hover`; focus = 2px `border.focus` outline offset `space.4` + `state-layer.focus`; selected = 2px `border.focus` outline on the frame; focus and selected show together.
+- Contrast pairs added: `border.focus` / `background.subtle` and `border.strong` / `background.subtle` (min 3).
+
+**What was done**
+- `components/Frame/` from the template: `meta.json`, `spec.md`, design preview (`design/Preview.tsx`, `design/tokens.json`).
+- Accessibility check: `audits/2026-11-19-B143-1-accessibility.md` — 3 failures at first (two missing contrast pairs, no state layers), fixed with the Lead's decisions; 0 failure, no exception.
+- Token audit: `audits/2026-11-19-B143-1-tokens.md` — 241 values, 0 failure.
+- Design approved: `meta.json` status and the B143 `stage` set to `guidelines`.
+- Compliance audit: `audits/2026-11-19-B143-1.md` — 61 compliant, 15 non-compliant (1 new: #68, the site's simulated tablet screen should use the new `size.viewport-tablet*` tokens), 22 not in the design system.
+- Open question: the canvas background is decided by Canvas (B142); the label contrast is checked again then.
+
+**Files**
+- `components/Frame/` (created), `audits/2026-11-19-B143-1.md`, `audits/2026-11-19-B143-1-accessibility.md`, `audits/2026-11-19-B143-1-tokens.md` (created)
+- `tokens/semantic.json`, `tokens/contrast-pairs.json`, `.claude/skills/token-naming/SKILL.md` (size table), `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B144-1 — Panel: design approved
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- **Identity**: `Panel`, folder `components/Panel/`, class `ds-panel`, level **organism**, description "Right panel of the UX playground: Library, Properties and Compositions tabs."
+- **Specific to the playground** (B130): three fixed tabs, Library, Properties and Compositions, built with the **Tabs** component (B093). The spec is approved with a placeholder for the tabs; Tabs must be complete before the Panel code.
+- **Behavior**: fixed on the right, full height, over the canvas; collapsible; resizable.
+- **Look**: background `color.background.surface`, shadow `shadow.panel`, no border.
+- **Width**: new tokens `size.panel` (320px, default), `size.panel-min` (280px), `size.panel-max` (480px).
+- **Header**: tabs + collapse IconButton `tertiary`, icon `right_panel_close`; padding `space.8` top and right, `space.24` left.
+- **Tab content**: padding `space.16`, `space.24` on the left (clear of the resize handle); scrolls when long.
+- **Resize handle**: `drag_indicator` icon (`color.icon.secondary`, `icon-size.20`), always visible, inside the panel against its left edge; hit area new token `size.resize-handle` (24px, WCAG 2.5.8), corners `radius.4`; state layers on hover and while dragging; focusable, focus outline `color.border.focus` `border-width.2` drawn inside the hit area; left / right arrow keys change the width; double-click resets it to `size.panel`.
+- **Collapsed** (prop `collapsed`, default `false`): narrow strip of three IconButton `tertiary` — Library `widgets`, Properties `tune`, Compositions `dashboard` — padding and gap `space.8`; a click reopens the panel on that tab.
+- **Animation**: `duration.200`, `easing.ease-out`.
+- Stage 1 (Design) approved; status `guidelines`.
+
+**What was done**
+- `components/Panel/` created from the template: `meta.json`, `spec.md`, design preview (`design/Preview.tsx`, `design/tokens.json`, variants `expanded` / `collapsed`).
+- `tokens/semantic.json`: `size.panel`, `size.panel-min`, `size.panel-max`, `size.resize-handle`; added to the size table of the `token-naming` skill.
+- `tokens/contrast-pairs.json`: `color.icon.secondary`, `color.border.focus` and `color.icon.brand` on `color.background.surface` (min 3) — `npm run tokens`: 65/65 pairs pass.
+- Accessibility check: `audits/2026-11-19-B144-1-accessibility.md` — 3 failures (missing contrast pairs, colors unchanged) fixed; not blocking.
+- Token audit: `audits/2026-11-19-B144-1-tokens.md` — 65 values, 0 failures.
+- `backlog/backlog.json`: B144 `in-progress`, stage `guidelines`.
+- Open questions kept in the spec: look of the tabs (Tabs, B093); behavior below desktop (guidelines stage).
+- Compliance audit: `audits/2026-11-19-B144-1.md` — 61 compliant, 14 non-compliant (0 fixed, 0 new), 22 not in the design system; no new ticket.
+
+**Files**
+- `components/Panel/` (created), `audits/2026-11-19-B144-1-accessibility.md`, `audits/2026-11-19-B144-1-tokens.md`, `audits/2026-11-19-B144-1.md` (created)
+- `tokens/semantic.json`, `tokens/contrast-pairs.json`, `.claude/skills/token-naming/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B143-2 — Frame: guidelines approved
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- Audit finding #68 → new ticket **B162** "Documentation site: tablet screen size tokens" (`proposal`, low, R4).
+- When to use: on the canvas of the UX playground only. When not to use: outside the canvas → Screen (prototypes) or the layout of the page.
+- Best practices: one composition per frame; explicit names; frames of a composition side by side, mobile → tablet → desktop; content on the layout grid of its size; no nested frames.
+- Do's and don'ts (shown visually): explicit name, one screen per frame, sizes aligned, no frame inside a frame.
+- Content: name in sentence case, a few words, no final period, never the size.
+- Behavior: a click anywhere in the frame selects it.
+- Accessibility: Tab to the frame, Enter / Space toggle the selection, Escape removes it; after the content, Tab goes to the next frame, then out of the canvas (Shift+Tab backwards); focused content scrolled below the device bar, focused frame never under the Panel; the frame is a named group ("Home, Mobile 375 × 812") and its name is a toggle button exposing the selection (anatomy line added to `spec.md`); the name button meets WCAG 2.5.8 with the spacing exception.
+- Related components: Canvas (B142), Panel (B144), StickyNote (B145), Comment (B146).
+
+**What was done**
+- `components/Frame/guidelines.md` written; `spec.md`: the name is a toggle button.
+- Accessibility check: `audits/2026-11-19-B143-2-accessibility.md` — 6 failures over the runs (keyboard exit, focus obscured, selected state on a group, contrast pairs listed, target size, its wording), all fixed with the Lead's decisions; no exception.
+- Guidelines approved: `meta.json` status and the B143 `stage` set to `code`.
+- Compliance audit: `audits/2026-11-19-B143-2.md` — 61 compliant, 15 non-compliant (no new finding; #68 now B162), 22 not in the design system; no new ticket.
+
+**Files**
+- `audits/2026-11-19-B143-2.md`, `audits/2026-11-19-B143-2-accessibility.md` (created)
+- `components/Frame/guidelines.md`, `components/Frame/spec.md`, `components/Frame/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B145-1 — StickyNote: design stage
+**Date:** 2026-11-19
+
+**Decisions (made or approved by the Design System Lead)**
+- Component **StickyNote** (`components/StickyNote/`, `.ds-sticky-note`), level **molecule** (it uses the IconButton atom); description "A sticky note placed on the canvas, to annotate a composition."
+- One type, one color, one fixed size: a 160 × 160 square, new token **`size.sticky-note`** = 160px (value chosen and name approved by the Design System Lead).
+- Container: `background.brand-subtle`, `radius.4`, `shadow.frame`, padding `space.8`.
+- Anatomy: text on top (`body`, cut with an ellipsis after 4 lines); footer with the author in initials (`label-sm`) and a short date (`body-sm`) on the left, Edit and Delete actions on the right (tertiary IconButtons, always visible); gaps `space.8` (text / footer) and `space.4` (footer). The "more" menu was dropped: no Menu component exists.
+- States: hover and focus with the state layers; **selected** and **editing**: border `border-width.2` `border.strong`, no state layer (the focus outline still shows); **editing**: the full text scrolls; **dragging**: `shadow.hover`.
+- Accessibility fixes chosen by the Design System Lead: the date is `text.primary` (text.secondary fell to 3.83:1 under the focus layer); no state layer on a selected or editing note (the border fell to 2.54:1).
+
+**What was done**
+- `components/StickyNote/`: `meta.json`, `spec.md`, design preview (`design/Preview.tsx`, `design/tokens.json`; selected, editing and dragging shown as variants).
+- `tokens/semantic.json`: `size.sticky-note`; `tokens/contrast-pairs.json`: `color.border.strong` on `color.background.brand-subtle` (min 3).
+- Token audit: `audits/2026-11-19-B145-1-tokens.md` — 103 values, 0 failures.
+- Accessibility check: `audits/2026-11-19-B145-1-accessibility.md` — first run 2 failures, fixed; 6 pass, 0 fail.
+- Compliance audit: `audits/2026-11-19-B145-1.md` — 61 compliant, 13 non-compliant (#64 fixed by the new contrast pair), 22 not in the design system; no new ticket.
+- Design stage approved: `meta.json` status and backlog B145 stage → `guidelines`.
+
+**Files**
+- `components/StickyNote/meta.json`, `spec.md`, `design/Preview.tsx`, `design/tokens.json`, `audits/2026-11-19-B145-1.md`, `audits/2026-11-19-B145-1-tokens.md`, `audits/2026-11-19-B145-1-accessibility.md` (created)
+- `tokens/semantic.json`, `tokens/contrast-pairs.json`, `.claude/skills/token-naming/SKILL.md` (size table), `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B157-2 — Tab: guidelines approved
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- When to use: only inside Tabs, one tab per panel; to go to another page → NavigationItem; for a sequence of steps → TimelineStep.
+- Disabled only when the content of the panel is not available yet (e.g. Code before the Code stage); a tab whose content will not exist is removed. Never selected and disabled.
+- Content: name the content of the panel, one to three words, sentence case, text only, no punctuation.
+- Behavior: automatic activation — the arrow keys move the focus and select the tab (as the current tabs of the site, B125); long label on one line, the tab grows.
+- The four do / don't pairs (case and punctuation, name the content, when to disable, never selected and disabled).
+- Accessibility: WAI-ARIA tabs pattern (Tab enters on the selected tab; Left / Right move and select, wrapping; Home / End; disabled tabs skipped; tab role, name = label, selected state, linked to its panel); sentence "The focused tab is never hidden by a sticky element or a panel." added after the accessibility check (WCAG 2.4.11).
+- Related components: Tabs only.
+- Guidelines approved; next stage: code.
+
+**What was done**
+- `components/Tab/guidelines.md` written; `meta.json` status `code`; backlog B157 stage `code`.
+- Accessibility check: `audits/2026-11-19-B157-2-accessibility.md` — first run 1 failure (WCAG 2.4.11), fixed; 7 pass, 0 fail.
+- Compliance audit: `audits/2026-11-19-B157-2.md` — 61 compliant, 14 non-compliant, 22 not in the design system; no change, no new ticket.
+
+**Files**
+- `audits/2026-11-19-B157-2.md`, `audits/2026-11-19-B157-2-accessibility.md` (new)
+- `components/Tab/guidelines.md`, `components/Tab/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+
+
+## Step B157-3 — Tab: code approved, component complete
+**Date:** 2026-11-19
+
+**Decisions (made by the Design System Lead)**
+- Code approved: Tab is **complete**, version 1.0.
+- Two rows added to the Design tokens table of the spec, at the Design System Lead's request: focus ring offset `--border-width-2`; state layer transition `--duration-100`, `--easing-ease-out` (already in the code).
+
+**What was done**
+- `components/Tab/Tab.tsx`: `<button type="button" role="tab" aria-selected>`; prop `selected` (default `false`), native `disabled` (not focusable); selected + disabled forbidden by the types; roving `tabIndex` (0 when selected, -1 otherwise, set by Tabs); `ref` and native attributes passed through (`role`, `aria-selected`, `type`, `disabled` cannot be overridden).
+- `components/Tab/Tab.css`: semantic tokens only; selected = `label` style, `--color-text-brand`, indicator `--border-width-2` `--color-border-focus`; state layers, focus ring, top corners `--radius-4`; disabled `--color-text-disabled`, no state layer.
+- `examples.tsx` (default, selected, disabled, several tabs, long label) and `playground.tsx`; a tab shown alone and not selected gets `tabIndex={0}` so it stays reachable with the keyboard.
+- Export in `components/index.ts`; `meta.json` `complete`, version 1.0, changelog "First complete version."; backlog B157 `done`.
+- Accessibility check: `audits/2026-11-19-B157-3-accessibility.md` — 9 pass, 0 fail, 1 not applicable; keyboard checked in the browser; screen reader still to check in a manual test.
+- Token audit: `audits/2026-11-19-B157-3-tokens.md` — 35 values, 0 failures.
+- Compliance audit: `audits/2026-11-19-B157-3.md` — 61 compliant, 15 non-compliant (1 new: #68, the hand-built tabs of the component pages, to adopt Tabs once complete), 21 not in the design system.
+
+**Files**
+- `components/Tab/Tab.tsx`, `Tab.css`, `examples.tsx`, `playground.tsx` (new)
+- `audits/2026-11-19-B157-3.md`, `audits/2026-11-19-B157-3-accessibility.md`, `audits/2026-11-19-B157-3-tokens.md` (new)
+- `components/Tab/meta.json`, `components/Tab/spec.md`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B143-3 — Frame: code approved, component complete
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- Selection controlled by the canvas: props `selected` + `onSelectedChange(selected)` (added to the spec's properties).
+- The click that selects is on the container only; above the frame, only the name button is clickable (WCAG 2.5.8 spacing exception kept); guidelines Behavior line clarified.
+- The selected outline is styled from the native state (`aria-pressed="true"` on the name), not a class.
+- Hover on the container only (spec updated).
+- Examples and Playground content: an "Order tracking" screen made of coded components (Breadcrumb, heading, Timeline, Card, Button).
+- Open question added to the spec: components inside a frame respond to the browser width, not the frame width (iframe or container queries) — to decide with B130 and B142.
+
+**What was done**
+- `components/Frame/Frame.tsx`, `Frame.css` (semantic tokens only), `examples.tsx` (7 examples), `playground.tsx`; `Frame` and its types exported from `components/index.ts`.
+- Browser checks: real sizes 375 × 812 / 768 × 1024 / 1280 × 800; selection by click, name toggle and Escape; keyboard order name → content → next frame and back, no trap; focus and selected outlines together; long name ellipsis; scrolling content; no overflow of the Examples tab at mobile width.
+- Token audit: `audits/2026-11-21-B143-3-tokens.md` — 53 values, 0 failure.
+- Accessibility check: `audits/2026-11-21-B143-3-accessibility.md` — 2 failures (selected styled with a class, label row clickable), fixed with the Lead's decisions; no exception.
+- Component complete: `meta.json` status `complete`, version 1.0, changelog "First complete version."; B143 `done`.
+- Compliance audit: `audits/2026-11-21-B143-3.md` — 61 compliant, 16 non-compliant (1 new: #69, the component page tab row overflows the page on mobile), 22 not in the design system.
+
+**Files**
+- `audits/2026-11-21-B143-3.md`, `audits/2026-11-21-B143-3-tokens.md`, `audits/2026-11-21-B143-3-accessibility.md` (created)
+- `components/Frame/Frame.tsx`, `Frame.css`, `examples.tsx`, `playground.tsx`, `spec.md`, `guidelines.md`, `meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B093-1 — Tabs: design approved (and Tab 1.1)
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- **Tabs**: molecule, class `.ds-tabs`, description "A row of tabs that shows one panel of the page at a time.", one type, one size, no variant property.
+- Row of **Tab** (B157), left-aligned, each tab as wide as its label, `--space-4` between tabs; line `--border-width-1` in `--color-border-subtle` under the whole row (as the current tabs of the site).
+- Not enough space: the row scrolls horizontally, no button, scrollbar hidden; the selected tab is brought into view.
+- The panel of the selected tab is part of Tabs: under the row, `--space-24` above, no padding, always focusable (focus ring `--border-width-2` `--color-border-focus`).
+- Backgrounds: `background.page` and `background.surface` (Panel, B144).
+- Disabled tabs: a rule belongs to the guidelines.
+- B093 ticket completed (Why, Scope, Done when); its scope includes replacing the hand-built tabs of the component pages with Tabs (compliance finding #68).
+- Accessibility check failure (WCAG 2.4.7, the scrolling row cut the Tab focus ring): **the Tab focus ring is drawn inside the tab** → **Tab 1.1** (spec, guidelines, design preview, CSS, changelog). Also, the line under the row is drawn inside the row (inset shadow) so the scrolling row no longer cuts the selection line (measured: 1px hidden).
+- Design approved; next stage: guidelines.
+
+**What was done**
+- `components/Tabs/` created from the template: `meta.json` (status `guidelines`), `spec.md`, design preview (`design/Preview.tsx` with the coded Tab, `design/tokens.json`, states default and focus).
+- `components/Tab/`: `Tab.css` (`outline-offset: calc(var(--border-width-2) * -1)`), `spec.md`, `guidelines.md`, `design/Preview.tsx`, `meta.json` 1.1.
+- Accessibility check: `audits/2026-11-21-B093-1-accessibility.md` — first run 1 failure (2.4.7), fixed; 13 pass, 0 fail.
+- Token audit: `audits/2026-11-21-B093-1-tokens.md` — 27 values, 0 failures.
+- Compliance audit: `audits/2026-11-21-B093-1.md` — 61 compliant, 17 non-compliant (2 new, #69 and #70, carried from `develop`), 21 not in the design system; no new ticket.
+- Backlog: B093 stage `guidelines`.
+
+**Files**
+- `components/Tabs/meta.json`, `spec.md`, `guidelines.md` (template), `design/Preview.tsx`, `design/tokens.json` (new)
+- `audits/2026-11-21-B093-1.md`, `audits/2026-11-21-B093-1-accessibility.md`, `audits/2026-11-21-B093-1-tokens.md` (new)
+- `components/Tab/Tab.css`, `spec.md`, `guidelines.md`, `design/Preview.tsx`, `meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B142-1 — Canvas: design approved
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- Component **Canvas**: organism, folder `components/Canvas/`, class `.ds-canvas`, description "The free canvas of the UX playground, which holds the layout frames."; one type: an infinite canvas with pan and zoom.
+- Surface: fills its container, no border, no rounded corners; background `background.subtle`; grid of dots `border.subtle`, diameter `border-width.2`, every `space.16` at 100% zoom.
+- Content: Frames (B143), sticky notes (B145), comments (B146) and components placed on their own; stacking `z-index.content`.
+- Zoom controls: a separate building block, **ZoomControls** (new ticket B161, high, R2), at the bottom right, `z-index.sticky`: zoom out, zoom level in percent, zoom in, fit to screen; tertiary IconButtons; container `background.surface`, `radius.8`, `shadow.dropdown`. The Canvas design goes on; its code waits for ZoomControls to be complete.
+- Prop: `zoom` (10 → 400, steps of 10, default 100). Empty is not a prop: deduced from the content; empty message "Add a frame to start" (`body`, `text.secondary`, centered, no icon).
+- Behavior: pan with Space + drag or wheel / trackpad; a drag on the background draws the selection rectangle. Keyboard with focus: arrow keys move the view by `space.16`, `+` / `−` zoom, `0` back to 100%, `Shift` + `1` fit to screen.
+- States: empty, panning (grab cursor), focus (2px `border.focus` outline inside the edges, in front of the content and the zoom controls), selecting (1px `border.focus` border, fill `border.focus` at `state-layer.hover`).
+
+**What was done**
+- `components/Canvas/` from the template: `meta.json`, `spec.md`, design preview (`design/Preview.tsx`, `design/tokens.json`, variants `empty` and `selection`, states default and focus).
+- Ticket B161 ZoomControls created and reserved, merged into `develop`.
+- Accessibility check: `audits/2026-11-19-B142-1-accessibility.md` — 7 pass, 0 failure, no exception (focus outline question resolved by the Lead).
+- Token audit: `audits/2026-11-19-B142-1-tokens.md` — 55 values, 0 failure.
+- Design approved: `meta.json` status and the B142 `stage` set to `guidelines`.
+- Compliance audit: `audits/2026-11-19-B142-1.md` — 61 compliant, 15 non-compliant (0 new, 0 fixed), 22 not in the design system; no new ticket.
+
+**Files**
+- `components/Canvas/` (created), `audits/2026-11-19-B142-1.md`, `audits/2026-11-19-B142-1-accessibility.md`, `audits/2026-11-19-B142-1-tokens.md` (created)
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B145-2 — StickyNote: guidelines approved
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- When to use: annotate a composition, explain a user journey between Frames, a working note, review feedback. When not to use: a discussion with replies (Comment, B146), text that is part of the screen (real components in the Frame), outside the canvas.
+- Placement: anywhere on the canvas background, never inside a Frame; as many notes as needed, never overlapping (a moved note cannot cover another).
+- Content: one idea per note, short sentences, sentence case, a task starts with a verb; author in two capital initials, date "19 Nov" (no year).
+- Behavior: select with a click or Space; move by dragging or with the arrow keys; edit with the Edit button, a double-click or Enter (Enter = new line in editing); Escape or a click outside saves and leaves editing; an empty note is removed; delete at once (button, Delete / Backspace), undo handled by the Canvas.
+- Accessibility: Tab order note → Edit → Delete; the note is a group named "Sticky note by CD, 19 Nov: <full text>", with "selected" added to the name; editing = multi-line text box "Note text", announcing "Editing note, Escape to save"; the focused note is never hidden (no overlap, the Canvas scrolls to it); after a delete, the focus goes to the next note, or the canvas.
+- 4 do / don't pairs: one short idea; next to the Frame; side by side; initials and short date.
+- Left to Canvas (B142): behavior below desktop, single-pointer alternative to dragging (WCAG 2.5.7), scrolling to the focused element.
+- Spec wording aligned: the editing state is entered by the Edit action, a double-click, or Enter.
+
+**What was done**
+- `components/StickyNote/guidelines.md` written; `spec.md` (one wording line).
+- Accessibility check: `audits/2026-11-21-B145-2-accessibility.md` — first run 3 failures (focus not obscured, editing state and selected state for screen readers), fixed; 6 pass, 0 fail.
+- Compliance audit: `audits/2026-11-21-B145-2.md` — 61 compliant, 16 non-compliant (#64 fixed — corrected by Claude —, #70 renumbered from B157-3), 21 not in the design system; no new ticket.
+- Guidelines approved: `meta.json` status and backlog B145 stage → `code`.
+
+**Files**
+- `components/StickyNote/guidelines.md`, `audits/2026-11-21-B145-2.md`, `audits/2026-11-21-B145-2-accessibility.md` (created)
+- `components/StickyNote/spec.md`, `components/StickyNote/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B163-1 — Documentation site: component page tabs on small screens
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- When the tabs of a component page do not fit (mobile, tablet), the tab row scrolls horizontally inside itself; the page never scrolls sideways (WCAG 1.4.10).
+- The row follows the approved Tabs design (B093, decision relayed by the Composant Tabs conversation and confirmed here): scrollbar hidden, no button, the selected tab brought into view. Temporary: Tabs replaces this hand-built row once complete.
+- No ticket for finding #70 (hand-built tab buttons instead of Tab): it stays followed by the compliance audit.
+
+**What was done**
+- `.tabs` scrolls sideways (`overflow-x: auto`), tabs do not shrink or wrap, scrollbar hidden; a padding the size of the focus ring, cancelled by a negative margin, keeps the ring visible; the row line is drawn inside the row (content-box background) so the selected underline sits on it and stays within the content column.
+- A click or Left / Right / Home / End scrolls the selected tab into view, without animation.
+- Implemented by the `ds-compliance-fix` agent, checked and completed by Claude; checked in the browser on Button and Frame at 375px, 768px and desktop (page width = viewport, desktop unchanged).
+- Compliance audit: `audits/2026-11-21-B163-1.md` — #69 fixed; #71 (row line past the content column, caused by the fix) fixed in the same step; 1 new open: #70; 61 compliant, 16 non-compliant, 22 not in the design system.
+
+**Files**
+- `docs/src/docs.css`, `docs/src/pages/ComponentPage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
+- `audits/2026-11-21-B163-1.md` (created)
+
+## Step B093-2 — Tabs: guidelines approved
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- When to use: to switch between panels of the same page; to go to another page → SideNavigation; for a sequence of steps → Timeline; to filter a list → ChipGroup (not in the design system yet, B094).
+- Two to seven tabs; at least two enabled tabs (otherwise show the content directly); one Tabs per view; no Tabs inside a panel of Tabs; right under the header (or at the top of its container, as in Panel).
+- The four do / don't pairs (same page vs other pages, at least two enabled, no nesting, two to seven tabs).
+- Content: Tab label rules; the tab list has a required accessible name that names the content.
+- Behavior and accessibility: automatic activation, arrows wrapping, Home / End, disabled tabs skipped, Tab from the selected tab to the panel (always focusable), the selected or focused tab brought into view when the row scrolls; tablist named, tabs, tabpanel named by its tab.
+- Related components: Tab only.
+- B163 (another conversation): the hand-built tab row applies the horizontal scroll of the Tabs design until Tabs replaces it — decision relayed to the Gouvernance conversation, which applied it.
+- Guidelines approved; next stage: code.
+
+**What was done**
+- `components/Tabs/guidelines.md` written; `meta.json` status `code`; backlog B093 stage `code`, "Done when" renumbered to finding #70 (numbering aligned with `develop`).
+- Accessibility check: `audits/2026-11-21-B093-2-accessibility.md` — 7 pass, 0 fail.
+- Compliance audit: `audits/2026-11-21-B093-2.md` — 61 compliant, 16 non-compliant (#64 fixed; #68 / #70 renumbered to match `develop`), 21 not in the design system; no new ticket.
+
+**Files**
+- `audits/2026-11-21-B093-2.md`, `audits/2026-11-21-B093-2-accessibility.md` (new)
+- `components/Tabs/guidelines.md`, `components/Tabs/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B162-1 — Documentation site: tablet screen size tokens
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- The Playground Desktop screen uses `size.viewport-desktop` (1280px, was 1024px from `breakpoint.desktop`), like the prototype frames (audit finding #72, added to this step).
+- B093's `why` cited finding #68 for the hand-built tabs: corrected to #70 by the Composant Tabs conversation on `component/Tabs`.
+
+**What was done**
+- Playground Tablet screen and the prototype tablet preview frame read `size.viewport-tablet` / `size.viewport-tablet-height` instead of the breakpoint tokens (same values, 768 × 1024: no visual change). Implemented by the `ds-compliance-fix` agent, checked by Claude.
+- Playground Desktop screen reads `size.viewport-desktop` (visible change: 1280px); `size.viewport-desktop` description now says "(Playground, prototype frames)".
+- Checked in the browser: Playground Desktop 1280px, Tablet 768px, Mobile 375px; prototype tablet frame 768 × 1024; no console error. `npm run tokens`: 68/68 contrast pairs pass.
+- Compliance audit: `audits/2026-11-21-B162-1.md` — #68 fixed; #72 (Playground desktop size, existed before) fixed in the same step; 63 compliant, 15 non-compliant, 22 not in the design system.
+
+**Files**
+- `docs/src/PlaygroundTab.tsx`, `docs/src/pages/PrototypePage.tsx`, `tokens/semantic.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+- `audits/2026-11-21-B162-1.md` (created)
+
+## Step B019-1 — TextInput: design approved
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- New component **TextInput** (`components/TextInput/`, `.ds-text-input`), level **molecule**, description "Single-line field to type text.".
+- Types `text` (default), `search` (fixed `search` icon, clear button: icon inside the field with a 24×24px minimum target, no help text), `number` (digits only, no + / − buttons, aligned left).
+- Properties `type`, `label`, `placeholder`, `icon`, `helpText`, `error`, `disabled`.
+- **No label above the field**: the empty field shows **either a label or a placeholder, never both**; it disappears as soon as the user types. The accessible name is that label or placeholder.
+- Forbidden combinations: `label` + `placeholder`, `error` + `disabled`, `icon` + `search`, `icon` + `number`, `helpText` + `search`.
+- The error message replaces the help text. Extra state: error. One size, full width of the container. Value scrolls horizontally while typing, ellipsis when not focused; lengths as the Select.
+- Tokens validated in the Design preview (aligned on the Select).
+- **Accessibility exception**: WCAG 3.3.2 (no visible name once the field is filled) accepted on 2026-11-21.
+- Design stage approved on 2026-11-21.
+
+**What was done**
+- `components/TextInput/`: `meta.json` (status `guidelines`), `spec.md`, `design/Preview.tsx`, `design/tokens.json`, `guidelines.md` (template).
+- `tokens/contrast-pairs.json`: pair `color.icon.error` on `color.background.page` (min 3) added (`icon.secondary` on `surface` was already added on `develop`); `npm run tokens`: 69/69 pass.
+- Token audit: `audits/2026-11-19-B019-1-tokens.md` — 183 values, 0 failures.
+- Accessibility check: `audits/2026-11-19-B019-1-accessibility.md` — 2 missing contrast pairs fixed, 3.3.2 accepted as an exception.
+- Compliance audit: `audits/2026-11-21-B019-1.md` — 61 compliant, 15 non-compliant (#64 fixed, 0 new), 22 not in the design system; no new ticket.
+- `backlog/backlog.json`: B019 `in-progress`, stage `guidelines`.
+
+**Files**
+- `components/TextInput/` (meta.json, spec.md, guidelines.md, design/Preview.tsx, design/tokens.json), `audits/2026-11-19-B019-1-tokens.md`, `audits/2026-11-19-B019-1-accessibility.md`, `audits/2026-11-21-B019-1.md` (created)
+- `tokens/contrast-pairs.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B142-2 — Canvas: guidelines approved
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- When to use: only as the working surface of the UX playground (B130). Not for a prototype screen (Screen), a page layout (layout grid), the preview of one component (Playground tab) or an image (ImageViewer).
+- Best practice: one Canvas per page. Do's and don'ts: screens in Frames; sticky notes next to what they annotate; bottom right corner free for the zoom controls; background and grid of dots unchanged.
+- Empty message fixed: "Add a frame to start" (no prop).
+- Every screen size. **Spec completed** (approved again): touch gestures — one finger pans, pinch zooms, long press then drag draws the selection rectangle.
+- Accessibility (after a blocking check with 2 failures, fixed): focus order canvas → zoom controls → content by position (top to bottom, then left to right) → leave; a focused element is brought into view with a `space.16` margin, never under the zoom controls; single-pointer alternatives: zoom controls for pan and pinch, Shift + click / long press then tap / Shift + Enter to add to the selection; screen reader: region "Canvas" describing shortcuts and gestures, zoom level announced. No exception.
+- New ticket **B164** (high, R2): align the Frame guidelines with the Canvas on Tab order, focus never hidden and Shift + Enter.
+
+**What was done**
+- `components/Canvas/guidelines.md` written; `components/Canvas/spec.md` completed (touch gestures, selection without dragging, focus order, focus never hidden, `-` key).
+- Accessibility check: `audits/2026-11-21-B142-2-accessibility.md` — first run 2 failures (focus order, focus hidden), fixed; 8 pass, 0 failure.
+- Guidelines approved: `meta.json` status and the B142 `stage` set to `code`. The code waits for ZoomControls (B161) to be complete.
+- Compliance audit: `audits/2026-11-21-B142-2.md` — 61 compliant, 15 non-compliant (1 fixed: #69 by B163; 0 new), 22 not in the design system; no new ticket.
+
+**Files**
+- `audits/2026-11-21-B142-2.md`, `audits/2026-11-21-B142-2-accessibility.md` (created)
+- `components/Canvas/guidelines.md`, `components/Canvas/spec.md`, `components/Canvas/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B093-3 — Tabs: code approved, component complete
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- Code approved: Tabs is **complete**, version 1.0.
+- Next: replace the hand-built tabs of the component pages with Tabs (finding #70, last "Done when" of B093).
+
+**What was done**
+- `components/Tabs/Tabs.tsx`: props `label` (required name of the tab list), `tabs` (`id`, `label`, `disabled`, `content`), `selected` + `onSelect` (controlled) or `defaultSelected`; a disabled tab is never the selected one (falls back to the first enabled tab); WAI-ARIA tabs with automatic activation (arrows wrapping, Home / End, disabled tabs skipped); the selected tab scrolled into view inside the row without scrolling the page; only the selected panel is rendered (`tabpanel`, named by its tab, `tabIndex={0}`), `aria-controls` on the selected tab only.
+- `components/Tabs/Tabs.css`: semantic tokens only; full width; row `--space-4`, `overflow-x: auto`, scrollbar hidden, line as an inset shadow (`--border-width-1`, `--color-border-subtle`); panel `--space-24` above, focus ring `--border-width-2` `--color-border-focus`.
+- `examples.tsx` (default, with a disabled tab, on the surface background, not enough space with seven tabs) and `playground.tsx` (uncontrolled, restarted when the control changes); export in `components/index.ts`; `meta.json` `complete`, 1.0, changelog "First complete version."
+- Backlog: B093 `why` renumbered to finding #70 (asked by the Design System Lead through the Gouvernance conversation).
+- Accessibility check: `audits/2026-11-21-B093-3-accessibility.md` — 9 pass, 0 fail, 1 not applicable; keyboard, Tab / Shift+Tab, scrolling row and 375px checked in the browser; screen reader, 200% zoom and text spacing still to check manually.
+- Token audit: `audits/2026-11-21-B093-3-tokens.md` — 13 values, 0 failures.
+- Compliance audit: `audits/2026-11-21-B093-3.md` — 61 compliant, 15 non-compliant (#69 fixed by B163), 21 not in the design system; no new ticket.
+
+**Files**
+- `components/Tabs/Tabs.tsx`, `Tabs.css`, `examples.tsx`, `playground.tsx` (new)
+- `audits/2026-11-21-B093-3.md`, `audits/2026-11-21-B093-3-accessibility.md`, `audits/2026-11-21-B093-3-tokens.md` (new)
+- `components/Tabs/meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B144-2 — Panel: guidelines approved
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- **When to use**: in the UX playground (B130) only, one Panel per screen, on the right of the canvas.
+- **When not to use**: navigation → SideNavigation; detail or blocking action → Dialog; tabs inside a page → Tabs (B093); panel of steps below desktop → Timeline.
+- **Do's and don'ts**: one Panel, on the right · keep the three tabs · long content scrolls inside the Panel · collapsed, the strip stays visible.
+- **Content**: fixed tab labels; accessible labels start with a verb ("Collapse the panel", "Open Library"); empty tab → one short sentence in `body` / `color.text.secondary` until B065.
+- **Behavior**: keeps the last tab, the width and the collapsed state, also after a reload; the width follows the pointer with no animation while resizing; the header stays fixed while the content scrolls; loading waits for B065.
+- **Below desktop**: always opens collapsed; expanded, not resizable (handle hidden); collapses with `Escape`, or as soon as the focus or a click leaves it for the canvas (the focus stays on the canvas element).
+- **Accessibility**: `Tab` / `Shift+Tab` leave the Panel (no keyboard trap); focus order handle (desktop only) → tabs → collapse button → content; the focus follows collapse / expand; arrows change the width by `space.8`; no other shortcut; a focused canvas element is never hidden behind the Panel (the canvas moves it, rule for Canvas B142); `<aside>` "Playground panel", separator with value / min / max, `aria-expanded` (`true` on the collapse button, `false` on the strip icons) with `aria-controls`.
+- **Spec updated** with the Lead's answers: handle visible on desktop only; arrow step `--space-8`; "tooltip" removed from the Content table; below-desktop question pointing to the guidelines.
+- Stage 2 (Guidelines) approved; status `code`. The code waits for Tabs (B093) to be complete.
+
+**What was done**
+- `components/Panel/guidelines.md` written; `components/Panel/spec.md` updated.
+- Accessibility check: `audits/2026-11-21-B144-2-accessibility.md` — 3 failures found during the stage (WCAG 2.1.2, 2.4.11 desktop and below desktop), all fixed; not blocking.
+- Compliance audit: `audits/2026-11-21-B144-2.md` — 63 compliant, 14 non-compliant (1 fixed: #64, 0 new), 22 not in the design system; no new ticket.
+- `meta.json` status and `backlog/backlog.json` stage: `code`.
+
+**Files**
+- `audits/2026-11-21-B144-2-accessibility.md`, `audits/2026-11-21-B144-2.md` (created)
+- `components/Panel/guidelines.md`, `components/Panel/spec.md`, `components/Panel/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B093-4 — Component pages use Tabs
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- The component pages of the documentation site use Tabs (B093 scope, finding #70), with the Tabs spec as is (24px between the row and the panel, focus ring inside the tab, focusable panel).
+- Tabs examples shown inside the site's Tabs panel (documentation frame): no sentence added to the Tabs guidelines; the rule "No Tabs inside a panel of Tabs" is about the product UI.
+- B093 done.
+
+**What was done**
+- `docs/src/pages/ComponentPage.tsx`: `<Tabs label="Component documentation" selected onSelect tabs=…>` with one panel per tab; the hand-built tab buttons and keyboard code (B125) are removed; `ExamplesTab` renders the examples only when the Examples tab is shown.
+- `docs/src/docs.css`: the `.tabs` rules (hand-built row and its B163 scroll) are removed.
+- Checked in the browser: arrows, panel named by its tab, line across the content width, the row scrolls at 375px without page overflow, no console error.
+- Compliance audit: `audits/2026-11-22-B093-4.md` — 62 compliant, 13 non-compliant (#70 and #68 fixed, 0 new), 21 not in the design system; no new ticket.
+- Backlog: B093 `done`.
+
+**Files**
+- `audits/2026-11-22-B093-4.md` (new)
+- `docs/src/pages/ComponentPage.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B145-3 — StickyNote: code approved, component complete
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- API: `text`, `author`, `date`; `selected` + `onSelectedChange`; `editing` + `onEditingChange`; `dragging` (set by the Canvas); `onTextChange(text)` when leaving the editing state; `onDelete()` (Delete button, Delete / Backspace, empty text); `onMove(direction)` with the arrow keys — the distance is decided by the Canvas.
+- In editing, Tab out of the note saves and leaves the editing state, like a click outside (added to the guidelines); Escape works wherever the focus is in the note.
+- **`size.sticky-note` = 10rem** (160px at the default text size) instead of 160px, so the note grows with the text size (WCAG 1.4.4): first size token in rem, noted in `token-naming`.
+- Code approved: StickyNote complete, version 1.0.
+
+**What was done**
+- `components/StickyNote/StickyNote.tsx` and `StickyNote.css`: named group (author, date, full text, ", selected"), keyboard (Enter, Space, Delete / Backspace, arrows when selected, Escape), editing text box "Note text" described by "Editing note, Escape to save", focus into the text box when editing starts, save on Escape / focus leaving the note, empty text removes the note; selected / editing border drawn inside (inset shadow, `--border-width-2` `--color-border-strong`) so the content does not move; text cut after 4 lines (fix: the text box is not stretched, so no part of a 5th line shows).
+- `examples.tsx` (Default, Interactive, States, Text length), `playground.tsx`; export from `components/index.ts`.
+- `spec.md` and `guidelines.md` aligned (10rem size, Tab out of an editing note); `tokens/semantic.json` and `.claude/skills/token-naming/SKILL.md` (size table, rem exception).
+- Token audit: `audits/2026-11-21-B145-3-tokens.md` — 42 values, 0 failures.
+- Accessibility check: `audits/2026-11-21-B145-3-accessibility.md` — 2 failures fixed (editing exit only from the text box; text cut at 200% text size); 10 pass, 0 fail; browser checks (keyboard, 200% text, text spacing, mobile width).
+- Compliance audit: `audits/2026-11-22-B145-3.md` — 61 compliant, 14 non-compliant (#68 fixed by B162; #70 fixed on `develop` by B093-4), 21 not in the design system; no new ticket.
+- `meta.json`: status `complete`, version 1.0, changelog "First complete version."; backlog B145 `done`, stage `complete`.
+
+**Files**
+- `components/StickyNote/StickyNote.tsx`, `StickyNote.css`, `examples.tsx`, `playground.tsx`, `audits/2026-11-21-B145-3-tokens.md`, `audits/2026-11-21-B145-3-accessibility.md`, `audits/2026-11-22-B145-3.md` (created)
+- `components/StickyNote/meta.json`, `spec.md`, `guidelines.md`, `components/index.ts`, `tokens/semantic.json`, `.claude/skills/token-naming/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B159-1 — Avatar: design approved
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Avatar (atom, `components/Avatar/`, `.ds-avatar`), ticket B159 (building block of CommentMessage B160 and Comment B146); worked on `component/Avatar`, the ticket brought from `component/Comment`.
+- Single type, round (`radius.full`), not interactive (default state only, no disabled state; a parent handles any click).
+- Content chosen automatically: initials when a name is given, otherwise the Material Symbol `person`.
+- Initials uppercase, from the first and last words of the name ("Anne Marie Dupont" → "AD"); one letter for a one-word name.
+- Colors: `background.brand`, initials `text.inverse`, icon `icon.inverse`.
+- Property `size`: `small` / `medium` (default) / `large` — diameter `space.24` / `space.32` / `space.48` (spacing tokens, no new token), initials `label-sm` / `label` / `heading-5`, icon `icon-size.16` / `20` / `32`.
+- Screen reader: the full name is announced (not the initials); without a name the avatar is decorative.
+- Open: prop name for the person's name, decided at the code stage. Design approved; next stage: guidelines.
+
+**What was done**
+- `components/Avatar/` created from the template: `meta.json` (status `guidelines`), `spec.md`, design preview (`design/tokens.json`, `design/Preview.tsx` — initials computed from the name in the Content field); backlog B159 `in-progress`, stage `guidelines`.
+- Accessibility check: `audits/2026-11-22-B159-1-accessibility.md` — 2 pass, 0 fail, 3 not applicable; `npm run tokens`: 68/68 pairs pass.
+- Token audit: `audits/2026-11-22-B159-1-tokens.md` — 41 values, 0 fail.
+- Compliance audit: `audits/2026-11-22-B159-1.md` — 61 compliant, 16 non-compliant (0 new; #70 and #68 fixed on `develop`, closed by the update from `develop`), 22 not in the design system; no new ticket.
+
+**Files**
+- `components/Avatar/` (new: `meta.json`, `spec.md`, `design/`, template files for the later stages)
+- `audits/2026-11-22-B159-1.md`, `audits/2026-11-22-B159-1-accessibility.md`, `audits/2026-11-22-B159-1-tokens.md` (new)
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B019-2 — TextInput: guidelines approved
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Preview content: the sample text "kkkkk" (a test) replaced by "Primary button".
+- The TextInput `search` type covers the Search field ticket **B056** (set to `rejected` on the Backlog page); the "/" keyboard hint of the site search is removed (not part of the TextInput).
+- The fields of the Playground, the Design preview and the Icons page follow the rule "label or placeholder inside the field, no label above" when they adopt the TextInput.
+- Guidelines: when not to use (Textarea B020, Select, Chips, dedicated date / time / color field); label = a noun, placeholder = a verb and a noun; mitigations of the 3.3.2 exception (error names the field, help text when ambiguous, icon that recalls the field, short forms); full width set by the grid, `--space-16` between stacked fields, search above the content it filters; 5 do / don't pairs; sentence case, no punctuation, short help text.
+- Behavior: error checked while typing; required field: error when emptied or when the form is sent; `number`: any other character is written and shows an error; `search`: filters while typing, Escape empties the field, clearing (click, Enter, Space) gives the focus back to the field; in a Dialog or a panel, Escape first empties the field, then closes.
+- Accessibility: `number` is a text field (numeric keyboard, Arrow up / down do not change the value), `search` a search field; the error is announced when it appears or changes (`aria-live="polite"`).
+- **Spec changes** (approved with the guidelines): `number` line ("only digits are valid; any other character shows an error"); new property **`required`** (no visual mark, announced); clear button focus outline (`--border-width-2` `--color-border-focus`); roles and states announced; forbidden combination **`required` + `disabled`**.
+- Guidelines stage approved on 2026-11-22.
+
+**What was done**
+- `components/TextInput/guidelines.md` written; `spec.md` updated; `meta.json` status `code`; `design/tokens.json` sample text.
+- Accessibility check: `audits/2026-11-22-B019-2-accessibility.md` — 5 failures on the first run (2.1.2, 2.1.1, 2.4.11, 4.1.2 ×2), all fixed; 19 passes; 3.3.2 exception kept.
+- Compliance audit: `audits/2026-11-22-B019-2.md` — 62 compliant, 13 non-compliant (#70 fixed by B093-4, 0 new), 21 not in the design system; no new ticket.
+- `backlog/backlog.json`: B019 stage `code`.
+
+**Files**
+- `audits/2026-11-22-B019-2.md`, `audits/2026-11-22-B019-2-accessibility.md` (created)
+- `components/TextInput/guidelines.md`, `components/TextInput/spec.md`, `components/TextInput/meta.json`, `components/TextInput/design/tokens.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B144-3 — Panel: code approved, component complete
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- **Space under the tabs**: only the `space.24` of Tabs; the tab content has no top padding (spec updated).
+- **Props**: `library`, `properties`, `compositions` (content of each tab); `collapsed` with `onCollapsedChange`; `selected` (`"library" | "properties" | "compositions"`) with `onSelect`; the width and the browser memory are handled by the Panel.
+- **Empty tab**: the sentence is written by the playground (example in `examples.tsx`).
+- **`size.panel` 320px → 400px**, so the three tabs fit next to the collapse button (token, `token-naming` and spec updated).
+- **Focus order** (accessibility check): resize handle → collapse button → tabs → content; the collapse button comes before the tabs in the DOM (guidelines updated).
+- Stage 3 (Code) approved: Panel **complete**, version **1.0**.
+
+**What was done**
+- `components/Panel/Panel.tsx` + `Panel.css`: built with Tabs and IconButton, semantic tokens only; collapse / expand with the focus following, resize by pointer, arrows (`space.8`) and double-click, browser memory (`localStorage` key `ds-panel`), below desktop always collapsed at open, Escape and leaving the panel collapse it; breakpoint read in the window the panel is shown in (Playground iframe).
+- Inside the Panel, the focus ring of the tab content is drawn inside (negative offset), like the resize handle, so it stays on the panel background.
+- `examples.tsx` (expanded, collapsed, empty tab, long content), `playground.tsx`; `components/index.ts` exports `Panel`, `PanelProps`, `PanelTab`.
+- Token audit: `audits/2026-11-22-B144-3-tokens.md` — 1 failure (raw `z-index`) fixed with no z-index; not blocking.
+- Accessibility check: `audits/2026-11-22-B144-3-accessibility.md` — 1 failure (focus order) fixed; checked with the keyboard in the browser; not blocking. Still to check later: keyboard focus leaving below desktop, reduced motion, 200% zoom, 320px reflow; WCAG 2.4.11 with Canvas (B142).
+- Compliance audit: `audits/2026-11-22-B144-3.md` — 64 compliant, 13 non-compliant (3 fixed: #70, #68, #64; 0 new), 21 not in the design system; no new ticket.
+- `meta.json`: status `complete`, version `1.0`, changelog "First complete version."; `backlog/backlog.json`: B144 `done`, stage `complete`.
+
+**Files**
+- `components/Panel/Panel.tsx`, `Panel.css`, `examples.tsx`, `playground.tsx`, `audits/2026-11-22-B144-3-tokens.md`, `audits/2026-11-22-B144-3-accessibility.md`, `audits/2026-11-22-B144-3.md` (created or rewritten from the template)
+- `components/Panel/meta.json`, `spec.md`, `guidelines.md`, `components/index.ts`, `tokens/semantic.json`, `.claude/skills/token-naming/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B159-2 — Avatar: guidelines approved
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- When to use: author of content (comment, message), assignee of a ticket or task, signed-in user, list of people.
+- When not to use: logo or illustration (an image); status or category → Tag; group of overlapping avatars → AvatarGroup (not in the design system yet); clickable profile → wrap the avatar and the name in a Button or a Link (the Avatar is never interactive).
+- Name always written next to the avatar, `--space-8` apart; only exception: a marker that shows the name on click (Comment marker).
+- Sizes by context: `small` next to body text and in lists, `medium` (default) e.g. the Comment marker, `large` in a profile or page header. Lists: one person per row, same size for the whole list. No limit on the number of avatars per screen.
+- Do / don't: icon only for a genuinely unknown name (never "??"); one size per list (never mixed); a Tag for a status (never letters that are not a person).
+- Initials always computed from the full name, never typed by hand; the icon is never a loading placeholder.
+- Behavior: a long name next to the avatar wraps, the avatar stays aligned with the first line and never shrinks; same size on every screen.
+- Related components: CommentMessage (B160), Comment (B146).
+- **Spec change** (raised by the accessibility check): the avatar is **decorative when the name is written next to it**, so screen readers do not read the name twice; it announces the full name only when shown alone (marker); without a name it stays decorative. How the code knows it: decided at the code stage.
+- Guidelines approved; next stage: code.
+
+**What was done**
+- `components/Avatar/guidelines.md` written; `spec.md` (Content: screen reader rule; Open questions) updated; `meta.json` status `code`; backlog B159 stage `code`.
+- Accessibility check: `audits/2026-11-22-B159-2-accessibility.md` — 5 pass, 0 fail, 2 not applicable.
+- Compliance audit: `audits/2026-11-22-B159-2.md` — 62 compliant, 13 non-compliant (#70, #68, #64 fixed; 0 new), 21 not in the design system; no new ticket (B132's scope still names the fixed #64: to update in its own conversation).
+
+**Files**
+- `audits/2026-11-22-B159-2.md`, `audits/2026-11-22-B159-2-accessibility.md` (new)
+- `components/Avatar/guidelines.md`, `components/Avatar/spec.md`, `components/Avatar/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+## Step B161-1 — ZoomControls: design approved
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Identity: **ZoomControls**, folder `components/ZoomControls/`, class `.ds-zoom-controls`, level **molecule** (built from IconButton), description "The zoom controls of the canvas: zoom out, zoom level, zoom in, fit."
+- Already decided in the Composant Canvas conversation (B142): zoom out, zoom level in percent, zoom in, fit to screen; tertiary IconButtons; container `background.surface`, `radius.8`, `shadow.dropdown`; bottom right of the Canvas; zoom from 10 to 400 in steps of 10.
+- Layout: one horizontal row — zoom out (`remove`), zoom level, zoom in (`add`), divider, fit to screen (`fit_screen`).
+- Zoom level: plain text, read only, `label-sm`, `text.primary`, centered, minimum width = new token **`size.zoom-level` = 2.5rem** (40px; rem so it grows with the text size, WCAG 1.4.4).
+- Divider: `border.subtle`, `border-width.1`, height `icon-size.20`.
+- Container: no border, padding `space.4`, gap `space.4` (44px high).
+- Limits: zoom out disabled at 10%, zoom in disabled at 400%; fit to screen always enabled.
+- Accessible names: "Zoom controls" (group), "Zoom out", "Zoom level 100%", "Zoom in", "Fit to screen".
+- Design stage approved on 2026-11-22.
+
+**What was done**
+- Ticket B161 reserved (`in-progress`), branch `component/ZoomControls` from `develop`.
+- `components/ZoomControls/` created from the template: `meta.json` (status `guidelines`), `spec.md`, `design/Preview.tsx` and `design/tokens.json` (Design preview tab, zoom level as content), template files for the later stages.
+- Token `size.zoom-level` added to `tokens/semantic.json` and the `token-naming` skill.
+- Accessibility check: `audits/2026-11-22-B161-1-accessibility.md` — 5 passes, 0 failures (2 notes: width in rem → chosen; how the zoom level is announced → open question for guidelines / code).
+- Token audit: `audits/2026-11-22-B161-1-tokens.md` — 36 values, 0 fail.
+- Compliance audit: `audits/2026-11-22-B161-1.md` — 62 compliant, 13 non-compliant (0 new, 0 fixed), 21 not in the design system; no new ticket.
+- `backlog/backlog.json`: B161 stage `guidelines`.
+
+**Files**
+- `components/ZoomControls/` (new)
+- `audits/2026-11-22-B161-1.md`, `audits/2026-11-22-B161-1-accessibility.md`, `audits/2026-11-22-B161-1-tokens.md` (new)
+- `tokens/semantic.json`, `tokens/tokens.css`, `.claude/skills/token-naming/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B019-3 — TextInput: code approved, component complete
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Code stage approved on 2026-11-22: TextInput is **complete**, version **1.0** ("First complete version.").
+- Approved with the code: `--radius-full` for the clear button state layer, the clear button state layers and the `--duration-100` · `--easing-ease-out` transitions (added to the spec Design tokens table); example contents of the "Long texts" and "Search" examples.
+
+**What was done**
+- `components/TextInput/TextInput.tsx`: props `type`, `label` | `placeholder` (one of them), `icon`, `helpText`, `error`, `required`, `disabled`, `value` / `defaultValue` / `onChange`; forbidden combinations prevented by the types; native `<input>` (`search` → `type="search"`, `number` → `type="text"` + `inputMode="numeric"`); accessible name `aria-label` = label or placeholder; `aria-describedby`, `aria-invalid`, `aria-required`; error in an `aria-live="polite"` region always rendered; clear button (`<button>`, "Clear the search") gives the focus back to the field; Escape empties a filled `search` field and stops there (a Dialog closes on the next Escape).
+- `TextInput.css`: semantic tokens only; field state layer on `::before` so the clear button stays above it without a z-index.
+- `examples.tsx` (11 examples), `playground.tsx` (one control per prop), export in `components/index.ts`.
+- `meta.json`: status `complete`, version `1.0`, changelog; `backlog/backlog.json`: B019 `done`.
+- Token audit: `audits/2026-11-22-B019-3-tokens.md` — 57 values, 1 failure (raw `z-index: 1`) fixed in code.
+- Accessibility check: `audits/2026-11-22-B019-3-accessibility.md` — 10 passes, 0 failures; clear by click / Enter / Space, Escape, Shift+Tab, number error and mobile width checked in the browser; no screen reader pass (checked in the code).
+- Compliance audit: `audits/2026-11-22-B019-3.md` — 62 compliant, 18 non-compliant (5 new: #71–#74 the site text fields now covered by TextInput, #75 the "/" shortcut), 21 not in the design system; 2 tickets proposed (A: site search, B: Playground / Design preview / Icons fields).
+
+**Files**
+- `components/TextInput/TextInput.tsx`, `TextInput.css`, `examples.tsx`, `playground.tsx`, `audits/2026-11-22-B019-3.md`, `audits/2026-11-22-B019-3-tokens.md`, `audits/2026-11-22-B019-3-accessibility.md` (created)
+- `components/TextInput/meta.json`, `components/TextInput/spec.md`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B159-3 — Avatar: code approved, component complete
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Props: `name` (full name; initials computed from it; without a name the person icon), `size` (`small` / `medium` default / `large`), `decorative` (default `true`: hidden from screen readers, the name is written next to it; `false` when shown alone: `role="img"` named with the full name). Written into `spec.md` (Variants).
+- Accessibility exception accepted: at 200% text zoom (WCAG 1.4.4) the initials are cut off by the fixed-size circle (approved px diameters kept); no information lost (name written next to it, or announced).
+- Code approved; Avatar complete, version 1.0.
+
+**What was done**
+- `components/Avatar/Avatar.tsx` and `Avatar.css` (semantic tokens only; `.ds-avatar`, `.ds-avatar--<size>`, `.ds-avatar-initials`, `.ds-avatar-icon`; no state layer), `examples.tsx` (sizes, unknown name, initials, list of people, long name, shown alone), `playground.tsx` (controls `name`, `size`, `decorative`); exported from `components/index.ts` (`Avatar`, `AvatarProps`, `AvatarSize`).
+- Checked in the browser: diameters 24 / 32 / 48px, initials 12 / 14 / 20px, icon 16 / 20 / 32px, colors, aria attributes; Playground controls update the canvas and the code; 320px wide and increased text spacing pass.
+- `meta.json`: status `complete`, version `1.0`, changelog "First complete version."; backlog B159 `done`, stage `complete`.
+- Accessibility check: `audits/2026-11-22-B159-3-accessibility.md` — 8 pass, 0 fail, 1 accepted exception (WCAG 1.4.4), 4 not applicable.
+- Token audit: `audits/2026-11-22-B159-3-tokens.md` — 25 values, 0 fail.
+- Compliance audit: `audits/2026-11-22-B159-3.md` — 62 compliant, 18 non-compliant (5 new from `develop`, #71–#75, TextInput; 0 from this step), 21 not in the design system; no new ticket. Avatar is not used on the site: no site element shows a person.
+
+**Files**
+- `audits/2026-11-22-B159-3.md`, `audits/2026-11-22-B159-3-accessibility.md`, `audits/2026-11-22-B159-3-tokens.md` (new)
+- `components/Avatar/Avatar.tsx`, `Avatar.css`, `examples.tsx`, `playground.tsx`, `meta.json`, `spec.md`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+## Step B161-2 — ZoomControls: guidelines approved
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- When not to use: showing an image (**ImageViewer**), enlarging the text of a page (never: browser zoom), a surface that does not zoom.
+- Placement: bottom right of the canvas, `space.16` from the edges, corner kept free; one per canvas; always the four parts.
+- Do's and don'ts: corner free, one per canvas, full set, level in steps of 10.
+- Content: level "120%" (whole number, no space, multiple of 10); no tooltip until the Tooltip component.
+- Behavior: fit to screen rounds the level **down** to a multiple of 10 (73% → 70%); empty canvas → back to 100%, centered; same bar on every screen size.
+- Accessibility: the zoom level is a **polite status** ("Zoom level 120%" after each change); disabled buttons stay the native IconButton disabled (no focusable disabled — IconButton unchanged); when the focused button becomes disabled, the focus moves to the other zoom button (zoom out at 400%, zoom in at 10%); the visible level is the explanation IconButton requires for a disabled button.
+- Related components: Canvas, ImageViewer.
+- **Spec changes** (approved with the guidelines): zoom level as a status; focus moved to the other zoom button at the limit.
+- Guidelines stage approved on 2026-11-22.
+
+**What was done**
+- `components/ZoomControls/guidelines.md` written; `spec.md` updated; `meta.json` status `code`.
+- Accessibility check: `audits/2026-11-22-B161-2-accessibility.md` — 6 passes, 0 failures (focusable disabled conflict with IconButton resolved by the decision above).
+- Compliance audit: `audits/2026-11-22-B161-2.md` — 62 compliant, 13 non-compliant (0 new, 0 fixed), 21 not in the design system; no new ticket.
+- `backlog/backlog.json`: B161 stage `code`.
+
+**Files**
+- `audits/2026-11-22-B161-2.md`, `audits/2026-11-22-B161-2-accessibility.md` (created)
+- `components/ZoomControls/guidelines.md`, `components/ZoomControls/spec.md`, `components/ZoomControls/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B161-3 — ZoomControls: code approved, component complete
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Event props decided at the code stage (open question of `spec.md`): `zoom` (controlled), `onZoomChange(zoom)`, `onFitToScreen()` — same convention as `ImageViewer`'s `index` / `onIndexChange`.
+- Code approved; ZoomControls complete, version 1.0.
+
+**What was done**
+- `components/ZoomControls/ZoomControls.tsx` and `.css` (semantic tokens only; `.ds-zoom-controls`, `.ds-zoom-controls-group`, `-level`, `-divider`; built from `IconButton` tertiary); `role="group"` `aria-label="Zoom controls"`; level `role="status"` `aria-live="polite"` `aria-label="Zoom level {n}%"`; zoom out / in disabled at 10% / 400% (native `disabled`); a `useEffect` moves the focus to the other zoom button when the focused one becomes disabled (same pattern as `ImageViewer`).
+- `examples.tsx` (Default, Minimum 10%, Maximum 400%, each a `Stateful` wrapper); `playground.tsx` (control `zoom`); exported from `components/index.ts` (`ZoomControls`, `ZoomControlsProps`).
+- Checked in the browser: zoom in/out steps of 10, disabled at the limits, focus moves to the other button at 400% (verified live), fit to screen resets to 100%, aria attributes match the spec exactly; Playground canvas interactive, generated code shows `onZoomChange`/`onFitToScreen`.
+- `meta.json`: status `complete`, version `1.0`, changelog "First complete version."; `backlog/backlog.json`: B161 `done`, stage `complete`.
+- Token audit: `audits/2026-11-22-B161-3-tokens.md` — 13 values, 0 fail.
+- Accessibility check: `audits/2026-11-22-B161-3-accessibility.md` — 7 pass, 0 fail, 1 not applicable.
+- Compliance audit: `audits/2026-11-22-B161-3.md` — 63 compliant, 18 non-compliant (5 new from `develop`, #71–#75, TextInput, already covered by B165/B166; 1 found and fixed in this step: ZoomControls' own Playground was not interactive, now wired with local state), 21 not in the design system; no new ticket.
+
+**Files**
+- `audits/2026-11-22-B161-3.md`, `audits/2026-11-22-B161-3-accessibility.md`, `audits/2026-11-22-B161-3-tokens.md` (created)
+- `components/ZoomControls/ZoomControls.tsx`, `ZoomControls.css`, `examples.tsx`, `playground.tsx`, `meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B168-1 — Public site: login to edit the backlog live
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Asked directly in the chat (not from a `Composant`/`Gouvernance` conversation): keep the public site a showcase for visitors, but get the live, editable Backlog herself once logged in — one account, a password.
+- Storage: commit straight to GitHub (`develop`), not a separate store (Netlify Blobs) — keeps the project's git-only philosophy (B092) and the full history of every change.
+- Priority `medium`, no release (not planned): asked and answered in the chat before the ticket was created.
+- Scope kept to the Backlog only: the Branches page cannot run on Netlify (needs a local git worktree); live editing of design tokens or work time on the public site is left for a later ticket, on request.
+
+**What was done**
+- `netlify/functions/`: `login.ts` (checks `ADMIN_PASSWORD`, sets a signed session cookie), `logout.ts`, `session.ts` (whether the cookie is valid), `backlog.ts` (GET/PATCH, auth-gated) and `_lib/session.ts` (HMAC cookie, `SESSION_SECRET`) + `_lib/github.ts` (reads/writes `backlog/backlog.json` on `develop` through the GitHub Contents API, same `BACKLOG_FIELDS` and one-item-at-a-time rule as the local dev server, `vite.config.ts`).
+- `netlify.toml`: `functions = "netlify/functions"` and redirects `/api/login`, `/api/logout`, `/api/session`, `/api/backlog` → the matching function.
+- `docs/src/auth.tsx` (new): `AuthProvider` / `useAuth` — checks `/api/session` on load, `login`/`logout` call the functions above. Wrapped around `<App />` in `main.tsx`.
+- `docs/src/backlog.ts`: `useBacklog` now takes `loggedIn` — logged out (or not known yet) it keeps the bundled last-release `items` and never calls `/api/backlog` (so `develop`, which can hold unreleased tickets, is never fetched for a logged-out visitor); logged in, it fetches the live items.
+- `docs/src/pages/BacklogPage.tsx`: reads `loggedIn` from `useAuth`, passes it to `useBacklog`; a note ("Showing the last release. Log in from the header to edit the live backlog.") shown when logged out.
+- `docs/src/pages/ReleasePlanningPage.tsx`: same wiring, so it also shows the live backlog once logged in.
+- `docs/src/AppShell.tsx` + `docs.css`: a `Login` control in the header, next to the work-time clock — logged out, an IconButton (`login`) opens a Dialog with a password field (plain `<input type="password">`, like the Search field above it: TextInput (B019) has no password type) and a "Log in" / "Cancel" footer; logged in, the same spot is a "Log out" IconButton (`logout`).
+
+**Checked**
+- `npm run typecheck` and `npm run build`: pass.
+- The Netlify Functions (outside the project's `tsconfig.json` `include`, so not covered by the commands above) type-check cleanly against their own, equivalent compiler options.
+- Local preview (`npm run dev`): the login control opens, the password form submits (fails locally with a generic "Wrong password" — `/api/login` only exists once deployed on Netlify), the Backlog page shows the logged-out note and its menus stay disabled.
+- Not run: the `ds-compliance-audit`, `ds-accessibility-audit` and `ds-token-audit` agents (not available in this session) — worth running from the usual Claude Code session before the next release review, same as any other step.
+- Not yet checked: logging in for real. It needs `GITHUB_TOKEN`, `ADMIN_PASSWORD` and `SESSION_SECRET` set as Netlify environment variables (the Design System Lead's own secrets, never written here) and a deploy of this code — `develop` only goes live on `main` at the next release (R3, 2026-12-04), so a Netlify branch deploy of `project/public-site-login` (or of `develop`) is the way to try it sooner.
+
+**Files**
+- `netlify/functions/login.ts`, `logout.ts`, `session.ts`, `backlog.ts`, `_lib/session.ts`, `_lib/github.ts` (new)
+- `netlify.toml`, `docs/src/backlog.ts`, `docs/src/AppShell.tsx`, `docs/src/docs.css`, `docs/src/main.tsx`, `docs/src/pages/BacklogPage.tsx`, `docs/src/pages/ReleasePlanningPage.tsx`, `backlog/backlog.json`, `package-lock.json`, `STEPS.md` (updated)
+- `docs/src/auth.tsx` (new)
+
+## Step B031-2 — Prototype WorkDescription validated
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- The current version (one screen, Timeline + 4 `TimelineStep`, 4 `clickable-image` Cards with 3 placeholder images each) is validated as it is — no further screens added for now.
+
+**What was done**
+- `develop` merged into `component/work-description` (fast-forward up to date; brings in the ZoomControls and B168 login steps, no conflict).
+- Backlog: ticket B031 second iteration (feedback "Validé tel quel", decision `validated`); status set to `done`.
+- Compliance audit: `audits/2026-11-22-B031-2.md` — 64 compliant, 18 non-compliant (0 new from this step; 1 new since `develop` moved, #76 Login password field, "not in the design system", already covered by the done ticket B168 — question asked to the Design System Lead, no ticket), 22 not in the design system; no new ticket (every open finding already covered by an existing one).
+- Verification: typecheck and build pass.
+
+**Files**
+- `audits/2026-11-22-B031-2.md` (created)
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B142-3 — Canvas: code approved, component complete
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Pan is **controlled**: `panX`/`panY` + `onPanChange`, same convention as `zoom`/`onZoomChange` (ZoomControls precedent).
+- Children positioning is the **caller's responsibility**: neither Frame nor StickyNote have x/y props, so the Canvas only pans/zooms the whole content layer as one block; a consumer (UX playground, B130) positions each child itself (e.g. inline `position: absolute`).
+- Selection rectangle: the Canvas draws it and reports its final bounds in content space via `onSelectionRectangle`; it does not know its children, so the caller decides which ones are inside and selects them.
+- Code approved; Canvas complete, version 1.0.
+
+**What was done**
+- `components/Canvas/Canvas.tsx` and `.css`: pannable/zoomable surface (dot grid scaling with zoom via CSS custom properties), `ZoomControls` embedded bottom-right (DOM order before the content layer, for correct Tab order), content layer transformed by `panX`/`panY`/`zoom`, empty message, selection-rectangle overlay.
+  - Keyboard (canvas region focused only): arrows pan by one `--space-16` step scaled by zoom; `+`/`=`/`-` zoom one step anchored on the viewport center; `0` resets to 100%; `Shift+1` fits the actual rendered children's bounding box to the view (zoom floored to a multiple of 10, read from the real DOM children so it works regardless of how the caller positions them); Space arms pan-drag mode.
+  - Mouse: Space + drag pans; a plain drag on the background draws the selection rectangle. Touch: one finger pans; a ~500ms long-press then drag selects; a second touch pinch-zooms. `touch-action: none` so the browser does not intercept these gestures.
+  - Focus never hidden: a focus listener on the root pans the view to keep a newly focused descendant clear of the edges (`--space-16` margin) and the zoom-controls corner.
+  - `role="region"` `aria-label="Canvas"` `aria-describedby` a hidden description of the shortcuts and gestures; `:focus-visible` outline inside the edges (same technique as the approved Design preview mockup); single live region is ZoomControls' own (B161-2 decision, not repeated here).
+- `examples.tsx` (Default: two Frames + a StickyNote, each positioned by the example itself; Empty), `playground.tsx` (controls `zoom`, `empty`; `Demo` wraps local zoom/pan state so the canvas stays interactive, same pattern as Panel's and StickyNote's playgrounds); exported from `components/index.ts` (`Canvas`, `CanvasProps`, `SelectionRectangle`).
+- Checked in the browser: keyboard zoom and pan (exact pixel deltas), Space + drag pan, selection-rectangle lifecycle (appears during drag, gone after release), fit-to-screen math, Tab order (region → zoom controls → content), focus-visible.
+- `meta.json`: status `complete`, version `1.0`, changelog "First complete version."; `backlog/backlog.json`: B142 `done`, stage `complete`.
+- Token audit: `audits/2026-11-22-B142-3-tokens.md` — 32 values, 0 fail. The three inline custom properties (`--ds-canvas-zoom`, `--ds-canvas-pan-x`, `--ds-canvas-pan-y`) confirmed as component-local runtime state, not a token gap (same precedent as Panel's `--ds-panel-width`).
+- Accessibility check: `audits/2026-11-22-B142-3-accessibility.md` — first run 2 failures (`Shift+1` never fired: `event.key` is layout-dependent for a shifted digit, fixed with `event.code === "Digit1"`; Space did not call `preventDefault()`, risking a page scroll, fixed), both fixed and verified live; 13 pass, 0 fail.
+- Compliance audit: `audits/2026-11-22-B142-3.md` — 64 compliant (Canvas's own `examples.tsx` added), 18 non-compliant (unchanged, all covered by existing tickets), 21 not in the design system; no new ticket. Canvas's own `playground.tsx` checked specifically (after the ZoomControls Playground bug found at B161-3): already correctly wired, no repeat.
+
+**Files**
+- `audits/2026-11-22-B142-3.md`, `audits/2026-11-22-B142-3-accessibility.md`, `audits/2026-11-22-B142-3-tokens.md` (created)
+- `components/Canvas/Canvas.tsx`, `Canvas.css`, `examples.tsx`, `playground.tsx`, `meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B166-1 — Documentation site: TextInput in the site fields
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Playground text and number controls: the control name as `label`, shown in the empty field.
+- Number out of range: help text "From {min} to {max}"; the field keeps what is typed and the value is brought back into the range on blur (no error message).
+- Icons page "Icon name" field: TextInput `text` type with a label (not `search`).
+- Widths kept with `size.playground-input` and `size.icon-try`; the native date control stays.
+
+**What was done**
+- Playground (`PlaygroundTab.tsx`): text controls are TextInputs; number controls use a new `NumberControl` (TextInput `number`, help text with the range, clamped on blur); the date control keeps the native input.
+- Design preview (`DesignPreview.tsx`): the "Content" field is a TextInput, save on blur kept.
+- Icons page (`IconsPage.tsx`): the "Icon name" field is a TextInput, same name cleanup.
+- `docs.css`: hand-built `.icon-try` label and input rules removed (only `max-width` kept), `.playground-text-input` width added.
+- Checked in the browser (Breadcrumb Playground: "9" stays while typing, becomes "3" on blur; Icons page), `npm run typecheck` and `npm run build` pass. Done by the `ds-compliance-fix` agent, checked by Claude (nothing outside `docs/`).
+- Compliance audit: `audits/2026-11-22-B166-1.md` — 66 compliant, 15 non-compliant (3 fixed: #72–#74; 0 new), 23 not in the design system (2 new: native date field, password field); no ticket proposed. B166 `done`.
+
+**Files**
+- `audits/2026-11-22-B166-1.md` (new)
+- `docs/src/PlaygroundTab.tsx`, `docs/src/DesignPreview.tsx`, `docs/src/pages/IconsPage.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B165-1 — Documentation site: TextInput in the site search
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- The "/" shortcut is removed with its hint (WCAG 2.1.4).
+- The results list keeps the combobox markup (`role="combobox"`, `aria-expanded`, `aria-controls`, `aria-activedescendant` on the input) until the dropdown list B057 exists.
+- The field takes the height of the TextInput (39px); the token `size.search-field-height` is removed.
+- Width kept with `size.search-field` (360px); full width below desktop.
+
+**What was done**
+- `AppShell.tsx`: the header search is a TextInput `search` (placeholder "Search pages"); the "/" listener and the `<kbd>` hint are removed; arrows, Enter and "No page found" unchanged, Escape handled by the TextInput.
+- `docs.css`: field, icon, placeholder and `.shell-search-key` rules removed; `.shell-search` only places the field and the results list.
+- `tokens/semantic.json`: `size.search-field-height` removed (no remaining reference).
+- Checked in the browser (results, ArrowDown, Escape, "No page found", 39px height); `npm run tokens`, `typecheck` and `build` pass.
+- Compliance audit: `audits/2026-11-22-B165-1.md` — 67 compliant, 13 non-compliant (2 fixed: #71, #75; 0 new), 23 not in the design system; no ticket proposed. B165 `done`.
+
+**Files**
+- `audits/2026-11-22-B165-1.md` (new)
+- `docs/src/AppShell.tsx`, `docs/src/docs.css`, `tokens/semantic.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+## Step B161-4 — ZoomControls: event renamed to onFit
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Another session had already merged the code of ZoomControls into `develop` (Step B161-3, event `onFitToScreen`). The Design System Lead chose to keep that code and rename the fit to screen event to **`onFit`**; the zoom event stays `onZoomChange(zoom)`.
+- ZoomControls stays at version **1.0**, no changelog entry (1.0 was released the same day, not used outside the repository). No version bump for Canvas: only its internal call changed.
+
+**What was done**
+- `onFitToScreen` renamed to `onFit` in `components/ZoomControls/ZoomControls.tsx`, `examples.tsx`, `playground.tsx` and at its call site in `components/Canvas/Canvas.tsx`.
+- `components/ZoomControls/spec.md`: new **Events** section (`onZoomChange(zoom)`, `onFit()`), open question on the event names closed.
+- Checked in the browser: fit to screen resets to 100% in the ZoomControls examples and fits the content (30%) in the Canvas example. A console error ("createRoot() … already been passed") appears on the Canvas page with or without this change.
+- A separate implementation written in parallel on this branch (`onFit`, hidden-text announcement of the level) was not used.
+- Compliance audit: `audits/2026-11-22-B161-4.md` — 66 compliant, 15 non-compliant (0 new, 0 fixed), 23 not in the design system; no ticket proposed.
+
+**Files**
+- `components/ZoomControls/ZoomControls.tsx`, `examples.tsx`, `playground.tsx`, `spec.md`, `components/Canvas/Canvas.tsx`, `STEPS.md` (updated)
+- `audits/2026-11-22-B161-4.md` (created)
+
+
+## Step B160-1 — CommentMessage: design approved
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- B160 CommentMessage started on `component/CommentMessage` (ticket reserved from `component/Comment`, where it was created in B146-1): name `CommentMessage`, class `.ds-comment-message`, level **molecule**, description "One message of a comment thread: author avatar and name, date and text.", one size.
+- Header on one line: Avatar `small`, author name (`label`, `text.primary`, one line with an ellipsis), date and time always absolute ("19 Nov 2026, 14:43", `label-sm`, `text.secondary`) followed by "· Edited" when the message was changed, then a "…" IconButton `tertiary` (`more_horiz`); gap `space.8`. Header height = the IconButton (36px), which keeps its place when hidden.
+- Text: `body`, `text.primary`, wraps with no limit. Padding `space.8`, radius `radius.8`, gap header → text `space.8`.
+- Variants: `position` `first` / `reply` (reply: separator above, `border.subtle`, `border-width.1`); `author` `other` / `me` (me: `background.subtle`; other: no background). All combinations allowed.
+- States: hover = hover state layer (`text.primary`) painted over the whole message, content included, and the "…" button shown; focus on the "…" button shows it with its own focus ring; always shown on touch screens. The message itself is not focusable.
+- The "…" button opens Edit / Delete: list of options waits for a new **Menu** component — ticket **B167** created (`todo`, high, R4, `origin: proposal`).
+- Accessibility: hover contrast of the date on `background.subtle` measured with the layer over the content, 4.62:1 (AA, at the limit) — chosen by the Design System Lead.
+- Design stage approved on 2026-11-22.
+
+**What was done**
+- `components/CommentMessage/` created from the template: `meta.json` (status `guidelines`), `spec.md`, `design/Preview.tsx` and `design/tokens.json` (4 variants, states default / hover / focus), template files for the later stages.
+- `tokens/contrast-pairs.json`: pair `color.icon.brand` / `color.background.subtle` (min 3) added; 70/70 pairs pass.
+- Accessibility check: `audits/2026-11-22-B160-1-accessibility.md` — 2 failures found (hover contrast of the date, missing contrast pair), both resolved; note for the code stage: the hidden "…" button stays in the Tab order.
+- Token audit: `audits/2026-11-22-B160-1-tokens.md` — 102 values, 0 fail.
+- Compliance audit: `audits/2026-11-22-B160-1.md` — 66 compliant, 15 non-compliant (0 new, 0 fixed), 22 not in the design system (count corrected); no new ticket.
+- `backlog/backlog.json`: B160 `in-progress`, stage `guidelines`; B167 created.
+- `develop` merged into `component/CommentMessage`.
+
+**Files**
+- `components/CommentMessage/` (new)
+- `audits/2026-11-22-B160-1.md`, `audits/2026-11-22-B160-1-accessibility.md`, `audits/2026-11-22-B160-1-tokens.md` (new)
+- `tokens/contrast-pairs.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B160-2 — CommentMessage: guidelines approved
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Use for the thread of a Comment (B146). Not for a chat (not in the design system yet), a note with no author (StickyNote), a message from the application (message banner B063, not in the design system yet), a quote put forward (Card).
+- Thread: chronological order, one `first` then `reply` messages, messages stacked with no space between them (the separator above a reply is enough).
+- **Only the author changes or deletes a message** — spec change: the "…" button and the hover state layer exist on `author: me` only; `author: other` has no interaction state; the header keeps the same height (36px) on every message.
+- Delete is immediate, with no confirmation; deleting the `first` message deletes the whole Comment. Focus after a delete: the "…" button of the next `me` message, else the reply field of the Comment; when the whole Comment disappears, the Comment decides (B146).
+- Content: full name of the author, absolute date, "· Edited" with no date, plain text only (no formatting, link or image), never empty.
+- Same layout on narrow screens (name cut with an ellipsis, date never wraps).
+- Do's and don'ts: one `first`, full name, `me` for the signed-in user only, plain text. Related: Comment, Avatar, IconButton, Menu (B167), StickyNote, Card.
+- Screen reader: the thread is a list of articles; a `me` message is read with "(you)" after the name; the "…" button is named "Open message actions" (verb first).
+- **Accepted exception** (Design System Lead, 2026-11-22): the "…" button has the same accessible name on every message, so a screen reader user cannot tell which message it acts on.
+- Guidelines stage approved on 2026-11-22.
+
+**What was done**
+- `components/CommentMessage/guidelines.md` written; `spec.md`, `design/Preview.tsx` and `design/tokens.json` updated for the `me`-only button and hover; `meta.json` status `code`.
+- Accessibility check: `audits/2026-11-22-B160-2-accessibility.md` — 4 failures found (focus after a delete ×2, no keyboard trap / focus not obscured, same button name on every message): 3 fixed, 1 accepted as an exception; 0 blocking.
+- Compliance audit: `audits/2026-11-22-B160-2.md` — 67 compliant, 13 non-compliant (2 fixed by B165-1, 0 new), 22 not in the design system; no new ticket.
+- `backlog/backlog.json`: B160 stage `code`.
+- `develop` merged into `component/CommentMessage`.
+
+**Files**
+- `components/CommentMessage/guidelines.md` (written); `spec.md`, `meta.json`, `design/Preview.tsx`, `design/tokens.json` (updated)
+- `audits/2026-11-22-B160-2.md`, `audits/2026-11-22-B160-2-accessibility.md` (new)
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B160-3 — CommentMessage: code approved, component complete
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Code stage approved on 2026-11-22: CommentMessage is **complete**, version **1.0** ("First complete version.").
+- API: `position` (`first` default / `reply`), `author` (`other` default / `me`), `name`, `date` as a `Date` (always shown as an absolute date, "19 Nov 2026, 14:43"), `edited`, `onActionsClick` (the application opens its own menu until the Menu component, B167, exists), text as `children`.
+- "(you)" is exposed to screen readers as visually hidden text after the name; "· Edited" is visible text.
+- Reflow (spec change): when the name and the date do not fit side by side (narrow screen, larger text), the date goes under the name; it wraps onto several lines only if the message is too narrow even for the date alone.
+
+**What was done**
+- `components/CommentMessage/CommentMessage.tsx` and `.css`: uses Avatar `small` and IconButton `tertiary`; the "…" button hidden with opacity (stays in the Tab order), shown on hover, focus and touch screens; hover state layer over the whole message, `author: me` only; header as tall as the IconButton; semantic tokens only.
+- `examples.tsx` (6 examples), `playground.tsx` (one control per prop), export in `components/index.ts`.
+- `spec.md`, `guidelines.md`, `design/Preview.tsx` and `design/tokens.json` updated for the date under the name.
+- `meta.json`: status `complete`, version `1.0`, changelog; `backlog/backlog.json`: B160 `done`, stage `complete`.
+- Token audit: `audits/2026-11-22-B160-3-tokens.md` — 33 values, 0 fail.
+- Accessibility check: `audits/2026-11-22-B160-3-accessibility.md` — 1 failure found (reflow at 320px / 200% text), fixed; 0 blocking; checked in the browser (keyboard, 320px, 200% text, text spacing).
+- Compliance audit: `audits/2026-11-22-B160-3.md` — 67 compliant, 13 non-compliant (0 new, 0 fixed), 22 not in the design system; CommentMessage replaces no element of the site; no new ticket.
+- `develop` merged into `component/CommentMessage`.
+
+**Files**
+- `components/CommentMessage/CommentMessage.tsx`, `CommentMessage.css`, `examples.tsx`, `playground.tsx`, `audits/2026-11-22-B160-3.md`, `audits/2026-11-22-B160-3-tokens.md`, `audits/2026-11-22-B160-3-accessibility.md` (created)
+- `components/CommentMessage/meta.json`, `spec.md`, `guidelines.md`, `design/Preview.tsx`, `design/tokens.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B143-4 — Frame: Playground canvas extended to the content
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- The Playground canvas of the Frame was restricted to the chosen screen width (375 / 768 / 1280px) and clipped the frame, which is wider; it is now as wide as its content.
+
+**What was done**
+- New opt-in option `fitWidth` of `definePlayground`: the canvas is as wide as the content instead of the chosen screen width. Other playgrounds are unchanged.
+- The canvas page (`playground-frame.tsx`) reports its content width (widest child + page padding) with a new `playground-width` message, on resize and on any change of the content; the Playground tab uses it (and still scales it down to the available width).
+- `components/Frame/playground.tsx` sets `fitWidth: true`.
+- Checked in the browser: mobile frame 471px, desktop frame 1376px shown at 53%. `tsc` passes.
+
+**Files**
+- `docs/src/playground.ts`, `docs/src/playground-frame.tsx`, `docs/src/PlaygroundTab.tsx`, `components/Frame/playground.tsx`, `STEPS.md` (updated)
+
+## Step B170-1 — Fix flow for the documentation site
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- A fix of the documentation site (a defect with no effect on components, tokens or guidelines) follows a light flow: **no version, no changelog**.
+- Scope: documentation site only; a fix of a component keeps the component flow.
+- New branch type `fix/<topic>` (four branch types now), one short ticket per fix (priority asked, release optional), a new skill `fix`.
+- No audit in the light flow (the compliance audit stays in the release review), except the accessibility check when a fix changes what a user sees or does; no dedicated conversation: a fix is made in the conversation where the defect is reported.
+
+**What was done**
+- New skill `fix`: scope, flow (ticket, branch, minimal change, check, preview, validation, short STEPS entry, merge), and what a fix never does.
+- `git-workflow`: four branch types, `fix/<topic>` row in the branches table.
+- `orchestrator`: dispatch row for the defects of the documentation site.
+- `CLAUDE.md`: the Git paragraph names the fourth branch type.
+- `backlog/backlog.json`: B170 `done`.
+
+**Files**
+- `.claude/skills/fix/SKILL.md` (created)
+- `.claude/skills/git-workflow/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)

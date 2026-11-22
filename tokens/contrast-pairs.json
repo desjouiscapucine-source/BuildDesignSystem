@@ -247,6 +247,11 @@
       "min": 3
     },
     {
+      "foreground": "color.icon.brand",
+      "background": "color.background.brand-subtle",
+      "min": 3
+    },
+    {
       "foreground": "color.icon.inverse",
       "background": "color.background.inverse",
       "min": 3
@@ -304,6 +309,46 @@
     {
       "foreground": "color.icon.inverse",
       "background": "color.background.brand",
+      "min": 3
+    },
+    {
+      "foreground": "color.icon.secondary",
+      "background": "color.background.surface",
+      "min": 3
+    },
+    {
+      "foreground": "color.border.focus",
+      "background": "color.background.surface",
+      "min": 3
+    },
+    {
+      "foreground": "color.icon.brand",
+      "background": "color.background.surface",
+      "min": 3
+    },
+    {
+      "foreground": "color.border.focus",
+      "background": "color.background.subtle",
+      "min": 3
+    },
+    {
+      "foreground": "color.border.strong",
+      "background": "color.background.subtle",
+      "min": 3
+    },
+    {
+      "foreground": "color.border.strong",
+      "background": "color.background.brand-subtle",
+      "min": 3
+    },
+    {
+      "foreground": "color.icon.error",
+      "background": "color.background.page",
+      "min": 3
+    },
+    {
+      "foreground": "color.icon.brand",
+      "background": "color.background.subtle",
       "min": 3
     }
   ]

@@ -5,6 +5,7 @@
 ## When to use
 - **To name a category**: e.g. the backlog category, the Atomic Design level.
 - **To show a status**: e.g. "Decided", "Done", "Blocked".
+- **To highlight content** with no meaning of feedback: e.g. the skills of a profile, keywords. Use the `brand` tone.
 - **Next to a title or in the metadata of a card**: beside the element it describes.
 
 ## When not to use
@@ -14,18 +15,20 @@
 - To give a message or a sentence of feedback: use an **inline alert** instead (not in the design system yet).
 
 ## Usage best practices
-- **Neutral for categories**: a category has no meaning of success or error, so its tag is always `neutral`.
+- **Neutral for categories**: a category has no meaning of success or error, so its tag is `neutral` by default; `brand` when a category is highlighted (e.g. the level of a component in its page header).
 - **The tone matches the meaning**: `success` = done or positive, `warning` = needs attention, `error` = problem, `info` = information. Never a tone for decoration.
+- **Brand to highlight**: `brand` highlights content with no meaning of feedback (e.g. skills, keywords). `neutral` stays the default for categories. Never `brand` for a status.
+- **Tones can be mixed**: `brand` may sit next to `neutral` and the feedback tones in the same group.
 - **Never color alone**: the label always carries the meaning; the tone only reinforces it.
-- **At most 3 tags side by side**: beyond that, the information gets noisy.
-- **Spacing between tags**: `--space-4`.
+- **No limit on the number of tags side by side**: they wrap to the next line when the space runs out (e.g. a list of skills).
+- **Spacing between tags**: `--space-16`, between tags side by side and between the lines when they wrap.
 
 ## Do's and don'ts
 | Do | Don't |
 | -- | ----- |
 | Match the tone with the meaning: "Blocked" in `error`. | Use a tone against its meaning: "Blocked" in `success`. |
 | Write a short label: "In progress". | Write a sentence: "This ticket is currently in progress". |
-| Show at most 3 tags side by side: "Components", "Decided". | Line up many tags: six tags in a row. |
+| Highlight skills with `brand`: "React", "TypeScript". | Use `brand` for a status: "Done" in `brand`. |
 | Use a Chip to filter: "All", "Done" in a ChipGroup. | Use a Tag as a filter button. |
 
 ## Content guidelines

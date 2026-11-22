@@ -1,14 +1,19 @@
-import { useEffect, useRef, useState, type ReactElement, type ReactNode } from "react";
+import { useEffect, useState, type FormEvent, type ReactElement, type ReactNode } from "react";
 import {
   Breadcrumb,
+  Button,
+  Dialog,
   IconButton,
   NavigationItem,
   SideNavigation,
+  TextInput,
   type BreadcrumbLevel,
   type NavigationItemProps,
 } from "@ds/components";
 import logo from "../../assets/logo/avatar-logo.svg";
+import { useAuth } from "./auth";
 import { allPages, pathTo, spaces, type NavNode } from "./structure";
+import saved from "./work-time.json";
 
 interface AppShellProps {
   current: string; // current page in the navigation, e.g. "#/backlog"
@@ -31,9 +36,10 @@ function WorkTime() {
   useEffect(() => {
     const load = () =>
       fetch("/api/work-time")
-        .then((response) => (response.ok ? response.json() : null))
+        .then((response) => (response.ok ? response.json() : Promise.reject()))
         .then(setData)
-        .catch(() => setData(null));
+        // Online (public site, no dev server API): the total saved on release day, frozen (B152).
+        .catch(() => setData({ seconds: saved.seconds, lastActivity: null, pauseMs: 0 }));
     load();
     const refresh = setInterval(load, 60_000);
     const tick = setInterval(() => setNow(Date.now()), 1000);
@@ -97,6 +103,9 @@ export function AppShell({ current, route = current, children }: AppShellProps) 
   const path = pathTo(current);
   const space = path[0] ?? spaces[0];
   const levels = breadcrumbLevels(path, route === current);
+  // A space that is its own only page (Portfolio) has no side navigation on desktop; below desktop the burger
+  // still opens it, for the "Spaces" item only.
+  const singlePage = (space.children ?? []).every((node) => node.href === space.href);
 
   const spaceLinks = (className: string) => (
     <ul className={className}>
@@ -111,7 +120,7 @@ export function AppShell({ current, route = current, children }: AppShellProps) 
   );
 
   return (
-    <div className="shell">
+    <div className={singlePage ? "shell shell--single-page" : "shell"}>
       <a className="shell-skip" href="#main">
         Skip to content
       </a>
@@ -135,6 +144,7 @@ export function AppShell({ current, route = current, children }: AppShellProps) 
         </nav>
         <Search />
         <WorkTime />
+        <Login />
       </header>
 
       <div className="shell-body">
@@ -149,7 +159,7 @@ export function AppShell({ current, route = current, children }: AppShellProps) 
                 </NavigationItem>
               ))}
             </NavigationItem>,
-            ...navItems(space.children ?? [], current),
+            ...(singlePage ? [] : navItems(space.children ?? [], current)),
           ]}
         </SideNavigation>
         <main id="main" className="shell-content" tabIndex={-1}>
@@ -164,62 +174,39 @@ export function AppShell({ current, route = current, children }: AppShellProps) 
 function Search() {
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
-  const input = useRef<HTMLInputElement>(null);
 
   const all = allPages();
   const q = query.trim().toLowerCase();
   const results = q ? all.filter((item) => item.label.toLowerCase().includes(q)) : [];
 
-  // "/" focuses the search field.
-  useEffect(() => {
-    const onKey = (event: KeyboardEvent) => {
-      const target = event.target as HTMLElement;
-      if (event.key === "/" && !["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName)) {
-        event.preventDefault();
-        input.current?.focus();
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
   const go = (href: string) => {
     window.location.href = href;
     setQuery("");
-    input.current?.blur();
+    (document.activeElement as HTMLElement | null)?.blur();
   };
 
   return (
     <div className="shell-search" role="search">
-      <span className="ds-icon" aria-hidden="true">
-        search
-      </span>
-      <input
-        ref={input}
+      <TextInput
         type="search"
         placeholder="Search pages"
-        aria-label="Search pages"
         role="combobox"
         aria-expanded={results.length > 0}
         aria-controls="shell-search-results"
         aria-activedescendant={results.length > 0 ? `search-result-${active}` : undefined}
         value={query}
-        onChange={(event) => {
-          setQuery(event.target.value);
+        onChange={(next) => {
+          setQuery(next);
           setActive(0);
         }}
         onKeyDown={(event) => {
           if (event.key === "ArrowDown") setActive((index) => Math.min(index + 1, results.length - 1));
           else if (event.key === "ArrowUp") setActive((index) => Math.max(index - 1, 0));
           else if (event.key === "Enter" && results[active]) go(results[active].href);
-          else if (event.key === "Escape") setQuery("");
           else return;
           event.preventDefault();
         }}
       />
-      <kbd className="shell-search-key" aria-hidden="true">
-        /
-      </kbd>
       {q && results.length > 0 && (
         <ul id="shell-search-results" className="shell-search-results" role="listbox">
           {results.map((item, index) => (
@@ -251,5 +238,90 @@ function Search() {
         )}
       </div>
     </div>
+  );
+}
+
+// Session of the Design System Lead (B168): logged out, an IconButton opens a password Dialog; logged in, the
+// same spot logs out. One account: no username field. A plain password field, like the Search input above
+// (TextInput has no password type) — not a design system component.
+function Login() {
+  const { loggedIn, login, logout } = useAuth();
+  const [open, setOpen] = useState(false);
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [pending, setPending] = useState(false);
+
+  async function submit(event: FormEvent) {
+    event.preventDefault();
+    if (!password || pending) return;
+    setPending(true);
+    const ok = await login(password);
+    setPending(false);
+    if (ok) {
+      setOpen(false);
+      setPassword("");
+      setError(null);
+    } else {
+      setError("Wrong password.");
+    }
+  }
+
+  function close() {
+    setOpen(false);
+    setPassword("");
+    setError(null);
+  }
+
+  if (loggedIn === null) return null; // The session is still being checked.
+
+  if (loggedIn) {
+    return <IconButton className="shell-login" variant="tertiary" icon="logout" label="Log out" onClick={() => logout()} />;
+  }
+
+  return (
+    <>
+      <IconButton
+        className="shell-login"
+        variant="tertiary"
+        icon="login"
+        label="Log in to edit the backlog live"
+        onClick={() => setOpen(true)}
+      />
+      <Dialog
+        open={open}
+        onClose={close}
+        title="Log in"
+        description="Edit the backlog live from this site."
+        footer={
+          <>
+            <Button variant="secondary" onClick={close}>
+              Cancel
+            </Button>
+            <Button type="submit" form="shell-login-form" disabled={pending || !password}>
+              Log in
+            </Button>
+          </>
+        }
+      >
+        <form id="shell-login-form" className="shell-login-form" onSubmit={submit}>
+          <label className="shell-login-label" htmlFor="shell-login-password">
+            Password
+          </label>
+          <input
+            id="shell-login-password"
+            className="shell-login-field"
+            type="password"
+            autoComplete="current-password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+          {error && (
+            <p className="shell-login-error" role="alert">
+              {error}
+            </p>
+          )}
+        </form>
+      </Dialog>
+    </>
   );
 }

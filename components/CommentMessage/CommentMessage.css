@@ -1,0 +1,108 @@
+/* CommentMessage — semantic design tokens only. See spec.md.
+   Classes: .ds-comment-message · modifiers .ds-comment-message--<position> and --<author>
+   Parts: .ds-comment-message-header, -meta, -name, -date, -actions, -text, -hidden */
+.ds-comment-message {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: var(--space-8);
+  border-radius: var(--radius-8);
+  color: var(--color-text-primary);
+}
+
+/* position: a reply has a separator above it */
+.ds-comment-message--reply {
+  border-top: var(--border-width-1) solid var(--color-border-subtle);
+}
+
+/* author: only "me" has a background, the "…" button and the hover state layer */
+.ds-comment-message--me {
+  background: var(--color-background-subtle);
+}
+
+/* State layer (hover, author "me" only): overlay in the content color, over the whole message */
+.ds-comment-message--me::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-100) var(--easing-ease-out);
+}
+.ds-comment-message--me:hover::after { opacity: var(--state-layer-hover); }
+
+/* Header on one line; as tall as the IconButton, with or without the button */
+.ds-comment-message-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  min-width: 0;
+  min-height: calc(var(--icon-size-20) + 2 * var(--space-8));
+}
+
+/* Name and date: on one line, or the date under the name when they do not fit */
+.ds-comment-message-meta {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: var(--space-8);
+  min-width: 0;
+}
+
+.ds-comment-message-name {
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--typography-label-family);
+  font-size: var(--typography-label-size);
+  font-weight: var(--typography-label-weight);
+  line-height: var(--typography-label-line-height);
+}
+
+/* One line while it fits; it wraps only when the message is too narrow even for the date alone (reflow, WCAG 1.4.10) */
+.ds-comment-message-date {
+  color: var(--color-text-secondary);
+  font-family: var(--typography-label-sm-family);
+  font-size: var(--typography-label-sm-size);
+  font-weight: var(--typography-label-sm-weight);
+  line-height: var(--typography-label-sm-line-height);
+}
+
+/* The "…" button: at the end of the line, shown on hover and focus, always on touch screens */
+.ds-comment-message-actions {
+  margin-left: auto;
+  opacity: 0;
+}
+.ds-comment-message:hover .ds-comment-message-actions,
+.ds-comment-message:focus-within .ds-comment-message-actions {
+  opacity: 1;
+}
+/* Touch screens have no hover */
+@media (hover: none) {
+  .ds-comment-message-actions { opacity: 1; }
+}
+
+.ds-comment-message-text {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-family: var(--typography-body-family);
+  font-size: var(--typography-body-size);
+  font-weight: var(--typography-body-weight);
+  line-height: var(--typography-body-line-height);
+}
+
+/* Read by screen readers, not seen ("(you)" after the name of the signed-in user) */
+.ds-comment-message-hidden {
+  position: absolute;
+  width: var(--border-width-1);
+  height: var(--border-width-1);
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

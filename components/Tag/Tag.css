@@ -29,6 +29,8 @@
 /* Tones */
 .ds-tag--neutral { background: var(--color-background-subtle); color: var(--color-text-secondary); }
 .ds-tag--neutral .ds-tag-icon { color: var(--color-icon-secondary); }
+.ds-tag--brand { background: var(--color-background-brand-subtle); color: var(--color-text-brand); }
+.ds-tag--brand .ds-tag-icon { color: var(--color-icon-brand); }
 .ds-tag--success { background: var(--color-background-success-subtle); color: var(--color-text-success); }
 .ds-tag--success .ds-tag-icon { color: var(--color-icon-success); }
 .ds-tag--warning { background: var(--color-background-warning-subtle); color: var(--color-text-warning); }

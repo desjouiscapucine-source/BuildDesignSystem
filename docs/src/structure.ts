@@ -52,11 +52,11 @@ const projectsSection: NavNode = {
 
 const documentation: NavNode = {
   href: "#/",
-  label: "Documentation",
+  label: "Design system",
   icon: "menu_book",
   description: "Governance, foundations, components, prototypes and projects",
   children: [
-    { href: "#/", label: "Overview", icon: "home", description: "What the documentation contains" },
+    { href: "#/", label: "Overview", icon: "home", description: "What the design system contains" },
     {
       href: "#/governance",
       label: "Governance",
@@ -150,7 +150,7 @@ const portfolio: NavNode = {
   href: "#/portfolio",
   label: "Portfolio",
   icon: "work",
-  description: "Work made with the design system",
+  description: "Experience, skills and education",
   children: [{ href: "#/portfolio", label: "Portfolio", icon: "work" }],
 };
 

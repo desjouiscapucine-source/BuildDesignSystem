@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Select, TicketCard } from "@ds/components";
+import { useAuth } from "../auth";
 import type { Stage } from "../types";
 import {
   priorityLabels,
@@ -25,7 +26,10 @@ const stageLabels: Record<Stage, string> = { design: "Design", guidelines: "Guid
 
 /** `open`: the ticket shown in the modal (#/backlog/<id>). */
 export function BacklogPage({ open }: { open?: string }) {
-  const { items, setItems, error, setError } = useBacklog();
+  const { loggedIn } = useAuth();
+  const { items, setItems, error, setError, readOnly } = useBacklog(loggedIn);
+  // Logged out (or not known yet) the menus are disabled, until the read-only TicketCard variant (B153).
+  const lock = readOnly ? ({ disabled: true } as const) : {};
   const [category, setCategory] = useState("All");
   const [showRejected, setShowRejected] = useState(false);
 
@@ -46,21 +50,24 @@ export function BacklogPage({ open }: { open?: string }) {
       setItems(data.items);
       setError(data.mainError ? `Saved in this folder only, not in develop: ${data.mainError}.` : null);
     } catch {
-      setError("Could not save. Changes are saved only when the site runs with `npm run dev`.");
+      // Reached locally only: the menus are disabled online (B152). The card keeps its old value (TicketCard guidelines, B154).
+      setError("Could not save the change. Try again.");
     }
   }
 
   // The menus of a ticket (status, priority, release, stage): one Select each, on its card and in its modal.
-  // Stage only for component tickets. A change is saved at once (TicketCard guidelines).
+  // Stage only for component tickets. A change is saved at once (TicketCard guidelines); disabled online (B152).
   const ticketActions = (item: Item) => (
     <>
       <Select
+        {...lock}
         label="Status"
         options={(["todo", "in-progress", "done", "rejected"] as Status[]).map((status) => ({ value: status, label: statusLabels[status] }))}
         value={item.status}
         onChange={(value) => update(item.id, { status: value as Status })}
       />
       <Select
+        {...lock}
         label="Priority"
         options={[
           { value: "", label: "None" },
@@ -70,6 +77,7 @@ export function BacklogPage({ open }: { open?: string }) {
         onChange={(value) => update(item.id, { priority: (value || null) as Priority })}
       />
       <Select
+        {...lock}
         label="Release"
         options={[
           { value: "", label: "None" },
@@ -80,6 +88,7 @@ export function BacklogPage({ open }: { open?: string }) {
       />
       {item.stage && (
         <Select
+          {...lock}
           label="Stage"
           options={stages.map((stage) => ({ value: stage, label: stageLabels[stage] }))}
           value={item.stage}
@@ -110,6 +119,7 @@ export function BacklogPage({ open }: { open?: string }) {
       <p>
         Source: <code>backlog/backlog.json</code> — completed work is logged in <code>STEPS.md</code>.
       </p>
+      {loggedIn === false && <p>Showing the last release. Log in from the header to edit the live backlog.</p>}
 
       <div className="backlog-filters" role="group" aria-label="Filter by category">
         {categories.map((name) => (

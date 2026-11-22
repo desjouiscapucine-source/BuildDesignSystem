@@ -159,44 +159,36 @@ code {
   line-height: var(--line-height-heading);
   white-space: nowrap;
 }
+/* Login (B168): site-only form (plain input — TextInput has no password type). */
+.shell-login-form { display: flex; flex-direction: column; gap: var(--space-8); }
+.shell-login-label {
+  color: var(--color-text-primary);
+  font-family: var(--typography-label-sm-family);
+  font-size: var(--typography-label-sm-size);
+  line-height: var(--typography-label-sm-line-height);
+  font-weight: var(--typography-label-sm-weight);
+}
+.shell-login-field {
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--space-8) var(--space-16);
+  border: var(--border-width-1) solid var(--color-border-strong);
+  border-radius: var(--radius-8);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font: inherit;
+  outline: none;
+}
+.shell-login-field:focus-visible { outline: var(--border-width-2) solid var(--color-border-focus); outline-offset: var(--border-width-2); }
+.shell-login-error { margin: 0; color: var(--color-text-error); }
+
 /* Burger IconButton: below desktop only. */
 .ds-icon-button.shell-menu-button { display: none; }
 
 .shell-search {
   position: relative;
-  display: flex;
-  align-items: center;
-  gap: var(--space-8);
   flex: 0 1 var(--size-search-field);
   margin-left: var(--space-24);
-  padding: 0 var(--space-8) 0 var(--space-16);
-  height: var(--size-search-field-height);
-  background: var(--color-background-page);
-  border: var(--border-width-1) solid var(--color-border-strong);
-  border-radius: var(--radius-8);
-  color: var(--color-icon-secondary);
-}
-.shell-search:focus-within { outline: var(--border-width-2) solid var(--color-border-focus); outline-offset: var(--border-width-1); }
-.shell-search .ds-icon { font-size: var(--icon-size-20); }
-.shell-search input {
-  flex: 1;
-  min-width: 0;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  color: var(--color-text-primary);
-  font: inherit;
-}
-.shell-search input::placeholder { color: var(--color-text-secondary); }
-.shell-search-key {
-  /* body-sm size and line height; code font (--doc-mono) */
-  font-family: var(--doc-mono);
-  font-size: var(--typography-body-sm-size);
-  line-height: var(--typography-body-sm-line-height);
-  color: var(--color-text-secondary);
-  border: var(--border-width-1) solid var(--color-border-default);
-  border-radius: var(--radius-4);
-  padding: 0 var(--space-4);
 }
 .shell-search-results {
   position: absolute;
@@ -254,7 +246,7 @@ code {
 .shell-content { display: flex; flex-direction: column; gap: var(--space-16); }
 .shell-content > *,
 /* Blocks that set their own vertical margin: named so the reset wins (no margin added to the 16px gap). */
-.shell-content > :is(.cards, .tabs, .stages, .level-tag, table.tokens, .backlog-filters, .backlog-rejected, .icon-try-preview) {
+.shell-content > :is(.cards, .stages, table.tokens, .backlog-filters, .backlog-rejected, .icon-try-preview) {
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -264,7 +256,6 @@ code {
   .shell-header { padding: 0 var(--space-16); gap: var(--space-8); }
   .ds-icon-button.shell-menu-button { display: inline-flex; }
   .shell-search { margin-left: 0; flex: 1; }
-  .shell-search-key { display: none; }
   .shell-work-time { display: none; }
   .shell-spaces { display: none; }
 }
@@ -274,6 +265,8 @@ code {
   .ds-side-navigation.shell-nav { position: sticky; }
   /* The "Spaces" parent is for below desktop only: the header shows the spaces on desktop. */
   .ds-side-navigation-entry:has(> .ds-navigation-item-group > .shell-nav-spaces) { display: none; }
+  /* A space that is its own only page (Portfolio): no side navigation (B138). */
+  .shell--single-page .ds-side-navigation.shell-nav { display: none; }
 }
 /* Below tablet: --breakpoint-tablet (768px) */
 @media not all and (min-width: 768px) {
@@ -423,20 +416,6 @@ code {
 .stages li.complete { background: var(--color-background-success-subtle); color: var(--color-text-success); }
 .stages li.complete .ds-icon { color: var(--color-icon-success); }
 
-.tabs { display: flex; gap: var(--space-4); border-bottom: var(--border-width-1) solid var(--color-border-subtle); margin: var(--space-24) 0; }
-.tabs button {
-  position: relative;
-  font: inherit;
-  background: none;
-  border: 0;
-  padding: var(--space-8) var(--space-16);
-  cursor: pointer;
-  color: var(--color-text-secondary);
-  border-bottom: var(--border-width-2) solid transparent;
-  margin-bottom: calc(var(--border-width-1) * -1);
-}
-.tabs button[aria-selected="true"] { color: var(--color-text-brand); border-bottom-color: var(--color-border-focus); font-weight: var(--font-weight-semibold); }
-
 .markdown h1 { display: none; }
 .markdown blockquote {
   margin: 0 0 var(--space-16);
@@ -521,18 +500,11 @@ code {
   width: var(--size-tree-connector);
   border-top: var(--border-width-1) solid var(--color-border-default);
 }
-.nav-tree-level {
-  padding: 0 var(--space-8);
-  border-radius: var(--radius-4);
-  background: var(--color-background-brand-subtle);
-  font-size: var(--typography-label-sm-size);
-  font-weight: var(--font-weight-semibold);
-  font-family: var(--typography-label-sm-family);
-  line-height: var(--typography-label-sm-line-height);
-}
 .nav-tree-label { font-weight: var(--font-weight-semibold); }
 .nav-tree-note { color: var(--color-text-secondary); font-size: var(--typography-body-sm-size); font-family: var(--typography-body-sm-family); font-weight: var(--typography-body-sm-weight); line-height: var(--typography-body-sm-line-height); }
+.skill-group { display: flex; flex-direction: column; gap: var(--space-16); } /* same spacing as the page content (layout skill) */
 .skill-card { scroll-margin-top: calc(var(--size-header) + var(--space-16)); } /* below the sticky header */
+.skill-card .ds-card-text :is(h5, h6) { font-size: inherit; } /* headings of the skill body (h5, h6 since B139): body text size, no text style yet (audit finding 56) */
 .skill-card summary { cursor: pointer; color: var(--color-text-brand); font-weight: var(--font-weight-semibold); }
 .skill-card details[open] summary { margin-bottom: var(--space-16); }
 
@@ -569,16 +541,6 @@ code {
 .backlog-column ul, .backlog-rejected-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-16); }
 /* Menus of a ticket in its modal: one Select each, side by side */
 .ticket-menus { display: grid; grid-template-columns: repeat(auto-fit, minmax(var(--size-ticket-menu), 1fr)); gap: var(--space-8); }
-.backlog-tag {
-  font-family: var(--typography-label-sm-family);
-  font-size: var(--typography-label-sm-size);
-  font-weight: var(--typography-label-sm-weight);
-  padding: 0 var(--space-8);
-  border-radius: var(--radius-4);
-  background: var(--color-background-subtle);
-  color: var(--color-text-secondary);
-  line-height: var(--typography-label-sm-line-height);
-}
 .backlog-id { margin-left: auto; font-family: var(--doc-mono); font-size: var(--typography-body-sm-size); line-height: var(--typography-body-sm-line-height); color: var(--color-text-secondary); }
 .backlog-error {
   background: var(--color-background-error-subtle);
@@ -599,22 +561,13 @@ code {
 .ticket h4:not(.ds-card-title) { margin: var(--space-8) 0 var(--space-4); font-family: var(--typography-label-family); font-size: var(--typography-label-size); line-height: var(--typography-label-line-height); font-weight: var(--typography-label-weight); }
 
 /* ---------- Ticket ---------- */
-.backlog-tag.validated { background: var(--color-background-success-subtle); color: var(--color-text-success); }
-.backlog-tag.changes-requested { background: var(--color-background-warning-subtle); color: var(--color-text-warning); }
 /* Card skill: iteration cards stacked 16px apart */
 .ticket-iterations { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--space-16); }
 
 /* ---------- Icons page ---------- */
 pre.code { background: var(--color-background-surface); padding: var(--space-16); border-radius: var(--radius-8); font-family: var(--doc-mono); font-size: var(--typography-body-size); line-height: var(--typography-body-line-height); overflow-x: auto; }
-.icon-try { display: flex; flex-direction: column; gap: var(--space-4); max-width: var(--size-icon-try); font-family: var(--typography-label-family); font-size: var(--typography-label-size); font-weight: var(--typography-label-weight); line-height: var(--typography-label-line-height); }
-.icon-try input {
-  font: inherit;
-  font-weight: var(--font-weight-regular);
-  color: var(--color-text-primary);
-  padding: var(--space-8);
-  border: var(--border-width-1) solid var(--color-border-strong);
-  border-radius: var(--radius-4);
-}
+/* Width of the TextInput of the Icons page and of the Design preview Content field */
+.icon-try { max-width: var(--size-icon-try); }
 .icon-try-preview { display: flex; gap: var(--space-24); align-items: center; margin: var(--space-16) 0; }
 .icon-grid { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--size-icon-grid-cell), 1fr)); gap: var(--space-8); }
 .icon-grid li { display: flex; flex-direction: column; align-items: center; gap: var(--space-8); padding: var(--space-16) var(--space-8); border: var(--border-width-1) solid var(--color-border-subtle); border-radius: var(--radius-8); }
@@ -644,20 +597,8 @@ pre.code { background: var(--color-background-surface); padding: var(--space-16)
   font-weight: var(--font-weight-semibold);
   line-height: var(--typography-label-line-height);
 }
-.level-tag {
-  display: inline-block;
-  align-self: flex-start;
-  text-transform: capitalize;
-  margin: 0 0 var(--space-8);
-  padding: 0 var(--space-8);
-  border-radius: var(--radius-4);
-  background: var(--color-background-inverse);
-  color: var(--color-text-inverse);
-  font-family: var(--typography-label-sm-family);
-  font-size: var(--typography-label-sm-size);
-  font-weight: var(--typography-label-sm-weight);
-  line-height: var(--typography-label-sm-line-height);
-}
+/* Atomic Design level of a component page (a Tag): flex so the line box adds no height */
+.component-level { display: flex; }
 
 /* ---------- Design preview ---------- */
 .design-preview-note {
@@ -767,6 +708,8 @@ pre.code { background: var(--color-background-surface); padding: var(--space-16)
   width: 100%;
   min-width: var(--size-playground-input);
 }
+/* Playground text and number controls (TextInput) */
+.playground-text-input { min-width: var(--size-playground-input); }
 .playground-checkbox { width: var(--size-checkbox); height: var(--size-checkbox); accent-color: var(--color-background-brand); }
 
 /* The canvas page itself (docs/playground.html) */
@@ -871,4 +814,57 @@ body.playground-frame { padding: var(--space-24); }
 /* --breakpoint-desktop (1024px) */
 @media (min-width: 1024px) {
   .user-flow-boxes { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* ---------- Portfolio (B138) ---------- */
+/* page-content skill: the 12-column grid on the full width (no --size-content maximum), as the Backlog (B127). */
+.shell-content:has(.portfolio-content) { max-width: none; }
+.shell-content > :is(.portfolio-content, .portfolio-lead-row) { margin-top: 0; margin-bottom: 0; }
+/* Subtitle and external link buttons on one line, the buttons aligned right; they wrap below on small screens (B148). */
+.portfolio-lead-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-16); }
+/* page-header skill: the subtitle stays on one line, cut with an ellipsis as a safety net. */
+.portfolio-lead-row .lead { flex: 1 1 0; margin: 0; min-width: 0; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.portfolio-links { display: flex; flex-wrap: wrap; gap: var(--space-16); }
+/* Skills panel: groups of Tags on a subtle background (not a Card, so it is not read as an experience). */
+.portfolio-skills {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: var(--space-16);
+  border-radius: var(--radius-8);
+  background: var(--color-background-subtle);
+}
+.portfolio-skills h2 { margin: 0 0 var(--space-8); }
+.portfolio-tags { display: flex; flex-wrap: wrap; gap: var(--space-16); /* Tag guidelines */ margin: 0; padding: 0; list-style: none; }
+/* Cards stacked, full width of their column, 16px apart (card skill); the jump to a card stops below the sticky header. */
+.portfolio-content { display: flex; flex-direction: column; gap: var(--space-16); }
+.portfolio-cards { display: flex; flex-direction: column; gap: var(--space-16); }
+.portfolio-cards .ds-card { scroll-margin-top: calc(var(--doc-header-height) + var(--space-24)); }
+.portfolio-cards > .portfolio-education-title { margin: var(--space-24) 0 0; }
+.portfolio-section h3 { margin: 0 0 var(--space-8); }
+.portfolio-section ul { margin: 0; }
+.portfolio-section-note { color: var(--color-text-secondary); } /* same label style, secondary color */
+/* Desktop and above: --breakpoint-desktop (1024px) — skills panel on columns 1–3, cards on columns 4–9, the timeline
+   filling columns 10–12; panel and timeline fixed below the sticky header while the cards scroll (page-content skill,
+   with the skills panel approved 2026-11-14). */
+@media (min-width: 1024px) {
+  .portfolio-content {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns-desktop), minmax(0, 1fr));
+    column-gap: var(--grid-gutter);
+    align-items: start;
+  }
+  .portfolio-skills,
+  .portfolio-timeline {
+    grid-row: 1;
+    position: sticky;
+    top: calc(var(--doc-header-height) + var(--space-24));
+  }
+  .portfolio-skills {
+    grid-column: 1 / span 3;
+    max-height: calc(100dvh - var(--doc-header-height) - 2 * var(--space-24));
+    overflow-y: auto;
+  }
+  .portfolio-cards { grid-column: 4 / span 6; grid-row: 1; }
+  .portfolio-timeline { grid-column: 10 / span 3; }
 }
