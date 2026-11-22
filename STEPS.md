@@ -6331,3 +6331,23 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/Comment/design/tokens.json`, `components/Comment/design/Preview.tsx`, `audits/2026-11-22-B146-2.md`, `audits/2026-11-22-B146-2-accessibility.md`, `audits/2026-11-22-B146-2-tokens.md` (created)
 - `components/Comment/spec.md`, `components/Comment/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B146-3 — Comment: guidelines approved
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Use: a discussion with replies; a question to be resolved. Not for: a free note (StickyNote), naming a frame (name of the Frame), an application message (banner, B063, not in the design system yet).
+- Practice: marker at the point clicked on the element, follows it; several comments per element, one per subject; reply in the thread; one bubble open at a time; resolve rather than delete; no length limit. Four do / don't pairs (one subject per thread, marker on the element, resolve not delete, reply in the thread).
+- Behavior: Escape (from any element of the bubble) or Close closes the bubble and returns the focus to the marker; a click on the canvas closes it without moving the focus; the unsent reply is kept; Enter sends; a reply to a resolved comment keeps it resolved (only Reopen reopens); deleting the whole comment moves the focus to the marker of the next comment, or the canvas; the focus goes to the reply field on opening and after a reply sent with Send.
+- Send is disabled while the field is empty (changes the spec: Comment has no disabled state of its own except this button); a reply that cannot be sent keeps its text and shows the TextInput error "Your reply wasn't sent. Try again." (new spec state "Reply not sent"); status messages announced politely: "Reply sent", "Comment resolved", "Comment reopened" (spec updated).
+- Accessibility: marker = button named "Comment by <author>" (", resolved") with `aria-expanded`; bubble = non-modal group with the same name; reply field named by its placeholder "Write a reply".
+- Related: CommentMessage, Avatar, StickyNote, Frame, Canvas. Open question left: what happens to the comments of an element that is deleted.
+
+**What was done**
+- `components/Comment/guidelines.md` written; `spec.md` and the design preview updated (Send disabled, state "Reply not sent", status messages, reply field name); `meta.json` status `code`; backlog B146 stage `code`.
+- Accessibility check (`audits/2026-11-22-B146-3-accessibility.md`): 1st run 2 failures (name of the reply field, state of Send when empty) and open questions, all decided; 2nd run 6 pass, 0 fail.
+- Compliance audit: `audits/2026-11-22-B146-3.md` — 67 compliant, 13 non-compliant, 23 not in the design system; no change, no new ticket.
+
+**Files**
+- `components/Comment/guidelines.md`, `audits/2026-11-22-B146-3.md`, `audits/2026-11-22-B146-3-accessibility.md` (created)
+- `components/Comment/spec.md`, `components/Comment/design/Preview.tsx`, `components/Comment/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)

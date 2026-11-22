@@ -106,7 +106,7 @@ export function Preview({ state, text, variant = "open" }: PreviewProps) {
             <div style={{ flex: 1, minWidth: 0 }}>
               <TextInput placeholder="Write a reply" defaultValue={isEditing ? "Could we also test it on tablet?" : ""} />
             </div>
-            <IconButton variant="primary" icon="send" label="Send the reply" />
+            <IconButton variant="primary" icon="send" label="Send the reply" disabled={!isEditing} />
           </div>
         </div>
       )}

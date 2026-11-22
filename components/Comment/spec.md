@@ -30,8 +30,8 @@ A comment attached to a component or a frame of the canvas (UX playground, B130)
       2. Close — IconButton `tertiary`, icon `close`.
    2. **Thread** (required) — the first message (`position: first`) and its replies (`position: reply`), each a CommentMessage, in chronological order. The thread scrolls when the bubble reaches its maximum height.
    3. **Reply field** (required) — always visible at the bottom, also on a resolved comment:
-      1. Text field — TextInput, placeholder "Write a reply".
-      2. Send — IconButton `primary`, icon `send`, at the right of the field.
+      1. Text field — TextInput, placeholder "Write a reply" (it is also the accessible name of the field). When a reply cannot be sent, the TextInput shows its **error message** under the field and keeps the text.
+      2. Send — IconButton `primary`, icon `send`, at the right of the field; **disabled while the field is empty**.
 3. **Ring** (selected and focus) — a ring around the marker.
 
 Edit and Delete a message are the options of the "…" button of CommentMessage (Menu component, B167); they are not part of the Comment header.
@@ -54,6 +54,8 @@ No variant property: a comment has one look. What changes is its **state** (see 
 | Reopen action (`label`) | Yes, on a resolved comment | "Reopen the comment" | — | Not displayed (screen readers). |
 | Close action (`label`) | Yes | "Close the comment" | — | Not displayed (screen readers). |
 | Send action (`label`) | Yes | "Send the reply" | — | Not displayed (screen readers). |
+| Error when a reply is not sent | Only on failure | "Your reply wasn't sent. Try again." | One sentence | Wraps (TextInput). |
+| Status messages (announced, not displayed) | Yes | "Reply sent", "Comment resolved", "Comment reopened" | One short sentence | Not displayed (screen readers). |
 
 Author, date and text of each message follow the CommentMessage spec.
 
@@ -82,6 +84,7 @@ The states of the comment (approved 2026-11-19):
 - **Selected** — the comment is the active one: the bubble is open and a **ring** surrounds the marker.
 - **Resolved** — the marker shows the icon `check` (`--color-icon-inverse`, `--icon-size-20`) instead of the initials, at full opacity, so its contrast stays the one of the Avatar (6.10:1); the bubble, when open, stays readable and unchanged, except that Resolve becomes **Reopen** (it reopens the comment) and the reply field stays shown.
 - **Editing** — a reply is being written in the reply field.
+- **Reply not sent** — the TextInput shows its error message under the field (`--color-border-error` on the field, its own tokens); the text is kept and Send stays available to try again.
 
 Interaction states of the **marker** (a button, approved 2026-11-22):
 - **Hover**: state layer `--state-layer-hover`, **pressed**: `--state-layer-pressed`, in the content color of the marker (`--color-text-inverse`).
@@ -92,10 +95,11 @@ Screen reader and keyboard, for the **marker** (approved 2026-11-22):
 - Its name starts with the word "Comment" and gives the author of the first message: "Comment by Capucine Desjouis"; on a resolved comment: "Comment by Capucine Desjouis, resolved".
 - `aria-expanded` says whether the bubble is open (`true`) or closed (`false`).
 - The Avatar inside is decorative: the name of the button is the only one announced.
+- Status messages (polite, announced without moving the focus): "Reply sent", "Comment resolved", "Comment reopened" (approved 2026-11-22).
 
 - **Selected and focused**: the focus offset (`--space-4`) wins over the selected offset (`--space-8`): the ring moves in while the marker has the keyboard focus (approved 2026-11-22).
 
-Interaction states of the other parts (hover, focus, pressed, disabled) are those of IconButton, TextInput and CommentMessage. Comment has **no disabled state**.
+Interaction states of the other parts (hover, focus, pressed, disabled) are those of IconButton, TextInput and CommentMessage. Comment has **no disabled state** of its own. Only the **Send** button is disabled (IconButton `disabled`, its own tokens) while the reply field is empty; Enter then does nothing.
 
 ## Position of the bubble
 - By default, to the right of the marker, aligned on its top edge.
