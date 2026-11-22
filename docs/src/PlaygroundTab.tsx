@@ -28,17 +28,17 @@ const MIN_HEIGHT = px("size.playground-canvas-min");
 
 // ---------- Tokens section: the tokens used in the component's CSS, each replaceable by another of its family ----------
 
-const TEXT_STYLE_PROPS = ["family", "size", "weight", "line-height"] as const;
+export const TEXT_STYLE_PROPS = ["family", "size", "weight", "line-height"] as const;
 const tokenByVar = new Map(tokens.map((token) => [token.cssVar, token]));
 const familyOf = (token: Token) => token.path.slice(0, -1).join(".");
 
-type TokenRow =
+export type TokenRow =
   /** A token used in the CSS; options: the semantic tokens of its family (shadows: every shadow, no semantic ones yet). */
   | { key: string; kind: "token"; token: Token; options: Token[] }
   /** A text style used in the CSS (its four properties); options: every text style. */
   | { key: string; kind: "text-style"; name: string };
 
-function tokenRows(component: ComponentDoc): TokenRow[] {
+export function tokenRows(component: ComponentDoc): TokenRow[] {
   const css = Object.entries(component.code)
     .filter(([name]) => name.endsWith(".css"))
     .map(([, content]) => content)
@@ -61,7 +61,7 @@ function tokenRows(component: ComponentDoc): TokenRow[] {
 }
 
 /** CSS custom properties to set in the canvas for the tokens tried (row key → chosen token id or text style name). */
-function tokenVars(rows: TokenRow[], tried: Record<string, string>): Record<string, string> {
+export function tokenVars(rows: TokenRow[], tried: Record<string, string>): Record<string, string> {
   const vars: Record<string, string> = {};
   for (const row of rows) {
     const choice = tried[row.key];

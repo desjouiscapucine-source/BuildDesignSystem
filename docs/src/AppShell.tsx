@@ -142,6 +142,16 @@ export function AppShell({ current, route = current, children }: AppShellProps) 
         <nav className="shell-spaces" aria-label="Spaces">
           {spaceLinks("shell-spaces-list")}
         </nav>
+        {/* UX playground (B130): entry point next to the search field. */}
+        <IconButton
+          className="shell-playground-button"
+          variant="tertiary"
+          icon="design_services"
+          label="UX playground"
+          onClick={() => {
+            window.location.hash = "#/ux-playground";
+          }}
+        />
         <Search />
         <WorkTime />
         <Login />

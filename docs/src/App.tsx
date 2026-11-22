@@ -16,6 +16,7 @@ import { PrototypePage } from "./pages/PrototypePage";
 import { NavigationPage } from "./pages/NavigationPage";
 import { ProjectPage } from "./pages/ProjectPage";
 import { projects } from "./projects";
+import { PlaygroundPage } from "./pages/PlaygroundPage";
 import { PortfolioPage } from "./pages/PortfolioPage";
 import {
   CategoryPage,
@@ -30,7 +31,7 @@ import { categorySlug } from "./structure";
 
 // Hash routes, by navigation level (navigation skill):
 // Level 1  #/ (Design system, opens on Overview)  ·  #/portfolio
-// Level 2  #/governance  ·  #/foundations  ·  #/components  ·  #/prototypes  ·  #/projects
+// Level 2  #/governance  ·  #/foundations  ·  #/components  ·  #/prototypes  ·  #/projects  ·  #/ux-playground
 // Level 3  #/backlog  ·  #/backlog/<id> (ticket in a modal over the Backlog)  ·  #/skills  ·  #/skills/<name>  ·  #/agents  ·  #/git-workflow  ·  #/branches  ·  #/changelog  ·  #/navigation  ·  #/releases  ·  #/foundations/<slug>  ·  #/components/<category>  ·  #/prototypes/<name>  ·  #/projects/<name>
 // Level 4  #/components/<slug>
 function useHashRoute() {
@@ -96,6 +97,7 @@ export function App() {
   else if (route === "/projects") page = <SectionPage key={route} href="#/projects" />;
   else if (project) page = <ProjectPage key={route} project={project} />;
   else if (route === "/navigation") page = <NavigationPage />;
+  else if (route === "/ux-playground") page = <PlaygroundPage />;
   else if (route === "/portfolio") page = <PortfolioPage />;
 
   // Back to the top on a new page; opening or closing a ticket (a modal over the Backlog) keeps the scroll.

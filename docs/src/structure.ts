@@ -50,6 +50,14 @@ const projectsSection: NavNode = {
   ],
 };
 
+// Level 2 — UX playground (B130): a single page, the canvas where the coded components are composed in frames.
+const playgroundSection: NavNode = {
+  href: "#/ux-playground",
+  label: "UX playground",
+  icon: "design_services",
+  description: "Compose the coded components in frames before a prototype",
+};
+
 const documentation: NavNode = {
   href: "#/",
   label: "Design system",
@@ -143,6 +151,7 @@ const documentation: NavNode = {
     },
     prototypesSection,
     projectsSection,
+    playgroundSection,
   ],
 };
 

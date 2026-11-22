@@ -868,3 +868,55 @@ body.playground-frame { padding: var(--space-24); }
   .portfolio-cards { grid-column: 4 / span 6; grid-row: 1; }
   .portfolio-timeline { grid-column: 10 / span 3; }
 }
+
+/* ---------- UX playground page (B130) ---------- */
+/* The workspace uses the full width and the remaining height: canvas on the left, Panel on the right (Panel positions itself). */
+.shell-content:has(.ux-playground) { max-width: none; }
+.shell-content > .ux-playground { margin-top: 0; margin-bottom: 0; }
+/* overflow: clip, not hidden: a focused element can never scroll the workspace. */
+.ux-playground {
+  position: relative;
+  flex: 1;
+  min-height: var(--size-panel-max);
+  overflow: clip;
+  border-radius: var(--radius-8);
+}
+.ux-playground-canvas { position: absolute; inset: 0; }
+/* A frame, a note: placed at a point of the canvas content space. */
+.ux-playground-placed { position: absolute; }
+/* A frame moves from its label row. */
+.ux-playground-placed .ds-frame-labels { cursor: grab; }
+.ux-playground-layer { position: relative; min-height: 100%; }
+.ux-playground-component { position: absolute; cursor: grab; touch-action: none; }
+.ux-playground-component--canvas { position: static; }
+.ux-playground-component:focus-visible { outline: var(--border-width-2) solid var(--color-border-focus); outline-offset: var(--space-4); }
+.ux-playground-component[aria-pressed="true"] { outline: var(--border-width-2) solid var(--color-border-focus); outline-offset: var(--space-4); }
+/* The placed component is a picture of the component: the wrapper takes the pointer, to move and select it. */
+.ux-playground-component-content { pointer-events: none; }
+.ux-playground-library { display: flex; flex-direction: column; gap: var(--space-16); }
+.ux-playground-library section { display: flex; flex-direction: column; gap: var(--space-8); }
+.ux-playground-library h2 { margin: 0; color: var(--color-text-primary); }
+.ux-playground-library ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--space-8); }
+.ux-playground-library-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  cursor: grab;
+  color: var(--color-text-primary);
+  font-family: var(--typography-body-family);
+  font-size: var(--typography-body-size);
+  line-height: var(--typography-body-line-height);
+}
+.ux-playground-properties { display: flex; flex-direction: column; gap: var(--space-16); }
+.ux-playground-properties > h2 { margin: 0; }
+.ux-playground-comment { margin: calc(-1 * var(--space-16)) 0 0 calc(-1 * var(--space-16)); }
+/* The open comment is in front of the other ones. */
+.ux-playground-comment--open { z-index: var(--z-index-sticky); }
+.ux-playground-tokens, .ux-playground-token { display: flex; flex-direction: column; gap: var(--space-8); }
+.ux-playground-tokens h3 { margin: 0; color: var(--color-text-primary); }
+.ux-playground-token { align-items: flex-start; }
+.ux-playground-token > :is(.ds-select, .ds-text-input) { align-self: stretch; }
+.ux-playground-empty { margin: 0; color: var(--color-text-secondary); font-family: var(--typography-body-family); font-size: var(--typography-body-size); line-height: var(--typography-body-line-height); }
+/* Below desktop the header has no room for another button next to the search field. */
+@media not all and (min-width: 1024px) { .shell-playground-button { display: none; } }

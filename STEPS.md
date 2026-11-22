@@ -6463,3 +6463,25 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/Comment/Comment.tsx`, `Comment.css`, `examples.tsx`, `playground.tsx`, `audits/2026-11-22-B146-4.md`, `audits/2026-11-22-B146-4-accessibility.md`, `audits/2026-11-22-B146-4-tokens.md` (created)
 - `components/index.ts`, `components/Comment/meta.json`, `components/Comment/spec.md`, `components/Comment/guidelines.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B130-6 — UX playground page
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- A component is placed **freely** in its frame; the 4 / 8 / 12 column grid is a guide.
+- A component can also be placed on the canvas **outside any frame**; moved between frames and the canvas.
+- Frames and the sticky note are chosen in the **Library** tab of the panel (also by drag and drop on the canvas); no toolbar.
+- Tokens of a placed component are available as soon as it is selected (first section of its panel); the panel opens by itself on a selection.
+- **No saving for now** (decided later): compositions are lost on reload.
+
+**What was done**
+- New page `#/ux-playground`, Level 2 section of Design system after Projects, and a `design_services` icon button in the header: **Canvas** (pan, zoom with the pinch or Ctrl / Cmd + wheel, Shift + wheel to scroll sideways), **Frame** (mobile, tablet, desktop), **Panel** (Library, Properties, Compositions), **StickyNote**, **Comment** (on a component or a frame, first message written in Properties), **Tabs** (Tokens, Settings, Comments of a selected component).
+- Tokens of a placed component, for that component only: another approved token, or a free value marked **Not approved**. `tokenRows` and `tokenVars` are exported from `PlaygroundTab.tsx` and reused.
+- The Canvas does not handle the wheel itself yet (its spec says it should): done in the page, a change of the Canvas component would be its own ticket.
+- Fix found while testing: the click on a placed component no longer reaches the frame (the frame selected itself again).
+- Compliance audit (`ds-compliance-audit`): `audits/2026-11-22-B130-6.md` — 5 new findings (#60–#64) and 2 candidates (Yes / No control, library row); tickets proposed in the chat.
+- Verification: type check and build pass; page checked in the browser (add frames and components, move, zoom, tokens, comments, selection).
+
+**Files**
+- `audits/2026-11-22-B130-6.md`, `docs/src/pages/PlaygroundPage.tsx` (created)
+- `docs/src/App.tsx`, `docs/src/AppShell.tsx`, `docs/src/structure.ts`, `docs/src/docs.css`, `docs/src/PlaygroundTab.tsx`, `STEPS.md` (updated)
