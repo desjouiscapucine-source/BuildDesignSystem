@@ -1501,7 +1501,7 @@
       "id": "B146",
       "title": "Comment",
       "category": "Components",
-      "status": "todo",
+      "status": "in-progress",
       "origin": "decided",
       "description": "A comment attached to a component or a frame of the canvas.",
       "why": "Missing component of the UX playground prototype (B130): the playground has comments on a component or a frame.",
@@ -1824,10 +1824,46 @@
       "release": "R2"
     },
     {
+      "id": "B160",
+      "title": "CommentMessage",
+      "category": "Components",
+      "status": "done",
+      "origin": "proposal",
+      "description": "One message of a comment thread: author avatar and name, date and text.",
+      "why": "Building block of Comment (B146), approved by the Design System Lead on 2026-11-19: a comment holds a thread of messages (the first one and its replies), so the repeated message is its own component, built before Comment.",
+      "scope": "Design, guidelines and code of the CommentMessage component (molecule), each stage approved by the Design System Lead (component skill). Anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant CommentMessage conversation on component/CommentMessage (never-invent).",
+      "doneWhen": [
+        "The CommentMessage design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "CommentMessage is exported from @ds/components, ready for Comment (B146)."
+      ],
+      "stage": "complete",
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B167",
+      "title": "Menu",
+      "category": "Components",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "A list of actions opened by a button.",
+      "why": "Found while designing CommentMessage (B160), approved by the Design System Lead on 2026-11-22: the \"…\" button of a message opens its actions (Edit, Delete), and no component shows a list of actions yet.",
+      "scope": "Design, guidelines and code of the Menu component, each stage approved by the Design System Lead (component skill). Level, anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant Menu conversation on component/Menu (never-invent). Related: Dropdown list (B057).",
+      "doneWhen": [
+        "The Menu design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "Menu is exported from @ds/components, ready for the \"…\" button of CommentMessage (B160)."
+      ],
+      "stage": "design",
+      "priority": "high",
+      "release": "R4"
+    },
+    {
       "id": "B165",
       "title": "Documentation site: use the TextInput in the site search",
       "category": "Tooling",
-      "status": "todo",
+      "status": "done",
       "origin": "proposal",
       "description": "The search field of the site header is the TextInput search type, without the \"/\" keyboard hint.",
       "why": "Compliance audit of Step B019-3 (audits/2026-11-22-B019-3.md), findings 71 and 75: TextInput is complete (B019) and its search type covers the site search (B056 rejected), but the header still uses a hand-built field with a \"/\" hint, and the \"/\" shortcut is a single-character shortcut that cannot be turned off (WCAG 2.1.4).",
@@ -1844,7 +1880,7 @@
       "id": "B166",
       "title": "Documentation site: use the TextInput in the site fields",
       "category": "Tooling",
-      "status": "todo",
+      "status": "done",
       "origin": "proposal",
       "description": "The text and number fields of the Playground, the Design preview and the Icons page are TextInputs.",
       "why": "Compliance audit of Step B019-3 (audits/2026-11-22-B019-3.md), findings 72, 73 and 74: TextInput is complete (B019), but these fields are still hand-built, with a label above the field (Design preview, Icons) or nothing shown in the empty field (Playground).",
@@ -1875,6 +1911,23 @@
         "The password and the signing secret are environment variables on Netlify, never written in the repository."
       ],
       "priority": "medium"
+    },
+    {
+      "id": "B169",
+      "title": "Password field: TextInput type or its own component",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "A password field for the design system: a `password` type of the TextInput, or a component of its own, replacing the native field of the site login.",
+      "why": "Compliance audit of Step B166-1 (audits/2026-11-22-B166-1.md): the password field of the login Dialog (B168) is a native <input type=\"password\">, because TextInput has no password type. The Design System Lead decided on 2026-11-22 to keep it native for now and to create this ticket.",
+      "scope": "Decide first whether the password field is a type of the TextInput or its own component (design stage, `component` skill). Then a design spec, guidelines and code: show or hide the password, autocomplete, error and help text, accessibility. Once complete, the login Dialog (docs/src/AppShell.tsx, .shell-login-form in docs/src/docs.css) uses it.",
+      "doneWhen": [
+        "The password field exists in the design system (a TextInput type or a component), through the stages of the `component` skill.",
+        "The login Dialog of the site uses it instead of the native field.",
+        "The password field is gone from the \"not in the design system\" list of the next compliance audit."
+      ],
+      "priority": "low",
+      "release": "R4"
     }
   ]
 }

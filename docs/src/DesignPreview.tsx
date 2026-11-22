@@ -2,7 +2,7 @@
 // Design System Lead test any semantic token on each slot. Changes are saved to design/tokens.json.
 import { useState, type CSSProperties } from "react";
 import { tokens, tokenById, contrastRatio, textStyles, type Token } from "../../tokens/lib";
-import { Select } from "@ds/components";
+import { Select, TextInput } from "@ds/components";
 import type { ComponentDoc, DesignTokens, PreviewState, SlotType } from "./types";
 import { readableName, readableToken } from "./readableName";
 
@@ -109,14 +109,13 @@ export function DesignPreview({ component }: { component: ComponentDoc }) {
         </div>
       )}
 
-      <label className="icon-try">
-        Content
-        <input
-          value={text}
-          onChange={(event) => setText(event.target.value)}
-          onBlur={() => text !== design.text && save({ text })}
-        />
-      </label>
+      <TextInput
+        className="icon-try"
+        label="Content"
+        value={text}
+        onChange={setText}
+        onBlur={() => text !== design.text && save({ text })}
+      />
 
       {/* Each state keeps the width the component needs; the row scrolls horizontally when it does not fit. */}
       <div

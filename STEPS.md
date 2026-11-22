@@ -6137,3 +6137,139 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-22-B142-3.md`, `audits/2026-11-22-B142-3-accessibility.md`, `audits/2026-11-22-B142-3-tokens.md` (created)
 - `components/Canvas/Canvas.tsx`, `Canvas.css`, `examples.tsx`, `playground.tsx`, `meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B166-1 — Documentation site: TextInput in the site fields
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Playground text and number controls: the control name as `label`, shown in the empty field.
+- Number out of range: help text "From {min} to {max}"; the field keeps what is typed and the value is brought back into the range on blur (no error message).
+- Icons page "Icon name" field: TextInput `text` type with a label (not `search`).
+- Widths kept with `size.playground-input` and `size.icon-try`; the native date control stays.
+
+**What was done**
+- Playground (`PlaygroundTab.tsx`): text controls are TextInputs; number controls use a new `NumberControl` (TextInput `number`, help text with the range, clamped on blur); the date control keeps the native input.
+- Design preview (`DesignPreview.tsx`): the "Content" field is a TextInput, save on blur kept.
+- Icons page (`IconsPage.tsx`): the "Icon name" field is a TextInput, same name cleanup.
+- `docs.css`: hand-built `.icon-try` label and input rules removed (only `max-width` kept), `.playground-text-input` width added.
+- Checked in the browser (Breadcrumb Playground: "9" stays while typing, becomes "3" on blur; Icons page), `npm run typecheck` and `npm run build` pass. Done by the `ds-compliance-fix` agent, checked by Claude (nothing outside `docs/`).
+- Compliance audit: `audits/2026-11-22-B166-1.md` — 66 compliant, 15 non-compliant (3 fixed: #72–#74; 0 new), 23 not in the design system (2 new: native date field, password field); no ticket proposed. B166 `done`.
+
+**Files**
+- `audits/2026-11-22-B166-1.md` (new)
+- `docs/src/PlaygroundTab.tsx`, `docs/src/DesignPreview.tsx`, `docs/src/pages/IconsPage.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B165-1 — Documentation site: TextInput in the site search
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- The "/" shortcut is removed with its hint (WCAG 2.1.4).
+- The results list keeps the combobox markup (`role="combobox"`, `aria-expanded`, `aria-controls`, `aria-activedescendant` on the input) until the dropdown list B057 exists.
+- The field takes the height of the TextInput (39px); the token `size.search-field-height` is removed.
+- Width kept with `size.search-field` (360px); full width below desktop.
+
+**What was done**
+- `AppShell.tsx`: the header search is a TextInput `search` (placeholder "Search pages"); the "/" listener and the `<kbd>` hint are removed; arrows, Enter and "No page found" unchanged, Escape handled by the TextInput.
+- `docs.css`: field, icon, placeholder and `.shell-search-key` rules removed; `.shell-search` only places the field and the results list.
+- `tokens/semantic.json`: `size.search-field-height` removed (no remaining reference).
+- Checked in the browser (results, ArrowDown, Escape, "No page found", 39px height); `npm run tokens`, `typecheck` and `build` pass.
+- Compliance audit: `audits/2026-11-22-B165-1.md` — 67 compliant, 13 non-compliant (2 fixed: #71, #75; 0 new), 23 not in the design system; no ticket proposed. B165 `done`.
+
+**Files**
+- `audits/2026-11-22-B165-1.md` (new)
+- `docs/src/AppShell.tsx`, `docs/src/docs.css`, `tokens/semantic.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+## Step B161-4 — ZoomControls: event renamed to onFit
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Another session had already merged the code of ZoomControls into `develop` (Step B161-3, event `onFitToScreen`). The Design System Lead chose to keep that code and rename the fit to screen event to **`onFit`**; the zoom event stays `onZoomChange(zoom)`.
+- ZoomControls stays at version **1.0**, no changelog entry (1.0 was released the same day, not used outside the repository). No version bump for Canvas: only its internal call changed.
+
+**What was done**
+- `onFitToScreen` renamed to `onFit` in `components/ZoomControls/ZoomControls.tsx`, `examples.tsx`, `playground.tsx` and at its call site in `components/Canvas/Canvas.tsx`.
+- `components/ZoomControls/spec.md`: new **Events** section (`onZoomChange(zoom)`, `onFit()`), open question on the event names closed.
+- Checked in the browser: fit to screen resets to 100% in the ZoomControls examples and fits the content (30%) in the Canvas example. A console error ("createRoot() … already been passed") appears on the Canvas page with or without this change.
+- A separate implementation written in parallel on this branch (`onFit`, hidden-text announcement of the level) was not used.
+- Compliance audit: `audits/2026-11-22-B161-4.md` — 66 compliant, 15 non-compliant (0 new, 0 fixed), 23 not in the design system; no ticket proposed.
+
+**Files**
+- `components/ZoomControls/ZoomControls.tsx`, `examples.tsx`, `playground.tsx`, `spec.md`, `components/Canvas/Canvas.tsx`, `STEPS.md` (updated)
+- `audits/2026-11-22-B161-4.md` (created)
+
+
+## Step B160-1 — CommentMessage: design approved
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- B160 CommentMessage started on `component/CommentMessage` (ticket reserved from `component/Comment`, where it was created in B146-1): name `CommentMessage`, class `.ds-comment-message`, level **molecule**, description "One message of a comment thread: author avatar and name, date and text.", one size.
+- Header on one line: Avatar `small`, author name (`label`, `text.primary`, one line with an ellipsis), date and time always absolute ("19 Nov 2026, 14:43", `label-sm`, `text.secondary`) followed by "· Edited" when the message was changed, then a "…" IconButton `tertiary` (`more_horiz`); gap `space.8`. Header height = the IconButton (36px), which keeps its place when hidden.
+- Text: `body`, `text.primary`, wraps with no limit. Padding `space.8`, radius `radius.8`, gap header → text `space.8`.
+- Variants: `position` `first` / `reply` (reply: separator above, `border.subtle`, `border-width.1`); `author` `other` / `me` (me: `background.subtle`; other: no background). All combinations allowed.
+- States: hover = hover state layer (`text.primary`) painted over the whole message, content included, and the "…" button shown; focus on the "…" button shows it with its own focus ring; always shown on touch screens. The message itself is not focusable.
+- The "…" button opens Edit / Delete: list of options waits for a new **Menu** component — ticket **B167** created (`todo`, high, R4, `origin: proposal`).
+- Accessibility: hover contrast of the date on `background.subtle` measured with the layer over the content, 4.62:1 (AA, at the limit) — chosen by the Design System Lead.
+- Design stage approved on 2026-11-22.
+
+**What was done**
+- `components/CommentMessage/` created from the template: `meta.json` (status `guidelines`), `spec.md`, `design/Preview.tsx` and `design/tokens.json` (4 variants, states default / hover / focus), template files for the later stages.
+- `tokens/contrast-pairs.json`: pair `color.icon.brand` / `color.background.subtle` (min 3) added; 70/70 pairs pass.
+- Accessibility check: `audits/2026-11-22-B160-1-accessibility.md` — 2 failures found (hover contrast of the date, missing contrast pair), both resolved; note for the code stage: the hidden "…" button stays in the Tab order.
+- Token audit: `audits/2026-11-22-B160-1-tokens.md` — 102 values, 0 fail.
+- Compliance audit: `audits/2026-11-22-B160-1.md` — 66 compliant, 15 non-compliant (0 new, 0 fixed), 22 not in the design system (count corrected); no new ticket.
+- `backlog/backlog.json`: B160 `in-progress`, stage `guidelines`; B167 created.
+- `develop` merged into `component/CommentMessage`.
+
+**Files**
+- `components/CommentMessage/` (new)
+- `audits/2026-11-22-B160-1.md`, `audits/2026-11-22-B160-1-accessibility.md`, `audits/2026-11-22-B160-1-tokens.md` (new)
+- `tokens/contrast-pairs.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B160-2 — CommentMessage: guidelines approved
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Use for the thread of a Comment (B146). Not for a chat (not in the design system yet), a note with no author (StickyNote), a message from the application (message banner B063, not in the design system yet), a quote put forward (Card).
+- Thread: chronological order, one `first` then `reply` messages, messages stacked with no space between them (the separator above a reply is enough).
+- **Only the author changes or deletes a message** — spec change: the "…" button and the hover state layer exist on `author: me` only; `author: other` has no interaction state; the header keeps the same height (36px) on every message.
+- Delete is immediate, with no confirmation; deleting the `first` message deletes the whole Comment. Focus after a delete: the "…" button of the next `me` message, else the reply field of the Comment; when the whole Comment disappears, the Comment decides (B146).
+- Content: full name of the author, absolute date, "· Edited" with no date, plain text only (no formatting, link or image), never empty.
+- Same layout on narrow screens (name cut with an ellipsis, date never wraps).
+- Do's and don'ts: one `first`, full name, `me` for the signed-in user only, plain text. Related: Comment, Avatar, IconButton, Menu (B167), StickyNote, Card.
+- Screen reader: the thread is a list of articles; a `me` message is read with "(you)" after the name; the "…" button is named "Open message actions" (verb first).
+- **Accepted exception** (Design System Lead, 2026-11-22): the "…" button has the same accessible name on every message, so a screen reader user cannot tell which message it acts on.
+- Guidelines stage approved on 2026-11-22.
+
+**What was done**
+- `components/CommentMessage/guidelines.md` written; `spec.md`, `design/Preview.tsx` and `design/tokens.json` updated for the `me`-only button and hover; `meta.json` status `code`.
+- Accessibility check: `audits/2026-11-22-B160-2-accessibility.md` — 4 failures found (focus after a delete ×2, no keyboard trap / focus not obscured, same button name on every message): 3 fixed, 1 accepted as an exception; 0 blocking.
+- Compliance audit: `audits/2026-11-22-B160-2.md` — 67 compliant, 13 non-compliant (2 fixed by B165-1, 0 new), 22 not in the design system; no new ticket.
+- `backlog/backlog.json`: B160 stage `code`.
+- `develop` merged into `component/CommentMessage`.
+
+**Files**
+- `components/CommentMessage/guidelines.md` (written); `spec.md`, `meta.json`, `design/Preview.tsx`, `design/tokens.json` (updated)
+- `audits/2026-11-22-B160-2.md`, `audits/2026-11-22-B160-2-accessibility.md` (new)
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B160-3 — CommentMessage: code approved, component complete
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Code stage approved on 2026-11-22: CommentMessage is **complete**, version **1.0** ("First complete version.").
+- API: `position` (`first` default / `reply`), `author` (`other` default / `me`), `name`, `date` as a `Date` (always shown as an absolute date, "19 Nov 2026, 14:43"), `edited`, `onActionsClick` (the application opens its own menu until the Menu component, B167, exists), text as `children`.
+- "(you)" is exposed to screen readers as visually hidden text after the name; "· Edited" is visible text.
+- Reflow (spec change): when the name and the date do not fit side by side (narrow screen, larger text), the date goes under the name; it wraps onto several lines only if the message is too narrow even for the date alone.
+
+**What was done**
+- `components/CommentMessage/CommentMessage.tsx` and `.css`: uses Avatar `small` and IconButton `tertiary`; the "…" button hidden with opacity (stays in the Tab order), shown on hover, focus and touch screens; hover state layer over the whole message, `author: me` only; header as tall as the IconButton; semantic tokens only.
+- `examples.tsx` (6 examples), `playground.tsx` (one control per prop), export in `components/index.ts`.
+- `spec.md`, `guidelines.md`, `design/Preview.tsx` and `design/tokens.json` updated for the date under the name.
+- `meta.json`: status `complete`, version `1.0`, changelog; `backlog/backlog.json`: B160 `done`, stage `complete`.
+- Token audit: `audits/2026-11-22-B160-3-tokens.md` — 33 values, 0 fail.
+- Accessibility check: `audits/2026-11-22-B160-3-accessibility.md` — 1 failure found (reflow at 320px / 200% text), fixed; 0 blocking; checked in the browser (keyboard, 320px, 200% text, text spacing).
+- Compliance audit: `audits/2026-11-22-B160-3.md` — 67 compliant, 13 non-compliant (0 new, 0 fixed), 22 not in the design system; CommentMessage replaces no element of the site; no new ticket.
+- `develop` merged into `component/CommentMessage`.
+
+**Files**
+- `components/CommentMessage/CommentMessage.tsx`, `CommentMessage.css`, `examples.tsx`, `playground.tsx`, `audits/2026-11-22-B160-3.md`, `audits/2026-11-22-B160-3-tokens.md`, `audits/2026-11-22-B160-3-accessibility.md` (created)
+- `components/CommentMessage/meta.json`, `spec.md`, `guidelines.md`, `design/Preview.tsx`, `design/tokens.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)

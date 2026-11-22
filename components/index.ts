@@ -53,3 +53,5 @@ export { ZoomControls } from "./ZoomControls/ZoomControls";
 export type { ZoomControlsProps } from "./ZoomControls/ZoomControls";
 export { Canvas } from "./Canvas/Canvas";
 export type { CanvasProps, SelectionRectangle } from "./Canvas/Canvas";
+export { CommentMessage } from "./CommentMessage/CommentMessage";
+export type { CommentMessageProps, CommentMessagePosition, CommentMessageAuthor } from "./CommentMessage/CommentMessage";

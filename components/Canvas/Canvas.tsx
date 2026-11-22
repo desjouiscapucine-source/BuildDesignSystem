@@ -337,7 +337,7 @@ export function Canvas({
       {...rest}
     >
       <div ref={zoomControlsRef} className="ds-canvas-zoomcontrols">
-        <ZoomControls zoom={zoom} onZoomChange={(next) => zoomAtCenter(next)} onFitToScreen={fitToScreen} />
+        <ZoomControls zoom={zoom} onZoomChange={(next) => zoomAtCenter(next)} onFit={fitToScreen} />
       </div>
 
       <div ref={contentRef} className="ds-canvas-content">
