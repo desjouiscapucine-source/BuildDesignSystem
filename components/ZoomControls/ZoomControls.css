@@ -1,19 +1,13 @@
 /* Semantic design tokens only (var(--…)) — never raw values or primitive tokens.
-   Classes: .ds-<component> · modifier .ds-<component>--<value> · part .ds-<component>-<part> */
+   Classes: .ds-zoom-controls · modifier .ds-zoom-controls--<value> · part .ds-zoom-controls-<part> */
 .ds-zoom-controls {
-  position: relative;
-}
-
-/* State layers: overlay in the content color */
-.ds-zoom-controls::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: currentColor;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--duration-100) var(--easing-ease-out);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--color-background-surface);
+  box-shadow: var(--shadow-dropdown);
+  border-radius: var(--radius-8);
 }
 
 /* Variant: default */
@@ -21,5 +15,24 @@
 }
 
 /* Parts */
-.ds-zoom-controls-label {
+.ds-zoom-controls-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.ds-zoom-controls-level {
+  min-width: var(--size-zoom-level);
+  text-align: center;
+  font-family: var(--typography-label-sm-family);
+  font-size: var(--typography-label-sm-size);
+  font-weight: var(--typography-label-sm-weight);
+  line-height: var(--typography-label-sm-line-height);
+  color: var(--color-text-primary);
+}
+
+.ds-zoom-controls-divider {
+  width: var(--border-width-1);
+  height: var(--icon-size-20);
+  background: var(--color-border-subtle);
 }

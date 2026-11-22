@@ -1736,7 +1736,7 @@
       "id": "B161",
       "title": "ZoomControls",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "The zoom controls of the canvas: zoom out, zoom level, zoom in and fit to screen.",
       "why": "Building block of the Canvas (B142): the UX playground canvas has visible zoom controls, a group reused as one unit, so it is its own component, completed before the Canvas code (component-structure).",
@@ -1746,7 +1746,7 @@
         "The accessibility and token audits pass.",
         "ZoomControls is exported from @ds/components, ready for the Canvas (B142)."
       ],
-      "stage": "code",
+      "stage": "complete",
       "priority": "high",
       "release": "R2"
     },
