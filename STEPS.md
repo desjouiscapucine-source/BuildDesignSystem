@@ -5772,3 +5772,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `components/Tabs/Tabs.tsx`, `Tabs.css`, `examples.tsx`, `playground.tsx` (new)
 - `audits/2026-11-21-B093-3.md`, `audits/2026-11-21-B093-3-accessibility.md`, `audits/2026-11-21-B093-3-tokens.md` (new)
 - `components/Tabs/meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B093-4 — Component pages use Tabs
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- The component pages of the documentation site use Tabs (B093 scope, finding #70), with the Tabs spec as is (24px between the row and the panel, focus ring inside the tab, focusable panel).
+- Tabs examples shown inside the site's Tabs panel (documentation frame): no sentence added to the Tabs guidelines; the rule "No Tabs inside a panel of Tabs" is about the product UI.
+- B093 done.
+
+**What was done**
+- `docs/src/pages/ComponentPage.tsx`: `<Tabs label="Component documentation" selected onSelect tabs=…>` with one panel per tab; the hand-built tab buttons and keyboard code (B125) are removed; `ExamplesTab` renders the examples only when the Examples tab is shown.
+- `docs/src/docs.css`: the `.tabs` rules (hand-built row and its B163 scroll) are removed.
+- Checked in the browser: arrows, panel named by its tab, line across the content width, the row scrolls at 375px without page overflow, no console error.
+- Compliance audit: `audits/2026-11-22-B093-4.md` — 62 compliant, 13 non-compliant (#70 and #68 fixed, 0 new), 21 not in the design system; no new ticket.
+- Backlog: B093 `done`.
+
+**Files**
+- `audits/2026-11-22-B093-4.md` (new)
+- `docs/src/pages/ComponentPage.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)

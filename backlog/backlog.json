@@ -807,7 +807,7 @@
       "id": "B093",
       "title": "Tabs",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "Navigation within a page. Used on the documentation site: tabs of the component pages (Design preview, Design spec, Guidelines, Examples, Code).",
       "why": "The component pages of the documentation site use hand-built tabs (compliance finding #70), and Panel (B144) needs tabs for Library, Properties and Compositions.",
