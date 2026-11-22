@@ -2,7 +2,7 @@
   "name": "Comment",
   "description": "A comment attached to a component or a frame of the canvas.",
   "level": "organism",
-  "status": "design",
+  "status": "guidelines",
   "version": "0.0",
   "changelog": []
 }

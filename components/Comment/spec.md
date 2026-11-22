@@ -3,10 +3,10 @@
 > What the component **is**. For how and when to use it, see `guidelines.md`.
 > Every visual value is a **semantic design token** — never a raw value.
 
-> **Draft.** Decisions of the Design System Lead on 2026-11-19 (B146). The design continues once its building blocks **Avatar** (B159) and **CommentMessage** (B160) are complete.
+> Decisions of the Design System Lead on 2026-11-19 and 2026-11-22 (B146).
 
 ## Purpose
-A comment attached to a component or a frame of the canvas (UX playground, B130).
+A comment attached to a component or a frame of the canvas (UX playground, B130): a thread of messages that opens from a marker placed where the comment applies.
 
 ## Types
 | Type | Purpose |
@@ -15,47 +15,120 @@ A comment attached to a component or a frame of the canvas (UX playground, B130)
 
 ## Structure
 - Level: **organism**.
-- Building blocks, built first through all their stages:
-  - **Avatar** (atom, B159): a round avatar showing a person's initials.
-  - **CommentMessage** (molecule, B160): one message of the thread — author avatar and name, date and time, text.
+- Built from four completed components, each with its own tokens:
+  - **Avatar** (atom, B159) — the marker, size `medium`.
+  - **CommentMessage** (molecule, B160) — each message of the thread.
+  - **IconButton** (atom) — Resolve / Reopen and Close (`tertiary`), Send (`primary`).
+  - **TextInput** (molecule, B019) — the reply field.
+- Comment only arranges these parts (layout, spacing, bubble, ring); the look of each part belongs to its component.
 
 ## Anatomy
-1. Marker (required): the Avatar of the author of the first message.
-2. Bubble (shown when open): holds the thread and the actions.
-3. Thread (required in the bubble): the first message and its replies, each a CommentMessage.
-4. Text field (in the editing state): to write a reply or change a message. Its place is defined in the design; the component used (Textarea B020 or Text input B019) is chosen at the Code stage.
-5. Actions: Reply, Resolve, Edit / delete a message, Close.
+1. **Marker** (required) — the Avatar `medium` of the author of the first message. Always shown, open or closed. It is a **button** that opens and closes the bubble. In the **resolved** state it shows the icon `check` instead of the initials.
+2. **Bubble** (shown when the comment is open) — a floating container to the right of the marker, its top edge aligned with the marker's. It holds, from top to bottom:
+   1. **Header** (required) — one line with only the actions, on the right:
+      1. Resolve — IconButton `tertiary`, icon `check`; on a resolved comment it becomes **Reopen**, icon `undo`.
+      2. Close — IconButton `tertiary`, icon `close`.
+   2. **Thread** (required) — the first message (`position: first`) and its replies (`position: reply`), each a CommentMessage, in chronological order. The thread scrolls when the bubble reaches its maximum height.
+   3. **Reply field** (required) — always visible at the bottom, also on a resolved comment:
+      1. Text field — TextInput, placeholder "Write a reply".
+      2. Send — IconButton `primary`, icon `send`, at the right of the field.
+3. **Ring** (selected and focus) — a ring around the marker.
+
+Edit and Delete a message are the options of the "…" button of CommentMessage (Menu component, B167); they are not part of the Comment header.
 
 ## Variants
 
 ### Variant properties
-| Property | Values | Default | Description |
-| -------- | ------ | ------- | ----------- |
-|          |        |         | Not decided yet. |
+No variant property: a comment has one look. What changes is its **state** (see States).
+
+### Combinations
+- Allowed: every state of the States section, with any number of messages.
+- Forbidden: none.
 
 ## Content
-Each message: author (initials in the Avatar + name), date and time, text.
-
 | Text | Required | Example | Max length | Overflow |
 | ---- | -------- | ------- | ---------- | -------- |
-|      |          |         |            | Not decided yet. |
+| Messages | Yes — at least the first | See CommentMessage | No limit | The thread scrolls inside the bubble. |
+| Reply field placeholder | Yes | "Write a reply" | One line | Cut by the field (TextInput). |
+| Resolve action (`label`) | Yes | "Resolve the comment" | — | Not displayed (screen readers). |
+| Reopen action (`label`) | Yes, on a resolved comment | "Reopen the comment" | — | Not displayed (screen readers). |
+| Close action (`label`) | Yes | "Close the comment" | — | Not displayed (screen readers). |
+| Send action (`label`) | Yes | "Send the reply" | — | Not displayed (screen readers). |
+
+Author, date and text of each message follow the CommentMessage spec.
 
 ## Sizes
-Not decided yet.
+One size. The bubble has a fixed width; its height follows its content.
+
+| Part | Value |
+| ---- | ----- |
+| Marker | Avatar `medium`: `--space-32` |
+| Bubble width | `--size-dialog-small` (400px), `max-width: 100%` |
+| Bubble maximum height | 100% of the visible canvas; the thread scrolls beyond it |
+| Bubble padding | `--space-8` |
+| Gap between header, thread and reply field | `--space-8` |
+| Gap between the marker and the bubble | `--space-16` (the ring of the selected state, 10px, must not touch the bubble) |
+| Gap between the Resolve / Reopen and Close buttons | `--space-4` |
+| Gap between the reply field and Send | `--space-4` |
+| Ring width | `--border-width-2` |
+| Space between the marker and the ring | selected `--space-8`; focus `--space-4` |
+
+- Interactive targets: the marker (32 × 32px), the IconButtons and the TextInput are at least 24×24px (WCAG 2.5.8).
 
 ## States
-- Interaction (state layers): Default · Hover · Focus · Pressed
-- Component-specific (approved): **Open / closed** (bubble shown or folded into the marker) · **Selected** · **Resolved** · **Editing** (a message being written)
+The states of the comment (approved 2026-11-19):
+- **Closed** — only the marker is shown.
+- **Open** — the marker and the bubble are shown.
+- **Selected** — the comment is the active one: the bubble is open and a **ring** surrounds the marker.
+- **Resolved** — the marker shows the icon `check` (`--color-icon-inverse`, `--icon-size-20`) instead of the initials, at full opacity, so its contrast stays the one of the Avatar (6.10:1); the bubble, when open, stays readable and unchanged, except that Resolve becomes **Reopen** (it reopens the comment) and the reply field stays shown.
+- **Editing** — a reply is being written in the reply field.
+
+Interaction states of the **marker** (a button, approved 2026-11-22):
+- **Hover**: state layer `--state-layer-hover`, **pressed**: `--state-layer-pressed`, in the content color of the marker (`--color-text-inverse`).
+- **Focus**: a ring (`--color-border-focus`, `--border-width-2`, offset `--space-4`) — the same ring as the selected state, with a different offset. The offset leaves a gap of the page background between the marker and the ring: the ring and the marker have the same color (primary-600), so without the gap the focus would not be visible (accessibility audit B146-2).
+
+Screen reader and keyboard, for the **marker** (approved 2026-11-22):
+- It is a **button** (role `button`, **Enter** and **Space** open and close the bubble), in the tab order.
+- Its name starts with the word "Comment" and gives the author of the first message: "Comment by Capucine Desjouis"; on a resolved comment: "Comment by Capucine Desjouis, resolved".
+- `aria-expanded` says whether the bubble is open (`true`) or closed (`false`).
+- The Avatar inside is decorative: the name of the button is the only one announced.
+
+- **Selected and focused**: the focus offset (`--space-4`) wins over the selected offset (`--space-8`): the ring moves in while the marker has the keyboard focus (approved 2026-11-22).
+
+Interaction states of the other parts (hover, focus, pressed, disabled) are those of IconButton, TextInput and CommentMessage. Comment has **no disabled state**.
+
+## Position of the bubble
+- By default, to the right of the marker, aligned on its top edge.
+- Near the edge of the canvas, it flips to the left of the marker, or upward, to stay visible.
 
 ## Design tokens
 | Part | Property | Variant / state | Token |
 | ---- | -------- | --------------- | ----- |
-|      |          |                 | Not decided yet. |
+| Marker | Avatar size | all | `medium` (`--space-32`) |
+| Marker | Icon `check` (instead of the initials), color | resolved | `--color-icon-inverse` |
+| Marker | Icon size | resolved | `--icon-size-20` |
+| Marker | State layer | hover / pressed | `--state-layer-hover` / `--state-layer-pressed` (in `--color-text-inverse`) |
+| Ring | Color | selected, focus | `--color-border-focus` |
+| Ring | Width | selected, focus | `--border-width-2` |
+| Ring | Offset from the marker | selected | `--space-8` |
+| Ring | Offset from the marker | focus | `--space-4` |
+| Bubble | Background | open | `--color-background-page` |
+| Bubble | Shadow | open | `--shadow-dropdown` |
+| Bubble | Radius | open | `--radius-8` |
+| Bubble | Width | open | `--size-dialog-small` |
+| Bubble | Padding | open | `--space-8` |
+| Bubble | Gap between header, thread, reply field | open | `--space-8` |
+| Marker → bubble | Gap | open | `--space-16` |
+| Header | Gap between actions | open | `--space-4` |
+| Header | Action icon color | open | `--color-icon-brand` (IconButton `tertiary`, its own tokens) |
+| Reply field | Gap between field and Send | open | `--space-4` |
+
+No raw value and no new token: every value above is an existing semantic token.
+
+Contrast (already checked in `tokens/contrast-pairs.json`): `icon.brand` on `background.page` (3:1 min, icon), `border.focus` on `background.page` (3:1 min, ring, which sits on the page background thanks to the offset) and `icon.inverse` on `background.brand` (6.10:1, the check icon of the resolved marker). Text and icons of the Avatar, the messages, the buttons and the field are checked in their own specs.
+
+## Dependencies
+- The resolved marker shows an icon instead of the initials: **Avatar** must accept an icon (today it shows initials, or the icon `person` when the name is unknown). This is a change to a complete component (Avatar 1.1), done on its own ticket, **B171** (high, R4), before the code stage of Comment.
 
 ## Open questions
-- Name `Comment`, CSS class `.ds-comment` and the description of `meta.json`: proposed, to confirm.
-- Look of the marker and the bubble, sizes, tokens: once Avatar and CommentMessage are complete.
-- How each state looks (selected, resolved, editing).
-- Where the actions sit, and with which components (Button, IconButton).
-- Variants, if any.
-- Disabled state: needed or not.
+- None.

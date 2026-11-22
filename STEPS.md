@@ -6308,3 +6308,26 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `.claude/skills/fix/SKILL.md` (created)
 - `.claude/skills/git-workflow/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B146-2 — Comment: design approved
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Name `Comment`, class `.ds-comment`, description and texts validated; no variant property, no disabled state.
+- Marker: the Avatar `medium` (`space.32`) of the author of the first message, a **button** that opens and closes the bubble; hover / pressed = state layers, focus and selected = ring (`border.focus`, `border-width.2`); focus offset `space.4`, selected offset `space.8`, the focus offset wins when both apply; resolved = the icon `check` instead of the initials, at full opacity.
+- Bubble: to the right of the marker, aligned on its top edge, flips to the left (or upward) near the edge of the canvas; `background.page`, `shadow.dropdown`, `radius.8`, no border, width `size.dialog-small`, height following the thread up to 100% of the visible canvas (the thread scrolls); padding `space.8`, gaps `space.8`, marker → bubble gap `space.16` (so that the selected ring does not touch the bubble), `space.4` between the header buttons and between the field and Send.
+- Header: Resolve (becomes Reopen, icon `undo`, on a resolved comment) and Close, IconButton `tertiary`, icon color `icon.brand`; thread of CommentMessage; reply field always visible (TextInput "Write a reply" + IconButton `primary` Send).
+- Marker for screen readers: button named "Comment by <author>" (", resolved" when resolved), `aria-expanded`; the Avatar inside is decorative.
+- States: closed, open, selected, resolved, editing.
+- New ticket **B171** (Avatar 1.1: an icon in the Avatar; high, R4), needed by the resolved marker; to be done before the code stage of Comment.
+- `space.2` (asked for the focus offset) does not exist and is not allowed by the spacing rule; `space.4` kept instead.
+
+**What was done**
+- Complete `components/Comment/spec.md`, design preview (`components/Comment/design/`: tokens and Preview with the real Avatar, CommentMessage, IconButton and TextInput), `meta.json` status `guidelines`; backlog B146 stage `guidelines`.
+- Accessibility check (`audits/2026-11-22-B146-2-accessibility.md`): 1st run 2 failures (focus ring same color as the marker; resolved marker at `opacity.disabled` below 3:1), fixed with the Design System Lead; 2nd run 9 pass, 0 fail.
+- Token audit (`audits/2026-11-22-B146-2-tokens.md`): 0 failure, twice.
+- Compliance audit: `audits/2026-11-22-B146-2.md` — 67 compliant, 13 non-compliant (2 fixed since the previous audit, none new), 23 not in the design system; no new ticket.
+
+**Files**
+- `components/Comment/design/tokens.json`, `components/Comment/design/Preview.tsx`, `audits/2026-11-22-B146-2.md`, `audits/2026-11-22-B146-2-accessibility.md`, `audits/2026-11-22-B146-2-tokens.md` (created)
+- `components/Comment/spec.md`, `components/Comment/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)

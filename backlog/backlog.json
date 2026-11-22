@@ -1511,7 +1511,7 @@
         "The accessibility and token audits pass.",
         "Comment is exported from @ds/components, ready for the UX playground (B130)."
       ],
-      "stage": "design",
+      "stage": "guidelines",
       "priority": "high",
       "release": "R2"
     },
