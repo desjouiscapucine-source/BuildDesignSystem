@@ -6,9 +6,12 @@ import "../../tokens/icons.css";
 import "../../tokens/grid.css";
 import "./docs.css";
 import { App } from "./App";
+import { AuthProvider } from "./auth";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </StrictMode>,
 );

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Select, TicketCard } from "@ds/components";
+import { useAuth } from "../auth";
 import type { Stage } from "../types";
 import {
   priorityLabels,
@@ -25,8 +26,9 @@ const stageLabels: Record<Stage, string> = { design: "Design", guidelines: "Guid
 
 /** `open`: the ticket shown in the modal (#/backlog/<id>). */
 export function BacklogPage({ open }: { open?: string }) {
-  const { items, setItems, error, setError, readOnly } = useBacklog();
-  // Online the menus are disabled, until the read-only TicketCard variant (B153).
+  const { loggedIn } = useAuth();
+  const { items, setItems, error, setError, readOnly } = useBacklog(loggedIn);
+  // Logged out (or not known yet) the menus are disabled, until the read-only TicketCard variant (B153).
   const lock = readOnly ? ({ disabled: true } as const) : {};
   const [category, setCategory] = useState("All");
   const [showRejected, setShowRejected] = useState(false);
@@ -117,6 +119,7 @@ export function BacklogPage({ open }: { open?: string }) {
       <p>
         Source: <code>backlog/backlog.json</code> — completed work is logged in <code>STEPS.md</code>.
       </p>
+      {loggedIn === false && <p>Showing the last release. Log in from the header to edit the live backlog.</p>}
 
       <div className="backlog-filters" role="group" aria-label="Filter by category">
         {categories.map((name) => (
