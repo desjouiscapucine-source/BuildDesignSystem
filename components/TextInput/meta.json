@@ -1,0 +1,14 @@
+{
+  "name": "TextInput",
+  "description": "Single-line field to type text.",
+  "level": "molecule",
+  "status": "complete",
+  "version": "1.0",
+  "changelog": [
+    {
+      "version": "1.0",
+      "date": "2026-11-22",
+      "changes": "First complete version."
+    }
+  ]
+}

@@ -614,6 +614,22 @@
       "$value": "800px",
       "$description": "Maximum width of a large Dialog"
     },
+    "panel": {
+      "$value": "400px",
+      "$description": "Default width of the Panel of the UX playground"
+    },
+    "panel-min": {
+      "$value": "280px",
+      "$description": "Minimum width of the Panel when it is resized"
+    },
+    "panel-max": {
+      "$value": "480px",
+      "$description": "Maximum width of the Panel when it is resized"
+    },
+    "resize-handle": {
+      "$value": "24px",
+      "$description": "Width and height of the hit area of a resize handle (WCAG 2.5.8)"
+    },
     "header": {
       "$value": "64px",
       "$description": "Height of the documentation site header"
@@ -732,7 +748,7 @@
     },
     "viewport-desktop": {
       "$value": "1280px",
-      "$description": "Width of the simulated desktop screen (prototype frames)"
+      "$description": "Width of the simulated desktop screen (Playground, prototype frames)"
     },
     "viewport-desktop-height": {
       "$value": "800px",
@@ -741,6 +757,14 @@
     "playground-canvas-min": {
       "$value": "120px",
       "$description": "Minimum height of the Playground canvas"
+    },
+    "sticky-note": {
+      "$value": "10rem",
+      "$description": "Width and height of a sticky note (StickyNote, fixed square): 160px at the default text size, in rem so it grows with the text size (WCAG 1.4.4)"
+    },
+    "zoom-level": {
+      "$value": "2.5rem",
+      "$description": "Minimum width of the zoom level of the ZoomControls (fits \"400%\"): 40px at the default text size, in rem so it grows with the text size (WCAG 1.4.4) and the buttons do not move when the level changes"
     }
   },
   "breakpoint": {

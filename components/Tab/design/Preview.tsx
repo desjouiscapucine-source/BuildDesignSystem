@@ -1,5 +1,5 @@
 // Tab design preview (stage 1) — NOT the final component code.
-// A text label; the selected tab has a line under it; hover / focus / pressed = state layer (top corners rounded), focus adds a ring. Every value is a --preview-<slot> variable.
+// A text label; the selected tab has a line under it; hover / focus / pressed = state layer (top corners rounded), focus adds a ring inside the tab. Every value is a --preview-<slot> variable.
 import type { PreviewProps } from "../../../docs/src/types";
 
 const layer = { hover: "var(--state-layer-hover)", focus: "var(--state-layer-focus)", pressed: "var(--state-layer-pressed)" } as const;
@@ -24,7 +24,7 @@ export function Preview({ state, text, variant }: PreviewProps) {
           borderBottom: `var(--preview-indicator-width) solid ${selected ? "var(--preview-indicator)" : "transparent"}`,
           borderRadius: "var(--preview-radius) var(--preview-radius) 0 0",
           outline: state === "focus" ? "var(--border-width-2) solid var(--preview-focus)" : undefined,
-          outlineOffset: "var(--border-width-2)",
+          outlineOffset: "calc(var(--border-width-2) * -1)",
         }}
       >
         {text}

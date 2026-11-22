@@ -1,0 +1,156 @@
+/* TextInput — semantic design tokens only. See spec.md.
+   Classes: .ds-text-input (+ --text, --search, --number) · parts .ds-text-input-field, -icon, -control, -clear,
+   -clear-icon, -help, -message, -error, -error-icon · states :disabled, [aria-invalid="true"] (error). */
+.ds-text-input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Field: the container the user types in */
+.ds-text-input-field {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  width: 100%;
+  padding: var(--space-8) var(--space-16);
+  border: var(--border-width-1) solid var(--color-border-strong);
+  border-radius: var(--radius-8);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  cursor: text;
+}
+
+/* State layers: overlay in the content color. ::before comes first in the field, so the clear button
+   (positioned after it) stays above it without a z-index. */
+.ds-text-input-field::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-100) var(--easing-ease-out);
+}
+.ds-text-input-field:hover::before { opacity: var(--state-layer-hover); }
+.ds-text-input-field:has(.ds-text-input-control:focus-visible)::before { opacity: var(--state-layer-focus); }
+.ds-text-input-field:has(.ds-text-input-control:active)::before { opacity: var(--state-layer-pressed); }
+
+.ds-text-input-field:has(.ds-text-input-control:focus-visible) {
+  outline: var(--border-width-2) solid var(--color-border-focus);
+  outline-offset: var(--border-width-2);
+}
+
+/* Value, label and placeholder: one line; the value scrolls while typing, ellipsis when not focused */
+.ds-text-input-control {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-family: var(--typography-body-family);
+  font-size: var(--typography-body-size);
+  font-weight: var(--typography-body-weight);
+  line-height: var(--typography-body-line-height);
+  text-overflow: ellipsis;
+  outline: none;
+  appearance: none;
+}
+.ds-text-input-control::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 1;
+}
+/* No native clear button: the TextInput has its own */
+.ds-text-input-control::-webkit-search-cancel-button,
+.ds-text-input-control::-webkit-search-decoration {
+  appearance: none;
+}
+
+/* Leading icon */
+.ds-text-input-icon {
+  font-size: var(--icon-size-20);
+  color: var(--color-icon-secondary);
+}
+
+/* Clear button: icon inside the field, target of 24×24px minimum; the field keeps its height */
+.ds-text-input-clear {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--icon-size-24);
+  min-height: var(--icon-size-24);
+  margin: calc(-1 * var(--space-4)) 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: none;
+  color: var(--color-icon-secondary);
+  cursor: pointer;
+}
+.ds-text-input-clear::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-100) var(--easing-ease-out);
+}
+.ds-text-input-clear:hover::after { opacity: var(--state-layer-hover); }
+.ds-text-input-clear:focus-visible::after { opacity: var(--state-layer-focus); }
+.ds-text-input-clear:active::after { opacity: var(--state-layer-pressed); }
+.ds-text-input-clear:focus-visible {
+  outline: var(--border-width-2) solid var(--color-border-focus);
+  outline-offset: var(--border-width-2);
+}
+.ds-text-input-clear-icon { font-size: var(--icon-size-20); }
+
+/* Help text and error message: under the field, wrap to a new line */
+.ds-text-input-help,
+.ds-text-input-error {
+  margin: var(--space-4) 0 0;
+  font-family: var(--typography-body-sm-family);
+  font-size: var(--typography-body-sm-size);
+  font-weight: var(--typography-body-sm-weight);
+  line-height: var(--typography-body-sm-line-height);
+}
+.ds-text-input-help { color: var(--color-text-secondary); }
+
+/* Error: border, icon and message (not color alone); the message replaces the help text */
+.ds-text-input-field:has(.ds-text-input-control[aria-invalid="true"]) { border-color: var(--color-border-error); }
+.ds-text-input-error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  color: var(--color-text-error);
+}
+.ds-text-input-error-icon {
+  /* Aligned with the first line of the message */
+  display: inline-flex;
+  align-items: center;
+  height: calc(var(--typography-body-sm-size) * var(--typography-body-sm-line-height));
+  font-size: var(--icon-size-16);
+  color: var(--color-icon-error);
+}
+
+/* Disabled: disabled roles; no state layer; the clear button is hidden */
+.ds-text-input-field:has(.ds-text-input-control:disabled) {
+  border-color: var(--color-border-subtle);
+  background: var(--color-background-disabled);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+.ds-text-input-field:has(.ds-text-input-control:disabled)::before { display: none; }
+.ds-text-input-control:disabled { cursor: not-allowed; }
+.ds-text-input-control:disabled::placeholder { color: var(--color-text-disabled); }
+.ds-text-input-field:has(.ds-text-input-control:disabled) .ds-text-input-icon { color: var(--color-icon-disabled); }
+.ds-text-input:has(.ds-text-input-control:disabled) .ds-text-input-help { color: var(--color-text-disabled); }

@@ -15,12 +15,12 @@ import {
   type PlaygroundMessage,
 } from "./playground";
 
-// Screen widths of the canvas: --size-viewport-mobile, --breakpoint-tablet, --breakpoint-desktop.
+// Screen widths of the canvas: --size-viewport-mobile, --size-viewport-tablet, --size-viewport-desktop.
 const px = (id: string) => parseFloat(tokenById.get(id)!.resolved);
 const viewports = [
   { id: "mobile", label: "Mobile", width: px("size.viewport-mobile") },
-  { id: "tablet", label: "Tablet", width: px("breakpoint.tablet") },
-  { id: "desktop", label: "Desktop", width: px("breakpoint.desktop") },
+  { id: "tablet", label: "Tablet", width: px("size.viewport-tablet") },
+  { id: "desktop", label: "Desktop", width: px("size.viewport-desktop") },
 ] as const;
 type Viewport = (typeof viewports)[number]["id"];
 

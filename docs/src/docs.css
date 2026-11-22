@@ -159,6 +159,29 @@ code {
   line-height: var(--line-height-heading);
   white-space: nowrap;
 }
+/* Login (B168): site-only form (plain input, like .shell-search — TextInput has no password type). */
+.shell-login-form { display: flex; flex-direction: column; gap: var(--space-8); }
+.shell-login-label {
+  color: var(--color-text-primary);
+  font-family: var(--typography-label-sm-family);
+  font-size: var(--typography-label-sm-size);
+  line-height: var(--typography-label-sm-line-height);
+  font-weight: var(--typography-label-sm-weight);
+}
+.shell-login-field {
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--space-8) var(--space-16);
+  border: var(--border-width-1) solid var(--color-border-strong);
+  border-radius: var(--radius-8);
+  background: var(--color-background-surface);
+  color: var(--color-text-primary);
+  font: inherit;
+  outline: none;
+}
+.shell-login-field:focus-visible { outline: var(--border-width-2) solid var(--color-border-focus); outline-offset: var(--border-width-2); }
+.shell-login-error { margin: 0; color: var(--color-text-error); }
+
 /* Burger IconButton: below desktop only. */
 .ds-icon-button.shell-menu-button { display: none; }
 
@@ -254,7 +277,7 @@ code {
 .shell-content { display: flex; flex-direction: column; gap: var(--space-16); }
 .shell-content > *,
 /* Blocks that set their own vertical margin: named so the reset wins (no margin added to the 16px gap). */
-.shell-content > :is(.cards, .tabs, .stages, table.tokens, .backlog-filters, .backlog-rejected, .icon-try-preview) {
+.shell-content > :is(.cards, .stages, table.tokens, .backlog-filters, .backlog-rejected, .icon-try-preview) {
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -424,20 +447,6 @@ code {
 .stages li .ds-icon { font-size: var(--icon-size-16); }
 .stages li.complete { background: var(--color-background-success-subtle); color: var(--color-text-success); }
 .stages li.complete .ds-icon { color: var(--color-icon-success); }
-
-.tabs { display: flex; gap: var(--space-4); border-bottom: var(--border-width-1) solid var(--color-border-subtle); margin: var(--space-24) 0; }
-.tabs button {
-  position: relative;
-  font: inherit;
-  background: none;
-  border: 0;
-  padding: var(--space-8) var(--space-16);
-  cursor: pointer;
-  color: var(--color-text-secondary);
-  border-bottom: var(--border-width-2) solid transparent;
-  margin-bottom: calc(var(--border-width-1) * -1);
-}
-.tabs button[aria-selected="true"] { color: var(--color-text-brand); border-bottom-color: var(--color-border-focus); font-weight: var(--font-weight-semibold); }
 
 .markdown h1 { display: none; }
 .markdown blockquote {

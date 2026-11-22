@@ -14,7 +14,7 @@ A layout frame placed on the canvas (Canvas, B142) of the UX playground (B130). 
 | Frame | The only type. |
 
 ## Anatomy
-1. **Name** (required) — above the frame, on the left: the name of the composition (e.g. "Home").
+1. **Name** (required) — above the frame, on the left: the name of the composition (e.g. "Home"). It is a toggle button that selects the frame (accessibility decision, guidelines stage); it looks like text.
 2. **Size label** (required) — next to the name, on the same line: the size name and its dimensions (e.g. "Mobile · 375 × 812").
 3. **Container** (required) — the frame itself, at the real size of the screen: background, thin border, rounded corners, shadow.
 4. **Device bar** (required) — at the top of the container:
@@ -33,6 +33,7 @@ A layout frame placed on the canvas (Canvas, B142) of the UX playground (B130). 
 | `selected` | `true`, `false` | `false` | The frame is selected on the canvas. |
 | `empty` | `true`, `false` | `false` | The frame holds no component yet: the empty message replaces the content. |
 | `name` | Text | — (required) | Name of the composition, shown above the frame. |
+| `onSelectedChange` | Function `(selected) => void` | — (optional) | The selection is controlled by the canvas: the frame calls it when it asks to be selected (click on the container, Enter / Space on the name) or unselected (Enter / Space on the name, Escape); the canvas then sets `selected`. |
 
 ### Combinations
 - Allowed: all combinations (`selected` and `empty` work with every size, and together).
@@ -68,7 +69,7 @@ Every size uses the same spacing:
 
 ## States
 - **Default**
-- **Hover** — the border becomes `--color-border-strong`, and the hover state layer (`--state-layer-hover`, in `--color-text-primary`) covers the container.
+- **Hover** (on the container only, not on the label row) — the border becomes `--color-border-strong`, and the hover state layer (`--state-layer-hover`, in `--color-text-primary`) covers the container.
 - **Focus** (keyboard) — a 2px outline (`--border-width-2`) in `--color-border-focus`, offset by `--space-4` from the container, and the focus state layer (`--state-layer-focus`, in `--color-text-primary`) covers the container.
 - **Selected** — a 2px outline (`--border-width-2`) in `--color-border-focus`, on the container (no offset).
 - **Focus + selected** — both outlines show together: the selected outline on the container, the focus outline `--space-4` around it.
@@ -109,4 +110,5 @@ Every size uses the same spacing:
 Contrast (checked in the Design preview, on the page background of the frame and on the canvas background `--color-background-subtle`): name, size label, device bar text, empty message (4.5:1); selected and focus outline, hover border (3:1). The pairs `color.border.focus` / `color.background.subtle` and `color.border.strong` / `color.background.subtle` were added to `tokens/contrast-pairs.json` for this component (B143).
 
 ## Open questions
+- **Media queries inside a frame** (found at the code stage, 2026-11-21): the components placed in a frame respond to the width of the browser window, not to the width of the frame (e.g. the Timeline of a mobile frame shows its desktop layout on a desktop page). For the content to behave as on a real screen, the frame would need an iframe (like the Playground tab) or the components container queries. To decide with the UX playground (B130) and the Canvas (B142).
 - **Canvas background**: the preview shows the frame on `--color-background-subtle`; the real background is decided by the Canvas component (B142). The label contrast is checked again once it is approved.

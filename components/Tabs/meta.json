@@ -1,0 +1,14 @@
+{
+  "name": "Tabs",
+  "description": "A row of tabs that shows one panel of the page at a time.",
+  "level": "molecule",
+  "status": "complete",
+  "version": "1.0",
+  "changelog": [
+    {
+      "version": "1.0",
+      "date": "2026-11-21",
+      "changes": "First complete version."
+    }
+  ]
+}
