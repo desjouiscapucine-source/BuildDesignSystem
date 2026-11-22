@@ -1,6 +1,6 @@
 ---
 name: git-workflow
-description: How work is organized with git branches — three branch types (governance, component — prototypes included —, project), one folder and one Claude session per branch, the conversations and their usage (Gouvernance, Composant <Name>, Projet <Name>), steps numbered per backlog ticket, when and how a branch is merged into develop, and the release (review, develop merged into main, tag, release note). Use at the start of every task (which branch?), before every commit, whenever a branch is created, updated from develop or merged, and on release day.
+description: How work is organized with git branches — four branch types (governance, component — prototypes included —, project, fix), one folder and one Claude session per branch, the conversations and their usage (Gouvernance, Composant <Name>, Projet <Name>), steps numbered per backlog ticket, when and how a branch is merged into develop, and the release (review, develop merged into main, tag, release note). Use at the start of every task (which branch?), before every commit, whenever a branch is created, updated from develop or merged, and on release day.
 ---
 
 # Git workflow
@@ -10,7 +10,8 @@ Decided by the Design System Lead on 2026-10-29 (B107):
 
 ```
 component/…  ─┐
-project/…    ─┼──▶ develop ──(release R<n>, after review)──▶ main  + tag R<n> + release note
+project/…    ─┤
+fix/…        ─┼──▶ develop ──(release R<n>, after review)──▶ main  + tag R<n> + release note
 governance/… ─┘   (approved work, waiting for its release)
 ```
 
@@ -22,7 +23,7 @@ governance/… ─┘   (approved work, waiting for its release)
 
 ## 1. Branches
 
-Every branch is tied to a **backlog ticket** (`backlog/backlog.json`). **Three branch types only** (B110, B131): `governance/…`, `component/…` — a prototype is worked on a `component/` branch — and `project/…` for a long piece of work on the documentation site or the tooling.
+Every branch is tied to a **backlog ticket** (`backlog/backlog.json`). **Four branch types only** (B110, B131): `governance/…`, `component/…` — a prototype is worked on a `component/` branch —, `project/…` for a long piece of work on the documentation site or the tooling, and `fix/…` for a fix of the documentation site (`fix` skill).
 
 | Piece of work | Branch | Lifetime | Merged into `develop` |
 | ------------- | ------ | -------- | ------------------ |
@@ -30,6 +31,7 @@ Every branch is tied to a **backlog ticket** (`backlog/backlog.json`). **Three b
 | Prototype (screens, iterations, fixes) | `component/<prototype-folder>` (the folder name, kebab-case, e.g. `component/work-description`) | Long | When the Design System Lead **validates** the prototype, or asks for it |
 | Governance: backlog, process, skills, `CLAUDE.md`, documentation site, tooling | `governance/<topic>` (kebab-case, e.g. `governance/backlog-process`) | Very short | As soon as the Design System Lead **approves** it |
 | Project: a long piece of work on the documentation site or the tooling, chosen by the Design System Lead (e.g. the UX playground, B130) | `project/<name>` (kebab-case, e.g. `project/ux-playground`) | Long | When the Design System Lead **validates** the project, or asks for it |
+| Fix: a defect of the documentation site, no effect on components or tokens (`fix` skill) | `fix/<topic>` (kebab-case, e.g. `fix/playground-frame-width`) | Very short | As soon as the Design System Lead **validates** it |
 
 - A piece of work goes on a `project/` branch only when the Design System Lead asks for it; otherwise the documentation site and the tooling stay `governance/` work.
 - Governance is merged first: skills and `CLAUDE.md` guide every other session, so the new rules reach them sooner.

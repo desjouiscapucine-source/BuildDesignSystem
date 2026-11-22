@@ -18,6 +18,7 @@ function LiveFrame({ name, size, selected, empty }: { name: string; size: FrameS
 }
 
 export const playground = definePlayground({
+  fitWidth: true,
   controls: {
     name: {
       type: "text",

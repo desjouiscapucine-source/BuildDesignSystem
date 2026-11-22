@@ -1928,6 +1928,22 @@
       ],
       "priority": "low",
       "release": "R4"
+    },
+    {
+      "id": "B170",
+      "title": "Fix flow for the documentation site",
+      "category": "Skills",
+      "status": "done",
+      "origin": "decided",
+      "description": "A light flow for the fixes of the documentation site: a `fix/<topic>` branch, a short ticket, a minimal change, preview and validation, a short STEPS entry, no version and no changelog.",
+      "why": "The fix of the Frame Playground canvas (B143-4) showed that a defect of the site does not need the component flow (version, changelog, audits). The Design System Lead decided on 2026-11-22 to keep a light circuit for these fixes.",
+      "scope": "New `fix` skill, a fourth branch type `fix/<topic>` in `git-workflow`, a row in the `orchestrator` table and a line in `CLAUDE.md`. Only the documentation site is concerned: a fix of a component keeps the component flow.",
+      "doneWhen": [
+        "The `fix` skill exists and is dispatched by the `orchestrator`.",
+        "`git-workflow` and `CLAUDE.md` name the `fix/<topic>` branch type.",
+        "The next fix of the documentation site follows the flow, with no version and no changelog."
+      ],
+      "priority": "medium"
     }
   ]
 }

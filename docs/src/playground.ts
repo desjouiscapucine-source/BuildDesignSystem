@@ -41,12 +41,15 @@ export interface Playground<C extends Controls = Controls> {
   code: (args: PlaygroundArgs<C>) => string;
   /** Minimum height of the canvas in px, e.g. for a component that opens over the page. */
   minHeight?: number;
+  /** The canvas is as wide as the content (e.g. a frame wider than the chosen screen), instead of the chosen screen width. */
+  fitWidth?: boolean;
 }
 
 /** Messages between the component page and the canvas (docs/playground.html). */
 export type PlaygroundMessage =
   | { type: "playground-ready" }
   | { type: "playground-height"; height: number }
+  | { type: "playground-width"; width: number }
   | { type: "playground-args"; args: PlaygroundArgs }
   /** Tokens tried in the canvas: CSS custom property → new value (e.g. "var(--radius-16)"). */
   | { type: "playground-tokens"; vars: Record<string, string> };

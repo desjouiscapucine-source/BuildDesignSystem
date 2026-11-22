@@ -91,6 +91,7 @@ function PlaygroundView({ component, playground }: { component: ComponentDoc; pl
   varsRef.current = vars;
   const [viewport, setViewport] = useState<Viewport>("desktop");
   const [height, setHeight] = useState(MIN_HEIGHT);
+  const [contentWidth, setContentWidth] = useState(0);
   const [available, setAvailable] = useState(0);
   const [copied, setCopied] = useState(false);
   const frame = useRef<HTMLIFrameElement>(null);
@@ -110,6 +111,7 @@ function PlaygroundView({ component, playground }: { component: ComponentDoc; pl
         post({ type: "playground-tokens", vars: varsRef.current });
       }
       if (event.data.type === "playground-height") setHeight(event.data.height);
+      if (event.data.type === "playground-width") setContentWidth(event.data.width);
     };
     window.addEventListener("message", onMessage);
     return () => window.removeEventListener("message", onMessage);
@@ -125,7 +127,8 @@ function PlaygroundView({ component, playground }: { component: ComponentDoc; pl
     return () => observer.disconnect();
   }, []);
 
-  const width = viewports.find((entry) => entry.id === viewport)!.width;
+  const screenWidth = viewports.find((entry) => entry.id === viewport)!.width;
+  const width = playground.fitWidth && contentWidth > 0 ? contentWidth : screenWidth;
   const scale = available > 0 ? Math.min(1, available / width) : 1;
   const frameHeight = Math.max(height, playground.minHeight ?? MIN_HEIGHT);
   const source = playground.code(args);

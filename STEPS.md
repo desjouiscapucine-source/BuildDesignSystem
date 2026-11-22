@@ -6273,3 +6273,38 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `components/CommentMessage/CommentMessage.tsx`, `CommentMessage.css`, `examples.tsx`, `playground.tsx`, `audits/2026-11-22-B160-3.md`, `audits/2026-11-22-B160-3-tokens.md`, `audits/2026-11-22-B160-3-accessibility.md` (created)
 - `components/CommentMessage/meta.json`, `spec.md`, `guidelines.md`, `design/Preview.tsx`, `design/tokens.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B143-4 — Frame: Playground canvas extended to the content
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- The Playground canvas of the Frame was restricted to the chosen screen width (375 / 768 / 1280px) and clipped the frame, which is wider; it is now as wide as its content.
+
+**What was done**
+- New opt-in option `fitWidth` of `definePlayground`: the canvas is as wide as the content instead of the chosen screen width. Other playgrounds are unchanged.
+- The canvas page (`playground-frame.tsx`) reports its content width (widest child + page padding) with a new `playground-width` message, on resize and on any change of the content; the Playground tab uses it (and still scales it down to the available width).
+- `components/Frame/playground.tsx` sets `fitWidth: true`.
+- Checked in the browser: mobile frame 471px, desktop frame 1376px shown at 53%. `tsc` passes.
+
+**Files**
+- `docs/src/playground.ts`, `docs/src/playground-frame.tsx`, `docs/src/PlaygroundTab.tsx`, `components/Frame/playground.tsx`, `STEPS.md` (updated)
+
+## Step B170-1 — Fix flow for the documentation site
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- A fix of the documentation site (a defect with no effect on components, tokens or guidelines) follows a light flow: **no version, no changelog**.
+- Scope: documentation site only; a fix of a component keeps the component flow.
+- New branch type `fix/<topic>` (four branch types now), one short ticket per fix (priority asked, release optional), a new skill `fix`.
+- No audit in the light flow (the compliance audit stays in the release review), except the accessibility check when a fix changes what a user sees or does; no dedicated conversation: a fix is made in the conversation where the defect is reported.
+
+**What was done**
+- New skill `fix`: scope, flow (ticket, branch, minimal change, check, preview, validation, short STEPS entry, merge), and what a fix never does.
+- `git-workflow`: four branch types, `fix/<topic>` row in the branches table.
+- `orchestrator`: dispatch row for the defects of the documentation site.
+- `CLAUDE.md`: the Git paragraph names the fourth branch type.
+- `backlog/backlog.json`: B170 `done`.
+
+**Files**
+- `.claude/skills/fix/SKILL.md` (created)
+- `.claude/skills/git-workflow/SKILL.md`, `.claude/skills/orchestrator/SKILL.md`, `CLAUDE.md`, `backlog/backlog.json`, `STEPS.md` (updated)
