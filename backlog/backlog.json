@@ -1838,6 +1838,24 @@
       "release": "R2"
     },
     {
+      "id": "B167",
+      "title": "Menu",
+      "category": "Components",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "A list of actions opened by a button.",
+      "why": "Found while designing CommentMessage (B160), approved by the Design System Lead on 2026-11-22: the \"…\" button of a message opens its actions (Edit, Delete), and no component shows a list of actions yet.",
+      "scope": "Design, guidelines and code of the Menu component, each stage approved by the Design System Lead (component skill). Level, anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant Menu conversation on component/Menu (never-invent). Related: Dropdown list (B057).",
+      "doneWhen": [
+        "The Menu design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "Menu is exported from @ds/components, ready for the \"…\" button of CommentMessage (B160)."
+      ],
+      "stage": "design",
+      "priority": "high",
+      "release": "R4"
+    },
+    {
       "id": "B165",
       "title": "Documentation site: use the TextInput in the site search",
       "category": "Tooling",
