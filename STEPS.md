@@ -6023,6 +6023,26 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `audits/2026-11-22-B161-2.md`, `audits/2026-11-22-B161-2-accessibility.md` (created)
 - `components/ZoomControls/guidelines.md`, `components/ZoomControls/spec.md`, `components/ZoomControls/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
 
+## Step B161-3 — ZoomControls: code approved, component complete
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Event props decided at the code stage (open question of `spec.md`): `zoom` (controlled), `onZoomChange(zoom)`, `onFitToScreen()` — same convention as `ImageViewer`'s `index` / `onIndexChange`.
+- Code approved; ZoomControls complete, version 1.0.
+
+**What was done**
+- `components/ZoomControls/ZoomControls.tsx` and `.css` (semantic tokens only; `.ds-zoom-controls`, `.ds-zoom-controls-group`, `-level`, `-divider`; built from `IconButton` tertiary); `role="group"` `aria-label="Zoom controls"`; level `role="status"` `aria-live="polite"` `aria-label="Zoom level {n}%"`; zoom out / in disabled at 10% / 400% (native `disabled`); a `useEffect` moves the focus to the other zoom button when the focused one becomes disabled (same pattern as `ImageViewer`).
+- `examples.tsx` (Default, Minimum 10%, Maximum 400%, each a `Stateful` wrapper); `playground.tsx` (control `zoom`); exported from `components/index.ts` (`ZoomControls`, `ZoomControlsProps`).
+- Checked in the browser: zoom in/out steps of 10, disabled at the limits, focus moves to the other button at 400% (verified live), fit to screen resets to 100%, aria attributes match the spec exactly; Playground canvas interactive, generated code shows `onZoomChange`/`onFitToScreen`.
+- `meta.json`: status `complete`, version `1.0`, changelog "First complete version."; `backlog/backlog.json`: B161 `done`, stage `complete`.
+- Token audit: `audits/2026-11-22-B161-3-tokens.md` — 13 values, 0 fail.
+- Accessibility check: `audits/2026-11-22-B161-3-accessibility.md` — 7 pass, 0 fail, 1 not applicable.
+- Compliance audit: `audits/2026-11-22-B161-3.md` — 63 compliant, 18 non-compliant (5 new from `develop`, #71–#75, TextInput, already covered by B165/B166; 1 found and fixed in this step: ZoomControls' own Playground was not interactive, now wired with local state), 21 not in the design system; no new ticket.
+
+**Files**
+- `audits/2026-11-22-B161-3.md`, `audits/2026-11-22-B161-3-accessibility.md`, `audits/2026-11-22-B161-3-tokens.md` (created)
+- `components/ZoomControls/ZoomControls.tsx`, `ZoomControls.css`, `examples.tsx`, `playground.tsx`, `meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B168-1 — Public site: login to edit the backlog live
 **Date:** 2026-11-22
 
