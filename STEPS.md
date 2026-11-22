@@ -5838,6 +5838,30 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `components/StickyNote/StickyNote.tsx`, `StickyNote.css`, `examples.tsx`, `playground.tsx`, `audits/2026-11-21-B145-3-tokens.md`, `audits/2026-11-21-B145-3-accessibility.md`, `audits/2026-11-22-B145-3.md` (created)
 - `components/StickyNote/meta.json`, `spec.md`, `guidelines.md`, `components/index.ts`, `tokens/semantic.json`, `.claude/skills/token-naming/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
 
+## Step B159-1 — Avatar: design approved
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Avatar (atom, `components/Avatar/`, `.ds-avatar`), ticket B159 (building block of CommentMessage B160 and Comment B146); worked on `component/Avatar`, the ticket brought from `component/Comment`.
+- Single type, round (`radius.full`), not interactive (default state only, no disabled state; a parent handles any click).
+- Content chosen automatically: initials when a name is given, otherwise the Material Symbol `person`.
+- Initials uppercase, from the first and last words of the name ("Anne Marie Dupont" → "AD"); one letter for a one-word name.
+- Colors: `background.brand`, initials `text.inverse`, icon `icon.inverse`.
+- Property `size`: `small` / `medium` (default) / `large` — diameter `space.24` / `space.32` / `space.48` (spacing tokens, no new token), initials `label-sm` / `label` / `heading-5`, icon `icon-size.16` / `20` / `32`.
+- Screen reader: the full name is announced (not the initials); without a name the avatar is decorative.
+- Open: prop name for the person's name, decided at the code stage. Design approved; next stage: guidelines.
+
+**What was done**
+- `components/Avatar/` created from the template: `meta.json` (status `guidelines`), `spec.md`, design preview (`design/tokens.json`, `design/Preview.tsx` — initials computed from the name in the Content field); backlog B159 `in-progress`, stage `guidelines`.
+- Accessibility check: `audits/2026-11-22-B159-1-accessibility.md` — 2 pass, 0 fail, 3 not applicable; `npm run tokens`: 68/68 pairs pass.
+- Token audit: `audits/2026-11-22-B159-1-tokens.md` — 41 values, 0 fail.
+- Compliance audit: `audits/2026-11-22-B159-1.md` — 61 compliant, 16 non-compliant (0 new; #70 and #68 fixed on `develop`, closed by the update from `develop`), 22 not in the design system; no new ticket.
+
+**Files**
+- `components/Avatar/` (new: `meta.json`, `spec.md`, `design/`, template files for the later stages)
+- `audits/2026-11-22-B159-1.md`, `audits/2026-11-22-B159-1-accessibility.md`, `audits/2026-11-22-B159-1-tokens.md` (new)
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B019-2 — TextInput: guidelines approved
 **Date:** 2026-11-22
 
