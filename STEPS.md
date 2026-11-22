@@ -6155,6 +6155,24 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-22-B165-1.md` (new)
 - `docs/src/AppShell.tsx`, `docs/src/docs.css`, `tokens/semantic.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+## Step B161-4 — ZoomControls: event renamed to onFit
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Another session had already merged the code of ZoomControls into `develop` (Step B161-3, event `onFitToScreen`). The Design System Lead chose to keep that code and rename the fit to screen event to **`onFit`**; the zoom event stays `onZoomChange(zoom)`.
+- ZoomControls stays at version **1.0**, no changelog entry (1.0 was released the same day, not used outside the repository). No version bump for Canvas: only its internal call changed.
+
+**What was done**
+- `onFitToScreen` renamed to `onFit` in `components/ZoomControls/ZoomControls.tsx`, `examples.tsx`, `playground.tsx` and at its call site in `components/Canvas/Canvas.tsx`.
+- `components/ZoomControls/spec.md`: new **Events** section (`onZoomChange(zoom)`, `onFit()`), open question on the event names closed.
+- Checked in the browser: fit to screen resets to 100% in the ZoomControls examples and fits the content (30%) in the Canvas example. A console error ("createRoot() … already been passed") appears on the Canvas page with or without this change.
+- A separate implementation written in parallel on this branch (`onFit`, hidden-text announcement of the level) was not used.
+- Compliance audit: `audits/2026-11-22-B161-4.md` — 66 compliant, 15 non-compliant (0 new, 0 fixed), 23 not in the design system; no ticket proposed.
+
+**Files**
+- `components/ZoomControls/ZoomControls.tsx`, `examples.tsx`, `playground.tsx`, `spec.md`, `components/Canvas/Canvas.tsx`, `STEPS.md` (updated)
+- `audits/2026-11-22-B161-4.md` (created)
+
 
 ## Step B160-1 — CommentMessage: design approved
 **Date:** 2026-11-22

@@ -12,13 +12,13 @@ export interface ZoomControlsProps extends Omit<HTMLAttributes<HTMLDivElement>, 
   /** Called by the zoom out / zoom in buttons, with the new zoom level. */
   onZoomChange?: (zoom: number) => void;
   /** Called by the fit to screen button. */
-  onFitToScreen?: () => void;
+  onFit?: () => void;
 }
 
 export function ZoomControls({
   zoom = 100,
   onZoomChange,
-  onFitToScreen,
+  onFit,
   className,
   ...rest
 }: ZoomControlsProps) {
@@ -57,7 +57,7 @@ export function ZoomControls({
         />
       </div>
       <span className="ds-zoom-controls-divider" aria-hidden="true" />
-      <IconButton variant="tertiary" icon="fit_screen" label="Fit to screen" onClick={onFitToScreen} />
+      <IconButton variant="tertiary" icon="fit_screen" label="Fit to screen" onClick={onFit} />
     </div>
   );
 }
