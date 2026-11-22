@@ -41,12 +41,13 @@
 - **Move**: drag the note on the canvas (dragging state, `shadow.hover`), or use the arrow keys when it is selected. A moved note cannot cover another note. The single-pointer alternative to dragging is provided by the Canvas (B142).
 - **Edit**: the Edit button, a double-click on the note, or Enter when it has the focus, turns the text into an editable field.
   - In editing, Enter adds a new line; the full text scrolls inside the note.
-  - Escape or a click outside the note saves the text and leaves the editing state; the focus goes back to the note.
+  - Escape (wherever the focus is in the note) or a click outside the note saves the text and leaves the editing state; after Escape, the focus goes back to the note.
+  - Tab past the Edit and Delete actions, out of the note, also saves the text and leaves the editing state.
 - **Empty note**: if the text is empty when leaving the editing state, the note is removed from the canvas.
 - **Delete**: the Delete button, or Delete / Backspace when the note has the focus (not in editing), removes the note at once, with no confirmation (undo is handled by the Canvas).
 - **Long text**: cut with an ellipsis after 4 lines; the full text shows in the editing state.
 - **Long author or date**: cut with an ellipsis (use initials and a short date to avoid it).
-- **Responsive**: the note keeps its fixed size; the behavior of the canvas below desktop is decided by Canvas (B142).
+- **Responsive**: the note keeps its fixed size (10rem: 160 × 160px at the default text size, larger when the text size grows); the behavior of the canvas below desktop is decided by Canvas (B142).
 
 ## Accessibility
 - **Keyboard:**
@@ -63,7 +64,7 @@
   - Editing: the text is a multi-line text box named "Note text"; entering the editing state announces "Editing note, Escape to save".
   - The buttons announce "Edit the note" and "Delete the note".
 - **Contrast:** text, author and date `text.primary` on `background.brand-subtle` (13.62:1); selected border `border.strong` 3.19:1, with no state layer on a selected or editing note to keep 3:1; IconButton icons ≥ 3:1 (see the spec accessibility report).
-- **Touch target:** the Edit and Delete buttons are 36 × 36px; the note is 160 × 160px (WCAG 2.5.8: 24 × 24px minimum).
+- **Touch target:** the Edit and Delete buttons are 36 × 36px; the note is 160 × 160px at the default text size (WCAG 2.5.8: 24 × 24px minimum).
 
 ## Related components
 - **Canvas** (B142, not in the design system yet): the surface on which the notes are placed.

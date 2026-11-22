@@ -1,5 +1,5 @@
-import { useId, useRef, useState, type KeyboardEvent } from "react";
-import { Button, Tag } from "@ds/components";
+import { useState, type ReactNode } from "react";
+import { Button, Tabs, Tag } from "@ds/components";
 import type { ComponentDoc } from "../types";
 import { Markdown } from "../Markdown";
 import { StageBadge } from "../StageBadge";
@@ -30,31 +30,41 @@ export function ComponentPage({ component }: { component: ComponentDoc }) {
     (hasGuidelines || id !== "guidelines") && (hasPreview || id !== "preview") && (coded || id !== "playground");
   const visibleTabs = tabs.filter(({ id }) => shown(id));
 
-  // WAI-ARIA tabs pattern (B125), until the Tabs component replaces it (B093): roving tabindex,
-  // Left / Right move and select (wrapping), Home / End go to the first / last tab.
-  const baseId = useId();
-  const tabId = (id: Tab) => `${baseId}-tab-${id}`;
-  const panelId = `${baseId}-panel`;
-  const tabRefs = useRef<Partial<Record<Tab, HTMLButtonElement | null>>>({});
-  // The tab row scrolls sideways on small screens (B163): the selected tab is scrolled into view (instant, no animation).
-  const select = (id: Tab) => {
-    setTab(id);
-    tabRefs.current[id]?.scrollIntoView({ block: "nearest", inline: "nearest" });
-  };
-  const onTabKeyDown = (event: KeyboardEvent) => {
-    const index = Math.max(0, visibleTabs.findIndex(({ id }) => id === tab));
-    const last = visibleTabs.length - 1;
-    const target: Record<string, number> = {
-      ArrowRight: index === last ? 0 : index + 1,
-      ArrowLeft: index === 0 ? last : index - 1,
-      Home: 0,
-      End: last,
-    };
-    if (!(event.key in target)) return;
-    event.preventDefault();
-    const next = visibleTabs[target[event.key]].id;
-    tabRefs.current[next]?.focus();
-    select(next);
+  // Content of each panel; Tabs renders only the selected one.
+  const panels: Record<Tab, ReactNode> = {
+    playground: <PlaygroundTab component={component} playground={playgrounds[component.slug]} />,
+    preview: component.design && <DesignPreview component={component} />,
+    spec: component.spec ? <Markdown source={component.spec} /> : <p className="empty">No design spec yet.</p>,
+    guidelines: component.guidelines ? (
+      <Markdown source={component.guidelines} />
+    ) : (
+      <p className="empty">No guidelines yet.</p>
+    ),
+    examples: <ExamplesTab component={component} />,
+    code: <CodeTab component={component} />,
+    changelog:
+      component.changelog.length === 0 ? (
+        <p className="empty">No version yet.</p>
+      ) : (
+        <table className="tokens">
+          <thead>
+            <tr>
+              <th>Version</th>
+              <th>Date</th>
+              <th>Changes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {component.changelog.map((entry) => (
+              <tr key={entry.version}>
+                <td>{entry.version}</td>
+                <td>{entry.date}</td>
+                <td>{entry.changes}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ),
   };
 
   return (
@@ -74,73 +84,29 @@ export function ComponentPage({ component }: { component: ComponentDoc }) {
       </p>
       <StageBadge status={component.status} level={component.level} />
 
-      <div className="tabs" role="tablist" aria-label="Component documentation" onKeyDown={onTabKeyDown}>
-        {visibleTabs.map(({ id, label }) => (
-          <button
-            key={id}
-            ref={(element) => {
-              tabRefs.current[id] = element;
-            }}
-            id={tabId(id)}
-            role="tab"
-            aria-selected={tab === id}
-            aria-controls={panelId}
-            tabIndex={tab === id ? 0 : -1}
-            onClick={() => select(id)}
-          >
-            {label}
-          </button>
-        ))}
-      </div>
+      {/* Component documentation tabs: the Tabs component (B093). Only the selected panel is rendered. */}
+      <Tabs
+        label="Component documentation"
+        selected={tab}
+        onSelect={(id) => setTab(id as Tab)}
+        tabs={visibleTabs.map(({ id, label }) => ({ id, label, content: panels[id] }))}
+      />
+    </>
+  );
+}
 
-      <div id={panelId} role="tabpanel" aria-labelledby={tabId(tab)}>
-        {tab === "playground" && <PlaygroundTab component={component} playground={playgrounds[component.slug]} />}
-        {tab === "preview" && component.design && <DesignPreview component={component} />}
-        {tab === "spec" &&
-          (component.spec ? <Markdown source={component.spec} /> : <p className="empty">No design spec yet.</p>)}
-        {tab === "guidelines" &&
-          (component.guidelines ? (
-            <Markdown source={component.guidelines} />
-          ) : (
-            <p className="empty">No guidelines yet.</p>
-          ))}
-        {tab === "code" && <CodeTab component={component} />}
-        {tab === "changelog" &&
-          (component.changelog.length === 0 ? (
-            <p className="empty">No version yet.</p>
-          ) : (
-            <table className="tokens">
-              <thead>
-                <tr>
-                  <th>Version</th>
-                  <th>Date</th>
-                  <th>Changes</th>
-                </tr>
-              </thead>
-              <tbody>
-                {component.changelog.map((entry) => (
-                  <tr key={entry.version}>
-                    <td>{entry.version}</td>
-                    <td>{entry.date}</td>
-                    <td>{entry.changes}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          ))}
-        {tab === "examples" &&
-          (component.examples.length === 0 ? (
-            <p className="empty">No coded examples yet.</p>
-          ) : (
-            component.examples.map((example) => (
-              <section key={example.title} className="example">
-                <h3>{example.title}</h3>
-                {example.description && <p>{example.description}</p>}
-                <div className="example-canvas">{example.render()}</div>
-              </section>
-            ))
-          ))}
-      </div>
+// A component of its own, so the examples are rendered only when the Examples tab is shown.
+function ExamplesTab({ component }: { component: ComponentDoc }) {
+  if (component.examples.length === 0) return <p className="empty">No coded examples yet.</p>;
+  return (
+    <>
+      {component.examples.map((example) => (
+        <section key={example.title} className="example">
+          <h3>{example.title}</h3>
+          {example.description && <p>{example.description}</p>}
+          <div className="example-canvas">{example.render()}</div>
+        </section>
+      ))}
     </>
   );
 }

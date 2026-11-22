@@ -202,7 +202,7 @@ Semantic tier: **`opacity.<usage>`** → `--opacity-<usage>`, named by usage.
 
 ## Size tokens
 
-Semantic tier: **`size.<usage>`** → `--size-<usage>`, named by usage. Values in **px**.
+Semantic tier: **`size.<usage>`** → `--size-<usage>`, named by usage. Values in **px**, except `size.sticky-note` (rem, see the table).
 
 | Token | Value | Usage |
 | ----- | ----- | ----- |
@@ -217,7 +217,7 @@ Semantic tier: **`size.<usage>`** → `--size-<usage>`, named by usage. Values i
 | `size.panel-min` | 280px | Minimum width of the Panel when it is resized |
 | `size.panel-max` | 480px | Maximum width of the Panel when it is resized |
 | `size.resize-handle` | 24px | Width and height of the hit area of a resize handle (WCAG 2.5.8) |
-| `size.sticky-note` | 160px | Width and height of a sticky note (StickyNote, fixed square) |
+| `size.sticky-note` | 10rem (160px) | Width and height of a sticky note (StickyNote, fixed square); **in rem**, so the note grows with the text size (WCAG 1.4.4) — decided by the Design System Lead, B145 |
 
 ## Breakpoint tokens
 

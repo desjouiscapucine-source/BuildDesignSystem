@@ -165,7 +165,7 @@
       "status": "in-progress",
       "origin": "proposal",
       "description": "Base of every form. Used on the documentation site: Content field of the Design preview tab, icon name field of the Icons page.",
-      "stage": "guidelines",
+      "stage": "code",
       "priority": "high",
       "release": "R2"
     },
@@ -496,7 +496,7 @@
       "id": "B056",
       "title": "Search field",
       "category": "Components",
-      "status": "todo",
+      "status": "rejected",
       "origin": "decided",
       "description": "On the documentation site, not defined in the design system yet. Search of the site header: input with a search icon, keyboard hint \"/\", list of results.",
       "stage": "design",
@@ -807,7 +807,7 @@
       "id": "B093",
       "title": "Tabs",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "Navigation within a page. Used on the documentation site: tabs of the component pages (Design preview, Design spec, Guidelines, Examples, Code).",
       "why": "The component pages of the documentation site use hand-built tabs (compliance finding #70), and Panel (B144) needs tabs for Library, Properties and Compositions.",
@@ -1479,7 +1479,7 @@
       "id": "B145",
       "title": "StickyNote",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "A sticky note placed on the canvas, to annotate a composition.",
       "why": "Missing component of the UX playground prototype (B130): the playground has sticky notes to annotate a composition.",
@@ -1489,7 +1489,7 @@
         "The accessibility and token audits pass.",
         "StickyNote is exported from @ds/components, ready for the UX playground (B130)."
       ],
-      "stage": "code",
+      "stage": "complete",
       "priority": "high",
       "release": "R2"
     },
@@ -1796,6 +1796,24 @@
         "The Frame guidelines say the same as the Canvas guidelines on Tab order, focus never hidden and Shift + Enter.",
         "The change is approved, with a new Frame version and changelog entry.",
         "The accessibility check passes."
+      ],
+      "stage": "guidelines",
+      "priority": "high",
+      "release": "R2"
+    },
+    {
+      "id": "B159",
+      "title": "Avatar",
+      "category": "Components",
+      "status": "in-progress",
+      "origin": "proposal",
+      "description": "A round avatar showing a person's initials.",
+      "why": "Building block found while designing Comment (B146), approved by the Design System Lead on 2026-11-19: the comment marker and each comment message show the author's initials in an avatar.",
+      "scope": "Design, guidelines and code of the Avatar component (atom), each stage approved by the Design System Lead (component skill). Anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant Avatar conversation on component/Avatar (never-invent).",
+      "doneWhen": [
+        "The Avatar design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "Avatar is exported from @ds/components, ready for CommentMessage (B160) and Comment (B146)."
       ],
       "stage": "guidelines",
       "priority": "high",

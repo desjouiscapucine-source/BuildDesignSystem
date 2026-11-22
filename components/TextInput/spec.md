@@ -13,7 +13,7 @@ Lets the user type a single line of text, a search or a number.
 | ---- | ------- |
 | `text` (default) | Free text on one line. |
 | `search` | A search: fixed `search` icon before the text, clear button once the field holds text. |
-| `number` | A number: digits only, numeric keyboard on mobile, no + / − buttons, aligned left. |
+| `number` | A number: only digits are valid; any other character shows an error. Numeric keyboard on mobile, no + / − buttons, aligned left. |
 
 ## Anatomy
 1. Field (required) — the container the user types in
@@ -35,6 +35,7 @@ Lets the user type a single line of text, a search or a number.
 | `icon` | A Material Symbols name, or none | none | Icon before the text (`text` type only). |
 | `helpText` | Text, or none | none | Help text under the field. |
 | `error` | Text, or none | none | Error message under the field (replaces the help text); the field takes the error border. |
+| `required` | `true` / `false` | `false` | The field must be filled. No visual mark (no visible label); announced to screen readers; an error shows when the field is emptied or the form is sent without it. |
 | `disabled` | `true` / `false` | `false` | The field cannot be used. |
 
 A field has **either a `label` or a `placeholder`**, never both and never none.
@@ -47,6 +48,7 @@ A field has **either a `label` or a `placeholder`**, never both and never none.
 | ----------- | ------ |
 | `label` + `placeholder` | The empty field shows one text only: either a label or a placeholder. |
 | `error` + `disabled` | A disabled field cannot be corrected by the user. |
+| `required` + `disabled` | A disabled field cannot be filled by the user. |
 | `icon` + `search` | The search type already has its fixed `search` icon. |
 | `icon` + `number` | No icon before a number. |
 | `helpText` + `search` | The search type has no help text. |
@@ -76,17 +78,18 @@ One size only. The TextInput takes the **full width** of its container.
 
 ## States
 - Interaction on the field (state layers, in the content color): **Default · Hover** (`--state-layer-hover`) **· Focus** (`--state-layer-focus` + outline) **· Pressed** (`--state-layer-pressed`)
-- Clear button: hover / focus / pressed state layers on its own target.
+- Clear button: hover / focus / pressed state layers on its own target; focus also shows the focus outline.
 - **Empty** — the label or the placeholder in the secondary color.
 - **Error** — field border in `--color-border-error`, error message under the field instead of the help text.
 - **Disabled** — disabled background, subtle border, value, label or placeholder, icons and help text in the disabled colors; the clear button is hidden.
 
-Focus outline: `--border-width-2` solid `--color-border-focus`.
+Focus outline (field and clear button): `--border-width-2` solid `--color-border-focus`.
 
 ## Accessibility
 - **Accessible name**: the text shown in the empty field — the `label`, or else the `placeholder` (Design System Lead, 2026-11-19).
 - Help text and error message are linked to the field (described by), so screen readers announce them.
-- Clear button: announced with a name that starts with a verb (e.g. "Clear the search").
+- Clear button: a button, announced with a name that starts with a verb (e.g. "Clear the search").
+- Role: a text field for `text` and `number` (numeric keyboard; Arrow up / down do not change the value), a search field for `search`. States announced: required, invalid, disabled.
 
 ## Design tokens
 | Part | Property | Variant / state | Token |
@@ -100,6 +103,7 @@ Focus outline: `--border-width-2` solid `--color-border-focus`.
 | Field | Padding | all | `--space-16` / `--space-8` |
 | Field | Radius | all | `--radius-8` |
 | Field | Focus outline | focus | `--border-width-2` · `--color-border-focus` |
+| Clear button | Focus outline | focus | `--border-width-2` · `--color-border-focus` |
 | Field | State layer | hover / focus / pressed | `--state-layer-hover` / `--state-layer-focus` / `--state-layer-pressed` |
 | Value | Text style | all | `body` |
 | Value | Color | default | `--color-text-primary` |

@@ -5797,6 +5797,94 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `audits/2026-11-21-B144-2-accessibility.md`, `audits/2026-11-21-B144-2.md` (created)
 - `components/Panel/guidelines.md`, `components/Panel/spec.md`, `components/Panel/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
 
+## Step B093-4 — Component pages use Tabs
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- The component pages of the documentation site use Tabs (B093 scope, finding #70), with the Tabs spec as is (24px between the row and the panel, focus ring inside the tab, focusable panel).
+- Tabs examples shown inside the site's Tabs panel (documentation frame): no sentence added to the Tabs guidelines; the rule "No Tabs inside a panel of Tabs" is about the product UI.
+- B093 done.
+
+**What was done**
+- `docs/src/pages/ComponentPage.tsx`: `<Tabs label="Component documentation" selected onSelect tabs=…>` with one panel per tab; the hand-built tab buttons and keyboard code (B125) are removed; `ExamplesTab` renders the examples only when the Examples tab is shown.
+- `docs/src/docs.css`: the `.tabs` rules (hand-built row and its B163 scroll) are removed.
+- Checked in the browser: arrows, panel named by its tab, line across the content width, the row scrolls at 375px without page overflow, no console error.
+- Compliance audit: `audits/2026-11-22-B093-4.md` — 62 compliant, 13 non-compliant (#70 and #68 fixed, 0 new), 21 not in the design system; no new ticket.
+- Backlog: B093 `done`.
+
+**Files**
+- `audits/2026-11-22-B093-4.md` (new)
+- `docs/src/pages/ComponentPage.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B145-3 — StickyNote: code approved, component complete
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- API: `text`, `author`, `date`; `selected` + `onSelectedChange`; `editing` + `onEditingChange`; `dragging` (set by the Canvas); `onTextChange(text)` when leaving the editing state; `onDelete()` (Delete button, Delete / Backspace, empty text); `onMove(direction)` with the arrow keys — the distance is decided by the Canvas.
+- In editing, Tab out of the note saves and leaves the editing state, like a click outside (added to the guidelines); Escape works wherever the focus is in the note.
+- **`size.sticky-note` = 10rem** (160px at the default text size) instead of 160px, so the note grows with the text size (WCAG 1.4.4): first size token in rem, noted in `token-naming`.
+- Code approved: StickyNote complete, version 1.0.
+
+**What was done**
+- `components/StickyNote/StickyNote.tsx` and `StickyNote.css`: named group (author, date, full text, ", selected"), keyboard (Enter, Space, Delete / Backspace, arrows when selected, Escape), editing text box "Note text" described by "Editing note, Escape to save", focus into the text box when editing starts, save on Escape / focus leaving the note, empty text removes the note; selected / editing border drawn inside (inset shadow, `--border-width-2` `--color-border-strong`) so the content does not move; text cut after 4 lines (fix: the text box is not stretched, so no part of a 5th line shows).
+- `examples.tsx` (Default, Interactive, States, Text length), `playground.tsx`; export from `components/index.ts`.
+- `spec.md` and `guidelines.md` aligned (10rem size, Tab out of an editing note); `tokens/semantic.json` and `.claude/skills/token-naming/SKILL.md` (size table, rem exception).
+- Token audit: `audits/2026-11-21-B145-3-tokens.md` — 42 values, 0 failures.
+- Accessibility check: `audits/2026-11-21-B145-3-accessibility.md` — 2 failures fixed (editing exit only from the text box; text cut at 200% text size); 10 pass, 0 fail; browser checks (keyboard, 200% text, text spacing, mobile width).
+- Compliance audit: `audits/2026-11-22-B145-3.md` — 61 compliant, 14 non-compliant (#68 fixed by B162; #70 fixed on `develop` by B093-4), 21 not in the design system; no new ticket.
+- `meta.json`: status `complete`, version 1.0, changelog "First complete version."; backlog B145 `done`, stage `complete`.
+
+**Files**
+- `components/StickyNote/StickyNote.tsx`, `StickyNote.css`, `examples.tsx`, `playground.tsx`, `audits/2026-11-21-B145-3-tokens.md`, `audits/2026-11-21-B145-3-accessibility.md`, `audits/2026-11-22-B145-3.md` (created)
+- `components/StickyNote/meta.json`, `spec.md`, `guidelines.md`, `components/index.ts`, `tokens/semantic.json`, `.claude/skills/token-naming/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B159-1 — Avatar: design approved
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Avatar (atom, `components/Avatar/`, `.ds-avatar`), ticket B159 (building block of CommentMessage B160 and Comment B146); worked on `component/Avatar`, the ticket brought from `component/Comment`.
+- Single type, round (`radius.full`), not interactive (default state only, no disabled state; a parent handles any click).
+- Content chosen automatically: initials when a name is given, otherwise the Material Symbol `person`.
+- Initials uppercase, from the first and last words of the name ("Anne Marie Dupont" → "AD"); one letter for a one-word name.
+- Colors: `background.brand`, initials `text.inverse`, icon `icon.inverse`.
+- Property `size`: `small` / `medium` (default) / `large` — diameter `space.24` / `space.32` / `space.48` (spacing tokens, no new token), initials `label-sm` / `label` / `heading-5`, icon `icon-size.16` / `20` / `32`.
+- Screen reader: the full name is announced (not the initials); without a name the avatar is decorative.
+- Open: prop name for the person's name, decided at the code stage. Design approved; next stage: guidelines.
+
+**What was done**
+- `components/Avatar/` created from the template: `meta.json` (status `guidelines`), `spec.md`, design preview (`design/tokens.json`, `design/Preview.tsx` — initials computed from the name in the Content field); backlog B159 `in-progress`, stage `guidelines`.
+- Accessibility check: `audits/2026-11-22-B159-1-accessibility.md` — 2 pass, 0 fail, 3 not applicable; `npm run tokens`: 68/68 pairs pass.
+- Token audit: `audits/2026-11-22-B159-1-tokens.md` — 41 values, 0 fail.
+- Compliance audit: `audits/2026-11-22-B159-1.md` — 61 compliant, 16 non-compliant (0 new; #70 and #68 fixed on `develop`, closed by the update from `develop`), 22 not in the design system; no new ticket.
+
+**Files**
+- `components/Avatar/` (new: `meta.json`, `spec.md`, `design/`, template files for the later stages)
+- `audits/2026-11-22-B159-1.md`, `audits/2026-11-22-B159-1-accessibility.md`, `audits/2026-11-22-B159-1-tokens.md` (new)
+- `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B019-2 — TextInput: guidelines approved
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Preview content: the sample text "kkkkk" (a test) replaced by "Primary button".
+- The TextInput `search` type covers the Search field ticket **B056** (set to `rejected` on the Backlog page); the "/" keyboard hint of the site search is removed (not part of the TextInput).
+- The fields of the Playground, the Design preview and the Icons page follow the rule "label or placeholder inside the field, no label above" when they adopt the TextInput.
+- Guidelines: when not to use (Textarea B020, Select, Chips, dedicated date / time / color field); label = a noun, placeholder = a verb and a noun; mitigations of the 3.3.2 exception (error names the field, help text when ambiguous, icon that recalls the field, short forms); full width set by the grid, `--space-16` between stacked fields, search above the content it filters; 5 do / don't pairs; sentence case, no punctuation, short help text.
+- Behavior: error checked while typing; required field: error when emptied or when the form is sent; `number`: any other character is written and shows an error; `search`: filters while typing, Escape empties the field, clearing (click, Enter, Space) gives the focus back to the field; in a Dialog or a panel, Escape first empties the field, then closes.
+- Accessibility: `number` is a text field (numeric keyboard, Arrow up / down do not change the value), `search` a search field; the error is announced when it appears or changes (`aria-live="polite"`).
+- **Spec changes** (approved with the guidelines): `number` line ("only digits are valid; any other character shows an error"); new property **`required`** (no visual mark, announced); clear button focus outline (`--border-width-2` `--color-border-focus`); roles and states announced; forbidden combination **`required` + `disabled`**.
+- Guidelines stage approved on 2026-11-22.
+
+**What was done**
+- `components/TextInput/guidelines.md` written; `spec.md` updated; `meta.json` status `code`; `design/tokens.json` sample text.
+- Accessibility check: `audits/2026-11-22-B019-2-accessibility.md` — 5 failures on the first run (2.1.2, 2.1.1, 2.4.11, 4.1.2 ×2), all fixed; 19 passes; 3.3.2 exception kept.
+- Compliance audit: `audits/2026-11-22-B019-2.md` — 62 compliant, 13 non-compliant (#70 fixed by B093-4, 0 new), 21 not in the design system; no new ticket.
+- `backlog/backlog.json`: B019 stage `code`.
+
+**Files**
+- `audits/2026-11-22-B019-2.md`, `audits/2026-11-22-B019-2-accessibility.md` (created)
+- `components/TextInput/guidelines.md`, `components/TextInput/spec.md`, `components/TextInput/meta.json`, `components/TextInput/design/tokens.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B144-3 — Panel: code approved, component complete
 **Date:** 2026-11-22
 
@@ -5814,7 +5902,7 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `examples.tsx` (expanded, collapsed, empty tab, long content), `playground.tsx`; `components/index.ts` exports `Panel`, `PanelProps`, `PanelTab`.
 - Token audit: `audits/2026-11-22-B144-3-tokens.md` — 1 failure (raw `z-index`) fixed with no z-index; not blocking.
 - Accessibility check: `audits/2026-11-22-B144-3-accessibility.md` — 1 failure (focus order) fixed; checked with the keyboard in the browser; not blocking. Still to check later: keyboard focus leaving below desktop, reduced motion, 200% zoom, 320px reflow; WCAG 2.4.11 with Canvas (B142).
-- Compliance audit: `audits/2026-11-22-B144-3.md`.
+- Compliance audit: `audits/2026-11-22-B144-3.md` — 64 compliant, 13 non-compliant (3 fixed: #70, #68, #64; 0 new), 21 not in the design system; no new ticket.
 - `meta.json`: status `complete`, version `1.0`, changelog "First complete version."; `backlog/backlog.json`: B144 `done`, stage `complete`.
 
 **Files**

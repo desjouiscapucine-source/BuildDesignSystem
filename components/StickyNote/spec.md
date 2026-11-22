@@ -53,7 +53,7 @@ One fixed size.
 
 | Size | Box | Padding | Text style | Actions |
 | ---- | --- | ------- | ---------- | ------- |
-| Default | `--size-sticky-note` square (160 × 160px) | `--space-8` | Text `body`; author `label-sm`; date `body-sm` | IconButton (36 × 36px) |
+| Default | `--size-sticky-note` square (10rem: 160 × 160px at the default text size, grows with the text size) | `--space-8` | Text `body`; author `label-sm`; date `body-sm` | IconButton (36 × 36px) |
 
 - Space between the text and the footer: `--space-8`; between the author / date and the actions, and between the two actions: `--space-4`.
 - Interactive targets: the IconButtons are 36 × 36px, above the 24×24px minimum (WCAG 2.5.8).
@@ -91,7 +91,7 @@ One fixed size.
 | Footer | Gap | all | `--space-4` |
 | Actions | Component | all | IconButton `tertiary` (`edit`, `delete`) |
 
-New token for this component: **`size.sticky-note`** = 160px (value and name approved by the Design System Lead).
+New token for this component: **`size.sticky-note`** = 10rem (160px at the default text size; value and name approved by the Design System Lead; in rem so the note grows with the text size, WCAG 1.4.4, decided at the code stage).
 New contrast pair: `color.border.strong` on `color.background.brand-subtle` (3:1, selected border).
 
 ## Open questions
