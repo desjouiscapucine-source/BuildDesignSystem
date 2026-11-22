@@ -59,12 +59,14 @@ function Mock({ state, text, variant, name, edited }: PreviewProps & { name: str
         >
           {initials(name)}
         </span>
-        <span style={{ ...textStyle("name-style"), color: "var(--preview-name)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", minWidth: 0 }}>
-          {name}
-        </span>
-        <span style={{ ...textStyle("date-style"), color: "var(--preview-date)", flex: "none", whiteSpace: "nowrap" }}>
-          19 Nov 2026, 14:43{edited ? " · Edited" : ""}
-        </span>
+        <div style={{ display: "flex", flex: 1, flexWrap: "wrap", alignItems: "baseline", columnGap: "var(--preview-header-gap)", minWidth: 0 }}>
+          <span style={{ ...textStyle("name-style"), color: "var(--preview-name)", maxWidth: "100%", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", minWidth: 0 }}>
+            {name}
+          </span>
+          <span style={{ ...textStyle("date-style"), color: "var(--preview-date)", whiteSpace: "nowrap" }}>
+            19 Nov 2026, 14:43{edited ? " · Edited" : ""}
+          </span>
+        </div>
         <span
           data-state={state === "focus" ? "focus" : "default"}
           className="preview-state-layer"

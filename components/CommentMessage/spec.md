@@ -19,7 +19,7 @@ One message of a comment thread: who wrote it, when, and what it says. Building 
 
 ## Anatomy
 1. Container (required) — holds the header and the text; background in the `me` variant, separator above in the `reply` variant.
-2. Header (required) — on one line:
+2. Header (required) — on one line; when the name and the date do not fit side by side (narrow screen, larger text), the date goes under the name:
    1. Avatar of the author (required), size `small`.
    2. Author name (required).
    3. Date and time (required), followed by "· Edited" when the message was changed (optional).
@@ -40,8 +40,8 @@ One message of a comment thread: who wrote it, when, and what it says. Building 
 ## Content
 | Text | Required | Example | Max length | Overflow |
 | ---- | -------- | ------- | ---------- | -------- |
-| Author name | Yes | Capucine Desjouis | No limit | One line, cut with an ellipsis; the date and the "…" button stay visible. |
-| Date and time | Yes | 19 Nov 2026, 14:43 | — | Always absolute (day, short month, year, 24-hour time). Never wraps. |
+| Author name | Yes | Capucine Desjouis | No limit | One line, cut with an ellipsis; the "…" button stays visible. |
+| Date and time | Yes | 19 Nov 2026, 14:43 | — | Always absolute (day, short month, year, 24-hour time). One line; when it does not fit next to the name (narrow screen, larger text), it goes under the name, and wraps onto several lines only if the message is too narrow even for the date alone (B160-3). |
 | Edited mark | No — only for a changed message | · Edited | — | After the date, same style as the date. |
 | Text | Yes | Could the primary button be full width on mobile? | No limit | Wraps, shown in full; the Comment bubble scrolls. |
 

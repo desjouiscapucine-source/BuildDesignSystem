@@ -1827,7 +1827,7 @@
       "id": "B160",
       "title": "CommentMessage",
       "category": "Components",
-      "status": "in-progress",
+      "status": "done",
       "origin": "proposal",
       "description": "One message of a comment thread: author avatar and name, date and text.",
       "why": "Building block of Comment (B146), approved by the Design System Lead on 2026-11-19: a comment holds a thread of messages (the first one and its replies), so the repeated message is its own component, built before Comment.",
@@ -1837,7 +1837,7 @@
         "The accessibility and token audits pass.",
         "CommentMessage is exported from @ds/components, ready for Comment (B146)."
       ],
-      "stage": "code",
+      "stage": "complete",
       "priority": "high",
       "release": "R2"
     },

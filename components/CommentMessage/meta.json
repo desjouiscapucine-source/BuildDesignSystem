@@ -2,7 +2,13 @@
   "name": "CommentMessage",
   "description": "One message of a comment thread: author avatar and name, date and text.",
   "level": "molecule",
-  "status": "code",
-  "version": "0.0",
-  "changelog": []
+  "status": "complete",
+  "version": "1.0",
+  "changelog": [
+    {
+      "version": "1.0",
+      "date": "2026-11-22",
+      "changes": "First complete version."
+    }
+  ]
 }

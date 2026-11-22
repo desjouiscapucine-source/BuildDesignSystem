@@ -41,10 +41,10 @@
 ## Behavior
 - **Interaction**: only on `author: me`. Hover puts the hover state layer on the message and shows the "…" button; keyboard focus on the button shows it too. A message `other` has no interaction state. The message itself is never clickable or focusable.
 - **Touch screens**: no hover, so the "…" button of a message `me` is always shown.
-- **Long author name**: one line, cut with an ellipsis; the date, "· Edited" and the button stay visible.
-- **Date**: never wraps.
+- **Long author name**: one line, cut with an ellipsis; the "…" button stays visible.
+- **Date**: one line; when it does not fit next to the name, it goes under the name; it wraps onto several lines only if the message is too narrow even for the date alone.
 - **Long text**: wraps onto several lines; the bubble of the Comment scrolls.
-- **Narrow screen**: same layout — one-line header, name shortened with an ellipsis.
+- **Narrow screen and larger text**: same layout; when the name and the date do not fit side by side, the date (with "· Edited") goes under the name. Nothing overflows the message, and the "…" button stays inside it.
 - **Header height**: the same on every message (the height of the "…" button), with or without the button, so the thread stays regular.
 
 ## Accessibility

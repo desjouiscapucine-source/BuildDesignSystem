@@ -6227,3 +6227,26 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `components/CommentMessage/guidelines.md` (written); `spec.md`, `meta.json`, `design/Preview.tsx`, `design/tokens.json` (updated)
 - `audits/2026-11-22-B160-2.md`, `audits/2026-11-22-B160-2-accessibility.md` (new)
 - `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B160-3 — CommentMessage: code approved, component complete
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Code stage approved on 2026-11-22: CommentMessage is **complete**, version **1.0** ("First complete version.").
+- API: `position` (`first` default / `reply`), `author` (`other` default / `me`), `name`, `date` as a `Date` (always shown as an absolute date, "19 Nov 2026, 14:43"), `edited`, `onActionsClick` (the application opens its own menu until the Menu component, B167, exists), text as `children`.
+- "(you)" is exposed to screen readers as visually hidden text after the name; "· Edited" is visible text.
+- Reflow (spec change): when the name and the date do not fit side by side (narrow screen, larger text), the date goes under the name; it wraps onto several lines only if the message is too narrow even for the date alone.
+
+**What was done**
+- `components/CommentMessage/CommentMessage.tsx` and `.css`: uses Avatar `small` and IconButton `tertiary`; the "…" button hidden with opacity (stays in the Tab order), shown on hover, focus and touch screens; hover state layer over the whole message, `author: me` only; header as tall as the IconButton; semantic tokens only.
+- `examples.tsx` (6 examples), `playground.tsx` (one control per prop), export in `components/index.ts`.
+- `spec.md`, `guidelines.md`, `design/Preview.tsx` and `design/tokens.json` updated for the date under the name.
+- `meta.json`: status `complete`, version `1.0`, changelog; `backlog/backlog.json`: B160 `done`, stage `complete`.
+- Token audit: `audits/2026-11-22-B160-3-tokens.md` — 33 values, 0 fail.
+- Accessibility check: `audits/2026-11-22-B160-3-accessibility.md` — 1 failure found (reflow at 320px / 200% text), fixed; 0 blocking; checked in the browser (keyboard, 320px, 200% text, text spacing).
+- Compliance audit: `audits/2026-11-22-B160-3.md` — 67 compliant, 13 non-compliant (0 new, 0 fixed), 22 not in the design system; CommentMessage replaces no element of the site; no new ticket.
+- `develop` merged into `component/CommentMessage`.
+
+**Files**
+- `components/CommentMessage/CommentMessage.tsx`, `CommentMessage.css`, `examples.tsx`, `playground.tsx`, `audits/2026-11-22-B160-3.md`, `audits/2026-11-22-B160-3-tokens.md`, `audits/2026-11-22-B160-3-accessibility.md` (created)
+- `components/CommentMessage/meta.json`, `spec.md`, `guidelines.md`, `design/Preview.tsx`, `design/tokens.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
