@@ -1911,6 +1911,23 @@
         "The password and the signing secret are environment variables on Netlify, never written in the repository."
       ],
       "priority": "medium"
+    },
+    {
+      "id": "B169",
+      "title": "Password field: TextInput type or its own component",
+      "category": "Components",
+      "status": "todo",
+      "origin": "decided",
+      "description": "A password field for the design system: a `password` type of the TextInput, or a component of its own, replacing the native field of the site login.",
+      "why": "Compliance audit of Step B166-1 (audits/2026-11-22-B166-1.md): the password field of the login Dialog (B168) is a native <input type=\"password\">, because TextInput has no password type. The Design System Lead decided on 2026-11-22 to keep it native for now and to create this ticket.",
+      "scope": "Decide first whether the password field is a type of the TextInput or its own component (design stage, `component` skill). Then a design spec, guidelines and code: show or hide the password, autocomplete, error and help text, accessibility. Once complete, the login Dialog (docs/src/AppShell.tsx, .shell-login-form in docs/src/docs.css) uses it.",
+      "doneWhen": [
+        "The password field exists in the design system (a TextInput type or a component), through the stages of the `component` skill.",
+        "The login Dialog of the site uses it instead of the native field.",
+        "The password field is gone from the \"not in the design system\" list of the next compliance audit."
+      ],
+      "priority": "low",
+      "release": "R4"
     }
   ]
 }
