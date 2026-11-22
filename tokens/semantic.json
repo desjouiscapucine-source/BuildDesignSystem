@@ -761,6 +761,10 @@
     "sticky-note": {
       "$value": "10rem",
       "$description": "Width and height of a sticky note (StickyNote, fixed square): 160px at the default text size, in rem so it grows with the text size (WCAG 1.4.4)"
+    },
+    "zoom-level": {
+      "$value": "2.5rem",
+      "$description": "Minimum width of the zoom level of the ZoomControls (fits \"400%\"): 40px at the default text size, in rem so it grows with the text size (WCAG 1.4.4) and the buttons do not move when the level changes"
     }
   },
   "breakpoint": {

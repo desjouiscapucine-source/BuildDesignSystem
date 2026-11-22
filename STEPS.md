@@ -5884,3 +5884,31 @@ At the Design System Lead's request, listed the elements of the documentation si
 **Files**
 - `audits/2026-11-22-B019-2.md`, `audits/2026-11-22-B019-2-accessibility.md` (created)
 - `components/TextInput/guidelines.md`, `components/TextInput/spec.md`, `components/TextInput/meta.json`, `components/TextInput/design/tokens.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
+## Step B161-1 — ZoomControls: design approved
+**Date:** 2026-11-22
+
+**Decisions (made by the Design System Lead)**
+- Identity: **ZoomControls**, folder `components/ZoomControls/`, class `.ds-zoom-controls`, level **molecule** (built from IconButton), description "The zoom controls of the canvas: zoom out, zoom level, zoom in, fit."
+- Already decided in the Composant Canvas conversation (B142): zoom out, zoom level in percent, zoom in, fit to screen; tertiary IconButtons; container `background.surface`, `radius.8`, `shadow.dropdown`; bottom right of the Canvas; zoom from 10 to 400 in steps of 10.
+- Layout: one horizontal row — zoom out (`remove`), zoom level, zoom in (`add`), divider, fit to screen (`fit_screen`).
+- Zoom level: plain text, read only, `label-sm`, `text.primary`, centered, minimum width = new token **`size.zoom-level` = 2.5rem** (40px; rem so it grows with the text size, WCAG 1.4.4).
+- Divider: `border.subtle`, `border-width.1`, height `icon-size.20`.
+- Container: no border, padding `space.4`, gap `space.4` (44px high).
+- Limits: zoom out disabled at 10%, zoom in disabled at 400%; fit to screen always enabled.
+- Accessible names: "Zoom controls" (group), "Zoom out", "Zoom level 100%", "Zoom in", "Fit to screen".
+- Design stage approved on 2026-11-22.
+
+**What was done**
+- Ticket B161 reserved (`in-progress`), branch `component/ZoomControls` from `develop`.
+- `components/ZoomControls/` created from the template: `meta.json` (status `guidelines`), `spec.md`, `design/Preview.tsx` and `design/tokens.json` (Design preview tab, zoom level as content), template files for the later stages.
+- Token `size.zoom-level` added to `tokens/semantic.json` and the `token-naming` skill.
+- Accessibility check: `audits/2026-11-22-B161-1-accessibility.md` — 5 passes, 0 failures (2 notes: width in rem → chosen; how the zoom level is announced → open question for guidelines / code).
+- Token audit: `audits/2026-11-22-B161-1-tokens.md` — 36 values, 0 fail.
+- Compliance audit: `audits/2026-11-22-B161-1.md` — 62 compliant, 13 non-compliant (0 new, 0 fixed), 21 not in the design system; no new ticket.
+- `backlog/backlog.json`: B161 stage `guidelines`.
+
+**Files**
+- `components/ZoomControls/` (new)
+- `audits/2026-11-22-B161-1.md`, `audits/2026-11-22-B161-1-accessibility.md`, `audits/2026-11-22-B161-1-tokens.md` (new)
+- `tokens/semantic.json`, `tokens/tokens.css`, `.claude/skills/token-naming/SKILL.md`, `backlog/backlog.json`, `STEPS.md` (updated)
