@@ -6500,3 +6500,19 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `netlify/functions/login.ts`, `logout.ts`, `session.ts`, `backlog.ts`, `_lib/session.ts`, `_lib/github.ts` (new)
 - `netlify.toml`, `docs/src/backlog.ts`, `docs/src/AppShell.tsx`, `docs/src/docs.css`, `docs/src/main.tsx`, `docs/src/pages/BacklogPage.tsx`, `docs/src/pages/ReleasePlanningPage.tsx`, `backlog/backlog.json`, `STEPS.md` (updated)
 - `docs/src/auth.tsx` (new)
+
+---
+
+## Step R4-1 — Release R4
+
+**Date:** 2026-11-22
+
+**What was done**
+- Release R4, on the Design System Lead's request, ahead of its planned date (2026-12-18), like R2 and R3. `develop` merged into `main` (fast-forward) and tagged `R4`.
+- `main` had received B168 on its own (a cherry-pick, then the PR from `release/B168-login`) while `develop` carried the same work, so the two had diverged: `main` was merged into the release branch first. Conflicts in `AppShell.tsx` and `docs.css` solved by keeping `develop`'s version (uses the TextInput); `STEPS.md` and `backlog.json` kept both sides.
+- Release note `releases/R4.md`; `npm run work-time` saved `docs/src/work-time.json` (frozen work time of the public site).
+- `ds-compliance-audit` on the release: 71 compliant, 16 non-compliant, 25 not in the design system, no new ticket (`audits/2026-11-22-R4.md`).
+- `ds-token-audit` on the 28 components: 0 failure; the runtime properties `--ds-canvas-*` and `--ds-panel-width` accepted as an exception by the Design System Lead (`audits/2026-11-22-R4-tokens.md`).
+
+**Files**
+- `releases/R4.md`, `audits/2026-11-22-R4.md`, `audits/2026-11-22-R4-tokens.md`, `docs/src/work-time.json`, `STEPS.md`
