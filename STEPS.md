@@ -5773,6 +5773,30 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `audits/2026-11-21-B093-3.md`, `audits/2026-11-21-B093-3-accessibility.md`, `audits/2026-11-21-B093-3-tokens.md` (new)
 - `components/Tabs/meta.json`, `components/index.ts`, `backlog/backlog.json`, `STEPS.md` (updated)
 
+## Step B144-2 — Panel: guidelines approved
+**Date:** 2026-11-21
+
+**Decisions (made by the Design System Lead)**
+- **When to use**: in the UX playground (B130) only, one Panel per screen, on the right of the canvas.
+- **When not to use**: navigation → SideNavigation; detail or blocking action → Dialog; tabs inside a page → Tabs (B093); panel of steps below desktop → Timeline.
+- **Do's and don'ts**: one Panel, on the right · keep the three tabs · long content scrolls inside the Panel · collapsed, the strip stays visible.
+- **Content**: fixed tab labels; accessible labels start with a verb ("Collapse the panel", "Open Library"); empty tab → one short sentence in `body` / `color.text.secondary` until B065.
+- **Behavior**: keeps the last tab, the width and the collapsed state, also after a reload; the width follows the pointer with no animation while resizing; the header stays fixed while the content scrolls; loading waits for B065.
+- **Below desktop**: always opens collapsed; expanded, not resizable (handle hidden); collapses with `Escape`, or as soon as the focus or a click leaves it for the canvas (the focus stays on the canvas element).
+- **Accessibility**: `Tab` / `Shift+Tab` leave the Panel (no keyboard trap); focus order handle (desktop only) → tabs → collapse button → content; the focus follows collapse / expand; arrows change the width by `space.8`; no other shortcut; a focused canvas element is never hidden behind the Panel (the canvas moves it, rule for Canvas B142); `<aside>` "Playground panel", separator with value / min / max, `aria-expanded` (`true` on the collapse button, `false` on the strip icons) with `aria-controls`.
+- **Spec updated** with the Lead's answers: handle visible on desktop only; arrow step `--space-8`; "tooltip" removed from the Content table; below-desktop question pointing to the guidelines.
+- Stage 2 (Guidelines) approved; status `code`. The code waits for Tabs (B093) to be complete.
+
+**What was done**
+- `components/Panel/guidelines.md` written; `components/Panel/spec.md` updated.
+- Accessibility check: `audits/2026-11-21-B144-2-accessibility.md` — 3 failures found during the stage (WCAG 2.1.2, 2.4.11 desktop and below desktop), all fixed; not blocking.
+- Compliance audit: `audits/2026-11-21-B144-2.md` — 63 compliant, 14 non-compliant (1 fixed: #64, 0 new), 22 not in the design system; no new ticket.
+- `meta.json` status and `backlog/backlog.json` stage: `code`.
+
+**Files**
+- `audits/2026-11-21-B144-2-accessibility.md`, `audits/2026-11-21-B144-2.md` (created)
+- `components/Panel/guidelines.md`, `components/Panel/spec.md`, `components/Panel/meta.json`, `backlog/backlog.json`, `STEPS.md` (updated)
+
 ## Step B093-4 — Component pages use Tabs
 **Date:** 2026-11-22
 
