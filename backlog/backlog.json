@@ -1932,7 +1932,7 @@
     {
       "id": "B170",
       "title": "Fix flow for the documentation site",
-      "category": "Governance",
+      "category": "Skills",
       "status": "in-progress",
       "origin": "decided",
       "description": "A light flow for the fixes of the documentation site: a `fix/<topic>` branch, a short ticket, a minimal change, preview and validation, a short STEPS entry, no version and no changelog.",
