@@ -6638,3 +6638,34 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/Header/Header.tsx`, `components/Header/Header.css`, `components/Header/examples.tsx`, `components/Header/playground.tsx`, `components/Header/spec.md`, `components/Header/meta.json`, `components/index.ts`, `backlog/backlog.json`, `audits/2026-11-23-B055-3.md`, `STEPS.md`
+
+---
+
+## Step B183-1 — Documentation site: use the Header in the site header
+
+**Date:** 2026-11-23
+
+**What was done**
+- The header of the site is now the Header component (B055): the hand-built `.shell-header` (brand, burger, spaces links, search, clock, log in) is gone. The search, the time-spent clock and the log in / log out button are passed as `search`, `info` and `actions`; the page sets `scroll-padding-top` to `--size-header` so the fixed Header does not hide the focus.
+- Decided by the Design System Lead (chat):
+  - The Workspace button (`primary`, icon `workspaces`) opens the UX playground until the Menu of widgets exists (B167); the separate UX playground button is removed from the header.
+  - The spaces links leave the header: the spaces are chosen on the landing page (the logo) or in the "Spaces" item at the top of the side navigation, now shown on desktop too. The `navigation` skill and the Navigation structure page say so.
+  - On the UX playground there is no side navigation on desktop (the canvas uses the full width); below desktop the burger opens the "Spaces" item only, like Portfolio. Written in the `navigation` skill.
+- Checked in the browser: desktop and mobile header, Workspace button leads to the UX playground, no console error, `npm run typecheck` passes.
+
+**Files**
+- `docs/src/AppShell.tsx`, `docs/src/docs.css`, `docs/src/pages/NavigationPage.tsx`, `.claude/skills/navigation/SKILL.md`, `STEPS.md`, `audits/2026-11-23-B183-1.md`
+
+---
+
+## Step B185-1 — Documentation site: no UX playground in the side navigation
+
+**Date:** 2026-11-23
+
+**What was done**
+- Decided by the Design System Lead (chat, after B183): the UX playground is no longer an item of the side navigation. It opens from the Workspace button of the Header; the page stays in the site structure (`structure.ts`), so the search and the breadcrumb keep working. `AppShell.tsx` filters it out of the side navigation, with a `PLAYGROUND` constant for the route.
+- The `navigation` skill says so (row "UX playground").
+- Checked in the browser: the side navigation of the Overview page has no UX playground item; `npm run typecheck` passes. Compliance audit: 0 new finding; the Workspace button (#76) is now the only entry point, handled by B174.
+
+**Files**
+- `docs/src/AppShell.tsx`, `.claude/skills/navigation/SKILL.md`, `backlog/backlog.json`, `STEPS.md`, `audits/2026-11-23-B185-1.md`

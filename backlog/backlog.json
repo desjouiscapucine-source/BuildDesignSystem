@@ -2109,7 +2109,7 @@
       "id": "B183",
       "title": "Documentation site: use the Header in the site header",
       "category": "Tooling",
-      "status": "todo",
+      "status": "done",
       "origin": "proposal",
       "description": "The header of the site is the Header component.",
       "why": "Compliance audit of Step B055-3 (audits/2026-11-23-B055-3.md), finding N1: the site header is hand-built, although the Header component is complete (B055).",
@@ -2119,6 +2119,23 @@
         "The spaces links are no longer in the header, and the navigation skill and the Navigation structure page say so.",
         "The page sets scroll-padding-top to --size-header, so the fixed Header does not hide the focus.",
         "The compliance audit no longer reports the hand-built header (N1)."
+      ],
+      "priority": "high",
+      "release": "R4"
+    },
+    {
+      "id": "B185",
+      "title": "Documentation site: no UX playground in the side navigation",
+      "category": "Tooling",
+      "status": "done",
+      "origin": "decided",
+      "description": "The UX playground is no longer an item of the side navigation.",
+      "why": "Decided by the Design System Lead (2026-11-23, after B183): the playground is reached from the Workspace button of the Header.",
+      "scope": "Included: docs/src/structure.ts and docs/src/AppShell.tsx (the item leaves the side navigation; the page stays in the structure so the breadcrumb, the search and the current page keep working), the navigation skill and the Navigation structure page if they list it.",
+      "doneWhen": [
+        "The side navigation has no UX playground item.",
+        "The UX playground is still reachable from the Workspace button and the search, and its breadcrumb is unchanged.",
+        "The navigation skill and the Navigation structure page match."
       ],
       "priority": "high",
       "release": "R4"

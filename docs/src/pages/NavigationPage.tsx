@@ -82,14 +82,14 @@ const structure: NavNode = {
 
 const levelRows = [
   { level: 0, content: "Landing page" },
-  { level: 1, content: "Spaces: Design system, Portfolio" },
+  { level: 1, content: "Spaces: Design system, Portfolio (chosen on the landing page or in the \"Spaces\" item of the side navigation, not in the header)" },
   { level: 2, content: "Sections of a space: Overview, Governance, Foundations, Components, Prototypes, Projects" },
   { level: 3, content: "Pages of a section (e.g. one prototype), or categories of components" },
   { level: 4, content: "Component pages only" },
 ];
 
 const principles = [
-  { name: "Back to Level 0", rule: "The site logo goes back to the landing page, from every level." },
+  { name: "Back to Level 0", rule: "The site logo, in the Header, goes back to the landing page, from every level; the spaces are not in the header." },
   {
     name: "Go back",
     rule: "A breadcrumb shows where the page sits in the structure and goes back to any level above it. On every page from Level 2 to Level 4, above the title, from Level 0 (BuildDesignSystem) down to the parent of the page.",

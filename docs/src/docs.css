@@ -12,6 +12,7 @@
   --doc-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --doc-header-height: var(--size-header);
   color-scheme: light;
+  scroll-padding-top: var(--size-header); /* the fixed Header does not hide the focus (Header guidelines) */
 }
 
 * { box-sizing: border-box; }
@@ -90,56 +91,12 @@ code {
 }
 .shell-skip:focus { top: var(--space-8); }
 
-.shell-header {
-  position: sticky;
-  top: 0;
-  z-index: var(--z-index-sticky);
-  height: var(--doc-header-height);
-  display: flex;
-  align-items: center;
-  gap: var(--space-16);
-  padding: 0 var(--space-24);
-  background: var(--color-background-brand-subtle);
-  border-bottom: var(--border-width-1) solid var(--color-border-default);
-}
-.shell-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-8);
-  color: var(--color-text-primary);
-  text-decoration: none;
-  font-family: var(--typography-heading-5-family);
-  font-size: var(--typography-heading-5-size);
-  line-height: var(--typography-heading-5-line-height);
-  font-weight: var(--typography-heading-5-weight);
-  white-space: nowrap;
-}
-.shell-brand-logo { width: var(--size-logo); height: var(--size-logo); }
-/* Level 1 spaces in the header (navigation skill); the current space is underlined like a selected tab. */
-.shell-spaces-list { display: flex; gap: var(--space-4); list-style: none; margin: 0; padding: 0; }
-.shell-spaces-list a {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  height: var(--doc-header-height);
-  padding: 0 var(--space-8);
-  color: var(--color-text-secondary);
-  text-decoration: none;
-  white-space: nowrap;
-  border-bottom: var(--border-width-2) solid transparent;
-}
-.shell-spaces-list a:hover { color: var(--color-text-primary); }
-.shell-spaces-list a[aria-current="true"] {
-  color: var(--color-text-brand);
-  font-weight: var(--font-weight-semibold);
-  border-bottom-color: var(--color-border-focus);
-}
 /* Work-time clock: label + digital screen (primary-950 screen, secondary-600 digits; site only, chosen by the Design System Lead). */
 .shell-work-time {
   display: flex;
   align-items: center;
   gap: var(--space-8);
-  margin: 0 0 0 auto;
+  margin: 0;
 }
 .shell-work-time-label {
   color: var(--color-text-secondary);
@@ -182,14 +139,7 @@ code {
 .shell-login-field:focus-visible { outline: var(--border-width-2) solid var(--color-border-focus); outline-offset: var(--border-width-2); }
 .shell-login-error { margin: 0; color: var(--color-text-error); }
 
-/* Burger IconButton: below desktop only. */
-.ds-icon-button.shell-menu-button { display: none; }
-
-.shell-search {
-  position: relative;
-  flex: 0 1 var(--size-search-field);
-  margin-left: var(--space-24);
-}
+.shell-search { position: relative; }
 .shell-search-results {
   position: absolute;
   top: calc(100% + var(--space-4));
@@ -251,27 +201,12 @@ code {
   margin-bottom: 0;
 }
 
-/* Below desktop: --breakpoint-desktop (1024px) */
-@media not all and (min-width: 1024px) {
-  .shell-header { padding: 0 var(--space-16); gap: var(--space-8); }
-  .ds-icon-button.shell-menu-button { display: inline-flex; }
-  .shell-search { margin-left: 0; flex: 1; }
-  .shell-work-time { display: none; }
-  .shell-spaces { display: none; }
-}
 /* Desktop: --breakpoint-desktop (1024px) */
 @media (min-width: 1024px) {
   /* The navigation stays in view while the page scrolls (below desktop the component places it over the page). */
   .ds-side-navigation.shell-nav { position: sticky; }
-  /* The "Spaces" parent is for below desktop only: the header shows the spaces on desktop. */
-  .ds-side-navigation-entry:has(> .ds-navigation-item-group > .shell-nav-spaces) { display: none; }
   /* A space that is its own only page (Portfolio): no side navigation (B138). */
   .shell--single-page .ds-side-navigation.shell-nav { display: none; }
-}
-/* Below tablet: --breakpoint-tablet (768px) */
-@media not all and (min-width: 768px) {
-  /* The logo stays, so Level 0 is reachable from a phone too (navigation skill); only the name is hidden. */
-  .shell-brand-name { display: none; }
 }
 
 /* ---------- Home page (root index.html, prototypes list) ---------- */
@@ -940,5 +875,3 @@ body.playground-frame { padding: var(--space-24); }
 .ux-playground-token { align-items: flex-start; }
 .ux-playground-token > :is(.ds-select, .ds-text-input) { align-self: stretch; }
 .ux-playground-empty { margin: 0; color: var(--color-text-secondary); font-family: var(--typography-body-family); font-size: var(--typography-body-size); line-height: var(--typography-body-line-height); }
-/* Below desktop the header has no room for another button next to the search field. */
-@media not all and (min-width: 1024px) { .shell-playground-button { display: none; } }
