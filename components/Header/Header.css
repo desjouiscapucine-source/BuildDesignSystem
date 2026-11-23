@@ -1,0 +1,67 @@
+/* Header — the top bar of a page. Mobile first: below desktop the burger shows, the information is hidden. */
+.ds-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-index-sticky);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  height: var(--size-header);
+  padding: 0 var(--space-16);
+  background: var(--color-background-brand-subtle);
+  border-bottom: var(--border-width-1) solid var(--color-border-default);
+}
+
+/* The burger shows below desktop; it is hidden from desktop (media query below). */
+.ds-icon-button.ds-header-menu { flex-shrink: 0; }
+
+.ds-header-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  flex-shrink: 0;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: var(--typography-heading-5-family);
+  font-size: var(--typography-heading-5-size);
+  line-height: var(--typography-heading-5-line-height);
+  font-weight: var(--typography-heading-5-weight);
+}
+.ds-header-brand:focus-visible {
+  outline: var(--border-width-2) solid var(--color-border-focus);
+  outline-offset: var(--border-width-2);
+}
+.ds-header-logo { width: var(--size-logo); height: var(--size-logo); }
+/* The name is hidden below tablet; the logo stays. */
+.ds-header-brand-name { display: none; }
+
+.ds-divider.ds-header-divider {
+  height: var(--space-32);
+  align-self: center;
+}
+
+.ds-header-search { flex: 1; min-width: 0; }
+.ds-header-info { display: none; }
+.ds-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* Tablet: --breakpoint-tablet (768px) */
+@media (min-width: 768px) {
+  .ds-header-brand-name { display: inline; }
+}
+
+/* Desktop: --breakpoint-desktop (1024px) */
+@media (min-width: 1024px) {
+  .ds-header { gap: var(--space-16); padding: 0 var(--space-24); }
+  .ds-icon-button.ds-header-menu { display: none; }
+  .ds-header-search { flex: 0 1 var(--size-search-field); }
+  .ds-header-info { display: block; }
+  .ds-header-actions { gap: var(--space-16); }
+}

@@ -6621,3 +6621,20 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/Header/guidelines.md`, `components/Header/spec.md`, `components/Header/design/Preview.tsx`, `components/Header/meta.json`, `backlog/backlog.json`, `audits/2026-11-23-B055-2.md`, `STEPS.md`
+
+---
+
+## Step B055-3 — Header: code approved, component complete
+
+**Date:** 2026-11-23
+
+**What was done**
+- Code stage of the Header, from the approved spec and guidelines: `Header.tsx` (props `brand`, `menuOpen`, `onMenuClick`, `search`, `info`, `actions`, and the optional `menuControls`), `Header.css` (mobile first: below desktop the burger shows and the information is hidden, below tablet the name is hidden; sticky, `--z-index-sticky`), examples (all parts, brand only, search and actions, logged in), Playground, export from `components/index.ts`. The Header uses the Divider (B180), the IconButton and, from the site, the TextInput.
+- Measured in the browser: 64px high, sticky, burger hidden on desktop and shown on tablet and mobile, name hidden on mobile, information hidden below desktop, no horizontal scroll at 320, 375, 768 and 1024px, Tab order burger → brand → search → actions, the burger toggles `aria-expanded` and its name. The brand focus outline was not seen on screen (a scripted focus does not show `:focus-visible`).
+- Added during coding and approved by the Design System Lead with the stage: the optional prop `menuControls` (the id of the side navigation, for the `aria-controls` of the burger), written in the spec props table.
+- The `scroll-padding-top` equal to `--size-header` (so the fixed Header does not hide the focus) is the page's job: it is for the site when it adopts the Header.
+- Accessibility check of the stage: 12 pass, 0 fail, 3 not applicable. Token audit: 38 values, 0 fail.
+- Code approved by the Design System Lead: `meta.json` status `complete`, version 1.0, changelog entry; ticket B055 `done`.
+
+**Files**
+- `components/Header/Header.tsx`, `components/Header/Header.css`, `components/Header/examples.tsx`, `components/Header/playground.tsx`, `components/Header/spec.md`, `components/Header/meta.json`, `components/index.ts`, `backlog/backlog.json`, `audits/2026-11-23-B055-3.md`, `STEPS.md`

@@ -43,6 +43,7 @@ None: the Header has a single look.
 | `brand` | `{ logo, name, href }`: the logo image, the name and the destination of the link | Yes |
 | `menuOpen` | State of the burger (open or closed) | Yes |
 | `onMenuClick` | What the burger does when it is pressed | Yes |
+| `menuControls` | The id of the side navigation the burger opens (`aria-controls`) | No |
 | `search` | The search field | No |
 | `info` | The content of the site shown next to the search | No |
 | `actions` | The list of IconButtons, with no fixed limit | No |

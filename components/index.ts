@@ -59,3 +59,5 @@ export { Comment } from "./Comment/Comment";
 export type { CommentProps, CommentThreadMessage } from "./Comment/Comment";
 export { Divider } from "./Divider/Divider";
 export type { DividerProps, DividerOrientation } from "./Divider/Divider";
+export { Header } from "./Header/Header";
+export type { HeaderProps, HeaderBrand } from "./Header/Header";

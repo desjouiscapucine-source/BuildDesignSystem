@@ -2,7 +2,13 @@
   "name": "Header",
   "description": "The top bar of a page: brand, search and actions available on every page.",
   "level": "organism",
-  "status": "code",
-  "version": "0.0",
-  "changelog": []
+  "status": "complete",
+  "version": "1.0",
+  "changelog": [
+    {
+      "version": "1.0",
+      "date": "2026-11-23",
+      "changes": "First complete version."
+    }
+  ]
 }
