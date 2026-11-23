@@ -6669,3 +6669,20 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `docs/src/AppShell.tsx`, `.claude/skills/navigation/SKILL.md`, `backlog/backlog.json`, `STEPS.md`, `audits/2026-11-23-B185-1.md`
+
+---
+
+## Step B184-1 — MenuItem: design approved
+
+**Date:** 2026-11-23
+
+**What was done**
+- Branch `component/Menu`, tickets B167 (Menu) and B184 (MenuItem, created: high, R4) reserved. The Menu is the Workspace menu planned in the Header (B055): a panel with a shadow holding a 3-column grid of tiles, like the Google apps menu, not a list; it replaces the list of actions of the "…" button of CommentMessage.
+- Design stage of MenuItem (atom, building block of the Menu): a tile with an icon (required, `icon-size-32`) above a centered one-line label (`body-sm`, 20 characters max, ellipsis). Properties `icon` and `disabled`; no `selected`, no tone. Background `background-brand`, label `text-inverse`, icon `icon-inverse` (6.10:1). States: default, hover, focus, pressed (state layers) and disabled (brand background kept, disabled label and icon). Padding `space-16` / `space-8`, gap `space-8`, radius `radius-8`.
+- Decided by the Design System Lead: the grid-of-tiles form (first design, a list, was dropped), Menu + MenuItem names, Actions menu only, max 20 characters, brand background, white label, white icon, disabled tile kept brown.
+- Accessibility check: 5 pass, 0 fail. Accepted exception (Design System Lead): the disabled label and icon on the brand background are not contrast-checked (inactive controls are exempt, WCAG 1.4.3 / 1.4.11). Token audit: 32 values, 0 fail.
+- Compliance audit: 77 compliant, 19 non-compliant, 24 not in the design system; nothing new from this step, all findings covered by existing tickets.
+- Design approved by the Design System Lead; `meta.json` status and ticket stage set to `guidelines`.
+
+**Files**
+- `components/MenuItem/meta.json`, `components/MenuItem/spec.md`, `components/MenuItem/design/Preview.tsx`, `components/MenuItem/design/tokens.json`, `backlog/backlog.json`, `audits/2026-11-23-B184-1.md`, `audits/2026-11-23-B184-1-accessibility.md`, `audits/2026-11-23-B184-1-tokens.md`, `STEPS.md`
