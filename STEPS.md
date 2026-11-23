@@ -6583,3 +6583,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/Divider/Divider.tsx`, `components/Divider/Divider.css`, `components/Divider/examples.tsx`, `components/Divider/playground.tsx`, `components/Divider/guidelines.md`, `components/Divider/meta.json`, `components/index.ts`, `backlog/backlog.json`, `audits/2026-11-23-B180-3.md`, `STEPS.md`
+
+---
+
+## Step B055-1 — Header: design approved
+
+**Date:** 2026-11-23
+
+**What was done**
+- Design stage of the Header, decided by the Design System Lead in the chat: organism, one type, one look (no variant), description "The top bar of a page: brand, search and actions available on every page.".
+- Parts, from left to right: burger (below desktop, carried by the Header), brand (the site logo and the name, one link), Divider, search (TextInput type search, `--size-search-field`), Information (the site's time-spent clock, kept with its own look), Divider, actions (IconButtons: the Workspace button `primary`, which will open a Menu of widgets such as the UX playground, the other transverse actions with no fixed limit, and the log in / log out button last, one button whose icon changes). The spaces links leave the Header: the logo leads to the landing page.
+- Props: `brand` (`{ logo, name, href }`), `menuOpen`, `onMenuClick`, `search`, `info`, `actions`.
+- Responsive as on the site today: below desktop the burger appears, the Information and its Divider are hidden, the padding and the gap get smaller; below tablet the brand name is hidden. The Header is `position: sticky`, `--z-index-sticky`.
+- Accessibility decisions by the Design System Lead: the bottom border is decorative (no contrast requirement); the contrast of the Information is the site's responsibility; the brand is a link of the Header with its own focus outline (`--border-width-2`, `--color-border-focus`), the Link component not fitting (text only, always underlined).
+- The Divider (B180) was designed, written and coded first, as a building block.
+- Accessibility check and token audit: 0 failure (the first check found 3 failures, fixed by the decisions above). Waiting on the Menu (B167) for the Workspace button, and on the Chatbot (B105) for where it opens.
+- Design approved by the Design System Lead; `meta.json` status and ticket stage set to `guidelines`.
+
+**Files**
+- `components/Header/meta.json`, `components/Header/spec.md`, `components/Header/design/tokens.json`, `components/Header/design/Preview.tsx`, `components/Header/guidelines.md` (template), `backlog/backlog.json`, `audits/2026-11-23-B055-1.md`, `audits/2026-11-23-B055-1-tokens.md`, `STEPS.md`
