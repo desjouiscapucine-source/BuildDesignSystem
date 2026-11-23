@@ -2051,6 +2051,24 @@
       ],
       "priority": "high",
       "release": "R4"
+    },
+    {
+      "id": "B179",
+      "title": "ChatMessage",
+      "category": "Components",
+      "status": "in-progress",
+      "origin": "proposal",
+      "description": "One message of a chat: from the user or from the chatbot.",
+      "why": "Building block of Chatbot (B105), agreed by the Design System Lead on 2026-11-23: a chat holds a list of messages, so the repeated message is its own component, built before Chatbot.",
+      "scope": "Design, guidelines and code of the ChatMessage component (molecule), each stage approved by the Design System Lead (component skill). Anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant ChatMessage conversation on component/ChatMessage (never-invent). Not included: the chat window itself (Chatbot, B105).",
+      "doneWhen": [
+        "The ChatMessage design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "ChatMessage is exported from @ds/components, ready for Chatbot (B105)."
+      ],
+      "stage": "design",
+      "priority": "high",
+      "release": "R5"
     }
   ]
 }
