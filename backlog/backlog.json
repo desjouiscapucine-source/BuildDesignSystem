@@ -1860,6 +1860,24 @@
       "release": "R4"
     },
     {
+      "id": "B184",
+      "title": "MenuItem",
+      "category": "Components",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "One action of a menu: a label, with an optional icon before it.",
+      "why": "Menu (B167) is made of repeated items; the design system builds each building block first (component skill). Decided by the Design System Lead on 2026-11-23: Menu and MenuItem, the actions menu only.",
+      "scope": "Design, guidelines and code of the MenuItem component (atom), each stage approved by the Design System Lead. Anatomy, states and tokens are decided in the design stage on component/Menu (never-invent). Included: label, optional icon before the label, default tone. Not included: danger tone, shortcut text, divider, context menu.",
+      "doneWhen": [
+        "The MenuItem design, guidelines and code are approved; meta.json status complete, version 1.0.",
+        "The accessibility and token audits pass.",
+        "MenuItem is exported from @ds/components, ready to be used by Menu (B167)."
+      ],
+      "stage": "design",
+      "priority": "high",
+      "release": "R4"
+    },
+    {
       "id": "B165",
       "title": "Documentation site: use the TextInput in the site search",
       "category": "Tooling",
