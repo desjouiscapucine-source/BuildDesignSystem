@@ -2069,6 +2069,25 @@
       "stage": "code",
       "priority": "high",
       "release": "R4"
+    },
+    {
+      "id": "B182",
+      "title": "Skills: split heavy skills into core + references",
+      "category": "Skills",
+      "status": "todo",
+      "origin": "decided",
+      "description": "Split the heaviest skills into a short core and reference files read only when needed, and shorten the skill descriptions.",
+      "why": "Asked by the Design System Lead on 2026-11-23 to cut token use: a skill body stays in the session once loaded and is re-read at every call. git-workflow (17 KB) and token-naming (14 KB) are loaded on almost every task, although only one section of each is needed at a time.",
+      "scope": "Split git-workflow and token-naming (and, if worthwhile, component-spec and component-code) into a core of the rules that always apply (about 3 KB) plus one reference file per phase or per token category, read on demand. Shorten every skill description to one or two sentences. Keep the orchestrator dispatch table in step. No rule is changed or dropped, only moved. Not in scope: adding new skills, changing any rule of the project.",
+      "doneWhen": [
+        "Each split skill has a core under 4 KB and its references are linked from it, with the moment when each one is read.",
+        "Every rule of the original skills exists once, unchanged, in the core or in a reference; none is lost.",
+        "Every skill description is one or two sentences and still says when to use the skill.",
+        "The orchestrator dispatch table, CLAUDE.md and the How to use skills page (/docs/#/skills) match the new structure.",
+        "`npm run build` passes."
+      ],
+      "priority": "medium",
+      "release": "R4"
     }
   ]
 }
