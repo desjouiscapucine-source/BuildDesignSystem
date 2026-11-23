@@ -2038,7 +2038,7 @@
       "id": "B177",
       "title": "UX playground: action bar",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "An action bar under the canvas of the UX playground, with the actions to compose: Library, free text, undo / redo, comment and note.",
       "why": "The actions of the playground are today spread between the panel and the selection. The Design System Lead asked on 2026-11-22 for one action bar, for the playground only.",

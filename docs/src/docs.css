@@ -882,6 +882,21 @@ body.playground-frame { padding: var(--space-24); }
   border-radius: var(--radius-8);
 }
 .ux-playground-canvas { position: absolute; inset: 0; }
+/* Action bar (B177): under the canvas, as wide as the canvas; on a narrow screen it scrolls sideways. */
+.ux-playground-actions {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-8);
+  overflow-x: auto;
+  background: var(--color-background-surface);
+  border-top: var(--border-width-1) solid var(--color-border-default);
+}
+.ux-playground-actions > * { flex: none; }
+.ux-playground-actions-separator { align-self: stretch; width: var(--border-width-1); background: var(--color-border-default); }
 /* A frame, a note: placed at a point of the canvas content space. */
 .ux-playground-placed { position: absolute; }
 /* A frame moves from its label row. */
@@ -913,6 +928,13 @@ body.playground-frame { padding: var(--space-24); }
 .ux-playground-comment { margin: calc(-1 * var(--space-16)) 0 0 calc(-1 * var(--space-16)); }
 /* The open comment is in front of the other ones. */
 .ux-playground-comment--open { z-index: var(--z-index-sticky); }
+.ux-playground-comment-field { display: flex; align-items: flex-end; gap: var(--space-8); padding: var(--space-8); background: var(--color-background-surface); box-shadow: var(--shadow-dropdown); border-radius: var(--radius-8); }
+.ux-playground-comment-draft { z-index: var(--z-index-sticky); }
+.ux-playground-text { white-space: pre-wrap; color: var(--color-text-primary); }
+/* Text field written in place: it grows with its text (the hidden copy sizes the grid cell). */
+.ux-playground-text-edit { display: inline-grid; min-width: var(--space-16); }
+.ux-playground-text-edit::after { content: attr(data-value) " "; grid-area: 1 / 1; visibility: hidden; white-space: pre-wrap; font: inherit; }
+.ux-playground-text-edit > textarea { grid-area: 1 / 1; margin: 0; padding: 0; border: 0; background: transparent; resize: none; overflow: hidden; font: inherit; min-width: 0; outline: var(--border-width-1) dashed var(--color-border-focus); outline-offset: var(--space-4); }
 .ux-playground-tokens, .ux-playground-token { display: flex; flex-direction: column; gap: var(--space-8); }
 .ux-playground-tokens h3 { margin: 0; color: var(--color-text-primary); }
 .ux-playground-token { align-items: flex-start; }

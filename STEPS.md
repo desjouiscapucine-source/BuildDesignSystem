@@ -6516,3 +6516,21 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `releases/R4.md`, `audits/2026-11-22-R4.md`, `audits/2026-11-22-R4-tokens.md`, `docs/src/work-time.json`, `STEPS.md`
+
+---
+
+## Step B177-1 — UX playground action bar
+
+**Date:** 2026-11-23
+
+**What was done**
+- Ticket B177, for the UX playground only (not a design system component). Decisions by the Design System Lead: Library opens the Library tab of the panel; two separate actions, sticky note (free, on the canvas) and comment (on the selection, disabled without one); standard shortcuts (Ctrl / Cmd + Z undo, Ctrl / Cmd + Shift + Z or Ctrl + Y redo, ignored while typing); icons only on a narrow screen, the bar scrolls sideways.
+- Action bar under the canvas: Library, free text, sticky note, comment, undo, redo (`IconButton` tertiary, each with an accessible name and a tooltip, `role="toolbar"`). Icons `widgets`, `text_fields`, `sticky_note_2`, `add_comment`, `undo`, `redo` are Claude's proposals, not yet confirmed.
+- Undo and redo cover additions, moves (pointer and arrow keys) and deletions of frames, components, notes, free texts and comments; typing and property changes are not recorded.
+- Panel: the sticky note and the Comments section leave the panel (now in the bar); "Free text" joins the Annotations of the Library. A comment started from the bar opens a field at the corner of its target (Enter sends, Escape cancels).
+- Free text (also asked in B176): written directly on the frame or the canvas (double-click or Enter to edit again, an empty text is removed); its text style (existing styles of the design system, `body` by default) is chosen in Properties; moved with the pointer or arrow keys, deleted with Delete. Decided by the Design System Lead: the text style, not a free size. Not covered: dropping a free text over another frame moves nothing (it stays in its container); no comment on a free text.
+- A sticky note can be moved while it is empty (editing).
+- Compliance audit (`audits/2026-11-23-B177-1.md`): 76 compliant, 18 non-compliant, 26 not in the design system; 2 new findings (#79 textarea nested in a button role and empty name, #80 toolbar without arrow-key navigation), both to extend B173. Questions left: multi-line text field, toolbar and comment composer as components.
+
+**Files**
+- `docs/src/pages/PlaygroundPage.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `audits/2026-11-23-B177-1.md` (new), `STEPS.md`
