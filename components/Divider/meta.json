@@ -1,0 +1,8 @@
+{
+  "name": "Divider",
+  "description": "A line that separates two parts of an interface.",
+  "level": "atom",
+  "status": "guidelines",
+  "version": "0.0",
+  "changelog": []
+}

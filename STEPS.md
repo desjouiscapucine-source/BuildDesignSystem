@@ -6534,3 +6534,19 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `docs/src/pages/PlaygroundPage.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `audits/2026-11-23-B177-1.md` (new), `STEPS.md`
+
+---
+
+## Step B180-1 — Divider: design approved
+
+**Date:** 2026-11-23
+
+**What was done**
+- Ticket B180, created on the Design System Lead's request while designing the Header (B055): vertical dividers separate the brand, the search and the actions. Priority high, release R4, `origin` proposal.
+- Design stage of the Divider, decided by the Design System Lead: atom, `.ds-divider`, description "A line that separates two parts of an interface."; one type, no content; property `orientation` (`horizontal` by default, `vertical`); one hierarchy level; color `--color-border-default`, thickness `--border-width-1`; length of its container (the parent sets the height of a vertical line); no states; decorative by default (`aria-hidden`), so no contrast requirement.
+- Design preview in the Design preview tab; `spec.md` written from the approved choices.
+- Accessibility check: 3 pass, 0 fail (the preview first used `role="separator"`; changed to `aria-hidden` to match the spec). Token audit: 11 values, 0 fail.
+- Design approved by the Design System Lead; `meta.json` status and ticket stage set to `guidelines`.
+
+**Files**
+- `components/Divider/meta.json`, `components/Divider/spec.md`, `components/Divider/design/tokens.json`, `components/Divider/design/Preview.tsx`, `components/Divider/guidelines.md` (template), `backlog/backlog.json`, `STEPS.md`
