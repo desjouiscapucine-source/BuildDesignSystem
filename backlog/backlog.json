@@ -2020,7 +2020,7 @@
       "id": "B176",
       "title": "UX playground: free text in a frame",
       "category": "Tooling",
-      "status": "todo",
+      "status": "done",
       "origin": "decided",
       "description": "Write free text directly in a frame, or on the canvas outside any frame, in the UX playground.",
       "why": "A composition needs titles, labels and short texts that are not a component of the design system. The Design System Lead asked on 2026-11-22 for a way to write text directly in the playground, as an action of the page, not a new component.",
