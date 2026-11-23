@@ -2066,7 +2066,7 @@
         "The accessibility and token audits pass.",
         "Divider is exported from @ds/components, ready for the Header (B055)."
       ],
-      "stage": "guidelines",
+      "stage": "code",
       "priority": "high",
       "release": "R4"
     }

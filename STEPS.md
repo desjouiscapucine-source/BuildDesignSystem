@@ -6550,3 +6550,21 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/Divider/meta.json`, `components/Divider/spec.md`, `components/Divider/design/tokens.json`, `components/Divider/design/Preview.tsx`, `components/Divider/guidelines.md` (template), `backlog/backlog.json`, `STEPS.md`
+
+---
+
+## Step B180-2 — Divider: guidelines approved
+
+**Date:** 2026-11-23
+
+**What was done**
+- Guidelines stage of the Divider, written with the Design System Lead (choices made in the chat, text approved):
+  - When to use: separate groups of content that are not distinct enough, parts side by side in a bar, groups of actions.
+  - When not to use: when the space already separates the parts, to frame a block (Card, Frame), to decorate.
+  - Best practices: no margin on the Divider (the parent sets the space with the `--space-*` tokens); a vertical Divider needs a parent with a height; separate groups, not every item; never along an edge that already has a border.
+  - Three do / don't pairs, shown visually in the chat; behavior (length of the container, a part that disappears takes its Divider with it); accessibility (decorative, `aria-hidden`); related components: Header, Card, Frame, Menu (B167, not in the design system yet).
+- Accessibility check of the stage: 5 pass, 0 fail. The token audit is for the design and code stages only.
+- Guidelines approved by the Design System Lead; `meta.json` status and ticket stage set to `code`.
+
+**Files**
+- `components/Divider/guidelines.md`, `components/Divider/meta.json`, `backlog/backlog.json`, `audits/2026-11-23-B180-2.md`, `STEPS.md`
