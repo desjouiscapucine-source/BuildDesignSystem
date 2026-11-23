@@ -6516,3 +6516,27 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `releases/R4.md`, `audits/2026-11-22-R4.md`, `audits/2026-11-22-R4-tokens.md`, `docs/src/work-time.json`, `STEPS.md`
+
+---
+
+## Step B178-1 — LLM assistant: learning scripts and protected API key
+
+**Date:** 2026-11-23
+
+**What was done**
+- New ticket **B178 — LLM assistant on the site** (Tooling, priority high, release R5), on the new `project/llm-assistant` branch, asked and approved in the chat. Goal: an LLM assistant on the documentation site, to create components and prototypes from the site itself. Related: B105 (Chatbot, the chat component). Only Goal and Why are written; Scope and Done when are to be decided with the Design System Lead.
+- The Design System Lead, who is not technical, learned the basics of APIs and LLMs with Gemini (Google AI Studio, free tier) in a folder outside the repository, then asked to move the scripts into the project. Her API key stays in `~/chatbot-test/.env`, outside the repository.
+- `.gitignore`: `.env`, `.env.*` (except `.env.example`) and the generated `scripts/assistant/index.json` are ignored, because the repository is public. Checked with `git check-ignore`.
+- `scripts/assistant/`: the lessons as numbered scripts (first call, list of models, chatbot with memory, chatbot on the Button spec, chatbot on all the specs and guidelines, first half of a RAG: cutting the documentation into about 520 pieces and computing their embeddings), a shared `lib.mjs` (read the docs, retry on 503 / 429, chat loop with a token counter) and a `README.md` that doubles as the handoff: where we are, how to run, what was learned, next steps, decisions to take. Code, comments and texts in English; the assistant answers in French as in the tests (to decide for the site). The scripts only read the documentation; they write nothing outside `scripts/assistant/`.
+- Dependency: `@google/genai` (devDependency).
+- Choices asked: branch type `project/llm-assistant`, priority, release and folder (`scripts/assistant/`).
+
+**Checked**
+- `npm run typecheck`: passes. `node --check` on every script: passes. Read test of the documentation without any API call: 56 files, about 250 000 characters, about 520 pieces.
+- Tested by the Design System Lead (real API calls): `01` to `04`. The Button chatbot answered correctly from the spec (variants, states, sizes, default variant) without inventing, after a prompt and model change; 503 and 404 errors met and handled. `05` and `06` not run yet.
+- `ds-compliance-audit`: no UI change (only `docs/src/work-time.json` differs from the R4 audit); 71 compliant, 16 non-compliant, 25 not in the design system, 0 fixed, 0 new, no new ticket (`audits/2026-11-23-B178-1.md`). The accessibility and token audits do not apply (no component or token changed).
+
+**Files**
+- `backlog/backlog.json` (B178), `.gitignore`, `package.json`, `package-lock.json`
+- `scripts/assistant/lib.mjs`, `01-first-call.mjs`, `02-list-models.mjs`, `03-chatbot.mjs`, `04-chatbot-button.mjs`, `05-chatbot-all-docs.mjs`, `06-build-index.mjs`, `README.md` (new)
+- `audits/2026-11-23-B178-1.md` (new), `STEPS.md` (updated)
