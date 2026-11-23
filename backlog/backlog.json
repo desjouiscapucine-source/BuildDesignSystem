@@ -2109,7 +2109,7 @@
       "id": "B185",
       "title": "Documentation site: no UX playground in the side navigation",
       "category": "Tooling",
-      "status": "in-progress",
+      "status": "done",
       "origin": "decided",
       "description": "The UX playground is no longer an item of the side navigation.",
       "why": "Decided by the Design System Lead (2026-11-23, after B183): the playground is reached from the Workspace button of the Header.",

@@ -28,6 +28,9 @@ interface WorkTimeData {
   pauseMs: number;
 }
 
+// The UX playground (B130) is a page of the structure but not an item of the side navigation (B185): it opens from the Workspace button of the Header.
+const PLAYGROUND = "#/ux-playground";
+
 const pad = (value: number) => String(value).padStart(2, "0");
 
 // Digital clock: time spent building the site (from /api/work-time). Keeps ticking while a session is active.
@@ -108,7 +111,7 @@ export function AppShell({ current, route = current, children }: AppShellProps) 
   // still opens it, for the "Spaces" item only.
   const singlePage = (space.children ?? []).every((node) => node.href === space.href);
   // The UX playground (B130) uses the full width for its canvas: no side navigation on desktop either (B183).
-  const noSideNav = singlePage || current === "#/ux-playground";
+  const noSideNav = singlePage || current === PLAYGROUND;
 
   return (
     <div className={noSideNav ? "shell shell--single-page" : "shell"}>
@@ -131,7 +134,7 @@ export function AppShell({ current, route = current, children }: AppShellProps) 
               icon="workspaces"
               label="Open workspace"
               onClick={() => {
-                window.location.hash = "#/ux-playground";
+                window.location.hash = PLAYGROUND;
               }}
             />
             <Login />
@@ -151,7 +154,7 @@ export function AppShell({ current, route = current, children }: AppShellProps) 
                 </NavigationItem>
               ))}
             </NavigationItem>,
-            ...(noSideNav ? [] : navItems(space.children ?? [], current)),
+            ...(noSideNav ? [] : navItems((space.children ?? []).filter((node) => node.href !== PLAYGROUND), current)),
           ]}
         </SideNavigation>
         <main id="main" className="shell-content" tabIndex={-1}>

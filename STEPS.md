@@ -6655,3 +6655,17 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `docs/src/AppShell.tsx`, `docs/src/docs.css`, `docs/src/pages/NavigationPage.tsx`, `.claude/skills/navigation/SKILL.md`, `STEPS.md`, `audits/2026-11-23-B183-1.md`
+
+---
+
+## Step B185-1 — Documentation site: no UX playground in the side navigation
+
+**Date:** 2026-11-23
+
+**What was done**
+- Decided by the Design System Lead (chat, after B183): the UX playground is no longer an item of the side navigation. It opens from the Workspace button of the Header; the page stays in the site structure (`structure.ts`), so the search and the breadcrumb keep working. `AppShell.tsx` filters it out of the side navigation, with a `PLAYGROUND` constant for the route.
+- The `navigation` skill says so (row "UX playground").
+- Checked in the browser: the side navigation of the Overview page has no UX playground item; `npm run typecheck` passes. Compliance audit: 0 new finding; the Workspace button (#76) is now the only entry point, handled by B174.
+
+**Files**
+- `docs/src/AppShell.tsx`, `.claude/skills/navigation/SKILL.md`, `backlog/backlog.json`, `STEPS.md`, `audits/2026-11-23-B185-1.md`
