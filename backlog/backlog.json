@@ -1847,9 +1847,9 @@
       "category": "Components",
       "status": "in-progress",
       "origin": "proposal",
-      "description": "A list of actions opened by a button.",
-      "why": "Found while designing CommentMessage (B160), approved by the Design System Lead on 2026-11-22: the \"…\" button of a message opens its actions (Edit, Delete), and no component shows a list of actions yet.",
-      "scope": "Design, guidelines and code of the Menu component, each stage approved by the Design System Lead (component skill). Level, anatomy, variants, sizes, states and tokens are decided in the design stage, in a Composant Menu conversation on component/Menu (never-invent). Related: Dropdown list (B057).",
+      "description": "A grid of tiles opened by a button, like the Google apps menu.",
+      "why": "Found while designing CommentMessage (B160), approved by the Design System Lead on 2026-11-22: the \"…\" button of a message opens its actions. Decided on 2026-11-23: the menu is a grid of icon tiles (like the Google apps menu), not a list, and it replaces the list of actions.",
+      "scope": "Design, guidelines and code of the Menu component, each stage approved by the Design System Lead (component skill). Menu (molecule) is a panel with a shadow holding a 3-column grid of MenuItem tiles (B184). Anatomy, variants, sizes, states and tokens are decided in the design stage, on component/Menu (never-invent). Related: Dropdown list (B057).",
       "doneWhen": [
         "The Menu design, guidelines and code are approved; meta.json status complete, version 1.0.",
         "The accessibility and token audits pass.",
@@ -1865,15 +1865,15 @@
       "category": "Components",
       "status": "in-progress",
       "origin": "decided",
-      "description": "One action of a menu: a label, with an optional icon before it.",
-      "why": "Menu (B167) is made of repeated items; the design system builds each building block first (component skill). Decided by the Design System Lead on 2026-11-23: Menu and MenuItem, the actions menu only.",
-      "scope": "Design, guidelines and code of the MenuItem component (atom), each stage approved by the Design System Lead. Anatomy, states and tokens are decided in the design stage on component/Menu (never-invent). Included: label, optional icon before the label, default tone. Not included: danger tone, shortcut text, divider, context menu.",
+      "description": "One tile of the Menu: an icon above a one-line label.",
+      "why": "Menu (B167) is made of repeated tiles; the design system builds each building block first (component skill). Decided by the Design System Lead on 2026-11-23: Menu and MenuItem, a grid of icon tiles like the Google apps menu.",
+      "scope": "Design, guidelines and code of the MenuItem component (atom), each stage approved by the Design System Lead. Anatomy, states and tokens are decided in the design stage on component/Menu (never-invent). Included: icon above a centered one-line label, disabled state. Not included: list item, danger tone, shortcut text, divider, context menu.",
       "doneWhen": [
         "The MenuItem design, guidelines and code are approved; meta.json status complete, version 1.0.",
         "The accessibility and token audits pass.",
         "MenuItem is exported from @ds/components, ready to be used by Menu (B167)."
       ],
-      "stage": "design",
+      "stage": "guidelines",
       "priority": "high",
       "release": "R4"
     },

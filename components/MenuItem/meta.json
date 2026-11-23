@@ -1,0 +1,8 @@
+{
+  "name": "MenuItem",
+  "description": "One tile of the Menu: an icon above a label.",
+  "level": "atom",
+  "status": "guidelines",
+  "version": "0.0",
+  "changelog": []
+}
