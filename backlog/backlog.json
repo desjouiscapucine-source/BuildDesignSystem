@@ -2060,6 +2060,17 @@
       "origin": "decided",
       "description": "An LLM assistant on the documentation site, to create components and prototypes from the site itself.",
       "why": "The Design System Lead asked on 2026-11-23 to do the component and prototype tasks through the site, with an LLM on it, and is learning APIs and LLMs to build it. Related: B105 (Chatbot), the chat component.",
+      "scope": "Included: a first stage, a read-only assistant on the documentation site, running locally (npm run dev): a small local server that keeps the API key (never sent to the browser), a first simple chat area built with the existing coded components, and a search over the component specs and guidelines and the design tokens (RAG) so the answers come from the documentation and name the component or token concerned. It answers in the language of the question, says so when the answer is not in the documentation, and never writes a file. Not included: creating or changing components, tokens or prototypes (next ticket or tickets, with the Design System Lead's validation at every stage); hosting on the public site; the design of the Chatbot component (B105). Decisions asked first: the provider of the assistant (Gemini free tier or Claude API) and its budget; the other documents to index (project rules, skills, backlog); where the chat area sits on the site; the limits (questions per minute, length of an answer).",
+      "doneWhen": [
+        "A chat area on the documentation site, served locally, lets the Design System Lead ask a question and read the answer.",
+        "The API key stays on the local server (a git-ignored .env file) and never reaches the browser or the repository.",
+        "The assistant answers from the component specs, guidelines and design tokens, and names the component or token concerned.",
+        "When the answer is not in the documentation it says so instead of inventing (checked on questions whose answer exists and on questions about something that does not exist).",
+        "It answers in the language of the question.",
+        "The search index is rebuilt with one command when the documentation changes, and only new or changed pieces are sent to the API.",
+        "The chat area uses the coded components and semantic tokens only, and works with the keyboard (compliance audit).",
+        "The decisions listed in the Scope are answered and written in the ticket."
+      ],
       "priority": "high",
       "release": "R5"
     }

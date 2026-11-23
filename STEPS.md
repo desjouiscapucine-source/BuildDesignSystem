@@ -6576,3 +6576,24 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `scripts/assistant/07-chatbot-rag.mjs` (new), `scripts/assistant/README.md`, `STEPS.md` (updated)
+
+---
+
+## Step B178-4 — LLM assistant: tokens in the index, incremental indexing, Scope of B178
+
+**Date:** 2026-11-23
+
+**What was done**
+- **Scope and Done when of B178**, written with the Design System Lead from her answers: first stage = a read-only assistant (answers questions, writes nothing; creating components and prototypes in later tickets), local only (`npm run dev`), a first simple chat area with the existing components (the Chatbot component B105 comes later), answers in the language of the question. Left open, listed in the Scope as "Decisions asked first": the provider (Gemini free tier or Claude API) and the budget, the other documents to index, where the chat area sits, the limits.
+- **Tokens in the index** (decided by the Design System Lead): `readTokenPieces()` in `scripts/assistant/lib.mjs` reads `tokens/primitives.json` and `tokens/semantic.json` and writes readable lines (`--color-background-brand: {color.primary.600} = #795b55 — description`), the references followed to their final value, grouped by family (33 pieces, about 5 000 tokens). `06-build-index.mjs` adds them to the index.
+- **Incremental index**: the Gemini free tier allows 1000 embedded texts a day (each text counts, not each batch); two full runs (520 then 553 pieces) went over it (error 429). `06` now keeps the numbers of the pieces already indexed (same text and embedding model), computes only the new or changed ones and saves the file after every batch; `withRetry` stops at once on a daily quota instead of waiting.
+- `scripts/assistant/README.md`: decisions taken, decisions still open, the quota lesson, the next action.
+
+**Checked**
+- Local checks without any API call: 33 token pieces, 307 token lines, none with an unresolved reference; `--color-primary-600: #795b55` and `--color-secondary-600: #f5f3bb` present. `node --check` on every script.
+- Real run of the new `06` on the exhausted quota: `520 already indexed, 33 to compute`, then a clean stop with the progress saved (`520 / 553`); the existing index stayed valid.
+- **Not run yet**: the 33 token pieces could not be computed (daily quota, back about 17 hours later) and `07` was not tried on the tokens. To do once the quota is back: run `06`, then `07` on the colors, the heading font, the spacing and the breakpoint, and check the answers against `tokens/`.
+- Tooling only: `ds-compliance-audit` not re-run (`docs/`, `components/` and `tokens/` unchanged since `audits/2026-11-23-B178-1.md`).
+
+**Files**
+- `backlog/backlog.json` (B178: scope, doneWhen), `scripts/assistant/lib.mjs`, `scripts/assistant/06-build-index.mjs`, `scripts/assistant/README.md`, `STEPS.md` (updated)
