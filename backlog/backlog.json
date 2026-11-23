@@ -2086,6 +2086,24 @@
       ],
       "priority": "low",
       "release": "R4"
+    },
+    {
+      "id": "B182",
+      "title": "Documentation site: use the Header in the site header",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "The header of the site is the Header component.",
+      "why": "Compliance audit of Step B055-3 (audits/2026-11-23-B055-3.md), finding N1: the site header is hand-built, although the Header component is complete (B055).",
+      "scope": "Included: docs/src/AppShell.tsx (the header frame, the brand and the burger become the Header; the search, the time-spent clock, the log in / log out and the Workspace button are passed as `search`, `info` and `actions`) and docs/src/docs.css (the .shell-header rules are removed); the page sets scroll-padding-top to --size-header (guidelines of the Header). Decisions asked first: the Workspace button before the Menu (B167) exists (what it does); the spaces links leaving the header (the navigation skill and the Navigation structure page are updated); the UX playground entry point (related to B174).",
+      "doneWhen": [
+        "The site header is the Header component.",
+        "The spaces links are no longer in the header, and the navigation skill and the Navigation structure page say so.",
+        "The page sets scroll-padding-top to --size-header, so the fixed Header does not hide the focus.",
+        "The compliance audit no longer reports the hand-built header (N1)."
+      ],
+      "priority": "high",
+      "release": "R4"
     }
   ]
 }
