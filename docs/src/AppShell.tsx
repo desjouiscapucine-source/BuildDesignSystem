@@ -3,6 +3,7 @@ import {
   Breadcrumb,
   Button,
   Dialog,
+  Header,
   IconButton,
   NavigationItem,
   SideNavigation,
@@ -83,7 +84,7 @@ function navItems(nodes: NavNode[], current: string): ReactElement<NavigationIte
   });
 }
 
-// Layout of the documentation site: header (logo → landing page, spaces, search, clock) + side navigation of the current space + content.
+// Layout of the documentation site: Header component (logo → landing page, search, clock, workspace, log in) + side navigation of the current space + content.
 // Breadcrumb (Breadcrumb guidelines): pages from Level 2 to Level 4, from Level 0 (the landing page) down to the parent.
 // Level 1 pages have none: Portfolio is its own only page (same label as its space).
 function breadcrumbLevels(path: NavNode[], inNavigation: boolean): BreadcrumbLevel[] {
@@ -106,61 +107,42 @@ export function AppShell({ current, route = current, children }: AppShellProps) 
   // A space that is its own only page (Portfolio) has no side navigation on desktop; below desktop the burger
   // still opens it, for the "Spaces" item only.
   const singlePage = (space.children ?? []).every((node) => node.href === space.href);
-
-  const spaceLinks = (className: string) => (
-    <ul className={className}>
-      {spaces.map((item) => (
-        <li key={item.href}>
-          <a href={item.href} aria-current={item === space ? "true" : undefined}>
-            {item.label}
-          </a>
-        </li>
-      ))}
-    </ul>
-  );
+  // The UX playground (B130) uses the full width for its canvas: no side navigation on desktop either (B183).
+  const noSideNav = singlePage || current === "#/ux-playground";
 
   return (
-    <div className={singlePage ? "shell shell--single-page" : "shell"}>
+    <div className={noSideNav ? "shell shell--single-page" : "shell"}>
       <a className="shell-skip" href="#main">
         Skip to content
       </a>
-      <header className="shell-header">
-        <IconButton
-          className="shell-menu-button"
-          variant="primary"
-          icon={navOpen ? "close" : "menu"}
-          label={navOpen ? "Close navigation" : "Open navigation"}
-          aria-expanded={navOpen}
-          aria-controls="shell-nav"
-          onClick={() => setNavOpen(!navOpen)}
-        />
-        {/* Level 0: the logo goes back to the landing page from every level. */}
-        <a className="shell-brand" href="/" aria-label="BuildDesignSystem, home">
-          <img className="shell-brand-logo" src={logo} alt="" />
-          <span className="shell-brand-name">BuildDesignSystem</span>
-        </a>
-        <nav className="shell-spaces" aria-label="Spaces">
-          {spaceLinks("shell-spaces-list")}
-        </nav>
-        {/* UX playground (B130): entry point next to the search field. */}
-        <IconButton
-          className="shell-playground-button"
-          variant="tertiary"
-          icon="design_services"
-          label="UX playground"
-          onClick={() => {
-            window.location.hash = "#/ux-playground";
-          }}
-        />
-        <Search />
-        <WorkTime />
-        <Login />
-      </header>
+      {/* Level 0: the logo goes back to the landing page from every level. The spaces are chosen there, or in the "Spaces" item of the side navigation. */}
+      <Header
+        brand={{ logo, name: "BuildDesignSystem", href: "/" }}
+        menuOpen={navOpen}
+        onMenuClick={() => setNavOpen(!navOpen)}
+        menuControls="shell-nav"
+        search={<Search />}
+        info={<WorkTime />}
+        actions={
+          <>
+            {/* Workspace (B183): opens the UX playground (B130) until the Menu of widgets exists (B167). */}
+            <IconButton
+              variant="primary"
+              icon="workspaces"
+              label="Open workspace"
+              onClick={() => {
+                window.location.hash = "#/ux-playground";
+              }}
+            />
+            <Login />
+          </>
+        }
+      />
 
       <div className="shell-body">
         <SideNavigation id="shell-nav" className="shell-nav" label={space.label} open={navOpen}>
           {[
-            // Below desktop the header has no room for the spaces: a "Spaces" parent at the top of the navigation.
+            // The spaces are not in the header (Header spec): a "Spaces" parent at the top of the navigation.
             // Only the page displayed is selected (one selected item): the current space is not.
             <NavigationItem key="spaces" className="shell-nav-spaces" icon="workspaces" label="Spaces">
               {spaces.map((item) => (
@@ -169,7 +151,7 @@ export function AppShell({ current, route = current, children }: AppShellProps) 
                 </NavigationItem>
               ))}
             </NavigationItem>,
-            ...(singlePage ? [] : navItems(space.children ?? [], current)),
+            ...(noSideNav ? [] : navItems(space.children ?? [], current)),
           ]}
         </SideNavigation>
         <main id="main" className="shell-content" tabIndex={-1}>
