@@ -6540,3 +6540,19 @@ At the Design System Lead's request, listed the elements of the documentation si
 - `backlog/backlog.json` (B178), `.gitignore`, `package.json`, `package-lock.json`
 - `scripts/assistant/lib.mjs`, `01-first-call.mjs`, `02-list-models.mjs`, `03-chatbot.mjs`, `04-chatbot-button.mjs`, `05-chatbot-all-docs.mjs`, `06-build-index.mjs`, `README.md` (new)
 - `audits/2026-11-23-B178-1.md` (new), `STEPS.md` (updated)
+
+---
+
+## Step B178-2 — LLM assistant: handoff to another account or Mac
+
+**Date:** 2026-11-23
+
+**What was done**
+- `scripts/assistant/README.md`: new section "Resume on another account or another Mac" (clone, branch, `npm install`, where to get the API key again, `.env` at the project root, how to start a new Claude conversation on B178). The Design System Lead has two Claude accounts (work and private) and asked to keep everything on GitHub so she can continue on the private one when the credit of the current one runs out.
+- Checked before this step: the local branch and `origin/project/llm-assistant` were at the same commit (`2a4884d`), nothing waiting to be pushed.
+
+**Checked**
+- Documentation only: `ds-compliance-audit` not re-run (`docs/`, `components/` and `tokens/` are identical to the audit of Step B178-1, `audits/2026-11-23-B178-1.md`).
+
+**Files**
+- `scripts/assistant/README.md`, `STEPS.md` (updated)

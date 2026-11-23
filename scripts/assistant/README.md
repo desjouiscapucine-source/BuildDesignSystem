@@ -41,3 +41,25 @@ node --env-file=$HOME/chatbot-test/.env scripts/assistant/<file>
 - The **Scope** and **Done when** of B178 (only Goal and Why are written).
 - The language of the assistant's answers on the site (French in the tests).
 - Where the server runs: local only, or hosted for the public site (the public site cannot hold the key).
+
+## Resume on another account or another Mac
+Everything (code, ticket B178, this file) is on the `project/llm-assistant` branch of GitHub. The **API key is not**: it is a secret and stays out of git.
+
+1. Get the project (Node 24 and git needed) and the branch:
+
+```bash
+git clone https://github.com/desjouiscapucine-source/BuildDesignSystem.git
+cd BuildDesignSystem && git checkout project/llm-assistant && npm install
+```
+
+2. Get the key: from the password manager, or from Google AI Studio (aistudio.google.com) with the same Google account (copy it, or create a new free one).
+3. Create a `.env` file at the **root of the project** with one line, `GEMINI_API_KEY=<the key>`. It is ignored by git. Never paste the key in a chat, a commit or a file that is committed.
+4. Run a script with it:
+
+```bash
+node --env-file=.env scripts/assistant/04-chatbot-button.mjs
+```
+
+On the original Mac the key is in `~/chatbot-test/.env`; use `--env-file=$HOME/chatbot-test/.env` there, as in the table above.
+
+To start a new Claude conversation on this work, say: "Resume ticket B178 (LLM assistant on the site): read `scripts/assistant/README.md` and the backlog, then continue with me. I am not technical: explain each step simply, in French."
