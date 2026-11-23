@@ -2069,6 +2069,23 @@
       "stage": "code",
       "priority": "high",
       "release": "R4"
+    },
+    {
+      "id": "B181",
+      "title": "Documentation site: use the Divider in the UX playground action bar",
+      "category": "Tooling",
+      "status": "todo",
+      "origin": "proposal",
+      "description": "The vertical separator of the UX playground action bar is the Divider component.",
+      "why": "Compliance audit of Step B180-3 (audits/2026-11-23-B180-3.md), finding 81: the separator is a hand-built span with its own CSS, although the Divider is complete (B180).",
+      "scope": "Included: docs/src/pages/PlaygroundPage.tsx (the span with the class ux-playground-actions-separator becomes Divider, vertical) and docs/src/docs.css (the rule is removed). No decision to ask first. Not included: other separators (none found on the site).",
+      "doneWhen": [
+        "The separator of the action bar is the Divider (vertical).",
+        "The hand-built CSS rule is removed.",
+        "Finding 81 is gone from the next compliance audit."
+      ],
+      "priority": "low",
+      "release": "R4"
     }
   ]
 }
