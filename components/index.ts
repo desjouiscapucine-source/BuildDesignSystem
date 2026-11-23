@@ -57,3 +57,5 @@ export { CommentMessage } from "./CommentMessage/CommentMessage";
 export type { CommentMessageProps, CommentMessagePosition, CommentMessageAuthor } from "./CommentMessage/CommentMessage";
 export { Comment } from "./Comment/Comment";
 export type { CommentProps, CommentThreadMessage } from "./Comment/Comment";
+export { Divider } from "./Divider/Divider";
+export type { DividerProps, DividerOrientation } from "./Divider/Divider";

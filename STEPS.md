@@ -6568,3 +6568,18 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/Divider/guidelines.md`, `components/Divider/meta.json`, `backlog/backlog.json`, `audits/2026-11-23-B180-2.md`, `STEPS.md`
+
+---
+
+## Step B180-3 — Divider: code approved, component complete
+
+**Date:** 2026-11-23
+
+**What was done**
+- Code stage of the Divider, from the approved spec and guidelines: `Divider.tsx` (prop `orientation`, `horizontal` by default, `vertical`; a `<span>` with `aria-hidden="true"`, the classes `ds-divider` and `ds-divider--<orientation>`), `Divider.css` (`--color-border-default`, `--border-width-1`, the length of its container), examples (horizontal, vertical), Playground (control `orientation`), export from `components/index.ts`.
+- Decided by the Design System Lead while reviewing: the guideline about the parent height is reworded ("a vertical Divider takes the height of its parent; give the parent a height to control it"), measured at 21px in a flex row without a height; `--color-border-default` kept (the description of `--color-border-subtle` in `semantic.json` says "Dividers"; the Design System Lead kept `default`); `aria-hidden` can be overridden through `...rest`, like the other components.
+- Accessibility check of the stage: 7 pass, 0 fail, 8 not applicable. Token audit: 5 values, 0 fail.
+- Code approved by the Design System Lead: `meta.json` status `complete`, version 1.0, changelog entry; ticket B180 `done`. The Divider is ready for the Header (B055).
+
+**Files**
+- `components/Divider/Divider.tsx`, `components/Divider/Divider.css`, `components/Divider/examples.tsx`, `components/Divider/playground.tsx`, `components/Divider/guidelines.md`, `components/Divider/meta.json`, `components/index.ts`, `backlog/backlog.json`, `audits/2026-11-23-B180-3.md`, `STEPS.md`

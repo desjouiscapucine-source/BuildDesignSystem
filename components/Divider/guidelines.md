@@ -14,7 +14,7 @@
 
 ## Usage best practices
 - The Divider has no margin: the parent sets the space around it with the `--space-*` tokens (16px between blocks, 16px gap in the Header).
-- A vertical Divider needs a parent with a height (e.g. 32px in the Header); without one, the line is not visible.
+- A vertical Divider takes the height of its parent; give the parent a height to control it (e.g. 32px in the Header).
 - Separate groups, not every item: one line between two groups, never between each item.
 - Never place it along an edge that already has a border (double line).
 
