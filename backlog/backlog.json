@@ -2051,6 +2051,17 @@
       ],
       "priority": "high",
       "release": "R4"
+    },
+    {
+      "id": "B178",
+      "title": "LLM assistant on the site",
+      "category": "Tooling",
+      "status": "in-progress",
+      "origin": "decided",
+      "description": "An LLM assistant on the documentation site, to create components and prototypes from the site itself.",
+      "why": "The Design System Lead asked on 2026-11-23 to do the component and prototype tasks through the site, with an LLM on it, and is learning APIs and LLMs to build it. Related: B105 (Chatbot), the chat component.",
+      "priority": "high",
+      "release": "R5"
     }
   ]
 }
