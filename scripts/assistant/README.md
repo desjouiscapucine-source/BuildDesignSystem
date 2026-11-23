@@ -20,8 +20,9 @@ node --env-file=$HOME/chatbot-test/.env scripts/assistant/<file>
 | `02-list-models.mjs` | List the models the key can use (names change often) | Tested |
 | `03-chatbot.mjs` | Chatbot with memory and a system prompt | Tested |
 | `04-chatbot-button.mjs` | Answers from the Button spec only | Tested: correct answers, no invention |
-| `05-chatbot-all-docs.mjs` | All specs and guidelines in the system prompt (about 250 000 characters) | Not run yet |
-| `06-build-index.mjs` | RAG part 1: cut the docs into pieces (about 520) and compute their embeddings, into `index.json` (not committed) | Not run yet |
+| `05-chatbot-all-docs.mjs` | All specs and guidelines in the system prompt (about 250 000 characters) | Tested: about 69 000 tokens and 40 s per question |
+| `06-build-index.mjs` | RAG part 1: cut the docs into pieces (about 520) and compute their embeddings, into `index.json` (not committed) | Tested (the free tier may ask to wait: it retries) |
+| `07-chatbot-rag.mjs` | RAG part 2: search the index, send only the 6 closest pieces; shows the pieces found, their score, the tokens and the time | Tested: 700 to 2 000 tokens and 2.5 to 10 s per question |
 | `lib.mjs` | Shared helpers: read the docs, retry on 503/429, chat loop with a token counter | — |
 
 - Model names are in one place (`lib.mjs`, `MODEL` and `EMBEDDING_MODEL`). If a call fails with a `404`, the model was retired: run `02-list-models.mjs` and change the name. A `503` only means the service is busy.
@@ -31,9 +32,12 @@ node --env-file=$HOME/chatbot-test/.env scripts/assistant/<file>
 - An LLM has no memory: the whole conversation is sent again at every message.
 - The system prompt sets the role and the rules. "Answer only from the document" removes invention but can make the model too cautious: language (French questions, English docs) and a lighter model made it refuse answers that were in the spec; a clearer prompt and a stronger model fixed it. Always check the answers against the real files.
 
+- Sending all the documentation works but is slow and costly (about 69 000 tokens, 40 s per question) and grows with the design system. A RAG sends 30 to 100 times less and answers 4 to 15 times faster.
+- A RAG is good at precise questions (a size, a state, a token of one component) and bad at broad ones ("list", "how many"): it only sees 6 pieces. When the answer is there, the right piece clearly comes first (score about 0.76); when it is not, or the question is too broad, the scores are flat (about 0.61 to 0.67). An assistant only knows what is indexed: it said nothing about the palettes, which were not in the index.
+
 ## Next steps
-1. Run `05` then `06`; compare "send everything" with a RAG on the same questions (answers, tokens sent, time).
-2. Write `07-chatbot-rag.mjs`: embed the question, take the closest pieces of `index.json`, send only those to the LLM.
+1. Index the tokens too (decided by the Design System Lead on 2026-11-23), so the assistant can answer on colors, typography, spacing.
+2. Ideas to test: a "catalog" piece (every component and its description, from the `meta.json` files) for "list" and "how many" questions; a score threshold ("nothing precise found") before calling the LLM; a memory for follow-up questions.
 3. Part B: a small local server that keeps the key (never in the browser) and a chat area on the site, built with the design system components. B105 (Chatbot) is the related component ticket.
 4. Agent stage: Claude Agent SDK, with tools that write in `components/` and `prototypes/` only, and the Design System Lead's validation at every stage (`never-invent`, approval gates, no commit or push without validation).
 

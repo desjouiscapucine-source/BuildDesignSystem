@@ -6556,3 +6556,23 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `scripts/assistant/README.md`, `STEPS.md` (updated)
+
+---
+
+## Step B178-3 — LLM assistant: the RAG chatbot (index and search)
+
+**Date:** 2026-11-23
+
+**What was done**
+- `scripts/assistant/07-chatbot-rag.mjs`: the second half of the RAG. Each question is turned into an embedding, compared with the 520 pieces of `index.json` (cosine similarity), and only the 6 closest pieces are sent to the LLM; the script shows the pieces found with their score, the tokens sent and the time.
+- `scripts/assistant/README.md`: statuses of `05`, `06` and `07`, what was learned, next steps updated.
+- The Design System Lead ran `05` (all the documentation in the prompt) then `06` (index) then `07`, and decided to **index the tokens too** (next step).
+
+**Checked** (real API calls, answers checked by Claude against the files)
+- `05`: about 69 000 tokens and 39 to 41 s per question. `07`: 696 to 2 050 tokens and 2.5 to 10 s: 30 to 100 times less text, 4 to 15 times faster.
+- Precise question (sizes of the Button): correct, right piece first (score 0.76). Unknown component (Carousel) and "how many components": honest refusal, nothing invented.
+- Limits found: a broad question ("list the action components") missed Link (flat scores 0.66 to 0.67; IconButton found only through a side mention in CommentMessage); the colors question was answered with the Button variants because the palettes are not in the index (tokens to add).
+- Documentation and tooling only: `ds-compliance-audit` not re-run (`docs/`, `components/` and `tokens/` unchanged since `audits/2026-11-23-B178-1.md`).
+
+**Files**
+- `scripts/assistant/07-chatbot-rag.mjs` (new), `scripts/assistant/README.md`, `STEPS.md` (updated)
