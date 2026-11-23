@@ -2,7 +2,7 @@
   "name": "Header",
   "description": "The top bar of a page: brand, search and actions available on every page.",
   "level": "organism",
-  "status": "guidelines",
+  "status": "code",
   "version": "0.0",
   "changelog": []
 }

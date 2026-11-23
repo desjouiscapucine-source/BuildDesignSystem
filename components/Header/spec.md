@@ -35,7 +35,7 @@ None: the Header has a single look.
 | Brand name | Yes | BuildDesignSystem | One line | Not cut: the name never wraps (one line) |
 | Search placeholder | If the search is present | Search pages | One line | Cut with an ellipsis (TextInput) |
 | Information | No | Time spent building 00:00:00 | One line | Hidden below desktop |
-| Action labels (accessible names) | Yes, one per IconButton | Workspace, Log in | — | Not visible (icon only) |
+| Action labels (accessible names) | Yes, one per IconButton | Open workspace, Log in | — | Not visible (icon only) |
 
 ## Props
 | Prop | Description | Required |
@@ -78,6 +78,7 @@ The brand is a link of the Header (the logo and the name, without underline; the
 - A `<header>` element.
 - The brand link, focusable with the keyboard (Enter follows it), has the accessible name "<name>, home".
 - The burger has the accessible name "Open navigation" / "Close navigation", and the attributes `aria-expanded` and `aria-controls`.
+- The search field is named by its placeholder (the TextInput gives it an `aria-label`), e.g. "Search pages".
 - The Dividers are decorative (hidden from screen readers).
 - The bottom border is decorative: no contrast requirement (WCAG 1.4.11), the bar is distinguished by its background.
 - The Information is a content of the site: the site makes it meet WCAG 2.2 AA (contrast 4.5:1 for text); the Header only sets its place.

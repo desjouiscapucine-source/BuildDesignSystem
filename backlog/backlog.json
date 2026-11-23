@@ -492,7 +492,7 @@
       "status": "in-progress",
       "origin": "decided",
       "description": "On the documentation site, not defined in the design system yet. Top bar of the site: brand name and logo, search field, work-time clock, shortcuts.",
-      "stage": "guidelines",
+      "stage": "code",
       "release": "R1",
       "priority": "high"
     },

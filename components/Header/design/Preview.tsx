@@ -52,7 +52,7 @@ export function Preview({ text, state }: PreviewProps) {
         <span className="shell-work-time-screen">00:00:00</span>
       </p>
       <Divider orientation="vertical" style={{ height: "var(--space-32)", alignSelf: "center" }} />
-      <IconButton variant="primary" icon="workspaces" label="Workspace" />
+      <IconButton variant="primary" icon="workspaces" label="Open workspace" />
       <IconButton variant="tertiary" icon="login" label="Log in" />
     </header>
   );

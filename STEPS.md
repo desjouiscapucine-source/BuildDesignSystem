@@ -6602,3 +6602,22 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `components/Header/meta.json`, `components/Header/spec.md`, `components/Header/design/tokens.json`, `components/Header/design/Preview.tsx`, `components/Header/guidelines.md` (template), `backlog/backlog.json`, `audits/2026-11-23-B055-1.md`, `audits/2026-11-23-B055-1-tokens.md`, `STEPS.md`
+
+---
+
+## Step B055-2 — Header: guidelines approved
+
+**Date:** 2026-11-23
+
+**What was done**
+- Guidelines stage of the Header, written with the Design System Lead (choices made in the chat, text approved):
+  - When to use: top bar of every page, access to the search and to the transverse actions, access to the navigation below desktop.
+  - When not to use: main navigation of a space (SideNavigation), an action of one page only (the page or a Panel), more than one Header per page.
+  - Best practices: the brand leads to the landing page; only the actions available on every page, as icon buttons (Workspace first, log in / log out last); the extra actions go into the Workspace menu when the width is not enough (how it works is decided with the Menu, B167); no burger on a page without side navigation.
+  - Three do / don't pairs shown visually in the chat; behavior (fixed at the top, responsive as in the spec); accessibility (keyboard order, brand focus outline, `scroll-padding-top` equal to `--size-header` so the fixed Header does not hide the focus, WCAG 2.4.11).
+  - Decided by the Design System Lead: the accessible names of the actions start with a verb ("Open workspace", "Log in", "Log out"); the spec content table and the preview updated accordingly.
+- Accessibility check of the stage: the first check found 2 failures (no statement on leaving the Header with Tab / Shift+Tab; the name of the search field), fixed by two sentences that describe the existing behavior (the TextInput names the field by its placeholder, `aria-label`); the re-check passes with 0 failure. The token audit is for the design and code stages only.
+- Guidelines approved by the Design System Lead; `meta.json` status and ticket stage set to `code`.
+
+**Files**
+- `components/Header/guidelines.md`, `components/Header/spec.md`, `components/Header/design/Preview.tsx`, `components/Header/meta.json`, `backlog/backlog.json`, `audits/2026-11-23-B055-2.md`, `STEPS.md`
