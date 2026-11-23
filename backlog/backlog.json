@@ -1845,7 +1845,7 @@
       "id": "B167",
       "title": "Menu",
       "category": "Components",
-      "status": "todo",
+      "status": "in-progress",
       "origin": "proposal",
       "description": "A list of actions opened by a button.",
       "why": "Found while designing CommentMessage (B160), approved by the Design System Lead on 2026-11-22: the \"…\" button of a message opens its actions (Edit, Delete), and no component shows a list of actions yet.",
