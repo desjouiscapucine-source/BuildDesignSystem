@@ -1,0 +1,14 @@
+{
+  "name": "Divider",
+  "description": "A line that separates two parts of an interface.",
+  "level": "atom",
+  "status": "complete",
+  "version": "1.0",
+  "changelog": [
+    {
+      "version": "1.0",
+      "date": "2026-11-23",
+      "changes": "First complete version."
+    }
+  ]
+}

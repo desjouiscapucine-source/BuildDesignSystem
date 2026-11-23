@@ -6534,3 +6534,52 @@ At the Design System Lead's request, listed the elements of the documentation si
 
 **Files**
 - `docs/src/pages/PlaygroundPage.tsx`, `docs/src/docs.css`, `backlog/backlog.json`, `audits/2026-11-23-B177-1.md` (new), `STEPS.md`
+
+---
+
+## Step B180-1 — Divider: design approved
+
+**Date:** 2026-11-23
+
+**What was done**
+- Ticket B180, created on the Design System Lead's request while designing the Header (B055): vertical dividers separate the brand, the search and the actions. Priority high, release R4, `origin` proposal.
+- Design stage of the Divider, decided by the Design System Lead: atom, `.ds-divider`, description "A line that separates two parts of an interface."; one type, no content; property `orientation` (`horizontal` by default, `vertical`); one hierarchy level; color `--color-border-default`, thickness `--border-width-1`; length of its container (the parent sets the height of a vertical line); no states; decorative by default (`aria-hidden`), so no contrast requirement.
+- Design preview in the Design preview tab; `spec.md` written from the approved choices.
+- Accessibility check: 3 pass, 0 fail (the preview first used `role="separator"`; changed to `aria-hidden` to match the spec). Token audit: 11 values, 0 fail.
+- Design approved by the Design System Lead; `meta.json` status and ticket stage set to `guidelines`.
+
+**Files**
+- `components/Divider/meta.json`, `components/Divider/spec.md`, `components/Divider/design/tokens.json`, `components/Divider/design/Preview.tsx`, `components/Divider/guidelines.md` (template), `backlog/backlog.json`, `STEPS.md`
+
+---
+
+## Step B180-2 — Divider: guidelines approved
+
+**Date:** 2026-11-23
+
+**What was done**
+- Guidelines stage of the Divider, written with the Design System Lead (choices made in the chat, text approved):
+  - When to use: separate groups of content that are not distinct enough, parts side by side in a bar, groups of actions.
+  - When not to use: when the space already separates the parts, to frame a block (Card, Frame), to decorate.
+  - Best practices: no margin on the Divider (the parent sets the space with the `--space-*` tokens); a vertical Divider needs a parent with a height; separate groups, not every item; never along an edge that already has a border.
+  - Three do / don't pairs, shown visually in the chat; behavior (length of the container, a part that disappears takes its Divider with it); accessibility (decorative, `aria-hidden`); related components: Header, Card, Frame, Menu (B167, not in the design system yet).
+- Accessibility check of the stage: 5 pass, 0 fail. The token audit is for the design and code stages only.
+- Guidelines approved by the Design System Lead; `meta.json` status and ticket stage set to `code`.
+
+**Files**
+- `components/Divider/guidelines.md`, `components/Divider/meta.json`, `backlog/backlog.json`, `audits/2026-11-23-B180-2.md`, `STEPS.md`
+
+---
+
+## Step B180-3 — Divider: code approved, component complete
+
+**Date:** 2026-11-23
+
+**What was done**
+- Code stage of the Divider, from the approved spec and guidelines: `Divider.tsx` (prop `orientation`, `horizontal` by default, `vertical`; a `<span>` with `aria-hidden="true"`, the classes `ds-divider` and `ds-divider--<orientation>`), `Divider.css` (`--color-border-default`, `--border-width-1`, the length of its container), examples (horizontal, vertical), Playground (control `orientation`), export from `components/index.ts`.
+- Decided by the Design System Lead while reviewing: the guideline about the parent height is reworded ("a vertical Divider takes the height of its parent; give the parent a height to control it"), measured at 21px in a flex row without a height; `--color-border-default` kept (the description of `--color-border-subtle` in `semantic.json` says "Dividers"; the Design System Lead kept `default`); `aria-hidden` can be overridden through `...rest`, like the other components.
+- Accessibility check of the stage: 7 pass, 0 fail, 8 not applicable. Token audit: 5 values, 0 fail.
+- Code approved by the Design System Lead: `meta.json` status `complete`, version 1.0, changelog entry; ticket B180 `done`. The Divider is ready for the Header (B055).
+
+**Files**
+- `components/Divider/Divider.tsx`, `components/Divider/Divider.css`, `components/Divider/examples.tsx`, `components/Divider/playground.tsx`, `components/Divider/guidelines.md`, `components/Divider/meta.json`, `components/index.ts`, `backlog/backlog.json`, `audits/2026-11-23-B180-3.md`, `STEPS.md`

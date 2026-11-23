@@ -1,0 +1,17 @@
+/* Divider — a decorative line. The length is the one of its container; the parent sets the space around it. */
+.ds-divider {
+  display: block;
+  flex-shrink: 0;
+  align-self: stretch;
+  background: var(--color-border-default);
+}
+
+.ds-divider--horizontal {
+  width: 100%;
+  height: var(--border-width-1);
+}
+
+.ds-divider--vertical {
+  width: var(--border-width-1);
+  height: auto;
+}

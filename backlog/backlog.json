@@ -2056,7 +2056,7 @@
       "id": "B180",
       "title": "Divider",
       "category": "Components",
-      "status": "todo",
+      "status": "done",
       "origin": "proposal",
       "description": "A line that separates two parts of an interface, vertical or horizontal.",
       "why": "Found while designing the Header (B055), approved by the Design System Lead on 2026-11-23: vertical dividers separate the brand, the search and the actions. No component draws a separator yet.",
@@ -2066,7 +2066,7 @@
         "The accessibility and token audits pass.",
         "Divider is exported from @ds/components, ready for the Header (B055)."
       ],
-      "stage": "design",
+      "stage": "code",
       "priority": "high",
       "release": "R4"
     }
